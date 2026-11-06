@@ -1,0 +1,7 @@
+/target/
+/.worktrees/
+/.superpowers/
+.env
+.env.*
+*.local
+/evidence-private/

@@ -1,0 +1,20 @@
+[package]
+name = "storytelling-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+description = "Local read-only JSON story-plan validator"
+
+[[bin]]
+name = "storytelling"
+path = "src/main.rs"
+
+[dependencies]
+serde_json.workspace = true
+storytelling-engine.workspace = true
+
+[lints]
+workspace = true

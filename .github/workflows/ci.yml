@@ -1,0 +1,27 @@
+name: CI
+on:
+  push:
+    branches: [main, 'codex/**']
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Install pinned toolchain
+        run: rustup toolchain install 1.85.0 --profile minimal --component rustfmt,clippy
+      - name: Resolve bootstrap lockfile
+        run: |
+          cargo generate-lockfile
+          echo CARGO_LOCK_BEGIN
+          cat Cargo.lock
+          echo CARGO_LOCK_END
+      - name: Observe RED contract tests
+        run: cargo test --workspace --locked
