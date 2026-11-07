@@ -1,10 +1,16 @@
 <!-- SPDX-License-Identifier: MIT AND Apache-2.0 -->
-# Approval Identity v1 (M3-01, implementation in progress)
+# Approval Identity v1 (concurrent PR #28 candidate; not accepted)
 
-This is a bounded pure-core contract and signature verifier. It does not sign,
-store keys, authorize a person, execute an editor, or persist/replay approvals.
-The task remains in progress until independent security review and same-head
-hosted checks pass.
+This candidate is separate from the canonical proposed M3-01/P1 immutable
+finite-OTIO review-binding scope in [M3-01-NEXT](M3-01-NEXT.md). It does not
+satisfy that task. Independent G2 review is pending; this document describes a
+candidate API, not an accepted public contract.
+
+This is a bounded pure-core candidate contract and signature verifier. It does
+not sign, store keys, authorize a person, execute an editor, or persist/replay
+approvals. The candidate remains unaccepted until independent security review
+and same-head hosted checks pass; even then, it does not complete canonical
+M3-01/P1.
 
 ## Identity construction
 
@@ -78,5 +84,5 @@ was executed. The token is not a serialized bearer credential.
 
 No private key or seed is stored in the repository, fixture, test output or CLI.
 The signer/keychain, authorization registry, persistence/replay ledger,
-revocation/expiry policy and Host execution are outside M3-01. M3-02 owns durable
+revocation/expiry policy and Host execution are outside this candidate. M3-02 owns durable
 operation/owner fencing; M3-03 owns actual Host observations and execution.

@@ -1,11 +1,12 @@
 <!-- SPDX-License-Identifier: MIT AND Apache-2.0 -->
-# M3-01 approval identity validation
+# PR #28 approval-identity candidate validation
 
-Status: implementation in progress. Current base: `5533fcb5d0f857ad1066a76505071653b66d1f89`.
-Local gates below were rerun after merging this latest main base into the candidate branch.
-Final author self-review is recorded in the task ledger; independent G2 security
-review remains pending. The refreshed candidate head `c162a47dcb8de4c582a3c66c22396ecfd8cb0134`
-passed two same-head hosted CI runs; any later head still requires its own checks.
+Status: implemented candidate, not accepted. Canonical M3-01/P1 is a separate
+proposed finite-OTIO review-binding task. Current main base being integrated is
+`1d8d0e3652aa2afe77375550876639b726928eba`. Independent G2 security review is
+pending. The earlier candidate head `f571d68b69d5835ddc5cb038ea34d4f07348985c`
+passed two same-head hosted CI runs before main advanced via PR #29; those runs
+do not validate the refreshed branch.
 
 The initial PR head `d321049add005363618f58451b913301eb6d1e96` passed hosted
 CI run `42347452265` on all five jobs. Main advanced via PR #26 before review;
@@ -16,7 +17,7 @@ there before acceptance.
 
 ## Test-first evidence
 
-- Baseline before M3-01: `cargo test --workspace --locked` passed.
+- Baseline before this candidate: `cargo test --workspace --locked` passed.
 - Identity RED: after creating `tests/approval.rs`, Cargo failed to compile the
   integration target because `storytelling_core::approval` did not exist.
 - Identity GREEN: with typed error stubs, 4 contract tests compiled and failed on
@@ -49,7 +50,7 @@ there before acceptance.
 | `RUSTDOCFLAGS='-D warnings' cargo doc --workspace --no-deps --locked` | Passed; exit 0 |
 | `cargo audit --file Cargo.lock` | Passed; 39 locked packages scanned against 1,422 advisories; no findings emitted |
 | `python3 scripts/check_repo.py` | Passed; repository links, provenance, dependency boundaries and test references valid |
-| Same-head Linux/Windows/macOS CI | Passed on head `c162a47dcb8de4c582a3c66c22396ecfd8cb0134` in runs `42348221843` and `42348225264` (both all 5 jobs); inspect Draft PR #28 for any newer head |
+| Same-head Linux/Windows/macOS CI | Earlier candidate head `f571d68b69d5835ddc5cb038ea34d4f07348985c` passed all five jobs in runs `42348570713` and `42348574434`; not current after PR #29 main advanced |
 | Independent G2 security review | Pending |
 
 ## Claims not made

@@ -1,4 +1,8 @@
-# M3-01 Approval Identity Implementation Plan
+# PR #28 Approval Identity Candidate Implementation Plan
+
+This plan records the separate cryptographic candidate only. The canonical
+M3-01/P1 finite-OTIO review-binding task remains proposed and is not completed
+by these steps.
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use `superpowers:executing-plans` to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -8,7 +12,7 @@
 
 **Tech Stack:** Rust 1.85 / edition 2024, Serde + the existing pinned `serde_json` wire codec, SHA-256, `ed25519-dalek` 3.0.0, RFC 8032 test vector.
 
-**Spec:** `docs/superpowers/specs/2026-11-07-m3-01-approval-identity-design.md`
+**Spec:** `docs/superpowers/specs/2026-11-07-pr28-approval-identity-candidate-design.md`
 
 ## Global Constraints
 
@@ -157,7 +161,7 @@ untrusted, malformed, duplicate, or over-budget case rejects.
 
 **Files:**
 - Modify: `TASKS.md`, `ROADMAP.md`, `docs/CONTRACTS.md`, `docs/ARCHITECTURE.md`, `docs/REQUIREMENTS.md`, `docs/MIGRATION.md`, `scripts/check_repo.py`
-- Create: `docs/migration/APPROVAL_IDENTITY_V1.md`, `docs/migration/records/M3-01.md`, `docs/migration/m3-01-work-index.json`, `docs/migration/dependency-review-m3-01.md`, `docs/validation/m3-01-approval-identity.md`
+- Create: `docs/migration/APPROVAL_IDENTITY_V1.md`, `docs/migration/records/M3-01-approval-candidate.md`, `docs/migration/m3-01-approval-candidate-work-index.json`, `docs/migration/dependency-review-pr28-approval-candidate.md`, `docs/validation/m3-01-approval-candidate.md`
 - Do not create an upstream source-provenance manifest for first-party M3-01 code; retain registry/checksum/license/advisory evidence in the dependency review.
 
 **Interfaces:**

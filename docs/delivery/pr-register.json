@@ -2047,6 +2047,320 @@
         "completed_metadata_at": "2026-11-07T05:41:45Z",
         "dependency_mergeability_refreshed_at": "2026-11-07T05:45:37Z"
       }
+    },
+    {
+      "kind": "accepted-delivery-addendum",
+      "observed_at": "2026-11-07T06:27:33Z",
+      "observed_main": "5533fcb5d0f857ad1066a76505071653b66d1f89",
+      "scope": "Adds PR25register and PR26selected-domain test-only live shadow after the original15PR snapshot; no production behavior expansion",
+      "accepted_deliveries": [
+        {
+          "number": 25,
+          "url": "https://github.com/bynanci/storytelling/pull/25",
+          "classification": "documentation",
+          "scope": "Completed PR register and idempotent lifecycle metadata cleanup",
+          "state": "closed",
+          "merged": true,
+          "head": {
+            "sha": "0030fe206f62c7c058e2337e98945d0e72a06954",
+            "tree_sha": "b1d7db0269a2abc9130ffbe92db4ed91e1a0febb"
+          },
+          "merge": {
+            "sha": "073b5a415324d588019e2155dcf24ddddd860adf",
+            "tree_sha": "b1d7db0269a2abc9130ffbe92db4ed91e1a0febb",
+            "merged_at": "2026-11-07T05:56:33Z",
+            "head_tree_matches_merge": true
+          },
+          "checks": {
+            "queried_head_sha": "0030fe206f62c7c058e2337e98945d0e72a06954",
+            "total": 10,
+            "all_success": true,
+            "runs": [
+              {
+                "id": 42344636011,
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42344636011"
+              },
+              {
+                "id": 42344681694,
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42344681694"
+              }
+            ],
+            "check_runs": [
+              {
+                "id": 128319929186,
+                "name": "Required gates",
+                "head_sha": "0030fe206f62c7c058e2337e98945d0e72a06954",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42344681694/job/128319929186",
+                "completed_at": "2026-11-07T05:55:30Z"
+              },
+              {
+                "id": 128319863821,
+                "name": "Required gates",
+                "head_sha": "0030fe206f62c7c058e2337e98945d0e72a06954",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42344636011/job/128319863821",
+                "completed_at": "2026-11-07T05:55:13Z"
+              },
+              {
+                "id": 128319744447,
+                "name": "Quality and contracts",
+                "head_sha": "0030fe206f62c7c058e2337e98945d0e72a06954",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42344681694/job/128319744447",
+                "completed_at": "2026-11-07T05:55:14Z"
+              },
+              {
+                "id": 128319744368,
+                "name": "Rust (macos-latest)",
+                "head_sha": "0030fe206f62c7c058e2337e98945d0e72a06954",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42344681694/job/128319744368",
+                "completed_at": "2026-11-07T05:54:54Z"
+              },
+              {
+                "id": 128319744366,
+                "name": "Rust (windows-latest)",
+                "head_sha": "0030fe206f62c7c058e2337e98945d0e72a06954",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42344681694/job/128319744366",
+                "completed_at": "2026-11-07T05:55:26Z"
+              },
+              {
+                "id": 128319744163,
+                "name": "Rust (ubuntu-latest)",
+                "head_sha": "0030fe206f62c7c058e2337e98945d0e72a06954",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42344681694/job/128319744163",
+                "completed_at": "2026-11-07T05:55:00Z"
+              },
+              {
+                "id": 128319679615,
+                "name": "Rust (windows-latest)",
+                "head_sha": "0030fe206f62c7c058e2337e98945d0e72a06954",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42344636011/job/128319679615",
+                "completed_at": "2026-11-07T05:55:05Z"
+              },
+              {
+                "id": 128319679568,
+                "name": "Rust (ubuntu-latest)",
+                "head_sha": "0030fe206f62c7c058e2337e98945d0e72a06954",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42344636011/job/128319679568",
+                "completed_at": "2026-11-07T05:54:43Z"
+              },
+              {
+                "id": 128319679541,
+                "name": "Rust (macos-latest)",
+                "head_sha": "0030fe206f62c7c058e2337e98945d0e72a06954",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42344636011/job/128319679541",
+                "completed_at": "2026-11-07T05:54:46Z"
+              },
+              {
+                "id": 128319679344,
+                "name": "Quality and contracts",
+                "head_sha": "0030fe206f62c7c058e2337e98945d0e72a06954",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42344636011/job/128319679344",
+                "completed_at": "2026-11-07T05:55:07Z"
+              }
+            ]
+          }
+        },
+        {
+          "number": 26,
+          "url": "https://github.com/bynanci/storytelling/pull/26",
+          "classification": "verification",
+          "scope": "M2-03 test-only actual selected-domain planner shadow; full solver parity open",
+          "state": "closed",
+          "merged": true,
+          "head": {
+            "sha": "4bf888949107a21b560b09222175ff1f25118a3b",
+            "tree_sha": "2211957c3106591e46d8f0b49ddfb7d13a6f8794"
+          },
+          "merge": {
+            "sha": "5533fcb5d0f857ad1066a76505071653b66d1f89",
+            "tree_sha": "2211957c3106591e46d8f0b49ddfb7d13a6f8794",
+            "merged_at": "2026-11-07T06:27:14Z",
+            "head_tree_matches_merge": true
+          },
+          "checks": {
+            "queried_head_sha": "4bf888949107a21b560b09222175ff1f25118a3b",
+            "total": 10,
+            "all_success": true,
+            "runs": [
+              {
+                "id": 42346820122,
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42346820122"
+              },
+              {
+                "id": 42346869977,
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42346869977"
+              }
+            ],
+            "check_runs": [
+              {
+                "id": 128326643444,
+                "name": "Required gates",
+                "head_sha": "4bf888949107a21b560b09222175ff1f25118a3b",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42346869977/job/128326643444",
+                "completed_at": "2026-11-07T06:25:37Z"
+              },
+              {
+                "id": 128326525532,
+                "name": "Required gates",
+                "head_sha": "4bf888949107a21b560b09222175ff1f25118a3b",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42346820122/job/128326525532",
+                "completed_at": "2026-11-07T06:25:05Z"
+              },
+              {
+                "id": 128326419902,
+                "name": "Rust (windows-latest)",
+                "head_sha": "4bf888949107a21b560b09222175ff1f25118a3b",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42346869977/job/128326419902",
+                "completed_at": "2026-11-07T06:25:19Z"
+              },
+              {
+                "id": 128326419818,
+                "name": "Rust (ubuntu-latest)",
+                "head_sha": "4bf888949107a21b560b09222175ff1f25118a3b",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42346869977/job/128326419818",
+                "completed_at": "2026-11-07T06:25:06Z"
+              },
+              {
+                "id": 128326419809,
+                "name": "Rust (macos-latest)",
+                "head_sha": "4bf888949107a21b560b09222175ff1f25118a3b",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42346869977/job/128326419809",
+                "completed_at": "2026-11-07T06:25:06Z"
+              },
+              {
+                "id": 128326419750,
+                "name": "Quality and contracts",
+                "head_sha": "4bf888949107a21b560b09222175ff1f25118a3b",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42346869977/job/128326419750",
+                "completed_at": "2026-11-07T06:25:33Z"
+              },
+              {
+                "id": 128326327284,
+                "name": "Rust (windows-latest)",
+                "head_sha": "4bf888949107a21b560b09222175ff1f25118a3b",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42346820122/job/128326327284",
+                "completed_at": "2026-11-07T06:25:01Z"
+              },
+              {
+                "id": 128326327282,
+                "name": "Rust (ubuntu-latest)",
+                "head_sha": "4bf888949107a21b560b09222175ff1f25118a3b",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42346820122/job/128326327282",
+                "completed_at": "2026-11-07T06:24:32Z"
+              },
+              {
+                "id": 128326327252,
+                "name": "Rust (macos-latest)",
+                "head_sha": "4bf888949107a21b560b09222175ff1f25118a3b",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42346820122/job/128326327252",
+                "completed_at": "2026-11-07T06:24:45Z"
+              },
+              {
+                "id": 128326327064,
+                "name": "Quality and contracts",
+                "head_sha": "4bf888949107a21b560b09222175ff1f25118a3b",
+                "status": "completed",
+                "conclusion": "success",
+                "url": "https://github.com/bynanci/storytelling/actions/runs/42346820122/job/128326327064",
+                "completed_at": "2026-11-07T06:24:57Z"
+              }
+            ]
+          }
+        }
+      ],
+      "completed_issues_added": [
+        {
+          "number": 24,
+          "state": "closed",
+          "state_reason": "completed",
+          "closed_at": "2026-11-07T06:27:33Z",
+          "unchecked_items": 0
+        }
+      ],
+      "pending_dependency_prs_unchanged_from_original_observation": [
+        8,
+        9,
+        10,
+        21
+      ],
+      "snapshot_excludes_own_followup_pr": true
+    },
+    {
+      "kind": "open-candidate-observation",
+      "date": "2026-11-07",
+      "observed_after_pr": 29,
+      "pull_requests": [
+        {
+          "number": 28,
+          "url": "https://github.com/bynanci/storytelling/pull/28",
+          "state": "open",
+          "draft": true,
+          "merged": false,
+          "head_sha": "c162a47dcb8de4c582a3c66c22396ecfd8cb0134",
+          "base_sha": "5533fcb5d0f857ad1066a76505071653b66d1f89",
+          "scope": "Concurrent exact-supplied-byte cryptographic identity/signature proposal; CIpassed, independent G2/security/dependency review pending; no compilation-linkage or trusted approval acceptance",
+          "accepted": false,
+          "same_head_checks": {
+            "total": 10,
+            "all_success": true,
+            "runs": [
+              42348221843,
+              42348225264
+            ]
+          },
+          "review": {
+            "scope": "Exact-supplied-byte signature binding only; no compilation linkage, current host trust, human approval or replay claim",
+            "code_security": "No blocker found within the stated limited scope",
+            "dependency_closure": "39packages/15newversions actual checksum/MSRV/license/features reviewed",
+            "remaining_gate": "Dependency review doc requires exact-head CI audit but workflow has no cargo-audit step; reconcile gate/evidence and source-comparison/first-party classification boundary before acceptance",
+            "accepted": false
+          }
+        }
+      ],
+      "prepared_task": {
+        "number": 27,
+        "state": "open",
+        "unchecked_items": 6,
+        "proposed_requirement_ids": "M3-RB01–RB07",
+        "note": "distinct from PR28M3-A01–A03; reconcile scope after independent review"
+      }
     }
   ]
 }

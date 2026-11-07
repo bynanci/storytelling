@@ -1,5 +1,8 @@
 <!-- SPDX-License-Identifier: MIT AND Apache-2.0 -->
-# M3-01 Approval Identity and Compiled-Plan Binding
+# PR #28 Approval Identity Candidate
+
+This candidate is distinct from canonical M3-01/P1 immutable finite-OTIO
+review binding. It does not complete that proposed task.
 
 ## Intent
 

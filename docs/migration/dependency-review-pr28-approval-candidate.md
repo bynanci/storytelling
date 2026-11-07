@@ -1,5 +1,9 @@
 <!-- SPDX-License-Identifier: MIT AND Apache-2.0 -->
-# M3-01 dependency review
+# PR #28 approval-candidate dependency review
+
+This records a bounded dependency review for the concurrent PR #28 candidate,
+not G2 acceptance of the canonical M3-01/P1 finite-OTIO review-binding scope.
+Independent G2 review of the candidate remains pending.
 
 ## Direct dependency change
 
@@ -45,5 +49,5 @@ exact-head CI audit remains required.
 `cargo tree -p storytelling-core -e features --locked` showed only the
 `ed25519-dalek/fast` feature and Curve25519 precomputed tables for the new direct
 dependency; `rand_core`, `zeroize`, `hazmat`, `pem` and `pkcs8` are not enabled.
-The source guard also rejects secret-key/signer/RNG API identifiers in the M3-01
+The source guard also rejects secret-key/signer/RNG API identifiers in the PR #28
 module. Independent security review remains pending.

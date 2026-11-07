@@ -107,7 +107,12 @@ must distinguish StoryBrief, evidence, immutable proposal, compiled losses,
 approval and execution receipt. Approval must bind actual source identities,
 proposal/compiled-plan identity, host snapshot and accepted degradation choices.
 
-## M3-01 Approval Identity v1 (implementation in progress)
+## Concurrent PR #28 Approval Identity v1 candidate (not accepted)
+
+This is a separate bounded cryptographic identity/verifier candidate. The
+canonical M3-01/P1 scope remains proposed in
+[M3-01-NEXT](migration/M3-01-NEXT.md), requires independent G2 freeze, and is
+not implemented by this candidate.
 
 The bounded core contract is documented in
 [Approval Identity v1](migration/APPROVAL_IDENTITY_V1.md). It is not a CLI
@@ -131,4 +136,4 @@ that the caller's key registry is trustworthy, that the named principal is
 authorized, that an `observed` Host claim is true, that approval has not been
 replayed/revoked/expired, or that a Host operation ran. Those are later trusted
 surface, M3-02, and M3-03 responsibilities. See the
-[M3-01 evidence record](migration/records/M3-01.md).
+[PR #28 candidate evidence record](migration/records/M3-01-approval-candidate.md).

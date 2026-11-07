@@ -1,13 +1,16 @@
 <!-- SPDX-License-Identifier: MIT AND Apache-2.0 -->
-# M3-01 Approval Identity implementation record
+# PR #28 Approval Identity candidate record
 
-State: implementation in progress; not accepted. Current base: `5533fcb5d0f857ad1066a76505071653b66d1f89`.
+State: implemented candidate, not accepted. Canonical M3-01/P1 remains proposed
+in `docs/migration/M3-01-NEXT.md`; this candidate does not satisfy that scope.
+Independent G2 review is pending. The branch is being reconciled to main
+`1d8d0e3652aa2afe77375550876639b726928eba` after PR #29 clarified the distinct
+canonical task and accepted M2-03.
+
 The initial worktree began at `867fcde6acd0dd1339122aaf4bb23003aac3942e` and was
-rebased onto the latest main after fetching PR #25; the intervening commits only
-added delivery-register records and did not touch M3-01 code or contracts. PR #26
-then advanced main while Draft PR #28 was open; the M3-01 branch merged that main
-and reconciled `ROADMAP.md`, `TASKS.md`, and `docs/REQUIREMENTS.md` to retain both
-the accepted M2-03 update and the M3-01 in-progress status.
+rebased onto main after PR #25. PR #26 advanced main while Draft PR #28 was open,
+and the branch included the accepted M2-03 integration. PR #29 advanced main
+again and now defines the separate finite-OTIO review-binding proposal.
 
 ## Scope delivered in this branch
 
@@ -33,12 +36,14 @@ caller must provide an actually trusted active principal/key binding. `observed`
 Host state is only a signed caller claim. The core has no key store, signer,
 revocation/expiry registry, nonce persistence/replay check, operation journal,
 CLI approval, apply operation or Host execution. Filesystem source freshness,
-transactional Host operations and recovery remain M3-02/M3-03 gates.
+transactional Host operations and recovery remain separate durability and
+Host-execution gates.
 
 ## Evidence
 
 Focused tests and full local gates are recorded in
-[validation/m3-01-approval-identity.md](../../validation/m3-01-approval-identity.md).
+[validation/m3-01-approval-candidate.md](../../validation/m3-01-approval-candidate.md).
 The cryptographic dependency and advisory status are in
-[dependency-review-m3-01.md](../dependency-review-m3-01.md). Independent G2
-security review and exact-head hosted CI are still required before acceptance.
+[dependency-review-pr28-approval-candidate.md](../dependency-review-pr28-approval-candidate.md). Independent G2
+security review and current exact-head hosted CI are still required before any
+acceptance decision for this separate candidate.

@@ -32,14 +32,14 @@ if manifest["workspace"]["dependencies"].get("sha2") != {
     errors.append("M1-03 SHA-256 dependency differs from reviewed pure-buffer contract")
 if manifest["workspace"]["dependencies"].get("ed25519-dalek") != {
         "version": "=3.0.0", "default-features": False, "features": ["fast"]}:
-    errors.append("M3-01 Ed25519 dependency differs from the reviewed verification-only pin")
+    errors.append("PR #28 approval-candidate Ed25519 dependency differs from the reviewed verification-only pin")
 core_dependencies = tomllib.loads((ROOT / "crates/storytelling-core/Cargo.toml").read_text()).get("dependencies", {})
 for dependency in ("serde_json", "sha2", "ed25519-dalek"):
     if core_dependencies.get(dependency) != {"workspace": True}:
         errors.append(f"Core {dependency} must inherit its exact reviewed workspace configuration")
 approval_source = ROOT / "crates/storytelling-core/src/approval.rs"
 if approval_source.is_file() and re.search(r"\b(?:SigningKey|SecretKey|Signer|OsRng)\b", approval_source.read_text()):
-    errors.append("M3-01 core must not expose signing, secret-key, or RNG APIs")
+    errors.append("PR #28 approval-candidate core must not expose signing, secret-key, or RNG APIs")
 license_bytes = (ROOT / "LICENSE").read_bytes()
 blob = hashlib.sha1(f"blob {len(license_bytes)}\0".encode() + license_bytes).hexdigest()
 if blob != "f317799529d13f4d9301daa2dba63dfea559ff69":

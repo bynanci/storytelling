@@ -1,26 +1,30 @@
 {
   "schema_version": 1,
-  "task": "M3-01",
-  "base": "5533fcb5d0f857ad1066a76505071653b66d1f89",
-  "state": "in-progress",
-  "scope": "bounded-core-approval-identity-and-signature-verification",
+  "task": "PR-28-approval-identity-candidate",
+  "base": "1d8d0e3652aa2afe77375550876639b726928eba",
+  "state": "candidate-not-accepted",
+  "scope": "concurrent-bounded-core-approval-identity-and-signature-verification; distinct-from-canonical-M3-01/P1-finite-OTIO-review-binding",
   "tasks": [
     {
-      "id": "M3-01/C1",
+      "id": "PR28/C1",
       "state": "implemented",
       "depends_on": [],
       "acceptance": "Versioned strict identity DTO; exact plan/artifact digests; sources only from VerifiedBufferV1; sorted unique identities and resource bounds"
     },
     {
-      "id": "M3-01/C2",
+      "id": "PR28/C2",
       "state": "implemented",
-      "depends_on": ["M3-01/C1"],
+      "depends_on": [
+        "PR28/C1"
+      ],
       "acceptance": "Deterministic domain-separated bytes; strict Ed25519 verification; opaque non-Serde token; malformed/stale/untrusted inputs reject"
     },
     {
-      "id": "M3-01/C3",
+      "id": "PR28/C3",
       "state": "in-progress",
-      "depends_on": ["M3-01/C2"],
+      "depends_on": [
+        "PR28/C2"
+      ],
       "acceptance": "Dependency, architecture, contract, task and validation evidence; independent G2 and same-head hosted checks remain open"
     }
   ],
@@ -55,7 +59,7 @@
       "verification_paths": [
         "crates/storytelling-core/src/approval.rs",
         "crates/storytelling-core/tests/approval.rs",
-        "docs/validation/m3-01-approval-identity.md"
+        "docs/validation/m3-01-approval-candidate.md"
       ]
     },
     {
@@ -70,8 +74,8 @@
       ],
       "verification_paths": [
         "crates/storytelling-core/src/approval.rs",
-        "docs/migration/records/M3-01.md",
-        "docs/migration/dependency-review-m3-01.md"
+        "docs/migration/records/M3-01-approval-candidate.md",
+        "docs/migration/dependency-review-pr28-approval-candidate.md"
       ]
     }
   ],

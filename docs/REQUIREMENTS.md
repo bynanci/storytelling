@@ -117,13 +117,13 @@ Complete test mapping is in the work index; M2-R01 full solver feasibility remai
 
 ## M2-03 selected-domain live shadow requirements
 
-The scoped live-shadow candidate is locally implemented/in review. It invokes
+The scoped live shadow is accepted via merged PR #26. It invokes
 actual pinned source and native binaries; it does not add a product runtime.
 See [profile](migration/PLANNER_SHADOW_V1.md), [record](migration/records/M2-03.md),
 [work index](migration/m2-03-work-index.json) and [per-file inventory](migration/provenance-m2-03.json).
 Python test symbols are individually recorded and AST-checked; the repository guard
-checks their requirement IDs and verification artifact paths. Hosted acceptance
-remains pending until actually observed.
+checks their requirement IDs and verification artifact paths. All ten same-head
+hosted checks passed; the comparison record preserves the accepted identities.
 
 | ID | Requirement | Actual verification artifact |
 | --- | --- | --- |
@@ -134,19 +134,22 @@ remains pending until actually observed.
 | M2-S05 | Actual live run/provenance/validator/failed evidence and CI test-only closure | `run.py`, `test_orchestration.py` |
 | M2-S06 | Actual completed PR classification/register/lifecycle metadata with preserved history | `PR_REGISTER.md`, `pr-register.json` |
 
-## M3-01 approval identity and signer binding
+## Concurrent PR #28 approval-identity candidate (not accepted)
 
-M3-01 implements only a strict, bounded, pure-core identity builder and detached
-signature verifier. See the [contract](migration/APPROVAL_IDENTITY_V1.md),
-[implementation record](migration/records/M3-01.md), [work index](migration/m3-01-work-index.json)
-and [validation evidence](validation/m3-01-approval-identity.md). The task is not
-accepted until an independent G2 security review and same-head hosted CI pass.
+The following M3-A requirements describe a separate Draft candidate, not the
+canonical proposed M3-01/P1 finite-OTIO review-binding task tracked in
+[`M3-01-NEXT`](migration/M3-01-NEXT.md). They do not establish G2 acceptance,
+trusted human authorization, replay protection or host execution. Independent
+G2 review is pending. Implementation and verification evidence are in the
+[candidate work index](migration/m3-01-approval-candidate-work-index.json),
+[record](migration/records/M3-01-approval-candidate.md) and
+[validation](validation/m3-01-approval-candidate.md).
 
-| ID | Requirement | Verification | State |
+| ID | Candidate requirement | Verification | State |
 | --- | --- | --- | --- |
-| M3-A01 | Bind exact project/proposal/artifact bytes, verified source IDs/hash/length, Host ID/profile/version/claim/capabilities and accepted losses; reject noncanonical or over-budget wire identities | `source_identity_uses_verified_buffer_bytes_and_digest`, `compiled_identity_hashes_exact_proposal_and_artifact_bytes`, `compiled_identity_requires_sorted_unique_sources_capabilities_and_losses`, `compiled_identity_rejects_invalid_ids_digests_and_collection_budgets`, `rejects_stale_plan_artifact_source_host_capability_and_loss_bindings` | Implemented locally; review/CI pending |
-| M3-A02 | Domain-separated canonical payload, strict Ed25519 verification, trusted principal/key binding, stable typed rejection, opaque non-Serde result | `rfc8032_ed25519_known_answer_verifies`, `canonical_signing_bytes_are_domain_separated_and_deterministic`, `signed_approval_verifies_to_an_opaque_read_only_token`, `rejects_modified_signature_payload_and_wrong_trusted_key`, `rejects_duplicate_unknown_malformed_and_oversized_approval_json`, `rejects_out_of_range_timestamp_short_nonce_and_unaccepted_loss`, `accepts_email_style_principal_identifiers_without_normalizing_them`; rustdoc compile-fail opacity examples | Implemented locally; review/CI pending |
-| M3-A03 | A valid signature is not self-authorization or Host execution; no private keys, replay ledger, key registry, or execute/apply API in this slice | API/code boundary review and compile-fail opacity examples in `approval.rs`; dependency boundary in `scripts/check_repo.py` | M3-02/M3-03 and independent review remain open |
+| M3-A01 | Bind exact proposal/artifact bytes, verified source identities, project, declared host claims/capabilities and accepted losses | Candidate work index and approval integration tests | Implemented on PR #28; not accepted |
+| M3-A02 | Strict bounded Ed25519 verification returns an opaque result and rejects tampering, malformed data and untrusted signer bindings | Candidate work index and approval integration tests | Implemented on PR #28; independent G2 pending |
+| M3-A03 | A valid signature does not establish human authorization, durable replay safety or host execution | Candidate API-boundary review, compile-fail examples and work index | Candidate scope; broader requirements remain open |
 
 ## Remaining breadth and future requirements
 
