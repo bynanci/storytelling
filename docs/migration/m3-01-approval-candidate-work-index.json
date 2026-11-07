@@ -9,7 +9,7 @@
       "id": "PR28/C1",
       "state": "implemented",
       "depends_on": [],
-      "acceptance": "Versioned strict identity DTO; exact plan/artifact digests; sources only from VerifiedBufferV1; sorted unique identities and resource bounds"
+      "acceptance": "Versioned strict identity DTO; hashes exact caller-supplied proposal/artifact bytes (including empty slices) without proving compiler provenance; sources only from VerifiedBufferV1; sorted unique identities and resource bounds"
     },
     {
       "id": "PR28/C2",
@@ -17,7 +17,7 @@
       "depends_on": [
         "PR28/C1"
       ],
-      "acceptance": "Deterministic domain-separated bytes; strict Ed25519 verification; opaque non-Serde token; malformed/stale/untrusted inputs reject"
+      "acceptance": "Deterministic domain-separated bytes; strict Ed25519 verification; opaque BoundApprovalIdentityV1 and VerifiedApprovalV1; mismatched expected key bindings, malformed and stale inputs reject"
     },
     {
       "id": "PR28/C3",
@@ -25,18 +25,19 @@
       "depends_on": [
         "PR28/C2"
       ],
-      "acceptance": "Dependency, architecture, contract, task and validation evidence; independent G2 and same-head hosted checks remain open"
+      "acceptance": "Dependency, architecture, contract, task and validation evidence; checksum-pinned hosted Cargo Audit is required; independent G2 remains open"
     }
   ],
   "requirements": [
     {
       "id": "M3-A01",
-      "requirement": "Approval binds exact proposal, compiled artifact, verified source hashes/lengths, project, Host claims/capabilities and accepted losses",
+      "requirement": "Approval identity binds exact caller-supplied proposal/artifact bytes, verified source hashes/lengths, project, Host claims/capabilities and accepted losses; it does not prove compilation linkage",
       "tests": [
         "source_identity_uses_verified_buffer_bytes_and_digest",
-        "compiled_identity_hashes_exact_proposal_and_artifact_bytes",
-        "compiled_identity_requires_sorted_unique_sources_capabilities_and_losses",
-        "rejects_stale_plan_artifact_source_host_capability_and_loss_bindings"
+        "bound_identity_hashes_exact_bytes_and_accepts_empty_slices",
+        "approval_identity_requires_sorted_unique_sources_capabilities_and_losses",
+        "rejects_stale_plan_artifact_source_host_capability_and_loss_bindings",
+        "bound_identity_accepts_exact_proposal_and_artifact_size_limits"
       ],
       "verification_paths": [
         "crates/storytelling-core/src/approval.rs",
@@ -46,12 +47,12 @@
     },
     {
       "id": "M3-A02",
-      "requirement": "Strict bounded Ed25519 verification returns an opaque result and rejects tampering, malformed data and untrusted signer bindings",
+      "requirement": "Strict bounded Ed25519 verification returns an opaque result and rejects tampering, malformed data and mismatched expected approver key bindings",
       "tests": [
         "rfc8032_ed25519_known_answer_verifies",
         "canonical_signing_bytes_are_domain_separated_and_deterministic",
         "signed_approval_verifies_to_an_opaque_read_only_token",
-        "rejects_modified_signature_payload_and_wrong_trusted_key",
+        "rejects_modified_signature_payload_and_wrong_expected_key",
         "rejects_duplicate_unknown_malformed_and_oversized_approval_json",
         "rejects_out_of_range_timestamp_short_nonce_and_unaccepted_loss",
         "accepts_email_style_principal_identifiers_without_normalizing_them"
@@ -69,8 +70,8 @@
       "doctest_examples": [
         "VerifiedApprovalV1 private fields prevent forging",
         "VerifiedApprovalV1 does not implement Deserialize",
-        "VerifiedCompiledPlanIdentityV1 private fields prevent forging",
-        "VerifiedCompiledPlanIdentityV1 does not implement Deserialize"
+        "BoundApprovalIdentityV1 private fields prevent forging",
+        "BoundApprovalIdentityV1 does not implement Deserialize"
       ],
       "verification_paths": [
         "crates/storytelling-core/src/approval.rs",
@@ -91,6 +92,7 @@
     "Approval expiry, replay prevention or persistence",
     "Source filesystem freshness after supplied-buffer verification",
     "FilmCraft or other Host execution, rollback or compatibility",
-    "Release acceptance"
+    "Release acceptance",
+    "Compiler provenance or same-snapshot linkage from the approval identity alone"
   ]
 }

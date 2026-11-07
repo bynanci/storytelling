@@ -14,22 +14,27 @@ M3-01/P1.
 
 ## Identity construction
 
-`build_compiled_plan_identity_v1` accepts project/proposal IDs, the exact proposal
-and compiled-artifact byte slices, `VerifiedSourceBufferV1` rows, a Host binding,
+`bind_approval_identity_v1` accepts project/proposal IDs, caller-supplied exact
+proposal/artifact byte slices, `VerifiedSourceBufferV1` rows, a Host binding,
 and accepted-loss records. Proposal bytes are capped at 1 MiB; artifact bytes at
-4 MiB. Source identities are derived from the existing non-deserializable
+4 MiB. Empty proposal or artifact slices are accepted and hashed as supplied;
+callers that require nonempty compiled output must enforce that policy before
+calling this byte-binding primitive. Source identities are derived from the existing non-deserializable
 `VerifiedBufferV1` token's SHA-256 and byte length. Each source buffer keeps the
 existing 16 MiB verified-buffer maximum. The builder does not re-open a file or
 prove that later filesystem bytes remain unchanged. It validates byte, count,
 ID, Host, source-order and loss bounds before copying caller-owned metadata into
-the resulting identity.
+the resulting identity. The opaque `BoundApprovalIdentityV1` means those
+supplied bytes and fields passed this bounded binding step; it does not prove
+that a compiler produced the artifact or that proposal, artifact and sources
+came from one validated snapshot.
 
-`CompiledPlanIdentityV1` is strict wire data but is untrusted after parsing. It
+`ApprovalIdentityV1` is strict wire data but is untrusted after parsing. It
 contains schema version 1; project and proposal IDs; lowercase SHA-256 for the
 exact proposal and compiled artifact; ordered source IDs/hash/byte lengths; a
 Host ID, profile, version, declared/observed claim and capability list; and full
 accepted-loss `(feature, path, disposition, accepted)` rows. The builder returns
-an opaque `VerifiedCompiledPlanIdentityV1` only after validating the same shape.
+an opaque `BoundApprovalIdentityV1` only after validating the same shape.
 The verifier validates the payload identity and compares every field against this
 locally built token before signature verification.
 
@@ -57,17 +62,20 @@ canonicalization version is bound by the domain prefix and schema version.
 ## Signed approval and trust input
 
 `SignedApprovalV1` is strict JSON with `payload` and lowercase `signature_hex`.
-`ApprovalPayloadV1` binds its own schema version, complete compiled identity,
+`ApprovalPayloadV1` binds its own schema version, complete approval identity,
 approval ID, principal ID, key ID, bounded timestamp and nonce. The caller passes
-`TrustedApproverKeyV1` containing an explicit principal/key/public-key binding.
-Core validates Ed25519 key and signature encodings, compares principal/key IDs,
-then calls Ed25519 `verify_strict` on the domain-separated bytes.
+`ExpectedApproverKeyV1` containing an explicit principal/key/public-key binding.
+The caller is responsible for obtaining this expected binding from its own
+trusted source. Core validates Ed25519 key and signature encodings, compares
+principal/key IDs, then calls Ed25519 `verify_strict` on the domain-separated
+bytes; it does not perform registry lookup or authorization.
 
 Stable errors use `ValidationError { code, path }` with `approval.*` codes,
 including `invalid_json`, `too_large`, `unsupported_version`, `invalid_id`,
 `invalid_digest`, `invalid_source_length`, `too_many`,
 `noncanonical_order`, `duplicate_id`, `duplicate_loss`, `loss_not_accepted`,
-`invalid_timestamp`, `invalid_nonce`, `identity_mismatch`, `untrusted_signer`,
+`invalid_timestamp`, `invalid_nonce`, `identity_mismatch`,
+`approver_key_mismatch`,
 `invalid_key`, `invalid_signature_encoding`, and `invalid_signature`.
 Callers branch on codes and paths, not prose.
 
@@ -75,9 +83,9 @@ Callers branch on codes and paths, not prose.
 
 `VerifiedApprovalV1` has private fields, no Serialize/Deserialize implementation,
 and exposes only immutable payload access. Its construction proves that the
-provided public key strictly verifies the exact payload and that the payload
+provided expected public key strictly verifies the exact payload and that the payload
 matches the provided current identity token. It does not establish that the
-caller-supplied key registry is trusted, that a human principal is authorized,
+expected key came from a trusted registry, that a human principal is authorized,
 that a Host `observed` claim is true, that a key is active or unrevoked, that a
 nonce has not been replayed, that an approval is unexpired, or that any operation
 was executed. The token is not a serialized bearer credential.

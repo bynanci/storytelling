@@ -45,14 +45,16 @@ advisories from database commit
 scanning 39 locked crate packages. It emitted no advisory findings for this
 lockfile. The audited `Cargo.lock` SHA-256 was
 `ac030012f2595fe5eb118cb2640a2e2e06c858f72d72f76cad0fa82313112bb0` and remains
-unchanged through candidate head `33ca542`.
+unchanged through candidate head `11741c5dbc982a76230fe89eefc974c5bf966ca8`.
 
-The current `.github/workflows/ci.yml` does **not** run `cargo audit`; the hosted
-CI result is not dependency-audit evidence. This records a local audit of the
-exact lockfile content, not a hosted gate. Independent G2 review must decide
-whether a future workflow should add a pinned hosted audit step before this
-candidate can be accepted. This snapshot is not a guarantee against later
-advisories.
+The workflow now defines a dedicated hosted Dependency audit job. It downloads
+Cargo Audit `0.22.1` from the RustSec release asset and checks the asset SHA-256
+(`1890badd5f15831a9af4b074399fcd21e6f7c0fe42c84e9254cdffc9f813765c`) before
+running `cargo audit --file Cargo.lock`; the Required gate depends on this job.
+The candidate head must pass this new job before its hosted audit can be claimed.
+The job fetches the current RustSec advisory database, so each run is a
+time-specific scan rather than a guarantee against later advisories. The local
+snapshot above remains separate evidence.
 
 `cargo tree -p storytelling-core -e features --locked` showed only the
 `ed25519-dalek/fast` feature and Curve25519 precomputed tables for the new direct

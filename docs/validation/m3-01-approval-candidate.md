@@ -53,7 +53,7 @@ again locally on `f2e2703` before this evidence-only update:
 | `cargo test --workspace --locked` | Passed: 184 tests, 0 failed |
 | `cargo test --workspace --release --locked` | Passed: 184 tests, 0 failed |
 | `RUSTDOCFLAGS='-D warnings' cargo doc --workspace --no-deps --locked` | Passed; exit 0 |
-| `cargo audit --file Cargo.lock` | Passed locally; 39 locked packages scanned against 1,422 advisories, no findings; `.github/workflows/ci.yml` does not run this command |
+| `cargo audit --file Cargo.lock` | Passed locally; 39 locked packages scanned against 1,422 advisories, no findings; hosted Cargo Audit job added after this snapshot; same-head result pending |
 | `python3 scripts/check_repo.py` | Passed; links, provenance, dependency boundaries and requirement references valid |
 | `git diff --check` | Passed; exit 0 |
 
@@ -64,9 +64,9 @@ all five jobs (Quality, Required, Linux, Windows and macOS) in runs
 `42350992888` (a duplicate run `42350998048` also passed). These checks verify
 the candidate only; they do not accept it or canonical M3-01/P1. This file is a
 point-in-time record; the Draft PR body tracks the latest exact head, and any
-newer commit needs its own checks. The hosted workflow does not run Cargo
-Audit; the exact lockfile was audited locally as recorded in the dependency
-review.
+newer commit needs its own checks. The workflow at the time of this evidence snapshot did not run Cargo Audit. A
+checksum-pinned hosted audit job was added afterward; its same-head result must
+be confirmed from the live Draft PR before acceptance.
 
 | Command | Result |
 | --- | --- |
@@ -88,3 +88,20 @@ record does not claim human authorization, trusted registry provenance, Host
 observation, approval expiry/revocation/replay protection, filesystem freshness,
 operation persistence, Host execution, editor compatibility or release readiness.
 M3-02/M3-03 and exact-head hosted/manual gates remain separate.
+
+## Independent review remediation revision
+
+The follow-up candidate revision narrows public names to `ApprovalIdentityV1`,
+`BoundApprovalIdentityV1`, and `ExpectedApproverKeyV1`. Their docs state that
+the API hashes caller-supplied bytes, accepts empty slices, and does not prove
+compiler provenance, same-snapshot linkage, key-registry trust, or signer
+authorization. Regression coverage now makes empty-slice behavior and exact
+proposal/artifact byte ceilings explicit. Key binding mismatches use the stable
+`approval.approver_key_mismatch` error.
+
+The CI workflow adds a checksum-pinned Cargo Audit 0.22.1 dependency job to the
+Required gate. This workspace has no Rust/Cargo toolchain, so Rust formatting,
+clippy, workspace tests, rustdoc, and the hosted audit must be verified on the
+new same-head CI run before this evidence record can claim they passed. Static
+checks completed locally: `scripts/check_repo.py`, JSON/YAML parsing, and
+`git diff --check`.

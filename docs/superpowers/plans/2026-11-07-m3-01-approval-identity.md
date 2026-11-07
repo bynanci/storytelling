@@ -6,9 +6,9 @@ by these steps.
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use `superpowers:executing-plans` to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Add a bounded, versioned Ed25519 approval contract that verifies one signer-key binding against the exact current compiled-plan identity without storing keys or executing a Host operation.
+**Goal:** Add a bounded, versioned Ed25519 approval contract that verifies one expected signer-key binding against an exact caller-supplied approval identity without storing keys or executing a Host operation.
 
-**Architecture:** Add strict wire DTOs and private verified tokens in `storytelling-core`. Build the expected identity from exact proposal/artifact bytes and existing non-deserializable verified source buffers; expose canonical domain-separated signing bytes, but only verify signatures in this repository. Keep account/key authorization, platform key storage, persistence, and Host execution in later milestones.
+**Architecture:** Add strict wire DTOs and private verified tokens in `storytelling-core`. Bind exact caller-supplied proposal/artifact bytes and existing non-deserializable verified source buffers; this token does not prove compilation or same-snapshot linkage. Expose canonical domain-separated signing bytes, but only verify signatures in this repository. Keep account/key authorization, platform key storage, persistence, and Host execution in later milestones.
 
 **Tech Stack:** Rust 1.85 / edition 2024, Serde + the existing pinned `serde_json` wire codec, SHA-256, `ed25519-dalek` 3.0.0, RFC 8032 test vector.
 
@@ -20,7 +20,7 @@ by these steps.
 - No private key, seed, or secret may be serialized, logged, committed, or passed through the CLI.
 - Only the Ed25519 verification API is used in production; canonical signing bytes may be exported for an external trusted signer. Tests may include public RFC vectors and an ephemeral signature fixture, never a private seed or key.
 - A signature proves key control only. Actor authorization is only as trustworthy as the external principal/key binding passed by the caller.
-- Bind the exact project, proposal bytes, compiled artifact bytes, source IDs/hashes/lengths, Host identity/capabilities, and accepted loss records.
+- Bind the exact caller-supplied project, proposal/artifact bytes, source IDs/hashes/lengths, Host identity/capabilities, and accepted loss records. Do not imply that the artifact was compiled from those sources.
 - Preserve existing source verification, exact plan contracts, MIT licensing, Apache-2.0 component notices, and provenance.
 - Do not add an approval command, database, replay ledger, apply function, executor, or “approved” boolean authority.
 
@@ -34,7 +34,7 @@ by these steps.
 
 ---
 
-### Task 1: Freeze bounded approval and compilation identity contracts
+### Task 1: Freeze bounded approval identity and byte-binding contracts
 
 **Files:**
 - Create: `crates/storytelling-core/src/approval.rs`
@@ -42,12 +42,12 @@ by these steps.
 - Test: `crates/storytelling-core/tests/approval.rs`
 
 **Interfaces:**
-- `CompiledPlanIdentityV1`: strict wire record for `project_id`, `proposal_id`, proposal SHA-256, compiled artifact SHA-256, ordered `SourceIdentityV1` rows, `HostBindingV1`, and ordered accepted-loss rows.
+- `ApprovalIdentityV1`: strict wire record for `project_id`, `proposal_id`, proposal SHA-256, compiled artifact SHA-256, ordered `SourceIdentityV1` rows, `HostBindingV1`, and ordered accepted-loss rows.
 - `SourceIdentityV1`: `asset_id`, lowercase SHA-256, and a platform-neutral `u64` byte length. `HostBindingV1` carries `host_id`, `profile_id`, `version`, an explicit `declared`/`observed` claim, and sorted capabilities. `AcceptedLossV1` carries `feature`, logical `path`, disposition, and explicit `accepted: true`.
 - `VerifiedSourceBufferV1<'a>` binds an ASCII asset ID to `&'a VerifiedBufferV1`; the buffer token cannot be deserialized or forged by downstream callers.
-- `VerifiedCompiledPlanIdentityV1`: private-field, non-Serde token returned only by the bounded builder; exposes a read-only identity accessor.
-- `build_compiled_plan_identity_v1(project_id, proposal_id, proposal_bytes, artifact_bytes, sources, host, accepted_losses)` hashes exact proposal/artifact byte slices, derives source rows from `VerifiedBufferV1`, enforces canonical IDs/order and uniqueness, and returns the private verified token.
-- `validate_compiled_plan_identity_v1(identity)` applies the same structural, digest, count, string and canonical-order checks to a deserialized wire identity before it can be used in an approval payload.
+- `BoundApprovalIdentityV1`: private-field, non-Serde token returned only by the bounded builder; exposes a read-only identity accessor and does not prove compiler provenance.
+- `bind_approval_identity_v1(project_id, proposal_id, proposal_bytes, artifact_bytes, sources, host, accepted_losses)` hashes exact caller-supplied slices (including empty slices), derives source rows from `VerifiedBufferV1`, enforces canonical IDs/order and uniqueness, and returns the private binding token. It does not compile or validate semantic relationships.
+- `validate_approval_identity_v1(identity)` applies the same structural, digest, count, string and canonical-order checks to a deserialized wire identity before it can be used in an approval payload.
 - Wire limits: proposal ≤1 MiB; compiled artifact ≤4 MiB; approval envelope ≤1 MiB; ≤1,024 sources; ≤256 Host capability IDs; ≤1,024 accepted losses; ASCII identity strings ≤128 bytes; loss paths ≤512 bytes; nonce ≤128 bytes.
 - Stable errors use `ValidationError` codes under `approval.*` with fixed JSON paths.
 
@@ -55,9 +55,10 @@ by these steps.
 
 Add tests named:
 `source_identity_uses_verified_buffer_bytes_and_digest`,
-`compiled_identity_hashes_exact_proposal_and_artifact_bytes`,
-`compiled_identity_requires_sorted_unique_sources_capabilities_and_losses`,
-and `compiled_identity_rejects_invalid_ids_digests_and_collection_budgets`.
+`bound_identity_hashes_exact_bytes_and_accepts_empty_slices`,
+`bound_identity_accepts_exact_proposal_and_artifact_size_limits`,
+`approval_identity_requires_sorted_unique_sources_capabilities_and_losses`,
+and `approval_identity_rejects_invalid_ids_digests_and_collection_budgets`.
 
 Expected values use literal SHA-256 vectors and hand-written identities. Assert
 that source rows cannot be built from a declared digest without a
@@ -102,9 +103,9 @@ Expected: all Task 1 tests pass with stable errors and no input mutation.
 **Interfaces:**
 - `ApprovalPayloadV1`: strict envelope containing the complete compiled identity, approval ID, principal ID, key ID, bounded timestamp, and nonce.
 - `SignedApprovalV1`: strict JSON record containing payload and lowercase-hex 64-byte Ed25519 signature.
-- `TrustedApproverKeyV1`: explicit principal/key/public-key binding supplied by a trusted caller; not read from files or environment.
+- `ExpectedApproverKeyV1`: explicit expected principal/key/public-key binding. The caller must source it from its trust authority; core does not perform registry lookup or authorization.
 - `canonical_approval_signing_bytes(payload)`: returns `storytelling.approval.v1\0` plus deterministic serialized payload bytes after validation; it never signs.
-- `verify_approval_json(bytes, expected, trusted_key)`: bounded strict parse, exact payload/identity comparison, trusted principal/key match, Ed25519 `verify_strict`, and opaque `VerifiedApprovalV1` output.
+- `verify_approval_json(bytes, expected, expected_key)`: bounded strict parse, exact payload/identity comparison, expected principal/key match, Ed25519 `verify_strict`, and opaque `VerifiedApprovalV1` output.
 - `VerifiedApprovalV1`: private fields, no Serde implementation, read-only accessors only.
 
 - [x] **Step 1: Write failing signature, tamper, stale-binding, and opacity tests**
@@ -112,7 +113,7 @@ Expected: all Task 1 tests pass with stable errors and no input mutation.
 Add tests named:
 `rfc8032_ed25519_known_answer_verifies`,
 `canonical_signing_bytes_are_domain_separated_and_deterministic`,
-`rejects_modified_signature_payload_and_wrong_trusted_key`,
+`rejects_modified_signature_payload_and_wrong_expected_key`,
 `rejects_stale_plan_artifact_source_host_capability_and_loss_bindings`,
 `rejects_duplicate_unknown_malformed_and_oversized_approval_json`,
 and compile-fail doctests proving `VerifiedApprovalV1` cannot be forged or
@@ -146,7 +147,7 @@ the workspace dependency declaration and lockfile.
 
 Enforce the JSON byte, field, string, vector, ordering, and hex limits before
 returning. Compare every payload identity field to
-`VerifiedCompiledPlanIdentityV1`, compare trusted principal/key IDs, then verify
+`BoundApprovalIdentityV1`, compare expected principal/key IDs, then verify
 the domain-separated bytes with Ed25519 strict verification. Return no
 `VerifiedApprovalV1` on any error.
 

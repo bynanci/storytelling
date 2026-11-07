@@ -89,6 +89,30 @@ jobs:
           env PATH="$RUNNER_TEMP/no-media-tools" ./target/release/storytelling export-otio tests/fixtures/openfilm/finite-v1/still.json --metadata-only-locks
           env PATH="$RUNNER_TEMP/no-media-tools" ./target/release/storytelling audit-brief tests/fixtures/brief-v1/valid.json
           env PATH="$RUNNER_TEMP/no-media-tools" ./target/release/storytelling plan-story tests/fixtures/planner-v1/valid.json
+  audit:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Download checksum-pinned Cargo Audit
+        run: |
+          mkdir -p "$RUNNER_TEMP/cargo-audit/unpack" "$RUNNER_TEMP/cargo-audit/bin"
+          curl --fail --location --proto '=https' --tlsv1.2 --retry 2 --max-time 60 \
+            https://github.com/rustsec/rustsec/releases/download/cargo-audit/v0.22.1/cargo-audit-x86_64-unknown-linux-gnu-v0.22.1.tgz \
+            -o "$RUNNER_TEMP/cargo-audit/cargo-audit.tgz"
+          printf '%s  %s\n' '1890badd5f15831a9af4b074399fcd21e6f7c0fe42c84e9254cdffc9f813765c' "$RUNNER_TEMP/cargo-audit/cargo-audit.tgz" | sha256sum --check --status
+          tar --extract --gzip --file "$RUNNER_TEMP/cargo-audit/cargo-audit.tgz" --directory "$RUNNER_TEMP/cargo-audit/unpack" --no-same-owner
+          AUDIT_BIN="$(find "$RUNNER_TEMP/cargo-audit/unpack" -type f -name cargo-audit -print -quit)"
+          test -n "$AUDIT_BIN"
+          install "$AUDIT_BIN" "$RUNNER_TEMP/cargo-audit/bin/cargo-audit"
+          echo "$RUNNER_TEMP/cargo-audit/bin" >> "$GITHUB_PATH"
+      - name: Check Cargo Audit tool version
+        run: cargo audit --version
+      - name: Audit locked dependency graph
+        run: cargo audit --file Cargo.lock
   test:
     name: Rust (${{ matrix.os }})
     strategy:
@@ -114,11 +138,12 @@ jobs:
   required:
     name: Required gates
     if: always()
-    needs: [quality, test]
+    needs: [quality, test, audit]
     runs-on: ubuntu-latest
     steps:
       - name: All lanes must pass
         env:
           QUALITY: ${{ needs.quality.result }}
           TEST: ${{ needs.test.result }}
-        run: test "$QUALITY" = success && test "$TEST" = success
+          AUDIT: ${{ needs.audit.result }}
+        run: test "$QUALITY" = success && test "$TEST" = success && test "$AUDIT" = success

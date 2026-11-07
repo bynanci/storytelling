@@ -16,10 +16,11 @@ again and now defines the separate finite-OTIO review-binding proposal.
 
 - Added pure `storytelling-core::approval` DTOs and bounded identity construction.
 - Built source identity only from existing `VerifiedBufferV1`; proposal and
-  artifact digests cover their exact supplied byte slices.
+  artifact digests cover their exact supplied byte slices, including empty slices;
+  this does not prove compilation or same-snapshot linkage.
 - Added strict compact domain-separated payload bytes and Ed25519 strict
   verification against a caller-supplied principal/key/public-key binding.
-- Returned opaque non-Serde `VerifiedCompiledPlanIdentityV1` and
+- Returned opaque non-Serde `BoundApprovalIdentityV1` and
   `VerifiedApprovalV1` tokens. No approval is persisted or executed.
 - Added RFC 8032 verification vector, a synthetic detached-signature fixture
   that contains only a public key/signature, malformed/stale/bounds tests and
@@ -32,7 +33,8 @@ Apache-2.0 component notices remain unchanged.
 ## Trust boundaries and deferred work
 
 The signature proves key control, not a human identity or authorization. The
-caller must provide an actually trusted active principal/key binding. `observed`
+caller must supply an expected principal/key binding from its own trusted authority;
+core does not check registry provenance, active status, or authorization. `observed`
 Host state is only a signed caller claim. The core has no key store, signer,
 revocation/expiry registry, nonce persistence/replay check, operation journal,
 CLI approval, apply operation or Host execution. Filesystem source freshness,
@@ -45,5 +47,5 @@ Focused tests and full local gates are recorded in
 [validation/m3-01-approval-candidate.md](../../validation/m3-01-approval-candidate.md).
 The cryptographic dependency and advisory status are in
 [dependency-review-pr28-approval-candidate.md](../dependency-review-pr28-approval-candidate.md). Independent G2
-security review and current exact-head hosted CI are still required before any
-acceptance decision for this separate candidate.
+security review, current exact-head hosted CI, and the new hosted Cargo Audit
+job are still required before any acceptance decision for this separate candidate.

@@ -2,11 +2,11 @@
 //! Approval identity contract boundary tests. All source bytes are synthetic.
 use storytelling_core::ValidationError;
 use storytelling_core::approval::{
-    AcceptedLossV1, ApprovalPayloadV1, CompiledPlanIdentityV1, HostBindingV1,
-    HostObservationStateV1, LossDispositionV1, SignedApprovalV1, TrustedApproverKeyV1,
-    VerifiedApprovalV1, VerifiedCompiledPlanIdentityV1, VerifiedSourceBufferV1,
-    build_compiled_plan_identity_v1, canonical_approval_signing_bytes,
-    validate_compiled_plan_identity_v1, verify_approval_json,
+    AcceptedLossV1, ApprovalIdentityV1, ApprovalPayloadV1, BoundApprovalIdentityV1,
+    ExpectedApproverKeyV1, HostBindingV1, HostObservationStateV1, LossDispositionV1,
+    SignedApprovalV1, VerifiedApprovalV1, VerifiedSourceBufferV1,
+    bind_approval_identity_v1, canonical_approval_signing_bytes,
+    validate_approval_identity_v1, verify_approval_json,
 };
 use storytelling_core::source_evidence::verify_supplied_sha256;
 
@@ -50,8 +50,8 @@ fn identity(
     sources: &[VerifiedSourceBufferV1<'_>],
     host: &HostBindingV1,
     losses: &[AcceptedLossV1],
-) -> storytelling_core::approval::VerifiedCompiledPlanIdentityV1 {
-    build_compiled_plan_identity_v1(
+) -> storytelling_core::approval::BoundApprovalIdentityV1 {
+    bind_approval_identity_v1(
         "project-1",
         "proposal-1",
         proposal,
@@ -60,7 +60,7 @@ fn identity(
         host,
         losses,
     )
-    .expect("valid compiled-plan identity")
+    .expect("valid bounded approval identity")
 }
 
 fn assert_error(error: ValidationError, code: &str, path: &str) {
@@ -81,7 +81,7 @@ fn source_identity_uses_verified_buffer_bytes_and_digest() {
 }
 
 #[test]
-fn compiled_identity_hashes_exact_proposal_and_artifact_bytes() {
+fn bound_identity_hashes_exact_bytes_and_accepts_empty_slices() {
     let source_bytes = verified(b"abc");
     let source = VerifiedSourceBufferV1::new("asset-a", &source_bytes).unwrap();
     let host = host(&[]);
@@ -96,10 +96,43 @@ fn compiled_identity_hashes_exact_proposal_and_artifact_bytes() {
         first.identity().proposal_sha256,
         second.identity().proposal_sha256
     );
+
+    let source_bytes = verified(b"abc");
+    let source = VerifiedSourceBufferV1::new("asset-a", &source_bytes).unwrap();
+    let nonempty_artifact = identity(b"abc", b"artifact", &[source], &host, &[]);
+    assert_ne!(
+        first.identity().compiled_artifact_sha256,
+        nonempty_artifact.identity().compiled_artifact_sha256
+    );
+
+    let empty_slices = identity(b"", b"", &[], &host, &[]);
+    assert_eq!(empty_slices.identity().proposal_sha256, EMPTY_SHA256);
+    assert_eq!(
+        empty_slices.identity().compiled_artifact_sha256,
+        EMPTY_SHA256
+    );
 }
 
 #[test]
-fn compiled_identity_requires_sorted_unique_sources_capabilities_and_losses() {
+fn bound_identity_accepts_exact_proposal_and_artifact_size_limits() {
+    let proposal = vec![b'p'; storytelling_core::approval::MAX_PROPOSAL_BYTES];
+    let artifact = vec![b'a'; storytelling_core::approval::MAX_COMPILED_ARTIFACT_BYTES];
+    let identity = bind_approval_identity_v1(
+        "project-1",
+        "proposal-1",
+        &proposal,
+        &artifact,
+        &[],
+        &host(&[]),
+        &[],
+    )
+    .unwrap();
+
+    assert_eq!(identity.identity().schema_version, 1);
+}
+
+#[test]
+fn approval_identity_requires_sorted_unique_sources_capabilities_and_losses() {
     let bytes_a = verified(b"abc");
     let bytes_b = verified(b"");
     let source_a = VerifiedSourceBufferV1::new("asset-a", &bytes_a).unwrap();
@@ -123,7 +156,7 @@ fn compiled_identity_requires_sorted_unique_sources_capabilities_and_losses() {
     let bytes_b = verified(b"");
     let source_a = VerifiedSourceBufferV1::new("asset-a", &bytes_a).unwrap();
     let source_b = VerifiedSourceBufferV1::new("asset-b", &bytes_b).unwrap();
-    let error = build_compiled_plan_identity_v1(
+    let error = bind_approval_identity_v1(
         "project-1",
         "proposal-1",
         b"p",
@@ -139,7 +172,7 @@ fn compiled_identity_requires_sorted_unique_sources_capabilities_and_losses() {
     let bytes_duplicate = verified(b"");
     let source_a = VerifiedSourceBufferV1::new("asset-a", &bytes_a).unwrap();
     let duplicate = VerifiedSourceBufferV1::new("asset-a", &bytes_duplicate).unwrap();
-    let error = build_compiled_plan_identity_v1(
+    let error = bind_approval_identity_v1(
         "project-1",
         "proposal-1",
         b"p",
@@ -154,7 +187,7 @@ fn compiled_identity_requires_sorted_unique_sources_capabilities_and_losses() {
     let bytes = verified(b"abc");
     let source = VerifiedSourceBufferV1::new("asset-a", &bytes).unwrap();
     let unsorted_host = host(&["timeline.write", "audio.read"]);
-    let error = build_compiled_plan_identity_v1(
+    let error = bind_approval_identity_v1(
         "project-1",
         "proposal-1",
         b"p",
@@ -169,7 +202,7 @@ fn compiled_identity_requires_sorted_unique_sources_capabilities_and_losses() {
     let bytes = verified(b"abc");
     let source = VerifiedSourceBufferV1::new("asset-a", &bytes).unwrap();
     let duplicate_host = host(&["audio.read", "audio.read"]);
-    let error = build_compiled_plan_identity_v1(
+    let error = bind_approval_identity_v1(
         "project-1",
         "proposal-1",
         b"p",
@@ -195,7 +228,7 @@ fn compiled_identity_requires_sorted_unique_sources_capabilities_and_losses() {
             LossDispositionV1::MetadataOnly,
         ),
     ];
-    let error = build_compiled_plan_identity_v1(
+    let error = bind_approval_identity_v1(
         "project-1",
         "proposal-1",
         b"p",
@@ -221,7 +254,7 @@ fn compiled_identity_requires_sorted_unique_sources_capabilities_and_losses() {
             LossDispositionV1::Unsupported,
         ),
     ];
-    let error = build_compiled_plan_identity_v1(
+    let error = bind_approval_identity_v1(
         "project-1",
         "proposal-1",
         b"p",
@@ -235,10 +268,10 @@ fn compiled_identity_requires_sorted_unique_sources_capabilities_and_losses() {
 }
 
 #[test]
-fn compiled_identity_rejects_invalid_ids_digests_and_collection_budgets() {
+fn approval_identity_rejects_invalid_ids_digests_and_collection_budgets() {
     let bytes = verified(b"abc");
     let source = VerifiedSourceBufferV1::new("asset-a", &bytes).unwrap();
-    let invalid = build_compiled_plan_identity_v1(
+    let invalid = bind_approval_identity_v1(
         "project with spaces",
         "proposal-1",
         b"p",
@@ -253,18 +286,18 @@ fn compiled_identity_rejects_invalid_ids_digests_and_collection_budgets() {
     let source_bytes = verified(b"abc");
     let source = VerifiedSourceBufferV1::new("asset-a", &source_bytes).unwrap();
     let valid = identity(b"p", b"a", &[source], &host(&[]), &[]);
-    let mut invalid_digest: CompiledPlanIdentityV1 = valid.identity().clone();
+    let mut invalid_digest: ApprovalIdentityV1 = valid.identity().clone();
     invalid_digest.proposal_sha256 = "A".repeat(64);
     assert_error(
-        validate_compiled_plan_identity_v1(&invalid_digest).unwrap_err(),
+        validate_approval_identity_v1(&invalid_digest).unwrap_err(),
         "approval.invalid_digest",
         "$.proposal_sha256",
     );
-    let mut invalid_source_length: CompiledPlanIdentityV1 = valid.identity().clone();
+    let mut invalid_source_length: ApprovalIdentityV1 = valid.identity().clone();
     invalid_source_length.sources[0].byte_length =
         storytelling_core::source_evidence::MAX_VERIFIED_BUFFER_BYTES as u64 + 1;
     assert_error(
-        validate_compiled_plan_identity_v1(&invalid_source_length).unwrap_err(),
+        validate_approval_identity_v1(&invalid_source_length).unwrap_err(),
         "approval.invalid_source_length",
         "$.sources",
     );
@@ -273,7 +306,7 @@ fn compiled_identity_rejects_invalid_ids_digests_and_collection_budgets() {
     let source = VerifiedSourceBufferV1::new("asset-a", &source_bytes).unwrap();
     let oversized_proposal = vec![b'p'; storytelling_core::approval::MAX_PROPOSAL_BYTES + 1];
     assert_error(
-        build_compiled_plan_identity_v1(
+        bind_approval_identity_v1(
             "project-1",
             "proposal-1",
             &oversized_proposal,
@@ -292,7 +325,7 @@ fn compiled_identity_rejects_invalid_ids_digests_and_collection_budgets() {
     let oversized_artifact =
         vec![b'a'; storytelling_core::approval::MAX_COMPILED_ARTIFACT_BYTES + 1];
     assert_error(
-        build_compiled_plan_identity_v1(
+        bind_approval_identity_v1(
             "project-1",
             "proposal-1",
             b"p",
@@ -316,7 +349,7 @@ fn compiled_identity_rejects_invalid_ids_digests_and_collection_budgets() {
         ..host(&[])
     };
     assert_error(
-        build_compiled_plan_identity_v1(
+        bind_approval_identity_v1(
             "project-1",
             "proposal-1",
             b"p",
@@ -339,7 +372,7 @@ fn compiled_identity_rejects_invalid_ids_digests_and_collection_budgets() {
         .map(|asset_id| VerifiedSourceBufferV1::new(asset_id, &source_bytes).unwrap())
         .collect();
     assert_error(
-        build_compiled_plan_identity_v1(
+        bind_approval_identity_v1(
             "project-1",
             "proposal-1",
             b"p",
@@ -365,7 +398,7 @@ fn compiled_identity_rejects_invalid_ids_digests_and_collection_budgets() {
         })
         .collect();
     assert_error(
-        build_compiled_plan_identity_v1(
+        bind_approval_identity_v1(
             "project-1",
             "proposal-1",
             b"p",
@@ -391,13 +424,13 @@ const TEST_PUBLIC_KEY_HEX: &str =
     "bfd29ebb8895207fe787080d3cdc9a2283f17f418465c73d61e90e6f0fc90304";
 const TEST_SIGNATURE_HEX: &str = "a993cec85e8a45bc518bc641cb90a36e35aaf68d016b420843267d7e37e564c49d4eb0a140136f60e9658a332b1c3f3360076e991625a774d723e98321715507";
 
-fn base_compiled_identity() -> VerifiedCompiledPlanIdentityV1 {
+fn base_approval_identity() -> BoundApprovalIdentityV1 {
     let bytes = verified(b"abc");
     let source = VerifiedSourceBufferV1::new("asset-a", &bytes).unwrap();
     identity(b"abc", b"", &[source], &host(&[]), &[])
 }
 
-fn approval_payload(identity: &VerifiedCompiledPlanIdentityV1) -> ApprovalPayloadV1 {
+fn approval_payload(identity: &BoundApprovalIdentityV1) -> ApprovalPayloadV1 {
     ApprovalPayloadV1 {
         schema_version: 1,
         identity: identity.identity().clone(),
@@ -409,15 +442,15 @@ fn approval_payload(identity: &VerifiedCompiledPlanIdentityV1) -> ApprovalPayloa
     }
 }
 
-fn trusted_key() -> TrustedApproverKeyV1 {
-    TrustedApproverKeyV1 {
+fn expected_key() -> ExpectedApproverKeyV1 {
+    ExpectedApproverKeyV1 {
         principal_id: PRINCIPAL_ID.to_owned(),
         key_id: KEY_ID.to_owned(),
         public_key_hex: TEST_PUBLIC_KEY_HEX.to_owned(),
     }
 }
 
-fn signed_json(identity: &VerifiedCompiledPlanIdentityV1) -> Vec<u8> {
+fn signed_json(identity: &BoundApprovalIdentityV1) -> Vec<u8> {
     serde_json::to_vec(&SignedApprovalV1 {
         payload: approval_payload(identity),
         signature_hex: TEST_SIGNATURE_HEX.to_owned(),
@@ -427,7 +460,7 @@ fn signed_json(identity: &VerifiedCompiledPlanIdentityV1) -> Vec<u8> {
 
 #[test]
 fn canonical_signing_bytes_are_domain_separated_and_deterministic() {
-    let payload = approval_payload(&base_compiled_identity());
+    let payload = approval_payload(&base_approval_identity());
     let first = canonical_approval_signing_bytes(&payload).unwrap();
     let second = canonical_approval_signing_bytes(&payload).unwrap();
     assert_eq!(first, second);
@@ -448,16 +481,16 @@ fn canonical_signing_bytes_are_domain_separated_and_deterministic() {
 
 #[test]
 fn signed_approval_verifies_to_an_opaque_read_only_token() {
-    let expected = base_compiled_identity();
+    let expected = base_approval_identity();
     let token: VerifiedApprovalV1 =
-        verify_approval_json(&signed_json(&expected), &expected, &trusted_key()).unwrap();
+        verify_approval_json(&signed_json(&expected), &expected, &expected_key()).unwrap();
     assert_eq!(token.payload().approval_id, APPROVAL_ID);
     assert_eq!(token.payload().principal_id, PRINCIPAL_ID);
 }
 
 #[test]
-fn rejects_modified_signature_payload_and_wrong_trusted_key() {
-    let expected = base_compiled_identity();
+fn rejects_modified_signature_payload_and_wrong_expected_key() {
+    let expected = base_approval_identity();
     let signed = SignedApprovalV1 {
         payload: approval_payload(&expected),
         signature_hex: TEST_SIGNATURE_HEX.to_owned(),
@@ -474,7 +507,7 @@ fn rejects_modified_signature_payload_and_wrong_trusted_key() {
         b'0'
     };
     assert_error(
-        verify_approval_json(&modified_signature, &expected, &trusted_key()).unwrap_err(),
+        verify_approval_json(&modified_signature, &expected, &expected_key()).unwrap_err(),
         "approval.invalid_signature",
         "$.signature_hex",
     );
@@ -487,24 +520,24 @@ fn rejects_modified_signature_payload_and_wrong_trusted_key() {
     })
     .unwrap();
     assert_error(
-        verify_approval_json(&changed_json, &expected, &trusted_key()).unwrap_err(),
+        verify_approval_json(&changed_json, &expected, &expected_key()).unwrap_err(),
         "approval.invalid_signature",
         "$.signature_hex",
     );
 
-    let mut wrong_key = trusted_key();
+    let mut wrong_key = expected_key();
     wrong_key.principal_id = "someone-else".to_owned();
     assert_error(
         verify_approval_json(&signed_json(&expected), &expected, &wrong_key).unwrap_err(),
-        "approval.untrusted_signer",
+        "approval.approver_key_mismatch",
         "$.payload.principal_id",
     );
 
-    let mut wrong_key = trusted_key();
+    let mut wrong_key = expected_key();
     wrong_key.key_id = "different-key".to_owned();
     assert_error(
         verify_approval_json(&signed_json(&expected), &expected, &wrong_key).unwrap_err(),
-        "approval.untrusted_signer",
+        "approval.approver_key_mismatch",
         "$.payload.key_id",
     );
 
@@ -514,12 +547,12 @@ fn rejects_modified_signature_payload_and_wrong_trusted_key() {
     })
     .unwrap();
     assert_error(
-        verify_approval_json(&malformed_signature, &expected, &trusted_key()).unwrap_err(),
+        verify_approval_json(&malformed_signature, &expected, &expected_key()).unwrap_err(),
         "approval.invalid_signature_encoding",
         "$.signature_hex",
     );
 
-    let mut wrong_public_key = trusted_key();
+    let mut wrong_public_key = expected_key();
     wrong_public_key.public_key_hex =
         "d75a980182b10ab7d54bfed3c964073a0ee172f3daa62325af021a68f707511a".to_owned();
     assert_error(
@@ -528,26 +561,26 @@ fn rejects_modified_signature_payload_and_wrong_trusted_key() {
         "$.signature_hex",
     );
 
-    let mut malformed_public_key = trusted_key();
+    let mut malformed_public_key = expected_key();
     malformed_public_key.public_key_hex = "00".to_owned();
     assert_error(
         verify_approval_json(&signed_json(&expected), &expected, &malformed_public_key)
             .unwrap_err(),
         "approval.invalid_key",
-        "$.trusted_key.public_key_hex",
+        "$.expected_key.public_key_hex",
     );
 }
 
 #[test]
 fn rejects_stale_plan_artifact_source_host_capability_and_loss_bindings() {
-    let base = base_compiled_identity();
+    let base = base_approval_identity();
     let signed = signed_json(&base);
-    let trusted = trusted_key();
+    let expected_key = expected_key();
     let bytes = verified(b"abc");
     let base_host = host(&[]);
 
     let project_source = VerifiedSourceBufferV1::new("asset-a", &bytes).unwrap();
-    let changed_project = build_compiled_plan_identity_v1(
+    let changed_project = bind_approval_identity_v1(
         "project-2",
         "proposal-1",
         b"abc",
@@ -558,7 +591,7 @@ fn rejects_stale_plan_artifact_source_host_capability_and_loss_bindings() {
     )
     .unwrap();
     let proposal_id_source = VerifiedSourceBufferV1::new("asset-a", &bytes).unwrap();
-    let changed_proposal_id = build_compiled_plan_identity_v1(
+    let changed_proposal_id = bind_approval_identity_v1(
         "project-1",
         "proposal-2",
         b"abc",
@@ -655,7 +688,7 @@ fn rejects_stale_plan_artifact_source_host_capability_and_loss_bindings() {
         changed_loss,
     ] {
         assert_error(
-            verify_approval_json(&signed, &stale, &trusted).unwrap_err(),
+            verify_approval_json(&signed, &stale, &expected_key).unwrap_err(),
             "approval.identity_mismatch",
             "$.payload.identity",
         );
@@ -664,18 +697,18 @@ fn rejects_stale_plan_artifact_source_host_capability_and_loss_bindings() {
 
 #[test]
 fn rejects_duplicate_unknown_malformed_and_oversized_approval_json() {
-    let expected = base_compiled_identity();
+    let expected = base_approval_identity();
     let valid = signed_json(&expected);
     let text = std::str::from_utf8(&valid).unwrap();
     let duplicate = text.replacen("{\"payload\":", "{\"payload\":{},\"payload\":", 1);
     assert_error(
-        verify_approval_json(duplicate.as_bytes(), &expected, &trusted_key()).unwrap_err(),
+        verify_approval_json(duplicate.as_bytes(), &expected, &expected_key()).unwrap_err(),
         "approval.invalid_json",
         "$",
     );
     let unknown = text.replacen("{\"payload\":", "{\"unknown\":true,\"payload\":", 1);
     assert_error(
-        verify_approval_json(unknown.as_bytes(), &expected, &trusted_key()).unwrap_err(),
+        verify_approval_json(unknown.as_bytes(), &expected, &expected_key()).unwrap_err(),
         "approval.invalid_json",
         "$",
     );
@@ -685,7 +718,7 @@ fn rejects_duplicate_unknown_malformed_and_oversized_approval_json() {
         1,
     );
     assert_error(
-        verify_approval_json(duplicate_nested.as_bytes(), &expected, &trusted_key()).unwrap_err(),
+        verify_approval_json(duplicate_nested.as_bytes(), &expected, &expected_key()).unwrap_err(),
         "approval.invalid_json",
         "$",
     );
@@ -695,18 +728,18 @@ fn rejects_duplicate_unknown_malformed_and_oversized_approval_json() {
         1,
     );
     assert_error(
-        verify_approval_json(unknown_nested.as_bytes(), &expected, &trusted_key()).unwrap_err(),
+        verify_approval_json(unknown_nested.as_bytes(), &expected, &expected_key()).unwrap_err(),
         "approval.invalid_json",
         "$",
     );
     assert_error(
-        verify_approval_json(b"{not-json", &expected, &trusted_key()).unwrap_err(),
+        verify_approval_json(b"{not-json", &expected, &expected_key()).unwrap_err(),
         "approval.invalid_json",
         "$",
     );
     let oversized = vec![b' '; storytelling_core::approval::MAX_APPROVAL_JSON_BYTES + 1];
     assert_error(
-        verify_approval_json(&oversized, &expected, &trusted_key()).unwrap_err(),
+        verify_approval_json(&oversized, &expected, &expected_key()).unwrap_err(),
         "approval.too_large",
         "$",
     );
@@ -714,7 +747,7 @@ fn rejects_duplicate_unknown_malformed_and_oversized_approval_json() {
 
 #[test]
 fn rejects_out_of_range_timestamp_short_nonce_and_unaccepted_loss() {
-    let expected = base_compiled_identity();
+    let expected = base_approval_identity();
     let mut payload = approval_payload(&expected);
     payload.approved_at_unix_ms = storytelling_core::approval::MAX_TIMESTAMP_UNIX_MS + 1;
     assert_error(
@@ -747,7 +780,7 @@ fn rejects_out_of_range_timestamp_short_nonce_and_unaccepted_loss() {
 
 #[test]
 fn accepts_email_style_principal_identifiers_without_normalizing_them() {
-    let expected = base_compiled_identity();
+    let expected = base_approval_identity();
     let mut payload = approval_payload(&expected);
     payload.principal_id = "by.nanci.tw@gmail.com".to_owned();
     let bytes = canonical_approval_signing_bytes(&payload).unwrap();

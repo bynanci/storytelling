@@ -117,10 +117,12 @@ not implemented by this candidate.
 The bounded core contract is documented in
 [Approval Identity v1](migration/APPROVAL_IDENTITY_V1.md). It is not a CLI
 command and does not execute or mutate an editor project. The API builds a
-private `VerifiedCompiledPlanIdentityV1` only from exact proposal/artifact byte
-slices and existing `VerifiedBufferV1` source tokens. A signed payload is
-accepted only when every identity field equals that current token and an
-explicit caller-supplied `(principal_id, key_id, public_key)` binding matches.
+private `BoundApprovalIdentityV1` from caller-supplied exact proposal/artifact
+byte slices and existing `VerifiedBufferV1` source tokens. It binds those inputs
+but does not prove compilation or same-snapshot linkage. A signed payload is
+accepted only when every identity field equals that token and an explicit
+caller-supplied `ExpectedApproverKeyV1` binding matches; the caller must obtain
+that binding from its own trusted source.
 
 The signer receives `storytelling.approval.v1\0` followed by the frozen compact
 `ApprovalPayloadV1` JSON bytes. Payload fields are serialized in Rust struct

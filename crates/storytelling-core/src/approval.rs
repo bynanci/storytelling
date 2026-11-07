@@ -76,7 +76,7 @@ pub struct AcceptedLossV1 {
 
 #[derive(Debug, Clone, PartialEq, Eq, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
-pub struct CompiledPlanIdentityV1 {
+pub struct ApprovalIdentityV1 {
     pub schema_version: u32,
     pub project_id: String,
     pub proposal_id: String,
@@ -91,7 +91,7 @@ pub struct CompiledPlanIdentityV1 {
 #[serde(deny_unknown_fields)]
 pub struct ApprovalPayloadV1 {
     pub schema_version: u32,
-    pub identity: CompiledPlanIdentityV1,
+    pub identity: ApprovalIdentityV1,
     pub approval_id: String,
     pub principal_id: String,
     pub key_id: String,
@@ -106,14 +106,21 @@ pub struct SignedApprovalV1 {
     pub signature_hex: String,
 }
 
+/// Caller-supplied expected principal/key/public-key binding.
+///
+/// The verifier checks that the signed IDs and signature match this value. It
+/// does not establish that the caller obtained it from an authoritative key
+/// registry or that its principal is authorized to approve.
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct TrustedApproverKeyV1 {
+pub struct ExpectedApproverKeyV1 {
     pub principal_id: String,
     pub key_id: String,
     pub public_key_hex: String,
 }
 
-/// A privately constructed receipt proving signature validity for one payload.
+/// A private receipt that the supplied expected key verifies this payload and
+/// that its identity matches the caller's current bounded identity token. It
+/// does not represent signer authorization, freshness, or replay protection.
 ///
 /// ```compile_fail
 /// use storytelling_core::approval::VerifiedApprovalV1;
@@ -153,25 +160,27 @@ impl<'a> VerifiedSourceBufferV1<'a> {
     }
 }
 
-/// A locally built identity token. Wire data cannot construct this type.
+/// An opaque binding of caller-supplied bytes and metadata. Wire data cannot
+/// construct this type. It does not prove that an importer/compiler produced
+/// the supplied artifact bytes or that the inputs belong to one source snapshot.
 ///
 /// ```compile_fail
-/// use storytelling_core::approval::VerifiedCompiledPlanIdentityV1;
-/// let forged = VerifiedCompiledPlanIdentityV1 { identity: todo!() };
+/// use storytelling_core::approval::BoundApprovalIdentityV1;
+/// let forged = BoundApprovalIdentityV1 { identity: todo!() };
 /// ```
 ///
 /// ```compile_fail
-/// use storytelling_core::approval::VerifiedCompiledPlanIdentityV1;
+/// use storytelling_core::approval::BoundApprovalIdentityV1;
 /// fn requires_deserialize<T: serde::de::DeserializeOwned>() {}
-/// requires_deserialize::<VerifiedCompiledPlanIdentityV1>();
+/// requires_deserialize::<BoundApprovalIdentityV1>();
 /// ```
 #[derive(Debug)]
-pub struct VerifiedCompiledPlanIdentityV1 {
-    identity: CompiledPlanIdentityV1,
+pub struct BoundApprovalIdentityV1 {
+    identity: ApprovalIdentityV1,
 }
 
-impl VerifiedCompiledPlanIdentityV1 {
-    pub fn identity(&self) -> &CompiledPlanIdentityV1 {
+impl BoundApprovalIdentityV1 {
+    pub fn identity(&self) -> &ApprovalIdentityV1 {
         &self.identity
     }
 }
@@ -222,8 +231,11 @@ fn validate_builder_inputs(
     Ok(())
 }
 
-/// Build a hard identity from exact proposal/artifact bytes and verified source buffers.
-pub fn build_compiled_plan_identity_v1(
+/// Bind exact caller-supplied proposal/artifact bytes and verified source buffers.
+///
+/// This hashes the provided bytes; it does not compile them or establish a
+/// semantic relationship between the proposal, artifact, and source buffers.
+pub fn bind_approval_identity_v1(
     project_id: &str,
     proposal_id: &str,
     proposal_bytes: &[u8],
@@ -231,7 +243,7 @@ pub fn build_compiled_plan_identity_v1(
     sources: &[VerifiedSourceBufferV1<'_>],
     host: &HostBindingV1,
     accepted_losses: &[AcceptedLossV1],
-) -> Result<VerifiedCompiledPlanIdentityV1, ValidationError> {
+) -> Result<BoundApprovalIdentityV1, ValidationError> {
     validate_builder_inputs(
         project_id,
         proposal_id,
@@ -255,7 +267,7 @@ pub fn build_compiled_plan_identity_v1(
         })
         .collect::<Result<Vec<_>, ValidationError>>()?;
 
-    let identity = CompiledPlanIdentityV1 {
+    let identity = ApprovalIdentityV1 {
         schema_version: 1,
         project_id: project_id.to_owned(),
         proposal_id: proposal_id.to_owned(),
@@ -265,13 +277,13 @@ pub fn build_compiled_plan_identity_v1(
         host: host.clone(),
         accepted_losses: accepted_losses.to_vec(),
     };
-    validate_compiled_plan_identity_v1(&identity)?;
-    Ok(VerifiedCompiledPlanIdentityV1 { identity })
+    validate_approval_identity_v1(&identity)?;
+    Ok(BoundApprovalIdentityV1 { identity })
 }
 
 /// Validate an untrusted wire identity before comparing it with a locally built token.
-pub fn validate_compiled_plan_identity_v1(
-    identity: &CompiledPlanIdentityV1,
+pub fn validate_approval_identity_v1(
+    identity: &ApprovalIdentityV1,
 ) -> Result<(), ValidationError> {
     if identity.schema_version != 1 {
         return Err(error("approval.unsupported_version", "$.schema_version"));
@@ -314,8 +326,8 @@ pub fn canonical_approval_signing_bytes(
 
 pub fn verify_approval_json(
     bytes: &[u8],
-    expected: &VerifiedCompiledPlanIdentityV1,
-    trusted_key: &TrustedApproverKeyV1,
+    expected: &BoundApprovalIdentityV1,
+    expected_key: &ExpectedApproverKeyV1,
 ) -> Result<VerifiedApprovalV1, ValidationError> {
     if bytes.len() > MAX_APPROVAL_JSON_BYTES {
         return Err(error("approval.too_large", "$"));
@@ -326,19 +338,25 @@ pub fn verify_approval_json(
     if signed.payload.identity != expected.identity {
         return Err(error("approval.identity_mismatch", "$.payload.identity"));
     }
-    validate_id(&trusted_key.principal_id, "$.trusted_key.principal_id")?;
-    validate_id(&trusted_key.key_id, "$.trusted_key.key_id")?;
-    if signed.payload.principal_id != trusted_key.principal_id {
-        return Err(error("approval.untrusted_signer", "$.payload.principal_id"));
+    validate_id(&expected_key.principal_id, "$.expected_key.principal_id")?;
+    validate_id(&expected_key.key_id, "$.expected_key.key_id")?;
+    if signed.payload.principal_id != expected_key.principal_id {
+        return Err(error(
+            "approval.approver_key_mismatch",
+            "$.payload.principal_id",
+        ));
     }
-    if signed.payload.key_id != trusted_key.key_id {
-        return Err(error("approval.untrusted_signer", "$.payload.key_id"));
+    if signed.payload.key_id != expected_key.key_id {
+        return Err(error(
+            "approval.approver_key_mismatch",
+            "$.payload.key_id",
+        ));
     }
 
     let public_key = decode_hex::<32>(
-        &trusted_key.public_key_hex,
+        &expected_key.public_key_hex,
         "approval.invalid_key",
-        "$.trusted_key.public_key_hex",
+        "$.expected_key.public_key_hex",
     )?;
     let signature = decode_hex::<64>(
         &signed.signature_hex,
@@ -361,7 +379,7 @@ fn validate_payload(payload: &ApprovalPayloadV1) -> Result<(), ValidationError> 
             "$.payload.schema_version",
         ));
     }
-    validate_compiled_plan_identity_v1(&payload.identity).map_err(|mut validation| {
+    validate_approval_identity_v1(&payload.identity).map_err(|mut validation| {
         validation.path = format!(
             "$.payload.identity{}",
             validation.path.trim_start_matches('$')
@@ -417,7 +435,7 @@ fn verify_ed25519_strict(
     signature_bytes: &[u8; 64],
 ) -> Result<(), ValidationError> {
     let public_key = VerifyingKey::from_bytes(public_key_bytes)
-        .map_err(|_| error("approval.invalid_key", "$.trusted_key.public_key_hex"))?;
+        .map_err(|_| error("approval.invalid_key", "$.expected_key.public_key_hex"))?;
     let signature = Signature::try_from(signature_bytes.as_slice())
         .map_err(|_| error("approval.invalid_signature_encoding", "$.signature_hex"))?;
     public_key
