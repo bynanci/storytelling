@@ -3,7 +3,8 @@
 
 Status: implemented candidate, not accepted. Canonical M3-01/P1 is a separate
 proposed finite-OTIO review-binding task. Current main base being integrated is
-`1d8d0e3652aa2afe77375550876639b726928eba`. Independent G2 security review is
+`1d8d0e3652aa2afe77375550876639b726928eba`, merged at candidate commit
+`f2e2703ef437592beb7f311a97bd247b73145622`. Independent G2 security review is
 pending. The earlier candidate head `f571d68b69d5835ddc5cb038ea34d4f07348985c`
 passed two same-head hosted CI runs before main advanced via PR #29; those runs
 do not validate the refreshed branch.
@@ -40,6 +41,25 @@ there before acceptance.
   6 compile-fail opacity examples.
 
 ## Required local gates
+
+The prior table records verification on the earlier accepted M2-03 base. After
+integrating PR #29, the candidate code and reconciled documentation were checked
+again locally on `f2e2703` before this evidence-only update:
+
+| Command | Result |
+| --- | --- |
+| `cargo fmt --all -- --check` | Passed; exit 0 |
+| `cargo clippy --workspace --all-targets --locked -- -D warnings` | Passed; exit 0 |
+| `cargo test --workspace --locked` | Passed: 184 tests, 0 failed |
+| `cargo test --workspace --release --locked` | Passed: 184 tests, 0 failed |
+| `RUSTDOCFLAGS='-D warnings' cargo doc --workspace --no-deps --locked` | Passed; exit 0 |
+| `cargo audit --file Cargo.lock` | Passed; 39 locked packages scanned against 1,422 advisories, no findings |
+| `python3 scripts/check_repo.py` | Passed; links, provenance, dependency boundaries and requirement references valid |
+| `git diff --check` | Passed; exit 0 |
+
+Because this latest update changes documentation after `f2e2703`, exact-head
+hosted CI must run on the pushed head. No later check is inferred from the runs
+listed below.
 
 | Command | Result |
 | --- | --- |
