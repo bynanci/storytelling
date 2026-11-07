@@ -4,8 +4,8 @@ use std::fs::File;
 use std::io::{self, Read, Write};
 use std::process::ExitCode;
 use storytelling_engine::{
-    MAX_INPUT_BYTES, OtioLossChoicesV1, export_openfilm_otio, import_openfilm_snapshot,
-    validate_plan_json,
+    MAX_INPUT_BYTES, OtioLossChoicesV1, audit_story_brief, export_openfilm_otio,
+    import_openfilm_snapshot, validate_plan_json,
 };
 
 fn emit(value: Value, code: u8) -> ExitCode {
@@ -52,14 +52,16 @@ fn main() -> ExitCode {
     match command {
         Some(value) if value == OsStr::new("--help") && args.len() == 1 => {
             return text(
-                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\nRead-only declared metadata and format-only interchange; no source hashing or editor execution.\n",
+                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\nRead-only declared metadata and format-only interchange; no source hashing or editor execution.\n",
             );
         }
         Some(value) if value == OsStr::new("--version") && args.len() == 1 => {
             return text(concat!("storytelling ", env!("CARGO_PKG_VERSION"), "\n"));
         }
         Some(value)
-            if (value == OsStr::new("validate") || value == OsStr::new("import-openfilm"))
+            if (value == OsStr::new("validate")
+                || value == OsStr::new("import-openfilm")
+                || value == OsStr::new("audit-brief"))
                 && args.len() == 2 => {}
         Some(value) if value == OsStr::new("export-otio") && (2..=4).contains(&args.len()) => {
             if args[1].as_encoded_bytes().starts_with(b"--") {
@@ -96,6 +98,18 @@ fn main() -> ExitCode {
     let Ok(bytes) = bytes else {
         return failure("input.io", 3);
     };
+    if command == Some(OsStr::new("audit-brief")) {
+        return match audit_story_brief(&bytes) {
+            Ok(audit) => {
+                let consistent = audit.consistent;
+                emit(
+                    json!({"ok": consistent, "audit": audit}),
+                    if consistent { 0 } else { 1 },
+                )
+            }
+            Err(error) => emit(json!({"ok": false, "error": error}), 1),
+        };
+    }
     if command == Some(OsStr::new("export-otio")) {
         return match export_openfilm_otio(&bytes, &Default::default(), &otio_choices) {
             Ok(compiled) => emit(compiled.document, 0),

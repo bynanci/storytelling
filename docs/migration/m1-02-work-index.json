@@ -8,28 +8,31 @@
   "tasks": [
     {
       "id": "M1-02/P1",
-      "state": "verified",
+      "state": "accepted",
       "depends_on": [],
       "url": "https://github.com/bynanci/storytelling/issues/12",
-      "acceptance": "Actual scope/evidence in FINITE_OTIO_V1.md and records/M1-02.md; merge after same-head required gates under explicit user authorization"
+      "acceptance": "Finite scope verified and accepted: PR #16 merged under explicit user authorization; same-head runs 42332537561/42332573551 all ten checks passed; issue #12 checked and closed; historical source/base retained",
+      "merge_commit": "9a5232e97435f543238b90a2006460f319f4e651"
     },
     {
       "id": "M1-02/P2",
-      "state": "review",
+      "state": "accepted",
       "depends_on": [
         "M1-02/P1"
       ],
       "url": "https://github.com/bynanci/storytelling/issues/12",
-      "acceptance": "Actual scope/evidence in FINITE_OTIO_V1.md and records/M1-02.md; merge after same-head required gates under explicit user authorization"
+      "acceptance": "Finite scope verified and accepted: PR #16 merged under explicit user authorization; same-head runs 42332537561/42332573551 all ten checks passed; issue #12 checked and closed; historical source/base retained",
+      "merge_commit": "9a5232e97435f543238b90a2006460f319f4e651"
     },
     {
       "id": "M1-02/P3",
-      "state": "review",
+      "state": "accepted",
       "depends_on": [
         "M1-02/P2"
       ],
       "url": "https://github.com/bynanci/storytelling/issues/12",
-      "acceptance": "Actual scope/evidence in FINITE_OTIO_V1.md and records/M1-02.md; merge after same-head required gates under explicit user authorization"
+      "acceptance": "Finite scope verified and accepted: PR #16 merged under explicit user authorization; same-head runs 42332537561/42332573551 all ten checks passed; issue #12 checked and closed; historical source/base retained",
+      "merge_commit": "9a5232e97435f543238b90a2006460f319f4e651"
     }
   ],
   "requirements": [
@@ -91,5 +94,21 @@
       "unblock": "Run bounded actual FilmCraft v0.18.0 25fps isolated import/render/readback/save/reopen and verified-source/output checks; binary is now provisioned, proof not yet run",
       "evidence": "docs/migration/records/M1-02.md"
     }
-  ]
+  ],
+  "state": "accepted",
+  "tracking_issue_state": "closed",
+  "accepted_lifecycle": {
+    "authority": "explicit user authorization to merge completed verified PRs and check tasks; no release/repository-policy authority",
+    "feature_pull_request": 16,
+    "accepted_head": "fb65753df617c7df80ef2581396eead6b07a6434",
+    "accepted_tree": "4f110521543b680e2d738b2b4fd49dd68e5d42fd",
+    "merge_commit": "9a5232e97435f543238b90a2006460f319f4e651",
+    "merged_at": "2026-11-07T03:09:33Z",
+    "workflow_runs": [
+      42332537561,
+      42332573551
+    ],
+    "accepted_scope": "finite format-only OTIO; official parser semantics only, no media/source/host/render/editorial or release claim",
+    "tracking_issue_state": "closed"
+  }
 }

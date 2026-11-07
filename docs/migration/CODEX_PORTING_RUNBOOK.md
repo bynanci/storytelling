@@ -5,9 +5,10 @@
 ## 1. 開始前必須核實
 
 - Source baseline：bynanci/open-film@7add4762fe8174d76f43b863375ea39b73121e76。
-- Target main at inspection：551ff38920e2085e1d53a7ba777c9680678e9725；M0 PR #1 head：4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b，當次仍Draft。
-- 重新fetch兩個repo與open PR。若M0未合併，只有明確相依branch能使用它；不能對只有README的main假設三crate存在。
-- 固定來源已含coverage PR #121、frame time PR #125；PR #126 在最初規劃快照是 Draft，2026-11-07 重查已 merged，main 為 `5f737a6c8f35dce48e213370ff27900962c9304c`。M1-01 保留原 pinned source，見 [drift record](records/M1-01.md)；新的狀態仍由實際查詢更新。
+- Historical first target inspection：main `551ff38920e2085e1d53a7ba777c9680678e9725`；M0 PR #1 head `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`，當次仍 Draft。保留這些調查身份，不當作目前完成狀態。
+- 2026-11-07 查核的 target main：`9a5232e97435f543238b90a2006460f319f4e651`；M0 PR #1、map PR #2、有限 M1-01 PR #7 與有限 M1-02 OTIO PR #16 均已合併。實際來源 bytes 與 M1-03 FilmCraft roundtrip 仍是獨立門檻。
+- 重新 fetch 兩個 repo 與 open PR，核對 [TASKS](../../TASKS.md) 及相依交付；上述 SHA 是查核快照，不取代每次移植前的即時查核，也不要求重做已合併的有限切片。
+- 固定來源已含 coverage PR #121、frame time PR #125；PR #126 在最初規劃快照是 Draft，後續已確認 feature head `b4aba4c4bb70b8cb03edd54342f1b94cec649245` 合併於 observed main `5f737a6c8f35dce48e213370ff27900962c9304c`，而不在其 parent、固定 baseline `7add4762fe8174d76f43b863375ea39b73121e76`。M1-01/M1-02 保留 baseline 與 animation 拒絕政策，見 [drift record](records/M1-01.md) 與 [finite OTIO contract](FINITE_OTIO_V1.md)；新任務仍須按實際查詢更新來源狀態。
 - 對每個選定source path執行git存在檢查，讀取實作與實際呼叫者/測試。表列位置是定位入口，不是對整個檔案的正確性保證。
 
 ## 2. 一個任務的comparison record
@@ -69,8 +70,8 @@ docs/migration/OPENFILM_RUST_PORT_MAP.md,
 docs/migration/NATIVE_BOUNDARIES_AND_GAPS.md,
 docs/migration/openfilm-port-index.json.
 
-本次只完成指定 TASK_ID 的一個可驗收切片，預設由 M1-01 開始。
-1. 重新核實 storytelling main、PR #1 及 OpenFilm main；記錄完整base/source SHA。
+本次只完成指定 TASK_ID 尚未接受的一個可驗收切片，不重做已合併的有限 M0/M1-01/M1-02。
+1. 重新核實 storytelling main、相依 open PR、已接受交付及 OpenFilm main；記錄完整base/source SHA與保留的重現baseline。
 2. 在來源快照讀實際source/tests與既有Rust行為，先列already/partial/missing/blocked。
 3. 完成GAP-01/02/03/16相關門檻。MIT LICENSE不改；Apache來源內容保留義務。
 4. 用task table提供的Rust落點作設計起點，不把planned file當成已存在。
@@ -87,7 +88,7 @@ docs/migration/openfilm-port-index.json.
 
 ## 6. PR策略與生命週期
 
-本規劃PR只修改docs/TASKS/ROADMAP/AGENTS與JSON ledger，stack在M0 PR #1之上。M0合併後由維護者決定rebase/retarget；不要默默把PR #1合進main。
+歷史規劃 PR #2 只修改 docs/TASKS/ROADMAP/AGENTS 與 JSON ledger，當時 stack 在 M0 PR #1 之上；兩者現已合併。後續 PR 依實際 main 與相依交付選 base，不把原始 stacked 狀態當成仍未合併，也不改寫歷史 inspection 身份。
 
 實作PR以結果命名：M1-01 snapshot mapping、M1-02 finite OTIO、M1-03 host proof；每支只完成自己需要的OF/GAP子集。研究native替代與真正替換分開；沒有證明品質/相容性不要刪既有FFmpeg adapter。
 

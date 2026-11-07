@@ -21,6 +21,17 @@ TSX_TSCONFIG_PATH=/path/to/open-film/tsconfig.json node \
 ```
 
 `source-evidence.json` freezes runner/input/source identities and actual outcomes;
-`inputs/*.json` are the exact independent downstream audit inputs. Rust comparison
-will validate only these policy invariants, not equate the complete solver with
-the new brief audit. No production Node/Python dependency is introduced.
+`inputs/*.json` are the exact independent downstream audit inputs. Replay the
+actual Rust file/stdin CLI against them with standard-library Python:
+
+```sh
+python3 tests/oracles/story-brief-v1/compare.py target/release/storytelling \
+  --output /tmp/story-brief-comparison.json
+```
+
+The comparator checks runner/input hashes, all ten outcomes, preserved ordered
+manual/required values and preferences, edge policies, actual cycle witnesses,
+typed conflicts, warning kinds, scope, input bytes and file/stdin equality. It
+records actual binary/target/diff identity and refuses evidence inside the checkout.
+These checks cover selected policies; they do not equate the complete source
+solver with the new brief audit. No production Node/Python dependency is introduced.

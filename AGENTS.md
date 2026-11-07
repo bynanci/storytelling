@@ -13,7 +13,7 @@
 11. Run formatting, clippy, workspace tests, release-mode tests, docs and repository checks. Read same-head hosted results. Report blocked, cancelled and failed checks separately.
 12. Update task IDs, traceability, ADRs and validation evidence. State what is implemented, automatically verified and still manual. No product percentage from checkbox counts.
 
-Current scope: accepted M0/M1-01 plus M1-02 finite native OTIO candidate.
+Current scope: accepted M0/M1-01/M1-02 finite native OTIO; bounded M2-01 audit in review.
 Read [finite-v1](docs/migration/FINITE_V1.md) and its
 [comparison record](docs/migration/records/M1-01.md) for the admitted input and losses.
 Read [finite OTIO](docs/migration/FINITE_OTIO_V1.md) and its

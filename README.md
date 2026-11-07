@@ -2,7 +2,7 @@
 
 A Rust foundation for local-first story planning and reviewed editor workflows.
 
-**Status: M0/M1-01 accepted on main; M1-02 finite OTIO candidate; no editor integration release.**
+**Status: M0/M1-01/M1-02 accepted on main; bounded M2-01 audit in review; no editor integration release.**
 The executable slices validate a bounded story-plan JSON document and map a finite
 OpenFilm composition export into a declared visual plan. They do not
 read media, verify file hashes, generate a story, render a film or drive FilmCraft.
@@ -20,6 +20,8 @@ cargo run --locked -p storytelling-cli -- validate examples/minimal-plan.json
 cargo run --locked -p storytelling-cli -- validate tests/fixtures/invalid-source-range.json
 cargo run --locked -p storytelling-cli -- import-openfilm tests/fixtures/openfilm/finite-v1/still.json
 cargo run --locked -p storytelling-cli -- export-otio tests/fixtures/openfilm/finite-v1/still.json --metadata-only-locks > finite.otio
+
+cargo run --locked -p storytelling-cli -- audit-brief tests/fixtures/brief-v1/valid.json
 ```
 
 The first validation exits 0 with `ok: true`. The invalid fixture exits 1 with
@@ -44,6 +46,14 @@ ticks remain distinct from project FPS; unsafe native values reject. Original
 snapshot text and structured limitations travel in owner metadata. See the
 [finite OTIO contract](docs/migration/FINITE_OTIO_V1.md). Official parser support
 does not certify an editor or actual media.
+
+`audit-brief FILE|-` checks a versioned StoryBrief's declared hard references,
+required/excluded membership and partial ordering. It preserves manual choices
+and returns typed conflicts; preferences remain soft and unchanged. A clean
+report has `scope: "declared-constraint-audit-only"`, `selection_planned: false`
+and `duration_analysis: "not-performed"`. It does not produce a shot selection
+or establish achievable timing. See the [brief contract](docs/migration/STORY_BRIEF_V1.md)
+and [M2-01 evidence](docs/migration/records/M2-01.md).
 
 ## Current architecture
 

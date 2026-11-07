@@ -56,3 +56,14 @@ oracle, pinned by the CPython 3.12 Linux wheel SHA. The official setup-python CI
 action is pinned to full commit; interpreter ABI is 3.12 and actual versions are
 recorded in evidence. Downloaded dependency licenses remain their own, outside
 the first-party Apache inventory; no wheel, node_modules or host binary is vendored.
+
+## M2-01 source-informed brief audit
+
+The same approved component policy covers the independently authored StoryBrief
+DTOs, pure audit, regressions and synthetic source-policy oracle. The
+[M2-01 inventory](docs/migration/provenance-m2-01.json) records each Apache-2.0
+file and pinned source paths/blobs. Original MIT integration wiring remains
+separately listed. No implementation, upstream tests or media were copied.
+Typed brief conflicts and soft preferences are downstream design; the actual
+source comparison covers ten selected hard-constraint policies only. See the
+[comparison record](docs/migration/records/M2-01.md).

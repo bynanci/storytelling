@@ -34,9 +34,7 @@ fn audited(value: &Value) -> Value {
 }
 
 fn rejected(bytes: &[u8], expected_code: &str) -> ValidationError {
-    let error = audit_story_brief(bytes)
-        .err()
-        .expect("brief must reject without a report");
+    let error = audit_story_brief(bytes).expect_err("brief must reject without a report");
     assert_eq!(error.code, expected_code);
     let encoded = serde_json::to_value(&error).unwrap();
     assert_eq!(encoded.as_object().unwrap().len(), 2);
@@ -50,12 +48,19 @@ fn reject(value: &Value, expected_code: &str) -> ValidationError {
 }
 
 fn ids(count: usize) -> Vec<String> {
-    (0..count).map(|index| format!("asset-{index:04}")).collect()
+    (0..count)
+        .map(|index| format!("asset-{index:04}"))
+        .collect()
 }
 
 fn with_catalog(count: usize) -> Value {
     let mut value = input();
-    value["assets"] = json!(ids(count).into_iter().map(|id| json!({"id":id})).collect::<Vec<_>>());
+    value["assets"] = json!(
+        ids(count)
+            .into_iter()
+            .map(|id| json!({"id":id}))
+            .collect::<Vec<_>>()
+    );
     value
 }
 
@@ -71,55 +76,86 @@ fn fixture_reports_only_declared_consistency_without_a_planned_selection() {
     assert_eq!(result["selection_planned"], false);
     assert_eq!(result["duration_analysis"], "not-performed");
     assert_eq!(result["consistent"], true);
-    assert_eq!(result["manual_selected_asset_ids"], source["manual_selected_asset_ids"]);
+    assert_eq!(
+        result["manual_selected_asset_ids"],
+        source["manual_selected_asset_ids"]
+    );
     assert_eq!(result["preferences"], source["preferences"]);
     assert_eq!(result["conflicts"], json!([]));
     assert_eq!(result["warnings"], json!([]));
-    for field in ["plan", "selection", "selected_assets", "feasible", "verified", "approved"] {
-        assert!(result.get(field).is_none(), "unexpected capability claim: {field}");
+    for field in [
+        "plan",
+        "selection",
+        "selected_assets",
+        "feasible",
+        "verified",
+        "approved",
+    ] {
+        assert!(
+            result.get(field).is_none(),
+            "unexpected capability claim: {field}"
+        );
     }
 }
 
 #[test]
 fn missing_manual_choices_remain_required_and_ordered_instead_of_being_filtered() {
     let mut value = input();
-    value["manual_selected_asset_ids"] = json!(["missing-manual","a"]);
+    value["manual_selected_asset_ids"] = json!(["missing-manual", "a"]);
     let result = audited(&value);
     assert_eq!(result["consistent"], false);
-    assert_eq!(result["manual_selected_asset_ids"], value["manual_selected_asset_ids"]);
-    assert_eq!(result["required_assets"], json!([
-        {"asset_id":"missing-manual","origins":["$.manual_selected_asset_ids[0]"]},
-        {"asset_id":"a","origins":["$.manual_selected_asset_ids[1]"]}
-    ]));
-    assert_eq!(result["precedence_edges"], json!([
-        {"before":"missing-manual","after":"a","origins":["$.manual_selected_asset_ids[1]"]}
-    ]));
-    assert_eq!(result["conflicts"], json!([
-        {"kind":"unknown-asset","path":"$.manual_selected_asset_ids[0]","asset_ids":["missing-manual"]}
-    ]));
+    assert_eq!(
+        result["manual_selected_asset_ids"],
+        value["manual_selected_asset_ids"]
+    );
+    assert_eq!(
+        result["required_assets"],
+        json!([
+            {"asset_id":"missing-manual","origins":["$.manual_selected_asset_ids[0]"]},
+            {"asset_id":"a","origins":["$.manual_selected_asset_ids[1]"]}
+        ])
+    );
+    assert_eq!(
+        result["precedence_edges"],
+        json!([
+            {"before":"missing-manual","after":"a","origins":["$.manual_selected_asset_ids[1]"]}
+        ])
+    );
+    assert_eq!(
+        result["conflicts"],
+        json!([
+            {"kind":"unknown-asset","path":"$.manual_selected_asset_ids[0]","asset_ids":["missing-manual"]}
+        ])
+    );
 }
 
 #[test]
 fn include_and_order_members_promote_required_assets_with_all_ordered_origins() {
     let mut value = input();
-    value["manual_selected_asset_ids"] = json!(["b","a"]);
+    value["manual_selected_asset_ids"] = json!(["b", "a"]);
     value["hard_constraints"] = json!([
         {"type":"must-include","asset_ids":["c","b"]},
         {"type":"asset-order","asset_ids":["a","d","c"]}
     ]);
     let result = audited(&value);
     assert_eq!(result["consistent"], true);
-    assert_eq!(result["required_assets"], json!([
-        {"asset_id":"b","origins":["$.manual_selected_asset_ids[0]","$.hard_constraints[0].asset_ids[1]"]},
-        {"asset_id":"a","origins":["$.manual_selected_asset_ids[1]","$.hard_constraints[1].asset_ids[0]"]},
-        {"asset_id":"c","origins":["$.hard_constraints[0].asset_ids[0]","$.hard_constraints[1].asset_ids[2]"]},
-        {"asset_id":"d","origins":["$.hard_constraints[1].asset_ids[1]"]}
-    ]));
-    assert_eq!(result["precedence_edges"], json!([
-        {"before":"b","after":"a","origins":["$.manual_selected_asset_ids[1]"]},
-        {"before":"a","after":"d","origins":["$.hard_constraints[1].asset_ids[1]"]},
-        {"before":"d","after":"c","origins":["$.hard_constraints[1].asset_ids[2]"]}
-    ]));
+    assert_eq!(
+        result["required_assets"],
+        json!([
+            {"asset_id":"b","origins":["$.manual_selected_asset_ids[0]","$.hard_constraints[0].asset_ids[1]"]},
+            {"asset_id":"a","origins":["$.manual_selected_asset_ids[1]","$.hard_constraints[1].asset_ids[0]"]},
+            {"asset_id":"c","origins":["$.hard_constraints[0].asset_ids[0]","$.hard_constraints[1].asset_ids[2]"]},
+            {"asset_id":"d","origins":["$.hard_constraints[1].asset_ids[1]"]}
+        ])
+    );
+    assert_eq!(
+        result["precedence_edges"],
+        json!([
+            {"before":"b","after":"a","origins":["$.manual_selected_asset_ids[1]"]},
+            {"before":"a","after":"d","origins":["$.hard_constraints[1].asset_ids[1]"]},
+            {"before":"d","after":"c","origins":["$.hard_constraints[1].asset_ids[2]"]}
+        ])
+    );
 }
 
 #[test]
@@ -131,65 +167,87 @@ fn unknown_exclusions_and_repeated_reference_declarations_get_typed_conflicts() 
         {"type":"must-exclude","asset_ids":["missing"]}
     ]);
     let result = audited(&value);
-    assert_eq!(result["conflicts"], json!([
-        {"kind":"unknown-asset","path":"$.manual_selected_asset_ids[0]","asset_ids":["missing"]},
-        {"kind":"unknown-asset","path":"$.hard_constraints[0].asset_ids[0]","asset_ids":["missing"]},
-        {"kind":"unknown-asset","path":"$.hard_constraints[1].asset_ids[0]","asset_ids":["missing"]},
-        {"kind":"required-excluded","path":"$.manual_selected_asset_ids[0]","asset_ids":["missing"]}
-    ]));
-    assert_eq!(result["required_assets"][0]["origins"], json!([
-        "$.manual_selected_asset_ids[0]","$.hard_constraints[0].asset_ids[0]"
-    ]));
-    assert_eq!(result["excluded_assets"], json!([
-        {"asset_id":"missing","origins":["$.hard_constraints[1].asset_ids[0]"]}
-    ]));
+    assert_eq!(
+        result["conflicts"],
+        json!([
+            {"kind":"unknown-asset","path":"$.manual_selected_asset_ids[0]","asset_ids":["missing"]},
+            {"kind":"unknown-asset","path":"$.hard_constraints[0].asset_ids[0]","asset_ids":["missing"]},
+            {"kind":"unknown-asset","path":"$.hard_constraints[1].asset_ids[0]","asset_ids":["missing"]},
+            {"kind":"required-excluded","path":"$.manual_selected_asset_ids[0]","asset_ids":["missing"]}
+        ])
+    );
+    assert_eq!(
+        result["required_assets"][0]["origins"],
+        json!([
+            "$.manual_selected_asset_ids[0]",
+            "$.hard_constraints[0].asset_ids[0]"
+        ])
+    );
+    assert_eq!(
+        result["excluded_assets"],
+        json!([
+            {"asset_id":"missing","origins":["$.hard_constraints[1].asset_ids[0]"]}
+        ])
+    );
 }
 
 #[test]
 fn conflicting_fixture_has_stable_hard_diagnostic_order_and_required_origin_paths() {
     let result = report(CONFLICTING);
     assert_eq!(result["consistent"], false);
-    assert_eq!(result["conflicts"], json!([
-        {"kind":"unknown-asset","path":"$.hard_constraints[0].asset_ids[1]","asset_ids":["missing-exclusion"]},
-        {"kind":"unknown-asset","path":"$.hard_constraints[2].asset_ids[0]","asset_ids":["missing-required"]},
-        {"kind":"required-excluded","path":"$.manual_selected_asset_ids[1]","asset_ids":["a"]},
-        {"kind":"order-cycle","path":"$.hard_constraints[1].asset_ids[1]","asset_ids":["b","a"]}
-    ]));
-    assert_eq!(result["manual_selected_asset_ids"], json!(["b","a"]));
+    assert_eq!(
+        result["conflicts"],
+        json!([
+            {"kind":"unknown-asset","path":"$.hard_constraints[0].asset_ids[1]","asset_ids":["missing-exclusion"]},
+            {"kind":"unknown-asset","path":"$.hard_constraints[2].asset_ids[0]","asset_ids":["missing-required"]},
+            {"kind":"required-excluded","path":"$.manual_selected_asset_ids[1]","asset_ids":["a"]},
+            {"kind":"order-cycle","path":"$.hard_constraints[1].asset_ids[1]","asset_ids":["b","a"]}
+        ])
+    );
+    assert_eq!(result["manual_selected_asset_ids"], json!(["b", "a"]));
     assert_eq!(result["required_assets"][2]["asset_id"], "missing-required");
-    assert_eq!(result["warnings"], json!([
-        {"kind":"unknown-preferred-asset","path":"$.preferences.preferred_asset_ids[0]","asset_ids":["missing-preferred"]},
-        {"kind":"excluded-preference","path":"$.preferences.preferred_asset_ids[1]","asset_ids":["a"]}
-    ]));
+    assert_eq!(
+        result["warnings"],
+        json!([
+            {"kind":"unknown-preferred-asset","path":"$.preferences.preferred_asset_ids[0]","asset_ids":["missing-preferred"]},
+            {"kind":"excluded-preference","path":"$.preferences.preferred_asset_ids[1]","asset_ids":["a"]}
+        ])
+    );
 }
 
 #[test]
 fn duplicate_edges_retain_each_declaration_origin_without_reordering() {
     let mut value = input();
-    value["manual_selected_asset_ids"] = json!(["a","b"]);
+    value["manual_selected_asset_ids"] = json!(["a", "b"]);
     value["hard_constraints"] = json!([
         {"type":"asset-order","asset_ids":["a","b","c"]},
         {"type":"asset-order","asset_ids":["a","b"]}
     ]);
     let result = audited(&value);
-    assert_eq!(result["precedence_edges"], json!([
-        {"before":"a","after":"b","origins":["$.manual_selected_asset_ids[1]","$.hard_constraints[0].asset_ids[1]","$.hard_constraints[1].asset_ids[1]"]},
-        {"before":"b","after":"c","origins":["$.hard_constraints[0].asset_ids[2]"]}
-    ]));
+    assert_eq!(
+        result["precedence_edges"],
+        json!([
+            {"before":"a","after":"b","origins":["$.manual_selected_asset_ids[1]","$.hard_constraints[0].asset_ids[1]","$.hard_constraints[1].asset_ids[1]"]},
+            {"before":"b","after":"c","origins":["$.hard_constraints[0].asset_ids[2]"]}
+        ])
+    );
     assert_eq!(result["consistent"], true);
 }
 
 #[test]
 fn cycle_witness_is_actual_and_excludes_acyclic_prefix_and_downstream_nodes() {
     let mut value = input();
-    value["manual_selected_asset_ids"] = json!(["a","b","c","d"]);
+    value["manual_selected_asset_ids"] = json!(["a", "b", "c", "d"]);
     value["hard_constraints"] = json!([
         {"type":"asset-order","asset_ids":["c","b"]}
     ]);
     let result = audited(&value);
-    assert_eq!(result["conflicts"], json!([
-        {"kind":"order-cycle","path":"$.hard_constraints[0].asset_ids[1]","asset_ids":["b","c"]}
-    ]));
+    assert_eq!(
+        result["conflicts"],
+        json!([
+            {"kind":"order-cycle","path":"$.hard_constraints[0].asset_ids[1]","asset_ids":["b","c"]}
+        ])
+    );
     for _ in 0..8 {
         assert_eq!(audited(&value), result);
     }
@@ -202,19 +260,22 @@ fn preference_warnings_preserve_values_and_never_relax_hard_requirements() {
     value["hard_constraints"] = json!([
         {"type":"must-exclude","asset_ids":["a","missing"]}
     ]);
-    value["preferences"]["preferred_asset_ids"] = json!(["missing","a","d"]);
+    value["preferences"]["preferred_asset_ids"] = json!(["missing", "a", "d"]);
     let result = audited(&value);
     assert_eq!(result["preferences"], value["preferences"]);
-    assert_eq!(result["warnings"], json!([
-        {"kind":"unknown-preferred-asset","path":"$.preferences.preferred_asset_ids[0]","asset_ids":["missing"]},
-        {"kind":"excluded-preference","path":"$.preferences.preferred_asset_ids[1]","asset_ids":["a"]}
-    ]));
+    assert_eq!(
+        result["warnings"],
+        json!([
+            {"kind":"unknown-preferred-asset","path":"$.preferences.preferred_asset_ids[0]","asset_ids":["missing"]},
+            {"kind":"excluded-preference","path":"$.preferences.preferred_asset_ids[1]","asset_ids":["a"]}
+        ])
+    );
     assert_eq!(result["required_assets"].as_array().unwrap().len(), 1);
     assert_eq!(result["required_assets"][0]["asset_id"], "a");
     assert_eq!(result["precedence_edges"], json!([]));
     assert_eq!(result["consistent"], false);
     let mut soft_only = input();
-    soft_only["preferences"]["preferred_asset_ids"] = json!(["missing","b","a"]);
+    soft_only["preferences"]["preferred_asset_ids"] = json!(["missing", "b", "a"]);
     let soft_result = audited(&soft_only);
     assert_eq!(soft_result["consistent"], true);
     assert_eq!(soft_result["required_assets"], json!([]));
@@ -228,14 +289,18 @@ fn positive_canonical_target_duration_is_preserved_without_feasibility_analysis(
         json!({"numerator":"18446744073709551615","denominator":"1"}),
     ] {
         let mut value = input();
-        value["manual_selected_asset_ids"] = json!(["a","b","c","d"]);
+        value["manual_selected_asset_ids"] = json!(["a", "b", "c", "d"]);
         value["preferences"]["target_duration"] = target;
         let result = audited(&value);
         assert_eq!(result["preferences"], value["preferences"]);
         assert_eq!(result["duration_analysis"], "not-performed");
         assert_eq!(result["consistent"], true);
     }
-    assert!(audited(&input())["preferences"].get("target_duration").is_none());
+    assert!(
+        audited(&input())["preferences"]
+            .get("target_duration")
+            .is_none()
+    );
 }
 
 #[test]
@@ -297,7 +362,12 @@ fn unknown_fields_and_unsupported_constraint_families_reject_strictly() {
     let mut value = input();
     value["hard_constraints"] = json!([{"type":"must-include","asset_ids":["a"],"enabled":true}]);
     cases.push(value);
-    for kind in ["chronological", "coverage-group", "media-balance", "future-order"] {
+    for kind in [
+        "chronological",
+        "coverage-group",
+        "media-balance",
+        "future-order",
+    ] {
         let mut value = input();
         value["hard_constraints"] = json!([{"type":kind,"asset_ids":["a","b"]}]);
         cases.push(value);
@@ -311,11 +381,26 @@ fn unknown_fields_and_unsupported_constraint_families_reject_strictly() {
 fn duplicate_json_fields_reject_at_root_and_each_nested_object() {
     let source = String::from_utf8(VALID.to_vec()).unwrap();
     for (needle, replacement) in [
-        ("\"schema_version\": 1", "\"schema_version\":1,\"schema_version\":1"),
-        ("{\"id\":\"opening\"}", "{\"id\":\"opening\",\"id\":\"opening\"}"),
-        ("\"type\":\"must-include\"", "\"type\":\"must-include\",\"type\":\"must-include\""),
-        ("\"preferred_asset_ids\":", "\"preferred_asset_ids\":[],\"preferred_asset_ids\":"),
-        ("\"numerator\":\"15\"", "\"numerator\":\"15\",\"numerator\":\"15\""),
+        (
+            "\"schema_version\": 1",
+            "\"schema_version\":1,\"schema_version\":1",
+        ),
+        (
+            "{\"id\":\"opening\"}",
+            "{\"id\":\"opening\",\"id\":\"opening\"}",
+        ),
+        (
+            "\"type\":\"must-include\"",
+            "\"type\":\"must-include\",\"type\":\"must-include\"",
+        ),
+        (
+            "\"preferred_asset_ids\":",
+            "\"preferred_asset_ids\":[],\"preferred_asset_ids\":",
+        ),
+        (
+            "\"numerator\":\"15\"",
+            "\"numerator\":\"15\",\"numerator\":\"15\"",
+        ),
     ] {
         assert!(source.contains(needle));
         let bytes = source.replacen(needle, replacement, 1);
@@ -330,7 +415,15 @@ fn future_version_is_probed_before_domain_validation_and_required_fields_are_str
     future["assets"] = Value::Null;
     future["brief_id"] = json!("../invalid");
     reject(&future, "brief.unsupported_version");
-    for field in ["schema_version", "brief_id", "intent", "assets", "manual_selected_asset_ids", "hard_constraints", "preferences"] {
+    for field in [
+        "schema_version",
+        "brief_id",
+        "intent",
+        "assets",
+        "manual_selected_asset_ids",
+        "hard_constraints",
+        "preferences",
+    ] {
         let mut missing = input();
         missing.as_object_mut().unwrap().remove(field);
         reject(&missing, "input.invalid_json");
@@ -345,13 +438,20 @@ fn future_version_is_probed_before_domain_validation_and_required_fields_are_str
 
 #[test]
 fn duplicate_ids_reject_within_each_collection_but_cross_declarations_remain_valid() {
-    for field in ["manual_selected_asset_ids", "preferences", "assets", "hard_constraints"] {
+    for field in [
+        "manual_selected_asset_ids",
+        "preferences",
+        "assets",
+        "hard_constraints",
+    ] {
         let mut value = input();
         match field {
-            "manual_selected_asset_ids" => value[field] = json!(["a","a"]),
-            "preferences" => value[field]["preferred_asset_ids"] = json!(["a","a"]),
+            "manual_selected_asset_ids" => value[field] = json!(["a", "a"]),
+            "preferences" => value[field]["preferred_asset_ids"] = json!(["a", "a"]),
             "assets" => value[field] = json!([{"id":"a"},{"id":"a"}]),
-            "hard_constraints" => value[field] = json!([{"type":"asset-order","asset_ids":["a","a"]}]),
+            "hard_constraints" => {
+                value[field] = json!([{"type":"asset-order","asset_ids":["a","a"]}])
+            }
             _ => unreachable!(),
         }
         reject(&value, "brief.duplicate_id");
@@ -361,19 +461,33 @@ fn duplicate_ids_reject_within_each_collection_but_cross_declarations_remain_val
         {"type":"must-include","asset_ids":["a"]},
         {"type":"must-include","asset_ids":["a"]}
     ]);
-    assert_eq!(audited(&value)["required_assets"][0]["origins"].as_array().unwrap().len(), 2);
+    assert_eq!(
+        audited(&value)["required_assets"][0]["origins"]
+            .as_array()
+            .unwrap()
+            .len(),
+        2
+    );
 }
 
 #[test]
 fn ascii_identifier_syntax_and_byte_bounds_apply_to_every_identity_and_reference() {
     for invalid in ["", "-a", "../a", "a/b", "a b", "記憶", &"a".repeat(129)] {
-        for field in ["brief_id", "assets", "manual_selected_asset_ids", "hard_constraints", "preferences"] {
+        for field in [
+            "brief_id",
+            "assets",
+            "manual_selected_asset_ids",
+            "hard_constraints",
+            "preferences",
+        ] {
             let mut value = input();
             match field {
                 "brief_id" => value[field] = json!(invalid),
                 "assets" => value[field][0]["id"] = json!(invalid),
                 "manual_selected_asset_ids" => value[field] = json!([invalid]),
-                "hard_constraints" => value[field] = json!([{"type":"must-exclude","asset_ids":[invalid]}]),
+                "hard_constraints" => {
+                    value[field] = json!([{"type":"must-exclude","asset_ids":[invalid]}])
+                }
                 "preferences" => value[field]["preferred_asset_ids"] = json!([invalid]),
                 _ => unreachable!(),
             }
@@ -394,7 +508,11 @@ fn empty_and_per_collection_budgets_are_enforced_without_rejecting_allowed_empty
     let mut value = input();
     value["assets"] = json!([]);
     reject(&value, "brief.empty_collection");
-    for (kind, entries) in [("must-include", json!([])), ("must-exclude", json!([])), ("asset-order", json!(["a"]))] {
+    for (kind, entries) in [
+        ("must-include", json!([])),
+        ("must-exclude", json!([])),
+        ("asset-order", json!(["a"])),
+    ] {
         let mut value = input();
         value["hard_constraints"] = json!([{"type":kind,"asset_ids":entries}]);
         assert_eq!(
@@ -405,21 +523,33 @@ fn empty_and_per_collection_budgets_are_enforced_without_rejecting_allowed_empty
     assert_eq!(audited(&input())["consistent"], true);
     assert_eq!(audited(&with_catalog(1024))["consistent"], true);
     reject(&with_catalog(1025), "brief.budget_exceeded");
-    for field in ["manual_selected_asset_ids", "preferences", "hard_constraints"] {
+    for field in [
+        "manual_selected_asset_ids",
+        "preferences",
+        "hard_constraints",
+    ] {
         let mut value = with_catalog(1024);
         match field {
             "manual_selected_asset_ids" => value[field] = json!(ids(1025)),
             "preferences" => value[field]["preferred_asset_ids"] = json!(ids(1025)),
-            "hard_constraints" => value[field] = json!([{"type":"must-include","asset_ids":ids(1025)}]),
+            "hard_constraints" => {
+                value[field] = json!([{"type":"must-include","asset_ids":ids(1025)}])
+            }
             _ => unreachable!(),
         }
         reject(&value, "brief.budget_exceeded");
     }
     let mut value = input();
-    value["hard_constraints"] = json!(vec![json!({"type":"must-include","asset_ids":["a"]});256]);
+    value["hard_constraints"] = json!(vec![json!({"type":"must-include","asset_ids":["a"]}); 256]);
     assert_eq!(audited(&value)["consistent"], true);
-    value["hard_constraints"].as_array_mut().unwrap().push(json!({"type":"must-include","asset_ids":["a"]}));
-    assert_eq!(reject(&value, "brief.budget_exceeded").path, "$.hard_constraints");
+    value["hard_constraints"]
+        .as_array_mut()
+        .unwrap()
+        .push(json!({"type":"must-include","asset_ids":["a"]}));
+    assert_eq!(
+        reject(&value, "brief.budget_exceeded").path,
+        "$.hard_constraints"
+    );
     let mut value = input();
     value["intent"] = json!("🎬".repeat(1024));
     assert_eq!(audited(&value)["intent"], value["intent"]);
@@ -432,11 +562,17 @@ fn aggregate_reference_budget_accepts_8192_and_refuses_8193() {
     let mut value = with_catalog(1024);
     value["manual_selected_asset_ids"] = json!(ids(1024));
     value["preferences"]["preferred_asset_ids"] = json!(ids(1024));
-    value["hard_constraints"] = json!(vec![json!({"type":"must-include","asset_ids":ids(1024)});6]);
+    value["hard_constraints"] = json!(vec![
+        json!({"type":"must-include","asset_ids":ids(1024)});
+        6
+    ]);
     let result = audited(&value);
     assert_eq!(result["consistent"], true);
     assert_eq!(result["required_assets"].as_array().unwrap().len(), 1024);
-    value["hard_constraints"].as_array_mut().unwrap().push(json!({"type":"must-include","asset_ids":["asset-0000"]}));
+    value["hard_constraints"]
+        .as_array_mut()
+        .unwrap()
+        .push(json!({"type":"must-include","asset_ids":["asset-0000"]}));
     assert_eq!(reject(&value, "brief.budget_exceeded").path, "$");
 }
 
@@ -444,12 +580,19 @@ fn aggregate_reference_budget_accepts_8192_and_refuses_8193() {
 fn combined_diagnostic_budget_accepts_256_and_errors_instead_of_truncating_at_257() {
     let mut value = input();
     value["manual_selected_asset_ids"] = json!(ids(128));
-    value["preferences"]["preferred_asset_ids"] = json!((128..256).map(|index| format!("asset-{index:04}")).collect::<Vec<_>>());
+    value["preferences"]["preferred_asset_ids"] = json!(
+        (128..256)
+            .map(|index| format!("asset-{index:04}"))
+            .collect::<Vec<_>>()
+    );
     let result = audited(&value);
     assert_eq!(result["conflicts"].as_array().unwrap().len(), 128);
     assert_eq!(result["warnings"].as_array().unwrap().len(), 128);
     assert_eq!(result["consistent"], false);
-    value["preferences"]["preferred_asset_ids"].as_array_mut().unwrap().push(json!("asset-0256"));
+    value["preferences"]["preferred_asset_ids"]
+        .as_array_mut()
+        .unwrap()
+        .push(json!("asset-0256"));
     assert_eq!(reject(&value, "brief.too_many_diagnostics").path, "$");
 }
 
@@ -465,7 +608,10 @@ fn input_bytes_and_semantic_array_order_are_unchanged_and_reports_are_determinis
     }
     let source: Value = serde_json::from_slice(&bytes).unwrap();
     let result = report(&bytes);
-    assert_eq!(result["manual_selected_asset_ids"], source["manual_selected_asset_ids"]);
+    assert_eq!(
+        result["manual_selected_asset_ids"],
+        source["manual_selected_asset_ids"]
+    );
     assert_eq!(result["preferences"], source["preferences"]);
     assert_eq!(result["required_assets"][0]["asset_id"], "b");
     assert_eq!(result["required_assets"][1]["asset_id"], "a");
@@ -473,11 +619,13 @@ fn input_bytes_and_semantic_array_order_are_unchanged_and_reports_are_determinis
 
 #[test]
 fn full_depth_acyclic_order_and_large_origin_report_stay_within_output_budget() {
-    let names: Vec<String> = (0..1024).map(|index| format!("asset-{index:04}-{}", "x".repeat(117))).collect();
+    let names: Vec<String> = (0..1024)
+        .map(|index| format!("asset-{index:04}-{}", "x".repeat(117)))
+        .collect();
     assert!(names.iter().all(|id| id.len() == 128));
     let mut value = input();
     value["assets"] = json!(names.iter().map(|id| json!({"id":id})).collect::<Vec<_>>());
-    value["hard_constraints"] = json!(vec![json!({"type":"asset-order","asset_ids":names});6]);
+    value["hard_constraints"] = json!(vec![json!({"type":"asset-order","asset_ids":names}); 6]);
     let bytes = serde_json::to_vec(&value).unwrap();
     assert!(bytes.len() <= 1_048_576);
     let audit = audit_story_brief(&bytes).unwrap();
@@ -487,7 +635,13 @@ fn full_depth_acyclic_order_and_large_origin_report_stay_within_output_budget() 
     assert_eq!(result["consistent"], true);
     assert_eq!(result["required_assets"].as_array().unwrap().len(), 1024);
     assert_eq!(result["precedence_edges"].as_array().unwrap().len(), 1023);
-    assert_eq!(result["precedence_edges"][0]["origins"].as_array().unwrap().len(), 6);
+    assert_eq!(
+        result["precedence_edges"][0]["origins"]
+            .as_array()
+            .unwrap()
+            .len(),
+        6
+    );
 }
 
 #[test]

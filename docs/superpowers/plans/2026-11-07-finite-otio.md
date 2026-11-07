@@ -24,9 +24,9 @@
 Create comparison `docs/migration/records/M1-02.md`, contract/design above,
 `docs/migration/provenance-m1-02.json`, and a bounded test-only oracle directory.
 
-- [ ] Record actual symbols/tests/blobs, current source/target and host blocker.
-- [ ] Review exact types/clock/loss/errors/budgets; correct review findings and freeze G2.
-- [ ] Run official 0.18.1 exploration and pinned TS producer on legal synthetic inputs.
+- [x] Record actual symbols/tests/blobs, current source/target and host blocker.
+- [x] Review exact types/clock/loss/errors/budgets; correct review findings and freeze G2.
+- [x] Run official 0.18.1 exploration and pinned TS producer on legal synthetic inputs.
 
 ## P2: native writer and loss profile
 
@@ -37,19 +37,23 @@ Create `crates/storytelling-core/src/compiled_plan.rs`,
 Produces `export_openfilm_otio(bytes, profile, choices) -> Result<CompiledOtioV1,
 OtioCompileError>` exactly as defined by the contract. No new production dependency.
 
-- [ ] Write regressions with a compilable stub; run `cargo test --locked -p storytelling-engine --test otio`; observe functional RED.
-- [ ] Implement bounded common clock, native schema, owner metadata and explicit choices.
-- [ ] Run engine tests and workspace debug/release tests; record actual GREEN.
-- [ ] Compare source outputs and official parser read/write/read by semantic order/ranges.
+- [x] Write regressions with a compilable stub; run `cargo test --locked -p storytelling-engine --test otio`; observe functional RED.
+- [x] Implement bounded common clock, native schema, owner metadata and explicit choices.
+- [x] Run engine tests and workspace debug/release tests; record actual GREEN.
+- [x] Compare source outputs and official parser read/write/read by semantic order/ranges.
 
 ## P3: CLI, evidence and completion
 
 Modify CLI main and add real CLI tests; update requirements/TASKS/roadmap/guards,
 work index and CI-only oracle requirements/action identity. Preserve existing commands.
 
-- [ ] Write real process RED for export-otio file/stdin/flags/JSON/exit/immutability.
-- [ ] Implement composition-root I/O only; stdout is directly readable OTIO JSON.
-- [ ] Run fmt/clippy/workspace debug+release/rustdoc/repository guards/diff check and PATH-isolated smoke.
-- [ ] Run independent whole-branch review and converge correctness findings.
-- [ ] Publish one task PR with actual full SHAs, evidence, limitations and rollback; verify same-head hosted CI.
-- [ ] Under explicit user authorization, merge verified completed PR and check/close completed tasks. Retain unavailable host/manual gates as blocked.
+- [x] Write real process RED for export-otio file/stdin/flags/JSON/exit/immutability.
+- [x] Implement composition-root I/O only; stdout is directly readable OTIO JSON.
+- [x] Run fmt/clippy/workspace debug+release/rustdoc/repository guards/diff check and PATH-isolated smoke.
+- [x] Run independent whole-branch review and converge correctness findings.
+- [x] Publish one task PR with actual full SHAs, evidence, limitations and rollback; verify same-head hosted CI.
+- [x] Under explicit user authorization, merge verified completed PR and check/close completed tasks. Retain actual host/manual proof as a separate M1-03 gate; executable provisioning is no longer the blocker.
+
+Subsequent acceptance: PR #16 merged on 2026-11-07 after all ten same-head checks;
+issue #12 is checked/closed. Historical steps above are completed for the finite
+format-only scope; see [lifecycle record](../../migration/records/M1-02.md).

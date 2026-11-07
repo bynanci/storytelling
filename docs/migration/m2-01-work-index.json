@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "task": "M2-01",
+  "tracking_issue": "https://github.com/bynanci/storytelling/issues/14",
+  "tracking_issue_number": 14,
+  "tracking_issue_status": "open",
+  "base": "440209f21d2b5fd6e7b4cad0823359c802cf8c8e",
+  "red_commit": "ac364f87c3dcf2317f3cfa4f759360a04f057362",
+  "source": "7add4762fe8174d76f43b863375ea39b73121e76",
+  "policy_approval": "2026-11-07 continuation; inherited approved source-informed Apache component policy, original MIT unchanged",
+  "contract": "docs/migration/STORY_BRIEF_V1.md",
+  "comparison_record": "docs/migration/records/M2-01.md",
+  "source_evidence": "tests/oracles/story-brief-v1/source-evidence.json",
+  "source_comparator": "tests/oracles/story-brief-v1/compare.py",
+  "state": "review",
+  "scope": "declared-constraint-audit-only",
+  "lifecycle_note": "Bounded implementation, independent code/docs/integration reviews, fresh-main combined124debug/release tests, fmt/clippy/Rustdoc/repository guard and actual source/import/OTIO comparisons passed. Exact published-head hosted checks, feature PR merge and accepted lifecycle remain pending. M2-02/M2-03, source/media/host proof and release remain separate.",
+  "tasks": [
+    {
+      "id": "M2-01/P1",
+      "url": "https://github.com/bynanci/storytelling/issues/14",
+      "number": 14,
+      "title": "Freeze bounded StoryBrief contract and pinned source/provenance evidence",
+      "state": "review",
+      "depends_on": [],
+      "acceptance": "Strict downstream audit contract and source-informed Apache policy recorded; actual source symbols/blobs distinguished from new schema/preferences and from full planner behavior"
+    },
+    {
+      "id": "M2-01/P2",
+      "url": "https://github.com/bynanci/storytelling/issues/14",
+      "number": 14,
+      "title": "Implement pure hard-constraint audit and read-only file/stdin CLI",
+      "state": "review",
+      "depends_on": [
+        "M2-01/P1"
+      ],
+      "acceptance": "Manual requirements/order retained, typed conflicts and soft warnings reported, strict resource bounds enforced, no plan or feasibility claim; functional RED preserved in red_commit before implementation"
+    },
+    {
+      "id": "M2-01/P3",
+      "url": "https://github.com/bynanci/storytelling/issues/14",
+      "number": 14,
+      "title": "Complete selected-policy comparison, independent review and exact-head verification",
+      "state": "in-progress",
+      "depends_on": [
+        "M2-01/P2"
+      ],
+      "acceptance": "Replay actual pinned source policy evidence against Rust, run required local/hosted checks and independent review, then publish concrete task/PR evidence for the authorized acceptance lifecycle"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M2-B01",
+      "requirement": "Manual selections remain hard required membership and order; must-include and asset-order members join required facts; preserve first appearance and all duplicate edge origins",
+      "tests": [
+        "missing_manual_choices_remain_required_and_ordered_instead_of_being_filtered",
+        "include_and_order_members_promote_required_assets_with_all_ordered_origins",
+        "duplicate_edges_retain_each_declaration_origin_without_reordering"
+      ]
+    },
+    {
+      "id": "M2-B02",
+      "requirement": "Return typed unknown-reference, required/excluded and actual-cycle diagnostics with stable declaration paths/order; missing exclusions remain conflicts and no hard choice is repaired away",
+      "tests": [
+        "unknown_exclusions_and_repeated_reference_declarations_get_typed_conflicts",
+        "conflicting_fixture_has_stable_hard_diagnostic_order_and_required_origin_paths",
+        "cycle_witness_is_actual_and_excludes_acyclic_prefix_and_downstream_nodes"
+      ]
+    },
+    {
+      "id": "M2-B03",
+      "requirement": "Keep preferences soft and unchanged, warn for unknown/excluded preferences, preserve positive canonical exact rational target declarations and Unicode intent without executing text or claiming duration analysis",
+      "tests": [
+        "preference_warnings_preserve_values_and_never_relax_hard_requirements",
+        "positive_canonical_target_duration_is_preserved_without_feasibility_analysis",
+        "target_duration_rejects_zero_noncanonical_overflow_and_wrong_wire_types",
+        "unicode_and_instruction_shaped_intent_remain_verbatim_inert_text"
+      ]
+    },
+    {
+      "id": "M2-B04",
+      "requirement": "Reject unsupported version/constraint families, unknown or duplicate fields, null/missing required fields, duplicate IDs and invalid identifier syntax at strict JSON boundaries",
+      "tests": [
+        "unknown_fields_and_unsupported_constraint_families_reject_strictly",
+        "duplicate_json_fields_reject_at_root_and_each_nested_object",
+        "future_version_is_probed_before_domain_validation_and_required_fields_are_strict",
+        "duplicate_ids_reject_within_each_collection_but_cross_declarations_remain_valid",
+        "ascii_identifier_syntax_and_byte_bounds_apply_to_every_identity_and_reference"
+      ]
+    },
+    {
+      "id": "M2-B05",
+      "requirement": "Bound input/intent/collections, aggregate references, combined diagnostics and serialized output; use iterative cycle traversal; preserve deterministic results and immutable input bytes",
+      "tests": [
+        "empty_and_per_collection_budgets_are_enforced_without_rejecting_allowed_empty_lists",
+        "aggregate_reference_budget_accepts_8192_and_refuses_8193",
+        "combined_diagnostic_budget_accepts_256_and_errors_instead_of_truncating_at_257",
+        "input_bytes_and_semantic_array_order_are_unchanged_and_reports_are_deterministic",
+        "full_depth_acyclic_order_and_large_origin_report_stay_within_output_budget",
+        "input_size_malformed_json_and_recursion_boundaries_fail_with_safe_paths"
+      ]
+    },
+    {
+      "id": "M2-B06",
+      "requirement": "Expose one-line typed audit JSON through read-only explicit file/stdin input with stable exits and bounded authority; compare only the ten actual pinned source membership/order/conflict policies",
+      "tests": [
+        "fixture_reports_only_declared_consistency_without_a_planned_selection",
+        "audits_file_and_stdin_identically_without_changing_the_input_or_directory",
+        "reports_typed_hard_conflicts_with_exit_one_and_keeps_manual_choices",
+        "rejects_malformed_future_and_oversized_file_and_stdin_with_error_exit_one",
+        "preserves_unicode_and_instruction_text_as_intent_without_writing_files",
+        "rejects_missing_or_extra_audit_arguments_with_usage_exit_two",
+        "redacts_missing_input_file_with_io_exit_three",
+        "help_lists_the_audit_brief_command"
+      ],
+      "verification_paths": [
+        "tests/oracles/story-brief-v1/source-evidence.json",
+        "tests/oracles/story-brief-v1/run-source.mts",
+        "tests/oracles/story-brief-v1/compare.py"
+      ]
+    }
+  ],
+  "manual_gates": [],
+  "not_claimed": [
+    "M2-R01 full-planner constraint satisfaction or general feasibility",
+    "M2-02 selection and shot planning",
+    "M2-03 complete planner shadow parity",
+    "source/media/hash verification",
+    "host import, playback, save/reopen or rendering proof",
+    "human editorial acceptance",
+    "accepted lifecycle or release"
+  ],
+  "integration_base": "9a5232e97435f543238b90a2006460f319f4e651",
+  "rebased_red_commit": "ec614fbc2597c4d4927f37423c2d3b279698d3d9",
+  "local_red_commit": "c514850a5850f3b30c11128f8dbc0ab8fe30be16"
+}

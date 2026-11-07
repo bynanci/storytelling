@@ -1,7 +1,9 @@
 # Requirements and verification traceability
 
-M0 and the M1 importer subset below are implemented by this candidate. Host and
-higher milestone requirements remain proposals. Tests are checked by the repository guard.
+M0, finite M1-01 and format-only M1-02 are accepted on main. The bounded M2-01 audit below is
+implemented and in review; its remaining verification/acceptance work is in
+progress. Host and full-planner requirements remain proposals. Tests are checked
+by the repository guard.
 
 | ID | Requirement | Implementation owner | Acceptance test |
 | --- | --- | --- | --- |
@@ -53,6 +55,34 @@ gates. See [contract](migration/FINITE_OTIO_V1.md),
 | M1-O05 | Usable direct OTIO stdout, strict loss flags, immutable file/stdin / GAP-14 subset | `exports_a_real_timeline_identically_from_file_and_stdin_without_writing`, `rejects_missing_extra_unknown_duplicate_and_misplaced_arguments_with_usage_two`, `preserves_numeric_lexemes_inside_the_source_snapshot_json_string` |
 | M1-O06 | Actual source and official parser semantic conformance / GAP-02/16 | `tests/oracles/otio-finite-v1/verify.py`: six pinned TS cases plus two direct Rust fixtures, official 0.18.1 parse/write/read; no media URI dereference |
 
+## M2-01 bounded brief audit requirements
+
+M2-Bxx identifies this declared-constraint audit subset separately from the
+M2-R01 full-planner goal. Implementation is present and in review; no accepted,
+host or full-planner status is inferred. See the frozen
+[contract](migration/STORY_BRIEF_V1.md),
+[source comparison record](migration/records/M2-01.md),
+[per-file provenance](migration/provenance-m2-01.json) and
+[complete requirement/test mapping](migration/m2-01-work-index.json).
+[Tracking issue #14](https://github.com/bynanci/storytelling/issues/14) owns this
+bounded slice; verification and acceptance remain in progress.
+
+| ID | Implemented bounded requirement | Implementation | Representative actual tests |
+| --- | --- | --- | --- |
+| M2-B01 | Manual choices stay hard required membership/order; include/order members are required; keep declaration order and every edge origin | core/brief.rs + engine/brief.rs | `missing_manual_choices_remain_required_and_ordered_instead_of_being_filtered`, `include_and_order_members_promote_required_assets_with_all_ordered_origins`, `duplicate_edges_retain_each_declaration_origin_without_reordering` |
+| M2-B02 | Typed missing-reference, required/excluded and actual-cycle conflicts retain stable paths/order and conflicting choices | engine audit + brief/cycle.rs | `unknown_exclusions_and_repeated_reference_declarations_get_typed_conflicts`, `conflicting_fixture_has_stable_hard_diagnostic_order_and_required_origin_paths`, `cycle_witness_is_actual_and_excludes_acyclic_prefix_and_downstream_nodes` |
+| M2-B03 | Preferences stay soft; exact positive rational target and Unicode intent remain declarations, with no duration analysis or text execution | core preferences + engine audit | `preference_warnings_preserve_values_and_never_relax_hard_requirements`, `positive_canonical_target_duration_is_preserved_without_feasibility_analysis`, `unicode_and_instruction_shaped_intent_remain_verbatim_inert_text` |
+| M2-B04 | Strict supported version/shape/ID boundary; refuse unknown, duplicate, null or unsupported declarations | core DTOs + engine validation | `unknown_fields_and_unsupported_constraint_families_reject_strictly`, `duplicate_json_fields_reject_at_root_and_each_nested_object`, `future_version_is_probed_before_domain_validation_and_required_fields_are_strict` |
+| M2-B05 | Bounded input, intent, collections, aggregate references, diagnostics and output; iterative traversal, deterministic results and immutable bytes | engine validation/audit + iterative cycle helper | `aggregate_reference_budget_accepts_8192_and_refuses_8193`, `combined_diagnostic_budget_accepts_256_and_errors_instead_of_truncating_at_257`, `full_depth_acyclic_order_and_large_origin_report_stay_within_output_budget`, `input_bytes_and_semantic_array_order_are_unchanged_and_reports_are_deterministic` |
+| M2-B06 | Read-only explicit file/stdin CLI, one-line typed JSON and stable exits; scope is audit only; selected source policies have a finite differential comparator | CLI composition root + policy oracle | `fixture_reports_only_declared_consistency_without_a_planned_selection`, `audits_file_and_stdin_identically_without_changing_the_input_or_directory`, `reports_typed_hard_conflicts_with_exit_one_and_keeps_manual_choices`, `redacts_missing_input_file_with_io_exit_three` |
+
+The machine index maps all 22 engine and 7 CLI tests. Actual pinned source
+outcomes and the differential comparator live under
+[the ten-case policy oracle](../tests/oracles/story-brief-v1/README.md). Only hard
+membership/order/reference/conflict policy is compared. The brief schema,
+preferences and typed diagnostics are downstream design. A consistent audit
+checks declared rules; it does not prove composition feasibility or choose shots.
+
 ## Next requirements: not yet implemented
 
 M1-R01: a finite host profile preserves supported shot order/source ranges through
@@ -60,8 +90,10 @@ real FilmCraft import/save/reopen. M1-R02: every unsupported feature or quantiza
 is reported before approval. M1-R03: host and source identities are verified by the
 adapter, with path-free portable provenance.
 
-M2-R01: hard constraints are satisfied or return explicit conflict, never silently
-relaxed. M3-R01: an Agent cannot authorize itself. M3-R02: uncertain external effects
+M2-R01: the full planner satisfies hard constraints or returns explicit conflict,
+never silently relaxing them. The M2-Bxx audit implements only bounded declared
+reference/membership/order checks; general feasibility and selection remain open.
+M3-R01: an Agent cannot authorize itself. M3-R02: uncertain external effects
 are reconciled before retry. M4-R01: external consumers need not depend on Vue/Tauri.
 M5-R01: supported host/platform claims have actual target evidence.
 
@@ -69,4 +101,5 @@ M5-R01: supported host/platform claims have actual target evidence.
 
 Structural parsing < declared semantic validation < actual source verification <
 host readback/render verification < human editorial acceptance. These are distinct
-claims, not interchangeable scores. M0/M1-01 implement only the first two levels.
+claims, not interchangeable scores. M0/M1-01 and the bounded M2-01 audit implement
+only the first two levels.

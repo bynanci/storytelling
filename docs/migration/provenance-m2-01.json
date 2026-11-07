@@ -49,6 +49,16 @@
       "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
     },
     {
+      "path": "crates/storytelling-engine/src/brief/cycle.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded ordering audit",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New iterative DFS returns one deterministic actual cycle witness with closing-edge provenance; preserves declaration order and unknown endpoints; no selection or complete upstream solver parity"
+    },
+    {
       "path": "crates/storytelling-engine/tests/brief.rs",
       "license": "Apache-2.0",
       "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
@@ -113,6 +123,17 @@
         "packages/solver/src/index.ts"
       ],
       "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "tests/oracles/story-brief-v1/compare.py",
+      "license": "Apache-2.0",
+      "relationship": "independently authored synthetic selected-policy differential comparator",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "Compare ten frozen actual source policy outcomes with Rust CLI declarations, membership/order/conflicts and unchanged file/stdin behavior; new brief schema/preferences remain intentional downstream design; no complete solver/planner or duration-feasibility claim"
     },
     {
       "path": "tests/oracles/story-brief-v1/inputs/excluded-preference.json",
