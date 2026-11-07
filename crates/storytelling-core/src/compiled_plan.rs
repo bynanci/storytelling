@@ -43,12 +43,16 @@ impl From<ImportError> for OtioCompileError {
         Self {
             code: error.code,
             path: error.path,
-            losses: error.losses.into_iter().map(|loss| OtioFeatureV1 {
-                feature: loss.code,
-                path: loss.path,
-                disposition: FeatureDisposition::Unsupported,
-                accepted: false,
-            }).collect(),
+            losses: error
+                .losses
+                .into_iter()
+                .map(|loss| OtioFeatureV1 {
+                    feature: loss.code,
+                    path: loss.path,
+                    disposition: FeatureDisposition::Unsupported,
+                    accepted: false,
+                })
+                .collect(),
         }
     }
 }

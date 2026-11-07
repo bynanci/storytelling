@@ -1,0 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# Official CPython 3.12 Linux x86_64 wheel; test-only. Install with --no-deps.
+--only-binary=:all:
+--require-hashes
+opentimelineio==0.18.1 \
+    --hash=sha256:8f0924f818b496cf771612d489082bdb83f42b6bd97ed06589dd2e2c086742c9

@@ -332,6 +332,19 @@
         "packages/core/src/models.ts"
       ],
       "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/.gitignore",
+      "license": "Apache-2.0",
+      "relationship": "independently authored test-only official OTIO oracle or source-generated synthetic data; dependency licenses remain their own",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "bounded exact-content-clock/source semantic validation; no media/host calls"
     }
   ],
   "notices": [
@@ -358,5 +371,21 @@
   ],
   "production_dependencies_added": [],
   "source_tests_copied": false,
-  "media_copied": false
+  "media_copied": false,
+  "test_only_dependencies": [
+    {
+      "name": "OpenTimelineIO",
+      "version": "0.18.1",
+      "platform": "CPython3.12Linuxx86_64",
+      "wheel_sha256": "8f0924f818b496cf771612d489082bdb83f42b6bd97ed06589dd2e2c086742c9",
+      "license": "Apache-2.0",
+      "scope": "official parser oracle only; native extensions remain test-only"
+    },
+    {
+      "name": "actions/setup-python",
+      "ref": "v6",
+      "commit": "ece7cb06caefa5fff74198d8649806c4678c61a1",
+      "scope": "CI-only Python3.12 environment, official action pinned by full commit; no production dependency"
+    }
+  ]
 }

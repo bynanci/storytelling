@@ -3,7 +3,10 @@ use std::ffi::OsStr;
 use std::fs::File;
 use std::io::{self, Read, Write};
 use std::process::ExitCode;
-use storytelling_engine::{MAX_INPUT_BYTES, import_openfilm_snapshot, validate_plan_json};
+use storytelling_engine::{
+    MAX_INPUT_BYTES, OtioLossChoicesV1, export_openfilm_otio, import_openfilm_snapshot,
+    validate_plan_json,
+};
 
 fn emit(value: Value, code: u8) -> ExitCode {
     let Ok(bytes) = serde_json::to_vec(&value) else {
@@ -43,22 +46,40 @@ fn read_bounded(reader: impl Read) -> io::Result<Vec<u8>> {
 }
 
 fn main() -> ExitCode {
-    let mut args = std::env::args_os().skip(1);
-    let (command, input, extra) = (args.next(), args.next(), args.next());
-    match command.as_deref() {
-        Some(value) if value == OsStr::new("--help") && input.is_none() => {
+    let args: Vec<_> = std::env::args_os().skip(1).collect();
+    let command = args.first().map(|value| value.as_os_str());
+    let mut otio_choices = OtioLossChoicesV1::default();
+    match command {
+        Some(value) if value == OsStr::new("--help") && args.len() == 1 => {
             return text(
-                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\nRead-only declared metadata; no source hashing or editor execution.\n",
+                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\nRead-only declared metadata and format-only interchange; no source hashing or editor execution.\n",
             );
         }
-        Some(value) if value == OsStr::new("--version") && input.is_none() => {
+        Some(value) if value == OsStr::new("--version") && args.len() == 1 => {
             return text(concat!("storytelling ", env!("CARGO_PKG_VERSION"), "\n"));
         }
-        Some(value) if value == OsStr::new("validate") && extra.is_none() => {}
-        Some(value) if value == OsStr::new("import-openfilm") && extra.is_none() => {}
+        Some(value)
+            if (value == OsStr::new("validate") || value == OsStr::new("import-openfilm"))
+                && args.len() == 2 => {}
+        Some(value) if value == OsStr::new("export-otio") && (2..=4).contains(&args.len()) => {
+            if args[1].as_encoded_bytes().starts_with(b"--") {
+                return failure("cli.usage", 2);
+            }
+            for flag in &args[2..] {
+                if flag == OsStr::new("--picture-only") && !otio_choices.picture_only {
+                    otio_choices.picture_only = true;
+                } else if flag == OsStr::new("--metadata-only-locks")
+                    && !otio_choices.metadata_only_locks
+                {
+                    otio_choices.metadata_only_locks = true;
+                } else {
+                    return failure("cli.usage", 2);
+                }
+            }
+        }
         _ => return failure("cli.usage", 2),
     }
-    let Some(input) = input else {
+    let Some(input) = args.get(1) else {
         return failure("cli.usage", 2);
     };
     let bytes = if input == OsStr::new("-") {
@@ -75,7 +96,13 @@ fn main() -> ExitCode {
     let Ok(bytes) = bytes else {
         return failure("input.io", 3);
     };
-    if command.as_deref() == Some(OsStr::new("import-openfilm")) {
+    if command == Some(OsStr::new("export-otio")) {
+        return match export_openfilm_otio(&bytes, &Default::default(), &otio_choices) {
+            Ok(compiled) => emit(compiled.document, 0),
+            Err(error) => emit(json!({"ok": false, "error": error}), 1),
+        };
+    }
+    if command == Some(OsStr::new("import-openfilm")) {
         // Profile is fixed inside the engine; no caller input grants capabilities.
         // Type inference keeps the CLI's existing engine-only dependency boundary.
         return match import_openfilm_snapshot(&bytes, &Default::default()) {

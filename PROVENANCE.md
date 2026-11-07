@@ -42,3 +42,17 @@ retain their own licenses; the lockfile is not a relicense of third-party packag
 No private media, fonts, model weights or user project files were imported.
 All source hashes inside fixtures are fabricated declarations. Real media/host
 verification, binary distribution and downstream notice review remain separate gates.
+
+## M1-02 finite interchange component
+
+The inherited approved Apache component policy also covers newly authored OTIO
+contracts, pure serializer/content-clock helper and synthetic regressions/oracles.
+See [per-file inventory](docs/migration/provenance-m1-02.json). Original MIT and
+retained OpenFilm license/notice blobs remain unchanged. No production dependency
+is added and Cargo.lock is unchanged.
+
+Official OpenTimelineIO 0.18.1 (including its native extensions) is a test-only
+oracle, pinned by the CPython 3.12 Linux wheel SHA. The official setup-python CI
+action is pinned to full commit; interpreter ABI is 3.12 and actual versions are
+recorded in evidence. Downloaded dependency licenses remain their own, outside
+the first-party Apache inventory; no wheel, node_modules or host binary is vendored.

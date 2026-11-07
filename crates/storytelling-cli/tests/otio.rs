@@ -313,6 +313,9 @@ fn rejects_missing_extra_unknown_duplicate_and_misplaced_arguments_with_usage_tw
     for args in [
         vec!["export-otio"],
         vec!["export-otio", "--picture-only"],
+        vec!["export-otio", "--unknown"],
+        vec!["export-otio", "--help"],
+        vec!["export-otio", "--unknown", "--picture-only"],
         vec!["export-otio", "--picture-only", "synthetic.json"],
         vec!["export-otio", "-", "extra"],
         vec!["export-otio", "synthetic.json", "extra"],

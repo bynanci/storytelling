@@ -145,7 +145,9 @@ Precedence: existing input validation → loss choices → clock projection → 
 
 `storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]`.
 Flags may occur in either order after input; each at most once. Unknown/duplicate
-flags, missing input or other extra args return usage exit 2. Preserve existing
+flags, missing input or other extra args return usage exit 2.
+Input arguments beginning `--` are options, not filenames; use an explicit `./`
+or absolute path for such a literal filename. Preserve existing
 validate/import-openfilm argument behavior. File/stdin reading uses existing bounds.
 
 Success exits 0 with the actual OTIO Timeline JSON document, one stdout line,
@@ -172,4 +174,5 @@ Retain Rust 1.85.0, MIT bytes and source-informed Apache component provenance.
 CI-only Python/action/package additions require pinned versions/identities and
 notices appropriate to their actual use. Core/engine/CLI production remain native
 with no Python/Node/FFmpeg dependency. M1-03 actual bytes and FilmCraft proof are
-separate and presently blocked by unavailable pinned FilmCraft host/profile.
+separate. Official FilmCraft v0.18.0 Linux CLI has now been provisioned and hashed;
+the actual bounded host profile/roundtrip remains to be exercised in M1-03.

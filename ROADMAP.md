@@ -19,7 +19,7 @@ planned host, followed by a real second-editor compatibility trial.
 | Milestone | Current state | User-visible outcome | Exit gate |
 | --- | --- | --- | --- |
 | M0 foundation | Accepted and merged on main | Validate a declared StoryPlan through a usable Rust CLI | Strict contract, source bounds, immutable input, same-head 3-OS CI, maintainer acceptance |
-| M1 / v0.1 handoff | M1-01 accepted on main; OTIO and host handoff remain planned | Existing story choices become an editable FilmCraft rough cut | Real import/render/readback/save/reopen; supported profile and loss report |
+| M1 / v0.1 handoff | M1-01 accepted; finite OTIO candidate; actual host proof pending | Existing story choices become an editable FilmCraft rough cut | Real import/render/readback/save/reopen; supported profile and loss report |
 | M2 / v0.2 planning | Planned | Constraints and evidence produce an explainable shot proposal | Hard constraints satisfied or explicit conflicts; frozen-input reproducibility |
 | M3 / v0.3 reviewed execution | Planned | Accepted plans execute without silently damaging prior work | Approval binding, owner fencing, durable journal, partial/unknown recovery |
 | M4 / v0.4 consumers | Planned | OpenFilm and an external TypeScript consumer use one SDK | Single authority, full Review/Accept workflow, optional thin MCP |

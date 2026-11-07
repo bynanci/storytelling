@@ -30,8 +30,9 @@ Video picture-only and metadata-only lock handling require explicit format loss
 choices. All artifacts retain executable/source-verified/host-verified false.
 
 The official Python parser and pinned TypeScript exporter are test-only oracles.
-Current FilmCraft target/profile is unavailable; parser success will not close
-M1-03. The user separately authorized merging completed verified PRs and checking
+Official FilmCraft v0.18.0 Linux CLI is now provisioned and hashed; actual host
+profile proof remains M1-03 and parser success will not close it. The user separately
+authorized merging completed verified PRs and checking
 completed tasks. This does not authorize release or repository-policy changes.
 
 Source remains OpenFilm 7add4762fe8174d76f43b863375ea39b73121e76; main observed

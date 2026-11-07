@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "task": "M1-02",
+  "tracking_issue": "https://github.com/bynanci/storytelling/issues/12",
+  "base": "440209f21d2b5fd6e7b4cad0823359c802cf8c8e",
+  "source": "7add4762fe8174d76f43b863375ea39b73121e76",
+  "observed_source_main": "5f737a6c8f35dce48e213370ff27900962c9304c",
+  "tasks": [
+    {
+      "id": "M1-02/P1",
+      "state": "verified",
+      "depends_on": [],
+      "url": "https://github.com/bynanci/storytelling/issues/12",
+      "acceptance": "Actual scope/evidence in FINITE_OTIO_V1.md and records/M1-02.md; merge after same-head required gates under explicit user authorization"
+    },
+    {
+      "id": "M1-02/P2",
+      "state": "review",
+      "depends_on": [
+        "M1-02/P1"
+      ],
+      "url": "https://github.com/bynanci/storytelling/issues/12",
+      "acceptance": "Actual scope/evidence in FINITE_OTIO_V1.md and records/M1-02.md; merge after same-head required gates under explicit user authorization"
+    },
+    {
+      "id": "M1-02/P3",
+      "state": "review",
+      "depends_on": [
+        "M1-02/P2"
+      ],
+      "url": "https://github.com/bynanci/storytelling/issues/12",
+      "acceptance": "Actual scope/evidence in FINITE_OTIO_V1.md and records/M1-02.md; merge after same-head required gates under explicit user authorization"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1-O01",
+      "tests": [
+        "still_emits_native_timeline_track_clip_and_synthetic_hold_reference",
+        "repeated_source_keeps_distinct_occurrences_order_and_maximum_hold_window",
+        "video_trim_preserves_exact_source_clock_and_declared_available_duration"
+      ]
+    },
+    {
+      "id": "M1-O02",
+      "tests": [
+        "fractional_cuts_share_integer_content_clock_without_project_fps_quantization",
+        "common_denominator_lcm_rejects_even_when_each_input_denominator_is_safe",
+        "accumulated_timeline_duration_checks_the_safe_integer_boundary_without_rounding",
+        "exact_safe_integer_boundary_is_accepted_and_larger_native_windows_reject"
+      ]
+    },
+    {
+      "id": "M1-O03",
+      "tests": [
+        "audio_and_lock_losses_are_ordered_and_each_choice_only_accepts_its_own_loss",
+        "report_retains_import_limitations_and_never_claims_source_host_or_execution_verification",
+        "unsupported_source_features_keep_import_codes_paths_and_unaccepted_rows"
+      ]
+    },
+    {
+      "id": "M1-O04",
+      "tests": [
+        "owner_snapshot_is_a_string_preserving_large_integer_decimal_and_opaque_exponent_lexemes",
+        "bounded_source_with_amplified_repeated_names_rejects_the_final_otio_budget"
+      ]
+    },
+    {
+      "id": "M1-O05",
+      "tests": [
+        "exports_a_real_timeline_identically_from_file_and_stdin_without_writing",
+        "rejects_missing_extra_unknown_duplicate_and_misplaced_arguments_with_usage_two",
+        "preserves_numeric_lexemes_inside_the_source_snapshot_json_string"
+      ]
+    },
+    {
+      "id": "M1-O06",
+      "tests": [],
+      "verification_paths": [
+        "tests/oracles/otio-finite-v1/verify.py",
+        "tests/oracles/otio-finite-v1/requirements-linux-py312.txt",
+        "tests/oracles/otio-finite-v1/source/source-evidence.json"
+      ]
+    }
+  ],
+  "manual_gates": [
+    {
+      "id": "M1-03",
+      "state": "pending",
+      "owner": "engineer and host-test operator",
+      "unblock": "Run bounded actual FilmCraft v0.18.0 25fps isolated import/render/readback/save/reopen and verified-source/output checks; binary is now provisioned, proof not yet run",
+      "evidence": "docs/migration/records/M1-02.md"
+    }
+  ]
+}
