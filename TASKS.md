@@ -207,10 +207,12 @@ is claimed. Use the existing importer/compiler input because the planner→OTIO
 bridge is absent; matching hashes/context never grant human approval. Concurrent Draft [#28](https://github.com/bynanci/storytelling/pull/28) proposes
 cryptographic approval identity and awaits independent G2 review; it is not
 accepted. Its M3-A01–A03 IDs are distinct from this preparation proposal. At
-the last check, its `f571d68` head had passed two five-job CI runs, but those
-checks predate PR #29's main update and do not validate the refreshed candidate.
-The candidate does not complete the canonical M3-01/P1 scope. Full M3-01
-approval issuance, M3-02 durability and M3-03 execution remain open.
+the prior check, its `f571d68` head had passed two five-job CI runs, but those
+checks predate PR #29's main update. Refreshed candidate head `010b740` passed
+all five jobs in runs `42350601091` and `42350603918`; this verifies only the
+candidate. The evidence update itself requires new exact-head CI. The candidate
+does not complete canonical M3-01/P1. Full M3-01 approval issuance, M3-02
+durability and M3-03 execution remain open.
 
 ## Not in the current backlog
 

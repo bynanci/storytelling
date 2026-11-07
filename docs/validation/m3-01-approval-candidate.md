@@ -57,9 +57,12 @@ again locally on `f2e2703` before this evidence-only update:
 | `python3 scripts/check_repo.py` | Passed; links, provenance, dependency boundaries and requirement references valid |
 | `git diff --check` | Passed; exit 0 |
 
-Because this latest update changes documentation after `f2e2703`, exact-head
-hosted CI must run on the pushed head. No later check is inferred from the runs
-listed below.
+Refreshed candidate head `010b7405a1e9eceb397c461ef676d132bc13fbdf` passed
+all five jobs (Quality, Required, Linux, Windows and macOS) in runs
+`42350601091` and `42350603918`. This candidate-level verification does not
+accept the PR or canonical M3-01/P1. The current evidence-document update changes
+the branch head, so it needs fresh exact-head hosted checks before being marked
+verified.
 
 | Command | Result |
 | --- | --- |
@@ -70,7 +73,8 @@ listed below.
 | `RUSTDOCFLAGS='-D warnings' cargo doc --workspace --no-deps --locked` | Passed; exit 0 |
 | `cargo audit --file Cargo.lock` | Passed; 39 locked packages scanned against 1,422 advisories; no findings emitted |
 | `python3 scripts/check_repo.py` | Passed; repository links, provenance, dependency boundaries and test references valid |
-| Same-head Linux/Windows/macOS CI | Earlier candidate head `f571d68b69d5835ddc5cb038ea34d4f07348985c` passed all five jobs in runs `42348570713` and `42348574434`; not current after PR #29 main advanced |
+| Same-head Linux/Windows/macOS CI | Earlier candidate head `f571d68b69d5835ddc5cb038ea34d4f07348985c` passed all five jobs in runs `42348570713` and `42348574434`; superseded by PR #29 main update |
+| Refreshed candidate head `010b7405a1e9eceb397c461ef676d132bc13fbdf` | Both runs `42350601091` and `42350603918` passed Quality, Required, Linux, Windows and macOS; subsequent evidence-document commit requires its own checks |
 | Independent G2 security review | Pending |
 
 ## Claims not made

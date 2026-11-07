@@ -10,8 +10,11 @@ implemented, frozen or accepted capabilities.
 Concurrent Draft [PR #28](https://github.com/bynanci/storytelling/pull/28)
 proposes a separate cryptographic identity API (previous observed head
 `f571d68b69d5835ddc5cb038ea34d4f07348985c`, M3-A01–A03), with independent G2
-review pending. That head passed two five-job CI runs before PR #29 advanced
-main; those runs do not validate the refreshed branch. It is not merged/accepted.
+review pending. That head's CI predates PR #29. Refreshed candidate head
+`010b7405a1e9eceb397c461ef676d132bc13fbdf` passed all five jobs in runs
+`42350601091` and `42350603918`; this does not accept the candidate or complete
+canonical M3-01/P1. The subsequent evidence-document commit needs its own checks.
+PR #28 is not merged/accepted.
 This readiness proposal uses distinct
 M3-RB01–RB07 IDs; evaluate overlap and compilation linkage after that review,
 before freezing either the next review-binding contract or its final API names.
