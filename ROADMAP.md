@@ -59,3 +59,26 @@ Backward-incompatible schema changes need a migration and refusal behavior for n
 schemas. Future executor failures preserve partial/unknown receipts instead of
 claiming rollback. Real-media listening, native trust/signing and target editor
 acceptance remain separate from synthetic CI.
+
+## Native migration strategy
+
+Use the [OpenFilm transfer map](docs/migration/OPENFILM_RUST_PORT_MAP.md) and
+[gap gates](docs/migration/NATIVE_BOUNDARIES_AND_GAPS.md) as the detailed task inventory.
+This planning update changes no runtime behavior and does not mark M1-M5 implemented.
+
+- First native boundary: strict models, precise clocks, read-only snapshot mapping,
+  capability/loss compilation and finite OTIO. Prove one host handoff before a full planner.
+- Then port selected duplicate/event/scoring/graph/constraint/planner algorithms using
+  frozen synthetic fixtures and source-aware differential tests. Optional features remain optional.
+- Move stateful reviews, jobs and recovery only behind an admitted execution contract.
+  An external editor is not part of a local SQLite transaction; partial/unknown receipts matter.
+- Preserve OpenFilm as a consumer/reference renderer. Retain Vue, codecs, GPU/finishing
+  and full NLE features outside the SDK. Rust adapters disclose actual tool/model dependencies.
+- Extract appropriate native Rust manifest/path helpers only after provenance and race review;
+  do not import Tauri/GTK/Node launching into the portable SDK.
+- Freeze -> Shadow -> Feature flag -> Retire, one authority per service. Never rewrite
+  a user's live OpenFilm Catalog as part of read-only import.
+
+A per-task native implementation is complete only when its source-to-target behavior,
+production dependency boundary, regressions and actual declared acceptance gates are proven.
+A native binary, an external FFmpeg wrapper and a pure Rust algorithm are different scopes.
