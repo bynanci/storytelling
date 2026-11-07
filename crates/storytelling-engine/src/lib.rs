@@ -1,6 +1,6 @@
-//! Bounded, deterministic validation of declared story-plan metadata.
+//! Bounded, deterministic validation and fixed-window planning of declared metadata.
 //! Source evidence is a re-export of pure supplied-buffer verification;
-//! no filesystem, media probing, planning, or editor execution occurs here.
+//! no filesystem, media probing or editor execution occurs here.
 use serde::Serialize;
 use std::collections::{BTreeMap, BTreeSet};
 use storytelling_core::ValidationError;
@@ -142,3 +142,6 @@ pub fn validate_plan_json(input: &[u8]) -> Result<ValidationReport, ValidationEr
         scope: "declared-metadata-only",
     })
 }
+
+mod planner;
+pub use planner::plan_story;

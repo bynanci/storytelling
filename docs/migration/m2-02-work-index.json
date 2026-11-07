@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "task": "M2-02",
+  "tracking_issue": "https://github.com/bynanci/storytelling/issues/20",
+  "tracking_issue_status": "open",
+  "base": "c03d4c8ede33563451b8ad590a6df982d0d8b82a",
+  "source": "7add4762fe8174d76f43b863375ea39b73121e76",
+  "observed_source_main": "5f737a6c8f35dce48e213370ff27900962c9304c",
+  "red_commit": "136a19889b5a810441ca540f6f3633be54fde03b",
+  "state": "review",
+  "scope": "declared-fixed-window-plan-only",
+  "tasks": [
+    {
+      "id": "M2-02/P1",
+      "state": "verified",
+      "depends_on": [],
+      "acceptance": "Independent G2 and clock reviews; actual12case pinned source oracle and per-file policy"
+    },
+    {
+      "id": "M2-02/P2",
+      "state": "review",
+      "depends_on": [
+        "M2-02/P1"
+      ],
+      "acceptance": "26actual engine RED to GREEN; deterministic required-first exact fixed-window declared M0 plan"
+    },
+    {
+      "id": "M2-02/P3",
+      "state": "review",
+      "depends_on": [
+        "M2-02/P2"
+      ],
+      "acceptance": "9CLI GREEN after8functional RED; full checks/source comparisons/reviews/same-head CI before authorized merge"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M2-P01",
+      "requirement": "Required/manual membership and precedence are never relaxed; typed conflicts/missing candidates and hard budgets remain explicit",
+      "tests": [
+        "emits_an_actual_m0_plan_with_deterministic_ids_and_immutable_source_facts",
+        "preserves_manual_and_explicit_order_with_global_reason_paths_and_catalog_order",
+        "rejects_hard_brief_conflicts_without_filtering_unknown_or_excluded_choices",
+        "reports_actual_order_cycles_with_outer_input_conflict_paths",
+        "missing_required_candidate_points_to_first_required_origin",
+        "required_shot_count_cannot_be_repaired_by_dropping_manual_choices",
+        "required_fixed_windows_over_hard_duration_fail_without_shortening",
+        "required_choices_can_exceed_soft_target_and_keep_all_windows"
+      ]
+    },
+    {
+      "id": "M2-P02",
+      "requirement": "Optional preference/score/ASCII selection is deterministic, skips actual capacity failures and keeps target soft",
+      "tests": [
+        "optional_ranking_uses_preference_then_signed_score_then_ascii_id",
+        "too_long_optional_is_skipped_while_a_later_fitting_asset_is_selected",
+        "skipped_reasons_prioritize_exclusion_then_met_target_over_other_limits",
+        "shot_limit_reason_precedes_duration_limit_when_no_target_is_requested",
+        "soft_target_shortfall_is_success_even_when_target_exceeds_hard_maximum"
+      ]
+    },
+    {
+      "id": "M2-P03",
+      "requirement": "Exact common integer clock, immutable windows/placements and bounded u64 arithmetic without rounding",
+      "tests": [
+        "fractional_windows_preserve_source_offsets_and_exact_accumulated_placements",
+        "exact_u64_maximum_total_is_admitted_without_float_conversion",
+        "required_overflowing_total_rejects_and_oversized_optional_skips_without_addition",
+        "coprime_denominator_lcm_over_u64_rejects_before_rounded_planning",
+        "scaled_declared_duration_overflow_has_its_exact_input_path"
+      ]
+    },
+    {
+      "id": "M2-P04",
+      "requirement": "Strict schemas/declarations/input/candidate/output budgets and nonempty real M0 plan",
+      "tests": [
+        "future_schema_is_probed_and_nested_unknown_missing_null_fields_reject",
+        "duplicate_json_fields_are_rejected_at_root_candidate_and_time_boundaries",
+        "invalid_hash_times_ranges_and_hard_bounds_keep_precise_domain_errors",
+        "candidate_duplicates_unknown_ids_and_optional_catalog_omissions_are_distinct",
+        "exact_input_budget_accepts_valid_json_and_rejects_the_next_byte",
+        "full_candidate_budget_builds_a_bounded_valid_plan_and_next_candidate_rejects",
+        "excluded_and_target_unused_candidates_still_require_valid_declarations",
+        "empty_and_all_excluded_candidate_sets_refuse_to_emit_an_empty_plan"
+      ]
+    },
+    {
+      "id": "M2-P05",
+      "requirement": "Read-only real file/stdin CLI, typed JSON/exits, existing validator consumer, option-input grammar and no runtime tools",
+      "tests": [
+        "plans_file_and_stdin_identically_without_mutating_input_or_directory",
+        "emitted_nested_plan_is_accepted_by_the_actual_m0_cli",
+        "hard_conflicts_emit_typed_global_paths_without_a_partial_plan",
+        "malformed_future_unknown_and_oversized_inputs_return_domain_exit_one",
+        "rejects_missing_extra_unknown_and_option_looking_arguments_with_usage_two",
+        "distinguishes_missing_input_io_failure_and_redacts_the_path",
+        "native_planner_succeeds_with_an_empty_external_tool_path",
+        "explicit_relative_prefix_accepts_an_option_looking_filename",
+        "help_lists_planning_alongside_all_existing_commands"
+      ]
+    },
+    {
+      "id": "M2-P06",
+      "requirement": "Actual selected source invariants, hash-pinned synthetic oracle, explicit differences and complete declaration evidence",
+      "tests": [],
+      "verification_paths": [
+        "tests/oracles/fixed-window-planner-v1/compare.py",
+        "tests/oracles/fixed-window-planner-v1/source-evidence.json",
+        "tests/oracles/fixed-window-planner-v1/run-source.mts"
+      ]
+    }
+  ],
+  "manual_gates": [],
+  "not_claimed": [
+    "Full multi-beat solver/coverage/media-balance/locks/echo/graph/presets",
+    "M2-03 full solver shadow parity",
+    "Independent media quality/source filesystem evidence",
+    "Production host approval/execution",
+    "Human editorial acceptance",
+    "Release or repository-policy changes"
+  ],
+  "published_red_commit": "08a975d50719c1c5b0eebee1708c91c07f342ffe",
+  "published_red_tree": "f5f9f601584f4145583930590d433040d842aa2f",
+  "lifecycle_note": "Local required checks/source comparisons and independent code/docs reviews passed; exact published-head CI and merge/issue acceptance remain pending."
+}

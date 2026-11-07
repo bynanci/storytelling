@@ -68,7 +68,7 @@ permission changes, nor replace real-media/host or human editorial acceptance.
 | M1-02 | P1 / accepted | Native finite OTIO writer, explicit picture-only/lock choices and direct CLI artifact | Accepted M1-01 | M1-O01–O06; official 0.18.1 parser oracle, exact content ticks, explicit loss; actual host proof remains M1-03 |
 | M1-03 | P1 / accepted | Bounded supplied-byte verification and FilmCraft isolated 25 fps CPU proof | Accepted M1-02; PR #18 merged | M1-H01–H04; exact native ranges, 45-frame 192×108 preview, save/reopen/reimport, unchanged inputs; broader acceptance open |
 | M2-01 | P1 / accepted | Bounded StoryBrief hard constraints vs preferences and typed conflicts | M1 profile; PR #17 merged | M2-B01–B06; manual choices preserved, declared reference/membership/order contradictions explained; full planner/feasibility separate |
-| M2-02 | P1 / proposed | Deterministic bounded selection and shot planner | M2-01 | Same frozen evidence/version produces same plan; semantic reasons cite evidence |
+| M2-02 | P1 / review | Deterministic bounded selection and shot planner | M2-01 | Same frozen evidence/version produces same plan; semantic reasons cite evidence |
 | M2-03 | P1 / proposed | Shadow compare selected TS planner behavior with Rust | M2-02 | Differences triaged as port bug, prior bug, unsupported or intentional change |
 | M3-01 | P1 / proposed | Approval and compiled-plan identity contracts | M1-03, M2-02 | Approval binds source, plan, host version/capabilities and accepted losses |
 | M3-02 | P1 / proposed | SQLite operation journal and owner-fenced recovery | M3-01 | Fault injection: crash/retry/late callback/ack failure; no duplicate apply |
@@ -154,6 +154,25 @@ Only this synthetic Linux headless CPU profile is proved. Audio, GUI/GPU,
 full-resolution export, real-user media, filesystem race closure and human
 editorial acceptance remain open; no production host executor or approval API
 is introduced.
+
+## M2-02 fixed-window selection and planning
+
+[Tracking #20](https://github.com/bynanci/storytelling/issues/20),
+[profile](docs/migration/FIXED_WINDOW_PLANNER_V1.md),
+[comparison](docs/migration/records/M2-02.md),
+[work index](docs/migration/m2-02-work-index.json).
+
+- [x] Frozen independent G2/clock review and actual 12-case source oracle.
+- [x] Engine 26 functional RED → GREEN; hard/manual choices retained and exact fixed windows planned.
+- [x] CLI 8 failures/1 existing pass → 9 GREEN; emitted nested plan accepted by actual M0 validator.
+- [x] Strict bounds, deterministic reasons/skips and immutable source declarations; no new dependency/crate.
+- [x] Full local quality/source checks and independent code/docs reviews passed.
+- [ ] Same-head hosted CI, verified PR merge, issue completion and accepted lifecycle.
+- [ ] Fully check/close #20 after the verified merge and update accepted lifecycle.
+
+This finite planner proposes declared fixed windows; optional ranks are supplied
+scores/preferences, not verified semantic evidence. Multi-beat solver and M2-03
+full shadow parity, production execution and editorial acceptance remain separate.
 
 ## Not in the current backlog
 

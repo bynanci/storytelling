@@ -2,14 +2,14 @@
 
 A Rust foundation for local-first story planning and reviewed editor workflows.
 
-**Status: M0, finite M1-01/M1-02, bounded M2-01 audit and M1-03 host proof are accepted on main. No release is published.**
+**Status: M0, finite M1-01/M1-02, bounded M2-01 audit and M1-03 host proof are accepted on main. M2-02 fixed-window planning is in review. No release is published.**
 The executable slices validate a bounded story-plan JSON document and map a finite
 OpenFilm composition export into a declared visual plan. They do not
 generate a story or drive an editor. `verify-source` separately hashes explicitly
 supplied bytes; the isolated test harness has proved one real FilmCraft profile.
 Future functionality is tracked separately in [TASKS](TASKS.md) and [ROADMAP](ROADMAP.md).
 
-[繁體中文](README.zh-TW.md) · [Architecture](docs/ARCHITECTURE.md) · [SDLC](docs/SDLC.md) · [Contract](docs/CONTRACTS.md)
+[繁體中文](README.zh-TW.md) · [CLI guide](docs/CLI_GUIDE.md) · [Architecture](docs/ARCHITECTURE.md) · [SDLC](docs/SDLC.md) · [Contract](docs/CONTRACTS.md)
 
 ## Quick start
 
@@ -64,6 +64,13 @@ FilmCraft v0.18.0 Linux at 25 fps: exact native 1920×1080 ranges, save/reopen a
 reimport, plus a 45-frame 192×108 CPU H.264 review export. Audio, GUI/GPU,
 full-resolution export and human editorial acceptance remain open.
 
+`plan-story FILE|-` proposes fixed declared source windows within hard duration/shot
+budgets, preserving required choices and precedence. Target duration stays soft;
+selection is deterministic with source declaration paths and explicit skipped
+reasons. It returns `{ok:true,planning:...}` containing an actual M0-valid plan.
+See [planner profile](docs/migration/FIXED_WINDOW_PLANNER_V1.md) and
+[CLI guide](docs/CLI_GUIDE.md). Full multi-beat solving and host execution remain later work.
+
 ## Current architecture
 
 ```text
@@ -86,8 +93,7 @@ planned external editor. Storytelling will own story intent, evidence references
 reviewed proposals and execution receipts; the host owns its edited timeline.
 No second live timeline, codec stack or full nonlinear editor is planned.
 
-Finite OTIO and the bounded synthetic FilmCraft proof are accepted. Next is
-M2-02 deterministic selection/shot planning; reviewed production execution and
+Finite OTIO and the bounded synthetic FilmCraft proof are accepted. M2-02 fixed-window planning is in review; full solver shadow and reviewed production execution and
 broader host/media acceptance remain later gates. See [migration](docs/MIGRATION.md)
 and [risks](docs/RISKS.md).
 
@@ -114,7 +120,8 @@ policy changes remain separate decisions. See [accepted lifecycle](TASKS.md#acce
 ## License
 
 The repository's original [MIT LICENSE](LICENSE) is preserved. The source-informed
-M1-01 importer and regression component is Apache-2.0, with per-file provenance and
+Source-informed importer, OTIO, brief, buffer-verification and planner components
+are Apache-2.0, with per-file [provenance](PROVENANCE.md) and
 upstream [NOTICE](NOTICE.openfilm) / [license](LICENSES/Apache-2.0.txt). Existing
 MIT integration remains separately identified; see [PROVENANCE](PROVENANCE.md).
 No private media is copied. Repository naming does not reserve a

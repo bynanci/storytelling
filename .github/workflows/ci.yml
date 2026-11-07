@@ -49,12 +49,15 @@ jobs:
         run: '"$RUNNER_TEMP/otio-oracle/bin/python" tests/oracles/otio-finite-v1/verify.py target/release/storytelling --output "$RUNNER_TEMP/otio-differential.json"'
       - name: Frozen StoryBrief hard-constraint policy comparison
         run: python3 tests/oracles/story-brief-v1/compare.py target/release/storytelling --output "$RUNNER_TEMP/story-brief-differential.json"
+      - name: Frozen fixed-window planner source comparison
+        run: python3 tests/oracles/fixed-window-planner-v1/compare.py target/release/storytelling --output "$RUNNER_TEMP/fixed-window-planner-differential.json"
       - name: Native CLI without external tools on PATH
         run: |
           mkdir "$RUNNER_TEMP/no-media-tools"
           env PATH="$RUNNER_TEMP/no-media-tools" ./target/release/storytelling import-openfilm tests/fixtures/openfilm/finite-v1/still.json
           env PATH="$RUNNER_TEMP/no-media-tools" ./target/release/storytelling export-otio tests/fixtures/openfilm/finite-v1/still.json --metadata-only-locks
           env PATH="$RUNNER_TEMP/no-media-tools" ./target/release/storytelling audit-brief tests/fixtures/brief-v1/valid.json
+          env PATH="$RUNNER_TEMP/no-media-tools" ./target/release/storytelling plan-story tests/fixtures/planner-v1/valid.json
   test:
     name: Rust (${{ matrix.os }})
     strategy:

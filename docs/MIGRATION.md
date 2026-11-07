@@ -8,7 +8,7 @@ Apache-2.0 component attribution and applicable notices retained.
 
 ## Extraction map
 
-| Capability | M0 decision | Later migration condition |
+| Capability | Accepted current scope | Later migration condition |
 | --- | --- | --- |
 | Evidence/source identity concepts | Declared references plus explicit bounded supplied-buffer SHA-256 verification | Filesystem identity/TOCTOU and stronger adapter provenance remain future work |
 | StoryPlan/constraints/planner | Define finite new wire subset; no full port yet | Pin upstream SHA, map behavior and add differential fixtures |

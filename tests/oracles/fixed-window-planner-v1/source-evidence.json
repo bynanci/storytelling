@@ -1,0 +1,1003 @@
+{
+  "schemaVersion": 1,
+  "scope": "fixed-window-selected-source-policy-oracle",
+  "sourceHead": "7add4762fe8174d76f43b863375ea39b73121e76",
+  "nodeVersion": "v24.22.1",
+  "tsxVersion": "4.23.15",
+  "nodeBinarySha256": "e32e2d16081cf644f88392934288086e7662529d0d43277c34f7aad2207cfafb",
+  "tsxLoaderSha256": "17e2a92c5f1f70065b01c65d5ee9ac260839d4fc0ea78fdbb4db7b1155ccd32f",
+  "tsxPackageSha256": "ab5f14c4251638844ade3905d3cfc52fc1c833644694d655a05f6d0ca746b83c",
+  "dependencyLockPath": "tests/oracles/openfilm-finite-v1/package-lock.json",
+  "dependencyLockSha256": "6697b505f83230df597922faea37a88535458366ca554a7cb52ec3cdc3b9e535",
+  "runnerSha256": "84d108853546d4715f9af69b27dd90a030054cccdb8a114d128ca06d55ce5776",
+  "sourceFiles": [
+    {
+      "path": "packages/core/src/models.ts",
+      "blob": "58dbe93f132577842b7971e0d8aad61aff1d78c6"
+    },
+    {
+      "path": "packages/core/src/validation.ts",
+      "blob": "ba60475333f60fd9f48c77df2e34f0e7cac8536f"
+    },
+    {
+      "path": "packages/solver/src/index.ts",
+      "blob": "c701b985495c8c76292880b5acbc9c062b03006c"
+    },
+    {
+      "path": "packages/story/src/index.ts",
+      "blob": "da4d47ce45772d402db57b11659cc71f1b71e946"
+    }
+  ],
+  "normalization": "Delete only generated composition.id, tracks[*].id and tracks[*].clips[*].id; preserve storyId/beatId/assetId, ranges, tracks and all array order. Error output is name/message only.",
+  "cases": [
+    {
+      "id": "one-image",
+      "inputPath": "inputs/one-image.json",
+      "inputSha256": "091f4eb6269f661e03cf3b1de522b4e0b75862a0a3101b43ecc7574dbcd30336",
+      "sourceInputSha256": "835af29915b43fd137958aa879eb95f968a2fd4f40995323c236d4425ca87a57",
+      "sourceInput": {
+        "story": {
+          "id": "one-image",
+          "title": "Synthetic story",
+          "targetDuration": 4,
+          "maxDuration": 4,
+          "beats": [
+            {
+              "id": "beat",
+              "title": "Sequence",
+              "selectedAssetIds": [],
+              "constraints": []
+            }
+          ]
+        },
+        "assets": [
+          {
+            "id": "a",
+            "name": "Synthetic a",
+            "uri": "synthetic://fixed-window/a",
+            "mediaType": "image",
+            "tags": [],
+            "state": {},
+            "metadata": {}
+          }
+        ]
+      },
+      "inputUnchanged": true,
+      "classification": "preserved-selected-order-and-duration",
+      "expectedNative": {
+        "outcome": "ok",
+        "selectedAssetIds": [
+          "a"
+        ],
+        "totalDuration": {
+          "numerator": "4",
+          "denominator": "1"
+        },
+        "targetStatus": "met",
+        "contentClockRate": "1",
+        "skippedCandidates": []
+      },
+      "observedSource": {
+        "outcome": "ok",
+        "normalizedComposition": {
+          "storyId": "one-image",
+          "duration": 4,
+          "tracks": [
+            {
+              "type": "video",
+              "clips": [
+                {
+                  "assetId": "a",
+                  "beatId": "beat",
+                  "sourceIn": 0,
+                  "sourceOut": 4,
+                  "timelineStart": 0,
+                  "timelineDuration": 4
+                }
+              ]
+            }
+          ]
+        },
+        "normalizedOutputSha256": "64a5c5a306eb8cecfdb096ba3ec80cb37b3a505e49e95309553b7e7b4b08827d"
+      }
+    },
+    {
+      "id": "manual-order",
+      "inputPath": "inputs/manual-order.json",
+      "inputSha256": "34d5d85773250e516a198bf98ea7469b19d3c0b8fb368d44f0a8c191dc3d6932",
+      "sourceInputSha256": "e1777be28d6d27322f80b09c5aace4ba609433b5a6c9b91ba01d569a8c2aebc3",
+      "sourceInput": {
+        "story": {
+          "id": "manual-order",
+          "title": "Synthetic story",
+          "targetDuration": 6,
+          "maxDuration": 6,
+          "beats": [
+            {
+              "id": "beat",
+              "title": "Sequence",
+              "selectedAssetIds": [
+                "b",
+                "a"
+              ],
+              "constraints": []
+            }
+          ]
+        },
+        "assets": [
+          {
+            "id": "a",
+            "name": "Synthetic a",
+            "uri": "synthetic://fixed-window/a",
+            "mediaType": "image",
+            "tags": [],
+            "state": {},
+            "metadata": {}
+          },
+          {
+            "id": "b",
+            "name": "Synthetic b",
+            "uri": "synthetic://fixed-window/b",
+            "mediaType": "image",
+            "tags": [],
+            "state": {},
+            "metadata": {}
+          }
+        ]
+      },
+      "inputUnchanged": true,
+      "classification": "preserved-manual-order-and-duration",
+      "expectedNative": {
+        "outcome": "ok",
+        "selectedAssetIds": [
+          "b",
+          "a"
+        ],
+        "totalDuration": {
+          "numerator": "6",
+          "denominator": "1"
+        },
+        "targetStatus": "met",
+        "contentClockRate": "1",
+        "skippedCandidates": []
+      },
+      "observedSource": {
+        "outcome": "ok",
+        "normalizedComposition": {
+          "storyId": "manual-order",
+          "duration": 6,
+          "tracks": [
+            {
+              "type": "video",
+              "clips": [
+                {
+                  "assetId": "b",
+                  "beatId": "beat",
+                  "sourceIn": 0,
+                  "sourceOut": 3,
+                  "timelineStart": 0,
+                  "timelineDuration": 3
+                },
+                {
+                  "assetId": "a",
+                  "beatId": "beat",
+                  "sourceIn": 0,
+                  "sourceOut": 3,
+                  "timelineStart": 3,
+                  "timelineDuration": 3
+                }
+              ]
+            }
+          ]
+        },
+        "normalizedOutputSha256": "383305dc8f79f85292f47512db8240486242fa140cd7325fdd07d849fc419b81"
+      }
+    },
+    {
+      "id": "exclude-high-score",
+      "inputPath": "inputs/exclude-high-score.json",
+      "inputSha256": "1652e6b4adfc9590f7edb81fc0f7ed1cd7b974d5d274a6cd9dc0b4d7a1d74e0c",
+      "sourceInputSha256": "69e8100f2c459e0bbe759a1543f9862a2d493163297f68b3c6972d18eeb04b35",
+      "sourceInput": {
+        "story": {
+          "id": "exclude-high-score",
+          "title": "Synthetic story",
+          "targetDuration": 4,
+          "maxDuration": 4,
+          "beats": [
+            {
+              "id": "beat",
+              "title": "Sequence",
+              "selectedAssetIds": [],
+              "constraints": [
+                {
+                  "type": "must-exclude",
+                  "assetIds": [
+                    "b"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "assets": [
+          {
+            "id": "a",
+            "name": "Synthetic a",
+            "uri": "synthetic://fixed-window/a",
+            "mediaType": "image",
+            "tags": [],
+            "state": {},
+            "metadata": {},
+            "rating": 0
+          },
+          {
+            "id": "b",
+            "name": "Synthetic b",
+            "uri": "synthetic://fixed-window/b",
+            "mediaType": "image",
+            "tags": [],
+            "state": {},
+            "metadata": {},
+            "rating": 5
+          }
+        ]
+      },
+      "inputUnchanged": true,
+      "classification": "preserved-hard-exclusion",
+      "expectedNative": {
+        "outcome": "ok",
+        "selectedAssetIds": [
+          "a"
+        ],
+        "totalDuration": {
+          "numerator": "4",
+          "denominator": "1"
+        },
+        "targetStatus": "met",
+        "contentClockRate": "1",
+        "skippedCandidates": [
+          {
+            "assetId": "b",
+            "reason": "excluded"
+          }
+        ]
+      },
+      "observedSource": {
+        "outcome": "ok",
+        "normalizedComposition": {
+          "storyId": "exclude-high-score",
+          "duration": 4,
+          "tracks": [
+            {
+              "type": "video",
+              "clips": [
+                {
+                  "assetId": "a",
+                  "beatId": "beat",
+                  "sourceIn": 0,
+                  "sourceOut": 4,
+                  "timelineStart": 0,
+                  "timelineDuration": 4
+                }
+              ]
+            }
+          ]
+        },
+        "normalizedOutputSha256": "5edbd79380ada087c04b1f409ce62e67376ae70d2a4b40d2a974fc41c789a6b2"
+      }
+    },
+    {
+      "id": "required-above-soft-target",
+      "inputPath": "inputs/required-above-soft-target.json",
+      "inputSha256": "980d42b78ecb1bf235a10b444179bffd252e6d0dc61b1efcc28fd17f44bfe93b",
+      "sourceInputSha256": "beedf8d97669f8429846db5ef563181323562055fc0201fadc9a5bb3ba092241",
+      "sourceInput": {
+        "story": {
+          "id": "required-above-soft-target",
+          "title": "Synthetic story",
+          "targetDuration": 1,
+          "maxDuration": 3,
+          "beats": [
+            {
+              "id": "beat",
+              "title": "Sequence",
+              "selectedAssetIds": [
+                "a",
+                "b"
+              ],
+              "constraints": []
+            }
+          ]
+        },
+        "assets": [
+          {
+            "id": "a",
+            "name": "Synthetic a",
+            "uri": "synthetic://fixed-window/a",
+            "mediaType": "image",
+            "tags": [],
+            "state": {},
+            "metadata": {}
+          },
+          {
+            "id": "b",
+            "name": "Synthetic b",
+            "uri": "synthetic://fixed-window/b",
+            "mediaType": "image",
+            "tags": [],
+            "state": {},
+            "metadata": {}
+          }
+        ]
+      },
+      "inputUnchanged": true,
+      "classification": "preserved-required-membership-over-soft-target",
+      "expectedNative": {
+        "outcome": "ok",
+        "selectedAssetIds": [
+          "a",
+          "b"
+        ],
+        "totalDuration": {
+          "numerator": "2",
+          "denominator": "1"
+        },
+        "targetStatus": "above",
+        "contentClockRate": "1",
+        "skippedCandidates": []
+      },
+      "observedSource": {
+        "outcome": "ok",
+        "normalizedComposition": {
+          "storyId": "required-above-soft-target",
+          "duration": 2,
+          "tracks": [
+            {
+              "type": "video",
+              "clips": [
+                {
+                  "assetId": "a",
+                  "beatId": "beat",
+                  "sourceIn": 0,
+                  "sourceOut": 1,
+                  "timelineStart": 0,
+                  "timelineDuration": 1
+                },
+                {
+                  "assetId": "b",
+                  "beatId": "beat",
+                  "sourceIn": 0,
+                  "sourceOut": 1,
+                  "timelineStart": 1,
+                  "timelineDuration": 1
+                }
+              ]
+            }
+          ]
+        },
+        "normalizedOutputSha256": "553527eeb2f8e20d2d467b33e3e83e6733d0835933340b837f87de8b55a67d77"
+      }
+    },
+    {
+      "id": "required-hard-maximum",
+      "inputPath": "inputs/required-hard-maximum.json",
+      "inputSha256": "e9c9ee5d2393bbd335fd52d3097499173d73e14d98e24e68c0351c006735db56",
+      "sourceInputSha256": "028b99750b4f6d5653dbb9bb4a5a85d1aef5d96e625e1aaacbe29b847dca3f10",
+      "sourceInput": {
+        "story": {
+          "id": "required-hard-maximum",
+          "title": "Synthetic story",
+          "targetDuration": 1,
+          "maxDuration": 1,
+          "beats": [
+            {
+              "id": "beat",
+              "title": "Sequence",
+              "selectedAssetIds": [
+                "a",
+                "b"
+              ],
+              "constraints": []
+            }
+          ]
+        },
+        "assets": [
+          {
+            "id": "a",
+            "name": "Synthetic a",
+            "uri": "synthetic://fixed-window/a",
+            "mediaType": "image",
+            "tags": [],
+            "state": {},
+            "metadata": {}
+          },
+          {
+            "id": "b",
+            "name": "Synthetic b",
+            "uri": "synthetic://fixed-window/b",
+            "mediaType": "image",
+            "tags": [],
+            "state": {},
+            "metadata": {}
+          }
+        ]
+      },
+      "inputUnchanged": true,
+      "classification": "preserved-hard-duration-conflict",
+      "expectedNative": {
+        "outcome": "error",
+        "code": "planner.required_duration_exceeded"
+      },
+      "observedSource": {
+        "outcome": "error",
+        "name": "CompositionConstraintError",
+        "message": "Required assets and beat minima need 2.00s, above the story maximum of 1.00s. Increase the maximum, reduce beat minima, or remove selections/locks.",
+        "normalizedOutputSha256": "10cb019b00e41b506bd48d255d5de1b3568d7cfc5b61fffba267c42a07ec0ecf"
+      }
+    },
+    {
+      "id": "required-short-video",
+      "inputPath": "inputs/required-short-video.json",
+      "inputSha256": "80de550074f85f3b26c293ddc7d7efc9556bd69a9d8540002fb153989092bd83",
+      "sourceInputSha256": "7eb1cbe0f9407cc335daa927744eb964ba8c20a5ee10d3d245e1d05a3d453d10",
+      "sourceInput": {
+        "story": {
+          "id": "required-short-video",
+          "title": "Synthetic story",
+          "targetDuration": 0.5,
+          "maxDuration": 0.5,
+          "beats": [
+            {
+              "id": "beat",
+              "title": "Sequence",
+              "selectedAssetIds": [
+                "v"
+              ],
+              "constraints": []
+            }
+          ]
+        },
+        "assets": [
+          {
+            "id": "v",
+            "name": "Synthetic v",
+            "uri": "synthetic://fixed-window/v",
+            "mediaType": "video",
+            "tags": [],
+            "state": {},
+            "metadata": {},
+            "duration": 0.5
+          }
+        ]
+      },
+      "inputUnchanged": true,
+      "classification": "preserved-short-source-bound",
+      "expectedNative": {
+        "outcome": "ok",
+        "selectedAssetIds": [
+          "v"
+        ],
+        "totalDuration": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "targetStatus": "met",
+        "contentClockRate": "2",
+        "skippedCandidates": []
+      },
+      "observedSource": {
+        "outcome": "ok",
+        "normalizedComposition": {
+          "storyId": "required-short-video",
+          "duration": 0.5,
+          "tracks": [
+            {
+              "type": "video",
+              "clips": [
+                {
+                  "assetId": "v",
+                  "beatId": "beat",
+                  "sourceIn": 0,
+                  "sourceOut": 0.5,
+                  "timelineStart": 0,
+                  "timelineDuration": 0.5
+                }
+              ]
+            }
+          ]
+        },
+        "normalizedOutputSha256": "9c72dabf7ac6c440d80329b0ca1e80548a3d6d04947f91494cb9c6e8e6992faf"
+      }
+    },
+    {
+      "id": "soft-target-shortfall",
+      "inputPath": "inputs/soft-target-shortfall.json",
+      "inputSha256": "09c6a8ecfbe3df8c679528ea51992903a9403e5cbbba89ec49065d8d1ce6c018",
+      "sourceInputSha256": "f76874da7d2af4a33d174cbe39e14cfea4054ada7b1b966e6c5e294ef09c3ee3",
+      "sourceInput": {
+        "story": {
+          "id": "soft-target-shortfall",
+          "title": "Synthetic story",
+          "targetDuration": 4,
+          "maxDuration": 4,
+          "beats": [
+            {
+              "id": "beat",
+              "title": "Sequence",
+              "selectedAssetIds": [],
+              "constraints": []
+            }
+          ]
+        },
+        "assets": [
+          {
+            "id": "v",
+            "name": "Synthetic v",
+            "uri": "synthetic://fixed-window/v",
+            "mediaType": "video",
+            "tags": [],
+            "state": {},
+            "metadata": {},
+            "duration": 0.5
+          }
+        ]
+      },
+      "inputUnchanged": true,
+      "classification": "preserved-soft-target-shortfall",
+      "expectedNative": {
+        "outcome": "ok",
+        "selectedAssetIds": [
+          "v"
+        ],
+        "totalDuration": {
+          "numerator": "1",
+          "denominator": "2"
+        },
+        "targetStatus": "below",
+        "contentClockRate": "2",
+        "skippedCandidates": []
+      },
+      "observedSource": {
+        "outcome": "ok",
+        "normalizedComposition": {
+          "storyId": "soft-target-shortfall",
+          "duration": 0.5,
+          "tracks": [
+            {
+              "type": "video",
+              "clips": [
+                {
+                  "assetId": "v",
+                  "beatId": "beat",
+                  "sourceIn": 0,
+                  "sourceOut": 0.5,
+                  "timelineStart": 0,
+                  "timelineDuration": 0.5
+                }
+              ]
+            }
+          ]
+        },
+        "normalizedOutputSha256": "9dd3be11f822c3c163e2e54763a26ab930763b7bd49846f83f3073c9fa98df1f"
+      }
+    },
+    {
+      "id": "all-excluded",
+      "inputPath": "inputs/all-excluded.json",
+      "inputSha256": "69b62d4efa1a183f1ccb1afe6411e56c20340d9e84f301bed263640900662dc4",
+      "sourceInputSha256": "6aecffedf422cea8a0fefe34706300d46c5a34da32a67cfd39065ffca3b3c4f0",
+      "sourceInput": {
+        "story": {
+          "id": "all-excluded",
+          "title": "Synthetic story",
+          "targetDuration": 4,
+          "maxDuration": 4,
+          "beats": [
+            {
+              "id": "beat",
+              "title": "Sequence",
+              "selectedAssetIds": [],
+              "constraints": [
+                {
+                  "type": "must-exclude",
+                  "assetIds": [
+                    "a"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "assets": [
+          {
+            "id": "a",
+            "name": "Synthetic a",
+            "uri": "synthetic://fixed-window/a",
+            "mediaType": "image",
+            "tags": [],
+            "state": {},
+            "metadata": {}
+          }
+        ]
+      },
+      "inputUnchanged": true,
+      "classification": "intentional-native-nonempty-plan-refusal",
+      "expectedNative": {
+        "outcome": "error",
+        "code": "planner.no_selection"
+      },
+      "observedSource": {
+        "outcome": "ok",
+        "normalizedComposition": {
+          "storyId": "all-excluded",
+          "duration": 0,
+          "tracks": []
+        },
+        "normalizedOutputSha256": "0207743ef44c96db1791b1e73e7c911f7f3871dc23a943f4a9358397a0697aad"
+      }
+    },
+    {
+      "id": "declared-score",
+      "inputPath": "inputs/declared-score.json",
+      "inputSha256": "81ef500e1cbe4fa38bd035f975af0cbe744f82e798e2b43c1268f1058905085a",
+      "sourceInputSha256": "06099c3606ac1e328e7e6fe245d6ee6cf17dd7ab0844c921ca0c3ee9bdcfa44e",
+      "sourceInput": {
+        "story": {
+          "id": "declared-score",
+          "title": "Synthetic story",
+          "targetDuration": 4,
+          "maxDuration": 4,
+          "beats": [
+            {
+              "id": "beat",
+              "title": "Sequence",
+              "selectedAssetIds": [],
+              "constraints": []
+            }
+          ]
+        },
+        "assets": [
+          {
+            "id": "a",
+            "name": "Synthetic a",
+            "uri": "synthetic://fixed-window/a",
+            "mediaType": "image",
+            "tags": [],
+            "state": {},
+            "metadata": {},
+            "rating": 0
+          },
+          {
+            "id": "b",
+            "name": "Synthetic b",
+            "uri": "synthetic://fixed-window/b",
+            "mediaType": "image",
+            "tags": [],
+            "state": {},
+            "metadata": {},
+            "rating": 5
+          }
+        ]
+      },
+      "inputUnchanged": true,
+      "classification": "paired-ranking-example-not-score-factor-parity",
+      "expectedNative": {
+        "outcome": "ok",
+        "selectedAssetIds": [
+          "b"
+        ],
+        "totalDuration": {
+          "numerator": "4",
+          "denominator": "1"
+        },
+        "targetStatus": "met",
+        "contentClockRate": "1",
+        "skippedCandidates": [
+          {
+            "assetId": "a",
+            "reason": "not-needed"
+          }
+        ]
+      },
+      "observedSource": {
+        "outcome": "ok",
+        "normalizedComposition": {
+          "storyId": "declared-score",
+          "duration": 4,
+          "tracks": [
+            {
+              "type": "video",
+              "clips": [
+                {
+                  "assetId": "b",
+                  "beatId": "beat",
+                  "sourceIn": 0,
+                  "sourceOut": 4,
+                  "timelineStart": 0,
+                  "timelineDuration": 4
+                }
+              ]
+            }
+          ]
+        },
+        "normalizedOutputSha256": "41088766c66f2ad1ea830cbc38d4d9c323837f522a713eda0386df5b625b5505"
+      }
+    },
+    {
+      "id": "ascii-tie",
+      "inputPath": "inputs/ascii-tie.json",
+      "inputSha256": "6fdeb5c56e337947a247df5e6d85c00a4adddf0b8fbe6904c95af6627653a601",
+      "sourceInputSha256": "6a11286c1f882225c0f2515335acd7536c00a6ef0de3b88523f871ea90fd73a6",
+      "sourceInput": {
+        "story": {
+          "id": "ascii-tie",
+          "title": "Synthetic story",
+          "targetDuration": 4,
+          "maxDuration": 4,
+          "beats": [
+            {
+              "id": "beat",
+              "title": "Sequence",
+              "selectedAssetIds": [],
+              "constraints": []
+            }
+          ]
+        },
+        "assets": [
+          {
+            "id": "b",
+            "name": "Synthetic b",
+            "uri": "synthetic://fixed-window/b",
+            "mediaType": "image",
+            "tags": [],
+            "state": {},
+            "metadata": {}
+          },
+          {
+            "id": "a",
+            "name": "Synthetic a",
+            "uri": "synthetic://fixed-window/a",
+            "mediaType": "image",
+            "tags": [],
+            "state": {},
+            "metadata": {}
+          }
+        ]
+      },
+      "inputUnchanged": true,
+      "classification": "lowercase-ascii-example-only-not-locale-parity",
+      "expectedNative": {
+        "outcome": "ok",
+        "selectedAssetIds": [
+          "a"
+        ],
+        "totalDuration": {
+          "numerator": "4",
+          "denominator": "1"
+        },
+        "targetStatus": "met",
+        "contentClockRate": "1",
+        "skippedCandidates": [
+          {
+            "assetId": "b",
+            "reason": "not-needed"
+          }
+        ]
+      },
+      "observedSource": {
+        "outcome": "ok",
+        "normalizedComposition": {
+          "storyId": "ascii-tie",
+          "duration": 4,
+          "tracks": [
+            {
+              "type": "video",
+              "clips": [
+                {
+                  "assetId": "a",
+                  "beatId": "beat",
+                  "sourceIn": 0,
+                  "sourceOut": 4,
+                  "timelineStart": 0,
+                  "timelineDuration": 4
+                }
+              ]
+            }
+          ]
+        },
+        "normalizedOutputSha256": "a8fde431b44cd0039b8ce52cd80d1fc7f77b299bcc5728d91a01a907206a30de"
+      }
+    },
+    {
+      "id": "skip-fixed-window-too-long",
+      "inputPath": "inputs/skip-fixed-window-too-long.json",
+      "inputSha256": "1d0ef3c69050bee6f1abd50e908a077f63009ece813658b6de2ba7222195685a",
+      "sourceInputSha256": "5409c6be6a99c1e717a884c89aac419873a3c345afcba4a1fa9690f88a4c9303",
+      "sourceInput": {
+        "story": {
+          "id": "skip-fixed-window-too-long",
+          "title": "Synthetic story",
+          "targetDuration": 1,
+          "maxDuration": 1,
+          "beats": [
+            {
+              "id": "beat",
+              "title": "Sequence",
+              "selectedAssetIds": [],
+              "constraints": []
+            }
+          ]
+        },
+        "assets": [
+          {
+            "id": "a",
+            "name": "Synthetic a",
+            "uri": "synthetic://fixed-window/a",
+            "mediaType": "image",
+            "tags": [],
+            "state": {},
+            "metadata": {},
+            "rating": 5
+          },
+          {
+            "id": "b",
+            "name": "Synthetic b",
+            "uri": "synthetic://fixed-window/b",
+            "mediaType": "video",
+            "tags": [],
+            "state": {},
+            "metadata": {},
+            "duration": 1,
+            "rating": 0
+          }
+        ]
+      },
+      "inputUnchanged": true,
+      "classification": "intentional-fixed-window-no-shortening-selection-delta",
+      "expectedNative": {
+        "outcome": "ok",
+        "selectedAssetIds": [
+          "b"
+        ],
+        "totalDuration": {
+          "numerator": "1",
+          "denominator": "1"
+        },
+        "targetStatus": "met",
+        "contentClockRate": "1",
+        "skippedCandidates": [
+          {
+            "assetId": "a",
+            "reason": "duration-limit"
+          }
+        ]
+      },
+      "observedSource": {
+        "outcome": "ok",
+        "normalizedComposition": {
+          "storyId": "skip-fixed-window-too-long",
+          "duration": 1,
+          "tracks": [
+            {
+              "type": "video",
+              "clips": [
+                {
+                  "assetId": "a",
+                  "beatId": "beat",
+                  "sourceIn": 0,
+                  "sourceOut": 1,
+                  "timelineStart": 0,
+                  "timelineDuration": 1
+                }
+              ]
+            }
+          ]
+        },
+        "normalizedOutputSha256": "ea00a9cf2d461294d7b5920a44db9ba613d0a03107b1ea439a92adcad5c9f0a1"
+      }
+    },
+    {
+      "id": "explicit-preference-over-score",
+      "inputPath": "inputs/explicit-preference-over-score.json",
+      "inputSha256": "b696a6d9511f186f8c6b916a0c8e5746d89caff6ff545f861f30aa1061c13fd5",
+      "sourceInputSha256": "1fa3ba83804cb0c9daec0319d547473c45ada2ddea01bbdb6beac0562fd46bbb",
+      "sourceInput": {
+        "story": {
+          "id": "explicit-preference-over-score",
+          "title": "Synthetic story",
+          "targetDuration": 4,
+          "maxDuration": 4,
+          "beats": [
+            {
+              "id": "beat",
+              "title": "Sequence",
+              "selectedAssetIds": [],
+              "constraints": []
+            }
+          ]
+        },
+        "assets": [
+          {
+            "id": "a",
+            "name": "Synthetic a",
+            "uri": "synthetic://fixed-window/a",
+            "mediaType": "image",
+            "tags": [],
+            "state": {},
+            "metadata": {},
+            "rating": 0
+          },
+          {
+            "id": "b",
+            "name": "Synthetic b",
+            "uri": "synthetic://fixed-window/b",
+            "mediaType": "image",
+            "tags": [],
+            "state": {},
+            "metadata": {},
+            "rating": 5
+          }
+        ]
+      },
+      "inputUnchanged": true,
+      "classification": "intentional-declared-preferred-id-ranking-delta",
+      "expectedNative": {
+        "outcome": "ok",
+        "selectedAssetIds": [
+          "a"
+        ],
+        "totalDuration": {
+          "numerator": "4",
+          "denominator": "1"
+        },
+        "targetStatus": "met",
+        "contentClockRate": "1",
+        "skippedCandidates": [
+          {
+            "assetId": "b",
+            "reason": "not-needed"
+          }
+        ]
+      },
+      "observedSource": {
+        "outcome": "ok",
+        "normalizedComposition": {
+          "storyId": "explicit-preference-over-score",
+          "duration": 4,
+          "tracks": [
+            {
+              "type": "video",
+              "clips": [
+                {
+                  "assetId": "b",
+                  "beatId": "beat",
+                  "sourceIn": 0,
+                  "sourceOut": 4,
+                  "timelineStart": 0,
+                  "timelineDuration": 4
+                }
+              ]
+            }
+          ]
+        },
+        "normalizedOutputSha256": "ece9e52fb5fd2005f7a0b9b74c90012ec97d974750a67da6a3196f9a0b8bfed4"
+      }
+    }
+  ],
+  "allPassed": true,
+  "intentionalDeltas": [
+    "Native fixed windows are never shortened; upstream compose allocates preferred/minimum source lengths.",
+    "Native preferred-ID list/declared i32 score/ASCII tie policy is not upstream scoring/capture/locale parity.",
+    "Native deterministic shot IDs replace random source object IDs; exact rational planning clock replaces floating seconds.",
+    "Native refuses empty selection; upstream can return an empty composition."
+  ],
+  "notClaimed": [
+    "Rust comparison before execution",
+    "full upstream test suite",
+    "multi-beat/coverage/pins/graph/preset solver parity",
+    "global optimality/feasibility",
+    "media/source/host verification",
+    "release or editorial acceptance"
+  ]
+}

@@ -16,7 +16,10 @@ ROADMAP 決定成果順序，TASKS 決定工作範圍，REQUIREMENTS 連到測�
 | G6 | 維運與迭代 | 缺陷、repro fixture、使用結果、advisory/host drift | 重大缺陷先止損；回饋進入下一輪 G0/G1 | Maintainer + users |
 
 同一個人可以兼多個角色，但 self-review 不能寫成 independent review。
-Agent 不替人類批准、簽 DCO、合併、發布或改 branch rules。
+Agent 不冒充人類批准或代簽 DCO。合併依使用者明確授權與同-head 驗證結果執行；
+發布、tag、repository policy 與 branch rules 仍須各自的明確授權。
+本次延續任務已有「完成且驗證通過後合併並勾選任務」授權，見
+[accepted lifecycle](../TASKS.md#accepted-lifecycle)；這不替代人工剪輯驗收。
 
 ## 工作狀態
 
@@ -42,7 +45,9 @@ review finding 收斂。真正需要宿主、聽感或乾淨機器的驗收必�
 一個 PR 解決一個一致的結果。Schema/time changes 先凍結契約，不讓平行工作
 各自改格式。PR 包含 Task/Requirement IDs、base/head、變更理由、測試命令、
 結果、限制、相容性與回退方式。不使用舊 head 的綠燈替代新 head。
-本 bootstrap 只建立 branch/PR，不合併主線。測試基線 commit 的紅燈是明示的
+原始 bootstrap 準備階段僅授權建立 branch/PR；之後的明確合併授權與實際交付
+保留於 [TASKS](../TASKS.md#accepted-lifecycle)。每次依當前任務授權執行，
+不把歷史準備限制當成仍待使用者重複批准。測試基線 commit 的紅燈是明示的
 TDD evidence，不是可發布版本。
 
 ## CI 與真正的治理

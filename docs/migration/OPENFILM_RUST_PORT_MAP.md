@@ -1,10 +1,11 @@
 # OpenFilm → Storytelling：Rust 技術移轉對照表
 
-日期：2026-11-07。此 48+16 inventory 主要是 **G1/G2 規劃對照**；已合併的有限 M1-01 importer 與 M1-02 OTIO writer 不代表整份 capability map 已移植。
+日期：2026-11-07。此 48+16 inventory 主要是 **G1/G2 規劃對照**；已合併的有限 M1-01/M1-02、bounded M2-01 與 M1-03 證據不代表整份 capability map 已移植。
 
 - OpenFilm 固定來源：`7add4762fe8174d76f43b863375ea39b73121e76`。涵蓋 16 個 packages 的責任邊界，另看 application、CLI/server、desktop/native 與測試入口。
 - 原始 target inspection（歷史）：main `551ff38920e2085e1d53a7ba777c9680678e9725`；當時 M0 PR #1 candidate 為 `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`，尚未合併。
-- 2026-11-07 查核的 Storytelling main：`9a5232e97435f543238b90a2006460f319f4e651`。M0 PR #1、map PR #2、有限 M1-01 PR #7 與有限 M1-02 PR #16 已合併；各交付的原始 head/merge 證據保留於 [TASKS](../../TASKS.md) 與 comparison records。
+- M1-02 階段的歷史 Storytelling main 快照：`9a5232e97435f543238b90a2006460f319f4e651`。當時 M0 PR #1、map PR #2、有限 M1-01 PR #7 與有限 M1-02 PR #16 已合併。
+- 本輪延續工作的 accepted base：`c03d4c8ede33563451b8ad590a6df982d0d8b82a`，另含已接受的 bounded M2-01 audit PR #17 與 M1-03 PR #18。後者提供明確 supplied-buffer SHA-256 與合成 Linux／25 fps／CPU 預覽宿主證據；檔案 TOCTOU、一般宿主執行和人工驗收仍未實作。各交付的原始 head/merge 證據見 [TASKS](../../TASKS.md) 與 comparison records。
 - M0 驗證宣告資料、ID、hash 形狀與有理數來源區間；M1-01 唯讀映射有限 visual snapshot，M1-02 輸出有限 exact-time OTIO 與明確 loss report。這些切片不驗證媒體實際 bytes、不執行 planner，也不構成 M1-03 宿主交接證明。
 - 原始 inventory 調查（歷史）未修改 Rust 產品程式、未搬 OpenFilm 程式/測試/資產，也未執行來源 TS 或新 Rust 測試；後續實作與實際驗證另見各任務 record。
 - 來源索引/exports 與選定實作已讀取。這是模組級對照，不是每個函式均完成 correctness audit；Codex 必須在該 task 的 G1/G2 補讀實作與實際 tests。
@@ -24,14 +25,14 @@
 每個 ready task 都必須完成 GAP-01/02/03/16 的對應門檻。`depends` 是行為/契約先後，不強迫先建完整service或大型crate。
 
 來源連結規則：下方相對路徑以 [OpenFilm 固定快照](https://github.com/bynanci/open-film/tree/7add4762fe8174d76f43b863375ea39b73121e76) 為重現基準；OF-48 明確另列其後 observed main 的 PR #126 drift，不把新來源倒填為固定 baseline 已有。
-「Rust規劃落點」與「新增回歸命名」保留原始 inventory 的 **proposed** 範圍；不存在的路徑使用code格式，不代表已建立。已合併有限切片以 [M1-01 record](records/M1-01.md) 與 [M1-02 record](records/M1-02.md) 的實際檔案/測試為準，不代表 OF-01/02 或其他整項能力完整移植。
+「Rust規劃落點」與「新增回歸命名」保留原始 inventory 的 **proposed** 範圍；不存在的路徑使用code格式，不代表已建立。已接受的實際檔案／測試以 [M1-01](records/M1-01.md)、[M1-02](records/M1-02.md)、[M1-03](records/M1-03.md) 與 [M2-01](records/M2-01.md) records 為準，不代表 OF-01/02 或其他整項能力完整移植。
 
 配套：[補強與原生化邊界](NATIVE_BOUNDARIES_AND_GAPS.md) · [Codex執行規則](CODEX_PORTING_RUNBOOK.md) · [machine ledger](openfilm-port-index.json)。
 
 ## A｜可原生化的純核心：24 項
 ### OF-01｜領域模型、嚴格輸入與錯誤碼
 
-**里程碑：** M1-01；**Rust狀態：** partial-M0-candidate；**前置：** GAP-01, GAP-02。
+**里程碑：** M1-01；**Rust狀態：** partial-finite-profiles-accepted；**前置：** GAP-01, GAP-02。
 
 **OpenFilm來源：** `packages/core/src/models.ts`；`packages/core/src/validation.ts`；`packages/core/src/errors.ts`。
 
@@ -39,17 +40,21 @@
 
 **範圍／驗收：** 延用 M0 宣告驗證；新增 Evidence/Brief DTO 與 validated domain 分界。拒絕未知、重複、超限欄位；hash 格式合法不可稱為已驗證來源。
 
+**已接受子集：** M0 strict wire、有限 importer/OTIO 與 M2-Bxx bounded Brief audit；完整 Evidence/domain inventory 仍是規劃。實際型別與回歸見各任務 work index。
+
 **新增回歸命名：** `wire_rejects_unknown_duplicate_and_oversize`。先找到來源tests，保留授權與合成fixture來源；不得把這個規劃名稱寫成已存在或已通過。
 
 ### OF-02｜精確時間、影格與 source/sample clock
 
-**里程碑：** M1-01；**Rust狀態：** partial-M0-candidate；**前置：** OF-01, GAP-03。
+**里程碑：** M1-01；**Rust狀態：** partial-finite-profiles-accepted；**前置：** OF-01, GAP-03。
 
 **OpenFilm來源：** `packages/core/src/timebase.ts`；`packages/core/src/sequence.ts`；`packages/core/src/sequence-waveform.ts`；`packages/core/src/audio-policy.ts`。
 
 **Rust規劃落點：** `crates/storytelling-core/src/time.rs`；`crates/storytelling-core/src/frame_time.rs`。
 
 **範圍／驗收：** 延用 M0 RationalTime；分離來源、時間軸、影格與 sample。30000/1001 不等於 29.97；負值政策、半開邊界、溢位、任意 seek 與量化損失均須測試。PR #125 已在來源 main。
+
+**已接受子集：** 精確非負 rational／有限 decimal 映射、安全 content clock 與 bounded 25 fps native ticks 證據；完整 source/sample/seek/audio/quantization 政策仍待後續切片。
 
 **新增回歸命名：** `fractional_rate_half_open_ranges_and_overflow`。先找到來源tests，保留授權與合成fixture來源；不得把這個規劃名稱寫成已存在或已通過。
 
@@ -175,7 +180,7 @@
 
 ### OF-13｜時長預算、選材與粗剪 solver
 
-**里程碑：** M2-02；**Rust狀態：** proposed；**前置：** OF-02, OF-09, OF-10, OF-12, OF-15。
+**里程碑：** M2-02；**Rust狀態：** partial-fixed-window-candidate；**前置：** OF-02, OF-09, OF-10, OF-12, OF-15。
 
 **OpenFilm來源：** `packages/solver/src/index.ts`；`packages/story/src/story-planner.ts`。
 
@@ -185,9 +190,13 @@
 
 **新增回歸命名：** `frozen_plan_is_deterministic_and_bounded`。先找到來源tests，保留授權與合成fixture來源；不得把這個規劃名稱寫成已存在或已通過。
 
+目前 M2-02 固定來源視窗子集已實作／審查中，見 [profile](FIXED_WINDOW_PLANNER_V1.md)
+與 [record](records/M2-02.md)。它使用既有 M0／Brief 契約；完整 solver、
+scoring、coverage、pins 與本項其餘 OF 前置仍待後續移植，不當作整項完成。
+
 ### OF-14｜StoryPlan 驗證與提案生成
 
-**里程碑：** M2-02；**Rust狀態：** proposed；**前置：** OF-03, OF-04, OF-13。
+**里程碑：** M2-02；**Rust狀態：** partial-fixed-window-candidate；**前置：** OF-03, OF-04, OF-13。
 
 **OpenFilm來源：** `packages/core/src/story-plan.ts`；`packages/story/src/story-planner.ts`；`packages/application/src/story-plan.ts`。
 
@@ -196,6 +205,10 @@
 **範圍／驗收：** 來源與 story/graph revisions、選材理由、原始範圍、supported/unsupported 都綁定。Preview 純計算；adoption 必須改走 OF-25 與 GAP-06，不能移植為直接寫檔。
 
 **新增回歸命名：** `proposal_preview_has_no_authoritative_mutation`。先找到來源tests，保留授權與合成fixture來源；不得把這個規劃名稱寫成已存在或已通過。
+
+目前 M2-02 固定來源視窗子集已實作／審查中，見 [profile](FIXED_WINDOW_PLANNER_V1.md)
+與 [record](records/M2-02.md)。它使用既有 M0／Brief 契約；完整 solver、
+scoring、coverage、pins 與本項其餘 OF 前置仍待後續移植，不當作整項完成。
 
 ### OF-15｜User Pins、鎖定與重新規劃政策
 
@@ -368,13 +381,15 @@
 
 ### OF-29｜來源位元組驗證、快照與 TOCTOU
 
-**里程碑：** M1-01；**Rust狀態：** proposed；**前置：** OF-01, OF-03, OF-34, GAP-10。
+**里程碑：** M1-01；**Rust狀態：** partial-supplied-buffer-verification；**前置：** OF-01, OF-03, OF-34, GAP-10。
 
 **OpenFilm來源：** `packages/media/src/verified-source.ts`；`packages/media/src/index.ts`；`packages/application/src/path-safety.ts`；`packages/application/src/silence.ts`。
 
 **Rust規劃落點：** `crates/storytelling-adapters/src/filesystem/verified_source.rs`。
 
 **範圍／驗收：** 以受控快照或受驗證開啟 handle 供消費；記錄實際 SHA。hash 後換檔、symlink/reparse point、失聯磁碟、取消均不錯綁；路徑 metadata 不等於可信來源。
+
+**已接受子集：** M1-03 的 pure `verify_supplied_sha256` 驗證最多 16 MiB 明確 bytes，私有 immutable buffer 不能由 receipt 反序列化建構；`verify-source` 只讀明確 FILE／stdin。這不實作上述 filesystem snapshot/handle race closure，也不授權往後讀取已改變的檔案。見 [實際來源比對](records/M1-03.md#native-source-boundary-and-source-comparison)。
 
 **新增回歸命名：** `replacement_between_hash_and_consume_is_fenced`。先找到來源tests，保留授權與合成fixture來源；不得把這個規劃名稱寫成已存在或已通過。
 
@@ -441,7 +456,7 @@
 ## C｜Rust Adapter：8 項
 ### OF-35｜有限 OTIO writer／reader oracle
 
-**里程碑：** M1-02；**Rust狀態：** 有限 writer/parser-oracle 子集已合併，完整宿主能力仍未驗證；**前置：** OF-02, OF-04, OF-36。
+**里程碑：** M1-02；**Rust狀態：** 有限 writer/parser-oracle 與單一 25 fps CPU 宿主證據已接受，完整能力仍未驗證；**前置：** OF-02, OF-04, OF-36。
 
 **OpenFilm來源：** `packages/exporters/src/index.ts`。
 
@@ -449,7 +464,7 @@
 
 **範圍／驗收：** Rust writer 只做批准 profile；ExternalReference/Gap/Clip/TimeRange 精確且可重現。官方 OTIO parser 與真實 FilmCraft 各自驗證；metadata 不等於宿主 native effect。
 
-**已合併有限切片：** PR #16 的 [finite OTIO contract](FINITE_OTIO_V1.md) 由既有 engine `otio.rs` / `otio/clock.rs` 與 core `compiled_plan.rs` 實作；只有單一連續 picture track，未支援 Gap、audio、animation 或其他 creative edits。官方 parser conformance 與 M1-03 實際宿主 roundtrip 分開，不需為原始規劃路徑建立空 adapter crate。
+**已合併有限切片：** PR #16 的 [finite OTIO contract](FINITE_OTIO_V1.md) 由既有 engine `otio.rs` / `otio/clock.rs` 與 core `compiled_plan.rs` 實作；只有單一連續 picture track，未支援 Gap、audio、animation 或其他 creative edits。官方 parser conformance 與 PR #18 的 [M1-03 實際宿主 roundtrip](records/M1-03.md) 分別有證據；後者只覆蓋合成 Linux／25 fps／picture-only／CPU 預覽，不認證任意 content clock。不需為原始規劃路徑建立空 adapter crate。
 
 **新增回歸命名：** `official_parser_and_host_roundtrip_match`。先找到來源tests，保留授權與合成fixture來源；不得把這個規劃名稱寫成已存在或已通過。
 
@@ -536,6 +551,8 @@
 **Rust規劃落點：** `crates/storytelling-adapters/src/hosts/preview.rs`；`crates/storytelling-engine/src/verification.rs`。
 
 **範圍／驗收：** 保留read-only preview、source/revision失效、typed unavailable與輸出sample/PTS指標。OpenFilm reference與host final output分開；跨renderer不要求任意逐像素同一，人工聽感另驗。
+
+**已有局部證據：** M1-H03/H04 的 test-only [FilmCraft harness](../../tests/oracles/filmcraft-25-v1/README.md) 檢查實際 import errors/offline media、native ticks、save/reopen/reimport，以及 45 格 192×108 CPU H.264 預覽的 PTS 與逐格顏色。這不提供正式 Record/Audition/Visual QA service、音訊聽感、GUI/GPU 或全解析度品質驗收；本項完整範圍仍 proposed。
 
 **新增回歸命名：** `host_success_with_offline_media_is_not_verified`。先找到來源tests，保留授權與合成fixture來源；不得把這個規劃名稱寫成已存在或已通過。
 

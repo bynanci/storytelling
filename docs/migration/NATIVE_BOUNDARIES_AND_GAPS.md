@@ -1,6 +1,15 @@
 # Rust 原生化邊界與補強任務
 
-這份文件補充 [48項技術對照](OPENFILM_RUST_PORT_MAP.md)。所有GAP仍為proposed，測試名稱為未來回歸要求，不是已通過證據。
+這份文件補充 [48項技術對照](OPENFILM_RUST_PORT_MAP.md)。GAP 是完整能力的規劃範圍，
+不是把某個有限切片通過直接當成整項完成。下列回歸名稱原為規劃入口；
+實際存在的程式、測試與已接受範圍以 [TASKS](../../TASKS.md) 和逐任務 records 為準。
+
+已接受的局部證據包括：GAP-01 的 `provenance_manifest_covers_every_imported_file`
+repository guard；GAP-02/03 的固定來源／精確時間比對；GAP-04 的明確 supplied-buffer
+驗證與不可反序列化信任型別；GAP-05 的有限 OTIO loss 契約；GAP-09 的合成
+Linux／25 fps CPU 宿主證據。參見 [M1-02](records/M1-02.md)、[M1-03](records/M1-03.md)
+與 [M2-01](records/M2-01.md)。一般化 evidence、檔案 race closure、更多宿主／媒體、
+人工驗收和其餘 GAP 的完整驗收仍保留。
 
 ## 先統一「原生」的意思
 

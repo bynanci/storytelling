@@ -15,7 +15,8 @@ separate. Tests are checked by the repository guard.
 | M0-R07 | Deterministic read-only behavior; do not claim media verification | engine + CLI | `accepts_exact_rational_intervals_and_is_deterministic`, `accepts_valid_file_with_machine_readable_output` |
 | M0-R08 | Machine JSON and distinct validation/usage/I/O outcomes | CLI | `rejects_bad_source_range_with_exit_one`, `accepts_stdin`, `distinguishes_usage_and_io_failures`, `reports_help_and_version_without_loading_a_project` |
 
-All Rust tests are under `crates/*/tests`. The source test fixtures are synthetic,
+Rust integration tests are under `crates/*/tests`; source-level API compile-fail
+doctests also pin the M1-03 private/no-deserialize trust boundary. The source test fixtures are synthetic,
 with placeholder hashes; success is strictly declared-metadata validation.
 
 ## M1-01 finite importer requirements
@@ -64,7 +65,7 @@ merged PR #17; no release, host or full-planner status follows from this audit. 
 [per-file provenance](migration/provenance-m2-01.json) and
 [complete requirement/test mapping](migration/m2-01-work-index.json).
 [Tracking issue #14](https://github.com/bynanci/storytelling/issues/14) owns this
-bounded slice; verification and acceptance remain in progress.
+bounded slice; verification and acceptance completed in merged PR #17; issue #14 is checked and closed.
 
 | ID | Implemented bounded requirement | Implementation | Representative actual tests |
 | --- | --- | --- | --- |
@@ -96,6 +97,24 @@ See [25 fps contract](migration/FILMCRAFT_25_V1.md),
 | M1-H03 | Actual pinned host 25 fps import, exact native ranges, default intrinsic effects and external ID mapping / M1-R01 subset | `tests/oracles/filmcraft-25-v1/run.py`, complete checked native baselines, `test_checks.py` semantic rejection tests |
 | M1-H04 | Actual CPU H.264 192×108 preview, 45 exact PTS, 20/5/20 colors, save/reopen/OTIO reimport and unchanged inputs | Same harness and committed `tests/oracles/filmcraft-25-v1/evidence.json`; source/hash/host identities are observed evidence, not approval |
 
+## M2-02 fixed-window planning requirements
+
+The bounded candidate is implemented and locally verified; accepted lifecycle and
+same-head hosted gates remain pending. See [profile](migration/FIXED_WINDOW_PLANNER_V1.md),
+[record](migration/records/M2-02.md), [work index](migration/m2-02-work-index.json)
+and [component inventory](migration/provenance-m2-02.json).
+
+| ID | Requirement | Actual verification |
+| --- | --- | --- |
+| M2-P01 | Required/manual membership and precedence are never relaxed; typed conflicts/missing candidates and hard budgets remain explicit | `emits_an_actual_m0_plan_with_deterministic_ids_and_immutable_source_facts`, `preserves_manual_and_explicit_order_with_global_reason_paths_and_catalog_order`, `rejects_hard_brief_conflicts_without_filtering_unknown_or_excluded_choices` |
+| M2-P02 | Optional preference/score/ASCII selection is deterministic, skips actual capacity failures and keeps target soft | `optional_ranking_uses_preference_then_signed_score_then_ascii_id`, `too_long_optional_is_skipped_while_a_later_fitting_asset_is_selected`, `skipped_reasons_prioritize_exclusion_then_met_target_over_other_limits` |
+| M2-P03 | Exact common integer clock, immutable windows/placements and bounded u64 arithmetic without rounding | `fractional_windows_preserve_source_offsets_and_exact_accumulated_placements`, `exact_u64_maximum_total_is_admitted_without_float_conversion`, `required_overflowing_total_rejects_and_oversized_optional_skips_without_addition` |
+| M2-P04 | Strict schemas/declarations/input/candidate/output budgets and nonempty real M0 plan | `future_schema_is_probed_and_nested_unknown_missing_null_fields_reject`, `duplicate_json_fields_are_rejected_at_root_candidate_and_time_boundaries`, `invalid_hash_times_ranges_and_hard_bounds_keep_precise_domain_errors` |
+| M2-P05 | Read-only real file/stdin CLI, typed JSON/exits, existing validator consumer, option-input grammar and no runtime tools | `plans_file_and_stdin_identically_without_mutating_input_or_directory`, `emitted_nested_plan_is_accepted_by_the_actual_m0_cli`, `hard_conflicts_emit_typed_global_paths_without_a_partial_plan` |
+| M2-P06 | Actual selected source invariants, hash-pinned synthetic oracle, explicit differences and complete declaration evidence | `tests/oracles/fixed-window-planner-v1/compare.py`:12 actual pinned cases, exact timings and classified policy deltas |
+
+Complete test mapping is in the work index; M2-R01 full solver feasibility remains broader.
+
 ## Remaining breadth and future requirements
 
 M1-R01: the first bounded 25 fps picture-only profile now has actual proof through
@@ -105,7 +124,8 @@ adapter, with path-free portable provenance.
 
 M2-R01: the full planner satisfies hard constraints or returns explicit conflict,
 never silently relaxing them. The M2-Bxx audit implements only bounded declared
-reference/membership/order checks; general feasibility and selection remain open.
+reference/membership/order checks; M2-Pxx now adds bounded fixed-window selection.
+General feasibility and the remaining full-solver breadth stay open.
 M3-R01: an Agent cannot authorize itself. M3-R02: uncertain external effects
 are reconciled before retry. M4-R01: external consumers need not depend on Vue/Tauri.
 M5-R01: supported host/platform claims have actual target evidence.

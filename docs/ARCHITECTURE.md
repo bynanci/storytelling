@@ -80,3 +80,11 @@ partial and unknown; planning, job lifecycle and freshness stay separate.
 [ADR 0001](adr/0001-scope-and-boundaries.md) records the Rust extraction strategy;
 [ADR 0002](adr/0002-exact-time-and-wire.md) records time and wire constraints;
 [ADR 0003](adr/0003-license-and-provenance.md) preserves the actual repository license.
+
+## Fixed-window planner candidate
+
+M2-02 reuses the strict brief audit, admits every required candidate first, applies
+deterministic optional ranks, and topologically orders exact fixed windows. Core
+owns declared types; pure engine planner/clock modules emit an actual M0-valid plan
+with reason paths. It adds no production dependencies or execution authority.
+Full multi-beat solving remains outside this profile.

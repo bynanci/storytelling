@@ -5,7 +5,8 @@ use std::io::{self, Read, Write};
 use std::process::ExitCode;
 use storytelling_engine::{
     MAX_INPUT_BYTES, MAX_VERIFIED_BUFFER_BYTES, OtioLossChoicesV1, audit_story_brief,
-    export_openfilm_otio, import_openfilm_snapshot, validate_plan_json, verify_supplied_sha256,
+    export_openfilm_otio, import_openfilm_snapshot, plan_story, validate_plan_json,
+    verify_supplied_sha256,
 };
 
 fn emit(value: Value, code: u8) -> ExitCode {
@@ -83,7 +84,7 @@ fn main() -> ExitCode {
     match command {
         Some(value) if value == OsStr::new("--help") && args.len() == 1 => {
             return text(
-                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\n       storytelling verify-source <FILE|-> <SHA256>\nRead-only metadata, interchange and explicit supplied-byte verification; no editor execution.\n",
+                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\n       storytelling plan-story <FILE|->\n       storytelling verify-source <FILE|-> <SHA256>\nRead-only metadata, interchange and explicit supplied-byte verification; no editor execution.\n",
             );
         }
         Some(value) if value == OsStr::new("--version") && args.len() == 1 => {
@@ -92,8 +93,14 @@ fn main() -> ExitCode {
         Some(value)
             if (value == OsStr::new("validate")
                 || value == OsStr::new("import-openfilm")
-                || value == OsStr::new("audit-brief"))
-                && args.len() == 2 => {}
+                || value == OsStr::new("audit-brief")
+                || value == OsStr::new("plan-story"))
+                && args.len() == 2 =>
+        {
+            if value == OsStr::new("plan-story") && args[1].as_encoded_bytes().starts_with(b"--") {
+                return failure("cli.usage", 2);
+            }
+        }
         Some(value) if value == OsStr::new("export-otio") && (2..=4).contains(&args.len()) => {
             if args[1].as_encoded_bytes().starts_with(b"--") {
                 return failure("cli.usage", 2);
@@ -129,6 +136,12 @@ fn main() -> ExitCode {
     let Ok(bytes) = bytes else {
         return failure("input.io", 3);
     };
+    if command == Some(OsStr::new("plan-story")) {
+        return match plan_story(&bytes) {
+            Ok(planning) => emit(json!({"ok": true, "planning": planning}), 0),
+            Err(error) => emit(json!({"ok": false, "error": error}), 1),
+        };
+    }
     if command == Some(OsStr::new("audit-brief")) {
         return match audit_story_brief(&bytes) {
             Ok(audit) => {
