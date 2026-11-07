@@ -1,0 +1,1 @@
+{"schema_version":1,"brief_id":"outside","intent":"A synthetic declared brief","assets":[{"id":"a"},{"id":"b"},{"id":"c"}],"manual_selected_asset_ids":["b"],"hard_constraints":[{"type":"must-include","asset_ids":["a"]}],"preferences":{"preferred_asset_ids":[],"target_duration":{"numerator":"4","denominator":"1"}}}

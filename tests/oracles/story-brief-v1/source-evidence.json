@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "scope": "selected-source-constraint-policy-only",
+  "sourceHead": "7add4762fe8174d76f43b863375ea39b73121e76",
+  "nodeVersion": "v24.22.1",
+  "runnerSha256": "927261033449e462575bc7bf07c1285b709969ac6790525799a4c6c8170f533a",
+  "sourceFiles": [
+    {
+      "path": "packages/core/src/models.ts",
+      "blob": "58dbe93f132577842b7971e0d8aad61aff1d78c6"
+    },
+    {
+      "path": "packages/core/src/validation.ts",
+      "blob": "ba60475333f60fd9f48c77df2e34f0e7cac8536f"
+    },
+    {
+      "path": "packages/solver/src/index.ts",
+      "blob": "c701b985495c8c76292880b5acbc9c062b03006c"
+    }
+  ],
+  "cases": [
+    {
+      "id": "manual-outside-candidates",
+      "briefSha256": "fe21e3dd7817f304ee2ff12f6b76e5854f55d447202eec27be3daadf28c875d2",
+      "sourceInputSha256": "5474eb617a942acf5255014ff81376f32dffea07cffeec4fee60858b9a45cc02",
+      "expectedRequired": [
+        "b",
+        "a"
+      ],
+      "expectedOrder": [],
+      "expectedExcluded": [],
+      "inputUnchanged": true,
+      "outcome": "consistent-selected-policy",
+      "sourceAssetIds": [
+        "a",
+        "b"
+      ]
+    },
+    {
+      "id": "manual-order",
+      "briefSha256": "7136da85ae9084231213b6771f181a84bb3679e35d7652eb0c6709f92958a8fd",
+      "sourceInputSha256": "b2498e86112c9e30521df7309673eea019be6a92a2b2956ead9ac72475b2ecee",
+      "expectedRequired": [
+        "b",
+        "a"
+      ],
+      "expectedOrder": [
+        "b",
+        "a"
+      ],
+      "expectedExcluded": [],
+      "inputUnchanged": true,
+      "outcome": "consistent-selected-policy",
+      "sourceAssetIds": [
+        "b",
+        "a"
+      ]
+    },
+    {
+      "id": "order-implies-membership",
+      "briefSha256": "02b28a3aade7c797a596dec96f80ab5b3d2bfcf72546bf742870bf0562d008ff",
+      "sourceInputSha256": "5fd712e6032d4eb2a8cd52819cf15d9ad5c367e95573ae4447df0bdff4db1804",
+      "expectedRequired": [
+        "c",
+        "a"
+      ],
+      "expectedOrder": [
+        "c",
+        "a"
+      ],
+      "expectedExcluded": [],
+      "inputUnchanged": true,
+      "outcome": "consistent-selected-policy",
+      "sourceAssetIds": [
+        "c",
+        "a"
+      ]
+    },
+    {
+      "id": "manual-excluded",
+      "briefSha256": "854ceb75d872060d9f01cf280a59710d62c82e247a02be382182ec1653f3f649",
+      "sourceInputSha256": "6d9ae9a280858c64a4cec7fb065811abf2b9d6368dac5db27388559dcf3dd8e0",
+      "expectedRequired": [],
+      "expectedOrder": [],
+      "expectedExcluded": [],
+      "inputUnchanged": true,
+      "outcome": "hard-conflict",
+      "conflictKind": "required-excluded",
+      "sourceError": "CompositionConstraintError",
+      "sourceMessage": "Beat \"Synthetic beat\" both includes and excludes Synthetic a. Remove one of these constraints."
+    },
+    {
+      "id": "include-excluded",
+      "briefSha256": "1aa317d45044312580ce962509586a9086ee851cf2a97416aba5b7740f732c18",
+      "sourceInputSha256": "e48c8404aa22e3dafc159e0662e2175ffe3a77836ef7e75f15ad5409fabeec4c",
+      "expectedRequired": [],
+      "expectedOrder": [],
+      "expectedExcluded": [],
+      "inputUnchanged": true,
+      "outcome": "hard-conflict",
+      "conflictKind": "required-excluded",
+      "sourceError": "CompositionConstraintError",
+      "sourceMessage": "Beat \"Synthetic beat\" both includes and excludes Synthetic a. Remove one of these constraints."
+    },
+    {
+      "id": "missing-manual",
+      "briefSha256": "0902a9f7796c12d53f3787c3f026e470b916a2ac1afc7ed7d9470d36a73b6a64",
+      "sourceInputSha256": "72e4421c51f5587ac8a62d0dc1db3b873e5ef059eba9ecc453bc406811b97adc",
+      "expectedRequired": [],
+      "expectedOrder": [],
+      "expectedExcluded": [],
+      "inputUnchanged": true,
+      "outcome": "hard-conflict",
+      "conflictKind": "unknown-asset",
+      "sourceError": "CompositionConstraintError",
+      "sourceMessage": "Beat \"Synthetic beat\" references missing asset missing. Relink the asset or remove the constraint."
+    },
+    {
+      "id": "missing-excluded",
+      "briefSha256": "535ffd6a79e770024293febb008a646085b573ad9261ffc08aaf3c62101be8b4",
+      "sourceInputSha256": "d35a4e9fa4a38c6e382496df18fddc1fae8f5f1cbf2b7cc4b8fdf71463cacf7c",
+      "expectedRequired": [],
+      "expectedOrder": [],
+      "expectedExcluded": [],
+      "inputUnchanged": true,
+      "outcome": "hard-conflict",
+      "conflictKind": "unknown-asset",
+      "sourceError": "CompositionConstraintError",
+      "sourceMessage": "Beat \"Synthetic beat\" references missing asset missing. Relink the asset or remove the constraint."
+    },
+    {
+      "id": "order-cycle",
+      "briefSha256": "bd6fc4fb18d2a881ea6bca1f09c6526e60dffe0241d7d44119f938b0ff0be2c1",
+      "sourceInputSha256": "9d7f183bd2a1292c114a8976d47522ec57c528fca89c303370a707fadfe4980b",
+      "expectedRequired": [],
+      "expectedOrder": [],
+      "expectedExcluded": [],
+      "inputUnchanged": true,
+      "outcome": "hard-conflict",
+      "conflictKind": "order-cycle",
+      "sourceError": "CompositionConstraintError",
+      "sourceMessage": "Beat \"Synthetic beat\" has conflicting asset orders or chronology. Remove or reconcile the ordering constraints."
+    },
+    {
+      "id": "manual-order-cycle",
+      "briefSha256": "4d7845191cb103342ffa049a992eb0b7f8a005c3c1bc45883e84a0ec456830c8",
+      "sourceInputSha256": "51321bd2996f21ed8da79092ba192d9faab06974e5403da49c18fcd43afe6e07",
+      "expectedRequired": [],
+      "expectedOrder": [],
+      "expectedExcluded": [],
+      "inputUnchanged": true,
+      "outcome": "hard-conflict",
+      "conflictKind": "order-cycle",
+      "sourceError": "CompositionConstraintError",
+      "sourceMessage": "Beat \"Synthetic beat\" has conflicting asset orders or chronology. Remove or reconcile the ordering constraints."
+    },
+    {
+      "id": "excluded-preference",
+      "briefSha256": "4e0c850228a775e167e01c9a998efc00b285186a46f14276321b97a3654efaf3",
+      "sourceInputSha256": "5868b98af6182bb223533657a7d090a8fe9a355b337b568362beb4bddac2213d",
+      "expectedRequired": [],
+      "expectedOrder": [],
+      "expectedExcluded": [
+        "a"
+      ],
+      "expectedWarning": "excluded-preference",
+      "inputUnchanged": true,
+      "outcome": "consistent-selected-policy",
+      "sourceAssetIds": [
+        "b"
+      ]
+    }
+  ],
+  "allPassed": true,
+  "intentionalDelta": "New StoryBrief schema, typed diagnostics and soft preferences are downstream design; no full compose/feasibility parity claim.",
+  "notClaimed": [
+    "Rust comparison before its run",
+    "full upstream suite",
+    "duration feasibility",
+    "selection planning",
+    "source/media/host verification"
+  ]
+}

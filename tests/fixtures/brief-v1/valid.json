@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "brief_id": "synthetic-brief",
+  "intent": "Show an opening, a small detail, and a closing image.",
+  "assets": [{"id":"opening"},{"id":"detail"},{"id":"closing"}],
+  "manual_selected_asset_ids": ["opening","detail"],
+  "hard_constraints": [
+    {"type":"must-include","asset_ids":["closing"]},
+    {"type":"asset-order","asset_ids":["detail","closing"]}
+  ],
+  "preferences": {
+    "preferred_asset_ids": ["closing","opening"],
+    "target_duration": {"numerator":"15","denominator":"2"}
+  }
+}

@@ -6,6 +6,9 @@ use storytelling_core::ValidationError;
 use storytelling_core::time::RationalTime;
 use storytelling_core::wire::{PlanDocumentV1, TimeValue};
 
+mod brief;
+pub use brief::audit_story_brief;
+
 mod openfilm_snapshot;
 pub use openfilm_snapshot::{ImportedPlanV1, import_openfilm_snapshot};
 
