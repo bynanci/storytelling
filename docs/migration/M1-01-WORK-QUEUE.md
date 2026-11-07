@@ -5,7 +5,7 @@ visual plan。實際來源、差異與驗證見 [comparison record](records/M1-0
 精確輸入／輸出／錯誤契約見 [finite-v1](FINITE_V1.md)，任務連結見
 [工作索引](m1-01-work-index.json)。
 
-## 核實基線（2026-11-07 UTC）
+## 實作階段核實基線（歷史，2026-11-07 UTC）
 
 | 項目 | 完整 SHA / 狀態 |
 | --- | --- |
@@ -19,19 +19,34 @@ visual plan。實際來源、差異與驗證見 [comparison record](records/M1-0
 main；新增 animation 以 unsupported regression 防止無聲遺失。PR #1/#2 各自 head
 查詢到的 Quality、三 OS、Required gates 均成功，但不代替本 PR 的同 head CI。
 
+## 已接受與合併的生命週期
+
+上述表格保留當時 source/base/head 與 Draft 狀態，不能當作目前 PR 狀態。
+使用者後續明確授權合併已完成且驗證通過的 PR，並勾選已完成任務：
+
+| PR | main merge commit | 合併時間（UTC） |
+| --- | --- | --- |
+| #1 M0 | `22279814ff6b147c386186569d7f77f3a803cf8b` | 2026-11-07 02:17:16 |
+| #2 planning | `9fb403be811643baf948acdb6d72232d4a6207bb` | 2026-11-07 02:17:48 |
+| #7 M1-01 | `610ed49673d6f554e539008b34f5fc5479b9dbc1` | 2026-11-07 02:18:09 |
+
+M1-01/P1、P2、P3 皆 accepted，issues #3–#6 已勾選並關閉。這只接受已驗證的 finite
+visual mapping；不代表 OTIO、實際來源／audio／FilmCraft、發布或人類剪輯驗收完成。
+
 ## 工作分解
 
-| ID | 交付 | 依賴／驗收 |
-| --- | --- | --- |
-| M1-01/P1 | 固定來源、權利、原 producer 與 finite-v1 契約 | GAP-01/02/03/16；獨立 G2 review，source oracle，逐檔 provenance |
-| M1-01/P2 | 純 Rust mapper、精確 clocks、immutable snapshot、loss | P1；實際 RED→GREEN；每個來源 occurrence 保留，回傳 M0 plan 可驗證 |
-| M1-01/P3 | 可用 file/stdin CLI 與 JSON/exit 契約 | P2；CLI process regressions、乾淨 PATH smoke、debug/release/quality/CI |
-| M0-G01 / PORT-G01 | 維護者接受 foundation 與規劃 PR | 仍待人工接受；本 PR 明確 stack，不能以實作或 CI 代替批准 |
+| ID | 狀態 | 交付 | 依賴／驗收 |
+| --- | --- | --- | --- |
+| M1-01/P1 | accepted | 固定來源、權利、原 producer 與 finite-v1 契約 | GAP-01/02/03/16；獨立 G2 review，source oracle，逐檔 provenance |
+| M1-01/P2 | accepted | 純 Rust mapper、精確 clocks、immutable snapshot、loss | P1；實際 RED→GREEN；每個來源 occurrence 保留，回傳 M0 plan 可驗證 |
+| M1-01/P3 | accepted | 可用 file/stdin CLI 與 JSON/exit 契約 | P2；CLI process regressions、乾淨 PATH smoke、debug/release/quality/CI |
+| M0-G01 / PORT-G01 | accepted | 維護者接受 foundation、規劃與 provenance policy | 使用者明確授權後合併 #1/#2；並非以實作或 CI 自行代替批准 |
 
 2026-11-07 使用者已批准來源衍生 component 政策：原 MIT LICENSE 不變，來源衍生
 modules/tests/fixtures 採 Apache-2.0、逐檔 provenance、適用 LICENSE/NOTICE；其餘整合
 逐檔分類。見 [清單](provenance-m1-01.json) 與 [PROVENANCE](../../PROVENANCE.md)。
-這項政策批准不代表維護者已接受／合併任何 PR。
+政策批准與 PR 接受是不同 gate；本次後續接受／合併的實際紀錄列於上方，
+不能進一步推定發布或未驗證宿主的能力。
 
 ## 本次邊界與後續
 

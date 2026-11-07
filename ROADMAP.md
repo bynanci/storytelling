@@ -18,8 +18,8 @@ planned host, followed by a real second-editor compatibility trial.
 
 | Milestone | Current state | User-visible outcome | Exit gate |
 | --- | --- | --- | --- |
-| M0 foundation | Implementation candidate | Validate a declared StoryPlan through a usable Rust CLI | Strict contract, source bounds, immutable input, same-head 3-OS CI, maintainer review |
-| M1 / v0.1 handoff | M1-01 visual snapshot candidate; handoff planned | Existing story choices become an editable FilmCraft rough cut | Real import/render/readback/save/reopen; supported profile and loss report |
+| M0 foundation | Accepted and merged on main | Validate a declared StoryPlan through a usable Rust CLI | Strict contract, source bounds, immutable input, same-head 3-OS CI, maintainer acceptance |
+| M1 / v0.1 handoff | M1-01 accepted on main; OTIO and host handoff remain planned | Existing story choices become an editable FilmCraft rough cut | Real import/render/readback/save/reopen; supported profile and loss report |
 | M2 / v0.2 planning | Planned | Constraints and evidence produce an explainable shot proposal | Hard constraints satisfied or explicit conflicts; frozen-input reproducibility |
 | M3 / v0.3 reviewed execution | Planned | Accepted plans execute without silently damaging prior work | Approval binding, owner fencing, durable journal, partial/unknown recovery |
 | M4 / v0.4 consumers | Planned | OpenFilm and an external TypeScript consumer use one SDK | Single authority, full Review/Accept workflow, optional thin MCP |
@@ -64,7 +64,9 @@ acceptance remain separate from synthetic CI.
 
 Use the [OpenFilm transfer map](docs/migration/OPENFILM_RUST_PORT_MAP.md) and
 [gap gates](docs/migration/NATIVE_BOUNDARIES_AND_GAPS.md) as the detailed task inventory.
-This planning update changes no runtime behavior and does not mark M1-M5 implemented.
+The original planning inventory itself changed no runtime behavior. The accepted
+runtime scope is now M0 and the finite M1-01 subset, recorded in
+[TASKS](TASKS.md#accepted-lifecycle); this does not mark the M1 host handoff or M2–M5 complete.
 
 - First native boundary: strict models, precise clocks, read-only snapshot mapping,
   capability/loss compilation and finite OTIO. Prove one host handoff before a full planner.
