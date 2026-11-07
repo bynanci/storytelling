@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "task": "M2-03",
+  "source": {
+    "repository": "bynanci/open-film",
+    "commit": "7add4762fe8174d76f43b863375ea39b73121e76",
+    "license": "Apache-2.0",
+    "files": [
+      {
+        "path": "packages/core/src/models.ts",
+        "blob": "58dbe93f132577842b7971e0d8aad61aff1d78c6"
+      },
+      {
+        "path": "packages/core/src/validation.ts",
+        "blob": "ba60475333f60fd9f48c77df2e34f0e7cac8536f"
+      },
+      {
+        "path": "packages/solver/src/index.ts",
+        "blob": "c701b985495c8c76292880b5acbc9c062b03006c"
+      },
+      {
+        "path": "packages/story/src/index.ts",
+        "blob": "da4d47ce45772d402db57b11659cc71f1b71e946"
+      }
+    ]
+  },
+  "approval": {
+    "authority": "inherited approved Apache component policy and automatic continuation",
+    "date": "2026-11-07",
+    "policy": "Original MIT unchanged; source-informed synthetic test/producer/classifier modules retain Apache SPDX, per-file origins and applicable notices"
+  },
+  "files": [
+    {
+      "path": "tests/oracles/planner-shadow-v1/.gitignore",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed selected-domain live shadow/regression/synthetic fixture",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/story/src/index.ts"
+      ],
+      "modifications": "New live paired-runtime producer/case generator/exact semantic classifier and bounded process/evidence checks; no upstream implementation or tests copied, no full solver parity"
+    },
+    {
+      "path": "tests/oracles/planner-shadow-v1/README.md",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed selected-domain live shadow/regression/synthetic fixture",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/story/src/index.ts"
+      ],
+      "modifications": "New live paired-runtime producer/case generator/exact semantic classifier and bounded process/evidence checks; no upstream implementation or tests copied, no full solver parity"
+    },
+    {
+      "path": "tests/oracles/planner-shadow-v1/cases.py",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed selected-domain live shadow/regression/synthetic fixture",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/story/src/index.ts"
+      ],
+      "modifications": "New live paired-runtime producer/case generator/exact semantic classifier and bounded process/evidence checks; no upstream implementation or tests copied, no full solver parity"
+    },
+    {
+      "path": "tests/oracles/planner-shadow-v1/compare.py",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed selected-domain live shadow/regression/synthetic fixture",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/story/src/index.ts"
+      ],
+      "modifications": "New live paired-runtime producer/case generator/exact semantic classifier and bounded process/evidence checks; no upstream implementation or tests copied, no full solver parity"
+    },
+    {
+      "path": "tests/oracles/planner-shadow-v1/mutation-baselines.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed selected-domain live shadow/regression/synthetic fixture",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/story/src/index.ts"
+      ],
+      "modifications": "New live paired-runtime producer/case generator/exact semantic classifier and bounded process/evidence checks; no upstream implementation or tests copied, no full solver parity"
+    },
+    {
+      "path": "tests/oracles/planner-shadow-v1/process.py",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed selected-domain live shadow/regression/synthetic fixture",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/story/src/index.ts"
+      ],
+      "modifications": "New live paired-runtime producer/case generator/exact semantic classifier and bounded process/evidence checks; no upstream implementation or tests copied, no full solver parity"
+    },
+    {
+      "path": "tests/oracles/planner-shadow-v1/producer.mts",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed selected-domain live shadow/regression/synthetic fixture",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/story/src/index.ts"
+      ],
+      "modifications": "New live paired-runtime producer/case generator/exact semantic classifier and bounded process/evidence checks; no upstream implementation or tests copied, no full solver parity"
+    },
+    {
+      "path": "tests/oracles/planner-shadow-v1/run.py",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed selected-domain live shadow/regression/synthetic fixture",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/story/src/index.ts"
+      ],
+      "modifications": "New live paired-runtime producer/case generator/exact semantic classifier and bounded process/evidence checks; no upstream implementation or tests copied, no full solver parity"
+    },
+    {
+      "path": "tests/oracles/planner-shadow-v1/test_orchestration.py",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed selected-domain live shadow/regression/synthetic fixture",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/story/src/index.ts"
+      ],
+      "modifications": "New live paired-runtime producer/case generator/exact semantic classifier and bounded process/evidence checks; no upstream implementation or tests copied, no full solver parity"
+    },
+    {
+      "path": "tests/oracles/planner-shadow-v1/test_process.py",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed selected-domain live shadow/regression/synthetic fixture",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/story/src/index.ts"
+      ],
+      "modifications": "New live paired-runtime producer/case generator/exact semantic classifier and bounded process/evidence checks; no upstream implementation or tests copied, no full solver parity"
+    },
+    {
+      "path": "tests/oracles/planner-shadow-v1/test_producer.py",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed selected-domain live shadow/regression/synthetic fixture",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/story/src/index.ts"
+      ],
+      "modifications": "New live paired-runtime producer/case generator/exact semantic classifier and bounded process/evidence checks; no upstream implementation or tests copied, no full solver parity"
+    },
+    {
+      "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed selected-domain live shadow/regression/synthetic fixture",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/story/src/index.ts"
+      ],
+      "modifications": "New live paired-runtime producer/case generator/exact semantic classifier and bounded process/evidence checks; no upstream implementation or tests copied, no full solver parity"
+    }
+  ],
+  "notices": [
+    {
+      "path": "LICENSES/Apache-2.0.txt",
+      "source_path": "LICENSE",
+      "blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "relationship": "retained verbatim upstream license"
+    },
+    {
+      "path": "NOTICE.openfilm",
+      "source_path": "NOTICE",
+      "blob": "cfb73de041af0e9e3e73bd8eb5cfb6135b676095",
+      "relationship": "retained verbatim historical/third-party attribution"
+    }
+  ],
+  "original_mit_blob": "f317799529d13f4d9301daa2dba63dfea559ff69",
+  "production_dependencies_added": [],
+  "source_tests_copied": false,
+  "media_copied": false,
+  "independent_mit_changes": [
+    ".github/workflows/ci.yml",
+    "docs/delivery/PR_REGISTER.md",
+    "docs/delivery/pr-register.json"
+  ],
+  "test_tool_review": "docs/migration/dependency-evidence-m2-03.json"
+}

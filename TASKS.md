@@ -71,7 +71,7 @@ permission changes, nor replace real-media/host or human editorial acceptance.
 | M1-03 | P1 / accepted | Bounded supplied-byte verification and FilmCraft isolated 25 fps CPU proof | Accepted M1-02; PR #18 merged | M1-H01–H04; exact native ranges, 45-frame 192×108 preview, save/reopen/reimport, unchanged inputs; broader acceptance open |
 | M2-01 | P1 / accepted | Bounded StoryBrief hard constraints vs preferences and typed conflicts | M1 profile; PR #17 merged | M2-B01–B06; manual choices preserved, declared reference/membership/order contradictions explained; full planner/feasibility separate |
 | M2-02 | P1 / accepted | Finite fixed-window selection and shot planner | Accepted M2-01; PR #22 merged | M2-P01–P06; exact source windows, hard choices/order, deterministic declared ranks/reason paths; full solver remains open |
-| M2-03 | P1 / proposed | Shadow compare selected TS planner behavior with Rust | M2-02 | Differences triaged as port bug, prior bug, unsupported or intentional change |
+| M2-03 | P1 / review | Actual selected-domain TS/native live shadow and completed PR register | Accepted M2-02; tracking #24 | M2-S01–S06; exact 64-pair evidence, fail-closed regressions, source/tool provenance and same-head acceptance |
 | M3-01 | P1 / proposed | Approval and compiled-plan identity contracts | M1-03, M2-02 | Approval binds source, plan, host version/capabilities and accepted losses |
 | M3-02 | P1 / proposed | SQLite operation journal and owner-fenced recovery | M3-01 | Fault injection: crash/retry/late callback/ack failure; no duplicate apply |
 | M3-03 | P1 / proposed | FilmCraft executor with unknown-result reconciliation | M3-02 | New isolated project only; timeout readback before retry; no blind Undo rollback |
@@ -136,7 +136,7 @@ See the [frozen profile](docs/migration/STORY_BRIEF_V1.md),
 - [x] Verified PR #17 merged and tracking issue #14 fully checked/closed under user authorization.
 
 This audit produces no selected shots, timing feasibility or executable plan.
-M2-02 now supplies accepted fixed-window planning; M2-03 planner shadow remains separate proposed work.
+M2-02 supplies accepted fixed-window planning; M2-03 selected-domain live shadow is in review.
 
 ## M1-03 bounded host proof work
 
@@ -173,8 +173,26 @@ is introduced.
 - [x] #20 fully checked and closed completed; work index, plans and public accepted status reconciled.
 
 This finite planner proposes declared fixed windows; optional ranks are supplied
-scores/preferences, not verified semantic evidence. Multi-beat solver and M2-03
-full shadow parity, production execution and editorial acceptance remain separate.
+scores/preferences, not verified semantic evidence. Multi-beat solver, full shadow parity, production execution and editorial acceptance remain separate.
+
+## M2-03 selected-domain live planner shadow
+
+[Tracking #24](https://github.com/bynanci/storytelling/issues/24),
+[profile](docs/migration/PLANNER_SHADOW_V1.md),
+[comparison record](docs/migration/records/M2-03.md),
+[work index](docs/migration/m2-03-work-index.json) and
+[completed PR register](docs/delivery/PR_REGISTER.md).
+
+- [x] Independent domain/schema/error/budget review and actual source exploration.
+- [x] Functional RED→GREEN; 40 Python regressions including actual producer and failed-run evidence.
+- [x] Two actual 64-pair runs: 56 agreements, four literal intentional differences, four unsupported probes, zero unclassified.
+- [x] Pinned test-tool closure and Linux CI integration; original three-OS Rust and 36 frozen comparisons retained.
+- [x] PR #25 merged the completed/superseded/pending PR register and preserved original PR bodies.
+- [ ] Final clean candidate, same-head hosted gates, authorized merge and #24 completion.
+
+This is synthetic selected-domain differential evidence. Fractional optional
+budgets, full solver behavior, live Catalog authority, host execution and human
+editorial acceptance remain separate. The runner opens no user project.
 
 ## Not in the current backlog
 

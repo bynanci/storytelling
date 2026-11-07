@@ -1,0 +1,550 @@
+{
+  "schema_version": 1,
+  "origin": {
+    "purpose": "Complete actual observations for mutation tests only; never consumed as live shadow expected outputs",
+    "source_sha": "7add4762fe8174d76f43b863375ea39b73121e76",
+    "node_version": "v24.22.1",
+    "native_binary_sha256": "67957312c0eb9deedfa2bc20b9d253259be14657688664ec16ac63eaf8d70168",
+    "evidence_sha256": "862d4dc7e7d230a32cd93f13c46a3751b0036506de845bea2d19bb78ed5a1827"
+  },
+  "pairs": [
+    {
+      "id": "delta-fixed-window",
+      "source": {
+        "id": "delta-fixed-window",
+        "input_unchanged": true,
+        "ok": true,
+        "composition": {
+          "storyId": "delta-fixed-window",
+          "duration": 1,
+          "tracks": [
+            {
+              "type": "video",
+              "clips": [
+                {
+                  "assetId": "a",
+                  "beatId": "beat",
+                  "sourceIn": 0,
+                  "sourceOut": 1,
+                  "timelineStart": 0,
+                  "timelineDuration": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "native": {
+        "exit": 0,
+        "response": {
+          "ok": true,
+          "planning": {
+            "brief_audit": {
+              "brief_id": "delta-fixed-window",
+              "conflicts": [],
+              "consistent": true,
+              "duration_analysis": "not-performed",
+              "excluded_assets": [],
+              "executable": false,
+              "intent": "Synthetic live shadow",
+              "manual_selected_asset_ids": [],
+              "precedence_edges": [],
+              "preferences": {
+                "preferred_asset_ids": [],
+                "target_duration": {
+                  "denominator": "1",
+                  "numerator": "1"
+                }
+              },
+              "required_assets": [],
+              "schema_version": 1,
+              "scope": "declared-constraint-audit-only",
+              "selection_planned": false,
+              "warnings": []
+            },
+            "content_clock_rate": "1",
+            "duration_analysis": "exact-fixed-windows",
+            "executable": false,
+            "host_verified": false,
+            "plan": {
+              "assets": [
+                {
+                  "content_hash": "6f57d33dd548fbd635ec911f00c6e1be8a2dfebe871937b065bb9ffce2116232",
+                  "duration": {
+                    "denominator": "1",
+                    "numerator": "1"
+                  },
+                  "id": "b"
+                }
+              ],
+              "plan_id": "delta-fixed-window",
+              "schema_version": 1,
+              "shots": [
+                {
+                  "asset_id": "b",
+                  "id": "shot-000001",
+                  "source_range": {
+                    "end": {
+                      "denominator": "1",
+                      "numerator": "1"
+                    },
+                    "start": {
+                      "denominator": "1",
+                      "numerator": "0"
+                    }
+                  }
+                }
+              ]
+            },
+            "profile": "storytelling.fixed-window-planner.v1",
+            "schema_version": 1,
+            "scope": "declared-fixed-window-plan-only",
+            "selection_planned": true,
+            "selections": [
+              {
+                "asset_id": "b",
+                "declared_score": 0,
+                "duration": {
+                  "denominator": "1",
+                  "numerator": "1"
+                },
+                "reason_paths": [
+                  "$.candidates[1].score",
+                  "$.candidates[1].source_range"
+                ],
+                "required": false,
+                "shot_id": "shot-000001",
+                "timeline_start": {
+                  "denominator": "1",
+                  "numerator": "0"
+                }
+              }
+            ],
+            "skipped_candidates": [
+              {
+                "asset_id": "a",
+                "path": "$.candidates[0]",
+                "reason": "duration-limit"
+              }
+            ],
+            "source_verified": false,
+            "target_status": "met",
+            "total_duration": {
+              "denominator": "1",
+              "numerator": "1"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "delta-preferred-id",
+      "source": {
+        "id": "delta-preferred-id",
+        "input_unchanged": true,
+        "ok": true,
+        "composition": {
+          "storyId": "delta-preferred-id",
+          "duration": 4,
+          "tracks": [
+            {
+              "type": "video",
+              "clips": [
+                {
+                  "assetId": "b",
+                  "beatId": "beat",
+                  "sourceIn": 0,
+                  "sourceOut": 4,
+                  "timelineStart": 0,
+                  "timelineDuration": 4
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "native": {
+        "exit": 0,
+        "response": {
+          "ok": true,
+          "planning": {
+            "brief_audit": {
+              "brief_id": "delta-preferred-id",
+              "conflicts": [],
+              "consistent": true,
+              "duration_analysis": "not-performed",
+              "excluded_assets": [],
+              "executable": false,
+              "intent": "Synthetic live shadow",
+              "manual_selected_asset_ids": [],
+              "precedence_edges": [],
+              "preferences": {
+                "preferred_asset_ids": [
+                  "a"
+                ],
+                "target_duration": {
+                  "denominator": "1",
+                  "numerator": "4"
+                }
+              },
+              "required_assets": [],
+              "schema_version": 1,
+              "scope": "declared-constraint-audit-only",
+              "selection_planned": false,
+              "warnings": []
+            },
+            "content_clock_rate": "1",
+            "duration_analysis": "exact-fixed-windows",
+            "executable": false,
+            "host_verified": false,
+            "plan": {
+              "assets": [
+                {
+                  "content_hash": "fbdb28f7396225d437615b37cd923072466658cd4341390c19d2b1de7413428e",
+                  "duration": {
+                    "denominator": "1",
+                    "numerator": "4"
+                  },
+                  "id": "a"
+                }
+              ],
+              "plan_id": "delta-preferred-id",
+              "schema_version": 1,
+              "shots": [
+                {
+                  "asset_id": "a",
+                  "id": "shot-000001",
+                  "source_range": {
+                    "end": {
+                      "denominator": "1",
+                      "numerator": "4"
+                    },
+                    "start": {
+                      "denominator": "1",
+                      "numerator": "0"
+                    }
+                  }
+                }
+              ]
+            },
+            "profile": "storytelling.fixed-window-planner.v1",
+            "schema_version": 1,
+            "scope": "declared-fixed-window-plan-only",
+            "selection_planned": true,
+            "selections": [
+              {
+                "asset_id": "a",
+                "declared_score": 0,
+                "duration": {
+                  "denominator": "1",
+                  "numerator": "4"
+                },
+                "reason_paths": [
+                  "$.brief.preferences.preferred_asset_ids[0]",
+                  "$.candidates[0].score",
+                  "$.candidates[0].source_range"
+                ],
+                "required": false,
+                "shot_id": "shot-000001",
+                "timeline_start": {
+                  "denominator": "1",
+                  "numerator": "0"
+                }
+              }
+            ],
+            "skipped_candidates": [
+              {
+                "asset_id": "b",
+                "path": "$.candidates[1]",
+                "reason": "not-needed"
+              }
+            ],
+            "source_verified": false,
+            "target_status": "met",
+            "total_duration": {
+              "denominator": "1",
+              "numerator": "4"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "delta-empty",
+      "source": {
+        "id": "delta-empty",
+        "input_unchanged": true,
+        "ok": true,
+        "composition": {
+          "storyId": "delta-empty",
+          "duration": 0,
+          "tracks": []
+        }
+      },
+      "native": {
+        "exit": 1,
+        "response": {
+          "error": {
+            "code": "planner.no_selection",
+            "conflicts": [],
+            "path": "$.candidates"
+          },
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "delta-target-above-max",
+      "source": {
+        "id": "delta-target-above-max",
+        "input_unchanged": true,
+        "ok": false,
+        "error": {
+          "name": "CompositionConstraintError",
+          "message": "Story target exceeds maximum. Lower the target or increase the maximum."
+        }
+      },
+      "native": {
+        "exit": 0,
+        "response": {
+          "ok": true,
+          "planning": {
+            "brief_audit": {
+              "brief_id": "delta-target-above-max",
+              "conflicts": [],
+              "consistent": true,
+              "duration_analysis": "not-performed",
+              "excluded_assets": [],
+              "executable": false,
+              "intent": "Synthetic live shadow",
+              "manual_selected_asset_ids": [],
+              "precedence_edges": [],
+              "preferences": {
+                "preferred_asset_ids": [],
+                "target_duration": {
+                  "denominator": "1",
+                  "numerator": "3"
+                }
+              },
+              "required_assets": [],
+              "schema_version": 1,
+              "scope": "declared-constraint-audit-only",
+              "selection_planned": false,
+              "warnings": []
+            },
+            "content_clock_rate": "2",
+            "duration_analysis": "exact-fixed-windows",
+            "executable": false,
+            "host_verified": false,
+            "plan": {
+              "assets": [
+                {
+                  "content_hash": "fbdb28f7396225d437615b37cd923072466658cd4341390c19d2b1de7413428e",
+                  "duration": {
+                    "denominator": "2",
+                    "numerator": "1"
+                  },
+                  "id": "a"
+                }
+              ],
+              "plan_id": "delta-target-above-max",
+              "schema_version": 1,
+              "shots": [
+                {
+                  "asset_id": "a",
+                  "id": "shot-000001",
+                  "source_range": {
+                    "end": {
+                      "denominator": "2",
+                      "numerator": "1"
+                    },
+                    "start": {
+                      "denominator": "1",
+                      "numerator": "0"
+                    }
+                  }
+                }
+              ]
+            },
+            "profile": "storytelling.fixed-window-planner.v1",
+            "schema_version": 1,
+            "scope": "declared-fixed-window-plan-only",
+            "selection_planned": true,
+            "selections": [
+              {
+                "asset_id": "a",
+                "declared_score": 3,
+                "duration": {
+                  "denominator": "2",
+                  "numerator": "1"
+                },
+                "reason_paths": [
+                  "$.candidates[0].score",
+                  "$.candidates[0].source_range"
+                ],
+                "required": false,
+                "shot_id": "shot-000001",
+                "timeline_start": {
+                  "denominator": "1",
+                  "numerator": "0"
+                }
+              }
+            ],
+            "skipped_candidates": [],
+            "source_verified": false,
+            "target_status": "below",
+            "total_duration": {
+              "denominator": "2",
+              "numerator": "1"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "unsupported-two-beats",
+      "source": {
+        "id": "unsupported-two-beats",
+        "input_unchanged": true,
+        "ok": true,
+        "composition": {
+          "storyId": "unsupported-two-beats",
+          "duration": 2,
+          "tracks": [
+            {
+              "type": "video",
+              "clips": [
+                {
+                  "assetId": "a",
+                  "beatId": "first",
+                  "sourceIn": 0,
+                  "sourceOut": 1,
+                  "timelineStart": 0,
+                  "timelineDuration": 1
+                },
+                {
+                  "assetId": "b",
+                  "beatId": "second",
+                  "sourceIn": 0,
+                  "sourceOut": 1,
+                  "timelineStart": 1,
+                  "timelineDuration": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "native": {
+        "exit": 1,
+        "response": {
+          "error": {
+            "code": "input.invalid_json",
+            "conflicts": [],
+            "path": "$"
+          },
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "unsupported-repeated-beats",
+      "source": {
+        "id": "unsupported-repeated-beats",
+        "input_unchanged": true,
+        "ok": false,
+        "error": {
+          "name": "CompositionConstraintError",
+          "message": "Asset \"Synthetic a\" is required by more than one beat. Keep it in one beat; repeated assets are disabled."
+        }
+      },
+      "native": {
+        "exit": 1,
+        "response": {
+          "error": {
+            "code": "input.invalid_json",
+            "conflicts": [],
+            "path": "$"
+          },
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "unsupported-video-balance",
+      "source": {
+        "id": "unsupported-video-balance",
+        "input_unchanged": true,
+        "ok": true,
+        "composition": {
+          "storyId": "unsupported-video-balance",
+          "duration": 1,
+          "tracks": [
+            {
+              "type": "video",
+              "clips": [
+                {
+                  "assetId": "b",
+                  "beatId": "beat",
+                  "sourceIn": 0,
+                  "sourceOut": 1,
+                  "timelineStart": 0,
+                  "timelineDuration": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "native": {
+        "exit": 1,
+        "response": {
+          "error": {
+            "code": "input.invalid_json",
+            "conflicts": [],
+            "path": "$.brief"
+          },
+          "ok": false
+        }
+      }
+    },
+    {
+      "id": "unsupported-image-balance",
+      "source": {
+        "id": "unsupported-image-balance",
+        "input_unchanged": true,
+        "ok": true,
+        "composition": {
+          "storyId": "unsupported-image-balance",
+          "duration": 1,
+          "tracks": [
+            {
+              "type": "video",
+              "clips": [
+                {
+                  "assetId": "a",
+                  "beatId": "beat",
+                  "sourceIn": 0,
+                  "sourceOut": 1,
+                  "timelineStart": 0,
+                  "timelineDuration": 1
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "native": {
+        "exit": 1,
+        "response": {
+          "error": {
+            "code": "input.invalid_json",
+            "conflicts": [],
+            "path": "$.brief"
+          },
+          "ok": false
+        }
+      }
+    }
+  ]
+}

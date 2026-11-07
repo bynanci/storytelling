@@ -51,6 +51,37 @@ jobs:
         run: python3 tests/oracles/story-brief-v1/compare.py target/release/storytelling --output "$RUNNER_TEMP/story-brief-differential.json"
       - name: Frozen fixed-window planner source comparison
         run: python3 tests/oracles/fixed-window-planner-v1/compare.py target/release/storytelling --output "$RUNNER_TEMP/fixed-window-planner-differential.json"
+      - name: Checksum-pinned Node for live planner shadow (test-only)
+        run: |
+          curl --fail --location --proto '=https' --tlsv1.2 --retry 2 --max-time 60 https://nodejs.org/dist/v24.22.1/node-v24.22.1-linux-x64.tar.xz -o "$RUNNER_TEMP/planner-shadow-node.tar.xz"
+          printf '%s  %s\n' '6c172a9ab6718f7b801fb5a7bd486af2ee5e32758086a04b84fcce2aa77095e6' "$RUNNER_TEMP/planner-shadow-node.tar.xz" | sha256sum --check --status
+          mkdir "$RUNNER_TEMP/planner-shadow-tools"
+          tar --extract --xz --file "$RUNNER_TEMP/planner-shadow-node.tar.xz" --directory "$RUNNER_TEMP/planner-shadow-tools" --no-same-owner
+          mkdir "$RUNNER_TEMP/planner-shadow-npm"
+          cp tests/oracles/openfilm-finite-v1/package.json tests/oracles/openfilm-finite-v1/package-lock.json "$RUNNER_TEMP/planner-shadow-npm/"
+          env PATH="$RUNNER_TEMP/planner-shadow-tools/node-v24.22.1-linux-x64/bin:$PATH" "$RUNNER_TEMP/planner-shadow-tools/node-v24.22.1-linux-x64/bin/npm" ci --ignore-scripts --no-audit --no-fund --prefix "$RUNNER_TEMP/planner-shadow-npm" --cache "$RUNNER_TEMP/planner-shadow-npm-cache"
+      - name: Exact public source for live planner shadow
+        run: |
+          mkdir "$RUNNER_TEMP/planner-shadow-source"
+          git -C "$RUNNER_TEMP/planner-shadow-source" init --quiet
+          git -C "$RUNNER_TEMP/planner-shadow-source" -c http.lowSpeedLimit=1 -c http.lowSpeedTime=30 fetch --depth=1 --no-tags https://github.com/bynanci/open-film.git 7add4762fe8174d76f43b863375ea39b73121e76
+          git -C "$RUNNER_TEMP/planner-shadow-source" -c advice.detachedHead=false checkout --detach --quiet FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/planner-shadow-source" rev-parse HEAD)" = 7add4762fe8174d76f43b863375ea39b73121e76
+          test -z "$(git -C "$RUNNER_TEMP/planner-shadow-source" status --porcelain)"
+      - name: Live shadow checker rejection regressions
+        run: >-
+          env PLANNER_SHADOW_SOURCE="$RUNNER_TEMP/planner-shadow-source"
+          PLANNER_SHADOW_NODE="$RUNNER_TEMP/planner-shadow-tools/node-v24.22.1-linux-x64/bin/node"
+          PLANNER_SHADOW_TSX="$RUNNER_TEMP/planner-shadow-npm/node_modules/tsx/dist/loader.mjs"
+          python3 -m unittest discover -s tests/oracles/planner-shadow-v1 -p 'test_*.py'
+      - name: Live selected-domain source and native planner shadow
+        run: >-
+          python3 tests/oracles/planner-shadow-v1/run.py
+          --source "$RUNNER_TEMP/planner-shadow-source"
+          --node "$RUNNER_TEMP/planner-shadow-tools/node-v24.22.1-linux-x64/bin/node"
+          --tsx "$RUNNER_TEMP/planner-shadow-npm/node_modules/tsx/dist/loader.mjs"
+          --rust-cli "$GITHUB_WORKSPACE/target/release/storytelling"
+          --run-root "$RUNNER_TEMP/planner-shadow-evidence"
       - name: Native CLI without external tools on PATH
         run: |
           mkdir "$RUNNER_TEMP/no-media-tools"

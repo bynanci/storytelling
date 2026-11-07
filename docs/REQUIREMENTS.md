@@ -115,6 +115,25 @@ and [component inventory](migration/provenance-m2-02.json).
 
 Complete test mapping is in the work index; M2-R01 full solver feasibility remains broader.
 
+## M2-03 selected-domain live shadow requirements
+
+The scoped live-shadow candidate is locally implemented/in review. It invokes
+actual pinned source and native binaries; it does not add a product runtime.
+See [profile](migration/PLANNER_SHADOW_V1.md), [record](migration/records/M2-03.md),
+[work index](migration/m2-03-work-index.json) and [per-file inventory](migration/provenance-m2-03.json).
+Python test symbols are individually recorded and AST-checked; the repository guard
+checks their requirement IDs and verification artifact paths. Hosted acceptance
+remains pending until actually observed.
+
+| ID | Requirement | Actual verification artifact |
+| --- | --- | --- |
+| M2-S01 | Seeded exact shared-domain admission, ordering/capture constraints and immutable input cases | `cases.py`, `test_shadow.py` |
+| M2-S02 | Actual pinned source producer, strict schemas/error families/metadata and no source mutation | `producer.mts`, `test_producer.py` |
+| M2-S03 | Exact source/native semantics, canonical literal delta/refusal probes and reject unregistered pairings | `compare.py`, `test_shadow.py`, `mutation-baselines.json` |
+| M2-S04 | Bounded full-duplex process I/O, global/per-child budgets and owned-group reaping | `process.py`, `test_process.py` |
+| M2-S05 | Actual live run/provenance/validator/failed evidence and CI test-only closure | `run.py`, `test_orchestration.py` |
+| M2-S06 | Actual completed PR classification/register/lifecycle metadata with preserved history | `PR_REGISTER.md`, `pr-register.json` |
+
 ## Remaining breadth and future requirements
 
 M1-R01: the first bounded 25 fps picture-only profile now has actual proof through

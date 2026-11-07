@@ -208,6 +208,21 @@ cargo test --workspace --release --locked
 輸出目錄，審查差異後再更新 fixture，避免把舊 golden output 靜默覆寫。
 以上工具不進入 production Rust dependency closure。
 
+## 執行 M2-03 即時規劃比對
+
+M2-03 測試工具以 pinned OpenFilm `compose` 和實際 Rust CLI 執行相同合成案例，
+需要明確指定 Linux x86_64 Node／tsx／source 路徑與尚不存在的外部輸出目錄：
+
+```sh
+python3 tests/oracles/planner-shadow-v1/run.py --source /absolute/open-film --node /absolute/node --tsx /absolute/oracle-tools/node_modules/tsx/dist/loader.mjs --rust-cli /absolute/storytelling/target/release/storytelling --run-root /absolute/new-shadow-run
+```
+
+工具不自行下載或安裝。固定版本、暫存工具 prefix、40 項回歸測試、seed 選項與
+失敗證據格式見 [shadow README](../tests/oracles/planner-shadow-v1/README.md)。
+預設 64 組案例涵蓋選定一致範圍、四個已定義差異及四個不支援探針；未分類差異
+必須失敗。這是獨立的實際配對執行，並非重播既有十二個 frozen planner outputs，
+也不代表完整 solver／宿主／人工驗收。
+
 ## 重現有界 FilmCraft 實跑
 
 已接受證據使用 [官方 FilmCraft v0.18.0 release](https://github.com/storytold/filmcraft/releases/tag/v0.18.0)
