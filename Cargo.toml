@@ -12,7 +12,7 @@ publish = false
 
 [workspace.dependencies]
 serde = { version = "=1.0.229", features = ["derive"] }
-serde_json = { version = "=1.0.145", features = ["raw_value"] }
+serde_json = { version = "=1.0.154", features = ["raw_value"] }
 sha2 = { version = "=0.10.9", default-features = false, features = ["force-soft"] }
 storytelling-core = { path = "crates/storytelling-core" }
 storytelling-engine = { path = "crates/storytelling-engine" }
