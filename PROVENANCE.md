@@ -118,5 +118,7 @@ MIT. The existing `sha2` dependency is reused and no production dependency is ad
 
 This provisional component makes no signer trust, grant issuance, host observation, replay safety,
 source verification or execution claim. It reuses the existing synthetic finite-v1 composition
-fixture. G2 contract/code review, exact-head hosted dependency audit, cross-platform CI and
-maintainer acceptance are pending; this record does not close issue #27.
+fixture. Exact-head hosted Linux, Windows, macOS, Required, Quality and Dependency Audit checks
+passed for PR #32 head `2e7662405a49698be1ebee2136f54ab539ef7c2e` in run
+[42425697537](https://github.com/bynanci/storytelling/actions/runs/42425697537). Independent G2
+contract/code review and maintainer acceptance remain pending; this record does not close issue #27.

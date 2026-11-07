@@ -25,11 +25,11 @@
     },
     {
       "id": "M3-01/P1-verification",
-      "state": "pending-hosted-and-independent-review",
+      "state": "hosted-passed-pending-independent-review",
       "depends_on": [
         "M3-01/P1-implementation"
       ],
-      "acceptance": "Full workspace debug/release/docs/guard, exact-head Linux/Windows/macOS and dependency audit, independent G2 code/security review and maintainer acceptance"
+      "acceptance": "Full workspace debug/release/docs/guard and all six exact-head hosted checks passed; independent G2 code/security review and maintainer acceptance remain pending"
     }
   ],
   "requirements": [
@@ -108,7 +108,8 @@
       ],
       "verification_paths": [
         "crates/storytelling-cli/src/main.rs",
-        "crates/storytelling-cli/tests/review_cli.rs"
+        "crates/storytelling-cli/tests/review_cli.rs",
+        "docs/migration/records/M3-01-P1-COMPARISON.md"
       ]
     }
   ],
@@ -124,12 +125,14 @@
       "git diff --check"
     ],
     "coverage": "Workspace debug/release tests passed, including 1 engine depth-scanner unit test, 10 engine integration tests, 3 CLI integration tests and 4 compile-fail BoundReviewV1 doctests",
-    "base_limitation": "Local base predates latest remote main and PR #28 merge; exact-base compatibility must be established by hosted checks on the stacked PR"
+    "hosted_head": "2e7662405a49698be1ebee2136f54ab539ef7c2e",
+    "hosted_run": "https://github.com/bynanci/storytelling/actions/runs/42425697537",
+    "hosted_result": "All six hosted jobs passed: Quality and contracts, Required gates, Rust Linux, Rust Windows, Rust macOS and Dependency audit",
+    "base_limitation": "Local base predates latest remote main and PR #28 merge; exact-base compatibility is covered by the listed hosted run"
   },
   "not_completed": [
     "independent G2 contract/code review and maintainer acceptance",
-    "hosted dependency security audit",
-    "exact-head Linux, Windows and macOS CI",
+    "independent G2 acceptance of the static source-informed comparison; no upstream TypeScript paired runtime was run",
     "planner-to-composition/OTIO bridge",
     "trusted signer/key authorization, expiry/revocation, replay consumption",
     "filesystem identity/TOCTOU, host observation, execution and publication",

@@ -174,8 +174,11 @@ the current caller can create a self-consistent record. A supplied context's hos
 capabilities are declarations, not observations. Exact artifact linkage applies only to the one
 composition slice passed to importer+compiler and does not establish verified source provenance or
 connect the fixed-window planner to OTIO. Hosted dependency audit, three-platform same-head CI,
-repository regression/oracle lanes, independent G2 review and maintainer acceptance remain required
-before this provisional slice can be checked complete. See the [M3-01 work index](migration/m3-01-p1-work-index.json).
+all existing repository regression/oracle lanes and the six exact-head hosted gates have passed for
+PR #32 head `2e7662405a49698be1ebee2136f54ab539ef7c2e` (run 42425697537). An upstream TypeScript
+runtime pairing was not run; the source comparison is static and source-informed. Independent G2
+review and maintainer acceptance remain required before this provisional slice can be checked
+complete. See the [M3-01 work index](migration/m3-01-p1-work-index.json).
 
 ## Remaining breadth and future requirements
 

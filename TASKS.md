@@ -244,7 +244,7 @@ implementation-candidate details, not accepted/frozen product contracts.
 - [x] Provisional engine binding and read-only `prepare-review` / `check-review` CLI implemented with synthetic regression tests.
 - [x] CLI, contract, requirements, provenance, validation record and work index documentation added.
 - [x] Full workspace debug/release tests, clippy, rustdoc and repository guard verification passed locally.
-- [ ] Exact-head hosted Linux / Windows / macOS and dependency-audit checks.
+- [x] Exact-head hosted Linux / Windows / macOS, Required, Quality and Dependency Audit checks passed at `2e7662405a49698be1ebee2136f54ab539ef7c2e` (run [42425697537](https://github.com/bynanci/storytelling/actions/runs/42425697537)).
 - [ ] Independent G2 code/security review and maintainer acceptance.
 - [ ] Resolve review comments, update register/issue checklist only after accepted verification.
 

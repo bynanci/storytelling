@@ -23,18 +23,22 @@ After the separate G2 review packet was prepared, the maintainer authorized a pr
 implementation candidate on an isolated branch. The candidate now adds same-byte finite importer /
 OTIO binding, strict declared context, read-only freshness checks, CLI commands and synthetic tests;
 see [M3-01/P1 validation record](records/M3-01-P1.md), [provisional contract](../CONTRACTS.md#m3-01-p1-provisional-review-binding),
-and [work index](m3-01-p1-work-index.json). The implementation uses existing source SHA-256 and
+the [source-informed comparison](records/M3-01-P1-COMPARISON.md), and [work index](m3-01-p1-work-index.json).
+The implementation uses existing source SHA-256 and
 adds no production dependency. The first local RED preceded implementation; its baseline was the
 available local commit `1d8d0e3652aa2afe77375550876639b726928eba`, which predates the latest remote
-main/merged approval candidate. Exact-base compatibility and multi-platform behavior therefore
-require hosted checks on stacked [Draft PR #32](https://github.com/bynanci/storytelling/pull/32).
+main/merged approval candidate. Exact-base compatibility and multi-platform behavior were then
+verified on stacked [Draft PR #32](https://github.com/bynanci/storytelling/pull/32) at head
+`2e7662405a49698be1ebee2136f54ab539ef7c2e`; all six jobs passed in run
+[42425697537](https://github.com/bynanci/storytelling/actions/runs/42425697537).
 
 The candidate preserves all four authority/evidence flags as false. The serialized record is
 untrusted, has no signature/trust-key/revocation/replay semantics, and its context does not observe
 the host. G2 has not frozen or accepted these provisional names, field encoding or budgets. The
 planner→OTIO bridge remains absent, so binding covers only composition bytes passed directly to both
 importer and compiler. No issue acceptance checkbox or completion state is claimed; the tracking
-issue remains open until same-head hosted evidence, independent G2 review and maintainer acceptance.
+issue remains open until source-comparison scope is accepted, independent G2 review and maintainer
+acceptance.
 
 ## Observed state and readiness
 
