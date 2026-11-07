@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "task": "M2-03",
+  "scope": "test-only Linuxx86_64 Node/tsx source oracle; no production dependency changes",
+  "node": {
+    "version": "24.22.1",
+    "url": "https://nodejs.org/dist/v24.22.1/node-v24.22.1-linux-x64.tar.xz",
+    "archive_sha256": "6c172a9ab6718f7b801fb5a7bd486af2ee5e32758086a04b84fcce2aa77095e6",
+    "official_manifest": "https://nodejs.org/dist/v24.22.1/SHASUMS256.txt",
+    "observed_manifest_match": true,
+    "binary_sha256": "e32e2d16081cf644f88392934288086e7662529d0d43277c34f7aad2207cfafb",
+    "license": "MIT plus distribution third-party notices retained with external tool"
+  },
+  "npm": {
+    "version": "11.19.1",
+    "command": "npm ci --ignore-scripts --no-audit --no-fund in copied temporary test-only prefix",
+    "global_install": false,
+    "upstream_install": false,
+    "install_scripts_run": false
+  },
+  "test_lock": {
+    "path": "tests/oracles/openfilm-finite-v1/package-lock.json",
+    "sha256": "6697b505f83230df597922faea37a88535458366ca554a7cb52ec3cdc3b9e535",
+    "integrity": "npm ci verifies existing per-package sha512 lock integrity; platform optional entries remain platform-scoped"
+  },
+  "installed_runtime_packages": [
+    {
+      "name": "@esbuild/linux-x64",
+      "version": "0.28.2",
+      "license": "MIT",
+      "path": "node_modules/@esbuild/linux-x64/package.json",
+      "sha256": "a3924c1835c7849adeb3d82ac24525da0d4190607b60d05265dc6746bde2ddb8"
+    },
+    {
+      "name": "esbuild",
+      "version": "0.28.2",
+      "license": "MIT",
+      "path": "node_modules/esbuild/package.json",
+      "sha256": "9d0bc453f4e791553c4cc2298ba023b409241fd9801e494741666eb0f6051490"
+    },
+    {
+      "name": "tsx",
+      "version": "4.23.15",
+      "license": "MIT",
+      "path": "node_modules/tsx/package.json",
+      "sha256": "ab5f14c4251638844ade3905d3cfc52fc1c833644694d655a05f6d0ca746b83c"
+    }
+  ],
+  "esbuild_binary_sha256": "e1698a3d5c6c0798fee4fd3b5cc816651f460c63d390a7a26ea4beb0b1884100",
+  "actual_validation": "Temp ignore-scripts install added3packages; exact pinned compose existing12cases executed successfully using this prefix and Node; source status stayed clean",
+  "production_packages_added": [],
+  "new_github_actions": [],
+  "ci_permissions": "unchanged contents:read; source public exactSHA fetch and test artifacts only",
+  "not_claimed": [
+    "full supply-chain or release approval",
+    "signatures/reproducible-build attestation",
+    "global/system tool installation"
+  ]
+}

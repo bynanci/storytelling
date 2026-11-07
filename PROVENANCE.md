@@ -94,3 +94,14 @@ exports and independently authored design/status/usage documentation (including
 [CLI guide](docs/CLI_GUIDE.md)) retain MIT; no source implementation/test was copied.
 No production package or crate is added. Exact source fields/windows and caller
 scores remain declarations; selected-policy comparison is not full solver parity.
+
+
+## M2-03 live planner shadow
+
+The independently authored selected-domain source producer, exact classifier,
+case generator, bounded process/runner and synthetic regression baselines are
+Apache-2.0 with [per-file origins](docs/migration/provenance-m2-03.json). Original
+MIT and applicable source notices are unchanged. Independent CI/status/delivery
+documentation retains MIT. No upstream tests/code/media or new production package
+is copied or installed; [actual test-only Node/npm closure](docs/migration/dependency-evidence-m2-03.json)
+records external tools and the reused integrity lock.
