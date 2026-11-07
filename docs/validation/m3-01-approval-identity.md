@@ -4,7 +4,8 @@
 Status: implementation in progress. Current base: `5533fcb5d0f857ad1066a76505071653b66d1f89`.
 Local gates below were rerun after merging this latest main base into the candidate branch.
 Final author self-review is recorded in the task ledger; independent G2 security
-review and same-head Linux/Windows/macOS CI remain pending.
+review remains pending. The refreshed candidate head `c162a47dcb8de4c582a3c66c22396ecfd8cb0134`
+passed two same-head hosted CI runs; any later head still requires its own checks.
 
 The initial PR head `d321049add005363618f58451b913301eb6d1e96` passed hosted
 CI run `42347452265` on all five jobs. Main advanced via PR #26 before review;
@@ -48,7 +49,7 @@ there before acceptance.
 | `RUSTDOCFLAGS='-D warnings' cargo doc --workspace --no-deps --locked` | Passed; exit 0 |
 | `cargo audit --file Cargo.lock` | Passed; 39 locked packages scanned against 1,422 advisories; no findings emitted |
 | `python3 scripts/check_repo.py` | Passed; repository links, provenance, dependency boundaries and test references valid |
-| Same-head Linux/Windows/macOS CI | Live gate on Draft PR #28; require all latest-head jobs to pass before acceptance |
+| Same-head Linux/Windows/macOS CI | Passed on head `c162a47dcb8de4c582a3c66c22396ecfd8cb0134` in runs `42348221843` and `42348225264` (both all 5 jobs); inspect Draft PR #28 for any newer head |
 | Independent G2 security review | Pending |
 
 ## Claims not made
