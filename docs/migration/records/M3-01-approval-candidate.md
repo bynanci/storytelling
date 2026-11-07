@@ -3,14 +3,17 @@
 
 State: implemented candidate, not accepted. Canonical M3-01/P1 remains proposed
 in `docs/migration/M3-01-NEXT.md`; this candidate does not satisfy that scope.
-Independent G2 review is pending. The branch is being reconciled to main
-`1d8d0e3652aa2afe77375550876639b726928eba` after PR #29 clarified the distinct
-canonical task and accepted M2-03.
+Independent G2 review is pending. After dependency PRs #8, #21, #10 and #9 merged,
+main advanced to `fefb038ec1699727da2c0f436a097bbdedcfd08a`. The branch is being
+synchronized to that base with the current action pins and Cargo lockfile; the
+new exact-head hosted checks are required before any merge or acceptance decision.
 
 The initial worktree began at `867fcde6acd0dd1339122aaf4bb23003aac3942e` and was
 rebased onto main after PR #25. PR #26 advanced main while Draft PR #28 was open,
 and the branch included the accepted M2-03 integration. PR #29 advanced main
-again and now defines the separate finite-OTIO review-binding proposal.
+again and defines the separate finite-OTIO review-binding proposal. The later
+routine dependency merges are recorded in `TASKS.md` and do not change this
+candidate's trust boundary.
 
 ## Scope delivered in this branch
 

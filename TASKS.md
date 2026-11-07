@@ -29,6 +29,20 @@ completed tasks. The GitHub merge metadata records:
 | [#22 M2-02 fixed-window planner](https://github.com/bynanci/storytelling/pull/22) | `1f4ff082ed27dbc6223af2f0a0b1cfe71a06fe54` | `895257b1bb9993d70cae3f1267f5f6fa3de91905` | 2026-11-07 03:59:29 |
 | [#26 M2-03 selected-domain live shadow](https://github.com/bynanci/storytelling/pull/26) | `4bf888949107a21b560b09222175ff1f25118a3b` | `5533fcb5d0f857ad1066a76505071653b66d1f89` | 2026-11-07 06:27:14 |
 
+
+Routine dependency upkeep merged on 2026-11-07 (these rows do not claim product
+acceptance):
+
+| PR / change | PR head | Merge commit on main | Merged at (UTC) |
+| --- | --- | --- | --- |
+| [#8 actions/checkout 7.0.1](https://github.com/bynanci/storytelling/pull/8) | `f3bf985acbd6abb67b3ce5f781535387dc602373` | `3905135b3fd811e7639dffd2a98116aa6543b53f` | 2026-11-07 13:19:26 |
+| [#21 actions/setup-python 7.1.0](https://github.com/bynanci/storytelling/pull/21) | `ad4e33f0406a78336279fe7916d3372660169d02` | `23a8c60051c8ab81310bb4e67e7c8b2fbcf44810` | 2026-11-07 13:20:47 |
+| [#10 serde 1.0.229](https://github.com/bynanci/storytelling/pull/10) | `6a2456a2008d937b1658bbb77866bee4f2b694b0` | `a4c07d5cf29a4845757ada0cb6eea664cfeb98a0` | 2026-11-07 13:22:15 |
+| [#9 serde_json 1.0.154](https://github.com/bynanci/storytelling/pull/9) | `14992f18dc36804b8fa752ea2383194a9993bd38` | `fefb038ec1699727da2c0f436a097bbdedcfd08a` | 2026-11-07 13:25:36 |
+
+All four PR-head and resulting main checks passed. PR #28 must use the updated
+action pins and dependency lockfile before its own current-head checks count.
+
 [Issues #3–#6](https://github.com/bynanci/storytelling/issues/6),
 [#12](https://github.com/bynanci/storytelling/issues/12),
 [#14](https://github.com/bynanci/storytelling/issues/14) and
@@ -205,14 +219,15 @@ identities; proposed M3-RB01–RB07, wire/CLI names and budgets still need indep
 G2 freezing and functional RED before implementation. No code or passing M3 test
 is claimed. Use the existing importer/compiler input because the planner→OTIO
 bridge is absent; matching hashes/context never grant human approval. Concurrent Draft [#28](https://github.com/bynanci/storytelling/pull/28) proposes
-cryptographic approval identity and awaits independent G2 review; it is not
-accepted. Its M3-A01–A03 IDs are distinct from this preparation proposal. At
-the prior check, its `f571d68` head had passed two five-job CI runs, but those
-checks predate PR #29's main update. Refreshed candidate head `010b740` passed
-all five jobs in runs `42350601091` and `42350603918`; this verifies only the
-candidate. The evidence update itself requires new exact-head CI. The candidate
-does not complete canonical M3-01/P1. Full M3-01 approval issuance, M3-02
-durability and M3-03 execution remain open.
+cryptographic approval identity and remains unaccepted pending independent G2
+review. Its M3-A01–A03 IDs are distinct from this preparation proposal. Its prior
+head `40de8fa7b21c7581af2f4b1dbd4122ac86c7d9f0` passed the candidate checks,
+including hosted Cargo Audit, on the earlier main base. Dependency PRs #8, #21,
+#10 and #9 advanced main to `fefb038ec1699727da2c0f436a097bbdedcfd08a`; the
+candidate branch must be synchronized to these action and dependency updates and
+rechecked at its new exact head. The PR body tracks those current-head results.
+This candidate does not complete canonical M3-01/P1. Full M3-01 approval
+issuance, M3-02 durability and M3-03 execution remain open.
 
 ## Not in the current backlog
 

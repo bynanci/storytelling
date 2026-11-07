@@ -2,12 +2,12 @@
 # PR #28 approval-identity candidate validation
 
 Status: implemented candidate, not accepted. Canonical M3-01/P1 is a separate
-proposed finite-OTIO review-binding task. Current main base being integrated is
-`1d8d0e3652aa2afe77375550876639b726928eba`, merged at candidate commit
-`f2e2703ef437592beb7f311a97bd247b73145622`. Independent G2 security review is
-pending. The earlier candidate head `f571d68b69d5835ddc5cb038ea34d4f07348985c`
-passed two same-head hosted CI runs before main advanced via PR #29; those runs
-do not validate the refreshed branch.
+proposed finite-OTIO review-binding task. After dependency PRs #8, #21, #10 and #9
+merged, current main is `fefb038ec1699727da2c0f436a097bbdedcfd08a`. The refreshed
+branch carries the current pinned actions and lockfile; its exact-head CI and
+hosted Cargo Audit must pass before a merge or acceptance decision. Independent
+G2 security review remains pending. Results from the former `40de8fa7b21c7581af2f4b1dbd4122ac86c7d9f0` head
+are superseded by the base update.
 
 The initial PR head `d321049add005363618f58451b913301eb6d1e96` passed hosted
 CI run `42347452265` on all five jobs. Main advanced via PR #26 before review;

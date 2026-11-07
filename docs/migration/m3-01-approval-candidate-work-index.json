@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "task": "PR-28-approval-identity-candidate",
-  "base": "1d8d0e3652aa2afe77375550876639b726928eba",
+  "base": "fefb038ec1699727da2c0f436a097bbdedcfd08a",
   "state": "candidate-not-accepted",
   "scope": "concurrent-bounded-core-approval-identity-and-signature-verification; distinct-from-canonical-M3-01/P1-finite-OTIO-review-binding",
   "tasks": [
