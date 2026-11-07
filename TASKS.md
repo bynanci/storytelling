@@ -248,7 +248,9 @@ implementation-candidate details, not accepted/frozen product contracts.
 - [ ] Independent G2 code/security review and maintainer acceptance.
 - [ ] Resolve review comments, update register/issue checklist only after accepted verification.
 
-The candidate recompiles importer plan and OTIO from the same exact composition bytes. It does not
+The candidate is in Draft [PR #32](https://github.com/bynanci/storytelling/pull/32), stacked on the
+G2 packet PR #31 so hosted checks include the merged PR #28 code. It recompiles importer plan and
+OTIO from the same exact composition bytes. It does not
 bridge fixed-window planner output into OTIO, verify that the input came from a trusted build, inspect
 the declared host/binary, authorize a signer, issue approval, prevent replay, or execute a host edit.
 PR #28's separate cryptographic candidate and PR #31's G2 contract packet remain distinct; neither

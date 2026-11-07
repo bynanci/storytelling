@@ -7,7 +7,7 @@
   "base": "1d8d0e3652aa2afe77375550876639b726928eba",
   "scope": "finite-openfilm-composition-to-otio-declared-review-binding",
   "implementation_branch": "codex/m3-01-finite-review-binding-20261107",
-  "draft_pr": "pending-creation",
+  "draft_pr": "https://github.com/bynanci/storytelling/pull/32",
   "tasks": [
     {
       "id": "M3-01/P1-contract",

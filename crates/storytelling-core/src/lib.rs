@@ -1,9 +1,9 @@
 //! Pure, portable story contracts. No filesystem, runtime, or host access.
 pub mod approval;
-pub mod review;
 pub mod brief;
 pub mod compatibility;
 pub mod compiled_plan;
+pub mod review;
 pub mod source_evidence;
 pub mod time;
 pub mod wire;

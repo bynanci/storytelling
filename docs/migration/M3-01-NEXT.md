@@ -27,7 +27,7 @@ and [work index](m3-01-p1-work-index.json). The implementation uses existing sou
 adds no production dependency. The first local RED preceded implementation; its baseline was the
 available local commit `1d8d0e3652aa2afe77375550876639b726928eba`, which predates the latest remote
 main/merged approval candidate. Exact-base compatibility and multi-platform behavior therefore
-require hosted checks on the stacked implementation PR.
+require hosted checks on stacked [Draft PR #32](https://github.com/bynanci/storytelling/pull/32).
 
 The candidate preserves all four authority/evidence flags as false. The serialized record is
 untrusted, has no signature/trust-key/revocation/replay semantics, and its context does not observe
