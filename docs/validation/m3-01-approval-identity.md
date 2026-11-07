@@ -1,10 +1,17 @@
 <!-- SPDX-License-Identifier: MIT AND Apache-2.0 -->
 # M3-01 approval identity validation
 
-Status: implementation in progress. Current base: `073b5a415324d588019e2155dcf24ddddd860adf`.
-Local gates below ran on the M3-01 candidate worktree based on that exact main SHA.
+Status: implementation in progress. Current base: `5533fcb5d0f857ad1066a76505071653b66d1f89`.
+Local gates below were rerun after merging this latest main base into the candidate branch.
 Final author self-review is recorded in the task ledger; independent G2 security
 review and same-head Linux/Windows/macOS CI remain pending.
+
+The initial PR head `d321049add005363618f58451b913301eb6d1e96` passed hosted
+CI run `42347452265` on all five jobs. Main advanced via PR #26 before review;
+the candidate branch now includes that main, so the old run is not evidence for
+the refreshed head. The latest-head CI status is tracked live by
+[Draft PR #28](https://github.com/bynanci/storytelling/pull/28) and must be checked
+there before acceptance.
 
 ## Test-first evidence
 
@@ -41,7 +48,7 @@ review and same-head Linux/Windows/macOS CI remain pending.
 | `RUSTDOCFLAGS='-D warnings' cargo doc --workspace --no-deps --locked` | Passed; exit 0 |
 | `cargo audit --file Cargo.lock` | Passed; 39 locked packages scanned against 1,422 advisories; no findings emitted |
 | `python3 scripts/check_repo.py` | Passed; repository links, provenance, dependency boundaries and test references valid |
-| Same-head Linux/Windows/macOS CI | Pending; requires Draft PR head |
+| Same-head Linux/Windows/macOS CI | Live gate on Draft PR #28; require all latest-head jobs to pass before acceptance |
 | Independent G2 security review | Pending |
 
 ## Claims not made

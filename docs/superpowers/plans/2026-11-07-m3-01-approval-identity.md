@@ -207,7 +207,7 @@ Expected: all commands exit 0; record actual counts, advisory database date,
 dependency versions and any unresolved notices. Never suppress unrelated
 advisories.
 
-- [ ] **Step 5: Commit the bounded implementation after independent review setup**
+- [x] **Step 5: Commit the bounded implementation after independent review setup**
 
 Stage only the M3-01 contract, tests and traceability files, then commit with the
 configured maintainer sign-off policy. The PR must remain a draft until an

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "task": "M3-01",
-  "base": "073b5a415324d588019e2155dcf24ddddd860adf",
+  "base": "5533fcb5d0f857ad1066a76505071653b66d1f89",
   "state": "in-progress",
   "scope": "bounded-core-approval-identity-and-signature-verification",
   "tasks": [
