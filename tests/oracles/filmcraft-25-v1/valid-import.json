@@ -1,0 +1,18 @@
+{
+  "documents": [
+    {
+      "format": "OpenTimelineIO",
+      "linkedMedia": 2,
+      "offlineMedia": [],
+      "report": [],
+      "sequences": [
+        1
+      ]
+    }
+  ],
+  "errors": [],
+  "items": [],
+  "sequences": [
+    1
+  ]
+}

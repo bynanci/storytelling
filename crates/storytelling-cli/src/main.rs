@@ -4,8 +4,8 @@ use std::fs::File;
 use std::io::{self, Read, Write};
 use std::process::ExitCode;
 use storytelling_engine::{
-    MAX_INPUT_BYTES, OtioLossChoicesV1, audit_story_brief, export_openfilm_otio,
-    import_openfilm_snapshot, validate_plan_json,
+    MAX_INPUT_BYTES, MAX_VERIFIED_BUFFER_BYTES, OtioLossChoicesV1, audit_story_brief,
+    export_openfilm_otio, import_openfilm_snapshot, validate_plan_json, verify_supplied_sha256,
 };
 
 fn emit(value: Value, code: u8) -> ExitCode {
@@ -38,21 +38,52 @@ fn text(message: &str) -> ExitCode {
 }
 
 fn read_bounded(reader: impl Read) -> io::Result<Vec<u8>> {
+    read_with_limit(reader, MAX_INPUT_BYTES)
+}
+
+fn read_with_limit(reader: impl Read, limit: usize) -> io::Result<Vec<u8>> {
     let mut bytes = Vec::new();
-    reader
-        .take(MAX_INPUT_BYTES as u64 + 1)
-        .read_to_end(&mut bytes)?;
+    reader.take(limit as u64 + 1).read_to_end(&mut bytes)?;
     Ok(bytes)
 }
 
 fn main() -> ExitCode {
     let args: Vec<_> = std::env::args_os().skip(1).collect();
+    if args
+        .first()
+        .is_some_and(|v| v == OsStr::new("verify-source"))
+    {
+        if args.len() != 3 {
+            return failure("cli.usage", 2);
+        }
+        let Some(expected) = args[2].to_str() else {
+            return failure("cli.usage", 2);
+        };
+        let bytes = if args[1] == OsStr::new("-") {
+            read_with_limit(io::stdin().lock(), MAX_VERIFIED_BUFFER_BYTES)
+        } else {
+            match File::open(&args[1]) {
+                Ok(file) => match file.metadata() {
+                    Ok(m) if m.is_file() => read_with_limit(file, MAX_VERIFIED_BUFFER_BYTES),
+                    _ => return failure("input.io", 3),
+                },
+                Err(_) => return failure("input.io", 3),
+            }
+        };
+        let Ok(bytes) = bytes else {
+            return failure("input.io", 3);
+        };
+        return match verify_supplied_sha256(&bytes, expected) {
+            Ok(verification) => emit(json!({"ok": true, "verification": verification}), 0),
+            Err(error) => emit(json!({"ok": false, "error": error}), 1),
+        };
+    }
     let command = args.first().map(|value| value.as_os_str());
     let mut otio_choices = OtioLossChoicesV1::default();
     match command {
         Some(value) if value == OsStr::new("--help") && args.len() == 1 => {
             return text(
-                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\nRead-only declared metadata and format-only interchange; no source hashing or editor execution.\n",
+                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\n       storytelling verify-source <FILE|-> <SHA256>\nRead-only metadata, interchange and explicit supplied-byte verification; no editor execution.\n",
             );
         }
         Some(value) if value == OsStr::new("--version") && args.len() == 1 => {

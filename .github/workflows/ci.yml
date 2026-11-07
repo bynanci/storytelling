@@ -31,6 +31,8 @@ jobs:
           RUSTDOCFLAGS: -D warnings
       - name: SDLC traceability and architecture
         run: python3 scripts/check_repo.py
+      - name: Host proof evidence rejection checks (no host invocation)
+        run: python3 tests/oracles/filmcraft-25-v1/test_checks.py
       - name: Release-mode arithmetic regression
         run: cargo test --workspace --release --locked
       - name: Frozen OpenFilm export conformance
