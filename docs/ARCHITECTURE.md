@@ -1,7 +1,7 @@
 # Architecture
 
-Status: accepted M0, finite M1-01/M1-02, M2-01 bounded audit and M1-03
-supplied-byte verification/isolated host proof, plus future design.
+Status: accepted M0, finite M1-01/M1-02, M2-01 bounded audit, M2-02 fixed-window
+planner and M1-03 supplied-byte verification/isolated host proof, plus future design.
 See [M0 contract](CONTRACTS.md) and [finite-v1 contract](migration/FINITE_V1.md).
 
 ## Implemented dependency direction
@@ -49,7 +49,7 @@ source facts. Official parser Python is test-only. Project FPS remains separate;
 the accepted [M1-03 proof](migration/records/M1-03.md) separately verifies one
 synthetic FilmCraft Linux 25 fps CPU profile and supplied source bytes. No production
 host executor is added. M2-01 audits declared hard membership/order conflicts;
-selection and general feasibility remain future planner work.
+M2-02 now supplies fixed-window selection; general full-solver feasibility remains future work.
 
 ## Time and identity
 
@@ -81,7 +81,7 @@ partial and unknown; planning, job lifecycle and freshness stay separate.
 [ADR 0002](adr/0002-exact-time-and-wire.md) records time and wire constraints;
 [ADR 0003](adr/0003-license-and-provenance.md) preserves the actual repository license.
 
-## Fixed-window planner candidate
+## Accepted fixed-window planner
 
 M2-02 reuses the strict brief audit, admits every required candidate first, applies
 deterministic optional ranks, and topologically orders exact fixed windows. Core

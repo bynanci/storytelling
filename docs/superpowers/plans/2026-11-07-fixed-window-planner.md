@@ -62,8 +62,8 @@ synthetic fixtures/README. CLI plan-story FILE|- emits frozen envelope and exits
 - [x] Improve SDLC/contracts/source-status docs and runnable CLI guide; link from both READMEs.
 - [x] Run fmt, strict clippy, debug/release, Rustdoc, repo guards,6/8/10 old comparisons and new actual source replay.
 - [x] Independent whole-branch code and artifact/guide reviews; exact RED/source/local-check evidence recorded.
-- [ ] Publish Draft PR and read exact-head hosted results.
-- [ ] Read same-head three-platform CI; merge under user authorization, check/close #20 and reconcile accepted lifecycle.
+- [x] Published PR #22; read all 10 successful exact-head hosted results.
+- [x] Same-head three-platform CI passed; PR #22 merged under user authorization, #20 checked/closed and accepted lifecycle reconciled.
 
 Rollback removes new command/profile; no source or project was mutated. M2-03 full
 planner shadow, multi-beat/coverage/locks/graph, production host execution and human

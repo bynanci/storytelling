@@ -8,7 +8,7 @@
 repository guard；GAP-02/03 的固定來源／精確時間比對；GAP-04 的明確 supplied-buffer
 驗證與不可反序列化信任型別；GAP-05 的有限 OTIO loss 契約；GAP-09 的合成
 Linux／25 fps CPU 宿主證據。參見 [M1-02](records/M1-02.md)、[M1-03](records/M1-03.md)
-與 [M2-01](records/M2-01.md)。一般化 evidence、檔案 race closure、更多宿主／媒體、
+、[M2-01](records/M2-01.md) 與 [M2-02 固定視窗規劃](records/M2-02.md)。一般化 evidence、檔案 race closure、更多宿主／媒體、
 人工驗收和其餘 GAP 的完整驗收仍保留。
 
 ## 先統一「原生」的意思

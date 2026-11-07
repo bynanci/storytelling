@@ -2,11 +2,11 @@
 
 A Rust foundation for local-first story planning and reviewed editor workflows.
 
-**Status: M0, finite M1-01/M1-02, bounded M2-01 audit and M1-03 host proof are accepted on main. M2-02 fixed-window planning is in review. No release is published.**
-The executable slices validate a bounded story-plan JSON document and map a finite
-OpenFilm composition export into a declared visual plan. They do not
-generate a story or drive an editor. `verify-source` separately hashes explicitly
-supplied bytes; the isolated test harness has proved one real FilmCraft profile.
+**Status: M0, finite M1-01/M1-02, bounded M2-01 audit and M1-03 host proof are accepted on main. M2-02 fixed-window planning is accepted. No release is published.**
+The executable slices validate declared plans, map finite OpenFilm snapshots and
+propose fixed-window StoryPlans from supplied constraints. The planner selects
+supplied windows; narrative interpretation and editor execution remain separate.
+`verify-source` separately hashes explicitly supplied bytes; the isolated test harness has proved one real FilmCraft profile.
 Future functionality is tracked separately in [TASKS](TASKS.md) and [ROADMAP](ROADMAP.md).
 
 [繁體中文](README.zh-TW.md) · [CLI guide](docs/CLI_GUIDE.md) · [Architecture](docs/ARCHITECTURE.md) · [SDLC](docs/SDLC.md) · [Contract](docs/CONTRACTS.md)
@@ -23,6 +23,7 @@ cargo run --locked -p storytelling-cli -- import-openfilm tests/fixtures/openfil
 cargo run --locked -p storytelling-cli -- export-otio tests/fixtures/openfilm/finite-v1/still.json --metadata-only-locks > finite.otio
 
 cargo run --locked -p storytelling-cli -- audit-brief tests/fixtures/brief-v1/valid.json
+cargo run --locked -p storytelling-cli -- plan-story tests/fixtures/planner-v1/valid.json
 ```
 
 The first validation exits 0 with `ok: true`. The invalid fixture exits 1 with
@@ -93,8 +94,9 @@ planned external editor. Storytelling will own story intent, evidence references
 reviewed proposals and execution receipts; the host owns its edited timeline.
 No second live timeline, codec stack or full nonlinear editor is planned.
 
-Finite OTIO and the bounded synthetic FilmCraft proof are accepted. M2-02 fixed-window planning is in review; full solver shadow and reviewed production execution and
-broader host/media acceptance remain later gates. See [migration](docs/MIGRATION.md)
+Finite OTIO, the bounded synthetic FilmCraft proof and M2-02 fixed-window planning
+are accepted. Full solver shadow, reviewed production execution and broader
+host/media acceptance remain later gates. See [migration](docs/MIGRATION.md)
 and [risks](docs/RISKS.md).
 
 ## Develop and review

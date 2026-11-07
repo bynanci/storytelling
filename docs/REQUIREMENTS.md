@@ -1,7 +1,7 @@
 # Requirements and verification traceability
 
-M0, finite M1-01/M1-02, bounded M2-01 audit and M1-H01–H04's M1-03 source/host
-proof are accepted on main. Broader host, full-planner and human acceptance remain
+M0, finite M1-01/M1-02, bounded M2-01 audit, M2-02 fixed-window planning and
+M1-H01–H04's M1-03 source/host proof are accepted on main. Broader host, full-planner and human acceptance remain
 separate. Tests are checked by the repository guard.
 
 | ID | Requirement | Implementation owner | Acceptance test |
@@ -99,8 +99,8 @@ See [25 fps contract](migration/FILMCRAFT_25_V1.md),
 
 ## M2-02 fixed-window planning requirements
 
-The bounded candidate is implemented and locally verified; accepted lifecycle and
-same-head hosted gates remain pending. See [profile](migration/FIXED_WINDOW_PLANNER_V1.md),
+The bounded M2-P01–P06 scope is accepted via merged PR #22 after all 10 same-head
+checks; issue #20 is fully checked and closed completed. See [profile](migration/FIXED_WINDOW_PLANNER_V1.md),
 [record](migration/records/M2-02.md), [work index](migration/m2-02-work-index.json)
 and [component inventory](migration/provenance-m2-02.json).
 

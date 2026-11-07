@@ -8,6 +8,7 @@
 - Historical first target inspection：main `551ff38920e2085e1d53a7ba777c9680678e9725`；M0 PR #1 head `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`，當次仍 Draft。保留這些調查身份，不當作目前完成狀態。
 - M1-02 階段的歷史 target main 快照：`9a5232e97435f543238b90a2006460f319f4e651`；當時 M0 PR #1、map PR #2、有限 M1-01 PR #7 與有限 M1-02 OTIO PR #16 均已合併。
 - 本輪延續工作的 accepted base：`c03d4c8ede33563451b8ad590a6df982d0d8b82a`。另有 M2-01 bounded audit PR #17 與 M1-03 PR #18 已接受；後者只證明 supplied-buffer SHA-256 與一個合成 Linux／25 fps／CPU 預覽往返案例，不涵蓋檔案 TOCTOU、一般宿主 executor 或人工剪輯驗收。使用方式見 [CLI guide](../CLI_GUIDE.md)，最新狀態見 [TASKS](../../TASKS.md)。
+- 後續 M2-02 固定視窗規劃已在 PR #22 接受並合併於 `895257b1bb9993d70cae3f1267f5f6fa3de91905`；[契約](FIXED_WINDOW_PLANNER_V1.md) 與 [record](records/M2-02.md) 說明精確固定區間、硬限制與 declared ranks 的有界範圍。完整 solver／M2-03 shadow 仍須另行凍結驗收。
 - 重新 fetch 兩個 repo 與 open PR，核對 [TASKS](../../TASKS.md) 及相依交付；上述 SHA 是查核快照，不取代每次移植前的即時查核，也不要求重做已合併的有限切片。
 - 固定來源已含 coverage PR #121、frame time PR #125；PR #126 在最初規劃快照是 Draft，後續已確認 feature head `b4aba4c4bb70b8cb03edd54342f1b94cec649245` 合併於 observed main `5f737a6c8f35dce48e213370ff27900962c9304c`，而不在其 parent、固定 baseline `7add4762fe8174d76f43b863375ea39b73121e76`。M1-01/M1-02 保留 baseline 與 animation 拒絕政策，見 [drift record](records/M1-01.md) 與 [finite OTIO contract](FINITE_OTIO_V1.md)；新任務仍須按實際查詢更新來源狀態。
 - 對每個選定source path執行git存在檢查，讀取實作與實際呼叫者/測試。表列位置是定位入口，不是對整個檔案的正確性保證。
