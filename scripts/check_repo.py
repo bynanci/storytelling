@@ -49,37 +49,52 @@ for sample in [ROOT / "examples/minimal-plan.json", ROOT / "tests/fixtures/inval
 def provenance_manifest_covers_every_imported_file():
     """Admit source-informed files only with fixed origin and retained notices."""
     found = []
-    record = json.loads((ROOT / "docs/migration/provenance-m1-01.json").read_text())
-    if record["source"]["commit"] != "7add4762fe8174d76f43b863375ea39b73121e76":
-        found.append("M1 source changed without a profile/evidence refresh")
-    origins = {entry["path"] for entry in record["source"]["files"]}
-    for entry in record["source"]["files"]:
-        if not re.fullmatch(r"[a-f0-9]{40}", entry["blob"]):
-            found.append("M1 source blob identity missing")
-    admitted = [entry["path"] for entry in record["files"]]
-    if len(admitted) != len(set(admitted)):
-        found.append("Duplicate M1 provenance target")
-    for entry in record["files"]:
-        if (not (ROOT / entry["path"]).is_file() or entry["license"] != "Apache-2.0"
-                or not entry["source_paths"] or not set(entry["source_paths"]) <= origins):
-            found.append(f"Incomplete M1 provenance: {entry['path']}")
+    admitted = set()
+    records = sorted((ROOT / "docs/migration").glob("provenance-*.json"))
+    if not records:
+        found.append("Transfer provenance manifests missing")
+    for manifest_path in records:
+        record = json.loads(manifest_path.read_text())
+        if record["source"]["commit"] != "7add4762fe8174d76f43b863375ea39b73121e76":
+            found.append(f"Source changed without profile/evidence refresh: {manifest_path.name}")
+        origins = {entry["path"] for entry in record["source"]["files"]}
+        for entry in record["source"]["files"]:
+            if not re.fullmatch(r"[a-f0-9]{40}", entry["blob"]):
+                found.append(f"Source blob identity missing: {manifest_path.name}")
+        targets = [entry["path"] for entry in record["files"]]
+        if len(targets) != len(set(targets)):
+            found.append(f"Duplicate provenance target: {manifest_path.name}")
+        admitted.update(targets)
+        for entry in record["files"]:
+            if (not (ROOT / entry["path"]).is_file() or entry["license"] != "Apache-2.0"
+                    or not entry["source_paths"] or not set(entry["source_paths"]) <= origins):
+                found.append(f"Incomplete provenance: {entry['path']}")
+        for notice in record["notices"]:
+            value = (ROOT / notice["path"]).read_bytes()
+            digest = hashlib.sha1(f"blob {len(value)}\0".encode() + value).hexdigest()
+            if digest != notice["blob"]:
+                found.append(f"Retained upstream notice changed: {notice['path']}")
     actual = set()
-    for directory in [ROOT / "crates", ROOT / "tests/fixtures/openfilm/finite-v1",
-                      ROOT / "tests/oracles/openfilm-finite-v1"]:
-        for path in directory.rglob("*"):
-            if not path.is_file() or {"__pycache__", "node_modules"}.intersection(path.parts):
-                continue
-            if directory == ROOT / "crates":
-                if path.suffix != ".rs" or "SPDX-License-Identifier: Apache-2.0" not in path.read_text():
-                    continue
+    ignored_parts = {"__pycache__", "node_modules", ".venv"}
+    for path in (ROOT / "crates").rglob("*.rs"):
+        if "SPDX-License-Identifier: Apache-2.0" in path.read_text():
             actual.add(str(path.relative_to(ROOT)))
-    if actual != set(admitted):
-        found.append(f"M1 provenance coverage differs: {sorted(actual ^ set(admitted))}")
-    for notice in record["notices"]:
-        value = (ROOT / notice["path"]).read_bytes()
-        digest = hashlib.sha1(f"blob {len(value)}\0".encode() + value).hexdigest()
-        if digest != notice["blob"]:
-            found.append(f"Retained upstream notice changed: {notice['path']}")
+    # JSON has no comments. A directory README declares the component license
+    # without changing exact fixture bytes; original M0 MIT fixtures stay separate.
+    directories = []
+    for parent in [ROOT / "tests/fixtures", ROOT / "tests/oracles"]:
+        for readme in parent.rglob("README.md"):
+            if ignored_parts.intersection(readme.parts):
+                continue
+            if "SPDX-License-Identifier: Apache-2.0" in readme.read_text():
+                directories.append(readme.parent)
+    for directory in directories:
+        for path in directory.rglob("*"):
+            if not path.is_file() or ignored_parts.intersection(path.parts):
+                continue
+            actual.add(str(path.relative_to(ROOT)))
+    if actual != admitted:
+        found.append(f"Transfer provenance coverage differs: {sorted(actual ^ admitted)}")
     for member in ("storytelling-core", "storytelling-engine"):
         package = tomllib.loads((ROOT / "crates" / member / "Cargo.toml").read_text())
         if package["package"].get("license") != "MIT AND Apache-2.0":
@@ -91,21 +106,25 @@ def provenance_manifest_covers_every_imported_file():
 
 
 errors.extend(provenance_manifest_covers_every_imported_file())
-work = json.loads((ROOT / "docs/migration/m1-01-work-index.json").read_text())
-task_ids = [task["id"] for task in work["tasks"]]
-if len(task_ids) != len(set(task_ids)):
-    errors.append("Duplicate M1 work ID")
-completed = set()
-for task in work["tasks"]:
-    if not set(task["depends_on"]) <= completed:
-        errors.append(f"Missing, cyclic or unordered M1 dependency: {task['id']}")
-    completed.add(task["id"])
-for requirement in work["requirements"]:
-    if requirement["id"] not in requirements:
-        errors.append(f"M1 requirement is undocumented: {requirement['id']}")
-    for name in requirement["tests"]:
-        if f"fn {name}(" not in tests:
-            errors.append(f"Missing M1 traceable test: {name}")
+for work_path in sorted((ROOT / "docs/migration").glob("*-work-index.json")):
+    work = json.loads(work_path.read_text())
+    task_ids = [task["id"] for task in work["tasks"]]
+    if len(task_ids) != len(set(task_ids)):
+        errors.append(f"Duplicate work ID: {work_path.name}")
+    completed = set()
+    for task in work["tasks"]:
+        if not set(task["depends_on"]) <= completed:
+            errors.append(f"Missing, cyclic or unordered task dependency: {task['id']}")
+        completed.add(task["id"])
+    for requirement in work["requirements"]:
+        if requirement["id"] not in requirements:
+            errors.append(f"Requirement is undocumented: {requirement['id']}")
+        for name in requirement.get("tests", []):
+            if f"fn {name}(" not in tests:
+                errors.append(f"Missing traceable test: {name}")
+        for path in requirement.get("verification_paths", []):
+            if not (ROOT / path).is_file():
+                errors.append(f"Missing verification artifact: {path}")
 if errors:
     print("\n".join(errors), file=sys.stderr)
     raise SystemExit(1)

@@ -2,7 +2,7 @@
 
 A Rust foundation for local-first story planning and reviewed editor workflows.
 
-**Status: M0 validator + M1-01 finite import accepted and merged on main; no editor integration release.**
+**Status: M0/M1-01 accepted on main; M1-02 finite OTIO candidate; no editor integration release.**
 The executable slices validate a bounded story-plan JSON document and map a finite
 OpenFilm composition export into a declared visual plan. They do not
 read media, verify file hashes, generate a story, render a film or drive FilmCraft.
@@ -19,6 +19,7 @@ cargo test --workspace --locked
 cargo run --locked -p storytelling-cli -- validate examples/minimal-plan.json
 cargo run --locked -p storytelling-cli -- validate tests/fixtures/invalid-source-range.json
 cargo run --locked -p storytelling-cli -- import-openfilm tests/fixtures/openfilm/finite-v1/still.json
+cargo run --locked -p storytelling-cli -- export-otio tests/fixtures/openfilm/finite-v1/still.json --metadata-only-locks > finite.otio
 ```
 
 The first validation exits 0 with `ok: true`. The invalid fixture exits 1 with
@@ -35,6 +36,14 @@ limits. It preserves raw source facts and exact numeric lexemes. Success has
 reject without a plan. See the [finite-v1 contract](docs/migration/FINITE_V1.md),
 [comparison/evidence](docs/migration/records/M1-01.md) and
 [work tracking](docs/migration/M1-01-WORK-QUEUE.md).
+
+`export-otio` writes actual OTIO Timeline JSON to stdout. Videos require
+`--picture-only`; true source locks require `--metadata-only-locks`. These choices
+permit limited serialization, not editor execution approval. Exact common content
+ticks remain distinct from project FPS; unsafe native values reject. Original
+snapshot text and structured limitations travel in owner metadata. See the
+[finite OTIO contract](docs/migration/FINITE_OTIO_V1.md). Official parser support
+does not certify an editor or actual media.
 
 ## Current architecture
 

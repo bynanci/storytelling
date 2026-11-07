@@ -1,0 +1,154 @@
+{
+  "OTIO_SCHEMA": "Timeline.1",
+  "name": "ntsc-story",
+  "metadata": {
+    "openfilm": {
+      "compositionId": "ntsc-story",
+      "storyId": "synthetic-story",
+      "settings": {
+        "width": 1920,
+        "height": 1080,
+        "frameRate": 29.97002997002997,
+        "timebase": {
+          "version": 1,
+          "rateNumerator": 30000,
+          "rateDenominator": 1001,
+          "dropFrame": false
+        }
+      },
+      "composition": {
+        "id": "ntsc-story",
+        "storyId": "synthetic-story",
+        "duration": 5,
+        "tracks": [
+          {
+            "id": "ntsc-story-pictures",
+            "type": "video",
+            "clips": [
+              {
+                "id": "ntsc-occurrence",
+                "assetId": "still-asset",
+                "beatId": "opening",
+                "sourceIn": 0,
+                "sourceOut": 5,
+                "timelineStart": 0,
+                "timelineDuration": 5
+              }
+            ]
+          }
+        ]
+      },
+      "compatibility": {
+        "format": "otio",
+        "realNleVerified": false,
+        "advancedEdits": "metadata-only",
+        "warnings": [],
+        "metadataOnlyEdits": []
+      }
+    }
+  },
+  "global_start_time": {
+    "OTIO_SCHEMA": "RationalTime.1",
+    "value": 0,
+    "rate": 29.97002997002997
+  },
+  "tracks": {
+    "OTIO_SCHEMA": "Stack.1",
+    "name": "tracks",
+    "metadata": {},
+    "children": [
+      {
+        "OTIO_SCHEMA": "Track.1",
+        "name": "ntsc-story-pictures",
+        "kind": "Video",
+        "children": [
+          {
+            "OTIO_SCHEMA": "Clip.1",
+            "name": "Synthetic still-asset",
+            "metadata": {
+              "openfilm": {
+                "clipId": "ntsc-occurrence",
+                "assetId": "still-asset",
+                "beatId": "opening",
+                "clip": {
+                  "id": "ntsc-occurrence",
+                  "assetId": "still-asset",
+                  "beatId": "opening",
+                  "sourceIn": 0,
+                  "sourceOut": 5,
+                  "timelineStart": 0,
+                  "timelineDuration": 5
+                },
+                "nativeCutDuration": 5,
+                "advancedEdits": "metadata-only"
+              }
+            },
+            "effects": [],
+            "markers": [],
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 0,
+                "rate": 29.97002997002997
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 149.85014985014985,
+                "rate": 29.97002997002997
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "Synthetic still-asset",
+              "target_url": "file:///synthetic/oracle/still-asset.jpg",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 29.97002997002997
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 149.85014985014985,
+                  "rate": 29.97002997002997
+                }
+              },
+              "metadata": {
+                "openfilm": {
+                  "assetId": "still-asset",
+                  "mediaType": "image",
+                  "contentHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              }
+            }
+          }
+        ],
+        "effects": [],
+        "markers": [],
+        "metadata": {
+          "openfilm": {
+            "trackType": "video"
+          }
+        },
+        "source_range": null
+      }
+    ],
+    "effects": [],
+    "markers": [],
+    "source_range": {
+      "OTIO_SCHEMA": "TimeRange.1",
+      "start_time": {
+        "OTIO_SCHEMA": "RationalTime.1",
+        "value": 0,
+        "rate": 29.97002997002997
+      },
+      "duration": {
+        "OTIO_SCHEMA": "RationalTime.1",
+        "value": 149.85014985014985,
+        "rate": 29.97002997002997
+      }
+    }
+  }
+}

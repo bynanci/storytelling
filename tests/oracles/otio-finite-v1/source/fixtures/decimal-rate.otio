@@ -1,0 +1,148 @@
+{
+  "OTIO_SCHEMA": "Timeline.1",
+  "name": "decimal-story",
+  "metadata": {
+    "openfilm": {
+      "compositionId": "decimal-story",
+      "storyId": "synthetic-story",
+      "settings": {
+        "width": 1920,
+        "height": 1080,
+        "frameRate": 29.97
+      },
+      "composition": {
+        "id": "decimal-story",
+        "storyId": "synthetic-story",
+        "duration": 5,
+        "tracks": [
+          {
+            "id": "decimal-story-pictures",
+            "type": "video",
+            "clips": [
+              {
+                "id": "decimal-occurrence",
+                "assetId": "still-asset",
+                "beatId": "opening",
+                "sourceIn": 0,
+                "sourceOut": 5,
+                "timelineStart": 0,
+                "timelineDuration": 5
+              }
+            ]
+          }
+        ]
+      },
+      "compatibility": {
+        "format": "otio",
+        "realNleVerified": false,
+        "advancedEdits": "metadata-only",
+        "warnings": [],
+        "metadataOnlyEdits": []
+      }
+    }
+  },
+  "global_start_time": {
+    "OTIO_SCHEMA": "RationalTime.1",
+    "value": 0,
+    "rate": 29.97
+  },
+  "tracks": {
+    "OTIO_SCHEMA": "Stack.1",
+    "name": "tracks",
+    "metadata": {},
+    "children": [
+      {
+        "OTIO_SCHEMA": "Track.1",
+        "name": "decimal-story-pictures",
+        "kind": "Video",
+        "children": [
+          {
+            "OTIO_SCHEMA": "Clip.1",
+            "name": "Synthetic still-asset",
+            "metadata": {
+              "openfilm": {
+                "clipId": "decimal-occurrence",
+                "assetId": "still-asset",
+                "beatId": "opening",
+                "clip": {
+                  "id": "decimal-occurrence",
+                  "assetId": "still-asset",
+                  "beatId": "opening",
+                  "sourceIn": 0,
+                  "sourceOut": 5,
+                  "timelineStart": 0,
+                  "timelineDuration": 5
+                },
+                "nativeCutDuration": 5,
+                "advancedEdits": "metadata-only"
+              }
+            },
+            "effects": [],
+            "markers": [],
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 0,
+                "rate": 29.97
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 149.85,
+                "rate": 29.97
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "Synthetic still-asset",
+              "target_url": "file:///synthetic/oracle/still-asset.jpg",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 29.97
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 149.85,
+                  "rate": 29.97
+                }
+              },
+              "metadata": {
+                "openfilm": {
+                  "assetId": "still-asset",
+                  "mediaType": "image",
+                  "contentHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                }
+              }
+            }
+          }
+        ],
+        "effects": [],
+        "markers": [],
+        "metadata": {
+          "openfilm": {
+            "trackType": "video"
+          }
+        },
+        "source_range": null
+      }
+    ],
+    "effects": [],
+    "markers": [],
+    "source_range": {
+      "OTIO_SCHEMA": "TimeRange.1",
+      "start_time": {
+        "OTIO_SCHEMA": "RationalTime.1",
+        "value": 0,
+        "rate": 29.97
+      },
+      "duration": {
+        "OTIO_SCHEMA": "RationalTime.1",
+        "value": 149.85,
+        "rate": 29.97
+      }
+    }
+  }
+}

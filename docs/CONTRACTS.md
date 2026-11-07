@@ -1,5 +1,8 @@
 # M0 contracts
 
+The M1-02 `export-otio` command emits a native OTIO document under its own
+[finite OTIO contract](migration/FINITE_OTIO_V1.md), with explicit loss choices.
+
 The M1-01 `import-openfilm <FILE|->` command uses the separate
 [finite-v1 contract](migration/FINITE_V1.md). Its returned `plan` still obeys
 this M0 contract and input size cap; its visual mapping is not executable.

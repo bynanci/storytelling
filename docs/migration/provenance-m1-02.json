@@ -1,0 +1,391 @@
+{
+  "schema_version": 1,
+  "task": "M1-02",
+  "source": {
+    "repository": "bynanci/open-film",
+    "commit": "7add4762fe8174d76f43b863375ea39b73121e76",
+    "license": "Apache-2.0",
+    "files": [
+      {
+        "path": "packages/exporters/src/index.ts",
+        "blob": "ebc6e8cb8945c3bd26bb5b1fdbb65689b2f560ae"
+      },
+      {
+        "path": "packages/exporters/src/handoff.ts",
+        "blob": "debc8308b472372bd60870a6ec9e6d7d15189c66"
+      },
+      {
+        "path": "packages/application/src/nle-handoff.ts",
+        "blob": "7af8931a969e4eb13abe92b3db0b6b859c494e1c"
+      },
+      {
+        "path": "packages/core/src/timebase.ts",
+        "blob": "46b46b9c618a4d24c260f0e93d58166f83c18af8"
+      },
+      {
+        "path": "packages/core/src/models.ts",
+        "blob": "58dbe93f132577842b7971e0d8aad61aff1d78c6"
+      }
+    ]
+  },
+  "approval": {
+    "authority": "maintainer in task conversation",
+    "date": "2026-11-07",
+    "policy": "Inherited approved source-informed Apache component, per-file SPDX/provenance/notices; original MIT unchanged"
+  },
+  "files": [
+    {
+      "path": "crates/storytelling-core/src/compiled_plan.rs",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "crates/storytelling-engine/src/otio.rs",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "crates/storytelling-engine/src/otio/clock.rs",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "crates/storytelling-engine/tests/otio.rs",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/otio.rs",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/README.md",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/requirements-linux-py312.txt",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/source/README.md",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/source/fixtures/decimal-rate.otio",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/source/fixtures/explicit-ntsc.otio",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/source/fixtures/one-still.otio",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/source/fixtures/repeated-source.otio",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/source/fixtures/unsupported-scale.otio",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/source/fixtures/video-trim.otio",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/source/producer-inputs/decimal-rate.json",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/source/producer-inputs/explicit-ntsc.json",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/source/producer-inputs/one-still.json",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/source/producer-inputs/repeated-source.json",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/source/producer-inputs/unsupported-scale.json",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/source/producer-inputs/video-trim.json",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/source/run-source.mts",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/source/source-evidence.json",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/verify.py",
+      "license": "Apache-2.0",
+      "relationship": "new source-informed Rust implementation or independently authored synthetic regression/oracle; exact source-generated outputs retain applicable Apache notices",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Finite visual-only common integer content clocks, explicit audio/lock choices; no source/host runtime; official parser test-only"
+    },
+    {
+      "path": "tests/oracles/otio-finite-v1/.gitignore",
+      "license": "Apache-2.0",
+      "relationship": "independently authored test-only official OTIO oracle or source-generated synthetic data; dependency licenses remain their own",
+      "source_paths": [
+        "packages/exporters/src/index.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/core/src/timebase.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "bounded exact-content-clock/source semantic validation; no media/host calls"
+    }
+  ],
+  "notices": [
+    {
+      "path": "LICENSES/Apache-2.0.txt",
+      "source_path": "LICENSE",
+      "blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "relationship": "retained verbatim upstream license"
+    },
+    {
+      "path": "NOTICE.openfilm",
+      "source_path": "NOTICE",
+      "blob": "cfb73de041af0e9e3e73bd8eb5cfb6135b676095",
+      "relationship": "retained verbatim upstream notice"
+    }
+  ],
+  "original_mit_blob": "f317799529d13f4d9301daa2dba63dfea559ff69",
+  "independent_mit_changes": [
+    "crates/storytelling-core/src/lib.rs",
+    "crates/storytelling-engine/src/lib.rs",
+    "crates/storytelling-cli/src/main.rs",
+    "scripts/check_repo.py",
+    ".github/workflows/ci.yml"
+  ],
+  "production_dependencies_added": [],
+  "source_tests_copied": false,
+  "media_copied": false,
+  "test_only_dependencies": [
+    {
+      "name": "OpenTimelineIO",
+      "version": "0.18.1",
+      "platform": "CPython3.12Linuxx86_64",
+      "wheel_sha256": "8f0924f818b496cf771612d489082bdb83f42b6bd97ed06589dd2e2c086742c9",
+      "license": "Apache-2.0",
+      "scope": "official parser oracle only; native extensions remain test-only"
+    },
+    {
+      "name": "actions/setup-python",
+      "ref": "v6",
+      "commit": "ece7cb06caefa5fff74198d8649806c4678c61a1",
+      "scope": "CI-only Python3.12 environment, official action pinned by full commit; no production dependency"
+    }
+  ]
+}

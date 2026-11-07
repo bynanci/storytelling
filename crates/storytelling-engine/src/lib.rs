@@ -9,6 +9,10 @@ use storytelling_core::wire::{PlanDocumentV1, TimeValue};
 mod openfilm_snapshot;
 pub use openfilm_snapshot::{ImportedPlanV1, import_openfilm_snapshot};
 
+mod otio;
+pub use otio::{CompiledOtioV1, export_openfilm_otio};
+pub use storytelling_core::compiled_plan::{OtioLossChoicesV1, OtioProfileV1};
+
 pub const MAX_INPUT_BYTES: usize = 1_048_576;
 pub const MAX_ASSETS: usize = 1024;
 pub const MAX_SHOTS: usize = 4096;

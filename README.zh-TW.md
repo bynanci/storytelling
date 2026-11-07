@@ -13,6 +13,7 @@ cargo test --workspace --locked
 cargo run --locked -p storytelling-cli -- validate examples/minimal-plan.json
 cargo run --locked -p storytelling-cli -- validate tests/fixtures/invalid-source-range.json
 cargo run --locked -p storytelling-cli -- import-openfilm tests/fixtures/openfilm/finite-v1/still.json
+cargo run --locked -p storytelling-cli -- export-otio tests/fixtures/openfilm/finite-v1/still.json --metadata-only-locks > finite.otio
 ```
 
 合法範例回傳 `ok: true`，退出碼 0；超出來源範圍的範例回傳
@@ -24,6 +25,11 @@ occurrence IDs 與數字 lexemes。成功仍為 `declared-visual-mapping-only`�
 video 帶 `audio.not_mapped / blocks-host-handoff`，明確 audio/effects/animation 拒絕且無 plan。
 見 [finite-v1 契約](docs/migration/FINITE_V1.md)、[比對／證據](docs/migration/records/M1-01.md)
 與 [工作任務](docs/migration/M1-01-WORK-QUEUE.md)。
+
+`export-otio` 的 stdout 可直接存成 OTIO Timeline JSON。video 需 `--picture-only`，
+來源有鎖定需 `--metadata-only-locks`；這些是格式損失選擇，不是宿主執行批准。
+使用精確且有界的 content ticks，原始 FPS 另存 metadata；無法精確表示時明確拒絕。
+見 [finite OTIO 契約](docs/migration/FINITE_OTIO_V1.md)。官方 parser 通過仍不等於實際宿主驗證。
 
 ## 三層基礎架構
 

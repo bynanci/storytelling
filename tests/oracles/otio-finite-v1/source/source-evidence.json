@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "scope": "pinned-source-otio-export-only",
+  "sourceRepository": "bynanci/open-film",
+  "sourceHead": "7add4762fe8174d76f43b863375ea39b73121e76",
+  "sourceFiles": [
+    {
+      "path": "packages/exporters/src/index.ts",
+      "blob": "ebc6e8cb8945c3bd26bb5b1fdbb65689b2f560ae"
+    },
+    {
+      "path": "packages/exporters/src/handoff.ts",
+      "blob": "debc8308b472372bd60870a6ec9e6d7d15189c66"
+    },
+    {
+      "path": "packages/core/src/models.ts",
+      "blob": "58dbe93f132577842b7971e0d8aad61aff1d78c6"
+    },
+    {
+      "path": "packages/core/src/validation.ts",
+      "blob": "ba60475333f60fd9f48c77df2e34f0e7cac8536f"
+    },
+    {
+      "path": "packages/core/src/timebase.ts",
+      "blob": "46b46b9c618a4d24c260f0e93d58166f83c18af8"
+    },
+    {
+      "path": "packages/application/src/nle-handoff.ts",
+      "blob": "7af8931a969e4eb13abe92b3db0b6b859c494e1c"
+    }
+  ],
+  "sourceTrackedFilesUnchanged": true,
+  "producerOptions": {
+    "preserveConfiguredFrameRate": true
+  },
+  "nodeVersion": "v24.22.1",
+  "nodeBinarySha256": "e32e2d16081cf644f88392934288086e7662529d0d43277c34f7aad2207cfafb",
+  "nodeDistribution": "https://nodejs.org/dist/v24.22.1/node-v24.22.1-linux-x64.tar.xz",
+  "nodeDistributionSha256": "6c172a9ab6718f7b801fb5a7bd486af2ee5e32758086a04b84fcce2aa77095e6",
+  "tsxVersion": "4.23.15",
+  "dependencyLockSha256": "6697b505f83230df597922faea37a88535458366ca554a7cb52ec3cdc3b9e535",
+  "runnerSha256": "6e5e158c4f28fa7d8f42de29fea2216b86b7ae757b8752a5e51c103d5b53ba13",
+  "command": [
+    "/workspace/toolchains/node-v24.22.1-linux-x64/bin/node",
+    "--import",
+    "/workspace/storytelling/tests/oracles/openfilm-finite-v1/node_modules/tsx/dist/loader.mjs",
+    "/workspace/scratch/m1-02-source-oracle/run-source.mts",
+    "/workspace/open-film-oracle",
+    "/workspace/scratch/m1-02-source-oracle",
+    "/workspace/storytelling/tests/oracles/openfilm-finite-v1/producer-inputs"
+  ],
+  "tsconfig": "source-checkout/tsconfig.json via TSX_TSCONFIG_PATH",
+  "cases": [
+    {
+      "id": "one-still",
+      "producerInputId": "one-still",
+      "inputSha256": "9e15dcaca2ff38973090c14d4de426787ad531051c0fbd6fe54cf11389a1eb35",
+      "exportedSha256": "ef0e410228c40555c05f1e306cc6ff83736e38c81c3eeb37dde2028051d27c8f",
+      "exportedBytes": 3984,
+      "outputFile": "fixtures/one-still.otio",
+      "inputBytesUnchanged": true,
+      "suppliedValuesUnchanged": true,
+      "globalStartRate": 30,
+      "originalSettings": {
+        "width": 1920,
+        "height": 1080,
+        "frameRate": 30
+      },
+      "observedClips": [
+        {
+          "clipId": "still-occurrence",
+          "assetId": "still-asset",
+          "targetUrl": "file:///synthetic/oracle/still-asset.jpg",
+          "sourceInSeconds": 0,
+          "durationSeconds": 5,
+          "availableSeconds": 5,
+          "nativeValue": 150,
+          "nativeRate": 30
+        }
+      ],
+      "compatibility": {
+        "format": "otio",
+        "realNleVerified": false,
+        "advancedEdits": "metadata-only",
+        "warnings": [],
+        "metadataOnlyEdits": []
+      },
+      "sourceWarnings": [],
+      "expectedRustClassification": "preserved-seconds-identity-uri-with-intentional-content-clock-delta"
+    },
+    {
+      "id": "video-trim",
+      "producerInputId": "video-trim",
+      "inputSha256": "a39ca831f98b4a49b3d22002406a7aa54880e1eb1daa773c4f6a3899e694fa73",
+      "exportedSha256": "ae52a9965f52ec120a736aea299108e119d9879714c3348377861410cdd4dcb2",
+      "exportedBytes": 3975,
+      "outputFile": "fixtures/video-trim.otio",
+      "inputBytesUnchanged": true,
+      "suppliedValuesUnchanged": true,
+      "globalStartRate": 30,
+      "originalSettings": {
+        "width": 1920,
+        "height": 1080,
+        "frameRate": 30
+      },
+      "observedClips": [
+        {
+          "clipId": "trim-occurrence",
+          "assetId": "video-asset",
+          "targetUrl": "file:///synthetic/oracle/video-asset.mp4",
+          "sourceInSeconds": 2,
+          "durationSeconds": 3,
+          "availableSeconds": 12,
+          "nativeValue": 90,
+          "nativeRate": 30
+        }
+      ],
+      "compatibility": {
+        "format": "otio",
+        "realNleVerified": false,
+        "advancedEdits": "metadata-only",
+        "warnings": [],
+        "metadataOnlyEdits": []
+      },
+      "sourceWarnings": [],
+      "expectedRustClassification": "preserved-seconds-identity-uri-with-intentional-content-clock-delta"
+    },
+    {
+      "id": "repeated-source",
+      "producerInputId": "repeated-source",
+      "inputSha256": "7c850db6beab8bf8698eba6bb80cbcdb34b599f2ea0dc43ed448582a55a832c3",
+      "exportedSha256": "d88532dfdec57b9b2a9d82d005c4a5439a4da4594a269224e01d8eda9a25d848",
+      "exportedBytes": 6364,
+      "outputFile": "fixtures/repeated-source.otio",
+      "inputBytesUnchanged": true,
+      "suppliedValuesUnchanged": true,
+      "globalStartRate": 30,
+      "originalSettings": {
+        "width": 1920,
+        "height": 1080,
+        "frameRate": 30
+      },
+      "observedClips": [
+        {
+          "clipId": "first-occurrence",
+          "assetId": "video-asset",
+          "targetUrl": "file:///synthetic/oracle/video-asset.mp4",
+          "sourceInSeconds": 1,
+          "durationSeconds": 2,
+          "availableSeconds": 12,
+          "nativeValue": 60,
+          "nativeRate": 30
+        },
+        {
+          "clipId": "second-occurrence",
+          "assetId": "video-asset",
+          "targetUrl": "file:///synthetic/oracle/video-asset.mp4",
+          "sourceInSeconds": 6,
+          "durationSeconds": 3,
+          "availableSeconds": 12,
+          "nativeValue": 90,
+          "nativeRate": 30
+        }
+      ],
+      "compatibility": {
+        "format": "otio",
+        "realNleVerified": false,
+        "advancedEdits": "metadata-only",
+        "warnings": [],
+        "metadataOnlyEdits": []
+      },
+      "sourceWarnings": [],
+      "expectedRustClassification": "preserved-seconds-identity-uri-with-intentional-content-clock-delta"
+    },
+    {
+      "id": "decimal-rate",
+      "producerInputId": "decimal-rate",
+      "inputSha256": "ccbd05572c681122b1f2894f53ad330b3300b710af0f3f3b7ddfba8f12c6ac21",
+      "exportedSha256": "48d3f8c299ccd8b78b9fc2da537e4a44098123511fff9528f07e48d4a10a9c29",
+      "exportedBytes": 4033,
+      "outputFile": "fixtures/decimal-rate.otio",
+      "inputBytesUnchanged": true,
+      "suppliedValuesUnchanged": true,
+      "globalStartRate": 29.97,
+      "originalSettings": {
+        "width": 1920,
+        "height": 1080,
+        "frameRate": 29.97
+      },
+      "observedClips": [
+        {
+          "clipId": "decimal-occurrence",
+          "assetId": "still-asset",
+          "targetUrl": "file:///synthetic/oracle/still-asset.jpg",
+          "sourceInSeconds": 0,
+          "durationSeconds": 5,
+          "availableSeconds": 5,
+          "nativeValue": 149.85,
+          "nativeRate": 29.97
+        }
+      ],
+      "compatibility": {
+        "format": "otio",
+        "realNleVerified": false,
+        "advancedEdits": "metadata-only",
+        "warnings": [],
+        "metadataOnlyEdits": []
+      },
+      "sourceWarnings": [],
+      "expectedRustClassification": "preserved-seconds-identity-uri-with-intentional-content-clock-delta"
+    },
+    {
+      "id": "explicit-ntsc",
+      "producerInputId": "explicit-ntsc",
+      "inputSha256": "7a57af3213921faff4ed3dbbecb2b1c03d8efa0029a3d42419ba9e054ab7311f",
+      "exportedSha256": "00dadf9c8124e00fb4c5a9665f4517df6ade52e656582562c87a6e9bbeee5be8",
+      "exportedBytes": 4296,
+      "outputFile": "fixtures/explicit-ntsc.otio",
+      "inputBytesUnchanged": true,
+      "suppliedValuesUnchanged": true,
+      "globalStartRate": 29.97002997002997,
+      "originalSettings": {
+        "width": 1920,
+        "height": 1080,
+        "frameRate": 29.97002997002997,
+        "timebase": {
+          "version": 1,
+          "rateNumerator": 30000,
+          "rateDenominator": 1001,
+          "dropFrame": false
+        }
+      },
+      "observedClips": [
+        {
+          "clipId": "ntsc-occurrence",
+          "assetId": "still-asset",
+          "targetUrl": "file:///synthetic/oracle/still-asset.jpg",
+          "sourceInSeconds": 0,
+          "durationSeconds": 5,
+          "availableSeconds": 5,
+          "nativeValue": 149.85014985014985,
+          "nativeRate": 29.97002997002997
+        }
+      ],
+      "compatibility": {
+        "format": "otio",
+        "realNleVerified": false,
+        "advancedEdits": "metadata-only",
+        "warnings": [],
+        "metadataOnlyEdits": []
+      },
+      "sourceWarnings": [],
+      "expectedRustClassification": "preserved-seconds-identity-uri-with-intentional-content-clock-delta"
+    },
+    {
+      "id": "unsupported-scale",
+      "producerInputId": "video-trim",
+      "inputSha256": "8d0e8a4fbd3c00d2ff7a171693941b305191085f390243840641c7545cfbc0e8",
+      "exportedSha256": "e87a402d844bce15783fb3612f75bddf64fc170ac31c3d7805696fe82a6c1948",
+      "exportedBytes": 4510,
+      "outputFile": "fixtures/unsupported-scale.otio",
+      "inputBytesUnchanged": true,
+      "suppliedValuesUnchanged": true,
+      "globalStartRate": 30,
+      "originalSettings": {
+        "width": 1920,
+        "height": 1080,
+        "frameRate": 30
+      },
+      "observedClips": [
+        {
+          "clipId": "trim-occurrence",
+          "assetId": "video-asset",
+          "targetUrl": "file:///synthetic/oracle/video-asset.mp4",
+          "sourceInSeconds": 2,
+          "durationSeconds": 3,
+          "availableSeconds": 12,
+          "nativeValue": 90,
+          "nativeRate": 30
+        }
+      ],
+      "compatibility": {
+        "format": "otio",
+        "realNleVerified": false,
+        "advancedEdits": "metadata-only",
+        "warnings": [
+          "Clip trim-occurrence: scale are METADATA ONLY and must be recreated manually in the NLE. Exact original source/timeline ranges and effects are preserved in metadata.openfilm.clip and the full composition metadata."
+        ],
+        "metadataOnlyEdits": [
+          {
+            "clipId": "trim-occurrence",
+            "features": [
+              "scale"
+            ]
+          }
+        ]
+      },
+      "sourceWarnings": [
+        "Clip trim-occurrence: scale are METADATA ONLY and must be recreated manually in the NLE. Exact original source/timeline ranges and effects are preserved in metadata.openfilm.clip and the full composition metadata."
+      ],
+      "expectedRustClassification": "unsupported"
+    }
+  ],
+  "allPassed": true,
+  "classification": {
+    "preserved": "ordered occurrence IDs, source IDs, source/timeline durations and source URIs for five finite plain cases",
+    "intentionalDelta": "planned Rust writer uses a bounded common integer content tick clock and global_start_time:null; exact project FPS stays owner metadata, not a host FPS claim",
+    "unsupported": "source OTIO preserves scale as metadata-only with empty native effects; finite Rust profile must reject it"
+  },
+  "notClaimed": [
+    "Rust implementation or differential results",
+    "official OTIO parser run",
+    "full upstream test suite",
+    "actual source-media verification",
+    "audio preservation",
+    "host compatibility",
+    "FilmCraft or Resolve acceptance",
+    "execution approval"
+  ]
+}

@@ -56,7 +56,7 @@ permission changes, nor replace real-media/host or human editorial acceptance.
 | ID | Priority/state | Scope | Depends on | Definition of done / PR boundary |
 | --- | --- | --- | --- | --- |
 | M1-01 | P1 / accepted | Finite composition-export visual mapper and read-only CLI | M0 and transfer planning accepted; PR #7 merged on main | M1-I01–I06; exact clocks, occurrence IDs, original facts and explicit limitations; no live Catalog writes |
-| M1-02 | P1 / proposed | Limited OTIO writer and loss report | M1-01 | Official parser oracle, deterministic source mapping, unknown effects fail closed |
+| M1-02 | P1 / review | Native finite OTIO writer, explicit picture-only/lock choices and direct CLI artifact | Accepted M1-01 | M1-O01–O06; official 0.18.1 parser oracle, exact content ticks, explicit loss; actual host proof remains M1-03 |
 | M1-03 | P1 / proposed | FilmCraft isolated-project roundtrip proof | M1-02 | Pinned host import/render/readback/save/reopen; original project unchanged |
 | M2-01 | P1 / proposed | StoryBrief, hard constraints vs preferences and typed conflicts | M1 profile | Infeasible constraints explained; manual choices never silently dropped |
 | M2-02 | P1 / proposed | Deterministic bounded selection and shot planner | M2-01 | Same frozen evidence/version produces same plan; semantic reasons cite evidence |
@@ -91,6 +91,26 @@ See [work queue](docs/migration/M1-01-WORK-QUEUE.md),
 Implemented output is declared visual metadata with `executable:false`, not an
 OTIO/FilmCraft handoff. OF-03 canonical digest is deferred; original ledger entries
 remain whole-capability plans rather than being marked complete from this subset.
+
+## M1-02 finite OTIO work
+
+[Tracking #12](https://github.com/bynanci/storytelling/issues/12):
+P1 source/profile/oracle → P2 pure serializer/loss report → P3 usable CLI and CI.
+See [contract](docs/migration/FINITE_OTIO_V1.md),
+[source/evidence record](docs/migration/records/M1-02.md) and
+[machine index](docs/migration/m1-02-work-index.json).
+
+- [x] Independent G2 review and actual pinned TS/official parser exploration.
+- [x] Actual 25 engine RED → GREEN and 9 new CLI failures → 10 CLI GREEN.
+- [x] Common integer clock, exact native bounds, repeated identity and original snapshot text.
+- [x] Explicit picture-only/metadata-only-lock choices; no approval or host verification claim.
+- [x] Official parse/write/read and source conformance: eight cases passed locally.
+- [ ] Final same-head hosted gates, task PR merge and accepted-status reconciliation.
+
+FilmCraft v0.18.0 Linux headless CLI is now provisioned with verified official
+artifact/binary identities. M1-03 is pending actual isolated 25fps host proof,
+not blocked merely by an unavailable executable. Audio/full-editor parity and
+human editorial/real-user/release gates remain separate.
 
 ## Not in the current backlog
 
