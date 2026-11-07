@@ -282,9 +282,7 @@ pub fn bind_approval_identity_v1(
 }
 
 /// Validate an untrusted wire identity before comparing it with a locally built token.
-pub fn validate_approval_identity_v1(
-    identity: &ApprovalIdentityV1,
-) -> Result<(), ValidationError> {
+pub fn validate_approval_identity_v1(identity: &ApprovalIdentityV1) -> Result<(), ValidationError> {
     if identity.schema_version != 1 {
         return Err(error("approval.unsupported_version", "$.schema_version"));
     }
@@ -347,10 +345,7 @@ pub fn verify_approval_json(
         ));
     }
     if signed.payload.key_id != expected_key.key_id {
-        return Err(error(
-            "approval.approver_key_mismatch",
-            "$.payload.key_id",
-        ));
+        return Err(error("approval.approver_key_mismatch", "$.payload.key_id"));
     }
 
     let public_key = decode_hex::<32>(

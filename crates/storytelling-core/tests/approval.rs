@@ -4,9 +4,8 @@ use storytelling_core::ValidationError;
 use storytelling_core::approval::{
     AcceptedLossV1, ApprovalIdentityV1, ApprovalPayloadV1, BoundApprovalIdentityV1,
     ExpectedApproverKeyV1, HostBindingV1, HostObservationStateV1, LossDispositionV1,
-    SignedApprovalV1, VerifiedApprovalV1, VerifiedSourceBufferV1,
-    bind_approval_identity_v1, canonical_approval_signing_bytes,
-    validate_approval_identity_v1, verify_approval_json,
+    SignedApprovalV1, VerifiedApprovalV1, VerifiedSourceBufferV1, bind_approval_identity_v1,
+    canonical_approval_signing_bytes, validate_approval_identity_v1, verify_approval_json,
 };
 use storytelling_core::source_evidence::verify_supplied_sha256;
 
