@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "task": "M1-01",
+  "tracking_issue": "https://github.com/bynanci/storytelling/issues/6",
+  "base": "95291d31c47601181070bf89a28b1a182ddf6ed8",
+  "source": "7add4762fe8174d76f43b863375ea39b73121e76",
+  "observed_source_main": "5f737a6c8f35dce48e213370ff27900962c9304c",
+  "policy_approval": "2026-11-07 task conversation; separate Apache component, original MIT unchanged",
+  "tasks": [
+    {
+      "id": "M1-01/P1",
+      "url": "https://github.com/bynanci/storytelling/issues/3",
+      "title": "M1-01/P1：凍結 finite-v1 composition import 契約與來源證據",
+      "state": "review",
+      "depends_on": [],
+      "acceptance": "Maintainer review pending; actual validation evidence in records/M1-01.md and Draft PR",
+      "number": 3
+    },
+    {
+      "id": "M1-01/P2",
+      "url": "https://github.com/bynanci/storytelling/issues/4",
+      "title": "M1-01/P2：實作純 Rust snapshot mapper 與精確時間／loss report",
+      "state": "review",
+      "depends_on": [
+        "M1-01/P1"
+      ],
+      "acceptance": "Maintainer review pending; actual validation evidence in records/M1-01.md and Draft PR",
+      "number": 4
+    },
+    {
+      "id": "M1-01/P3",
+      "url": "https://github.com/bynanci/storytelling/issues/5",
+      "title": "M1-01/P3：提供 import-openfilm CLI、驗證與單一 Draft PR",
+      "state": "review",
+      "depends_on": [
+        "M1-01/P2"
+      ],
+      "acceptance": "Maintainer review pending; actual validation evidence in records/M1-01.md and Draft PR",
+      "number": 5
+    }
+  ],
+  "manual_gates": [
+    {
+      "id": "M0-G01",
+      "owner": "maintainer",
+      "state": "pending",
+      "unblock": "Explicit acceptance of PR #1; current work is on a dependent branch",
+      "evidence": "https://github.com/bynanci/storytelling/pull/1"
+    },
+    {
+      "id": "PORT-G01",
+      "owner": "maintainer",
+      "state": "pending",
+      "unblock": "Accept transfer planning PR #2; component policy separately approved",
+      "evidence": "https://github.com/bynanci/storytelling/pull/2"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1-I01",
+      "tests": [
+        "repeat_source_preserves_occurrence_order_and_uses_maximum_still_hold",
+        "locks_selection_story_and_beats_remain_original_declarations"
+      ]
+    },
+    {
+      "id": "M1-I02",
+      "tests": [
+        "exact_decimal_and_exponent_continuity_does_not_infer_ntsc",
+        "seconds_above_f64_integer_precision_remain_exact_and_u64_max_is_allowed",
+        "explicit_timebase_is_separate_from_its_agreeing_decimal_declaration"
+      ]
+    },
+    {
+      "id": "M1-I03",
+      "tests": [
+        "rejects_oversized_input_and_bounded_metadata_depth_strings_keys_and_values",
+        "compact_source_whose_mapped_plan_exceeds_m0_input_limit_rejects",
+        "optional_fields_reject_explicit_null_instead_of_erasing_declarations"
+      ]
+    },
+    {
+      "id": "M1-I04",
+      "tests": [
+        "unknown_effect_and_current_animation_reject_with_one_explicit_loss",
+        "embedded_audio_rejects_and_missing_or_empty_probe_still_blocks_audio_handoff"
+      ]
+    },
+    {
+      "id": "M1-I05",
+      "tests": [
+        "source_snapshot_preserves_large_numbers_lexemes_and_input_bytes",
+        "source_snapshot_minification_preserves_escaped_strings_whitespace_and_unicode"
+      ]
+    },
+    {
+      "id": "M1-I06",
+      "tests": [
+        "imports_file_without_modifying_input_or_directory_and_returns_an_m0_plan",
+        "imports_stdin_with_the_same_result_as_file_input",
+        "treats_missing_video_media_and_instruction_text_as_opaque_declarations"
+      ]
+    }
+  ]
+}

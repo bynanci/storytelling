@@ -1,6 +1,6 @@
 # OpenFilm finite snapshot import: implementation plan
 
-> For agentic workers: use task-by-task execution and self/independent review as available; never invent a subagent review. These checkboxes are future implementation steps.
+> For agentic workers: use task-by-task execution and self/independent review as available; never invent a subagent review. Checkboxes describe this finite candidate; exact-head hosted evidence belongs in the PR.
 
 **Goal:** Add one read-only, native Rust mapping from a frozen OpenFilm snapshot to a bounded Storytelling handoff document, with explicit losses and no media/host mutation.
 
@@ -22,16 +22,18 @@ Source baseline is OpenFilm `7add4762fe8174d76f43b863375ea39b73121e76`; target f
 - Unknown future schemas and oversized nested metadata must fail before expensive traversal.
 - Reading input must not migrate/write the original project or dereference a supplied path/URL.
 
+Current frozen contract and evidence: [finite-v1](../../migration/FINITE_V1.md), [M1-01 record](../../migration/records/M1-01.md).
+
 ## Task P1: freeze a finite import profile (M1-01 / OF-01–04 / GAP-01–03/16)
 
 **Read:** actual `packages/core/src/models.ts`, `validation.ts`, `migration.ts`, `packages/exporters/src/index.ts` and matching tests on pinned OpenFilm; M0 `wire.rs`, `time.rs`, engine `lib.rs`, `tests/validation.rs`.
 
 **Create:** `docs/migration/records/M1-01.md`, `tests/fixtures/openfilm/finite-v1/*.json` only when legally admitted synthetic inputs are prepared.
 
-- [ ] Record actual upstream schema and whether the supported input is project export, composition export or a deliberately defined intermediate snapshot. Do not guess the live project/Catalog shape.
-- [ ] Specify exact allowed fields and bounds, immutable input/output meaning, decimal conversion policy, explicit unsupported result, schema version and error codes; reuse existing M0 limits unless an approved requirement changes them.
-- [ ] Use minimal fixtures for one still, one video trim, repeat-source occurrences, future schema, fractional rate, unknown effect and oversize input. Record expected results and source/license provenance.
-- [ ] Review/freeze the profile before implementation. If unresolved source rights or wire shape remains, stop the import implementation and mark that dependency blocked.
+- [x] Record actual upstream schema and whether the supported input is project export, composition export or a deliberately defined intermediate snapshot. Do not guess the live project/Catalog shape.
+- [x] Specify exact allowed fields and bounds, immutable input/output meaning, decimal conversion policy, explicit unsupported result, schema version and error codes; reuse existing M0 limits unless an approved requirement changes them.
+- [x] Use minimal fixtures for one still, one video trim, repeat-source occurrences, future schema, fractional rate, unknown effect and oversize input. Record expected results and source/license provenance.
+- [x] Review/freeze the profile before implementation. If unresolved source rights or wire shape remains, stop the import implementation and mark that dependency blocked.
 
 ## Task P2: implement the pure mapper
 
@@ -39,19 +41,19 @@ Source baseline is OpenFilm `7add4762fe8174d76f43b863375ea39b73121e76`; target f
 
 **Interface proposal to freeze in P1:** `import_openfilm_snapshot(bytes: &[u8], profile: &ImportProfileV1) -> Result<ImportedPlanV1, ImportError>`. The result contains a validated finite plan, preserved source-clock facts, and a structured loss report. No source bytes are opened. If the function instead returns a rejected profile, it must not return an apparently accepted executable plan.
 
-- [ ] Write RED tests: repeated occurrences retain unique IDs; a trim is within declared bounds; input bytes unchanged; unknown schema rejected; unsupported effect surfaced; over-budget JSON rejected; rates remain distinct.
-- [ ] Run `cargo test --locked -p storytelling-engine --test openfilm_snapshot`; record actual failure, not a missing toolchain.
-- [ ] Implement bounded DTO validation and pure mapping; no filesystem/network/host/database dependencies. Wire new modules through actual crate exports.
-- [ ] Run the selected tests and full workspace tests in debug/release. Compare to the frozen source fixture semantics, explicitly triage deviations.
+- [x] Write RED tests: repeated occurrences retain unique IDs; a trim is within declared bounds; input bytes unchanged; unknown schema rejected; unsupported effect surfaced; over-budget JSON rejected; rates remain distinct.
+- [x] Run `cargo test --locked -p storytelling-engine --test openfilm_snapshot`; record actual failure, not a missing toolchain.
+- [x] Implement bounded DTO validation and pure mapping; no filesystem/network/host/database dependencies. Wire new modules through actual crate exports.
+- [x] Run the selected tests and full workspace tests in debug/release. Compare to the frozen source fixture semantics, explicitly triage deviations.
 
 ## Task P3: expose one usable CLI slice and verify
 
 **Modify:** actual CLI `src/main.rs`, CLI integration tests, contracts/requirements, TASKS and the comparison record. Exact command name and exit codes are frozen in P1; preserve existing `validate` behavior.
 
-- [ ] Write RED for the new importer via file/stdin, JSON-only stdout, stable error/exit, no input changes and no attempt to open external media paths.
-- [ ] Implement only the composition-root I/O; delegate all mapping and validation to the pure engine.
-- [ ] Run format/clippy/tests/release/doc/repository guards and the CLI in an environment without Node/Python/FFmpeg.
-- [ ] Commit one coherent draft PR with actual source/target SHA, requirements-to-tests, evidence, unsupported cases and rollback. Do not claim OTIO/FilmCraft support yet.
+- [x] Write RED for the new importer via file/stdin, JSON-only stdout, stable error/exit, no input changes and no attempt to open external media paths.
+- [x] Implement only the composition-root I/O; delegate all mapping and validation to the pure engine.
+- [x] Run format/clippy/tests/release/doc/repository guards and production CLI with Node/Python/FFmpeg unavailable on PATH; source oracle tools remain test-only.
+Submission: one coherent Draft PR records actual source/target SHA, requirements-to-tests, evidence, unsupported cases and rollback. Consult its metadata for publication and exact-head CI status; OTIO/FilmCraft support is not claimed.
 
 ## Following slices, not part of M1-01
 

@@ -6,6 +6,9 @@ use storytelling_core::ValidationError;
 use storytelling_core::time::RationalTime;
 use storytelling_core::wire::{PlanDocumentV1, TimeValue};
 
+mod openfilm_snapshot;
+pub use openfilm_snapshot::{ImportedPlanV1, import_openfilm_snapshot};
+
 pub const MAX_INPUT_BYTES: usize = 1_048_576;
 pub const MAX_ASSETS: usize = 1024;
 pub const MAX_SHOTS: usize = 4096;

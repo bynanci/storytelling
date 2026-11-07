@@ -1,0 +1,12 @@
+{
+  "name": "storytelling-openfilm-finite-oracle",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": "=24.22.1"
+  },
+  "dependencies": {
+    "tsx": "4.23.15"
+  }
+}

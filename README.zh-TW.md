@@ -2,8 +2,8 @@
 
 以 Rust 建立的本機優先 Story SDK／可審閱剪輯工作流核心。
 
-**本次交付是 M0 基礎驗證切片，不是已完成的 FilmCraft 整合，也不是另一套 NLE。**
-目前可讀取有大小限制的故事計畫 JSON，驗證欄位、ID、宣告來源、精確時間及範圍，回傳結構化結果。
+**目前為 M0 validator 與 M1-01 finite importer 候選，FilmCraft 整合尚未完成。**
+可驗證有界故事計畫 JSON，並將有限 OpenFilm composition export 唯讀映射為 declared visual plan。
 不會讀取來源媒體、驗證真實檔案 SHA、產生故事、渲染或操作外部剪輯器。
 
 ## 直接執行
@@ -12,22 +12,30 @@
 cargo test --workspace --locked
 cargo run --locked -p storytelling-cli -- validate examples/minimal-plan.json
 cargo run --locked -p storytelling-cli -- validate tests/fixtures/invalid-source-range.json
+cargo run --locked -p storytelling-cli -- import-openfilm tests/fixtures/openfilm/finite-v1/still.json
 ```
 
 合法範例回傳 `ok: true`，退出碼 0；超出來源範圍的範例回傳
 `plan.source_out_of_bounds`，退出碼 1。標準輸入使用 `validate -`。
-所有成功報告明示 `declared-metadata-only`，不能把宣告格式合法當作來源內容已驗證。
+validate 成功報告明示 `declared-metadata-only`，不能把宣告格式合法當作來源內容已驗證。
+
+`import-openfilm -` 可讀 stdin；支援單一連續影像軌的 still/video cuts，保留原始事實、
+occurrence IDs 與數字 lexemes。成功仍為 `declared-visual-mapping-only`、`executable:false`；
+video 帶 `audio.not_mapped / blocks-host-handoff`，明確 audio/effects/animation 拒絕且無 plan。
+見 [finite-v1 契約](docs/migration/FINITE_V1.md)、[比對／證據](docs/migration/records/M1-01.md)
+與 [工作任務](docs/migration/M1-01-WORK-QUEUE.md)。
 
 ## 三層基礎架構
 
 | 層 | 已實作責任 | 不負責 |
 | --- | --- | --- |
 | core | 嚴格 wire DTO、canonical rational time、錯誤契約 | I/O、資料庫、宿主與模型 |
-| engine | 有界來源引用與時間範圍驗證 | 渲染、檔案修改與 Agent 批准 |
+| engine | 有界驗證、finite snapshot mapper、精確時間與 loss | 渲染、檔案修改與 Agent 批准 |
 | CLI | 本機檔案／stdin 讀取、JSON、退出碼 | 另建 planner 或繞過驗證 |
 
 使用 Rust 2024／resolver 3；固定 1.85.0 作為可重現 bootstrap 基線，並非宣稱最新版。
-保留現有 MIT LICENSE，不直接搬入 OpenFilm 的 Apache 程式碼。
+原 MIT LICENSE 不變；來源衍生 importer／regression component 採 Apache-2.0，
+保留逐檔 [provenance](docs/migration/provenance-m1-01.json) 與適用 LICENSE／NOTICE。
 
 ## SDLC 導覽
 
@@ -39,5 +47,5 @@ cargo run --locked -p storytelling-cli -- validate tests/fixtures/invalid-source
 - [MIGRATION](docs/MIGRATION.md)：從 OpenFilm 抽離、shadow 比較與漸進替換。
 - [驗證紀錄](docs/validation/m0-foundation.md)：RED、最終 CI 與人工 gate 的區別。
 
-下一個應執行的工作是 M1-01「有限交接契約與 OpenFilm fixture」，再做 OTIO／FilmCraft
+下一個工作是 M1-02 有限 OTIO，再做 M1-03 FilmCraft
 真實 roundtrip；不先增加空 crate、全面 Rust 改寫、雙向同步或通用 Agent 平台。

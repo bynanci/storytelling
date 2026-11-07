@@ -12,7 +12,7 @@ publish = false
 
 [workspace.dependencies]
 serde = { version = "=1.0.228", features = ["derive"] }
-serde_json = "=1.0.145"
+serde_json = { version = "=1.0.145", features = ["raw_value"] }
 storytelling-core = { path = "crates/storytelling-core" }
 storytelling-engine = { path = "crates/storytelling-engine" }
 

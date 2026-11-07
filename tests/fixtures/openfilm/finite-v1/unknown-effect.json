@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "composition": {
+    "id": "finite-effect",
+    "storyId": "synthetic-story",
+    "duration": 5,
+    "tracks": [{
+      "id": "picture-track",
+      "type": "video",
+      "clips": [{
+        "id": "effect-occurrence",
+        "assetId": "synthetic-photo",
+        "timelineStart": 0,
+        "timelineDuration": 5,
+        "effects": [{"type": "synthetic-unknown-effect", "amount": 0}]
+      }]
+    }]
+  },
+  "assets": [{
+    "id": "synthetic-photo",
+    "uri": "synthetic://finite/effect.jpg",
+    "mediaType": "image",
+    "name": "Synthetic unsupported effect",
+    "contentHash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "tags": [],
+    "state": {},
+    "metadata": {}
+  }],
+  "settings": {"width": 1920, "height": 1080, "frameRate": 30}
+}

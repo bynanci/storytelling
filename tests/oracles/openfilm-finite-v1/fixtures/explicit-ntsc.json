@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0.0",
+  "composition": {
+    "id": "ntsc-story",
+    "storyId": "synthetic-story",
+    "duration": 5,
+    "tracks": [
+      {
+        "id": "ntsc-story-pictures",
+        "type": "video",
+        "clips": [
+          {
+            "id": "ntsc-occurrence",
+            "assetId": "still-asset",
+            "beatId": "opening",
+            "sourceIn": 0,
+            "sourceOut": 5,
+            "timelineStart": 0,
+            "timelineDuration": 5
+          }
+        ]
+      }
+    ]
+  },
+  "assets": [
+    {
+      "id": "still-asset",
+      "uri": "file:///synthetic/oracle/still-asset.jpg",
+      "mediaType": "image",
+      "name": "Synthetic still-asset",
+      "contentHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tags": [],
+      "state": {},
+      "metadata": {}
+    }
+  ],
+  "settings": {
+    "width": 1920,
+    "height": 1080,
+    "frameRate": 29.97002997002997,
+    "timebase": {
+      "version": 1,
+      "rateNumerator": 30000,
+      "rateDenominator": 1001,
+      "dropFrame": false
+    }
+  }
+}

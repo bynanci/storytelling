@@ -20,3 +20,25 @@ licenses remain their own and require review before binary distribution.
 Future imports must add a per-file inventory: origin repository, exact source SHA,
 path, license/notice, modification and test evidence. A Rust rewrite is not a reason
 to erase attribution. No license compatibility conclusion for future ports is made.
+
+## M1-01 finite import component
+
+The maintainer explicitly approved the source-derived component/SPDX/NOTICE policy
+in the 2026-11-07 task conversation. Original MIT LICENSE bytes remain unchanged.
+New source-informed importer contracts, Rust mapper, regression tests and synthetic
+fixtures are marked Apache-2.0; core/engine package metadata records
+`MIT AND Apache-2.0`. Existing integration files remain MIT. No maintainer DCO or
+cryptographic signature is asserted.
+
+The [per-file inventory](docs/migration/provenance-m1-01.json) records pinned
+OpenFilm repository/SHA/path/blob, target files, relationship and modifications.
+The original upstream [LICENSE](LICENSES/Apache-2.0.txt) and
+[NOTICE](NOTICE.openfilm) are retained verbatim, including historical and third-party
+attribution. Production mapping was newly written from inspected source contracts;
+no upstream implementation or test fixture was mechanically copied. Test-only
+oracle outputs use independently authored synthetic inputs. Their dependencies
+retain their own licenses; the lockfile is not a relicense of third-party packages.
+
+No private media, fonts, model weights or user project files were imported.
+All source hashes inside fixtures are fabricated declarations. Real media/host
+verification, binary distribution and downstream notice review remain separate gates.

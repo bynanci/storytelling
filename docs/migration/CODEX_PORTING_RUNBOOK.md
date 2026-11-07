@@ -7,7 +7,7 @@
 - Source baseline：bynanci/open-film@7add4762fe8174d76f43b863375ea39b73121e76。
 - Target main at inspection：551ff38920e2085e1d53a7ba777c9680678e9725；M0 PR #1 head：4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b，當次仍Draft。
 - 重新fetch兩個repo與open PR。若M0未合併，只有明確相依branch能使用它；不能對只有README的main假設三crate存在。
-- 來源main已含coverage PR #121、frame time PR #125；PR #126 visual keyframes仍Draft。新的main狀態只能由實際查詢更新。
+- 固定來源已含coverage PR #121、frame time PR #125；PR #126 在最初規劃快照是 Draft，2026-11-07 重查已 merged，main 為 `5f737a6c8f35dce48e213370ff27900962c9304c`。M1-01 保留原 pinned source，見 [drift record](records/M1-01.md)；新的狀態仍由實際查詢更新。
 - 對每個選定source path執行git存在檢查，讀取實作與實際呼叫者/測試。表列位置是定位入口，不是對整個檔案的正確性保證。
 
 ## 2. 一個任務的comparison record

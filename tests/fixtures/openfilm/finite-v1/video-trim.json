@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0.0",
+  "composition": {
+    "id": "finite-video",
+    "storyId": "synthetic-story",
+    "duration": 2.5,
+    "tracks": [{
+      "id": "picture-track",
+      "type": "video",
+      "clips": [{
+        "id": "video-occurrence",
+        "assetId": "synthetic-video",
+        "sourceIn": 0.1,
+        "sourceOut": 2.6,
+        "timelineStart": 0,
+        "timelineDuration": 2.5
+      }]
+    }]
+  },
+  "assets": [{
+    "id": "synthetic-video",
+    "uri": "synthetic://finite/video.mov",
+    "mediaType": "video",
+    "name": "Synthetic video",
+    "duration": 10,
+    "contentHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "tags": [],
+    "state": {},
+    "metadata": {"openfilm.ffprobe": {"streams": [{"codec_type": "video"}]}}
+  }],
+  "settings": {"width": 1920, "height": 1080, "frameRate": 30}
+}

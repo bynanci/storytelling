@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "1.0.0",
+  "composition": {
+    "id": "repeat-story",
+    "storyId": "synthetic-story",
+    "duration": 5,
+    "tracks": [
+      {
+        "id": "repeat-story-pictures",
+        "type": "video",
+        "clips": [
+          {
+            "id": "first-occurrence",
+            "assetId": "video-asset",
+            "beatId": "opening",
+            "sourceIn": 1,
+            "sourceOut": 3,
+            "timelineStart": 0,
+            "timelineDuration": 2
+          },
+          {
+            "id": "second-occurrence",
+            "assetId": "video-asset",
+            "beatId": "opening",
+            "sourceIn": 6,
+            "sourceOut": 9,
+            "timelineStart": 2,
+            "timelineDuration": 3
+          }
+        ]
+      }
+    ]
+  },
+  "assets": [
+    {
+      "id": "video-asset",
+      "uri": "file:///synthetic/oracle/video-asset.mp4",
+      "mediaType": "video",
+      "name": "Synthetic video-asset",
+      "duration": 12,
+      "contentHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "tags": [],
+      "state": {},
+      "metadata": {}
+    }
+  ],
+  "settings": {
+    "width": 1920,
+    "height": 1080,
+    "frameRate": 30
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "composition": {
+    "id": "finite-fractional",
+    "storyId": "synthetic-story",
+    "duration": 0.3,
+    "tracks": [{
+      "id": "picture-track",
+      "type": "video",
+      "clips": [
+        {"id": "decimal-first", "assetId": "synthetic-photo", "timelineStart": 0, "timelineDuration": 1e-1},
+        {"id": "decimal-second", "assetId": "synthetic-photo", "timelineStart": 0.10, "timelineDuration": 0.20}
+      ]
+    }]
+  },
+  "assets": [{
+    "id": "synthetic-photo",
+    "uri": "synthetic://finite/fractional.jpg",
+    "mediaType": "image",
+    "name": "Synthetic fractional hold",
+    "contentHash": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "tags": [],
+    "state": {},
+    "metadata": {"synthetic.integer": 9007199254740993, "synthetic.decimal": 0.1000, "synthetic.text": "合成"}
+  }],
+  "settings": {"width": 1920, "height": 1080, "frameRate": 29.97}
+}

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0.0",
+  "composition": {
+    "id": "finite-still",
+    "storyId": "synthetic-story",
+    "duration": 5,
+    "tracks": [{
+      "id": "picture-track",
+      "type": "video",
+      "locked": true,
+      "target": true,
+      "visible": true,
+      "muted": false,
+      "solo": false,
+      "clips": [{
+        "id": "still-occurrence",
+        "assetId": "synthetic-photo",
+        "beatId": "opening-beat",
+        "sourceIn": 0,
+        "sourceOut": 5,
+        "timelineStart": 0,
+        "timelineDuration": 5,
+        "locked": true
+      }]
+    }]
+  },
+  "assets": [{
+    "id": "synthetic-photo",
+    "uri": "synthetic://finite/photo.jpg",
+    "mediaType": "image",
+    "name": "Synthetic photo",
+    "duration": 0.5,
+    "contentHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "tags": ["synthetic", "selected"],
+    "state": {"favorite": true, "rejected": false, "locked": true},
+    "metadata": {"synthetic.note": "Still presentation hold; no media exists."}
+  }],
+  "settings": {"width": 1920, "height": 1080, "frameRate": 30}
+}
