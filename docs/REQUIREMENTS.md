@@ -83,10 +83,24 @@ membership/order/reference/conflict policy is compared. The brief schema,
 preferences and typed diagnostics are downstream design. A consistent audit
 checks declared rules; it does not prove composition feasibility or choose shots.
 
-## Next requirements: not yet implemented
 
-M1-R01: a finite host profile preserves supported shot order/source ranges through
-real FilmCraft import/save/reopen. M1-R02: every unsupported feature or quantization
+## M1-03 bounded source and FilmCraft proof
+
+See [25 fps contract](migration/FILMCRAFT_25_V1.md),
+[evidence record](migration/records/M1-03.md) and
+[work index](migration/m1-03-work-index.json).
+
+| ID | Requirement / boundary | Actual acceptance |
+| --- | --- | --- |
+| M1-H01 | Native SHA-256 of ≤16 MiB explicit bytes / GAP-04 and OF-29 subset | `accepts_independent_sha256_vectors_and_owns_verified_bytes`, `rejects_mismatched_and_noncanonical_expected_hashes`, `accepts_exact_buffer_budget_and_rejects_larger_before_hash_syntax` |
+| M1-H02 | Explicit file/stdin verification; metadata-only receipts; no project URI access | `accepts_explicit_source_bytes_with_metadata_only_receipt`, `rejects_bad_source_evidence_without_leaking_input`, `distinguishes_source_usage_and_io_errors`; compile-fail private/no-deserialize API examples |
+| M1-H03 | Actual pinned host 25 fps import, exact native ranges, default intrinsic effects and external ID mapping / M1-R01 subset | `tests/oracles/filmcraft-25-v1/run.py`, complete checked native baselines, `test_checks.py` semantic rejection tests |
+| M1-H04 | Actual CPU H.264 192×108 preview, 45 exact PTS, 20/5/20 colors, save/reopen/OTIO reimport and unchanged inputs | Same harness and committed `tests/oracles/filmcraft-25-v1/evidence.json`; source/hash/host identities are observed evidence, not approval |
+
+## Remaining breadth and future requirements
+
+M1-R01: the first bounded 25 fps picture-only profile now has actual proof through
+M1-H03/H04; other media/rates/features remain uncertified. M1-R02: every unsupported feature or quantization
 is reported before approval. M1-R03: host and source identities are verified by the
 adapter, with path-free portable provenance.
 

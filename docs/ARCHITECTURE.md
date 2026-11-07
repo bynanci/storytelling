@@ -11,7 +11,8 @@ CLI: local bytes / stdout / exit codes
     -> core: strict DTOs + rational source time + typed errors
 ```
 
-Core uses Serde only. Engine adds serde_json but has no filesystem, clocks, random
+Core uses Serde and the task-reviewed SHA2 software implementation for bounded
+caller-supplied buffers. Engine adds serde_json but has no filesystem, clocks, random
 state, database, networking or editor dependency. CLI owns I/O. `scripts/check_repo.py`
 checks direct dependency boundaries; review must also examine transitive dependencies
 and behavior. First-party unsafe is forbidden, not a claim about every dependency.
@@ -55,8 +56,10 @@ Future source/timeline/frame/sample wrappers must remain distinct; host quantiza
 must produce an explicit report. Decimal 29.97 is not silently 30000/1001.
 
 Asset identity and shot occurrence identity are distinct. Reusing one asset twice is
-valid. A SHA string is a declaration only; source byte verification is future adapter
-work. M0 accepts no paths, URLs, commands, model credentials or arbitrary extension
+valid. A SHA string is a declaration only. M1-03 separately verifies explicitly
+supplied bytes into a private owned immutable buffer, without proving later
+filesystem reads. Strong filesystem identity remains future adapter work.
+M0 accepts no paths, URLs, commands, model credentials or arbitrary extension
 fields inside the portable document.
 
 ## Future execution safety

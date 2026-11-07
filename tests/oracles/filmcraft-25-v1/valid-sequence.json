@@ -1,0 +1,325 @@
+{
+  "audio": [
+    {
+      "enabled": true,
+      "id": 8,
+      "items": [],
+      "label": null,
+      "locked": false,
+      "muted": false,
+      "name": "Audio 1",
+      "solo": false,
+      "syncLock": true,
+      "transitions": []
+    }
+  ],
+  "duration": 457228800000,
+  "durationFrames": 45,
+  "gapSelection": null,
+  "id": 1,
+  "in": null,
+  "markers": [],
+  "name": "filmcraft-25-proof",
+  "out": null,
+  "playhead": null,
+  "selection": [],
+  "settings": {
+    "audio_master": "Stereo",
+    "color": {
+      "auto_tone_map": true,
+      "wide_gamut": false,
+      "working": "Rec709"
+    },
+    "drop_frame": false,
+    "frame_rate": {
+      "den": 1,
+      "num": 25
+    },
+    "height": 1080,
+    "max_bit_depth": false,
+    "max_render_quality": false,
+    "par": [
+      1,
+      1
+    ],
+    "preset": "Custom 1920x1080 25",
+    "preview_codec": "ProRes 422",
+    "sample_rate": 48000,
+    "width": 1920,
+    "working_space": "Rec. 709"
+  },
+  "split": {
+    "audioIn": null,
+    "audioOut": null,
+    "videoIn": null,
+    "videoOut": null
+  },
+  "transitionSelection": [],
+  "video": [
+    {
+      "enabled": true,
+      "id": 4,
+      "items": [
+        {
+          "clip": 5,
+          "customLabelColor": null,
+          "duration": 203212800000,
+          "durationFrames": 20,
+          "effects": [
+            {
+              "effect": "motion",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "anchor": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 960.0, y: 540.0 })"
+                },
+                "anti_flicker": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "position": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 960.0, y: 540.0 })"
+                },
+                "rotation": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "scale": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                },
+                "scale_width": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                },
+                "uniform_scale": {
+                  "keyframes": 0,
+                  "value": "Bool(true)"
+                }
+              }
+            },
+            {
+              "effect": "opacity",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "blend": {
+                  "keyframes": 0,
+                  "value": "Choice(0)"
+                },
+                "opacity": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            },
+            {
+              "effect": "time_remap",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "speed": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 203212800000,
+          "endFrame": 20,
+          "gainDb": 0.0,
+          "item": 2,
+          "label": "Iris",
+          "link": null,
+          "maintainPitch": false,
+          "name": "reused-video",
+          "reverse": false,
+          "sourceIn": 10160640000,
+          "sourceOut": 213373440000,
+          "speed": 1.0,
+          "start": 0,
+          "startFrame": 0
+        },
+        {
+          "clip": 6,
+          "customLabelColor": null,
+          "duration": 50803200000,
+          "durationFrames": 5,
+          "effects": [
+            {
+              "effect": "motion",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "anchor": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 960.0, y: 540.0 })"
+                },
+                "anti_flicker": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "position": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 960.0, y: 540.0 })"
+                },
+                "rotation": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "scale": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                },
+                "scale_width": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                },
+                "uniform_scale": {
+                  "keyframes": 0,
+                  "value": "Bool(true)"
+                }
+              }
+            },
+            {
+              "effect": "opacity",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "blend": {
+                  "keyframes": 0,
+                  "value": "Choice(0)"
+                },
+                "opacity": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            },
+            {
+              "effect": "time_remap",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "speed": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 254016000000,
+          "endFrame": 25,
+          "gainDb": 0.0,
+          "item": 3,
+          "label": "Iris",
+          "link": null,
+          "maintainPitch": false,
+          "name": "blue-still",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 50803200000,
+          "speed": 1.0,
+          "start": 203212800000,
+          "startFrame": 20
+        },
+        {
+          "clip": 7,
+          "customLabelColor": null,
+          "duration": 203212800000,
+          "durationFrames": 20,
+          "effects": [
+            {
+              "effect": "motion",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "anchor": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 960.0, y: 540.0 })"
+                },
+                "anti_flicker": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "position": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 960.0, y: 540.0 })"
+                },
+                "rotation": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "scale": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                },
+                "scale_width": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                },
+                "uniform_scale": {
+                  "keyframes": 0,
+                  "value": "Bool(true)"
+                }
+              }
+            },
+            {
+              "effect": "opacity",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "blend": {
+                  "keyframes": 0,
+                  "value": "Choice(0)"
+                },
+                "opacity": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            },
+            {
+              "effect": "time_remap",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "speed": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 457228800000,
+          "endFrame": 45,
+          "gainDb": 0.0,
+          "item": 2,
+          "label": "Iris",
+          "link": null,
+          "maintainPitch": false,
+          "name": "reused-video",
+          "reverse": false,
+          "sourceIn": 254016000000,
+          "sourceOut": 457228800000,
+          "speed": 1.0,
+          "start": 254016000000,
+          "startFrame": 25
+        }
+      ],
+      "label": null,
+      "locked": false,
+      "muted": false,
+      "name": "picture",
+      "solo": false,
+      "syncLock": true,
+      "transitions": []
+    }
+  ]
+}

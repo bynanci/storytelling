@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "task": "M1-03",
+  "source": {
+    "repository": "bynanci/open-film",
+    "commit": "7add4762fe8174d76f43b863375ea39b73121e76",
+    "license": "Apache-2.0",
+    "files": [
+      {
+        "path": "packages/media/src/verified-source.ts",
+        "blob": "f7b8b33445fb2a14394d34544a5b97d6d01f267c"
+      },
+      {
+        "path": "packages/exporters/src/index.ts",
+        "blob": "ebc6e8cb8945c3bd26bb5b1fdbb65689b2f560ae"
+      },
+      {
+        "path": "packages/core/src/models.ts",
+        "blob": "58dbe93f132577842b7971e0d8aad61aff1d78c6"
+      }
+    ]
+  },
+  "approval": {
+    "authority": "maintainer in task conversation",
+    "date": "2026-11-07",
+    "policy": "original MIT LICENSE unchanged; source-derived component Apache-2.0/SPDX with per-file origin and applicable LICENSE/NOTICE"
+  },
+  "files": [
+    {
+      "path": "crates/storytelling-cli/tests/source_evidence.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded Rust supplied-buffer implementation or synthetic host-proof regression informed by pinned source contracts; no upstream implementation/tests/media copied",
+      "source_paths": [
+        "packages/media/src/verified-source.ts",
+        "packages/exporters/src/index.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Native provided-buffer scope only, not upstream filesystem snapshot identity/TOCTOU closure; actual external host25fps picture-only CPU proof, external source/native mapping, no product executor or approval"
+    },
+    {
+      "path": "crates/storytelling-core/src/source_evidence.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded Rust supplied-buffer implementation or synthetic host-proof regression informed by pinned source contracts; no upstream implementation/tests/media copied",
+      "source_paths": [
+        "packages/media/src/verified-source.ts",
+        "packages/exporters/src/index.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Native provided-buffer scope only, not upstream filesystem snapshot identity/TOCTOU closure; actual external host25fps picture-only CPU proof, external source/native mapping, no product executor or approval"
+    },
+    {
+      "path": "crates/storytelling-core/tests/source_evidence.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded Rust supplied-buffer implementation or synthetic host-proof regression informed by pinned source contracts; no upstream implementation/tests/media copied",
+      "source_paths": [
+        "packages/media/src/verified-source.ts",
+        "packages/exporters/src/index.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Native provided-buffer scope only, not upstream filesystem snapshot identity/TOCTOU closure; actual external host25fps picture-only CPU proof, external source/native mapping, no product executor or approval"
+    },
+    {
+      "path": "tests/oracles/filmcraft-25-v1/.gitignore",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded Rust supplied-buffer implementation or synthetic host-proof regression informed by pinned source contracts; no upstream implementation/tests/media copied",
+      "source_paths": [
+        "packages/media/src/verified-source.ts",
+        "packages/exporters/src/index.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Native provided-buffer scope only, not upstream filesystem snapshot identity/TOCTOU closure; actual external host25fps picture-only CPU proof, external source/native mapping, no product executor or approval"
+    },
+    {
+      "path": "tests/oracles/filmcraft-25-v1/README.md",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded Rust supplied-buffer implementation or synthetic host-proof regression informed by pinned source contracts; no upstream implementation/tests/media copied",
+      "source_paths": [
+        "packages/media/src/verified-source.ts",
+        "packages/exporters/src/index.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Native provided-buffer scope only, not upstream filesystem snapshot identity/TOCTOU closure; actual external host25fps picture-only CPU proof, external source/native mapping, no product executor or approval"
+    },
+    {
+      "path": "tests/oracles/filmcraft-25-v1/run.py",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded Rust supplied-buffer implementation or synthetic host-proof regression informed by pinned source contracts; no upstream implementation/tests/media copied",
+      "source_paths": [
+        "packages/media/src/verified-source.ts",
+        "packages/exporters/src/index.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Native provided-buffer scope only, not upstream filesystem snapshot identity/TOCTOU closure; actual external host25fps picture-only CPU proof, external source/native mapping, no product executor or approval"
+    },
+    {
+      "path": "tests/oracles/filmcraft-25-v1/test_checks.py",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded Rust supplied-buffer implementation or synthetic host-proof regression informed by pinned source contracts; no upstream implementation/tests/media copied",
+      "source_paths": [
+        "packages/media/src/verified-source.ts",
+        "packages/exporters/src/index.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Native provided-buffer scope only, not upstream filesystem snapshot identity/TOCTOU closure; actual external host25fps picture-only CPU proof, external source/native mapping, no product executor or approval"
+    },
+    {
+      "path": "tests/oracles/filmcraft-25-v1/valid-import.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded Rust supplied-buffer implementation or synthetic host-proof regression informed by pinned source contracts; no upstream implementation/tests/media copied",
+      "source_paths": [
+        "packages/media/src/verified-source.ts",
+        "packages/exporters/src/index.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Native provided-buffer scope only, not upstream filesystem snapshot identity/TOCTOU closure; actual external host25fps picture-only CPU proof, external source/native mapping, no product executor or approval"
+    },
+    {
+      "path": "tests/oracles/filmcraft-25-v1/valid-sequence.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded Rust supplied-buffer implementation or synthetic host-proof regression informed by pinned source contracts; no upstream implementation/tests/media copied",
+      "source_paths": [
+        "packages/media/src/verified-source.ts",
+        "packages/exporters/src/index.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Native provided-buffer scope only, not upstream filesystem snapshot identity/TOCTOU closure; actual external host25fps picture-only CPU proof, external source/native mapping, no product executor or approval"
+    },
+    {
+      "path": "tests/oracles/filmcraft-25-v1/evidence.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded Rust supplied-buffer implementation or synthetic host-proof regression informed by pinned source contracts; no upstream implementation/tests/media copied",
+      "source_paths": [
+        "packages/media/src/verified-source.ts",
+        "packages/exporters/src/index.ts",
+        "packages/core/src/models.ts"
+      ],
+      "modifications": "Native provided-buffer scope only, not upstream filesystem snapshot identity/TOCTOU closure; actual external host25fps picture-only CPU proof, external source/native mapping, no product executor or approval"
+    }
+  ],
+  "notices": [
+    {
+      "path": "LICENSES/Apache-2.0.txt",
+      "source_path": "LICENSE",
+      "blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "relationship": "verbatim upstream license"
+    },
+    {
+      "path": "NOTICE.openfilm",
+      "source_path": "NOTICE",
+      "blob": "cfb73de041af0e9e3e73bd8eb5cfb6135b676095",
+      "relationship": "verbatim upstream notice; historical/third-party attribution retained"
+    }
+  ],
+  "original_mit_blob": "f317799529d13f4d9301daa2dba63dfea559ff69",
+  "independent_mit_changes": [
+    "Cargo.toml",
+    "Cargo.lock",
+    "crates/storytelling-core/Cargo.toml",
+    "crates/storytelling-core/src/lib.rs",
+    "crates/storytelling-engine/src/lib.rs",
+    "crates/storytelling-cli/src/main.rs",
+    "scripts/check_repo.py",
+    ".github/workflows/ci.yml"
+  ],
+  "source_tests_copied": false,
+  "media_copied": false,
+  "external_host": {
+    "repository": "https://github.com/storytold/filmcraft",
+    "commit": "015d5b3ea37e1202a529e6245d3cc021c8c16ffd",
+    "license": "MIT OR Apache-2.0",
+    "relationship": "external official test-only binary; no SDK/source/binary vendored",
+    "files": [
+      {
+        "path": "apps/filmcraft-cli/src/main.rs",
+        "blob": "21db3089001343e46f8b738ad5fef5bfcac930df"
+      },
+      {
+        "path": "crates/interchange/src/otio.rs",
+        "blob": "88b75ad2ff67c4f68c6598121e9c8544ed78b1e6"
+      },
+      {
+        "path": "crates/engine/src/commands.rs",
+        "blob": "843576a6377eab9cf7c763ef49eaaf305f1a3f09"
+      },
+      {
+        "path": "LICENSE-APACHE",
+        "blob": "f433b1a53f5b830a205fd2df78e2b34974656c7b"
+      },
+      {
+        "path": "LICENSE-MIT",
+        "blob": "458ff62022ecffd3e32cf31895c96bd79e89875f"
+      }
+    ]
+  }
+}

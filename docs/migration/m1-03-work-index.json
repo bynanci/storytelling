@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "task": "M1-03",
+  "tracking_issue": "https://github.com/bynanci/storytelling/issues/15",
+  "base": "9a5232e97435f543238b90a2006460f319f4e651",
+  "source": "7add4762fe8174d76f43b863375ea39b73121e76",
+  "tasks": [
+    {
+      "id": "M1-03/P1",
+      "state": "verified",
+      "depends_on": [],
+      "acceptance": "G2 independent native scope/dependency review and native functional RED/GREEN"
+    },
+    {
+      "id": "M1-03/P2",
+      "state": "verified",
+      "depends_on": [
+        "M1-03/P1"
+      ],
+      "acceptance": "Actual isolated synthetic host25fps CPU proof; final candidate rerun required"
+    },
+    {
+      "id": "M1-03/P3",
+      "state": "review",
+      "depends_on": [
+        "M1-03/P2"
+      ],
+      "acceptance": "Final committed receipt, independent review and same-head hosted CI before merge"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M1-H01",
+      "tests": [
+        "accepts_independent_sha256_vectors_and_owns_verified_bytes",
+        "rejects_mismatched_and_noncanonical_expected_hashes",
+        "accepts_exact_buffer_budget_and_rejects_larger_before_hash_syntax"
+      ],
+      "verification_paths": []
+    },
+    {
+      "id": "M1-H02",
+      "tests": [
+        "accepts_explicit_source_bytes_with_metadata_only_receipt",
+        "rejects_bad_source_evidence_without_leaking_input",
+        "distinguishes_source_usage_and_io_errors"
+      ],
+      "verification_paths": []
+    },
+    {
+      "id": "M1-H03",
+      "tests": [],
+      "verification_paths": [
+        "tests/oracles/filmcraft-25-v1/run.py",
+        "tests/oracles/filmcraft-25-v1/test_checks.py",
+        "tests/oracles/filmcraft-25-v1/valid-sequence.json"
+      ]
+    },
+    {
+      "id": "M1-H04",
+      "tests": [],
+      "verification_paths": [
+        "tests/oracles/filmcraft-25-v1/evidence.json"
+      ]
+    }
+  ],
+  "not_completed": [
+    "audio",
+    "GUI/GPU",
+    "full-resolution export",
+    "real-user media/editorial acceptance",
+    "filesystem identity and TOCTOU closure",
+    "general host executor/approval",
+    "all 64 ports"
+  ],
+  "integration_base": "422190e27bc604bd71485f78279373992f99e68c"
+}

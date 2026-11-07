@@ -1,5 +1,6 @@
 //! Bounded, deterministic validation of declared story-plan metadata.
-//! This module performs no media verification, planning, or editor execution.
+//! Source evidence is a re-export of pure supplied-buffer verification;
+//! no filesystem, media probing, planning, or editor execution occurs here.
 use serde::Serialize;
 use std::collections::{BTreeMap, BTreeSet};
 use storytelling_core::ValidationError;
@@ -11,6 +12,9 @@ pub use brief::audit_story_brief;
 
 mod openfilm_snapshot;
 pub use openfilm_snapshot::{ImportedPlanV1, import_openfilm_snapshot};
+pub use storytelling_core::source_evidence::{
+    MAX_VERIFIED_BUFFER_BYTES, VerifiedBufferV1, verify_supplied_sha256,
+};
 
 mod otio;
 pub use otio::{CompiledOtioV1, export_openfilm_otio};

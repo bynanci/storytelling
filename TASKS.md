@@ -58,7 +58,7 @@ permission changes, nor replace real-media/host or human editorial acceptance.
 | --- | --- | --- | --- | --- |
 | M1-01 | P1 / accepted | Finite composition-export visual mapper and read-only CLI | M0 and transfer planning accepted; PR #7 merged on main | M1-I01–I06; exact clocks, occurrence IDs, original facts and explicit limitations; no live Catalog writes |
 | M1-02 | P1 / accepted | Native finite OTIO writer, explicit picture-only/lock choices and direct CLI artifact | Accepted M1-01 | M1-O01–O06; official 0.18.1 parser oracle, exact content ticks, explicit loss; actual host proof remains M1-03 |
-| M1-03 | P1 / proposed | FilmCraft isolated-project roundtrip proof | M1-02 | Pinned host import/render/readback/save/reopen; original project unchanged |
+| M1-03 | P1 / review | FilmCraft 25 fps picture-only isolated roundtrip and bounded native source-byte verification | M1-02 | M1-H01–H04; actual CPU encoded preview/import/save/reopen/OTIO readback; original project/source bytes unchanged |
 | M2-01 | P1 / review | Bounded StoryBrief hard constraints vs preferences and typed conflicts | M1 profile | M2-B01–B06; manual choices preserved, declared reference/membership/order contradictions explained; full planner/feasibility separate |
 | M2-02 | P1 / proposed | Deterministic bounded selection and shot planner | M2-01 | Same frozen evidence/version produces same plan; semantic reasons cite evidence |
 | M2-03 | P1 / proposed | Shadow compare selected TS planner behavior with Rust | M2-02 | Differences triaged as port bug, prior bug, unsupported or intentional change |
@@ -128,6 +128,25 @@ See the [frozen profile](docs/migration/STORY_BRIEF_V1.md),
 
 This audit produces no selected shots, timing feasibility or executable plan.
 M2-02 planner and M2-03 planner shadow comparison remain separate proposed work.
+
+## M1-03 bounded host proof work
+
+[Tracking #15](https://github.com/bynanci/storytelling/issues/15),
+[contract](docs/migration/FILMCRAFT_25_V1.md),
+[record](docs/migration/records/M1-03.md),
+[work index](docs/migration/m1-03-work-index.json).
+
+- [x] Independent G2 review of supplied-buffer trust boundary and exact SHA2 dependency.
+- [x] Native functional RED → GREEN: real SHA-256, immutable private owned buffers, explicit bounded CLI and metadata-only receipts.
+- [x] Actual FilmCraft v0.18.0 25 fps picture-only import and exact native range/identity readback.
+- [x] CPU H.264 192×108 preview: 45 frames, exact 1.8 s and PTS; decoded 20 red / 5 blue / 20 green.
+- [x] Native save/reopen, OTIO reimport, external source/native ID mapping and unchanged input/source hashes.
+- [ ] Final candidate receipt, independent review, same-head hosted gates and merge.
+
+Only this synthetic Linux headless CPU profile is proved. Audio, GUI/GPU,
+full-resolution export, real-user media, filesystem race closure and human
+editorial acceptance remain open; no production host executor or approval API
+is introduced.
 
 ## Not in the current backlog
 

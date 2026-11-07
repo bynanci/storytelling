@@ -10,6 +10,7 @@ description = "Pure story contracts and exact source-time primitives"
 
 [dependencies]
 serde.workspace = true
+sha2.workspace = true
 
 [lints]
 workspace = true

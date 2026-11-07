@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 errors = []
 manifest = tomllib.loads((ROOT / "Cargo.toml").read_text())
 expected = {
-    "storytelling-core": {"serde"},
+    "storytelling-core": {"serde", "sha2"},
     "storytelling-engine": {"serde", "serde_json", "storytelling-core"},
     "storytelling-cli": {"serde_json", "storytelling-engine"},
 }
@@ -23,8 +23,13 @@ for member in members:
     name = data["package"]["name"]
     if set(data.get("dependencies", {})) != expected.get(name, set()):
         errors.append(f"Unexpected dependency boundary for {name}")
+    if name == "storytelling-core" and data.get("dependencies", {}).get("sha2") != {"workspace": True}:
+        errors.append("Core SHA-256 must inherit only the reviewed workspace configuration")
 if manifest["workspace"]["package"].get("publish") is not False:
     errors.append("Bootstrap packages must not be publishable")
+if manifest["workspace"]["dependencies"].get("sha2") != {
+        "version": "=0.10.9", "default-features": False, "features": ["force-soft"]}:
+    errors.append("M1-03 SHA-256 dependency differs from reviewed pure-buffer contract")
 license_bytes = (ROOT / "LICENSE").read_bytes()
 blob = hashlib.sha1(f"blob {len(license_bytes)}\0".encode() + license_bytes).hexdigest()
 if blob != "f317799529d13f4d9301daa2dba63dfea559ff69":
