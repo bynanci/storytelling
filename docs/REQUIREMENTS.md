@@ -117,13 +117,13 @@ Complete test mapping is in the work index; M2-R01 full solver feasibility remai
 
 ## M2-03 selected-domain live shadow requirements
 
-The scoped live-shadow candidate is locally implemented/in review. It invokes
+The scoped live shadow is accepted via merged PR #26. It invokes
 actual pinned source and native binaries; it does not add a product runtime.
 See [profile](migration/PLANNER_SHADOW_V1.md), [record](migration/records/M2-03.md),
 [work index](migration/m2-03-work-index.json) and [per-file inventory](migration/provenance-m2-03.json).
 Python test symbols are individually recorded and AST-checked; the repository guard
-checks their requirement IDs and verification artifact paths. Hosted acceptance
-remains pending until actually observed.
+checks their requirement IDs and verification artifact paths. All ten same-head
+hosted checks passed; the comparison record preserves the accepted identities.
 
 | ID | Requirement | Actual verification artifact |
 | --- | --- | --- |

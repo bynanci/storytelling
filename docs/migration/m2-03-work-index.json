@@ -2,8 +2,8 @@
   "schema_version": 1,
   "task": "M2-03",
   "tracking_issue": "https://github.com/bynanci/storytelling/issues/24",
-  "tracking_issue_status": "open",
-  "state": "review",
+  "tracking_issue_status": "closed-completed",
+  "state": "accepted",
   "base": "867fcde6acd0dd1339122aaf4bb23003aac3942e",
   "integration_base": "073b5a415324d588019e2155dcf24ddddd860adf",
   "source": "7add4762fe8174d76f43b863375ea39b73121e76",
@@ -12,13 +12,13 @@
   "tasks": [
     {
       "id": "M2-03/P1",
-      "state": "verified",
+      "state": "accepted",
       "depends_on": [],
       "acceptance": "Independent frozen domain/schema/error/budget/CI-tool review and actual research/RED"
     },
     {
       "id": "M2-03/P2",
-      "state": "verified",
+      "state": "accepted",
       "depends_on": [
         "M2-03/P1"
       ],
@@ -26,7 +26,7 @@
     },
     {
       "id": "M2-03/P3",
-      "state": "review",
+      "state": "accepted",
       "depends_on": [
         "M2-03/P2"
       ],
@@ -368,6 +368,29 @@
         "evidence_sha256": "8c968b58a3290f5a7f6929514373cc9023c41f05192e240d7877ec4cbbaf965c"
       }
     ],
-    "receipt_target_state": "dirty implementation at integration_base; clean published-head acceptance pending"
+    "receipt_target_state": "Historical dirty receipts retained; final clean published-head receipt independently audited and accepted as recorded above"
+  },
+  "accepted": {
+    "pr": 26,
+    "head": "4bf888949107a21b560b09222175ff1f25118a3b",
+    "tree": "2211957c3106591e46d8f0b49ddfb7d13a6f8794",
+    "merge_commit": "5533fcb5d0f857ad1066a76505071653b66d1f89",
+    "merged_at": "2026-11-07T06:27:14Z",
+    "ci_runs": [
+      42346820122,
+      42346869977
+    ],
+    "same_head_checks": 10,
+    "tracking_issue_closed_at": "2026-11-07T06:27:33Z",
+    "clean_live_evidence_sha256": "c44153722fbb8cac8ade019ad9ab6a2d64b266c53643c2d464bf0d9ad5accb53",
+    "independent_raw_audit": {
+      "artifacts": 336,
+      "command_log_pairs": 135,
+      "stdin_hashes": 120,
+      "exact_success_pairs": 52,
+      "typed_failure_pairs": 4,
+      "nonagreement_probes": 8,
+      "native_validator_runs": 55
+    }
   }
 }

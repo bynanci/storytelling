@@ -50,7 +50,9 @@ Root owns CI/docs/records/index/provenance. PR inventory agent owns docs/deliver
 - [x] Complete actual merged/superseded/pending PR register and preserve historical bodies/identities; don't merge dependency updates without their own review.
 - [x] Add M2-S01–S06 traceability, source-informed inventory, comparison record, usage/status/docs links and scoped task states.
 - [x] Run167Rust tests debug/release, fmt/clippy/docs/guard, old36comparisons, new shadow tests/live run and required fresh independent code/artifact review.
-- [ ] Publish Draft PR with exact source/base/head/tree/RED/GREEN/tool/dependency/disposition evidence; read same-head3OS/quality/Required gates.
-- [ ] Merge verified slice under standing authority; check/close24, refresh completed PR register and accepted lifecycle docs.
+- [x] Publish Draft PR with exact source/base/head/tree/RED/GREEN/tool/dependency/disposition evidence; read same-head3OS/quality/Required gates.
+- [x] Merge verified slice under standing authority; check/close24, refresh completed PR register and accepted lifecycle docs.
 
 Rollback removes new test-only gate/profile/register additions; no production code or project is mutated. Full solver parity and all source/host/editorial/release/admin gates remain separate.
+
+Accepted PR #26: head `4bf888949107a21b560b09222175ff1f25118a3b`, tree `2211957c3106591e46d8f0b49ddfb7d13a6f8794`, merge `5533fcb5d0f857ad1066a76505071653b66d1f89` at 2026-11-07T06:27:14Z. All10same-head checks passed in42346820122/42346869977; #24closedcompleted. Accepted-status reconciliation is the current docs-only follow-up.

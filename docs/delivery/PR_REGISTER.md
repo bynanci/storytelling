@@ -93,3 +93,29 @@ checks，再把新觀察或 delivery addendum 加入機器登錄。保留原 sna
 完整 solver／M2-03、production execution／approval、人工剪輯驗收、發布和管理
 權限不因 PR 數量、文件勾選或本登錄而完成。原始48＋16項 inventory 仍是覆蓋範圍，
 不是產品完成百分比。
+
+## 後續接受交付：2026-11-07 06:27 UTC
+
+原始十五個 PR 快照保持原樣；本段另加後續兩個已合併交付，主線為
+[`5533fcb`](https://github.com/bynanci/storytelling/commit/5533fcb5d0f857ad1066a76505071653b66d1f89)。
+目前文件整理 PR 本身不在這個已觀察快照內；最新清單以
+[GitHub 已合併 PR](https://github.com/bynanci/storytelling/pulls?q=is%3Apr+is%3Amerged)
+為準。
+
+| PR／範圍 | Accepted head | Merge commit | Merged at UTC | 同 head checks |
+| --- | --- | --- | --- | --- |
+| [#25](https://github.com/bynanci/storytelling/pull/25) 已完成／接替／待審 PR 登錄 | `0030fe206f62c7c058e2337e98945d0e72a06954` | `073b5a415324d588019e2155dcf24ddddd860adf` | 2026-11-07 05:56:33 | 10 success |
+| [#26](https://github.com/bynanci/storytelling/pull/26) M2-03 選定範圍即時 shadow | `4bf888949107a21b560b09222175ff1f25118a3b` | `5533fcb5d0f857ad1066a76505071653b66d1f89` | 2026-11-07 06:27:14 | 10 success |
+
+兩者 accepted-head tree 均與 merge tree 相同。#25 是文件交付；#26 新增測試工具與
+Linux CI，production Rust／Cargo／既有 fixtures 與宿主 receipt 均未變。
+#26 的兩組 CI 品質紀錄均顯示40項 shadow 測試通過，以及64組實際配對：
+56一致、4已定義政策差異、4不支援探針、0未分類。乾淨已發布 head 的原始產物
+另經獨立精確 Fraction 比對與336個產物雜湊查核；見
+[M2-03 接受證據](../migration/records/M2-03.md#accepted-delivery-and-clean-candidate-proof)。
+
+[任務 #24](https://github.com/bynanci/storytelling/issues/24) 已於06:27:33UTC全數勾選並
+關閉 completed；原始八個已完成任務紀錄不變。依賴 PR #8／#9／#10／#21
+仍是待審更新；本次交付沒有接受其 dependency closure 或將舊 CI 當作目前主線驗證。
+M2-03 僅接受 frozen profile 內的 synthetic selected domains，完整 solver、正式
+宿主執行與人工剪輯驗收仍為後續工作。
