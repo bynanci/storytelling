@@ -1,0 +1,22 @@
+name: Bug report
+description: Reproducible failure without private media or secrets
+title: '[bug] '
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: Exact candidate and environment
+      description: Commit, OS, toolchain and host versions; avoid private absolute paths.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal synthetic reproduction
+      description: Steps, expected and actual result. Never attach personal footage, tokens or GPS.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Sanitized evidence and affected requirement

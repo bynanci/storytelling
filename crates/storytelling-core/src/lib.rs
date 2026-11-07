@@ -1,6 +1,10 @@
-//! Pure, portable story contracts. No media or host access.
+//! Pure, portable story contracts. No filesystem, runtime, or host access.
+pub mod time;
+pub mod wire;
+
 use serde::Serialize;
 
+/// Stable machine-readable error. Paths name document fields, not local files.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct ValidationError {
     pub code: String,
@@ -9,7 +13,10 @@ pub struct ValidationError {
 
 impl ValidationError {
     pub fn new(code: &str, path: impl Into<String>) -> Self {
-        Self { code: code.to_owned(), path: path.into() }
+        Self {
+            code: code.to_owned(),
+            path: path.into(),
+        }
     }
 }
 

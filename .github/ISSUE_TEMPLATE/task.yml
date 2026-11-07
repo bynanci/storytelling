@@ -1,0 +1,30 @@
+name: SDLC task
+description: Propose one verifiable story workflow increment
+title: '[task] '
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: User outcome and non-goals
+      description: Describe the problem, current behavior and smallest useful result.
+    validations:
+      required: true
+  - type: textarea
+    id: traceability
+    attributes:
+      label: Task / Requirement IDs and dependencies
+      description: Include base revision, existing PR overlap and SDLC gate.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance and evidence
+      description: Name tests, failure cases, real-host/manual gates and blocked prerequisites.
+    validations:
+      required: true
+  - type: textarea
+    id: risk
+    attributes:
+      label: Risks and compatibility
+      description: Schema, source identity, privacy, authorization, migration and rollback.
