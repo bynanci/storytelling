@@ -236,7 +236,10 @@ editorial acceptance remain separate. The runner opens no user project.
 
 [Tracking #27](https://github.com/bynanci/storytelling/issues/27) and
 [source/readiness scope](docs/migration/M3-01-NEXT.md) prepare immutable finite-OTIO
-review identity and declared-context freshness. The source map has15actual blob
+review identity and declared-context freshness. The proposed
+[G2 review packet](docs/migration/M3-01-G2-REVIEW-PACKET.md) distinguishes
+signature validity, signer authorization and same-input compilation linkage, and
+specifies a concrete contract/test proposal. The source map has 15 actual blob
 identities; proposed M3-RB01–RB07, wire/CLI names and budgets still need independent
 G2 freezing and functional RED before implementation. No code or passing M3 test
 is claimed. Use the existing importer/compiler input because the planner→OTIO

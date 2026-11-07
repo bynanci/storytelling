@@ -50,10 +50,13 @@ private, immutable result. This prevents callers constructing or mutating the
 currently public `CompiledOtioV1 { document, report }` from acquiring a validated
 identity. No fourth crate, Node/SQLite/host calls or new production dependency.
 
-Proposed consumer: `prepare-review <COMPOSITION|-> <CONTEXT_FILE>` emits a bounded
-challenge/identity report; `check-review <REVIEW_FILE> <CURRENT_CONTEXT_FILE>`
-reports binding differences. These are proposed names for G2, not existing APIs.
-Read only the explicitly named inputs; never resolve project URIs or invoke a
+The [G2 review packet](M3-01-G2-REVIEW-PACKET.md) now gives a concrete proposed
+identity, context, bounds, error order and RED matrix; none is frozen or accepted.
+Its `check-review` proposal also requires the current composition as input so the
+tool can recompile and compare the exact artifact. Proposed commands are
+`prepare-review <COMPOSITION|-> <CONTEXT_FILE>` and
+`check-review <REVIEW_RECORD> <CURRENT_COMPOSITION|-> <CURRENT_CONTEXT_FILE>`.
+They read only explicit bounded inputs, never resolve project URIs or invoke a
 host. Successful output remains `executable:false`, `approval_granted:false`,
 `source_verified:false`, `host_verified:false`, with an explicit
 `declared-review-binding-only` scope. A matching declared context is not a permit.
