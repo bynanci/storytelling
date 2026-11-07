@@ -53,16 +53,20 @@ again locally on `f2e2703` before this evidence-only update:
 | `cargo test --workspace --locked` | Passed: 184 tests, 0 failed |
 | `cargo test --workspace --release --locked` | Passed: 184 tests, 0 failed |
 | `RUSTDOCFLAGS='-D warnings' cargo doc --workspace --no-deps --locked` | Passed; exit 0 |
-| `cargo audit --file Cargo.lock` | Passed; 39 locked packages scanned against 1,422 advisories, no findings |
+| `cargo audit --file Cargo.lock` | Passed locally; 39 locked packages scanned against 1,422 advisories, no findings; `.github/workflows/ci.yml` does not run this command |
 | `python3 scripts/check_repo.py` | Passed; links, provenance, dependency boundaries and requirement references valid |
 | `git diff --check` | Passed; exit 0 |
 
 Refreshed candidate head `010b7405a1e9eceb397c461ef676d132bc13fbdf` passed
 all five jobs (Quality, Required, Linux, Windows and macOS) in runs
-`42350601091` and `42350603918`. This candidate-level verification does not
-accept the PR or canonical M3-01/P1. The current evidence-document update changes
-the branch head, so it needs fresh exact-head hosted checks before being marked
-verified.
+`42350601091` and `42350603918`. Later, head
+`5bb99ad446800a69109869dca2732f395ce93933` passed all five jobs in run
+`42350992888` (a duplicate run `42350998048` also passed). These checks verify
+the candidate only; they do not accept it or canonical M3-01/P1. This file is a
+point-in-time record; the Draft PR body tracks the latest exact head, and any
+newer commit needs its own checks. The hosted workflow does not run Cargo
+Audit; the exact lockfile was audited locally as recorded in the dependency
+review.
 
 | Command | Result |
 | --- | --- |
