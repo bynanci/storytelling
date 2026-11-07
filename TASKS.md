@@ -2,7 +2,7 @@
 
 Baseline: `551ff38920e2085e1d53a7ba777c9680678e9725` (original README + MIT LICENSE).
 Updated: 2026-11-07. M0, finite M1-01/M1-02, bounded M2-01/M2-02 audit/planning and M1-03
-supplied-byte/host proof are accepted on main; release remains a separate decision.
+supplied-byte/host proof and selected-domain M2-03 live shadow are accepted on main; release remains a separate decision.
 [SDLC](docs/SDLC.md) owns the process and
 [requirements](docs/REQUIREMENTS.md) owns acceptance traceability.
 
@@ -27,12 +27,14 @@ completed tasks. The GitHub merge metadata records:
 | [#17 bounded M2-01 audit](https://github.com/bynanci/storytelling/pull/17) | `1c8c01da48af75b860b1ce49241c3fd509b16c59` | `422190e27bc604bd71485f78279373992f99e68c` | 2026-11-07 03:20:26 |
 | [#18 bounded M1-03 proof](https://github.com/bynanci/storytelling/pull/18) | `2b859d29e22f6f2a39f73822086b59618bb8a402` | `e0a5ade7ee2c0414f87aa121bef1bdf259a7e75e` | 2026-11-07 03:26:40 |
 | [#22 M2-02 fixed-window planner](https://github.com/bynanci/storytelling/pull/22) | `1f4ff082ed27dbc6223af2f0a0b1cfe71a06fe54` | `895257b1bb9993d70cae3f1267f5f6fa3de91905` | 2026-11-07 03:59:29 |
+| [#26 M2-03 selected-domain live shadow](https://github.com/bynanci/storytelling/pull/26) | `4bf888949107a21b560b09222175ff1f25118a3b` | `5533fcb5d0f857ad1066a76505071653b66d1f89` | 2026-11-07 06:27:14 |
 
 [Issues #3–#6](https://github.com/bynanci/storytelling/issues/6),
 [#12](https://github.com/bynanci/storytelling/issues/12),
 [#14](https://github.com/bynanci/storytelling/issues/14) and
 [#15](https://github.com/bynanci/storytelling/issues/15) and
-[#20](https://github.com/bynanci/storytelling/issues/20) are checked and closed completed.
+[#20](https://github.com/bynanci/storytelling/issues/20) and
+[#24](https://github.com/bynanci/storytelling/issues/24) are checked and closed completed.
 The historical tree after PR #7 was `53fbfe24bf734634d4374d2b0eb133ebba937299`.
 PR #18's accepted tree is `9b6b3d34b1289ab78ffc453ca094289a0de91f89`;
 feature heads passed all 10 same-head push/PR checks before merge. Historical
@@ -71,7 +73,7 @@ permission changes, nor replace real-media/host or human editorial acceptance.
 | M1-03 | P1 / accepted | Bounded supplied-byte verification and FilmCraft isolated 25 fps CPU proof | Accepted M1-02; PR #18 merged | M1-H01–H04; exact native ranges, 45-frame 192×108 preview, save/reopen/reimport, unchanged inputs; broader acceptance open |
 | M2-01 | P1 / accepted | Bounded StoryBrief hard constraints vs preferences and typed conflicts | M1 profile; PR #17 merged | M2-B01–B06; manual choices preserved, declared reference/membership/order contradictions explained; full planner/feasibility separate |
 | M2-02 | P1 / accepted | Finite fixed-window selection and shot planner | Accepted M2-01; PR #22 merged | M2-P01–P06; exact source windows, hard choices/order, deterministic declared ranks/reason paths; full solver remains open |
-| M2-03 | P1 / review | Actual selected-domain TS/native live shadow and completed PR register | Accepted M2-02; tracking #24 | M2-S01–S06; exact 64-pair evidence, fail-closed regressions, source/tool provenance and same-head acceptance |
+| M2-03 | P1 / accepted | Actual selected-domain TS/native live shadow and completed PR register | Accepted M2-02; tracking #24 | M2-S01–S06; exact 64-pair evidence, fail-closed regressions, source/tool provenance and same-head acceptance |
 | M3-01 | P1 / proposed | Approval and compiled-plan identity contracts | M1-03, M2-02 | Approval binds source, plan, host version/capabilities and accepted losses |
 | M3-02 | P1 / proposed | SQLite operation journal and owner-fenced recovery | M3-01 | Fault injection: crash/retry/late callback/ack failure; no duplicate apply |
 | M3-03 | P1 / proposed | FilmCraft executor with unknown-result reconciliation | M3-02 | New isolated project only; timeout readback before retry; no blind Undo rollback |
@@ -136,7 +138,7 @@ See the [frozen profile](docs/migration/STORY_BRIEF_V1.md),
 - [x] Verified PR #17 merged and tracking issue #14 fully checked/closed under user authorization.
 
 This audit produces no selected shots, timing feasibility or executable plan.
-M2-02 supplies accepted fixed-window planning; M2-03 selected-domain live shadow is in review.
+M2-02 supplies accepted fixed-window planning; M2-03 selected-domain live shadow is accepted via PR #26.
 
 ## M1-03 bounded host proof work
 
@@ -188,11 +190,24 @@ scores/preferences, not verified semantic evidence. Multi-beat solver, full shad
 - [x] Two actual 64-pair runs: 56 agreements, four literal intentional differences, four unsupported probes, zero unclassified.
 - [x] Pinned test-tool closure and Linux CI integration; original three-OS Rust and 36 frozen comparisons retained.
 - [x] PR #25 merged the completed/superseded/pending PR register and preserved original PR bodies.
-- [ ] Final clean candidate, same-head hosted gates, authorized merge and #24 completion.
+- [x] Final clean candidate and independent raw audit; all10same-head checks passed, PR #26 merged and #24 checked/closed completed.
 
 This is synthetic selected-domain differential evidence. Fractional optional
 budgets, full solver behavior, live Catalog authority, host execution and human
 editorial acceptance remain separate. The runner opens no user project.
+
+## Prepared next slice: M3-01/P1
+
+[Tracking #27](https://github.com/bynanci/storytelling/issues/27) and
+[source/readiness scope](docs/migration/M3-01-NEXT.md) prepare immutable finite-OTIO
+review identity and declared-context freshness. The source map has15actual blob
+identities; proposed M3-RB01–RB07, wire/CLI names and budgets still need independent
+G2 freezing and functional RED before implementation. No code or passing M3 test
+is claimed. Use the existing importer/compiler input because the planner→OTIO
+bridge is absent; matching hashes/context never grant human approval. Concurrent Draft [#28](https://github.com/bynanci/storytelling/pull/28) proposes
+cryptographic approval identity and awaits independent G2 review; it is not
+accepted. Its M3-A01–A03 IDs are distinct from this preparation proposal. Full
+M3-01 approval issuance, M3-02 durability and M3-03 execution remain open.
 
 ## Not in the current backlog
 

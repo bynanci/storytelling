@@ -2,7 +2,7 @@
 
 A Rust foundation for local-first story planning and reviewed editor workflows.
 
-**Status: M0, finite M1-01/M1-02, bounded M2-01 audit and M1-03 host proof are accepted on main. M2-02 fixed-window planning is accepted. M2-03 live shadow is in review. No release is published.**
+**Status: M0, finite M1-01/M1-02, bounded M2-01 audit and M1-03 host proof are accepted on main. M2-02 fixed-window planning is accepted. M2-03 selected-domain live shadow is accepted via PR #26. No release is published.**
 The executable slices validate declared plans, map finite OpenFilm snapshots and
 propose fixed-window StoryPlans from supplied constraints. The planner selects
 supplied windows; narrative interpretation and editor execution remain separate.
@@ -75,8 +75,8 @@ See [planner profile](docs/migration/FIXED_WINDOW_PLANNER_V1.md) and
 The test-only [live shadow](tests/oracles/planner-shadow-v1/README.md) now compares
 actual pinned TypeScript compose with the actual native CLI. Its selected domain
 passed 64 pairs: 56 agreements, four documented policy differences and four
-unsupported probes. This candidate awaits same-head hosted acceptance; full
-solver parity remains open. See [M2-03 evidence](docs/migration/records/M2-03.md).
+unsupported probes. PR #26 passed all ten same-head hosted checks and is merged;
+full solver parity remains open. See [M2-03 evidence](docs/migration/records/M2-03.md).
 
 ## Current architecture
 
