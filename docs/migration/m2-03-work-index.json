@@ -1,0 +1,373 @@
+{
+  "schema_version": 1,
+  "task": "M2-03",
+  "tracking_issue": "https://github.com/bynanci/storytelling/issues/24",
+  "tracking_issue_status": "open",
+  "state": "review",
+  "base": "867fcde6acd0dd1339122aaf4bb23003aac3942e",
+  "integration_base": "073b5a415324d588019e2155dcf24ddddd860adf",
+  "source": "7add4762fe8174d76f43b863375ea39b73121e76",
+  "observed_source_main": "5f737a6c8f35dce48e213370ff27900962c9304c",
+  "scope": "selected-domain-live-planner-shadow",
+  "tasks": [
+    {
+      "id": "M2-03/P1",
+      "state": "verified",
+      "depends_on": [],
+      "acceptance": "Independent frozen domain/schema/error/budget/CI-tool review and actual research/RED"
+    },
+    {
+      "id": "M2-03/P2",
+      "state": "verified",
+      "depends_on": [
+        "M2-03/P1"
+      ],
+      "acceptance": "Actual64paired cases, exact observations, canonical dispositions, bounded tools and failed-evidence regression checks"
+    },
+    {
+      "id": "M2-03/P3",
+      "state": "review",
+      "depends_on": [
+        "M2-03/P2"
+      ],
+      "acceptance": "Complete register delivered in PR25; final code/artifact reviews, required checks and same-head CI before authorized merge"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M2-S01",
+      "requirement": "Seeded exact shared-domain admission, ordering/capture constraints and immutable input cases",
+      "tests": [],
+      "python_tests": [
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_seeded_default_counts_order_and_bounds"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_complete_actual_shape_baseline_agrees"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_authority_windows_clock_reasons_and_placement_mutations_reject"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_fractional_optional_budget_cannot_be_relabelled_as_shared_domain"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_arbitrary_two_errors_are_not_agreement"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_wrong_source_clip_order_and_extra_fields_reject"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_duplicate_json_properties_reject"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_result_missing_duplicate_reordered_and_extra_shape_reject"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_probe_dispositions_and_expected_pairs_are_immutable"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_complete_actual_probe_pairs_accept_and_reject_semantic_source_mutations"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_complete_unsupported_native_errors_cannot_be_replaced_by_other_errors"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_changed_shared_source_schema_and_incomplete_case_reject_as_value_errors"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_required_membership_without_a_real_full_order_chain_rejects_before_comparison"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_optional_capture_timestamps_must_be_valid_calendar_dates"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_generated_cases_cannot_add_unregistered_error_mappings"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_generated_native_catalog_cannot_smuggle_unreviewed_fields"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_native_rationals_require_ascii_decimal_wire_not_unicode_digits"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_source_numeric_exponents_are_bounded_before_fraction_allocation"
+        }
+      ],
+      "verification_paths": [
+        "tests/oracles/planner-shadow-v1/cases.py",
+        "tests/oracles/planner-shadow-v1/test_shadow.py"
+      ]
+    },
+    {
+      "id": "M2-S02",
+      "requirement": "Actual pinned source producer, strict schemas/error families/metadata and no source mutation",
+      "tests": [],
+      "python_tests": [
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_producer.py",
+          "name": "ProducerChecks.test_actual_compose_metadata_and_exact_short_source_semantics"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_producer.py",
+          "name": "ProducerChecks.test_multiple_source_rows_keep_the_supplied_semantic_order"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_producer.py",
+          "name": "ProducerChecks.test_only_actual_composition_constraint_error_is_serialized_as_data"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_producer.py",
+          "name": "ProducerChecks.test_unexpected_source_exception_is_an_execution_failure"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_producer.py",
+          "name": "ProducerChecks.test_duplicate_properties_including_decoded_keys_are_rejected"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_producer.py",
+          "name": "ProducerChecks.test_extra_missing_null_version_and_duplicate_case_shapes_reject"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_producer.py",
+          "name": "ProducerChecks.test_invalid_utf8_cannot_be_replaced_into_valid_source_json"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_producer.py",
+          "name": "ProducerChecks.test_exact_input_limit_accepts_and_transport_refuses_the_next_byte"
+        }
+      ],
+      "verification_paths": [
+        "tests/oracles/planner-shadow-v1/producer.mts",
+        "tests/oracles/planner-shadow-v1/test_producer.py"
+      ]
+    },
+    {
+      "id": "M2-S03",
+      "requirement": "Exact source/native semantics, canonical literal delta/refusal probes and reject unregistered pairings",
+      "tests": [],
+      "python_tests": [
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_seeded_default_counts_order_and_bounds"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_complete_actual_shape_baseline_agrees"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_authority_windows_clock_reasons_and_placement_mutations_reject"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_fractional_optional_budget_cannot_be_relabelled_as_shared_domain"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_arbitrary_two_errors_are_not_agreement"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_wrong_source_clip_order_and_extra_fields_reject"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_duplicate_json_properties_reject"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_result_missing_duplicate_reordered_and_extra_shape_reject"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_probe_dispositions_and_expected_pairs_are_immutable"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_complete_actual_probe_pairs_accept_and_reject_semantic_source_mutations"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_complete_unsupported_native_errors_cannot_be_replaced_by_other_errors"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_changed_shared_source_schema_and_incomplete_case_reject_as_value_errors"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_required_membership_without_a_real_full_order_chain_rejects_before_comparison"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_optional_capture_timestamps_must_be_valid_calendar_dates"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_generated_cases_cannot_add_unregistered_error_mappings"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_generated_native_catalog_cannot_smuggle_unreviewed_fields"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_native_rationals_require_ascii_decimal_wire_not_unicode_digits"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_shadow.py",
+          "name": "ShadowChecks.test_source_numeric_exponents_are_bounded_before_fraction_allocation"
+        }
+      ],
+      "verification_paths": [
+        "tests/oracles/planner-shadow-v1/compare.py",
+        "tests/oracles/planner-shadow-v1/test_shadow.py",
+        "tests/oracles/planner-shadow-v1/mutation-baselines.json"
+      ]
+    },
+    {
+      "id": "M2-S04",
+      "requirement": "Bounded full-duplex process I/O, global/per-child budgets and owned-group reaping",
+      "tests": [],
+      "python_tests": [
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_process.py",
+          "name": "BoundedProcessTests.test_real_stdin_stdout_stderr_and_nonzero_exit_are_captured"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_process.py",
+          "name": "BoundedProcessTests.test_none_and_empty_stdin_both_deliver_eof"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_process.py",
+          "name": "BoundedProcessTests.test_stdout_exact_limit_accepts_and_next_byte_rejects_bounded"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_process.py",
+          "name": "BoundedProcessTests.test_stderr_exact_limit_accepts_and_next_byte_rejects_bounded"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_process.py",
+          "name": "BoundedProcessTests.test_child_timeout_reaps_the_owned_direct_child"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_process.py",
+          "name": "BoundedProcessTests.test_expired_global_deadline_never_spawns_a_child"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_process.py",
+          "name": "BoundedProcessTests.test_shared_deadline_cannot_reset_for_the_second_command"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_process.py",
+          "name": "BoundedProcessTests.test_timeout_kills_and_reaps_owned_grandchild"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_process.py",
+          "name": "BoundedProcessTests.test_overflow_kills_and_reaps_owned_grandchild"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_process.py",
+          "name": "BoundedProcessTests.test_success_also_cleans_owned_background_grandchild"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_process.py",
+          "name": "BoundedProcessTests.test_input_budget_rejects_before_spawning"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_process.py",
+          "name": "BoundedProcessTests.test_missing_executable_records_failed_spawn_without_fake_identity"
+        }
+      ],
+      "verification_paths": [
+        "tests/oracles/planner-shadow-v1/process.py",
+        "tests/oracles/planner-shadow-v1/test_process.py"
+      ]
+    },
+    {
+      "id": "M2-S05",
+      "requirement": "Actual live run/provenance/validator/failed evidence and CI test-only closure",
+      "tests": [],
+      "python_tests": [
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_orchestration.py",
+          "name": "FailedEvidenceChecks.test_wrong_native_version_preserves_unexecuted_unknown_tools_and_failed_evidence"
+        },
+        {
+          "path": "tests/oracles/planner-shadow-v1/test_orchestration.py",
+          "name": "FailedEvidenceChecks.test_arbitrary_native_errors_never_become_successful_shadow"
+        }
+      ],
+      "verification_paths": [
+        "tests/oracles/planner-shadow-v1/run.py",
+        "tests/oracles/planner-shadow-v1/test_orchestration.py"
+      ]
+    },
+    {
+      "id": "M2-S06",
+      "requirement": "Actual completed PR classification/register/lifecycle metadata with preserved history",
+      "tests": [],
+      "python_tests": [],
+      "verification_paths": [
+        "docs/delivery/PR_REGISTER.md",
+        "docs/delivery/pr-register.json"
+      ]
+    }
+  ],
+  "manual_gates": [],
+  "not_claimed": [
+    "complete multi-beat/scorer/locale/graph/coverage/pin solver parity",
+    "live Catalog single-writer feature flag",
+    "media/source filesystem identity",
+    "host execution/approval",
+    "human editorial acceptance",
+    "release/tag/admin/signature authority"
+  ],
+  "local_verification": {
+    "python_tests": 40,
+    "rust_tests_debug": 167,
+    "rust_tests_release": 167,
+    "frozen_comparisons": 36,
+    "host_evidence_rejection_checks": 6,
+    "live_runs": [
+      {
+        "seed": 20261107,
+        "cases": 64,
+        "agreement": 56,
+        "intentional_delta": 4,
+        "unsupported": 4,
+        "unclassified": 0,
+        "evidence_sha256": "c129fd59c9f5b99edee932b4be48e44dc063505be851912dd00d1d1981626e39"
+      },
+      {
+        "seed": 731,
+        "cases": 64,
+        "agreement": 56,
+        "intentional_delta": 4,
+        "unsupported": 4,
+        "unclassified": 0,
+        "evidence_sha256": "8c968b58a3290f5a7f6929514373cc9023c41f05192e240d7877ec4cbbaf965c"
+      }
+    ],
+    "receipt_target_state": "dirty implementation at integration_base; clean published-head acceptance pending"
+  }
+}

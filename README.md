@@ -2,14 +2,14 @@
 
 A Rust foundation for local-first story planning and reviewed editor workflows.
 
-**Status: M0, finite M1-01/M1-02, bounded M2-01 audit and M1-03 host proof are accepted on main. M2-02 fixed-window planning is accepted. No release is published.**
+**Status: M0, finite M1-01/M1-02, bounded M2-01 audit and M1-03 host proof are accepted on main. M2-02 fixed-window planning is accepted. M2-03 live shadow is in review. No release is published.**
 The executable slices validate declared plans, map finite OpenFilm snapshots and
 propose fixed-window StoryPlans from supplied constraints. The planner selects
 supplied windows; narrative interpretation and editor execution remain separate.
 `verify-source` separately hashes explicitly supplied bytes; the isolated test harness has proved one real FilmCraft profile.
 Future functionality is tracked separately in [TASKS](TASKS.md) and [ROADMAP](ROADMAP.md).
 
-[繁體中文](README.zh-TW.md) · [CLI guide](docs/CLI_GUIDE.md) · [Architecture](docs/ARCHITECTURE.md) · [SDLC](docs/SDLC.md) · [Contract](docs/CONTRACTS.md)
+[繁體中文](README.zh-TW.md) · [PR register](docs/delivery/PR_REGISTER.md) · [CLI guide](docs/CLI_GUIDE.md) · [Architecture](docs/ARCHITECTURE.md) · [SDLC](docs/SDLC.md) · [Contract](docs/CONTRACTS.md)
 
 ## Quick start
 
@@ -71,6 +71,12 @@ selection is deterministic with source declaration paths and explicit skipped
 reasons. It returns `{ok:true,planning:...}` containing an actual M0-valid plan.
 See [planner profile](docs/migration/FIXED_WINDOW_PLANNER_V1.md) and
 [CLI guide](docs/CLI_GUIDE.md). Full multi-beat solving and host execution remain later work.
+
+The test-only [live shadow](tests/oracles/planner-shadow-v1/README.md) now compares
+actual pinned TypeScript compose with the actual native CLI. Its selected domain
+passed 64 pairs: 56 agreements, four documented policy differences and four
+unsupported probes. This candidate awaits same-head hosted acceptance; full
+solver parity remains open. See [M2-03 evidence](docs/migration/records/M2-03.md).
 
 ## Current architecture
 
