@@ -1,0 +1,402 @@
+{
+  "schema_version": 1,
+  "task": "M2-02",
+  "source": {
+    "repository": "bynanci/open-film",
+    "commit": "7add4762fe8174d76f43b863375ea39b73121e76",
+    "license": "Apache-2.0",
+    "files": [
+      {
+        "path": "packages/core/src/models.ts",
+        "blob": "58dbe93f132577842b7971e0d8aad61aff1d78c6"
+      },
+      {
+        "path": "packages/core/src/validation.ts",
+        "blob": "ba60475333f60fd9f48c77df2e34f0e7cac8536f"
+      },
+      {
+        "path": "packages/solver/src/index.ts",
+        "blob": "c701b985495c8c76292880b5acbc9c062b03006c"
+      },
+      {
+        "path": "packages/solver/tests/solver.test.ts",
+        "blob": "0049a6d28c5662dadf33154b93800ae13a2aa214"
+      },
+      {
+        "path": "packages/story/src/index.ts",
+        "blob": "da4d47ce45772d402db57b11659cc71f1b71e946"
+      },
+      {
+        "path": "packages/story/src/story-planner.ts",
+        "blob": "c942438ba96e08294393a5683813f4830cb654d2"
+      }
+    ]
+  },
+  "approval": {
+    "authority": "inherited user-approved Apache component policy and automatic continuation",
+    "date": "2026-11-07",
+    "policy": "Original MIT unchanged; source-informed components retain Apache SPDX, per-file origins and applicable upstream notices"
+  },
+  "files": [
+    {
+      "path": "crates/storytelling-cli/tests/planner.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "crates/storytelling-core/src/planner.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "crates/storytelling-engine/src/planner.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "crates/storytelling-engine/src/planner/clock.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "crates/storytelling-engine/tests/planner.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "tests/fixtures/planner-v1/README.md",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "tests/fixtures/planner-v1/conflicting.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "tests/fixtures/planner-v1/valid.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "tests/oracles/fixed-window-planner-v1/README.md",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "tests/oracles/fixed-window-planner-v1/compare.py",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "tests/oracles/fixed-window-planner-v1/inputs/all-excluded.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "tests/oracles/fixed-window-planner-v1/inputs/ascii-tie.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "tests/oracles/fixed-window-planner-v1/inputs/declared-score.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "tests/oracles/fixed-window-planner-v1/inputs/exclude-high-score.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "tests/oracles/fixed-window-planner-v1/inputs/explicit-preference-over-score.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "tests/oracles/fixed-window-planner-v1/inputs/manual-order.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "tests/oracles/fixed-window-planner-v1/inputs/one-image.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "tests/oracles/fixed-window-planner-v1/inputs/required-above-soft-target.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "tests/oracles/fixed-window-planner-v1/inputs/required-hard-maximum.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "tests/oracles/fixed-window-planner-v1/inputs/required-short-video.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "tests/oracles/fixed-window-planner-v1/inputs/skip-fixed-window-too-long.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "tests/oracles/fixed-window-planner-v1/inputs/soft-target-shortfall.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "tests/oracles/fixed-window-planner-v1/run-source.mts",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    },
+    {
+      "path": "tests/oracles/fixed-window-planner-v1/source-evidence.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed finite planner or synthetic regression/source oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/index.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+    }
+  ],
+  "notices": [
+    {
+      "path": "LICENSES/Apache-2.0.txt",
+      "source_path": "LICENSE",
+      "blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "relationship": "retained verbatim upstream license"
+    },
+    {
+      "path": "NOTICE.openfilm",
+      "source_path": "NOTICE",
+      "blob": "cfb73de041af0e9e3e73bd8eb5cfb6135b676095",
+      "relationship": "retained verbatim historical/third-party attribution"
+    }
+  ],
+  "integration_classification": "Existing CLI/module exports and independently authored design/usage/status docs retain MIT; new source-informed planner/tests/oracle Apache components are individually inventoried.",
+  "original_mit_blob": "f317799529d13f4d9301daa2dba63dfea559ff69",
+  "independent_mit_changes": [
+    "crates/storytelling-core/src/lib.rs",
+    "crates/storytelling-engine/src/lib.rs",
+    "crates/storytelling-cli/src/main.rs"
+  ],
+  "production_dependencies_added": [],
+  "source_tests_copied": false,
+  "media_copied": false
+}

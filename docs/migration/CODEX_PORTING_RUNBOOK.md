@@ -6,7 +6,8 @@
 
 - Source baseline：bynanci/open-film@7add4762fe8174d76f43b863375ea39b73121e76。
 - Historical first target inspection：main `551ff38920e2085e1d53a7ba777c9680678e9725`；M0 PR #1 head `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`，當次仍 Draft。保留這些調查身份，不當作目前完成狀態。
-- 2026-11-07 查核的 target main：`9a5232e97435f543238b90a2006460f319f4e651`；M0 PR #1、map PR #2、有限 M1-01 PR #7 與有限 M1-02 OTIO PR #16 均已合併。實際來源 bytes 與 M1-03 FilmCraft roundtrip 仍是獨立門檻。
+- M1-02 階段的歷史 target main 快照：`9a5232e97435f543238b90a2006460f319f4e651`；當時 M0 PR #1、map PR #2、有限 M1-01 PR #7 與有限 M1-02 OTIO PR #16 均已合併。
+- 本輪延續工作的 accepted base：`c03d4c8ede33563451b8ad590a6df982d0d8b82a`。另有 M2-01 bounded audit PR #17 與 M1-03 PR #18 已接受；後者只證明 supplied-buffer SHA-256 與一個合成 Linux／25 fps／CPU 預覽往返案例，不涵蓋檔案 TOCTOU、一般宿主 executor 或人工剪輯驗收。使用方式見 [CLI guide](../CLI_GUIDE.md)，最新狀態見 [TASKS](../../TASKS.md)。
 - 重新 fetch 兩個 repo 與 open PR，核對 [TASKS](../../TASKS.md) 及相依交付；上述 SHA 是查核快照，不取代每次移植前的即時查核，也不要求重做已合併的有限切片。
 - 固定來源已含 coverage PR #121、frame time PR #125；PR #126 在最初規劃快照是 Draft，後續已確認 feature head `b4aba4c4bb70b8cb03edd54342f1b94cec649245` 合併於 observed main `5f737a6c8f35dce48e213370ff27900962c9304c`，而不在其 parent、固定 baseline `7add4762fe8174d76f43b863375ea39b73121e76`。M1-01/M1-02 保留 baseline 與 animation 拒絕政策，見 [drift record](records/M1-01.md) 與 [finite OTIO contract](FINITE_OTIO_V1.md)；新任務仍須按實際查詢更新來源狀態。
 - 對每個選定source path執行git存在檢查，讀取實作與實際呼叫者/測試。表列位置是定位入口，不是對整個檔案的正確性保證。
@@ -57,7 +58,7 @@ python3 scripts/check_repo.py
 git diff --check
 ```
 
-既有M0 `check_repo.py` 目前只允許三crate與精簡dependencies。新增真實adapter的同一PR須更新需求與guard，保留「core/engine無I/O依賴」檢查；不得簡單刪guard。不要先建沒有consumer的workflow/adapters空crate。
+`check_repo.py` 保留三個實作 crate、明列 direct dependencies、逐任務 provenance 與 test traceability 檢查；M1-03 的 SHA2 例外已有獨立依賴審查。新增真實 adapter 的同一 PR 須更新需求與 guard，保留「core/engine 無 I/O 依賴」檢查；不得簡單刪 guard。不要先建沒有 consumer 的 workflow/adapters 空 crate。
 
 對pure native slice另跑沒有Node/Python/FFmpeg的production CLI smoke。TS shadow與官方OTIO Python oracle屬驗證工具，不因此被包入Rust production。宿主測試要綁host binary/version/hash/profile與新隔離專案。
 
@@ -70,7 +71,8 @@ docs/migration/OPENFILM_RUST_PORT_MAP.md,
 docs/migration/NATIVE_BOUNDARIES_AND_GAPS.md,
 docs/migration/openfilm-port-index.json.
 
-本次只完成指定 TASK_ID 尚未接受的一個可驗收切片，不重做已合併的有限 M0/M1-01/M1-02。
+本次只完成指定 TASK_ID 尚未接受的一個可驗收切片；先讀 accepted lifecycle，
+不重做已合併的 M0、有限 M1-01/M1-02、bounded M2-01 或 M1-03 proof。
 1. 重新核實 storytelling main、相依 open PR、已接受交付及 OpenFilm main；記錄完整base/source SHA與保留的重現baseline。
 2. 在來源快照讀實際source/tests與既有Rust行為，先列already/partial/missing/blocked。
 3. 完成GAP-01/02/03/16相關門檻。MIT LICENSE不改；Apache來源內容保留義務。
@@ -80,7 +82,8 @@ docs/migration/openfilm-port-index.json.
    需外部工具的adapter明示依賴，不冒充純Rust；不重寫codec/GUI/完整NLE。
 6. 留下source-to-Rust comparison record與RED/GREEN/differential結果；保留guard。
 7. 完成同head測試與CI；缺宿主/工具/權利/素材就標blocked，不自行推定通過。
-8. 建立單一範圍Draft PR；不自動merge、release或變更repo policy。
+8. 建立單一範圍 Draft PR 並讀同-head CI；若本次已有明確合併授權且所有必要門檻通過，
+   合併、勾選並關閉完成任務。缺乏合併授權時保留 PR；release/tag/repo policy 另須授權。
 
 完成回報：task+requirements、source/target SHA、程式/測試映射、實際native邊界、
 使用方式、差異分類、驗證證據、人工gate與下一個可做task。

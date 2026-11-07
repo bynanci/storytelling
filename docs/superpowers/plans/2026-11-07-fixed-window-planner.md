@@ -30,7 +30,7 @@ source oracle tests/oracles/fixed-window-planner-v1; provenance/work index.
 
 - [x] Fetch current target/source identity, read actual source symbols/tests and M2-01/M0 APIs.
 - [x] Independent G2 and clock review; freeze errors, optional target, skip priority and CLI option-input rules.
-- [ ] Freeze actual synthetic source cases/runner/hash chain and scoped expected differences.
+- [x] Freeze actual synthetic source cases/runner/hash chain and scoped expected differences.
 
 ## P2 pure planner
 
@@ -39,11 +39,11 @@ SelectionDecisionV1, SkippedCandidateV1, TargetStatusV1, SkippedReasonV1).
 Create engine/src/planner.rs and planner/clock.rs; export plan_story(bytes:&[u8])
 ->Result<PlannedStoryV1,PlanningErrorV1>. Tests: engine/tests/planner.rs.
 
-- [ ] Add compiling not-implemented stub and regressions; observe functional RED.
-- [ ] Implement strict envelope and real brief audit; require candidates without dropping hard conflicts.
-- [ ] Implement bounded common clock, required-first selection, ranked fitting optional scan and stable Kahn order.
-- [ ] Build exact immutable source windows, deterministic shot IDs/placements, reason paths/skips, real M0 validation and output bounds.
-- [ ] Selected tests GREEN, then debug/release workspace and independent review.
+- [x] Add compiling not-implemented stub and regressions; observe functional RED.
+- [x] Implement strict envelope and real brief audit; require candidates without dropping hard conflicts.
+- [x] Implement bounded common clock, required-first selection, ranked fitting optional scan and stable Kahn order.
+- [x] Build exact immutable source windows, deterministic shot IDs/placements, reason paths/skips, real M0 validation and output bounds.
+- [x] Selected tests GREEN, then debug/release workspace and independent review.
 
 Pinned test expectations: manual b,a emits b then a; hard include/order never disappears;
 required two1s windows with target1/max3 succeeds2s; max1 fails; required u64MAX-1
@@ -57,11 +57,12 @@ by clock2 rejects at its duration path. Empty output rejects explicitly.
 Modify only existing CLI dispatcher, create cli/tests/planner.rs and planner-v1
 synthetic fixtures/README. CLI plan-story FILE|- emits frozen envelope and exits0/1/2/3.
 
-- [ ] Observe real CLI RED, wire minimal input composition root, then GREEN.
-- [ ] Update M2-P01–P06 tests/requirements/work index, provenance and source comparison record.
-- [ ] Improve SDLC/contracts/source-status docs and runnable CLI guide; link from both READMEs.
-- [ ] Run fmt, strict clippy, debug/release, Rustdoc, repo guards,6/8/10 old comparisons and new actual source replay.
-- [ ] Independent whole-branch review; publish Draft PR with exact base/head/tree/RED/GREEN/source/dependency/scope evidence.
+- [x] Observe real CLI RED, wire minimal input composition root, then GREEN.
+- [x] Update M2-P01–P06 tests/requirements/work index, provenance and source comparison record.
+- [x] Improve SDLC/contracts/source-status docs and runnable CLI guide; link from both READMEs.
+- [x] Run fmt, strict clippy, debug/release, Rustdoc, repo guards,6/8/10 old comparisons and new actual source replay.
+- [x] Independent whole-branch code and artifact/guide reviews; exact RED/source/local-check evidence recorded.
+- [ ] Publish Draft PR and read exact-head hosted results.
 - [ ] Read same-head three-platform CI; merge under user authorization, check/close #20 and reconcile accepted lifecycle.
 
 Rollback removes new command/profile; no source or project was mutated. M2-03 full

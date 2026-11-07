@@ -95,11 +95,12 @@ fn main() -> ExitCode {
                 || value == OsStr::new("import-openfilm")
                 || value == OsStr::new("audit-brief")
                 || value == OsStr::new("plan-story"))
-                && args.len() == 2 => {
-                if value == OsStr::new("plan-story") && args[1].as_encoded_bytes().starts_with(b"--") {
-                    return failure("cli.usage", 2);
-                }
+                && args.len() == 2 =>
+        {
+            if value == OsStr::new("plan-story") && args[1].as_encoded_bytes().starts_with(b"--") {
+                return failure("cli.usage", 2);
             }
+        }
         Some(value) if value == OsStr::new("export-otio") && (2..=4).contains(&args.len()) => {
             if args[1].as_encoded_bytes().starts_with(b"--") {
                 return failure("cli.usage", 2);

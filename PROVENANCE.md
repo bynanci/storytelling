@@ -83,3 +83,14 @@ Actual generated synthetic media and native/host/output identities belong in
 [the proof record](docs/migration/records/M1-03.md), not the earlier declared-only
 fixtures. Native receipts prove supplied immutable bytes, not future files or
 host/approval authority.
+
+
+## M2-02 fixed-window planner
+
+Source-informed core/engine planner modules, synthetic regressions and pinned source
+oracle are Apache-2.0 with [per-file inventory](docs/migration/provenance-m2-02.json).
+The original MIT and retained upstream notices are unchanged. Existing CLI/module
+exports and independently authored design/status/usage documentation (including
+[CLI guide](docs/CLI_GUIDE.md)) retain MIT; no source implementation/test was copied.
+No production package or crate is added. Exact source fields/windows and caller
+scores remain declarations; selected-policy comparison is not full solver parity.

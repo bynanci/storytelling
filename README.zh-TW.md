@@ -2,10 +2,12 @@
 
 以 Rust 建立的本機優先 Story SDK／可審閱剪輯工作流核心。
 
-**M0、有限 M1-01／M1-02、M2-01 稽核與 M1-03 宿主證據均已接受並合併 main；尚未發布 release。**
+**M0、有限 M1-01／M1-02、M2-01 稽核與 M1-03 宿主證據均已接受並合併 main；M2-02 固定視窗規劃審查中；尚未發布 release。**
 可驗證有界故事計畫 JSON，並將有限 OpenFilm composition export 唯讀映射為 declared visual plan。
 `verify-source` 另可雜湊明確提供的來源 bytes；產品尚未產生故事或自動操作剪輯器。
 獨立測試工具已完成一個有界 FilmCraft 實際往返案例。
+
+完整的六個指令、輸入格式及可執行範例見 [CLI 使用指南](docs/CLI_GUIDE.md)。
 
 ## 直接執行
 
@@ -46,6 +48,11 @@ video 帶 `audio.not_mapped / blocks-host-handoff`，明確 audio/effects/animat
 原生 1920×1080 時間區間、儲存重開與 OTIO 再匯入，以及 45 格 192×108 CPU H.264
 預覽輸出。音訊、GUI／GPU、全解析度輸出及人工剪輯驗收仍是後續工作。
 
+`plan-story FILE|-` 在硬時長／shot 預算內選取固定來源區間，保留手動必選與順序，
+目標時長維持軟偏好。輸出 `planning.plan` 可交給既有 M0 validator；選取理由引用
+輸入宣告位置，未當成已驗證的語意證據。見 [規劃契約](docs/migration/FIXED_WINDOW_PLANNER_V1.md)
+與 [CLI 使用指南](docs/CLI_GUIDE.md)。
+
 ## 三層基礎架構
 
 | 層 | 已實作責任 | 不負責 |
@@ -56,7 +63,7 @@ video 帶 `audio.not_mapped / blocks-host-handoff`，明確 audio/effects/animat
 
 使用 Rust 2024／resolver 3；固定 1.85.0 作為可重現 bootstrap 基線，並非宣稱最新版。
 原 MIT LICENSE 不變；來源衍生 importer／regression component 採 Apache-2.0，
-保留逐檔 [provenance](docs/migration/provenance-m1-01.json) 與適用 LICENSE／NOTICE。
+各來源衍生 component 均有逐檔 [provenance](PROVENANCE.md) 與適用 LICENSE／NOTICE。
 使用者已明確授權在同 head 驗證通過後合併已完成 PR；發布、tag 與 repository policy
 仍須獨立決策。實際合併紀錄見 [accepted lifecycle](TASKS.md#accepted-lifecycle)。
 
@@ -70,5 +77,5 @@ video 帶 `audio.not_mapped / blocks-host-handoff`，明確 audio/effects/animat
 - [MIGRATION](docs/MIGRATION.md)：從 OpenFilm 抽離、shadow 比較與漸進替換。
 - [驗證紀錄](docs/validation/m0-foundation.md)：RED、最終 CI 與人工 gate 的區別。
 
-有限 OTIO 與有界 FilmCraft 往返證據已完成；下一個規劃任務為 M2-02 選片／shot planner。
+有限 OTIO 與有界 FilmCraft 往返證據已完成；M2-02 固定視窗規劃審查中，完整 solver 與 M2-03 shadow 仍為後續工作。
 正式宿主執行、更多媒體與人工驗收仍有獨立門檻。

@@ -20,7 +20,9 @@ Read [finite-v1](docs/migration/FINITE_V1.md) and its
 Read [finite OTIO](docs/migration/FINITE_OTIO_V1.md) and its
 [comparison record](docs/migration/records/M1-02.md) before format changes.
 Read [host proof](docs/migration/records/M1-03.md) for its exact tested scope.
-Next: M2-02 selection/shot planning; full host execution and human acceptance remain separate.
+M2-02 fixed-window planner is implemented/in review; read its
+[profile](docs/migration/FIXED_WINDOW_PLANNER_V1.md) before planner changes.
+Full solver shadow, host execution and human acceptance remain separate.
 A test-first scaffold commit exists in history intentionally; it is not a release.
 
 For the 2026-11-07 continuation, the user explicitly authorized merging completed,
