@@ -40,3 +40,18 @@ Before a port, inspect the actual source license and contributor provenance, ret
 required notices and document modifications. Do not relicense Apache-origin code
 as MIT by translation. A separate component or an approved repository policy
 change may be necessary; obtain maintainer/legal review rather than assuming.
+
+## Source-mapped execution inventory
+
+The [48-entry Rust transfer map](migration/OPENFILM_RUST_PORT_MAP.md) records native
+candidates, external adapters and host exclusions against OpenFilm
+`7add4762fe8174d76f43b863375ea39b73121e76`. The [16 gap tasks](migration/NATIVE_BOUNDARIES_AND_GAPS.md)
+cover cross-language evidence, approval, host side effects, distribution and real-user gates.
+Use the [machine ledger](migration/openfilm-port-index.json),
+[Codex runbook](migration/CODEX_PORTING_RUNBOOK.md), and
+[M1-01 implementation plan](superpowers/plans/2026-11-07-openfilm-port-bootstrap.md).
+
+This adds planning artifacts, not implementation or a release. Source modules were
+located through pinned entrypoints/tree and selected code inspection; a per-task
+implementation review must still read exact symbols and tests. Preserve the original
+M0 declared-metadata-only scope until actual byte verification is implemented and proven.

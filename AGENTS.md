@@ -15,3 +15,15 @@
 
 Current scope: M0 read-only JSON validator. Next: M1-01 limited handoff contract.
 A test-first scaffold commit exists in history intentionally; it is not a release.
+
+## OpenFilm transfer work
+
+Read [port map](docs/migration/OPENFILM_RUST_PORT_MAP.md),
+[gap tasks](docs/migration/NATIVE_BOUNDARIES_AND_GAPS.md),
+[machine ledger](docs/migration/openfilm-port-index.json) and
+[runbook](docs/migration/CODEX_PORTING_RUNBOOK.md) before any transfer.
+Choose one OF/GAP subtask under an existing M milestone; record actual source SHA,
+files/symbols/tests, target state, license decision, preserved behavior and intentional deltas.
+Planned Rust paths/regression names are not existing code or passing evidence.
+Native-core, native-runtime, external-adapter and retain-host must remain distinct.
+Do not start full NLE rewrites or treat upstream Draft PRs as merged baselines.

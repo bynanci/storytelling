@@ -65,3 +65,34 @@ One PR owns a public schema/time-contract change at a time. Adapter and UI work
 may proceed against a frozen version. Documentation reconciliation must not mark
 an open PR implemented. Security work can run independently; no task may silently
 relax source, approval, license or host-compatibility gates.
+
+## OpenFilm to Rust transfer ledger — 2026-11-07
+
+The [48-capability map](docs/migration/OPENFILM_RUST_PORT_MAP.md),
+[16 gap tasks](docs/migration/NATIVE_BOUNDARIES_AND_GAPS.md),
+[machine ledger](docs/migration/openfilm-port-index.json), and
+[Codex runbook](docs/migration/CODEX_PORTING_RUNBOOK.md) refine the existing
+milestones; they do not replace them or claim any port completed.
+
+Source is OpenFilm `7add4762fe8174d76f43b863375ea39b73121e76`. Target M0 is PR #1
+head `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`, still unmerged at inspection.
+OF-01/02 have only partial M0 declaration-validation foundations. Other native
+ports are proposed. Six retain-host entries are exclusions, not rewrite tasks.
+
+| Wave / parent tasks | Transfer scope | Required outcome |
+| --- | --- | --- |
+| W0 / G1-G2 | GAP-01/02/03/16 | Provenance, actual source/test comparison, frozen wire/time profile and drift checks |
+| W1 / M1-01 | OF-01/02/03/04; OF-07 only for admitted timestamp fields | Read-only snapshot mapping; no source/Catalog writes; see [implementation plan](docs/superpowers/plans/2026-11-07-openfilm-port-bootstrap.md) |
+| W2 / M1-02 | OF-35/36; OF-18/24 only for explicit profile features | Finite OTIO and loss report; parser oracle; no silent effect loss |
+| W3 / M1-03 | OF-29/32/33/34/42 as needed; GAP-04/05/09/10 | Verified authorized sources and isolated actual host import/render/readback/save/reopen |
+| W4 / M2 | OF-05–23 selected by the story use case | Native evidence-to-plan algorithms, hard constraints and differential parity; optional travel/rhythm/transcript are not universal blockers |
+| W5 / M3 | OF-25–31; GAP-06/07/08/11 | Approved execution, own journal, conservative recovery and explicit unknown/partial state |
+| W6 / M4-M5 | OF-37–41 as needed; GAP-12–15 | Provider/consumer adapters, native distribution and real-user/second-host evidence |
+
+- [x] PORT-PLAN-01: written source-to-Rust inventory, classifications, proposed targets/tests and gap map (documentation only).
+- [ ] PORT-G01: maintainer accepts the transfer boundary and provenance policy before source-derived implementation.
+- [ ] PORT-G02: freeze actual per-task source symbols/tests/blob identities and require differential evidence.
+- [ ] PORT-G03: execute M1-01 after its M0/profile prerequisites; do not bulk-create all planned modules.
+
+Every transfer PR records OF/GAP IDs together with original M task and new requirement IDs.
+The full task index is a coverage inventory, not a demand to build 64 items before M1.
