@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "brief": {
+    "schema_version": 1,
+    "brief_id": "synthetic-fixed-plan",
+    "intent": "Synthetic detail before opening; keep declared choices.",
+    "assets": [
+      {
+        "id": "opening"
+      },
+      {
+        "id": "detail"
+      }
+    ],
+    "manual_selected_asset_ids": [
+      "detail",
+      "opening"
+    ],
+    "hard_constraints": [
+      {
+        "type": "must-exclude",
+        "asset_ids": [
+          "opening"
+        ]
+      }
+    ],
+    "preferences": {
+      "preferred_asset_ids": [
+        "opening"
+      ],
+      "target_duration": {
+        "numerator": "3",
+        "denominator": "10"
+      }
+    }
+  },
+  "candidates": [
+    {
+      "asset_id": "opening",
+      "content_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "duration": {
+        "numerator": "1",
+        "denominator": "1"
+      },
+      "source_range": {
+        "start": {
+          "numerator": "0",
+          "denominator": "1"
+        },
+        "end": {
+          "numerator": "1",
+          "denominator": "10"
+        }
+      },
+      "score": 10
+    },
+    {
+      "asset_id": "detail",
+      "content_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "duration": {
+        "numerator": "1",
+        "denominator": "1"
+      },
+      "source_range": {
+        "start": {
+          "numerator": "1",
+          "denominator": "10"
+        },
+        "end": {
+          "numerator": "3",
+          "denominator": "10"
+        }
+      },
+      "score": -5
+    }
+  ],
+  "max_duration": {
+    "numerator": "1",
+    "denominator": "1"
+  },
+  "max_shots": 2
+}
