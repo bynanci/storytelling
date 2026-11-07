@@ -134,6 +134,23 @@ hosted checks passed; the comparison record preserves the accepted identities.
 | M2-S05 | Actual live run/provenance/validator/failed evidence and CI test-only closure | `run.py`, `test_orchestration.py` |
 | M2-S06 | Actual completed PR classification/register/lifecycle metadata with preserved history | `PR_REGISTER.md`, `pr-register.json` |
 
+## Concurrent PR #28 approval-identity candidate (not accepted)
+
+The following M3-A requirements describe a separate Draft candidate, not the
+canonical proposed M3-01/P1 finite-OTIO review-binding task tracked in
+[`M3-01-NEXT`](migration/M3-01-NEXT.md). They do not establish G2 acceptance,
+trusted human authorization, replay protection or host execution. Independent
+G2 review is pending. Implementation and verification evidence are in the
+[candidate work index](migration/m3-01-approval-candidate-work-index.json),
+[record](migration/records/M3-01-approval-candidate.md) and
+[validation](validation/m3-01-approval-candidate.md).
+
+| ID | Candidate requirement | Verification | State |
+| --- | --- | --- | --- |
+| M3-A01 | Bind exact proposal/artifact bytes, verified source identities, project, declared host claims/capabilities and accepted losses | Candidate work index and approval integration tests | Implemented on PR #28; not accepted |
+| M3-A02 | Strict bounded Ed25519 verification returns an opaque result and rejects tampering, malformed data and untrusted signer bindings | Candidate work index and approval integration tests | Implemented on PR #28; independent G2 pending |
+| M3-A03 | A valid signature does not establish human authorization, durable replay safety or host execution | Candidate API-boundary review, compile-fail examples and work index | Candidate scope; broader requirements remain open |
+
 ## Remaining breadth and future requirements
 
 M1-R01: the first bounded 25 fps picture-only profile now has actual proof through

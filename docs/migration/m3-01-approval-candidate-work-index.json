@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "task": "PR-28-approval-identity-candidate",
+  "base": "fefb038ec1699727da2c0f436a097bbdedcfd08a",
+  "state": "candidate-not-accepted",
+  "scope": "concurrent-bounded-core-approval-identity-and-signature-verification; distinct-from-canonical-M3-01/P1-finite-OTIO-review-binding",
+  "tasks": [
+    {
+      "id": "PR28/C1",
+      "state": "implemented",
+      "depends_on": [],
+      "acceptance": "Versioned strict identity DTO; hashes exact caller-supplied proposal/artifact bytes (including empty slices) without proving compiler provenance; sources only from VerifiedBufferV1; sorted unique identities and resource bounds"
+    },
+    {
+      "id": "PR28/C2",
+      "state": "implemented",
+      "depends_on": [
+        "PR28/C1"
+      ],
+      "acceptance": "Deterministic domain-separated bytes; strict Ed25519 verification; opaque BoundApprovalIdentityV1 and VerifiedApprovalV1; mismatched expected key bindings, malformed and stale inputs reject"
+    },
+    {
+      "id": "PR28/C3",
+      "state": "in-progress",
+      "depends_on": [
+        "PR28/C2"
+      ],
+      "acceptance": "Dependency, architecture, contract, task and validation evidence recorded; same-head Linux/Windows/macOS and hosted Cargo Audit passed; independent G2 remains open"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M3-A01",
+      "requirement": "Approval identity binds exact caller-supplied proposal/artifact bytes, verified source hashes/lengths, project, Host claims/capabilities and accepted losses; it does not prove compilation linkage",
+      "tests": [
+        "source_identity_uses_verified_buffer_bytes_and_digest",
+        "bound_identity_hashes_exact_bytes_and_accepts_empty_slices",
+        "approval_identity_requires_sorted_unique_sources_capabilities_and_losses",
+        "rejects_stale_plan_artifact_source_host_capability_and_loss_bindings",
+        "bound_identity_accepts_exact_proposal_and_artifact_size_limits"
+      ],
+      "verification_paths": [
+        "crates/storytelling-core/src/approval.rs",
+        "crates/storytelling-core/tests/approval.rs",
+        "docs/migration/APPROVAL_IDENTITY_V1.md"
+      ]
+    },
+    {
+      "id": "M3-A02",
+      "requirement": "Strict bounded Ed25519 verification returns an opaque result and rejects tampering, malformed data and mismatched expected approver key bindings",
+      "tests": [
+        "rfc8032_ed25519_known_answer_verifies",
+        "canonical_signing_bytes_are_domain_separated_and_deterministic",
+        "signed_approval_verifies_to_an_opaque_read_only_token",
+        "rejects_modified_signature_payload_and_wrong_expected_key",
+        "rejects_duplicate_unknown_malformed_and_oversized_approval_json",
+        "rejects_out_of_range_timestamp_short_nonce_and_unaccepted_loss",
+        "accepts_email_style_principal_identifiers_without_normalizing_them"
+      ],
+      "verification_paths": [
+        "crates/storytelling-core/src/approval.rs",
+        "crates/storytelling-core/tests/approval.rs",
+        "docs/validation/m3-01-approval-candidate.md"
+      ]
+    },
+    {
+      "id": "M3-A03",
+      "requirement": "No self-approval, private-key storage, replay claims, Host observation claims or implicit Host execution",
+      "tests": [],
+      "doctest_examples": [
+        "VerifiedApprovalV1 private fields prevent forging",
+        "VerifiedApprovalV1 does not implement Deserialize",
+        "BoundApprovalIdentityV1 private fields prevent forging",
+        "BoundApprovalIdentityV1 does not implement Deserialize"
+      ],
+      "verification_paths": [
+        "crates/storytelling-core/src/approval.rs",
+        "docs/migration/records/M3-01-approval-candidate.md",
+        "docs/migration/dependency-review-pr28-approval-candidate.md"
+      ]
+    }
+  ],
+  "manual_gates": [
+    "Independent G2 security review and explicit maintainer acceptance",
+    "Re-run same-head Quality, Required, Linux/Windows/macOS and Cargo Audit after any new revision",
+    "M3-02 durable replay/owner fencing before execution",
+    "M3-03 observed Host identity/capability evidence before execution"
+  ],
+  "not_claimed": [
+    "Human identity or actor authorization from a valid signature",
+    "Private key generation, storage, signing, rotation or revocation",
+    "Approval expiry, replay prevention or persistence",
+    "Source filesystem freshness after supplied-buffer verification",
+    "FilmCraft or other Host execution, rollback or compatibility",
+    "Release acceptance",
+    "Compiler provenance or same-snapshot linkage from the approval identity alone"
+  ]
+}

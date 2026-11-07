@@ -106,3 +106,36 @@ M0 has no approve/apply command, token, database or host adapter. Future contrac
 must distinguish StoryBrief, evidence, immutable proposal, compiled losses,
 approval and execution receipt. Approval must bind actual source identities,
 proposal/compiled-plan identity, host snapshot and accepted degradation choices.
+
+## Concurrent PR #28 Approval Identity v1 candidate (not accepted)
+
+This is a separate bounded cryptographic identity/verifier candidate. The
+canonical M3-01/P1 scope remains proposed in
+[M3-01-NEXT](migration/M3-01-NEXT.md), requires independent G2 freeze, and is
+not implemented by this candidate.
+
+The bounded core contract is documented in
+[Approval Identity v1](migration/APPROVAL_IDENTITY_V1.md). It is not a CLI
+command and does not execute or mutate an editor project. The API builds a
+private `BoundApprovalIdentityV1` from caller-supplied exact proposal/artifact
+byte slices and existing `VerifiedBufferV1` source tokens. It binds those inputs
+but does not prove compilation or same-snapshot linkage. A signed payload is
+accepted only when every identity field equals that token and an explicit
+caller-supplied `ExpectedApproverKeyV1` binding matches; the caller must obtain
+that binding from its own trusted source.
+
+The signer receives `storytelling.approval.v1\0` followed by the frozen compact
+`ApprovalPayloadV1` JSON bytes. Payload fields are serialized in Rust struct
+declaration order by the existing pinned `serde_json`; maps and floating-point
+fields are absent. Source IDs, Host capabilities, and accepted-loss rows must
+be strictly sorted and unique. `SignedApprovalV1` JSON rejects unknown/duplicate
+fields and is capped at 1 MiB. The detached signature and public key are
+lowercase hex (64-byte signature / 32-byte key). Core exposes verification only.
+
+`VerifiedApprovalV1` has private fields, no Serde traits, and read-only accessors.
+It proves that the supplied key signed this exact payload. It does not prove
+that the caller's key registry is trustworthy, that the named principal is
+authorized, that an `observed` Host claim is true, that approval has not been
+replayed/revoked/expired, or that a Host operation ran. Those are later trusted
+surface, M3-02, and M3-03 responsibilities. See the
+[PR #28 candidate evidence record](migration/records/M3-01-approval-candidate.md).

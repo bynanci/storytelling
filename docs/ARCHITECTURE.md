@@ -1,7 +1,8 @@
 # Architecture
 
 Status: accepted M0, finite M1-01/M1-02, M2-01 bounded audit, M2-02 fixed-window
-planner and M1-03 supplied-byte verification/isolated host proof, plus future design.
+planner and M1-03 supplied-byte verification/isolated host proof. The separate
+PR #28 approval-identity candidate is not accepted; independent G2 review is pending.
 See [M0 contract](CONTRACTS.md) and [finite-v1 contract](migration/FINITE_V1.md).
 
 ## Implemented dependency direction
@@ -88,3 +89,27 @@ deterministic optional ranks, and topologically orders exact fixed windows. Core
 owns declared types; pure engine planner/clock modules emit an actual M0-valid plan
 with reason paths. It adds no production dependencies or execution authority.
 Full multi-beat solving remains outside this profile.
+
+## Concurrent PR #28 approval-identity candidate (not accepted)
+
+This candidate is distinct from the proposed canonical M3-01/P1 finite-OTIO
+review-binding task in [M3-01-NEXT](migration/M3-01-NEXT.md). It does not satisfy
+that task, and independent G2 review is still pending.
+
+`storytelling-core::approval` is a pure contract/verifier. It derives source
+identity only from the existing private `VerifiedBufferV1`; it hashes the exact
+proposal and compiled-artifact byte sequences and snapshots declared Host
+profile/version/capabilities plus accepted losses. A parsed wire identity is
+untrusted until structurally validated and compared in full against the locally
+built identity token.
+
+The external signer and trusted principal/key registry are deliberately outside
+core. The caller supplies a public-key binding; Ed25519 strict verification proves
+control of that key over a domain-separated payload, not human identity or
+authorization. `HostBindingV1.observation` is a bound caller claim, not an
+independent Host observation. The opaque `VerifiedApprovalV1` is not a serialized
+bearer token. There is no key storage, replay ledger, expiry/revocation service,
+approval database, CLI signing path, or Host execution in this candidate.
+Future durability and Host-execution tasks must add durable replay/owner fencing
+and obtain actual Host evidence before execution. Bounds and canonical field/order rules are in the
+[contract](migration/APPROVAL_IDENTITY_V1.md).
