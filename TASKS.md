@@ -245,7 +245,7 @@ implementation-candidate details, not accepted/frozen product contracts.
 - [x] CLI, contract, requirements, provenance, validation record and work index documentation added.
 - [x] Delivery register updated with the current open Draft PR #31 and #32 states and exact-head checks.
 - [x] Full workspace debug/release tests, clippy, rustdoc and repository guard verification passed locally.
-- [x] Exact-head hosted Linux / Windows / macOS, Required, Quality and Dependency Audit checks passed at `2e7662405a49698be1ebee2136f54ab539ef7c2e` (run [42425697537](https://github.com/bynanci/storytelling/actions/runs/42425697537)).
+- [x] Exact-head hosted Linux / Windows / macOS, Required, Quality and Dependency Audit checks passed at implementation/source-comparison head `a979c6ad6244a9d20a8c276f43e21d310d8d8fbd` (run [42426266361](https://github.com/bynanci/storytelling/actions/runs/42426266361)) and follow-up head `5b61c0d1a87d4b33dd99bdfe03cccb8724ac151d` (run [42426713053](https://github.com/bynanci/storytelling/actions/runs/42426713053)). The final documentation-only follow-up's exact-head result is recorded in the PR description.
 - [ ] Independent G2 code/security review and maintainer acceptance.
 - [ ] Resolve review comments, update register/issue checklist only after accepted verification.
 
