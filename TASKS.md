@@ -79,6 +79,11 @@ head `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`, still unmerged at inspection.
 OF-01/02 have only partial M0 declaration-validation foundations. Other native
 ports are proposed. Six retain-host entries are exclusions, not rewrite tasks.
 
+- [x] PORT-DRIFT-01: compare the pinned source snapshot with current OpenFilm
+      main `5f737a6c8f35dce48e213370ff27900962c9304c`; update the merged PR #126
+      keyframe disposition and exact affected paths. See the
+      [source-drift record](docs/migration/records/openfilm-source-drift-2026-11-07.md).
+
 | Wave / parent tasks | Transfer scope | Required outcome |
 | --- | --- | --- |
 | W0 / G1-G2 | GAP-01/02/03/16 | Provenance, actual source/test comparison, frozen wire/time profile and drift checks |

@@ -47,6 +47,8 @@ The [48-entry Rust transfer map](migration/OPENFILM_RUST_PORT_MAP.md) records na
 candidates, external adapters and host exclusions against OpenFilm
 `7add4762fe8174d76f43b863375ea39b73121e76`. The [16 gap tasks](migration/NATIVE_BOUNDARIES_AND_GAPS.md)
 cover cross-language evidence, approval, host side effects, distribution and real-user gates.
+The pinned snapshot is preserved for reproducibility; the [2026-11-07 source-drift record](migration/records/openfilm-source-drift-2026-11-07.md)
+compares it with current OpenFilm main `5f737a6c8f35dce48e213370ff27900962c9304c` and updates the merged-keyframe disposition.
 Use the [machine ledger](migration/openfilm-port-index.json),
 [Codex runbook](migration/CODEX_PORTING_RUNBOOK.md), and
 [M1-01 implementation plan](superpowers/plans/2026-11-07-openfilm-port-bootstrap.md).

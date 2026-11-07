@@ -2,7 +2,8 @@
 
 日期：2026-11-07。這是 **G1/G2 規劃候選**，不是已完成移植。
 
-- OpenFilm 固定來源：`7add4762fe8174d76f43b863375ea39b73121e76`。涵蓋 16 個 packages 的責任邊界，另看 application、CLI/server、desktop/native 與測試入口。
+- OpenFilm 固定來源快照：`7add4762fe8174d76f43b863375ea39b73121e76`。涵蓋 16 個 packages 的責任邊界，另看 application、CLI/server、desktop/native 與測試入口。
+- Latest source comparison：main `5f737a6c8f35dce48e213370ff27900962c9304c`；PR #126 的已合併改動與 task impact 記在 [source-drift record](records/openfilm-source-drift-2026-11-07.md)。固定快照連結仍用於重現這份初版 inventory；執行移植前必須更新到該任務的實際來源 SHA。
 - Storytelling main：`551ff38920e2085e1d53a7ba777c9680678e9725`；Rust M0 仍位於未合併 PR #1 的 `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`。
 - M0 只驗證宣告資料、ID、hash 形狀與有理數來源區間；不讀來源 bytes、不執行 planner、不交接宿主。
 - 本輪未修改 Rust 產品程式、未搬 OpenFilm 程式/測試/資產；未執行來源 TS 或新 Rust 測試。
@@ -595,17 +596,17 @@
 
 **新增回歸命名：** `data_preset_cannot_execute_arbitrary_code`。先找到來源tests，保留授權與合成fixture來源；不得把這個規劃名稱寫成已存在或已通過。
 
-### OF-48｜尚未合併視覺keyframes與進階NLE擴張
+### OF-48｜已合併視覺keyframes的宿主能力／loss mapping
 
-**里程碑：** watch-only；**Rust狀態：** not-planned-for-core；**前置：** 不進核心開發排程。
+**里程碑：** M1-02 capability/loss mapping；**分類：** retain-host；**Rust狀態：** not-planned-for-core；**前置：** OF-35/36。
 
-**OpenFilm來源：** `packages/core/src/sequence.ts`；`TASKS.md`。
+**OpenFilm來源：** `packages/core/src/clip-animation.ts`；`packages/core/src/sequence.ts`；`packages/core/src/models.ts`；`packages/render/src/clip-opacity.ts`；`packages/solver/src/editing.ts`；`packages/application/src/editor.ts`；`apps/desktop/src/components/ClipAnimationInspector.vue`。
 
-**Rust規劃落點：** `watch-upstream-PR-126`。
+**Rust規劃落點：** OF-36 host capability/loss report；不建立第二套 live Timeline、動畫求值器或renderer。
 
-**範圍／驗收：** PR #125精確frame時間已納OF-02；PR #126視覺keyframe當次仍Draft，不作main已完成來源。speed ramps/compound/multicam不趁Rust遷移擴張；後續只做宿主capability與loss mapping。
+**範圍／驗收：** PR #126 已合併於來源 main `5f737a6`，加入 versioned deterministic visual keyframes 與 bounded opacity rendering。Storytelling 只需按目標宿主/profile 對每種屬性分類 native/baked/unsupported，並在 loss report 保留精確時間、easing、opacity 與來源映射；不重做 OpenFilm evaluator 或假定外部 NLE parity。Speed ramps、compound editing、multicam仍維持延後。
 
-**新增回歸命名：** `draft_work_is_not_marked_as_available_source`。先找到來源tests，保留授權與合成fixture來源；不得把這個規劃名稱寫成已存在或已通過。
+**新增回歸命名：** `keyframe_loss_is_reported_for_unsupported_host_profile`。先找到目標宿主/profile 的實際tests與能力證據；此名稱是未來要求，不是既有或已通過測試。
 
 ## 來源核對層級與範圍
 
@@ -615,4 +616,4 @@ Codex要執行任何一項，先以 `git cat-file -e <sha>:<path>` 確認來源�
 
 `packages/ui`/desktop/template等目錄級來源是責任邊界，不是整包複製授權。FFmpeg/第三方字型/模型/素材各有條款。原有Apache標記與NOTICE須保留；本次沒有把MIT改成Apache，也沒有授權將Apache內容改掛MIT。
 
-來源主線已有PR #121 coverage constraints及PR #125 frame time；PR #126當次仍draft。PR描述中殘留「未合併」字樣不能推翻GitHub實際merged欄位。
+來源固定快照已含PR #120、#121、#125；2026-11-07重新查核的 main `5f737a6` 另含已合併PR #126。GitHub顯示 #126 於 `00:24:01Z` 合併，而Storytelling PR #2 建立於 `00:51:12Z`；因此原始「仍為Draft」文字是狀態漂移，已由本次 source-drift record 修正。每個移植PR仍須按當時最新來源重新比對。

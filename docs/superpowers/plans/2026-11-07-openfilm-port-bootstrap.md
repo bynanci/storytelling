@@ -12,7 +12,7 @@
 
 ## Global constraints
 
-Source baseline is OpenFilm `7add4762fe8174d76f43b863375ea39b73121e76`; target foundation candidate is `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`. Refresh actual branch metadata first. M0 PR #1 is not assumed merged. Preserve source IDs, original clocks, user choices and existing MIT license. Do not copy Apache implementation/tests without GAP-01 provenance decision. This importer validates declarations; it never claims actual source SHA verification or host compatibility.
+Pinned comparison snapshot is OpenFilm `7add4762fe8174d76f43b863375ea39b73121e76`; current main was rechecked at `5f737a6c8f35dce48e213370ff27900962c9304c` and source drift is recorded in [the 2026-11-07 comparison](../../migration/records/openfilm-source-drift-2026-11-07.md). Target foundation candidate is `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`. Refresh actual branch metadata first. M0 PR #1 is not assumed merged. Preserve source IDs, original clocks, user choices and existing MIT license. Do not copy Apache implementation/tests without GAP-01 provenance decision. This importer validates declarations; it never claims actual source SHA verification or host compatibility.
 
 ## Review focus
 
