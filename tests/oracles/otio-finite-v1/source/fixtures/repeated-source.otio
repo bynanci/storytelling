@@ -1,0 +1,219 @@
+{
+  "OTIO_SCHEMA": "Timeline.1",
+  "name": "repeat-story",
+  "metadata": {
+    "openfilm": {
+      "compositionId": "repeat-story",
+      "storyId": "synthetic-story",
+      "settings": {
+        "width": 1920,
+        "height": 1080,
+        "frameRate": 30
+      },
+      "composition": {
+        "id": "repeat-story",
+        "storyId": "synthetic-story",
+        "duration": 5,
+        "tracks": [
+          {
+            "id": "repeat-story-pictures",
+            "type": "video",
+            "clips": [
+              {
+                "id": "first-occurrence",
+                "assetId": "video-asset",
+                "beatId": "opening",
+                "sourceIn": 1,
+                "sourceOut": 3,
+                "timelineStart": 0,
+                "timelineDuration": 2
+              },
+              {
+                "id": "second-occurrence",
+                "assetId": "video-asset",
+                "beatId": "opening",
+                "sourceIn": 6,
+                "sourceOut": 9,
+                "timelineStart": 2,
+                "timelineDuration": 3
+              }
+            ]
+          }
+        ]
+      },
+      "compatibility": {
+        "format": "otio",
+        "realNleVerified": false,
+        "advancedEdits": "metadata-only",
+        "warnings": [],
+        "metadataOnlyEdits": []
+      }
+    }
+  },
+  "global_start_time": {
+    "OTIO_SCHEMA": "RationalTime.1",
+    "value": 0,
+    "rate": 30
+  },
+  "tracks": {
+    "OTIO_SCHEMA": "Stack.1",
+    "name": "tracks",
+    "metadata": {},
+    "children": [
+      {
+        "OTIO_SCHEMA": "Track.1",
+        "name": "repeat-story-pictures",
+        "kind": "Video",
+        "children": [
+          {
+            "OTIO_SCHEMA": "Clip.1",
+            "name": "Synthetic video-asset",
+            "metadata": {
+              "openfilm": {
+                "clipId": "first-occurrence",
+                "assetId": "video-asset",
+                "beatId": "opening",
+                "clip": {
+                  "id": "first-occurrence",
+                  "assetId": "video-asset",
+                  "beatId": "opening",
+                  "sourceIn": 1,
+                  "sourceOut": 3,
+                  "timelineStart": 0,
+                  "timelineDuration": 2
+                },
+                "nativeCutDuration": 2,
+                "advancedEdits": "metadata-only"
+              }
+            },
+            "effects": [],
+            "markers": [],
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 30,
+                "rate": 30
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 60,
+                "rate": 30
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "Synthetic video-asset",
+              "target_url": "file:///synthetic/oracle/video-asset.mp4",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 30
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 360,
+                  "rate": 30
+                }
+              },
+              "metadata": {
+                "openfilm": {
+                  "assetId": "video-asset",
+                  "mediaType": "video",
+                  "contentHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            }
+          },
+          {
+            "OTIO_SCHEMA": "Clip.1",
+            "name": "Synthetic video-asset",
+            "metadata": {
+              "openfilm": {
+                "clipId": "second-occurrence",
+                "assetId": "video-asset",
+                "beatId": "opening",
+                "clip": {
+                  "id": "second-occurrence",
+                  "assetId": "video-asset",
+                  "beatId": "opening",
+                  "sourceIn": 6,
+                  "sourceOut": 9,
+                  "timelineStart": 2,
+                  "timelineDuration": 3
+                },
+                "nativeCutDuration": 3,
+                "advancedEdits": "metadata-only"
+              }
+            },
+            "effects": [],
+            "markers": [],
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 180,
+                "rate": 30
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 90,
+                "rate": 30
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "Synthetic video-asset",
+              "target_url": "file:///synthetic/oracle/video-asset.mp4",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 30
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 360,
+                  "rate": 30
+                }
+              },
+              "metadata": {
+                "openfilm": {
+                  "assetId": "video-asset",
+                  "mediaType": "video",
+                  "contentHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            }
+          }
+        ],
+        "effects": [],
+        "markers": [],
+        "metadata": {
+          "openfilm": {
+            "trackType": "video"
+          }
+        },
+        "source_range": null
+      }
+    ],
+    "effects": [],
+    "markers": [],
+    "source_range": {
+      "OTIO_SCHEMA": "TimeRange.1",
+      "start_time": {
+        "OTIO_SCHEMA": "RationalTime.1",
+        "value": 0,
+        "rate": 30
+      },
+      "duration": {
+        "OTIO_SCHEMA": "RationalTime.1",
+        "value": 150,
+        "rate": 30
+      }
+    }
+  }
+}

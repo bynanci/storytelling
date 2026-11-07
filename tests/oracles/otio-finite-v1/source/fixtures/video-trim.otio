@@ -1,0 +1,148 @@
+{
+  "OTIO_SCHEMA": "Timeline.1",
+  "name": "trim-story",
+  "metadata": {
+    "openfilm": {
+      "compositionId": "trim-story",
+      "storyId": "synthetic-story",
+      "settings": {
+        "width": 1920,
+        "height": 1080,
+        "frameRate": 30
+      },
+      "composition": {
+        "id": "trim-story",
+        "storyId": "synthetic-story",
+        "duration": 3,
+        "tracks": [
+          {
+            "id": "trim-story-pictures",
+            "type": "video",
+            "clips": [
+              {
+                "id": "trim-occurrence",
+                "assetId": "video-asset",
+                "beatId": "opening",
+                "sourceIn": 2,
+                "sourceOut": 5,
+                "timelineStart": 0,
+                "timelineDuration": 3
+              }
+            ]
+          }
+        ]
+      },
+      "compatibility": {
+        "format": "otio",
+        "realNleVerified": false,
+        "advancedEdits": "metadata-only",
+        "warnings": [],
+        "metadataOnlyEdits": []
+      }
+    }
+  },
+  "global_start_time": {
+    "OTIO_SCHEMA": "RationalTime.1",
+    "value": 0,
+    "rate": 30
+  },
+  "tracks": {
+    "OTIO_SCHEMA": "Stack.1",
+    "name": "tracks",
+    "metadata": {},
+    "children": [
+      {
+        "OTIO_SCHEMA": "Track.1",
+        "name": "trim-story-pictures",
+        "kind": "Video",
+        "children": [
+          {
+            "OTIO_SCHEMA": "Clip.1",
+            "name": "Synthetic video-asset",
+            "metadata": {
+              "openfilm": {
+                "clipId": "trim-occurrence",
+                "assetId": "video-asset",
+                "beatId": "opening",
+                "clip": {
+                  "id": "trim-occurrence",
+                  "assetId": "video-asset",
+                  "beatId": "opening",
+                  "sourceIn": 2,
+                  "sourceOut": 5,
+                  "timelineStart": 0,
+                  "timelineDuration": 3
+                },
+                "nativeCutDuration": 3,
+                "advancedEdits": "metadata-only"
+              }
+            },
+            "effects": [],
+            "markers": [],
+            "source_range": {
+              "OTIO_SCHEMA": "TimeRange.1",
+              "start_time": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 60,
+                "rate": 30
+              },
+              "duration": {
+                "OTIO_SCHEMA": "RationalTime.1",
+                "value": 90,
+                "rate": 30
+              }
+            },
+            "media_reference": {
+              "OTIO_SCHEMA": "ExternalReference.1",
+              "name": "Synthetic video-asset",
+              "target_url": "file:///synthetic/oracle/video-asset.mp4",
+              "available_range": {
+                "OTIO_SCHEMA": "TimeRange.1",
+                "start_time": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 0,
+                  "rate": 30
+                },
+                "duration": {
+                  "OTIO_SCHEMA": "RationalTime.1",
+                  "value": 360,
+                  "rate": 30
+                }
+              },
+              "metadata": {
+                "openfilm": {
+                  "assetId": "video-asset",
+                  "mediaType": "video",
+                  "contentHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                }
+              }
+            }
+          }
+        ],
+        "effects": [],
+        "markers": [],
+        "metadata": {
+          "openfilm": {
+            "trackType": "video"
+          }
+        },
+        "source_range": null
+      }
+    ],
+    "effects": [],
+    "markers": [],
+    "source_range": {
+      "OTIO_SCHEMA": "TimeRange.1",
+      "start_time": {
+        "OTIO_SCHEMA": "RationalTime.1",
+        "value": 0,
+        "rate": 30
+      },
+      "duration": {
+        "OTIO_SCHEMA": "RationalTime.1",
+        "value": 90,
+        "rate": 30
+      }
+    }
+  }
+}
