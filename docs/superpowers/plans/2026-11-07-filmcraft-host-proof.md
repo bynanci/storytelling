@@ -24,7 +24,7 @@
 - Over-budget files must stop after the limit plus one byte; CLI tests exercise domain failure without leaking paths.
 - Host import may exit zero with JSON errors; harness rejects structured errors/offline media/reports.
 - Native source times and repeated source identity must survive reopen and OTIO reimport; external mapping and exact native tick assertions pin this.
-- Valid-looking encoded output can have wrong frames; FFprobe timestamps/count and every decoded frame color pin order and trimming.
+- Valid-looking encoded output can have wrong frames; FFprobe timestamps/count and every decoded frame color pin order/hold lengths, while exact native ticks prove trim offsets.
 
 ### Task 1: Native explicit-buffer evidence
 
@@ -48,5 +48,5 @@
 - [x] Generate authorized synthetic sources and verify through native CLI; emit M1-02 OTIO and assert common clock 25.
 - [x] Execute new/import/inspect/native save/reopen/CPU encoded export/OTIO readback/reimport with explicit paths and isolated XDG; assert every exact profile invariant and all structured warnings/errors.
 - [x] Independently check FFprobe timestamps/count/duration and each frame color; verify source/empty-project immutability and collect hashes/ID mappings.
-- [ ] After parent lands M1-02, rebase main, build the actual candidate and rerun complete proof; replace provisional evidence with final hashes and actual outcomes.
+- [x] After parent lands M1-02, rebase main, build the actual candidate and rerun complete proof; replace provisional evidence with final hashes and actual outcomes.
 - [ ] Run all repository checks, focused independent review and exact-head hosted CI; create focused tracking issue and Draft PR, then merge only after parent signal and green same-head CI under existing user authorization.

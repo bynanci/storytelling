@@ -17,7 +17,7 @@
       "depends_on": [
         "M1-03/P1"
       ],
-      "acceptance": "Actual isolated synthetic host25fps CPU proof; final candidate rerun required"
+      "acceptance": "Full final clean-candidate isolated synthetic host25fps CPU proof passed, exact actual receipt committed"
     },
     {
       "id": "M1-03/P3",
@@ -73,5 +73,11 @@
     "general host executor/approval",
     "all 64 ports"
   ],
-  "integration_base": "422190e27bc604bd71485f78279373992f99e68c"
+  "integration_base": "422190e27bc604bd71485f78279373992f99e68c",
+  "verified_candidate": {
+    "head": "47f25e8b6e788885f32d401777b2989771c96e05",
+    "tree": "95635f276d8107fa0846911284a642a3c1024af2",
+    "harness_sha256": "47b4b73fd1b3581c6954383680d546517c6ca99401fd87e2b9e3d988614d9aea",
+    "run_root": "/workspace/scratch/filmcraft-proof-final-01"
+  }
 }

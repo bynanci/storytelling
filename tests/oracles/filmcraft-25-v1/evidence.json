@@ -9,17 +9,29 @@
     "source_commit": "015d5b3ea37e1202a529e6245d3cc021c8c16ffd",
     "archive_sha256": "0179f05b20db855bfd3def9136ce60dee59f22d2dcbfcf23e4a6256e0c153b05",
     "binary_sha256": "064a1f55cde5f6e1ac04bcd3a5b72e5d7366905f3d7333793e78dda0c109d33f",
-    "version": "filmcraft-cli 0.18.0"
+    "version": "filmcraft-cli 0.18.0",
+    "provisioning": {
+      "archive_url": "https://github.com/storytold/filmcraft/releases/download/v0.18.0/filmcraft-0.18.0-linux-x86_64.tar.gz",
+      "checksum_manifest_sha256": "2c231596c95e19ddc4e24e89c1f9ef073734f52fb334b0dd0f8118f4b2ca043c",
+      "prior_checks": [
+        "official archive asset digest",
+        "official SHA256SUMS archive row",
+        "official SHA256SUMS asset digest",
+        "archive members inspected before extraction; no links/path escapes"
+      ],
+      "detached_signature_verified": false,
+      "note": "Recorded prior provisioning evidence, not rerun by this harness; every invocation independently verifies extracted binary SHA-256."
+    }
   },
   "tools": {
-    "/workspace/storytelling-host/target/debug/storytelling": "97330680833f51b50fa63a2bab9d3f191369819d6b3a3819842b8f51f56553ae",
+    "/workspace/storytelling-host/target/release/storytelling": "b4cdcde4cc57baf512389566940debfd284324176cb3559103c7a59ae0199e1b",
     "/usr/bin/ffmpeg": "e8a8d46f5225f3062cec7c07fb145d58ae73c603cb740dcd5bad34bfb54e455a",
     "/usr/bin/ffprobe": "cefc5f81c0b18429cdbf8fa5a89e1e9c759235e10f93f9b329ff1b2fdff26f46"
   },
   "sources": [
     {
       "asset_id": "reused-video",
-      "path": "/workspace/scratch/filmcraft-proof-integrated-01/source.mp4",
+      "path": "/workspace/scratch/filmcraft-proof-final-01/source.mp4",
       "sha256": "af13fcfbc65d603a75e067e414dbdd50c92abdec6d78bc0222c9b9fa77676f78",
       "verification_before": {
         "algorithm": "sha256",
@@ -38,7 +50,7 @@
     },
     {
       "asset_id": "blue-still",
-      "path": "/workspace/scratch/filmcraft-proof-integrated-01/blue.png",
+      "path": "/workspace/scratch/filmcraft-proof-final-01/blue.png",
       "sha256": "5f925285172a88ad90816e439208f2f1e793645cdd0d8a26e1f13cf72cf9a158",
       "verification_before": {
         "algorithm": "sha256",
@@ -470,15 +482,15 @@
     "input-immutability"
   ],
   "unchanged_inputs": {
-    "/workspace/scratch/filmcraft-proof-integrated-01/empty.fcproj": "79fdad99f8bc9f2fd99ee8792dd90a9367257d77121890125ca8d0fe2317c05b",
-    "/workspace/scratch/filmcraft-proof-integrated-01/source.json": "205de6b85466acb987524f9aff16a6c690281d79fdb90939e5a1a7b663711988",
-    "/workspace/scratch/filmcraft-proof-integrated-01/input.otio": "905a5eb4a79313fc548144d19e84094076f7e813e45a2ec9ea89053a6405b224",
-    "/workspace/scratch/filmcraft-proof-integrated-01/source.mp4": "af13fcfbc65d603a75e067e414dbdd50c92abdec6d78bc0222c9b9fa77676f78",
-    "/workspace/scratch/filmcraft-proof-integrated-01/blue.png": "5f925285172a88ad90816e439208f2f1e793645cdd0d8a26e1f13cf72cf9a158",
-    "/workspace/scratch/filmcraft-proof-integrated-01/imported.fcproj": "13fbec6f147bb67e1c6359a7b1cc52a417cb13022b8f5a529db21269fc23ecfd",
-    "/workspace/scratch/filmcraft-proof-integrated-01/saved-again.fcproj": "0db8efff9f8f4b966fdacc0f4883226fee74973e3358b8d75db66f3892a1b945"
+    "/workspace/scratch/filmcraft-proof-final-01/empty.fcproj": "79fdad99f8bc9f2fd99ee8792dd90a9367257d77121890125ca8d0fe2317c05b",
+    "/workspace/scratch/filmcraft-proof-final-01/source.json": "b1a4253a3e0bb6b3eefc85d5b3360b7570341468ef159f3c1643bbd188990cd1",
+    "/workspace/scratch/filmcraft-proof-final-01/input.otio": "2025b0a3612100a185e770728a74eaefc6e22f5ea3323cfad34a8638a60b3bf5",
+    "/workspace/scratch/filmcraft-proof-final-01/source.mp4": "af13fcfbc65d603a75e067e414dbdd50c92abdec6d78bc0222c9b9fa77676f78",
+    "/workspace/scratch/filmcraft-proof-final-01/blue.png": "5f925285172a88ad90816e439208f2f1e793645cdd0d8a26e1f13cf72cf9a158",
+    "/workspace/scratch/filmcraft-proof-final-01/imported.fcproj": "23c9e875ace4f32fd175f124923c32e8d8b0d6e2cd1d3c4a61229ce0cb75e9ad",
+    "/workspace/scratch/filmcraft-proof-final-01/saved-again.fcproj": "c8e46d76f154dafb739885011e936d49ccc70b9b204f33696ca002a4fccc80d4"
   },
-  "run_root": "/workspace/scratch/filmcraft-proof-integrated-01",
+  "run_root": "/workspace/scratch/filmcraft-proof-final-01",
   "commands": [
     {
       "argv": [
@@ -487,6 +499,36 @@
       ],
       "exit": 0,
       "stdout_sha256": "433ca971367a4e8d2fc53d0519c55b690e5c6b0a7c44527b138e0bfc8c00d73a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/workspace/storytelling-host/target/release/storytelling",
+        "--version"
+      ],
+      "exit": 0,
+      "stdout_sha256": "c680640979c8f4149e592844e91f0a03bd2d8d2d68c042119c2cbb8883d49233",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/ffmpeg",
+        "-version"
+      ],
+      "exit": 0,
+      "stdout_sha256": "b241942a091ee91966e5b04017a34f1f2a3bcfb1cf80a195e274db03874459d9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/ffprobe",
+        "-version"
+      ],
+      "exit": 0,
+      "stdout_sha256": "02412fef1eca820a65af53c5fa03b637f92ef643783005ccf9c4b4e3a31fb699",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderr": ""
     },
@@ -511,7 +553,7 @@
         "libx264",
         "-pix_fmt",
         "yuv420p",
-        "/workspace/scratch/filmcraft-proof-integrated-01/source.mp4"
+        "/workspace/scratch/filmcraft-proof-final-01/source.mp4"
       ],
       "exit": 0,
       "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -529,7 +571,7 @@
         "color=0x0000ff:s=1920x1080:r=25",
         "-frames:v",
         "1",
-        "/workspace/scratch/filmcraft-proof-integrated-01/blue.png"
+        "/workspace/scratch/filmcraft-proof-final-01/blue.png"
       ],
       "exit": 0,
       "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -542,7 +584,7 @@
         "-v",
         "error",
         "-i",
-        "/workspace/scratch/filmcraft-proof-integrated-01/source.mp4",
+        "/workspace/scratch/filmcraft-proof-final-01/source.mp4",
         "-vf",
         "scale=1:1:flags=area",
         "-pix_fmt",
@@ -562,7 +604,7 @@
         "-v",
         "error",
         "-i",
-        "/workspace/scratch/filmcraft-proof-integrated-01/blue.png",
+        "/workspace/scratch/filmcraft-proof-final-01/blue.png",
         "-vf",
         "scale=1:1:flags=area",
         "-pix_fmt",
@@ -578,9 +620,9 @@
     },
     {
       "argv": [
-        "/workspace/storytelling-host/target/debug/storytelling",
+        "/workspace/storytelling-host/target/release/storytelling",
         "verify-source",
-        "/workspace/scratch/filmcraft-proof-integrated-01/source.mp4",
+        "/workspace/scratch/filmcraft-proof-final-01/source.mp4",
         "af13fcfbc65d603a75e067e414dbdd50c92abdec6d78bc0222c9b9fa77676f78"
       ],
       "exit": 0,
@@ -590,9 +632,9 @@
     },
     {
       "argv": [
-        "/workspace/storytelling-host/target/debug/storytelling",
+        "/workspace/storytelling-host/target/release/storytelling",
         "verify-source",
-        "/workspace/scratch/filmcraft-proof-integrated-01/blue.png",
+        "/workspace/scratch/filmcraft-proof-final-01/blue.png",
         "5f925285172a88ad90816e439208f2f1e793645cdd0d8a26e1f13cf72cf9a158"
       ],
       "exit": 0,
@@ -602,13 +644,13 @@
     },
     {
       "argv": [
-        "/workspace/storytelling-host/target/debug/storytelling",
+        "/workspace/storytelling-host/target/release/storytelling",
         "export-otio",
-        "/workspace/scratch/filmcraft-proof-integrated-01/source.json",
+        "/workspace/scratch/filmcraft-proof-final-01/source.json",
         "--picture-only"
       ],
       "exit": 0,
-      "stdout_sha256": "905a5eb4a79313fc548144d19e84094076f7e813e45a2ec9ea89053a6405b224",
+      "stdout_sha256": "2025b0a3612100a185e770728a74eaefc6e22f5ea3323cfad34a8638a60b3bf5",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderr": ""
     },
@@ -616,9 +658,9 @@
       "argv": [
         "/workspace/toolchains/filmcraft-v0.18.0/extracted/filmcraft-0.18.0-linux-x86_64/bin/filmcraft-cli",
         "--data-dir",
-        "/workspace/scratch/filmcraft-proof-integrated-01/data",
+        "/workspace/scratch/filmcraft-proof-final-01/data",
         "--save-as",
-        "/workspace/scratch/filmcraft-proof-integrated-01/empty.fcproj",
+        "/workspace/scratch/filmcraft-proof-final-01/empty.fcproj",
         "exec",
         "file.newProject",
         "name=Review"
@@ -632,14 +674,14 @@
       "argv": [
         "/workspace/toolchains/filmcraft-v0.18.0/extracted/filmcraft-0.18.0-linux-x86_64/bin/filmcraft-cli",
         "--data-dir",
-        "/workspace/scratch/filmcraft-proof-integrated-01/data",
+        "/workspace/scratch/filmcraft-proof-final-01/data",
         "--project",
-        "/workspace/scratch/filmcraft-proof-integrated-01/empty.fcproj",
+        "/workspace/scratch/filmcraft-proof-final-01/empty.fcproj",
         "inspect",
         "project"
       ],
       "exit": 0,
-      "stdout_sha256": "755785544509f93ef751d912804c6a5cb941c8ddbc483de9d3b1d627c2d49900",
+      "stdout_sha256": "de400f5b885eb75147423ddb56bfc1f06591f707ee511878dbb8a4ebd26bbded",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderr": ""
     },
@@ -647,13 +689,13 @@
       "argv": [
         "/workspace/toolchains/filmcraft-v0.18.0/extracted/filmcraft-0.18.0-linux-x86_64/bin/filmcraft-cli",
         "--data-dir",
-        "/workspace/scratch/filmcraft-proof-integrated-01/data",
+        "/workspace/scratch/filmcraft-proof-final-01/data",
         "--project",
-        "/workspace/scratch/filmcraft-proof-integrated-01/empty.fcproj",
+        "/workspace/scratch/filmcraft-proof-final-01/empty.fcproj",
         "--save-as",
-        "/workspace/scratch/filmcraft-proof-integrated-01/imported.fcproj",
+        "/workspace/scratch/filmcraft-proof-final-01/imported.fcproj",
         "import",
-        "/workspace/scratch/filmcraft-proof-integrated-01/input.otio"
+        "/workspace/scratch/filmcraft-proof-final-01/input.otio"
       ],
       "exit": 0,
       "stdout_sha256": "a5217e014efe98bef2ed264b43a5ed58580096710fb67dfd7609ab9798f59803",
@@ -664,9 +706,9 @@
       "argv": [
         "/workspace/toolchains/filmcraft-v0.18.0/extracted/filmcraft-0.18.0-linux-x86_64/bin/filmcraft-cli",
         "--data-dir",
-        "/workspace/scratch/filmcraft-proof-integrated-01/data",
+        "/workspace/scratch/filmcraft-proof-final-01/data",
         "--project",
-        "/workspace/scratch/filmcraft-proof-integrated-01/imported.fcproj",
+        "/workspace/scratch/filmcraft-proof-final-01/imported.fcproj",
         "inspect",
         "sequence"
       ],
@@ -679,11 +721,11 @@
       "argv": [
         "/workspace/toolchains/filmcraft-v0.18.0/extracted/filmcraft-0.18.0-linux-x86_64/bin/filmcraft-cli",
         "--data-dir",
-        "/workspace/scratch/filmcraft-proof-integrated-01/data",
+        "/workspace/scratch/filmcraft-proof-final-01/data",
         "--project",
-        "/workspace/scratch/filmcraft-proof-integrated-01/imported.fcproj",
+        "/workspace/scratch/filmcraft-proof-final-01/imported.fcproj",
         "export",
-        "/workspace/scratch/filmcraft-proof-integrated-01/movie.mp4",
+        "/workspace/scratch/filmcraft-proof-final-01/movie.mp4",
         "--format",
         "h264",
         "--gpu-rendering",
@@ -695,23 +737,23 @@
         "0.1"
       ],
       "exit": 0,
-      "stdout_sha256": "5724e6484bcd6d07ba267561e3faa570c95a2095d9a4c22c483405f8bf9b5114",
-      "stderr_sha256": "9c00aa5da0acd09fd82af52c1141d016e01b4f247c1572565417c7b9364ad649",
-      "stderr": "exported /workspace/scratch/filmcraft-proof-integrated-01/movie.mp4 in 0.4s\n"
+      "stdout_sha256": "667a0c6386db10487a550f8800fcdd5a64aa745f7c00eaf2e709bc8444c5cba1",
+      "stderr_sha256": "d13c8016fbd29fc50c25e5229b012f6b80fc3a7d95b5a7f824525e025b72a6e2",
+      "stderr": "exported /workspace/scratch/filmcraft-proof-final-01/movie.mp4 in 0.5s\n"
     },
     {
       "argv": [
         "/workspace/toolchains/filmcraft-v0.18.0/extracted/filmcraft-0.18.0-linux-x86_64/bin/filmcraft-cli",
         "--data-dir",
-        "/workspace/scratch/filmcraft-proof-integrated-01/data",
+        "/workspace/scratch/filmcraft-proof-final-01/data",
         "--project",
-        "/workspace/scratch/filmcraft-proof-integrated-01/imported.fcproj",
+        "/workspace/scratch/filmcraft-proof-final-01/imported.fcproj",
         "exec",
         "file.saveAs",
-        "path=/workspace/scratch/filmcraft-proof-integrated-01/saved-again.fcproj"
+        "path=/workspace/scratch/filmcraft-proof-final-01/saved-again.fcproj"
       ],
       "exit": 0,
-      "stdout_sha256": "842885de54af2f68543318145602701394f11b92b2ceff3ff85e71285d21ea26",
+      "stdout_sha256": "1043a635f564727ba2463386713c4f622fa6b89b25a757178001357953e3607b",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderr": ""
     },
@@ -719,9 +761,9 @@
       "argv": [
         "/workspace/toolchains/filmcraft-v0.18.0/extracted/filmcraft-0.18.0-linux-x86_64/bin/filmcraft-cli",
         "--data-dir",
-        "/workspace/scratch/filmcraft-proof-integrated-01/data",
+        "/workspace/scratch/filmcraft-proof-final-01/data",
         "--project",
-        "/workspace/scratch/filmcraft-proof-integrated-01/saved-again.fcproj",
+        "/workspace/scratch/filmcraft-proof-final-01/saved-again.fcproj",
         "inspect",
         "sequence"
       ],
@@ -734,16 +776,16 @@
       "argv": [
         "/workspace/toolchains/filmcraft-v0.18.0/extracted/filmcraft-0.18.0-linux-x86_64/bin/filmcraft-cli",
         "--data-dir",
-        "/workspace/scratch/filmcraft-proof-integrated-01/data",
+        "/workspace/scratch/filmcraft-proof-final-01/data",
         "--project",
-        "/workspace/scratch/filmcraft-proof-integrated-01/saved-again.fcproj",
+        "/workspace/scratch/filmcraft-proof-final-01/saved-again.fcproj",
         "exec",
         "file.exportInterchange",
         "format=otio",
-        "path=/workspace/scratch/filmcraft-proof-integrated-01/readback.otio"
+        "path=/workspace/scratch/filmcraft-proof-final-01/readback.otio"
       ],
       "exit": 0,
-      "stdout_sha256": "715f416a406d7699890d679bc401b17ff596715436afac8eb69588c8ab6e4ef9",
+      "stdout_sha256": "846b4f20e7e4b420bcd2da12afe2ab838f463c37e09cd26c04de0a7236220a77",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderr": ""
     },
@@ -751,13 +793,13 @@
       "argv": [
         "/workspace/toolchains/filmcraft-v0.18.0/extracted/filmcraft-0.18.0-linux-x86_64/bin/filmcraft-cli",
         "--data-dir",
-        "/workspace/scratch/filmcraft-proof-integrated-01/data",
+        "/workspace/scratch/filmcraft-proof-final-01/data",
         "--project",
-        "/workspace/scratch/filmcraft-proof-integrated-01/empty.fcproj",
+        "/workspace/scratch/filmcraft-proof-final-01/empty.fcproj",
         "--save-as",
-        "/workspace/scratch/filmcraft-proof-integrated-01/reimported.fcproj",
+        "/workspace/scratch/filmcraft-proof-final-01/reimported.fcproj",
         "import",
-        "/workspace/scratch/filmcraft-proof-integrated-01/readback.otio"
+        "/workspace/scratch/filmcraft-proof-final-01/readback.otio"
       ],
       "exit": 0,
       "stdout_sha256": "a5217e014efe98bef2ed264b43a5ed58580096710fb67dfd7609ab9798f59803",
@@ -768,9 +810,9 @@
       "argv": [
         "/workspace/toolchains/filmcraft-v0.18.0/extracted/filmcraft-0.18.0-linux-x86_64/bin/filmcraft-cli",
         "--data-dir",
-        "/workspace/scratch/filmcraft-proof-integrated-01/data",
+        "/workspace/scratch/filmcraft-proof-final-01/data",
         "--project",
-        "/workspace/scratch/filmcraft-proof-integrated-01/reimported.fcproj",
+        "/workspace/scratch/filmcraft-proof-final-01/reimported.fcproj",
         "inspect",
         "sequence"
       ],
@@ -789,10 +831,10 @@
         "-show_frames",
         "-of",
         "json",
-        "/workspace/scratch/filmcraft-proof-integrated-01/movie.mp4"
+        "/workspace/scratch/filmcraft-proof-final-01/movie.mp4"
       ],
       "exit": 0,
-      "stdout_sha256": "8633536cc21d3ceb9e018d980a2267034b89115d6e207c37a9785e38dfd53dad",
+      "stdout_sha256": "383be08378813382f8d57bfab382e075e8c5f996907a66eb28fdd0c47a8b292e",
       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "stderr": ""
     },
@@ -802,7 +844,7 @@
         "-v",
         "error",
         "-i",
-        "/workspace/scratch/filmcraft-proof-integrated-01/movie.mp4",
+        "/workspace/scratch/filmcraft-proof-final-01/movie.mp4",
         "-vf",
         "scale=1:1:flags=area",
         "-pix_fmt",
@@ -818,9 +860,9 @@
     },
     {
       "argv": [
-        "/workspace/storytelling-host/target/debug/storytelling",
+        "/workspace/storytelling-host/target/release/storytelling",
         "verify-source",
-        "/workspace/scratch/filmcraft-proof-integrated-01/source.mp4",
+        "/workspace/scratch/filmcraft-proof-final-01/source.mp4",
         "af13fcfbc65d603a75e067e414dbdd50c92abdec6d78bc0222c9b9fa77676f78"
       ],
       "exit": 0,
@@ -830,9 +872,9 @@
     },
     {
       "argv": [
-        "/workspace/storytelling-host/target/debug/storytelling",
+        "/workspace/storytelling-host/target/release/storytelling",
         "verify-source",
-        "/workspace/scratch/filmcraft-proof-integrated-01/blue.png",
+        "/workspace/scratch/filmcraft-proof-final-01/blue.png",
         "5f925285172a88ad90816e439208f2f1e793645cdd0d8a26e1f13cf72cf9a158"
       ],
       "exit": 0,
@@ -847,24 +889,24 @@
       "bytes": 6077
     },
     "saved-again.fcproj": {
-      "sha256": "0db8efff9f8f4b966fdacc0f4883226fee74973e3358b8d75db66f3892a1b945",
-      "bytes": 6164
+      "sha256": "c8e46d76f154dafb739885011e936d49ccc70b9b204f33696ca002a4fccc80d4",
+      "bytes": 6154
     },
     "imported.fcproj": {
-      "sha256": "13fbec6f147bb67e1c6359a7b1cc52a417cb13022b8f5a529db21269fc23ecfd",
-      "bytes": 6158
+      "sha256": "23c9e875ace4f32fd175f124923c32e8d8b0d6e2cd1d3c4a61229ce0cb75e9ad",
+      "bytes": 6148
     },
     "source.json": {
-      "sha256": "205de6b85466acb987524f9aff16a6c690281d79fdb90939e5a1a7b663711988",
-      "bytes": 1795
+      "sha256": "b1a4253a3e0bb6b3eefc85d5b3360b7570341468ef159f3c1643bbd188990cd1",
+      "bytes": 1785
     },
     "reimported.fcproj": {
-      "sha256": "468549be1c53b2824c2e11eccfcbbcf820a1675ba4e22ac67cc0475573baa8f8",
-      "bytes": 6162
+      "sha256": "ce95e5b9798a039459ad1c4fc6b27098a16ae7a4d923b164a0b02db0fdebd6cb",
+      "bytes": 6152
     },
     "input.otio": {
-      "sha256": "905a5eb4a79313fc548144d19e84094076f7e813e45a2ec9ea89053a6405b224",
-      "bytes": 6158
+      "sha256": "2025b0a3612100a185e770728a74eaefc6e22f5ea3323cfad34a8638a60b3bf5",
+      "bytes": 6133
     },
     "empty.fcproj": {
       "sha256": "79fdad99f8bc9f2fd99ee8792dd90a9367257d77121890125ca8d0fe2317c05b",
@@ -887,8 +929,8 @@
       "bytes": 0
     },
     "logs/012-stderr": {
-      "sha256": "9c00aa5da0acd09fd82af52c1141d016e01b4f247c1572565417c7b9364ad649",
-      "bytes": 76
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
     },
     "logs/018-stderr": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -899,24 +941,24 @@
       "bytes": 8474
     },
     "logs/004-stdout": {
-      "sha256": "d8eccb85f0663d1f44b764ea6bc0653168020c5d7f658d949315fd69cb783b83",
-      "bytes": 3
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
     },
     "logs/011-stderr": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "bytes": 0
     },
     "logs/001-stdout": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "bytes": 0
+      "sha256": "c680640979c8f4149e592844e91f0a03bd2d8d2d68c042119c2cbb8883d49233",
+      "bytes": 25
     },
     "logs/002-stderr": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "bytes": 0
     },
     "logs/012-stdout": {
-      "sha256": "5724e6484bcd6d07ba267561e3faa570c95a2095d9a4c22c483405f8bf9b5114",
-      "bytes": 322
+      "sha256": "de400f5b885eb75147423ddb56bfc1f06591f707ee511878dbb8a4ebd26bbded",
+      "bytes": 245
     },
     "logs/005-stderr": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -935,14 +977,22 @@
       "bytes": 0
     },
     "logs/015-stderr": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "bytes": 0
+      "sha256": "d13c8016fbd29fc50c25e5229b012f6b80fc3a7d95b5a7f824525e025b72a6e2",
+      "bytes": 71
     },
     "logs/017-stdout": {
       "sha256": "be731ced6d90bd0b94862eae3e758bd02d29b7e4bd498038a8e594463e0132c9",
       "bytes": 8474
     },
     "logs/004-stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "logs/022-stdout": {
+      "sha256": "b4eae97f14da30ec6efd2ac6f7a80d3f1ce2ef1109865638223ffbd5d3447803",
+      "bytes": 135
+    },
+    "logs/022-stderr": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "bytes": 0
     },
@@ -955,20 +1005,20 @@
       "bytes": 0
     },
     "logs/016-stdout": {
-      "sha256": "a5217e014efe98bef2ed264b43a5ed58580096710fb67dfd7609ab9798f59803",
-      "bytes": 239
+      "sha256": "1043a635f564727ba2463386713c4f622fa6b89b25a757178001357953e3607b",
+      "bytes": 132
     },
     "logs/020-stdout": {
-      "sha256": "a077bdfabec3ea03d87da19f674cac08cd579aa5f6ba89e89b0d4e2547efa377",
-      "bytes": 196
+      "sha256": "be731ced6d90bd0b94862eae3e758bd02d29b7e4bd498038a8e594463e0132c9",
+      "bytes": 8474
     },
     "logs/019-stderr": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "bytes": 0
     },
     "logs/002-stdout": {
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "bytes": 0
+      "sha256": "b241942a091ee91966e5b04017a34f1f2a3bcfb1cf80a195e274db03874459d9",
+      "bytes": 1872
     },
     "logs/021-stderr": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -977,6 +1027,10 @@
     "logs/017-stderr": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "bytes": 0
+    },
+    "logs/024-stdout": {
+      "sha256": "264f0e3ebd574d2b05817e4ab514f9c9edfb6f260edc0aeec31ab4c5a1361eb1",
+      "bytes": 196
     },
     "logs/007-stderr": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -995,68 +1049,114 @@
       "bytes": 0
     },
     "logs/013-stdout": {
-      "sha256": "842885de54af2f68543318145602701394f11b92b2ceff3ff85e71285d21ea26",
-      "bytes": 136
+      "sha256": "a5217e014efe98bef2ed264b43a5ed58580096710fb67dfd7609ab9798f59803",
+      "bytes": 239
     },
     "logs/008-stdout": {
-      "sha256": "c96c8372e4fd3d2aaeaa1235ae262832c574af4862c3de85c24b2f861b74ef56",
-      "bytes": 40
+      "sha256": "a077bdfabec3ea03d87da19f674cac08cd579aa5f6ba89e89b0d4e2547efa377",
+      "bytes": 196
     },
     "logs/000-stdout": {
       "sha256": "433ca971367a4e8d2fc53d0519c55b690e5c6b0a7c44527b138e0bfc8c00d73a",
       "bytes": 21
     },
     "logs/021-stdout": {
+      "sha256": "383be08378813382f8d57bfab382e075e8c5f996907a66eb28fdd0c47a8b292e",
+      "bytes": 49022
+    },
+    "logs/007-stdout": {
+      "sha256": "d8eccb85f0663d1f44b764ea6bc0653168020c5d7f658d949315fd69cb783b83",
+      "bytes": 3
+    },
+    "logs/023-stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "logs/009-stdout": {
       "sha256": "264f0e3ebd574d2b05817e4ab514f9c9edfb6f260edc0aeec31ab4c5a1361eb1",
       "bytes": 196
     },
-    "logs/007-stdout": {
-      "sha256": "905a5eb4a79313fc548144d19e84094076f7e813e45a2ec9ea89053a6405b224",
-      "bytes": 6158
-    },
-    "logs/009-stdout": {
-      "sha256": "755785544509f93ef751d912804c6a5cb941c8ddbc483de9d3b1d627c2d49900",
-      "bytes": 250
-    },
     "logs/015-stdout": {
-      "sha256": "715f416a406d7699890d679bc401b17ff596715436afac8eb69588c8ab6e4ef9",
-      "bytes": 113
+      "sha256": "667a0c6386db10487a550f8800fcdd5a64aa745f7c00eaf2e709bc8444c5cba1",
+      "bytes": 311
     },
     "logs/013-stderr": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "bytes": 0
     },
     "logs/003-stdout": {
-      "sha256": "670faacf5c0a06f894ae084378a26d1b62e9d424c32477d3f2789b1fc9a879dc",
-      "bytes": 150
+      "sha256": "02412fef1eca820a65af53c5fa03b637f92ef643783005ccf9c4b4e3a31fb699",
+      "bytes": 1873
     },
     "logs/010-stdout": {
-      "sha256": "a5217e014efe98bef2ed264b43a5ed58580096710fb67dfd7609ab9798f59803",
-      "bytes": 239
+      "sha256": "2025b0a3612100a185e770728a74eaefc6e22f5ea3323cfad34a8638a60b3bf5",
+      "bytes": 6133
     },
     "logs/018-stdout": {
-      "sha256": "8633536cc21d3ceb9e018d980a2267034b89115d6e207c37a9785e38dfd53dad",
-      "bytes": 49027
+      "sha256": "846b4f20e7e4b420bcd2da12afe2ab838f463c37e09cd26c04de0a7236220a77",
+      "bytes": 108
     },
     "logs/011-stdout": {
-      "sha256": "be731ced6d90bd0b94862eae3e758bd02d29b7e4bd498038a8e594463e0132c9",
-      "bytes": 8474
+      "sha256": "c96c8372e4fd3d2aaeaa1235ae262832c574af4862c3de85c24b2f861b74ef56",
+      "bytes": 40
     },
     "logs/006-stderr": {
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "bytes": 0
     },
     "logs/005-stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "logs/023-stdout": {
       "sha256": "a077bdfabec3ea03d87da19f674cac08cd579aa5f6ba89e89b0d4e2547efa377",
       "bytes": 196
     },
     "logs/019-stdout": {
-      "sha256": "b4eae97f14da30ec6efd2ac6f7a80d3f1ce2ef1109865638223ffbd5d3447803",
-      "bytes": 135
+      "sha256": "a5217e014efe98bef2ed264b43a5ed58580096710fb67dfd7609ab9798f59803",
+      "bytes": 239
+    },
+    "logs/024-stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
     },
     "logs/006-stdout": {
-      "sha256": "264f0e3ebd574d2b05817e4ab514f9c9edfb6f260edc0aeec31ab4c5a1361eb1",
-      "bytes": 196
+      "sha256": "670faacf5c0a06f894ae084378a26d1b62e9d424c32477d3f2789b1fc9a879dc",
+      "bytes": 150
     }
+  },
+  "candidate": {
+    "head": "47f25e8b6e788885f32d401777b2989771c96e05",
+    "base_tree": "95635f276d8107fa0846911284a642a3c1024af2",
+    "tracked_status": "",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "harness_sha256": "47b4b73fd1b3581c6954383680d546517c6ca99401fd87e2b9e3d988614d9aea",
+    "negative_checks_sha256": "740f9c53105665c01c5f5f0374420568b432a462a639ff370844d69e1482d44c",
+    "binary_binding": "actual executable SHA-256 above; receipt may be committed afterward as documentation-only changes"
+  },
+  "tool_versions": {
+    "/workspace/toolchains/filmcraft-v0.18.0/extracted/filmcraft-0.18.0-linux-x86_64/bin/filmcraft-cli": "filmcraft-cli 0.18.0",
+    "/workspace/storytelling-host/target/release/storytelling": "storytelling 0.1.0-dev.0",
+    "/usr/bin/ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+    "/usr/bin/ffprobe": "ffprobe version 7.1.5-0+deb13u1 Copyright (c) 2007-2026 the FFmpeg developers"
+  },
+  "environment": {
+    "selected_runtime_overrides": {
+      "XDG_CONFIG_HOME": "/workspace/scratch/filmcraft-proof-final-01/xdg-config",
+      "XDG_DATA_HOME": "/workspace/scratch/filmcraft-proof-final-01/xdg-data",
+      "XDG_CACHE_HOME": "/workspace/scratch/filmcraft-proof-final-01/xdg-cache",
+      "XDG_STATE_HOME": "/workspace/scratch/filmcraft-proof-final-01/xdg-state",
+      "FILMCRAFT_DEV_DESKTOP_ENTRY": "0"
+    },
+    "home_unchanged": true,
+    "inherited_environment_recorded": false,
+    "note": "Inherited proxy/CA/secrets are not collected; no environment dump or redaction-derived proof."
+  },
+  "preview_scale": {
+    "factor": "0.1",
+    "native_width": 1920,
+    "native_height": 1080,
+    "encoded_width": 192,
+    "encoded_height": 108
   }
 }
