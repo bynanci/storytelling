@@ -39,12 +39,20 @@ No private seed, key, credential, user identity or personal media is checked in.
 
 ## Advisory state
 
-`cargo audit --file Cargo.lock` passed on 2026-11-07 (exit 0), loading 1,422
+`cargo audit --file Cargo.lock` passed locally on 2026-11-07 (exit 0), loading 1,422
 advisories from database commit
 `309392b18f6b17022f82c701f300433126901068` (2026-11-06T16:34:32+01:00) and
 scanning 39 locked crate packages. It emitted no advisory findings for this
-lockfile. This is a snapshot, not a guarantee against later advisories; the
-exact-head CI audit remains required.
+lockfile. The audited `Cargo.lock` SHA-256 was
+`ac030012f2595fe5eb118cb2640a2e2e06c858f72d72f76cad0fa82313112bb0` and remains
+unchanged through candidate head `33ca542`.
+
+The current `.github/workflows/ci.yml` does **not** run `cargo audit`; the hosted
+CI result is not dependency-audit evidence. This records a local audit of the
+exact lockfile content, not a hosted gate. Independent G2 review must decide
+whether a future workflow should add a pinned hosted audit step before this
+candidate can be accepted. This snapshot is not a guarantee against later
+advisories.
 
 `cargo tree -p storytelling-core -e features --locked` showed only the
 `ed25519-dalek/fast` feature and Curve25519 precomputed tables for the new direct
