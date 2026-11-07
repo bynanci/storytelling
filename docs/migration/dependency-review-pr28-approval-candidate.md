@@ -48,24 +48,20 @@ advisories from database commit
 scanning 39 packages. That older lockfile had SHA-256
 `ac030012f2595fe5eb118cb2640a2e2e06c858f72d72f76cad0fa82313112bb0`.
 After merging dependency PRs #9 and #10, the synchronized 40-package lockfile
-has SHA-256 `f3a69dd97731666785474156249bd1c27d2d1c3048162edfeb111e98024d7e66`;
-the earlier scan does not cover it. Its hosted Cargo Audit result must be checked
-on the synchronized exact head before claiming advisory evidence.
+has SHA-256 `f3a69dd97731666785474156249bd1c27d2d1c3048162edfeb111e98024d7e66`; the earlier scan does not cover it. On synchronized head
+`9670be947535a3e15b70280fd7500a83b373d55f`, Cargo Audit 0.22.1 passed in both runs `42377965601` and
+`42377961928`, loaded 1,422 advisories and scanned 40 dependencies without
+findings. This is point-in-time hosted evidence; the evidence-reconciliation
+commit must pass the same job again before merge.
 
 The workflow now defines a dedicated hosted Dependency audit job. It downloads
 Cargo Audit `0.22.1` from the RustSec release asset and checks the asset SHA-256
 (`1890badd5f15831a9af4b074399fcd21e6f7c0fe42c84e9254cdffc9f813765c`) before
 running `cargo audit --file Cargo.lock`; the Required gate depends on this job.
-The candidate head must pass this new job before its hosted audit can be claimed.
 The job fetches the current RustSec advisory database, so each run is a
-time-specific scan rather than a guarantee against later advisories. The local
-snapshot above remains separate evidence.
-
-On candidate head `40de8fa7b21c7581af2f4b1dbd4122ac86c7d9f0`, hosted Dependency
-audit passed in run `42375365603`: Cargo Audit 0.22.1 loaded 1,422 advisories
-and scanned 39 locked dependencies without findings. That scan used the old
-`ac0300…` lockfile hash and is historical; the synchronized `f3a69d…` lockfile
-requires its own hosted audit. Independent G2 maintainer review remains pending.
+time-specific scan rather than a guarantee against later advisories. Earlier
+39-package scans are retained as history only; the current 40-package result is
+recorded above. Independent G2 maintainer review remains pending.
 
 `cargo tree -p storytelling-core -e features --locked` showed only the
 `ed25519-dalek/fast` feature and Curve25519 precomputed tables for the new direct

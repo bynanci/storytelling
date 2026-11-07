@@ -3,18 +3,20 @@
 
 Status: implemented candidate, not accepted. Canonical M3-01/P1 is a separate
 proposed finite-OTIO review-binding task. After dependency PRs #8, #21, #10 and #9
-merged, current main is `fefb038ec1699727da2c0f436a097bbdedcfd08a`. The refreshed
-branch carries the current pinned actions and lockfile; its exact-head CI and
-hosted Cargo Audit must pass before a merge or acceptance decision. Independent
-G2 security review remains pending. Results from the former `40de8fa7b21c7581af2f4b1dbd4122ac86c7d9f0` head
-are superseded by the base update.
+merged, current main is `fefb038ec1699727da2c0f436a097bbdedcfd08a`. Synchronized
+head `9670be947535a3e15b70280fd7500a83b373d55f` passed both same-head runs `42377965601` and `42377961928`, including
+Quality, Required, Linux, Windows, macOS and hosted Cargo Audit. Cargo Audit 0.22.1
+loaded 1,422 advisories and scanned 40 dependencies without findings; the scanned
+lockfile SHA-256 is `f3a69dd97731666785474156249bd1c27d2d1c3048162edfeb111e98024d7e66`. Independent G2 security review remains pending.
+The evidence reconciliation in this commit requires fresh exact-head checks before
+merge; passing checks or merging will not grant G2 or product acceptance.
 
 The initial PR head `d321049add005363618f58451b913301eb6d1e96` passed hosted
 CI run `42347452265` on all five jobs. Main advanced via PR #26 before review;
 the candidate branch now includes that main, so the old run is not evidence for
-the refreshed head. The latest-head CI status is tracked live by
-[Draft PR #28](https://github.com/bynanci/storytelling/pull/28) and must be checked
-there before acceptance.
+the refreshed head. The latest post-reconciliation CI status is tracked live by
+[PR #28](https://github.com/bynanci/storytelling/pull/28); the historical runs
+below describe their stated earlier heads only.
 
 ## Test-first evidence
 
@@ -42,9 +44,8 @@ there before acceptance.
 
 ## Required local gates
 
-The prior table records verification on the earlier accepted M2-03 base. After
-integrating PR #29, the candidate code and reconciled documentation were checked
-again locally on `f2e2703` before this evidence-only update:
+The following local results are historical verification on candidate code before
+the dependency-upkeep synchronization. Current hosted exact-head evidence is above.
 
 | Command | Result |
 | --- | --- |
@@ -57,16 +58,12 @@ again locally on `f2e2703` before this evidence-only update:
 | `python3 scripts/check_repo.py` | Passed; links, provenance, dependency boundaries and requirement references valid |
 | `git diff --check` | Passed; exit 0 |
 
-Refreshed candidate head `010b7405a1e9eceb397c461ef676d132bc13fbdf` passed
-all five jobs (Quality, Required, Linux, Windows and macOS) in runs
-`42350601091` and `42350603918`. Later, head
-`5bb99ad446800a69109869dca2732f395ce93933` passed all five jobs in run
-`42350992888` (a duplicate run `42350998048` also passed). These checks verify
-the candidate only; they do not accept it or canonical M3-01/P1. This file is a
-point-in-time record; the Draft PR body tracks the latest exact head, and any
-newer commit needs its own checks. The workflow at the time of this evidence snapshot did not run Cargo Audit. A
-checksum-pinned hosted audit job was added afterward; its same-head result must
-be confirmed from the live Draft PR before acceptance.
+Heads `010b7405a1e9eceb397c461ef676d132bc13fbdf` and
+`5bb99ad446800a69109869dca2732f395ce93933` passed the earlier five-job hosted
+sets in runs `42350601091`, `42350603918`, `42350992888` and duplicate run
+`42350998048`. Those historical checks neither accept this candidate nor canonical
+M3-01/P1. The subsequent synchronized-head evidence is recorded at the top of this
+file; every later commit requires its own exact-head checks.
 
 | Command | Result |
 | --- | --- |
@@ -100,12 +97,7 @@ proposal/artifact byte ceilings explicit. Key binding mismatches use the stable
 `approval.approver_key_mismatch` error.
 
 The CI workflow adds a checksum-pinned Cargo Audit 0.22.1 dependency job to the
-Required gate. Candidate head `f9057f24ecf25b9594e276bd115317c7463dd9f1` passed
-both same-head hosted runs: PR run `42375033929` and push run `42375029946`.
-Quality, Required, Linux, Windows, macOS, and Dependency audit all succeeded.
-The audit job loaded 1,422 advisories and scanned 39 locked dependencies with
-no findings. Rust formatting, clippy, release-mode workspace tests, rustdoc,
-and the existing Linux, Windows, and macOS regression suites passed on that
-head. Static checks also passed locally: `scripts/check_repo.py`, JSON/YAML
-parsing, and `git diff --check`. Independent G2 review remains pending; this
-candidate remains Draft and unaccepted.
+Required gate. Historical candidate head `f9057f24ecf25b9594e276bd115317c7463dd9f1`
+passed both runs `42375033929` and `42375029946` with 39 locked dependencies.
+The current 40-package lockfile result is recorded at the top of this file.
+Independent G2 review remains pending; the candidate remains unaccepted.

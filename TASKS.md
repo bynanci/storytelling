@@ -221,11 +221,14 @@ is claimed. Use the existing importer/compiler input because the planner→OTIO
 bridge is absent; matching hashes/context never grant human approval. Concurrent Draft [#28](https://github.com/bynanci/storytelling/pull/28) proposes
 cryptographic approval identity and remains unaccepted pending independent G2
 review. Its M3-A01–A03 IDs are distinct from this preparation proposal. Its prior
-head `40de8fa7b21c7581af2f4b1dbd4122ac86c7d9f0` passed the candidate checks,
-including hosted Cargo Audit, on the earlier main base. Dependency PRs #8, #21,
-#10 and #9 advanced main to `fefb038ec1699727da2c0f436a097bbdedcfd08a`; the
-candidate branch must be synchronized to these action and dependency updates and
-rechecked at its new exact head. The PR body tracks those current-head results.
+head `40de8fa7b21c7581af2f4b1dbd4122ac86c7d9f0` passed candidate checks on
+the earlier main base. After dependency PRs #8, #21, #10 and #9 advanced main to
+`fefb038ec1699727da2c0f436a097bbdedcfd08a`, synchronized head `9670be947535a3e15b70280fd7500a83b373d55f` passed
+Quality, Required, Linux, Windows, macOS and hosted Cargo Audit in both runs
+`42377965601` and `42377961928`; the audit scanned 40 locked packages against
+1,422 advisories with no findings (lock SHA-256 `f3a69dd97731666785474156249bd1c27d2d1c3048162edfeb111e98024d7e66`). G2 remains pending and
+this candidate is not accepted. The evidence reconciliation commit requires its
+own same-head checks; the PR body tracks the live result.
 This candidate does not complete canonical M3-01/P1. Full M3-01 approval
 issuance, M3-02 durability and M3-03 execution remain open.
 

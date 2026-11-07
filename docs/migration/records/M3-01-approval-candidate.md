@@ -4,9 +4,11 @@
 State: implemented candidate, not accepted. Canonical M3-01/P1 remains proposed
 in `docs/migration/M3-01-NEXT.md`; this candidate does not satisfy that scope.
 Independent G2 review is pending. After dependency PRs #8, #21, #10 and #9 merged,
-main advanced to `fefb038ec1699727da2c0f436a097bbdedcfd08a`. The branch is being
-synchronized to that base with the current action pins and Cargo lockfile; the
-new exact-head hosted checks are required before any merge or acceptance decision.
+main advanced to `fefb038ec1699727da2c0f436a097bbdedcfd08a`. Synchronized head
+`9670be947535a3e15b70280fd7500a83b373d55f` passed both hosted same-head runs, including all five code/quality gates
+and Dependency Audit; the audit scanned the 40-package lockfile with no findings.
+The current record updates those results and therefore requires a new exact-head
+CI run before a merge. A successful merge will not itself grant G2 or acceptance.
 
 The initial worktree began at `867fcde6acd0dd1339122aaf4bb23003aac3942e` and was
 rebased onto main after PR #25. PR #26 advanced main while Draft PR #28 was open,

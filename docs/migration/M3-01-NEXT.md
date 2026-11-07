@@ -10,12 +10,14 @@ implemented, frozen or accepted capabilities.
 Concurrent Draft [PR #28](https://github.com/bynanci/storytelling/pull/28)
 proposes a separate cryptographic identity API (M3-A01–A03), with independent G2
 review pending. Its former head `40de8fa7b21c7581af2f4b1dbd4122ac86c7d9f0`
-passed Quality, Required, Linux, Windows, macOS and hosted Cargo Audit on the
-prior main base. Dependency PRs #8, #21, #10 and #9 advanced main to
-`fefb038ec1699727da2c0f436a097bbdedcfd08a`; the candidate must be synchronized
-with those action/dependency updates and rechecked at its new exact head. The
-current PR body tracks exact-head results. PR #28 remains unaccepted and does not
-complete canonical M3-01/P1. This readiness proposal uses distinct M3-RB01–RB07
+was superseded after dependency PRs #8, #21, #10 and #9 advanced main to
+`fefb038ec1699727da2c0f436a097bbdedcfd08a`. Synchronized head `9670be947535a3e15b70280fd7500a83b373d55f` passed
+Quality, Required, Linux, Windows, macOS and hosted Cargo Audit in runs
+`42377965601` and `42377961928`; the audit scanned 40 locked dependencies against
+1,422 advisories with no findings (lock SHA-256 `f3a69dd97731666785474156249bd1c27d2d1c3048162edfeb111e98024d7e66`). G2 remains pending;
+this is not candidate acceptance or completion of canonical M3-01/P1. The
+subsequent documentation-only evidence commit requires its own same-head checks,
+which the live PR body tracks. This readiness proposal uses distinct M3-RB01–RB07
 IDs; evaluate overlap and compilation linkage after independent review, before
 freezing either the next review-binding contract or its final API names.
 
