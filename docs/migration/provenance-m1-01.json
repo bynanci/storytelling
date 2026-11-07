@@ -197,6 +197,246 @@
         "packages/exporters/src/index.ts"
       ],
       "modifications": "New bounded finite visual mapping; strict exact decimals; no migration, media verification, runtime or host support"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/.gitignore",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/README.md",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/compare.py",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/differential-evidence.json",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/fixtures/decimal-rate.json",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/fixtures/explicit-ntsc.json",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/fixtures/one-still.json",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/fixtures/repeated-source.json",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/fixtures/unsupported-scale.json",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/fixtures/video-trim.json",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/package-lock.json",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/package.json",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/producer-inputs/decimal-rate.json",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/producer-inputs/explicit-ntsc.json",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/producer-inputs/one-still.json",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/producer-inputs/repeated-source.json",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/producer-inputs/unsupported-scale.json",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/producer-inputs/video-trim.json",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/run-source.mts",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
+    },
+    {
+      "path": "tests/oracles/openfilm-finite-v1/source-evidence.json",
+      "license": "Apache-2.0",
+      "relationship": "test-only independently authored source oracle, synthetic producer inputs/outputs and actual evidence; dependency licenses remain their own",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/core/src/timebase.ts",
+        "packages/exporters/src/index.ts"
+      ],
+      "modifications": "Frozen six-case export/time oracle; Rust CLI comparison; no upstream implementation/tests copied"
     }
   ],
   "notices": [

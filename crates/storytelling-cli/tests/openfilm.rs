@@ -18,7 +18,10 @@ impl TestDirectory {
         let path = std::env::temp_dir().join(format!(
             "storytelling-openfilm-{}-{}-{}",
             std::process::id(),
-            SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_nanos(),
+            SystemTime::now()
+                .duration_since(UNIX_EPOCH)
+                .unwrap()
+                .as_nanos(),
             NEXT.fetch_add(1, Ordering::Relaxed)
         ));
         std::fs::create_dir(&path).unwrap();
@@ -104,7 +107,11 @@ fn imports_file_without_modifying_input_or_directory_and_returns_an_m0_plan() {
     let original = std::fs::read(fixture("still.json")).unwrap();
     std::fs::write(&input, &original).unwrap();
     std::fs::create_dir(directory.join("untouched")).unwrap();
-    std::fs::write(directory.join("untouched/sentinel.txt"), b"synthetic sentinel").unwrap();
+    std::fs::write(
+        directory.join("untouched/sentinel.txt"),
+        b"synthetic sentinel",
+    )
+    .unwrap();
     let before = directory_snapshot(&directory.0);
 
     let output = cli()
@@ -116,10 +123,7 @@ fn imports_file_without_modifying_input_or_directory_and_returns_an_m0_plan() {
     let result = json_line(&output, 0);
     assert_eq!(result["ok"], true);
     assert_eq!(result["import"]["profile"], "openfilm-finite-v1");
-    assert_eq!(
-        result["import"]["scope"],
-        "declared-visual-mapping-only"
-    );
+    assert_eq!(result["import"]["scope"], "declared-visual-mapping-only");
     assert_eq!(result["import"]["executable"], false);
     assert_eq!(
         result["import"]["source_snapshot"],
@@ -181,11 +185,7 @@ fn treats_missing_video_media_and_instruction_text_as_opaque_declarations() {
 fn imports_stdin_with_the_same_result_as_file_input() {
     let input = fixture("still.json");
     let bytes = std::fs::read(&input).unwrap();
-    let file_output = cli()
-        .arg("import-openfilm")
-        .arg(input)
-        .output()
-        .unwrap();
+    let file_output = cli().arg("import-openfilm").arg(input).output().unwrap();
     let stdin_output = stdin_output("import-openfilm", &bytes);
     assert_eq!(json_line(&file_output, 0)["ok"], true);
     assert_eq!(json_line(&stdin_output, 0)["ok"], true);
@@ -211,11 +211,7 @@ fn rejects_missing_or_extra_import_arguments_with_usage_exit_two() {
 fn redacts_missing_input_file_with_io_exit_three() {
     let directory = TestDirectory::new();
     let input = directory.join("synthetic-missing-input.json");
-    let output = cli()
-        .arg("import-openfilm")
-        .arg(&input)
-        .output()
-        .unwrap();
+    let output = cli().arg("import-openfilm").arg(&input).output().unwrap();
     let result = json_line(&output, 3);
     assert_eq!(result["ok"], false);
     assert_eq!(result["error"]["code"], "input.io");
@@ -261,11 +257,7 @@ fn rejects_input_larger_than_one_mebibyte_from_file_and_stdin() {
     let mut bytes = std::fs::read(fixture("still.json")).unwrap();
     bytes.resize(MAX_INPUT_BYTES + 1, b' ');
     std::fs::write(&input, &bytes).unwrap();
-    let file_output = cli()
-        .arg("import-openfilm")
-        .arg(&input)
-        .output()
-        .unwrap();
+    let file_output = cli().arg("import-openfilm").arg(&input).output().unwrap();
 
     for output in [file_output, stdin_output("import-openfilm", &bytes)] {
         let result = json_line(&output, 1);

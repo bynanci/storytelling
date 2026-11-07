@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "scope": "source-export-and-clock-oracle-only",
+  "sourceRepository": "https://github.com/bynanci/open-film",
+  "sourceHead": "7add4762fe8174d76f43b863375ea39b73121e76",
+  "nodeVersion": "v24.22.1",
+  "nodeDistribution": "https://nodejs.org/dist/v24.22.1/node-v24.22.1-linux-x64.tar.xz",
+  "nodeDistributionSha256": "6c172a9ab6718f7b801fb5a7bd486af2ee5e32758086a04b84fcce2aa77095e6",
+  "nodeBinarySha256": "e32e2d16081cf644f88392934288086e7662529d0d43277c34f7aad2207cfafb",
+  "tsxVersion": "4.23.15",
+  "runnerSha256": "d3777f0217e09db22e3682b03413d807faf6465e3a741e28388149d74439a76c",
+  "dependencyLockSha256": "6697b505f83230df597922faea37a88535458366ca554a7cb52ec3cdc3b9e535",
+  "command": [
+    "/workspace/toolchains/node-v24.22.1-linux-x64/bin/node",
+    "--import",
+    "tsx",
+    "/workspace/storytelling/tests/oracles/openfilm-finite-v1/run-source.mts",
+    "/workspace/open-film-oracle",
+    "/workspace/storytelling/tests/oracles/openfilm-finite-v1"
+  ],
+  "tsconfig": "source-checkout/tsconfig.json (TSX_TSCONFIG_PATH)",
+  "sourceTrackedFilesUnchanged": true,
+  "fixtures": [
+    {
+      "id": "one-still",
+      "inputSha256": "9e15dcaca2ff38973090c14d4de426787ad531051c0fbd6fe54cf11389a1eb35",
+      "exportedSha256": "9cb8da0ee4ab886431275b6d8f49231b986f59d6f62b886429362bbb0fd3012f",
+      "exportedBytes": 926,
+      "occurrenceIds": [
+        "still-occurrence"
+      ],
+      "assetIds": [
+        "still-asset"
+      ],
+      "settings": {
+        "width": 1920,
+        "height": 1080,
+        "frameRate": 30
+      },
+      "sourceDerivedTimebase": {
+        "version": 1,
+        "rateNumerator": 30,
+        "rateDenominator": 1,
+        "dropFrame": false
+      },
+      "inputUnchanged": true
+    },
+    {
+      "id": "video-trim",
+      "inputSha256": "a39ca831f98b4a49b3d22002406a7aa54880e1eb1daa773c4f6a3899e694fa73",
+      "exportedSha256": "404f022462f2c843753d83c28fc6351293c4a0d1a008795b9bf25b794a781891",
+      "exportedBytes": 945,
+      "occurrenceIds": [
+        "trim-occurrence"
+      ],
+      "assetIds": [
+        "video-asset"
+      ],
+      "settings": {
+        "width": 1920,
+        "height": 1080,
+        "frameRate": 30
+      },
+      "sourceDerivedTimebase": {
+        "version": 1,
+        "rateNumerator": 30,
+        "rateDenominator": 1,
+        "dropFrame": false
+      },
+      "inputUnchanged": true
+    },
+    {
+      "id": "repeated-source",
+      "inputSha256": "7c850db6beab8bf8698eba6bb80cbcdb34b599f2ea0dc43ed448582a55a832c3",
+      "exportedSha256": "e14af778ebabe361c898575d7702cbae25e9ceeca41eebb36c40123fd4fce38f",
+      "exportedBytes": 1206,
+      "occurrenceIds": [
+        "first-occurrence",
+        "second-occurrence"
+      ],
+      "assetIds": [
+        "video-asset"
+      ],
+      "settings": {
+        "width": 1920,
+        "height": 1080,
+        "frameRate": 30
+      },
+      "sourceDerivedTimebase": {
+        "version": 1,
+        "rateNumerator": 30,
+        "rateDenominator": 1,
+        "dropFrame": false
+      },
+      "inputUnchanged": true
+    },
+    {
+      "id": "decimal-rate",
+      "inputSha256": "ccbd05572c681122b1f2894f53ad330b3300b710af0f3f3b7ddfba8f12c6ac21",
+      "exportedSha256": "6458ce4a016a51d577047e6fd2c9e902e8c987ea351dd79f8874796994a82023",
+      "exportedBytes": 935,
+      "occurrenceIds": [
+        "decimal-occurrence"
+      ],
+      "assetIds": [
+        "still-asset"
+      ],
+      "settings": {
+        "width": 1920,
+        "height": 1080,
+        "frameRate": 29.97
+      },
+      "sourceDerivedTimebase": {
+        "version": 1,
+        "rateNumerator": 30000,
+        "rateDenominator": 1001,
+        "dropFrame": false
+      },
+      "inputUnchanged": true
+    },
+    {
+      "id": "explicit-ntsc",
+      "inputSha256": "7a57af3213921faff4ed3dbbecb2b1c03d8efa0029a3d42419ba9e054ab7311f",
+      "exportedSha256": "965787a0e0628c3a62070dd412df6d7fa2648422caac68de44ba74dddd64da41",
+      "exportedBytes": 1069,
+      "occurrenceIds": [
+        "ntsc-occurrence"
+      ],
+      "assetIds": [
+        "still-asset"
+      ],
+      "settings": {
+        "width": 1920,
+        "height": 1080,
+        "frameRate": 29.97002997002997,
+        "timebase": {
+          "version": 1,
+          "rateNumerator": 30000,
+          "rateDenominator": 1001,
+          "dropFrame": false
+        }
+      },
+      "sourceDerivedTimebase": {
+        "version": 1,
+        "rateNumerator": 30000,
+        "rateDenominator": 1001,
+        "dropFrame": false
+      },
+      "inputUnchanged": true
+    },
+    {
+      "id": "unsupported-scale",
+      "inputSha256": "8d0e8a4fbd3c00d2ff7a171693941b305191085f390243840641c7545cfbc0e8",
+      "exportedSha256": "e778a97aa9370d0e89ed7d0012c2ccdba2688a163768af6b9d9705a07b584410",
+      "exportedBytes": 1012,
+      "sourceBehavior": "preserved-in-json",
+      "expectedFiniteRustClassification": "unsupported",
+      "inputUnchanged": true
+    }
+  ],
+  "classification": {
+    "unchanged": "source composition/asset/settings JSON and occurrence identity",
+    "intentionalDelta": "finite importer retains decimal 29.97 as 2997/100 rather than silently adopting sourceDerivedTimebase 30000/1001",
+    "unsupported": "non-identity scale is preserved by source JSON but must be rejected by finite-v1",
+    "notClaimed": [
+      "Rust differential results",
+      "full source test suite",
+      "actual source SHA256 verification",
+      "audio preservation",
+      "OTIO or host compatibility"
+    ]
+  }
+}

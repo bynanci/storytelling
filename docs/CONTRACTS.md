@@ -1,5 +1,9 @@
 # M0 contracts
 
+The M1-01 `import-openfilm <FILE|->` command uses the separate
+[finite-v1 contract](migration/FINITE_V1.md). Its returned `plan` still obeys
+this M0 contract and input size cap; its visual mapping is not executable.
+
 `PlanDocumentV1` is an experimental, finite structural subset, not the complete
 future Story SDK or an OpenFilm import format. Its reference is
 [the minimal fixture](../examples/minimal-plan.json) and

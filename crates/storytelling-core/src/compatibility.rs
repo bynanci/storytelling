@@ -31,6 +31,16 @@ pub struct ImportError {
     pub losses: Vec<ImportLoss>,
 }
 
+impl From<crate::ValidationError> for ImportError {
+    fn from(error: crate::ValidationError) -> Self {
+        Self {
+            code: error.code,
+            path: error.path,
+            losses: Vec::new(),
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct DeclaredTimebaseV1 {

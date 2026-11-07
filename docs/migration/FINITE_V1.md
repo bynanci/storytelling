@@ -10,7 +10,8 @@ the 2026-11-07 task conversation; original MIT LICENSE remains unchanged.
 Accept the existing `exportTimeline("json", composition, assets, settings)`
 composition envelope, not an OpenFilmProject or live Catalog. Root fields are
 exactly `schemaVersion:"1.0.0"`, `composition`, `assets`, `settings`.
-Unknown/duplicate fields reject. No caller-supplied schema migration, media read,
+Unknown/duplicate fields and explicit null optional declarations reject (missing
+or null contentHash specifically returns plan.invalid_hash). No schema migration, media read,
 network request, hash verification, host command or write occurs.
 
 `import_openfilm_snapshot(bytes: &[u8], profile: &ImportProfileV1)
@@ -150,7 +151,10 @@ per asset, in source asset order. Each asset's report path is `$.assets[index]`.
 There is no per-occurrence duplication. Unsupported errors carry exactly one
 `import.unsupported_feature` loss at the error path; other errors have no losses.
 Generic unknown typed fields/shape errors use `import.invalid_snapshot`; known
-creative fields (including `effects`) use `import.unsupported_feature`.
+creative fields (including `effects`) use `import.unsupported_feature`. Generic
+preflight failures use path `$`; domain failures use fixed typed paths/indices.
+Non-null non-string contentHash is a DTO shape error (`import.invalid_snapshot`);
+missing/null or invalid string hashes use `plan.invalid_hash`.
 Duplicate JSON keys use `input.invalid_json`; trim failures use
 `import.invalid_range`; missing/invalid hashes use existing `plan.invalid_hash`.
 

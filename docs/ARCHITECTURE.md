@@ -1,12 +1,13 @@
 # Architecture
 
-Status: M0 implemented boundary plus explicit future design. See [contract](CONTRACTS.md).
+Status: M0 validation and M1-01 finite visual import candidates, plus future design.
+See [M0 contract](CONTRACTS.md) and [finite-v1 contract](migration/FINITE_V1.md).
 
 ## Implemented dependency direction
 
 ```text
 CLI: local bytes / stdout / exit codes
-  -> engine: bounded validation
+  -> engine: bounded validation + pure finite snapshot mapping
     -> core: strict DTOs + rational source time + typed errors
 ```
 
@@ -36,7 +37,9 @@ no transport owns planning or approval policy.
 
 Plan documents are immutable proposal inputs, not a second editable timeline.
 The M0 subset does not model images, tracks, speed, audio automation or host effects;
-unsupported fields are refused. Do not label it an OpenFilm-compatible importer.
+unsupported fields are refused. M1-01 separately maps a strict composition-export
+profile into this subset, retaining complete source facts and structured limitations.
+It is not general OpenFilm-project, media or host compatibility.
 
 ## Time and identity
 

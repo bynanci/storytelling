@@ -32,8 +32,7 @@ fn accepted_value(snapshot: &Value) -> Value {
 
 fn rejected(bytes: &[u8]) -> ImportError {
     import_openfilm_snapshot(bytes, &ImportProfileV1)
-        .err()
-        .expect("snapshot must reject without an accepted plan")
+        .expect_err("snapshot must reject without an accepted plan")
 }
 
 fn reject_value(snapshot: &Value, expected: &str) -> ImportError {
@@ -160,6 +159,32 @@ fn video_trim_uses_exact_source_seconds_and_reports_unmapped_audio() {
 }
 
 #[test]
+fn asset_array_order_and_one_loss_per_source_survive_mixed_media_reuse() {
+    let mut snapshot = value(REPEATED);
+    let mut video = value(VIDEO)["assets"][0].clone();
+    video["id"] = json!("video-source");
+    snapshot["assets"].as_array_mut().unwrap().insert(0, video);
+    snapshot["composition"]["duration"] = json!(6);
+    clips(&mut snapshot).push(json!({
+        "id":"video-last", "assetId":"video-source", "timelineStart":5,
+        "timelineDuration":1, "sourceIn":1, "sourceOut":2
+    }));
+    let result = accepted_value(&snapshot);
+    assert_eq!(result["plan"]["assets"][0]["id"], "video-source");
+    assert_eq!(result["plan"]["assets"][1]["id"], "reused-photo");
+    assert_eq!(result["plan"]["shots"][0]["id"], "occurrence-z");
+    assert_eq!(result["plan"]["shots"][2]["id"], "video-last");
+    assert_eq!(
+        result["losses"],
+        json!([
+            {"code":"media.not_verified", "path":"$.assets", "disposition":"not-verified"},
+            {"code":"audio.not_mapped", "path":"$.assets[0]", "disposition":"blocks-host-handoff"},
+            {"code":"image.hold_window", "path":"$.assets[1]", "disposition":"intentional-delta"}
+        ])
+    );
+}
+
+#[test]
 fn omitted_video_source_out_uses_source_in_plus_timeline_duration() {
     let mut snapshot = value(VIDEO);
     clips(&mut snapshot)[0]
@@ -206,8 +231,8 @@ fn source_snapshot_preserves_large_numbers_lexemes_and_input_bytes() {
     let output = serde_json::to_vec(&imported).unwrap();
     let retained: RawSnapshot = serde_json::from_slice(&output).unwrap();
     assert_eq!(
-        retained.source_snapshot.get(),
-        std::str::from_utf8(&input).unwrap().trim()
+        value(retained.source_snapshot.get().as_bytes()),
+        value(&input)
     );
     assert!(retained.source_snapshot.get().contains("9007199254740993"));
     assert!(retained.source_snapshot.get().contains("0.1000"));
@@ -215,6 +240,33 @@ fn source_snapshot_preserves_large_numbers_lexemes_and_input_bytes() {
     assert_eq!(input, before);
     let again = import_openfilm_snapshot(&input, &ImportProfileV1).unwrap();
     assert_eq!(output, serde_json::to_vec(&again).unwrap());
+}
+
+#[test]
+fn source_snapshot_minification_preserves_escaped_strings_whitespace_and_unicode() {
+    let token = r#""  quote: \"; backslash: \\; combined: \\\"; tab: \t; newline: \n; Unicode: 合成 \u5408  ""#;
+    let input = std::str::from_utf8(FRACTIONAL)
+        .unwrap()
+        .replace(
+            "\"synthetic.text\": \"合成\"",
+            &format!("\"synthetic.text\": {token}"),
+        )
+        .into_bytes();
+    let before = input.clone();
+    let imported = import_openfilm_snapshot(&input, &ImportProfileV1).unwrap();
+    let output = serde_json::to_vec(&imported).unwrap();
+    let retained: RawSnapshot = serde_json::from_slice(&output).unwrap();
+    assert!(retained.source_snapshot.get().contains(token));
+    let snapshot = value(retained.source_snapshot.get().as_bytes());
+    assert_eq!(
+        snapshot["assets"][0]["metadata"]["synthetic.text"],
+        "  quote: \"; backslash: \\; combined: \\\"; tab: \t; newline: \n; Unicode: 合成 合  "
+    );
+    assert!(retained.source_snapshot.get().contains("9007199254740993"));
+    assert!(retained.source_snapshot.get().contains("0.1000"));
+    assert!(retained.source_snapshot.get().contains("1e-1"));
+    assert!(!output.contains(&b'\n'));
+    assert_eq!(input, before);
 }
 
 #[test]
@@ -327,6 +379,30 @@ fn rejects_negative_zero_excess_exponents_and_unrepresentable_seconds() {
         1,
     );
     assert_eq!(rejected(raw.as_bytes()).code, "import.invalid_time");
+}
+
+#[test]
+fn exponent_limits_and_reduction_admit_representable_rationals() {
+    for (lexeme, numerator, denominator) in [
+        ("1e18", "1000000000000000000", "1"),
+        ("1e-18", "1", "1000000000000000000"),
+        ("184467440737095516150e-1", "18446744073709551615", "1"),
+    ] {
+        let mut snapshot = value(REPEATED);
+        clips(&mut snapshot).truncate(1);
+        let raw = serde_json::to_string(&snapshot)
+            .unwrap()
+            .replace("\"duration\":5", &format!("\"duration\":{lexeme}"))
+            .replace(
+                "\"timelineDuration\":2",
+                &format!("\"timelineDuration\":{lexeme}"),
+            );
+        let result = accepted(raw.as_bytes());
+        assert_eq!(
+            result["plan"]["assets"][0]["duration"],
+            rational(numerator, denominator)
+        );
+    }
 }
 
 #[test]
@@ -666,6 +742,26 @@ fn required_fields_types_and_positive_dimension_rate_limits_are_enforced() {
     let mut snapshot = value(STILL);
     snapshot["settings"] = json!({"width":16384,"height":16384,"frameRate":240});
     accepted_value(&snapshot);
+    for path in [
+        "/assets",
+        "/composition/tracks",
+        "/composition/tracks/0/clips",
+    ] {
+        let mut snapshot = value(STILL);
+        *snapshot.pointer_mut(path).unwrap() = json!([]);
+        reject_value(&snapshot, "import.invalid_snapshot");
+    }
+    for path in [
+        "/composition/duration",
+        "/composition/tracks/0/clips/0/timelineDuration",
+    ] {
+        let mut snapshot = value(STILL);
+        *snapshot.pointer_mut(path).unwrap() = json!(0);
+        assert!(
+            import_openfilm_snapshot(&serde_json::to_vec(&snapshot).unwrap(), &ImportProfileV1)
+                .is_err()
+        );
+    }
 }
 
 #[test]
@@ -746,7 +842,7 @@ fn errors_use_fixed_paths_without_untrusted_metadata_keys_uris_or_parser_prose()
     let encoded = serde_json::to_string(&error).unwrap();
     assert!(!encoded.contains(synthetic_marker));
     assert!(!encoded.contains("synthetic://"));
-    assert!(error.path.starts_with("$.assets[0].metadata"));
+    assert_eq!(error.path, "$");
     assert!(error.losses.is_empty());
     let error = rejected(format!("{{\"{synthetic_marker}\":").as_bytes());
     assert_eq!(error.code, "input.invalid_json");
@@ -756,4 +852,37 @@ fn errors_use_fixed_paths_without_untrusted_metadata_keys_uris_or_parser_prose()
             .unwrap()
             .contains(synthetic_marker)
     );
+}
+
+#[test]
+fn optional_fields_reject_explicit_null_instead_of_erasing_declarations() {
+    for (parent, field) in [
+        ("/composition/tracks/0", "locked"),
+        ("/composition/tracks/0", "target"),
+        ("/composition/tracks/0", "visible"),
+        ("/composition/tracks/0", "muted"),
+        ("/composition/tracks/0", "solo"),
+        ("/composition/tracks/0/clips/0", "beatId"),
+        ("/composition/tracks/0/clips/0", "locked"),
+        ("/composition/tracks/0/clips/0", "sourceIn"),
+        ("/composition/tracks/0/clips/0", "sourceOut"),
+        ("/assets/0/state", "favorite"),
+        ("/assets/0/state", "rejected"),
+        ("/assets/0/state", "locked"),
+        ("/assets/0", "duration"),
+        ("/settings", "timebase"),
+    ] {
+        let mut snapshot = value(STILL);
+        snapshot
+            .pointer_mut(parent)
+            .unwrap()
+            .as_object_mut()
+            .unwrap()
+            .insert(field.to_owned(), Value::Null);
+        assert!(
+            import_openfilm_snapshot(&serde_json::to_vec(&snapshot).unwrap(), &ImportProfileV1)
+                .is_err(),
+            "{parent}/{field}"
+        );
+    }
 }

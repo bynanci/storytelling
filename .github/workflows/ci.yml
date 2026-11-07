@@ -33,6 +33,12 @@ jobs:
         run: python3 scripts/check_repo.py
       - name: Release-mode arithmetic regression
         run: cargo test --workspace --release --locked
+      - name: Frozen OpenFilm export conformance
+        run: python3 tests/oracles/openfilm-finite-v1/compare.py target/release/storytelling --output "$RUNNER_TEMP/openfilm-differential.json"
+      - name: Native CLI without external tools on PATH
+        run: |
+          mkdir "$RUNNER_TEMP/no-media-tools"
+          env PATH="$RUNNER_TEMP/no-media-tools" ./target/release/storytelling import-openfilm tests/fixtures/openfilm/finite-v1/still.json
   test:
     name: Rust (${{ matrix.os }})
     strategy:

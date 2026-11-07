@@ -1,7 +1,10 @@
 # OpenFilm extraction and migration
 
-This bootstrap imports design intent, not implementation. No OpenFilm code, tests,
-project database or media is copied. The original MIT LICENSE is preserved.
+M0 imported design intent only. M1-01 now adds a source-informed, separately licensed
+finite visual importer; see its [contract](migration/FINITE_V1.md),
+[comparison record](migration/records/M1-01.md) and [provenance](migration/provenance-m1-01.json).
+No project database or media is copied. Original MIT LICENSE is preserved, with
+Apache-2.0 component attribution and applicable notices retained.
 
 ## Extraction map
 
@@ -51,7 +54,7 @@ Use the [machine ledger](migration/openfilm-port-index.json),
 [Codex runbook](migration/CODEX_PORTING_RUNBOOK.md), and
 [M1-01 implementation plan](superpowers/plans/2026-11-07-openfilm-port-bootstrap.md).
 
-This adds planning artifacts, not implementation or a release. Source modules were
+The original 48+16 inventory added planning artifacts, not implementation or a release. Source modules were
 located through pinned entrypoints/tree and selected code inspection; a per-task
 implementation review must still read exact symbols and tests. Preserve the original
 M0 declared-metadata-only scope until actual byte verification is implemented and proven.

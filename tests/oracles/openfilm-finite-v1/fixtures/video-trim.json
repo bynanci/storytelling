@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "1.0.0",
+  "composition": {
+    "id": "trim-story",
+    "storyId": "synthetic-story",
+    "duration": 3,
+    "tracks": [
+      {
+        "id": "trim-story-pictures",
+        "type": "video",
+        "clips": [
+          {
+            "id": "trim-occurrence",
+            "assetId": "video-asset",
+            "beatId": "opening",
+            "sourceIn": 2,
+            "sourceOut": 5,
+            "timelineStart": 0,
+            "timelineDuration": 3
+          }
+        ]
+      }
+    ]
+  },
+  "assets": [
+    {
+      "id": "video-asset",
+      "uri": "file:///synthetic/oracle/video-asset.mp4",
+      "mediaType": "video",
+      "name": "Synthetic video-asset",
+      "duration": 12,
+      "contentHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "tags": [],
+      "state": {},
+      "metadata": {}
+    }
+  ],
+  "settings": {
+    "width": 1920,
+    "height": 1080,
+    "frameRate": 30
+  }
+}

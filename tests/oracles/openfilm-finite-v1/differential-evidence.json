@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "scope": "six-case-source-to-rust-differential",
+  "sourceHead": "7add4762fe8174d76f43b863375ea39b73121e76",
+  "targetHead": "c47f2d5c472b5e06d6777200e3aece21e75025a9",
+  "targetWorkingTreeDirty": true,
+  "targetTrackedDiffSha256": "abb3e9ffd3944ceb3f633ab321883bc9874b677202420d66f7b01f930d10d94d",
+  "rustCliSha256": "6ec64f3824c07e2afe90a4c24d41d084eb8b0878a33a642839cb22d1b0909e59",
+  "pythonVersion": "3.12.14",
+  "rustCliVersion": "storytelling 0.1.0-dev.0",
+  "comparatorSha256": "e875f5b0433ff93960b4b48e7f95914ef33e1990c779224600ddeef4acac3166",
+  "sourceEvidenceSha256": "6a4958e6572bc609916567f365d6ad2a2fbdc359bf1676ece8c3f719cf48feef",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/storytelling/tests/oracles/openfilm-finite-v1/compare.py",
+    "/workspace/storytelling/target/debug/storytelling",
+    "--source-output",
+    "/workspace/storytelling/tests/oracles/openfilm-finite-v1",
+    "--output",
+    "/workspace/storytelling/tests/oracles/openfilm-finite-v1/differential-evidence.json"
+  ],
+  "cases": [
+    {
+      "id": "one-still",
+      "command": [
+        "/workspace/storytelling/target/debug/storytelling",
+        "import-openfilm",
+        "/workspace/storytelling/tests/oracles/openfilm-finite-v1/fixtures/one-still.json"
+      ],
+      "exitCode": 0,
+      "sourceOutputSha256": "9cb8da0ee4ab886431275b6d8f49231b986f59d6f62b886429362bbb0fd3012f",
+      "stdoutSha256": "78928b3fc4656be6b9ddd11a3d248909754fa2883c916a6ec36fd20b61049408",
+      "inputBytesUnchanged": true,
+      "lossCodes": [
+        "media.not_verified",
+        "image.hold_window"
+      ],
+      "exactFrameRate": "30",
+      "classification": "preserved",
+      "sourceSnapshotSemanticEquality": true,
+      "identityOrderAndRangesPreserved": true,
+      "executable": false,
+      "m0ValidationCommand": [
+        "/workspace/storytelling/target/debug/storytelling",
+        "validate",
+        "-"
+      ],
+      "m0ValidationExit": 0,
+      "passed": true
+    },
+    {
+      "id": "video-trim",
+      "command": [
+        "/workspace/storytelling/target/debug/storytelling",
+        "import-openfilm",
+        "/workspace/storytelling/tests/oracles/openfilm-finite-v1/fixtures/video-trim.json"
+      ],
+      "exitCode": 0,
+      "sourceOutputSha256": "404f022462f2c843753d83c28fc6351293c4a0d1a008795b9bf25b794a781891",
+      "stdoutSha256": "e56b7a9ac75bb88d1c689b17720e3c7cfc6cff7e21acc3dab231ced15422a667",
+      "inputBytesUnchanged": true,
+      "lossCodes": [
+        "media.not_verified",
+        "audio.not_mapped"
+      ],
+      "exactFrameRate": "30",
+      "classification": "preserved",
+      "sourceSnapshotSemanticEquality": true,
+      "identityOrderAndRangesPreserved": true,
+      "executable": false,
+      "m0ValidationCommand": [
+        "/workspace/storytelling/target/debug/storytelling",
+        "validate",
+        "-"
+      ],
+      "m0ValidationExit": 0,
+      "passed": true
+    },
+    {
+      "id": "repeated-source",
+      "command": [
+        "/workspace/storytelling/target/debug/storytelling",
+        "import-openfilm",
+        "/workspace/storytelling/tests/oracles/openfilm-finite-v1/fixtures/repeated-source.json"
+      ],
+      "exitCode": 0,
+      "sourceOutputSha256": "e14af778ebabe361c898575d7702cbae25e9ceeca41eebb36c40123fd4fce38f",
+      "stdoutSha256": "c01c3ddd463fd3d5314015317aa2ae37857256e7523c9e2eb40161b495675440",
+      "inputBytesUnchanged": true,
+      "lossCodes": [
+        "media.not_verified",
+        "audio.not_mapped"
+      ],
+      "exactFrameRate": "30",
+      "classification": "preserved",
+      "sourceSnapshotSemanticEquality": true,
+      "identityOrderAndRangesPreserved": true,
+      "executable": false,
+      "m0ValidationCommand": [
+        "/workspace/storytelling/target/debug/storytelling",
+        "validate",
+        "-"
+      ],
+      "m0ValidationExit": 0,
+      "passed": true
+    },
+    {
+      "id": "decimal-rate",
+      "command": [
+        "/workspace/storytelling/target/debug/storytelling",
+        "import-openfilm",
+        "/workspace/storytelling/tests/oracles/openfilm-finite-v1/fixtures/decimal-rate.json"
+      ],
+      "exitCode": 0,
+      "sourceOutputSha256": "6458ce4a016a51d577047e6fd2c9e902e8c987ea351dd79f8874796994a82023",
+      "stdoutSha256": "edc13b6446032cbbd6f1b7c8b0a345fec71342ac98b09029b124005ef9a4b5ca",
+      "inputBytesUnchanged": true,
+      "lossCodes": [
+        "media.not_verified",
+        "image.hold_window"
+      ],
+      "exactFrameRate": "2997/100",
+      "classification": "intentional-delta",
+      "sourceSnapshotSemanticEquality": true,
+      "identityOrderAndRangesPreserved": true,
+      "executable": false,
+      "m0ValidationCommand": [
+        "/workspace/storytelling/target/debug/storytelling",
+        "validate",
+        "-"
+      ],
+      "m0ValidationExit": 0,
+      "passed": true
+    },
+    {
+      "id": "explicit-ntsc",
+      "command": [
+        "/workspace/storytelling/target/debug/storytelling",
+        "import-openfilm",
+        "/workspace/storytelling/tests/oracles/openfilm-finite-v1/fixtures/explicit-ntsc.json"
+      ],
+      "exitCode": 0,
+      "sourceOutputSha256": "965787a0e0628c3a62070dd412df6d7fa2648422caac68de44ba74dddd64da41",
+      "stdoutSha256": "a3883cb3d94c0d247f1574c2bfb531e690290c77d2bf43b31f4186486d798d83",
+      "inputBytesUnchanged": true,
+      "lossCodes": [
+        "media.not_verified",
+        "image.hold_window"
+      ],
+      "exactFrameRate": "2997002997002997/100000000000000",
+      "classification": "preserved",
+      "sourceSnapshotSemanticEquality": true,
+      "identityOrderAndRangesPreserved": true,
+      "executable": false,
+      "m0ValidationCommand": [
+        "/workspace/storytelling/target/debug/storytelling",
+        "validate",
+        "-"
+      ],
+      "m0ValidationExit": 0,
+      "passed": true
+    },
+    {
+      "id": "unsupported-scale",
+      "command": [
+        "/workspace/storytelling/target/debug/storytelling",
+        "import-openfilm",
+        "/workspace/storytelling/tests/oracles/openfilm-finite-v1/fixtures/unsupported-scale.json"
+      ],
+      "exitCode": 1,
+      "sourceOutputSha256": "e778a97aa9370d0e89ed7d0012c2ccdba2688a163768af6b9d9705a07b584410",
+      "stdoutSha256": "0c546203e61e14820c3942e4d132d0810faf0bafe5fee3f1ce8fc8ae70ec9fb4",
+      "inputBytesUnchanged": true,
+      "classification": "unsupported",
+      "errorCode": "import.unsupported_feature",
+      "passed": true
+    }
+  ],
+  "allPassed": true,
+  "intentionalDelta": "29.97 remains exact 2997/100; source legacy derivation is 30000/1001",
+  "unsupported": "source preserves scale in JSON; finite Rust importer rejects it with a structured loss",
+  "notClaimed": [
+    "full upstream test suite",
+    "actual source-byte verification",
+    "audio handoff",
+    "OTIO compatibility",
+    "host compatibility",
+    "same-head CI",
+    "release readiness"
+  ]
+}

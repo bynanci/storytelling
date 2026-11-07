@@ -13,7 +13,10 @@
 11. Run formatting, clippy, workspace tests, release-mode tests, docs and repository checks. Read same-head hosted results. Report blocked, cancelled and failed checks separately.
 12. Update task IDs, traceability, ADRs and validation evidence. State what is implemented, automatically verified and still manual. No product percentage from checkbox counts.
 
-Current scope: M0 read-only JSON validator. Next: M1-01 limited handoff contract.
+Current scope: M0 validator and M1-01 read-only finite visual snapshot mapping candidates.
+Read [finite-v1](docs/migration/FINITE_V1.md) and its
+[comparison record](docs/migration/records/M1-01.md) for the admitted input and losses.
+Next: M1-02 finite OTIO; actual host proof remains M1-03.
 A test-first scaffold commit exists in history intentionally; it is not a release.
 
 ## OpenFilm transfer work

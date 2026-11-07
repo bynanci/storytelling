@@ -1,7 +1,7 @@
 # Development tasks
 
 Baseline: `551ff38920e2085e1d53a7ba777c9680678e9725` (original README + MIT LICENSE).
-Updated: 2026-11-07. This branch delivers an M0 implementation candidate; merge and
+Updated: 2026-11-07. This branch delivers M0 and finite M1-01 candidates; merge and
 release are separate decisions. [SDLC](docs/SDLC.md) owns the process and
 [requirements](docs/REQUIREMENTS.md) owns acceptance traceability.
 
@@ -35,7 +35,7 @@ Exact-head test results belong in the PR and [validation record](docs/validation
 
 | ID | Priority/state | Scope | Depends on | Definition of done / PR boundary |
 | --- | --- | --- | --- | --- |
-| M1-01 | P1 / ready after M0 | Freeze finite editable handoff profile; add read-only OpenFilm fixture importer | M0-G01 | Source/shot IDs, time conversion policy, lineage and expected unsupported cases; no live Catalog writes |
+| M1-01 | P1 / review on dependent branch | Finite composition-export visual mapper and read-only CLI | Explicit PR #2/#1 stack; M0 acceptance remains pending | M1-I01–I06; exact clocks, occurrence IDs, original facts and explicit limitations; no live Catalog writes |
 | M1-02 | P1 / proposed | Limited OTIO writer and loss report | M1-01 | Official parser oracle, deterministic source mapping, unknown effects fail closed |
 | M1-03 | P1 / proposed | FilmCraft isolated-project roundtrip proof | M1-02 | Pinned host import/render/readback/save/reopen; original project unchanged |
 | M2-01 | P1 / proposed | StoryBrief, hard constraints vs preferences and typed conflicts | M1 profile | Infeasible constraints explained; manual choices never silently dropped |
@@ -51,6 +51,26 @@ Exact-head test results belong in the PR and [validation record](docs/validation
 | M5-02 | P2 / proposed | Cross-platform CLI distribution candidate | M3-03 | Dependencies/advisories/SBOM/provenance, installation and rollback evidence |
 | M5-03 | P2 / proposed | External user and SDK evaluation | M4-02 | 3–5 user trials, independent integration, measured workflow comparison |
 | V1-01 | deferred | Stable public SDK and schema release policy | M5-01–03 | Migration/recovery contract, supported host matrix, reviewed release approval |
+
+## M1-01 delivery and work tracking
+
+[Tracking #6](https://github.com/bynanci/storytelling/issues/6) owns the finite slice:
+[P1 #3](https://github.com/bynanci/storytelling/issues/3) profile/provenance,
+[P2 #4](https://github.com/bynanci/storytelling/issues/4) pure mapper,
+[P3 #5](https://github.com/bynanci/storytelling/issues/5) CLI/verification.
+See [work queue](docs/migration/M1-01-WORK-QUEUE.md),
+[contract](docs/migration/FINITE_V1.md) and
+[comparison/evidence](docs/migration/records/M1-01.md).
+
+- [x] Source-informed Apache component policy explicitly approved; original MIT unchanged.
+- [x] Direct composition JSON profile frozen after independent G2 review.
+- [x] 33 pure importer and 8 CLI regressions; actual RED→GREEN observed.
+- [x] Six pinned TS source export/oracle cases and actual Rust differential.
+- [ ] Maintainer accepts this Draft candidate; #1/#2 acceptance stays separate.
+
+Implemented output is declared visual metadata with `executable:false`, not an
+OTIO/FilmCraft handoff. OF-03 canonical digest is deferred; original ledger entries
+remain whole-capability plans rather than being marked complete from this subset.
 
 ## Not in the current backlog
 
@@ -92,7 +112,7 @@ ports are proposed. Six retain-host entries are exclusions, not rewrite tasks.
 - [x] PORT-PLAN-01: written source-to-Rust inventory, classifications, proposed targets/tests and gap map (documentation only).
 - [ ] PORT-G01: maintainer accepts the transfer boundary and provenance policy before source-derived implementation.
 - [ ] PORT-G02: freeze actual per-task source symbols/tests/blob identities and require differential evidence.
-- [ ] PORT-G03: execute M1-01 after its M0/profile prerequisites; do not bulk-create all planned modules.
+- [x] PORT-G03: execute the finite M1-01 candidate on the explicit dependent branch after profile/provenance admission; remaining capability subsets and maintainer acceptance stay separate.
 
 Every transfer PR records OF/GAP IDs together with original M task and new requirement IDs.
 The full task index is a coverage inventory, not a demand to build 64 items before M1.
