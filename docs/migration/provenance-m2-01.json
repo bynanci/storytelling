@@ -1,0 +1,294 @@
+{
+  "schema_version": 1,
+  "task": "M2-01",
+  "source": {
+    "repository": "bynanci/open-film",
+    "commit": "7add4762fe8174d76f43b863375ea39b73121e76",
+    "license": "Apache-2.0",
+    "files": [
+      {
+        "path": "packages/core/src/models.ts",
+        "blob": "58dbe93f132577842b7971e0d8aad61aff1d78c6"
+      },
+      {
+        "path": "packages/core/src/validation.ts",
+        "blob": "ba60475333f60fd9f48c77df2e34f0e7cac8536f"
+      },
+      {
+        "path": "packages/solver/src/index.ts",
+        "blob": "c701b985495c8c76292880b5acbc9c062b03006c"
+      }
+    ]
+  },
+  "approval": {
+    "authority": "inherited maintainer approved source-informed Apache component policy and automatic continuation",
+    "date": "2026-11-07",
+    "policy": "Original MIT remains unchanged; Apache SPDX/provenance and retained upstream LICENSE/NOTICE for source-informed modules/tests/oracles"
+  },
+  "files": [
+    {
+      "path": "crates/storytelling-core/src/brief.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "crates/storytelling-engine/src/brief.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "crates/storytelling-engine/src/brief/cycle.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded ordering audit",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New iterative DFS returns one deterministic actual cycle witness with closing-edge provenance; preserves declaration order and unknown endpoints; no selection or complete upstream solver parity"
+    },
+    {
+      "path": "crates/storytelling-engine/tests/brief.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/brief.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "tests/fixtures/brief-v1/README.md",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "tests/fixtures/brief-v1/conflicting.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "tests/fixtures/brief-v1/valid.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "tests/oracles/story-brief-v1/README.md",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "tests/oracles/story-brief-v1/compare.py",
+      "license": "Apache-2.0",
+      "relationship": "independently authored synthetic selected-policy differential comparator",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "Compare ten frozen actual source policy outcomes with Rust CLI declarations, membership/order/conflicts and unchanged file/stdin behavior; new brief schema/preferences remain intentional downstream design; no complete solver/planner or duration-feasibility claim"
+    },
+    {
+      "path": "tests/oracles/story-brief-v1/inputs/excluded-preference.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "tests/oracles/story-brief-v1/inputs/include-excluded.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "tests/oracles/story-brief-v1/inputs/manual-excluded.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "tests/oracles/story-brief-v1/inputs/manual-order-cycle.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "tests/oracles/story-brief-v1/inputs/manual-order.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "tests/oracles/story-brief-v1/inputs/manual-outside-candidates.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "tests/oracles/story-brief-v1/inputs/missing-excluded.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "tests/oracles/story-brief-v1/inputs/missing-manual.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "tests/oracles/story-brief-v1/inputs/order-cycle.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "tests/oracles/story-brief-v1/inputs/order-implies-membership.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "tests/oracles/story-brief-v1/run-source.mts",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    },
+    {
+      "path": "tests/oracles/story-brief-v1/source-evidence.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored source-informed bounded audit, synthetic regression/policy oracle",
+      "source_paths": [
+        "packages/core/src/models.ts",
+        "packages/core/src/validation.ts",
+        "packages/solver/src/index.ts"
+      ],
+      "modifications": "New downstream StoryBrief wire and typed hard conflicts/soft warnings; preserve manual membership/order; no planner or full-feasibility claim"
+    }
+  ],
+  "notices": [
+    {
+      "path": "LICENSES/Apache-2.0.txt",
+      "source_path": "LICENSE",
+      "blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "relationship": "retained verbatim upstream license"
+    },
+    {
+      "path": "NOTICE.openfilm",
+      "source_path": "NOTICE",
+      "blob": "cfb73de041af0e9e3e73bd8eb5cfb6135b676095",
+      "relationship": "retained verbatim historical/third-party attribution"
+    }
+  ],
+  "original_mit_blob": "f317799529d13f4d9301daa2dba63dfea559ff69",
+  "independent_mit_changes": [
+    "crates/storytelling-core/src/lib.rs",
+    "crates/storytelling-engine/src/lib.rs",
+    "crates/storytelling-cli/src/main.rs"
+  ],
+  "production_dependencies_added": [],
+  "source_tests_copied": false,
+  "media_copied": false
+}

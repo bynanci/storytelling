@@ -1,11 +1,12 @@
 # OpenFilm → Storytelling：Rust 技術移轉對照表
 
-日期：2026-11-07。這是 **G1/G2 規劃候選**，不是已完成移植。
+日期：2026-11-07。此 48+16 inventory 主要是 **G1/G2 規劃對照**；已合併的有限 M1-01 importer 與 M1-02 OTIO writer 不代表整份 capability map 已移植。
 
 - OpenFilm 固定來源：`7add4762fe8174d76f43b863375ea39b73121e76`。涵蓋 16 個 packages 的責任邊界，另看 application、CLI/server、desktop/native 與測試入口。
-- Storytelling main：`551ff38920e2085e1d53a7ba777c9680678e9725`；Rust M0 仍位於未合併 PR #1 的 `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`。
-- M0 只驗證宣告資料、ID、hash 形狀與有理數來源區間；不讀來源 bytes、不執行 planner、不交接宿主。
-- 本輪未修改 Rust 產品程式、未搬 OpenFilm 程式/測試/資產；未執行來源 TS 或新 Rust 測試。
+- 原始 target inspection（歷史）：main `551ff38920e2085e1d53a7ba777c9680678e9725`；當時 M0 PR #1 candidate 為 `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`，尚未合併。
+- 2026-11-07 查核的 Storytelling main：`9a5232e97435f543238b90a2006460f319f4e651`。M0 PR #1、map PR #2、有限 M1-01 PR #7 與有限 M1-02 PR #16 已合併；各交付的原始 head/merge 證據保留於 [TASKS](../../TASKS.md) 與 comparison records。
+- M0 驗證宣告資料、ID、hash 形狀與有理數來源區間；M1-01 唯讀映射有限 visual snapshot，M1-02 輸出有限 exact-time OTIO 與明確 loss report。這些切片不驗證媒體實際 bytes、不執行 planner，也不構成 M1-03 宿主交接證明。
+- 原始 inventory 調查（歷史）未修改 Rust 產品程式、未搬 OpenFilm 程式/測試/資產，也未執行來源 TS 或新 Rust 測試；後續實作與實際驗證另見各任務 record。
 - 來源索引/exports 與選定實作已讀取。這是模組級對照，不是每個函式均完成 correctness audit；Codex 必須在該 task 的 G1/G2 補讀實作與實際 tests。
 
 ## 怎麼讀
@@ -22,8 +23,8 @@
 **先做 OF-01/02/03/04/29/34/35/36 的有限 M1 垂直切片，不是先做完34個native項目。**
 每個 ready task 都必須完成 GAP-01/02/03/16 的對應門檻。`depends` 是行為/契約先後，不強迫先建完整service或大型crate。
 
-來源連結規則：下方相對路徑均位於 [OpenFilm 固定快照](https://github.com/bynanci/open-film/tree/7add4762fe8174d76f43b863375ea39b73121e76)，不是未來浮動 main。
-目標 Rust 路徑與測試名稱都是 **proposed**；不存在的路徑使用code格式，不代表已建立。OF-01/02只有M0局部基礎，仍不是完整移植。
+來源連結規則：下方相對路徑以 [OpenFilm 固定快照](https://github.com/bynanci/open-film/tree/7add4762fe8174d76f43b863375ea39b73121e76) 為重現基準；OF-48 明確另列其後 observed main 的 PR #126 drift，不把新來源倒填為固定 baseline 已有。
+「Rust規劃落點」與「新增回歸命名」保留原始 inventory 的 **proposed** 範圍；不存在的路徑使用code格式，不代表已建立。已合併有限切片以 [M1-01 record](records/M1-01.md) 與 [M1-02 record](records/M1-02.md) 的實際檔案/測試為準，不代表 OF-01/02 或其他整項能力完整移植。
 
 配套：[補強與原生化邊界](NATIVE_BOUNDARIES_AND_GAPS.md) · [Codex執行規則](CODEX_PORTING_RUNBOOK.md) · [machine ledger](openfilm-port-index.json)。
 
@@ -440,7 +441,7 @@
 ## C｜Rust Adapter：8 項
 ### OF-35｜有限 OTIO writer／reader oracle
 
-**里程碑：** M1-02；**Rust狀態：** proposed；**前置：** OF-02, OF-04, OF-36。
+**里程碑：** M1-02；**Rust狀態：** 有限 writer/parser-oracle 子集已合併，完整宿主能力仍未驗證；**前置：** OF-02, OF-04, OF-36。
 
 **OpenFilm來源：** `packages/exporters/src/index.ts`。
 
@@ -448,17 +449,21 @@
 
 **範圍／驗收：** Rust writer 只做批准 profile；ExternalReference/Gap/Clip/TimeRange 精確且可重現。官方 OTIO parser 與真實 FilmCraft 各自驗證；metadata 不等於宿主 native effect。
 
+**已合併有限切片：** PR #16 的 [finite OTIO contract](FINITE_OTIO_V1.md) 由既有 engine `otio.rs` / `otio/clock.rs` 與 core `compiled_plan.rs` 實作；只有單一連續 picture track，未支援 Gap、audio、animation 或其他 creative edits。官方 parser conformance 與 M1-03 實際宿主 roundtrip 分開，不需為原始規劃路徑建立空 adapter crate。
+
 **新增回歸命名：** `official_parser_and_host_roundtrip_match`。先找到來源tests，保留授權與合成fixture來源；不得把這個規劃名稱寫成已存在或已通過。
 
 ### OF-36｜Handoff compatibility／loss report／額外格式
 
-**里程碑：** M1-02；**Rust狀態：** proposed；**前置：** OF-02, OF-04, GAP-05。
+**里程碑：** M1-02；**Rust狀態：** 有限 format/loss 子集已合併，完整 handoff/額外格式仍 proposed；**前置：** OF-02, OF-04, GAP-05。
 
 **OpenFilm來源：** `packages/exporters/src/index.ts`；`packages/application/src/nle-handoff.ts`；`packages/core/src/export-profile.ts`。
 
 **Rust規劃落點：** `crates/storytelling-core/src/compiled_plan.rs`；`crates/storytelling-engine/src/host_compile.rs`；`crates/storytelling-adapters/src/interchange/profiles.rs`。
 
 **範圍／驗收：** 參考 otioCompatibilityReport/NleHandoffService；native/baked/metadata-only/unsupported 分開。FCPXML/EDL 屬後續獨立profile，不算第二宿主驗證；不可靜默捨棄pins、速度或音訊automation。
+
+**已合併有限切片：** PR #16 只提供 frozen OTIO format profile、picture-only / metadata-only-locks 明確選項與 loss report；不提供 baking、宿主執行、native lock enforcement 或其他 interchange 格式。原本 importer 對 animation/未知效果的拒絕仍有效。
 
 **新增回歸命名：** `unsupported_edit_requires_explicit_loss_choice`。先找到來源tests，保留授權與合成fixture來源；不得把這個規劃名稱寫成已存在或已通過。
 
@@ -595,17 +600,17 @@
 
 **新增回歸命名：** `data_preset_cannot_execute_arbitrary_code`。先找到來源tests，保留授權與合成fixture來源；不得把這個規劃名稱寫成已存在或已通過。
 
-### OF-48｜尚未合併視覺keyframes與進階NLE擴張
+### OF-48｜已合併來源視覺 keyframes 的 capability / loss 邊界
 
-**里程碑：** watch-only；**Rust狀態：** not-planned-for-core；**前置：** 不進核心開發排程。
+**里程碑：** 有限 M1 profile 的 unsupported 邊界；後續擴張須另凍結 profile；**Rust狀態：** evaluator/renderer not-planned-for-core；**前置：** OF-35/36 的明確 capability/loss 決策。
 
-**OpenFilm來源：** `packages/core/src/sequence.ts`；`TASKS.md`。
+**OpenFilm來源：** baseline 的 `packages/core/src/sequence.ts` / `TASKS.md`；PR #126 observed main 另有 `packages/core/src/clip-animation.ts`，不宣稱此檔已在固定 `7add4762fe8174d76f43b863375ea39b73121e76`。
 
-**Rust規劃落點：** `watch-upstream-PR-126`。
+**目前 Rust 邊界：** 沿用既有 finite importer 與 OTIO compiler 的 unsupported-feature gate；不新增 evaluator、renderer 或空 adapter 落點。
 
-**範圍／驗收：** PR #125精確frame時間已納OF-02；PR #126視覺keyframe當次仍Draft，不作main已完成來源。speed ramps/compound/multicam不趁Rust遷移擴張；後續只做宿主capability與loss mapping。
+**範圍／驗收：** 原始調查將 PR #126 記為 Draft；後續查核已確認 feature head `b4aba4c4bb70b8cb03edd54342f1b94cec649245` 合併至 observed source main `5f737a6c8f35dce48e213370ff27900962c9304c`，其 parent 才是固定 baseline `7add4762fe8174d76f43b863375ea39b73121e76`。來源 animation 已可用不代表有限 Rust profile 已支援：M1-01/M1-02 仍拒絕 animation，不回傳可接受的 mapped plan/OTIO document。未來若擴張才按明確 profile 回報時間、easing、opacity 與 source mapping；speed ramps/compound/multicam 維持延後。
 
-**新增回歸命名：** `draft_work_is_not_marked_as_available_source`。先找到來源tests，保留授權與合成fixture來源；不得把這個規劃名稱寫成已存在或已通過。
+**現有回歸入口：** engine 的 `unknown_effect_and_current_animation_reject_with_one_explicit_loss`。完整來源 drift 與拒絕政策見 [M1-01 record](records/M1-01.md)；此項不構成宿主 animation 支援證明。
 
 ## 來源核對層級與範圍
 
@@ -615,4 +620,4 @@ Codex要執行任何一項，先以 `git cat-file -e <sha>:<path>` 確認來源�
 
 `packages/ui`/desktop/template等目錄級來源是責任邊界，不是整包複製授權。FFmpeg/第三方字型/模型/素材各有條款。原有Apache標記與NOTICE須保留；本次沒有把MIT改成Apache，也沒有授權將Apache內容改掛MIT。
 
-來源主線已有PR #121 coverage constraints及PR #125 frame time；PR #126當次仍draft。PR描述中殘留「未合併」字樣不能推翻GitHub實際merged欄位。
+固定來源含 PR #121 coverage constraints 與 PR #125 frame time。原始 PR #126 Draft/watch-only 觀察已由後續 source recheck 校正：#126 合併於 observed main `5f737a6c8f35dce48e213370ff27900962c9304c`，固定 `7add4762fe8174d76f43b863375ea39b73121e76` 仍保留作重現錨點。PR 描述或歷史索引的舊狀態不能取代實際 merged metadata 與 source tree。
