@@ -1,0 +1,95 @@
+<!-- SPDX-License-Identifier: MIT -->
+# PR 交付登錄
+
+本登錄把已合併交付、關閉但未合併的提案，以及尚待審查的依賴更新分開記錄。
+原始觀察是 `2026-11-07T05:41:45Z`，主線為 [`867fcde`](https://github.com/bynanci/storytelling/commit/867fcde6acd0dd1339122aaf4bb23003aac3942e)；
+依賴 PR 的 mergeability 於 `2026-11-07T05:45:37Z` 重新讀取。
+完整 head／tree／merge／時間／CI run 與 task issue 身份見
+[機器登錄](pr-register.json)。這是可追溯快照，不會自動涵蓋之後新增的 PR。
+
+## 已合併的實作交付
+
+| PR／有限範圍 | Accepted head | Merge commit | Merged at UTC | 觀察到的 exact-head checks |
+| --- | --- | --- | --- | --- |
+| [#1](https://github.com/bynanci/storytelling/pull/1) M0 宣告驗證 foundation | [`4c5682c`](https://github.com/bynanci/storytelling/commit/4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b) | [`2227981`](https://github.com/bynanci/storytelling/commit/22279814ff6b147c386186569d7f77f3a803cf8b) | 2026-11-07 02:17:16 | 10 success |
+| [#7](https://github.com/bynanci/storytelling/pull/7) M1-01 finite snapshot importer | [`c2fb478`](https://github.com/bynanci/storytelling/commit/c2fb478c278550b682efba5f898082e8bcd20e24) | [`610ed49`](https://github.com/bynanci/storytelling/commit/610ed49673d6f554e539008b34f5fc5479b9dbc1) | 2026-11-07 02:18:09 | 10 success |
+| [#16](https://github.com/bynanci/storytelling/pull/16) M1-02 exact-time OTIO | [`fb65753`](https://github.com/bynanci/storytelling/commit/fb65753df617c7df80ef2581396eead6b07a6434) | [`9a5232e`](https://github.com/bynanci/storytelling/commit/9a5232e97435f543238b90a2006460f319f4e651) | 2026-11-07 03:09:33 | 10 success |
+| [#17](https://github.com/bynanci/storytelling/pull/17) M2-01 bounded Brief audit | [`1c8c01d`](https://github.com/bynanci/storytelling/commit/1c8c01da48af75b860b1ce49241c3fd509b16c59) | [`422190e`](https://github.com/bynanci/storytelling/commit/422190e27bc604bd71485f78279373992f99e68c) | 2026-11-07 03:20:26 | 10 success |
+| [#18](https://github.com/bynanci/storytelling/pull/18) M1-03 supplied-buffer／實際宿主證據 | [`2b859d2`](https://github.com/bynanci/storytelling/commit/2b859d29e22f6f2a39f73822086b59618bb8a402) | [`e0a5ade`](https://github.com/bynanci/storytelling/commit/e0a5ade7ee2c0414f87aa121bef1bdf259a7e75e) | 2026-11-07 03:26:40 | 10 success |
+| [#22](https://github.com/bynanci/storytelling/pull/22) M2-02 fixed-window planner | [`1f4ff08`](https://github.com/bynanci/storytelling/commit/1f4ff082ed27dbc6223af2f0a0b1cfe71a06fe54) | [`895257b`](https://github.com/bynanci/storytelling/commit/895257b1bb9993d70cae3f1267f5f6fa3de91905) | 2026-11-07 03:59:29 | 10 success |
+
+六項實作的 accepted-head tree 與實際 merge tree 均相同。這些是逐切片接受：
+M0／M1-01 只驗證或映射宣告；M1-02 是有限格式編譯；M2-01 是硬限制稽核；
+M2-02 是宣告固定區間規劃。M1-03 的實際證據只涵蓋 supplied-buffer SHA-256
+與一個合成 FilmCraft Linux／25fps／CPU 案例，包含192×108預覽，
+不是音訊、GUI／GPU、完整解析度或一般宿主 executor 的證明。
+
+## 已合併的規劃與狀態文件
+
+| PR／文件範圍 | Accepted head | Merge commit | Merged at UTC | 觀察到的 exact-head checks |
+| --- | --- | --- | --- | --- |
+| [#2](https://github.com/bynanci/storytelling/pull/2) 48 OF＋16 GAP 規劃索引 | [`95291d3`](https://github.com/bynanci/storytelling/commit/95291d31c47601181070bf89a28b1a182ddf6ed8) | [`9fb403b`](https://github.com/bynanci/storytelling/commit/9fb403be811643baf948acdb6d72232d4a6207bb) | 2026-11-07 02:17:48 | 15 success |
+| [#11](https://github.com/bynanci/storytelling/pull/11) M0／M1-01 accepted lifecycle | [`dbf2fd4`](https://github.com/bynanci/storytelling/commit/dbf2fd45ef6a215e59cabbe9a6278bc09ca53daa) | [`440209f`](https://github.com/bynanci/storytelling/commit/440209f21d2b5fd6e7b4cad0823359c802cf8c8e) | 2026-11-07 02:30:58 | 10 success |
+| [#19](https://github.com/bynanci/storytelling/pull/19) OTIO／Brief／宿主狀態同步 | [`8997314`](https://github.com/bynanci/storytelling/commit/89973143d9bcd6c1c99e40f37f6fa4f13972dc59) | [`c03d4c8`](https://github.com/bynanci/storytelling/commit/c03d4c8ede33563451b8ad590a6df982d0d8b82a) | 2026-11-07 03:35:43 | 10 success |
+| [#23](https://github.com/bynanci/storytelling/pull/23) 固定視窗規劃 accepted lifecycle | [`88a188b`](https://github.com/bynanci/storytelling/commit/88a188b5d3aa54e6ac76f7f6340f15b937248693) | [`867fcde`](https://github.com/bynanci/storytelling/commit/867fcde6acd0dd1339122aaf4bb23003aac3942e) | 2026-11-07 04:06:47 | 10 success |
+
+文件 PR 不增加 runtime 能力。#2 的 accepted head 觀察到 **15** 個成功 checks，
+分屬三個 run；其他表列交付各有10個。不得把它們統一簡化為「全部10checks」。
+各 run 的 canonical URL、job 名稱與結論保留在機器登錄。
+
+## 已關閉但未合併
+
+[#13](https://github.com/bynanci/storytelling/pull/13) 的 head 是 [`6268766`](https://github.com/bynanci/storytelling/commit/62687668ea7c36d8ffd555bb33d4c909a461368b)，
+tree `bc9be7dc22d8c2cb4610986cd8b7adb2a453e361`；它有5個成功 checks，仍然**沒有 merge commit**。
+這個 Draft 狀態整理提案已被 #11／#16／#17 接替；有用的來源漂移修正由 #17
+選擇性核對後帶入。它不列為已接受的實作或「已合併完成」。
+
+## 待處理的依賴與 Actions 更新
+
+| PR | 變更閉包 | 觀察 head | Head 第一父提交 | 該 head 的 checks | 最新 REST mergeable／state |
+| --- | --- | --- | --- | --- | --- |
+| [#8](https://github.com/bynanci/storytelling/pull/8) | checkout 4.4.0 → 7.0.1；Node20 → Node24 | [`f3bf985`](https://github.com/bynanci/storytelling/commit/f3bf985acbd6abb67b3ce5f781535387dc602373) | [`2227981`](https://github.com/bynanci/storytelling/commit/22279814ff6b147c386186569d7f77f3a803cf8b) | 5 success | true / clean |
+| [#9](https://github.com/bynanci/storytelling/pull/9) | serde_json1.0.145 → 1.0.154；ryu → zmij1.0.23 | [`cbb8e7d`](https://github.com/bynanci/storytelling/commit/cbb8e7dd2f46de274bcde2de887f706b057b360d) | [`e0a5ade`](https://github.com/bynanci/storytelling/commit/e0a5ade7ee2c0414f87aa121bef1bdf259a7e75e) | 5 success | true / clean |
+| [#10](https://github.com/bynanci/storytelling/pull/10) | serde1.0.228 → 1.0.229；syn2 → syn3.0.9 | [`6a2456a`](https://github.com/bynanci/storytelling/commit/6a2456a2008d937b1658bbb77866bee4f2b694b0) | [`e0a5ade`](https://github.com/bynanci/storytelling/commit/e0a5ade7ee2c0414f87aa121bef1bdf259a7e75e) | 5 success | true / clean |
+| [#21](https://github.com/bynanci/storytelling/pull/21) | setup-python6.3.0 → 7.1.0；仍為 Node24 | [`ad4e33f`](https://github.com/bynanci/storytelling/commit/ad4e33f0406a78336279fe7916d3372660169d02) | [`c03d4c8`](https://github.com/bynanci/storytelling/commit/c03d4c8ede33563451b8ad590a6df982d0d8b82a) | 5 success | true / clean |
+
+四項 PR 在最新 REST 讀取時都可技術合併。較早的 normalized metadata 曾對
+#8／#9／#10 回傳 false；重新讀取後為 true／clean，因此本登錄不宣稱有持續的
+merge conflict。這些綠燈描述各自舊 head，不代表已完成目前主線整合或依賴審查。
+
+目前 repository guard 檢查 dependency 集合及已審查的 SHA2 配置，
+沒有額外釘死 serde／serde_json 版本；本次未觀察到它與這四項更新的直接規則衝突。
+然而 #9 的新數值格式依賴、#10 的 proc-macro／syn major 閉包、#8 的 Action runtime
+以及 #21 的新 Action distribution 都仍須各自審查。接受前應固定來源身份，
+核對 Rust1.85／權限／授權／lockfile 或 Action distribution，並重新整合當時 main，
+跑相同 head 的必要檢查及來源契約比對。這份整理沒有合併依賴 PR。
+
+## 任務與 PR body 整理
+
+快照時8個任務 issues 均為 completed，且沒有未勾選項目：
+[#3](https://github.com/bynanci/storytelling/issues/3)、
+[#4](https://github.com/bynanci/storytelling/issues/4)、
+[#5](https://github.com/bynanci/storytelling/issues/5)、
+[#6](https://github.com/bynanci/storytelling/issues/6)、
+[#12](https://github.com/bynanci/storytelling/issues/12)、
+[#14](https://github.com/bynanci/storytelling/issues/14)、
+[#15](https://github.com/bynanci/storytelling/issues/15)、
+[#20](https://github.com/bynanci/storytelling/issues/20)。
+
+#1／#2／#7 的開頭已加上有日期與 snapshot main 的 accepted lifecycle note，
+修正「M1-02／M1-03仍未完成」及「#13仍是等待中的承載 PR」等過期 current-state
+描述。原 body 完整保留為歷史證據；readback 及重複執行不再新增 note 的檢查通過。
+標記為 `<!-- storytelling-pr-lifecycle-register-v1 -->`。
+未修改 PR comments、labels、分支、merge 狀態或 repository 管理設定。
+
+## 如何延續
+
+新增交付時，先讀 GitHub 的實際 state、accepted head、merge tree／時間與同 head
+checks，再把新觀察或 delivery addendum 加入機器登錄。保留原 snapshot 身份與
+已接受切片的原始證據；無法核實的項目保持 pending，closed-unmerged 不提升成 merged。
+當前任務權威仍由 [TASKS](../../TASKS.md)、[需求](../REQUIREMENTS.md)、
+逐任務 comparison records 與真實 GitHub metadata 共同提供。
+
+完整 solver／M2-03、production execution／approval、人工剪輯驗收、發布和管理
+權限不因 PR 數量、文件勾選或本登錄而完成。原始48＋16項 inventory 仍是覆蓋範圍，
+不是產品完成百分比。
