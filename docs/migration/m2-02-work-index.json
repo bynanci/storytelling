@@ -2,35 +2,38 @@
   "schema_version": 1,
   "task": "M2-02",
   "tracking_issue": "https://github.com/bynanci/storytelling/issues/20",
-  "tracking_issue_status": "open",
+  "tracking_issue_status": "closed",
   "base": "c03d4c8ede33563451b8ad590a6df982d0d8b82a",
   "source": "7add4762fe8174d76f43b863375ea39b73121e76",
   "observed_source_main": "5f737a6c8f35dce48e213370ff27900962c9304c",
   "red_commit": "136a19889b5a810441ca540f6f3633be54fde03b",
-  "state": "review",
+  "state": "accepted",
   "scope": "declared-fixed-window-plan-only",
   "tasks": [
     {
       "id": "M2-02/P1",
-      "state": "verified",
+      "state": "accepted",
       "depends_on": [],
-      "acceptance": "Independent G2 and clock reviews; actual12case pinned source oracle and per-file policy"
+      "acceptance": "Independent G2 and clock reviews; actual12case pinned source oracle and per-file policy",
+      "merge_commit": "895257b1bb9993d70cae3f1267f5f6fa3de91905"
     },
     {
       "id": "M2-02/P2",
-      "state": "review",
+      "state": "accepted",
       "depends_on": [
         "M2-02/P1"
       ],
-      "acceptance": "26actual engine RED to GREEN; deterministic required-first exact fixed-window declared M0 plan"
+      "acceptance": "26actual engine RED to GREEN; deterministic required-first exact fixed-window declared M0 plan",
+      "merge_commit": "895257b1bb9993d70cae3f1267f5f6fa3de91905"
     },
     {
       "id": "M2-02/P3",
-      "state": "review",
+      "state": "accepted",
       "depends_on": [
         "M2-02/P2"
       ],
-      "acceptance": "9CLI GREEN after8functional RED; full checks/source comparisons/reviews/same-head CI before authorized merge"
+      "acceptance": "9CLI GREEN after8functional RED; full checks/source comparisons/reviews/same-head CI before authorized merge",
+      "merge_commit": "895257b1bb9993d70cae3f1267f5f6fa3de91905"
     }
   ],
   "requirements": [
@@ -121,5 +124,21 @@
   ],
   "published_red_commit": "08a975d50719c1c5b0eebee1708c91c07f342ffe",
   "published_red_tree": "f5f9f601584f4145583930590d433040d842aa2f",
-  "lifecycle_note": "Local required checks/source comparisons and independent code/docs reviews passed; exact published-head CI and merge/issue acceptance remain pending."
+  "lifecycle_note": "Accepted bounded fixed-window scope: PR22 merged after all 10 same-head checks; issue20 fully checked and closed completed. Historical source/base/RED identities retained; wider solver/host/editorial/release remain open.",
+  "tracking_issue_state": "closed",
+  "accepted_lifecycle": {
+    "authority": "standing explicit user authorization for completed verified PR merges and task completion; no release/admin/signature authority",
+    "feature_pull_request": 22,
+    "accepted_head": "1f4ff082ed27dbc6223af2f0a0b1cfe71a06fe54",
+    "accepted_tree": "aeb17a016da7743252b1cc1e6014cb654537da9f",
+    "merge_commit": "895257b1bb9993d70cae3f1267f5f6fa3de91905",
+    "merged_at": "2026-11-07T03:59:29Z",
+    "workflow_runs": [
+      42336267553,
+      42336302860
+    ],
+    "same_head_checks": "10 succeeded",
+    "tracking_issue_state": "closed",
+    "accepted_scope": "declared fixed-window selection/planning only; full solver and M2-03 parity remain separate"
+  }
 }

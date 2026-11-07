@@ -2,9 +2,9 @@
 
 以 Rust 建立的本機優先 Story SDK／可審閱剪輯工作流核心。
 
-**M0、有限 M1-01／M1-02、M2-01 稽核與 M1-03 宿主證據均已接受並合併 main；M2-02 固定視窗規劃審查中；尚未發布 release。**
+**M0、有限 M1-01／M1-02、M2-01 稽核與 M1-03 宿主證據均已接受並合併 main；M2-02 固定視窗規劃已接受；尚未發布 release。**
 可驗證有界故事計畫 JSON，並將有限 OpenFilm composition export 唯讀映射為 declared visual plan。
-`verify-source` 另可雜湊明確提供的來源 bytes；產品尚未產生故事或自動操作剪輯器。
+`verify-source` 另可雜湊明確提供的來源 bytes；規劃器依明確提供的區間與限制提出 StoryPlan，正式宿主執行仍為後續工作流任務。
 獨立測試工具已完成一個有界 FilmCraft 實際往返案例。
 
 完整的六個指令、輸入格式及可執行範例見 [CLI 使用指南](docs/CLI_GUIDE.md)。
@@ -19,6 +19,7 @@ cargo run --locked -p storytelling-cli -- import-openfilm tests/fixtures/openfil
 cargo run --locked -p storytelling-cli -- export-otio tests/fixtures/openfilm/finite-v1/still.json --metadata-only-locks > finite.otio
 
 cargo run --locked -p storytelling-cli -- audit-brief tests/fixtures/brief-v1/valid.json
+cargo run --locked -p storytelling-cli -- plan-story tests/fixtures/planner-v1/valid.json
 ```
 
 合法範例回傳 `ok: true`，退出碼 0；超出來源範圍的範例回傳
@@ -77,5 +78,5 @@ video 帶 `audio.not_mapped / blocks-host-handoff`，明確 audio/effects/animat
 - [MIGRATION](docs/MIGRATION.md)：從 OpenFilm 抽離、shadow 比較與漸進替換。
 - [驗證紀錄](docs/validation/m0-foundation.md)：RED、最終 CI 與人工 gate 的區別。
 
-有限 OTIO 與有界 FilmCraft 往返證據已完成；M2-02 固定視窗規劃審查中，完整 solver 與 M2-03 shadow 仍為後續工作。
+有限 OTIO 與有界 FilmCraft 往返證據已完成；M2-02 固定視窗規劃已接受，完整 solver 與 M2-03 shadow 仍為後續工作。
 正式宿主執行、更多媒體與人工驗收仍有獨立門檻。

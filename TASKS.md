@@ -1,7 +1,7 @@
 # Development tasks
 
 Baseline: `551ff38920e2085e1d53a7ba777c9680678e9725` (original README + MIT LICENSE).
-Updated: 2026-11-07. M0, finite M1-01/M1-02, bounded M2-01 audit and M1-03
+Updated: 2026-11-07. M0, finite M1-01/M1-02, bounded M2-01/M2-02 audit/planning and M1-03
 supplied-byte/host proof are accepted on main; release remains a separate decision.
 [SDLC](docs/SDLC.md) owns the process and
 [requirements](docs/REQUIREMENTS.md) owns acceptance traceability.
@@ -26,11 +26,13 @@ completed tasks. The GitHub merge metadata records:
 | [#16 finite M1-02 OTIO](https://github.com/bynanci/storytelling/pull/16) | `fb65753df617c7df80ef2581396eead6b07a6434` | `9a5232e97435f543238b90a2006460f319f4e651` | 2026-11-07 03:09:33 |
 | [#17 bounded M2-01 audit](https://github.com/bynanci/storytelling/pull/17) | `1c8c01da48af75b860b1ce49241c3fd509b16c59` | `422190e27bc604bd71485f78279373992f99e68c` | 2026-11-07 03:20:26 |
 | [#18 bounded M1-03 proof](https://github.com/bynanci/storytelling/pull/18) | `2b859d29e22f6f2a39f73822086b59618bb8a402` | `e0a5ade7ee2c0414f87aa121bef1bdf259a7e75e` | 2026-11-07 03:26:40 |
+| [#22 M2-02 fixed-window planner](https://github.com/bynanci/storytelling/pull/22) | `1f4ff082ed27dbc6223af2f0a0b1cfe71a06fe54` | `895257b1bb9993d70cae3f1267f5f6fa3de91905` | 2026-11-07 03:59:29 |
 
 [Issues #3–#6](https://github.com/bynanci/storytelling/issues/6),
 [#12](https://github.com/bynanci/storytelling/issues/12),
 [#14](https://github.com/bynanci/storytelling/issues/14) and
-[#15](https://github.com/bynanci/storytelling/issues/15) are checked and closed completed.
+[#15](https://github.com/bynanci/storytelling/issues/15) and
+[#20](https://github.com/bynanci/storytelling/issues/20) are checked and closed completed.
 The historical tree after PR #7 was `53fbfe24bf734634d4374d2b0eb133ebba937299`.
 PR #18's accepted tree is `9b6b3d34b1289ab78ffc453ca094289a0de91f89`;
 feature heads passed all 10 same-head push/PR checks before merge. Historical
@@ -68,7 +70,7 @@ permission changes, nor replace real-media/host or human editorial acceptance.
 | M1-02 | P1 / accepted | Native finite OTIO writer, explicit picture-only/lock choices and direct CLI artifact | Accepted M1-01 | M1-O01–O06; official 0.18.1 parser oracle, exact content ticks, explicit loss; actual host proof remains M1-03 |
 | M1-03 | P1 / accepted | Bounded supplied-byte verification and FilmCraft isolated 25 fps CPU proof | Accepted M1-02; PR #18 merged | M1-H01–H04; exact native ranges, 45-frame 192×108 preview, save/reopen/reimport, unchanged inputs; broader acceptance open |
 | M2-01 | P1 / accepted | Bounded StoryBrief hard constraints vs preferences and typed conflicts | M1 profile; PR #17 merged | M2-B01–B06; manual choices preserved, declared reference/membership/order contradictions explained; full planner/feasibility separate |
-| M2-02 | P1 / review | Deterministic bounded selection and shot planner | M2-01 | Same frozen evidence/version produces same plan; semantic reasons cite evidence |
+| M2-02 | P1 / accepted | Finite fixed-window selection and shot planner | Accepted M2-01; PR #22 merged | M2-P01–P06; exact source windows, hard choices/order, deterministic declared ranks/reason paths; full solver remains open |
 | M2-03 | P1 / proposed | Shadow compare selected TS planner behavior with Rust | M2-02 | Differences triaged as port bug, prior bug, unsupported or intentional change |
 | M3-01 | P1 / proposed | Approval and compiled-plan identity contracts | M1-03, M2-02 | Approval binds source, plan, host version/capabilities and accepted losses |
 | M3-02 | P1 / proposed | SQLite operation journal and owner-fenced recovery | M3-01 | Fault injection: crash/retry/late callback/ack failure; no duplicate apply |
@@ -134,7 +136,7 @@ See the [frozen profile](docs/migration/STORY_BRIEF_V1.md),
 - [x] Verified PR #17 merged and tracking issue #14 fully checked/closed under user authorization.
 
 This audit produces no selected shots, timing feasibility or executable plan.
-M2-02 planner and M2-03 planner shadow comparison remain separate proposed work.
+M2-02 now supplies accepted fixed-window planning; M2-03 planner shadow remains separate proposed work.
 
 ## M1-03 bounded host proof work
 
@@ -167,8 +169,8 @@ is introduced.
 - [x] CLI 8 failures/1 existing pass → 9 GREEN; emitted nested plan accepted by actual M0 validator.
 - [x] Strict bounds, deterministic reasons/skips and immutable source declarations; no new dependency/crate.
 - [x] Full local quality/source checks and independent code/docs reviews passed.
-- [ ] Same-head hosted CI, verified PR merge, issue completion and accepted lifecycle.
-- [ ] Fully check/close #20 after the verified merge and update accepted lifecycle.
+- [x] All10same-head hosted checks passed; PR #22 merged as `895257b1bb9993d70cae3f1267f5f6fa3de91905`.
+- [x] #20 fully checked and closed completed; work index, plans and public accepted status reconciled.
 
 This finite planner proposes declared fixed windows; optional ranks are supplied
 scores/preferences, not verified semantic evidence. Multi-beat solver and M2-03

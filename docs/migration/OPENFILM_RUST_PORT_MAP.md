@@ -6,6 +6,7 @@
 - 原始 target inspection（歷史）：main `551ff38920e2085e1d53a7ba777c9680678e9725`；當時 M0 PR #1 candidate 為 `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`，尚未合併。
 - M1-02 階段的歷史 Storytelling main 快照：`9a5232e97435f543238b90a2006460f319f4e651`。當時 M0 PR #1、map PR #2、有限 M1-01 PR #7 與有限 M1-02 PR #16 已合併。
 - 本輪延續工作的 accepted base：`c03d4c8ede33563451b8ad590a6df982d0d8b82a`，另含已接受的 bounded M2-01 audit PR #17 與 M1-03 PR #18。後者提供明確 supplied-buffer SHA-256 與合成 Linux／25 fps／CPU 預覽宿主證據；檔案 TOCTOU、一般宿主執行和人工驗收仍未實作。各交付的原始 head/merge 證據見 [TASKS](../../TASKS.md) 與 comparison records。
+- 後續 M2-02 固定視窗規劃已在 PR #22 接受並合併於 `895257b1bb9993d70cae3f1267f5f6fa3de91905`；[契約](FIXED_WINDOW_PLANNER_V1.md) 與 [record](records/M2-02.md) 說明精確固定區間、硬限制與 declared ranks 的有界範圍。完整 solver／M2-03 shadow 仍須另行凍結驗收。
 - M0 驗證宣告資料、ID、hash 形狀與有理數來源區間；M1-01 唯讀映射有限 visual snapshot，M1-02 輸出有限 exact-time OTIO 與明確 loss report。這些切片不驗證媒體實際 bytes、不執行 planner，也不構成 M1-03 宿主交接證明。
 - 原始 inventory 調查（歷史）未修改 Rust 產品程式、未搬 OpenFilm 程式/測試/資產，也未執行來源 TS 或新 Rust 測試；後續實作與實際驗證另見各任務 record。
 - 來源索引/exports 與選定實作已讀取。這是模組級對照，不是每個函式均完成 correctness audit；Codex 必須在該 task 的 G1/G2 補讀實作與實際 tests。
@@ -180,7 +181,7 @@
 
 ### OF-13｜時長預算、選材與粗剪 solver
 
-**里程碑：** M2-02；**Rust狀態：** partial-fixed-window-candidate；**前置：** OF-02, OF-09, OF-10, OF-12, OF-15。
+**里程碑：** M2-02；**Rust狀態：** partial-fixed-window-accepted；**前置：** OF-02, OF-09, OF-10, OF-12, OF-15。
 
 **OpenFilm來源：** `packages/solver/src/index.ts`；`packages/story/src/story-planner.ts`。
 
@@ -190,13 +191,13 @@
 
 **新增回歸命名：** `frozen_plan_is_deterministic_and_bounded`。先找到來源tests，保留授權與合成fixture來源；不得把這個規劃名稱寫成已存在或已通過。
 
-目前 M2-02 固定來源視窗子集已實作／審查中，見 [profile](FIXED_WINDOW_PLANNER_V1.md)
+目前 M2-02 固定來源視窗子集已接受（PR #22），見 [profile](FIXED_WINDOW_PLANNER_V1.md)
 與 [record](records/M2-02.md)。它使用既有 M0／Brief 契約；完整 solver、
 scoring、coverage、pins 與本項其餘 OF 前置仍待後續移植，不當作整項完成。
 
 ### OF-14｜StoryPlan 驗證與提案生成
 
-**里程碑：** M2-02；**Rust狀態：** partial-fixed-window-candidate；**前置：** OF-03, OF-04, OF-13。
+**里程碑：** M2-02；**Rust狀態：** partial-fixed-window-accepted；**前置：** OF-03, OF-04, OF-13。
 
 **OpenFilm來源：** `packages/core/src/story-plan.ts`；`packages/story/src/story-planner.ts`；`packages/application/src/story-plan.ts`。
 
@@ -206,7 +207,7 @@ scoring、coverage、pins 與本項其餘 OF 前置仍待後續移植，不當�
 
 **新增回歸命名：** `proposal_preview_has_no_authoritative_mutation`。先找到來源tests，保留授權與合成fixture來源；不得把這個規劃名稱寫成已存在或已通過。
 
-目前 M2-02 固定來源視窗子集已實作／審查中，見 [profile](FIXED_WINDOW_PLANNER_V1.md)
+目前 M2-02 固定來源視窗子集已接受（PR #22），見 [profile](FIXED_WINDOW_PLANNER_V1.md)
 與 [record](records/M2-02.md)。它使用既有 M0／Brief 契約；完整 solver、
 scoring、coverage、pins 與本項其餘 OF 前置仍待後續移植，不當作整項完成。
 
