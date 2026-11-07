@@ -155,3 +155,25 @@ Issue [#27](https://github.com/bynanci/storytelling/issues/27) remains open for
 the separate finite-OTIO review identity and declared-context freshness scope.
 At this observation there are zero open pull requests; the prior machine snapshot
 is preserved and this state is appended in `pr-register.json`.
+
+## Current open M3-01 review-binding candidates — 2026-11-07 23:42 UTC
+
+The following current-state observation supplements the historical snapshots above. It does not
+accept the proposed contract, issue a G2 approval, complete issue #27, or authorize a merge.
+
+| PR | State / base | Exact head | Same-head checks | Acceptance |
+| --- | --- | --- | --- | --- |
+| [#31](https://github.com/bynanci/storytelling/pull/31) | Draft; base main `9513913e849f8cf15d9e5bbb2977fe587ce8b953` | `67abf6d443abf11a0cbced519eeac2a86396a7f7` | All 6 passed in [run 42381290915](https://github.com/bynanci/storytelling/actions/runs/42381290915) | G2 contract review pending; documentation proposal only |
+| [#32](https://github.com/bynanci/storytelling/pull/32) | Draft; stacked on #31 head `67abf6d443abf11a0cbced519eeac2a86396a7f7` | `a979c6ad6244a9d20a8c276f43e21d310d8d8fbd` | All 6 passed in [run 42426266361](https://github.com/bynanci/storytelling/actions/runs/42426266361): Quality, Required, Linux, Windows, macOS and Dependency Audit | Provisional implementation; independent G2 code/security and source-comparison disposition pending |
+
+The #32 candidate adds same-input finite importer/OTIO binding, a private non-deserializable
+in-process result, strict declared context, a read-only freshness CLI and a static source-informed
+comparison. It does not verify a signature or signer authorization, observe the declared host or
+binary, establish source provenance, prevent replay, or bridge planner output to OTIO. The
+TypeScript source runtime was not executed; the comparison is explicitly not a paired-runtime oracle.
+
+Issue [#27](https://github.com/bynanci/storytelling/issues/27) remains open with all six checklist
+items unchecked. No reviewer has been requested; maintainer/G2 acceptance remains pending. PR #32
+is mergeable but remains Draft and is intentionally stacked on #31 so the review packet and merged
+PR #28 code remain in its hosted integration baseline. Rebase or merge only after the independent
+G2 contract decision; do not interpret green CI as product acceptance.

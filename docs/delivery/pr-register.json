@@ -2435,6 +2435,68 @@
           "scope": "canonical M3-01/P1 finite-OTIO review identity and declared-context freshness"
         }
       ]
+    },
+    {
+      "kind": "open-m3-01-review-binding-candidates",
+      "observed_at": "2026-11-07T23:42:36Z",
+      "main_sha": "9513913e849f8cf15d9e5bbb2977fe587ce8b953",
+      "scope": "Provisional implementation candidate stacked on the pending G2 contract packet; neither PR is accepted or merged",
+      "pull_requests": [
+        {
+          "number": 31,
+          "url": "https://github.com/bynanci/storytelling/pull/31",
+          "state": "open",
+          "draft": true,
+          "merged": false,
+          "base_sha": "9513913e849f8cf15d9e5bbb2977fe587ce8b953",
+          "head_sha": "67abf6d443abf11a0cbced519eeac2a86396a7f7",
+          "scope": "M3-01/P1 G2 contract proposal only",
+          "accepted": false,
+          "same_head_checks": {
+            "total": 6,
+            "all_success": true,
+            "runs": [
+              42381290915
+            ]
+          },
+          "review": {
+            "independent_g2": "pending",
+            "requested_reviewers": []
+          }
+        },
+        {
+          "number": 32,
+          "url": "https://github.com/bynanci/storytelling/pull/32",
+          "state": "open",
+          "draft": true,
+          "merged": false,
+          "base_branch": "codex/m3-01-g2-review-packet-20261107",
+          "base_sha": "67abf6d443abf11a0cbced519eeac2a86396a7f7",
+          "head_sha": "a979c6ad6244a9d20a8c276f43e21d310d8d8fbd",
+          "scope": "M3-01/P1 provisional finite-OTIO review binding, strict declared context, freshness CLI and source-informed static comparison",
+          "accepted": false,
+          "same_head_checks": {
+            "total": 6,
+            "all_success": true,
+            "runs": [
+              42426266361
+            ]
+          },
+          "review": {
+            "independent_g2": "pending",
+            "source_comparison_disposition": "pending; static comparison only, no TypeScript runtime execution",
+            "maintainer_acceptance": "pending"
+          }
+        }
+      ],
+      "open_issues": [
+        {
+          "number": 27,
+          "state": "open",
+          "unchecked_items": 6,
+          "scope": "Canonical M3-01/P1 acceptance remains pending"
+        }
+      ]
     }
   ]
 }

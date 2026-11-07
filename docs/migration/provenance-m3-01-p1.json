@@ -144,6 +144,8 @@
     "docs/migration/M3-01-NEXT.md",
     "docs/migration/records/M3-01-P1-COMPARISON.md",
     "docs/migration/records/M3-01-P1.md",
+    "docs/delivery/PR_REGISTER.md",
+    "docs/delivery/pr-register.json",
     "TASKS.md",
     "PROVENANCE.md"
   ],
