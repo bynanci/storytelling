@@ -61,3 +61,14 @@ M0 declared-metadata-only scope: later M1-03 separately verifies explicit suppli
 buffers and proves one synthetic FilmCraft Linux 25 fps CPU profile. See its
 [record](migration/records/M1-03.md); filesystem identity, general execution and
 human acceptance remain future adapter/workflow gates.
+
+## M3-01 approval boundary
+
+The current M3-01 implementation adds only bounded exact-plan identity and
+Ed25519 verification in pure core. It consumes the existing supplied-buffer
+verification token and binds explicit Host claims and accepted losses. It does
+not sign, store keys, establish human authorization, persist/replay approvals,
+or execute a host. See [Approval Identity v1](migration/APPROVAL_IDENTITY_V1.md),
+the [M3-01 record](migration/records/M3-01.md) and its
+[dependency review](migration/dependency-review-m3-01.md). M3-02 and M3-03 remain
+separate milestones for durable recovery and actual Host execution evidence.
