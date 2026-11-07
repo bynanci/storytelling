@@ -242,7 +242,9 @@ signature validity, signer authorization and same-input compilation linkage, and
 specifies a concrete contract/test proposal. The source map has 15 actual blob
 identities; proposed M3-RB01–RB07, wire/CLI names and budgets still need independent
 G2 freezing and functional RED before implementation. No code or passing M3 test
-is claimed. Use the existing importer/compiler input because the planner→OTIO
+is claimed. Draft [PR #31](https://github.com/bynanci/storytelling/pull/31) contains
+this documentation-only proposal; it does not complete an Issue #27 checklist
+item. Use the existing importer/compiler input because the planner→OTIO
 bridge is absent; matching hashes/context never grant human approval. Merged
 candidate [PR #28](https://github.com/bynanci/storytelling/pull/28) implements
 separate M3-A01–A03 scope and remains unaccepted pending independent G2 review.

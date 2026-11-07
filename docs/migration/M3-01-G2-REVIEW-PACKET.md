@@ -55,11 +55,16 @@ digest as evidence of compilation. This is necessary because
 The context proposal has fixed fields only: schema version; ASCII `project_id`;
 declared `target_revision` (including an explicit new-isolated-project value);
 expected host ID, version, profile ID and lowercase binary SHA-256; a sorted,
-unique set of required capability IDs; and a sorted, unique set of the existing
-`picture_only` / `metadata_only_locks` choices. The values are caller declarations.
+unique set of caller-declared host capability IDs; and a sorted, unique set of
+the existing `picture_only` / `metadata_only_locks` choices. The values are
+caller declarations.
 Those two loss-choice IDs are mapped directly to the existing
 `OtioLossChoicesV1` fields and are supplied to compilation; no parallel caller
 choice object can disagree with the identity.
+The compiler's required capability set comes from its typed report. The proposed
+consistency rule is to require that set to be a subset of the declared host
+capabilities; this checks two declarations against each other and does not verify
+that the host actually supports them.
 The P1 builder must not inspect a host, open a project URI, resolve a source URI,
 read a media file, or imply that the binary fingerprint was observed.
 
@@ -80,6 +85,33 @@ and emit `scope: "declared-review-binding-only"`, `executable: false`,
 `approval_granted: false`, `source_verified: false`, and `host_verified: false`.
 The existing CLI permits at most one stdin input; these proposed forms use stdin
 for the composition only.
+
+The proposed context wire shape is fixed and has no optional/null fields:
+
+```json
+{
+  "schema_version": 1,
+  "project_id": "project-1",
+  "target_revision": "new-isolated-project",
+  "host": {
+    "id": "filmcraft",
+    "version": "0.18.0",
+    "profile_id": "isolated25fps",
+    "binary_sha256": "<64 lowercase hex characters>",
+    "declared_capabilities": ["external-reference", "single-video-track"]
+  },
+  "loss_choices": []
+}
+```
+
+The review record should contain only its schema/scope, binding digest, source,
+plan, artifact and report digests, compiler/profile versions, context digest and
+fixed per-field context digests, plus the false authority/execution flags. It
+should not copy raw source bytes, URIs or context values. The record is still
+untrusted: anyone can construct or edit portable JSON and recompute an unkeyed
+hash. `check-review` can report consistency between that record and the supplied
+current inputs; `current: true` does not prove who created the record, that it
+was previously reviewed, or that the supplied inputs are the latest host state.
 
 ## Proposed identity encoding
 
@@ -112,7 +144,9 @@ golden tests, not an assumption.
 
 The binding hash is an identity, not a secret or credential. Portable JSON can be
 copied or replayed. The hash alone is not an approval, signature, grant, freshness
-observation, source verification, or authorization decision.
+observation, source verification, or authorization decision. Hashing the supplied
+composition does not establish that its declared source URIs/files contain those
+bytes.
 
 The following requirement IDs are proposed for review and are not yet accepted:
 
