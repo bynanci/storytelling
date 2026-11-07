@@ -1,5 +1,5 @@
 <!-- SPDX-License-Identifier: MIT AND Apache-2.0 -->
-# Approval Identity v1 (concurrent PR #28 candidate; not accepted)
+# Approval Identity v1 (merged PR #28 candidate; not accepted)
 
 This candidate is separate from the canonical proposed M3-01/P1 immutable
 finite-OTIO review-binding scope in [M3-01-NEXT](M3-01-NEXT.md). It does not
@@ -8,9 +8,9 @@ candidate API, not an accepted public contract.
 
 This is a bounded pure-core candidate contract and signature verifier. It does
 not sign, store keys, authorize a person, execute an editor, or persist/replay
-approvals. The candidate remains unaccepted until independent security review
-and same-head hosted checks pass; even then, it does not complete canonical
-M3-01/P1.
+approvals. The candidate remains unaccepted pending independent G2 security review. Its
+same-head hosted checks passed before merge; even then, it does not complete
+canonical M3-01/P1.
 
 ## Identity construction
 

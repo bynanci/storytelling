@@ -40,8 +40,30 @@ acceptance):
 | [#10 serde 1.0.229](https://github.com/bynanci/storytelling/pull/10) | `6a2456a2008d937b1658bbb77866bee4f2b694b0` | `a4c07d5cf29a4845757ada0cb6eea664cfeb98a0` | 2026-11-07 13:22:15 |
 | [#9 serde_json 1.0.154](https://github.com/bynanci/storytelling/pull/9) | `14992f18dc36804b8fa752ea2383194a9993bd38` | `fefb038ec1699727da2c0f436a097bbdedcfd08a` | 2026-11-07 13:25:36 |
 
-All four PR-head and resulting main checks passed. PR #28 must use the updated
-action pins and dependency lockfile before its own current-head checks count.
+All four dependency PR heads and resulting main commits passed their checks.
+PR #28 was synchronized to the updated action pins and dependency lockfile, then
+merged after two exact-head runs passed all six jobs. Its source candidate remains
+unaccepted pending independent G2 review.
+
+## Merged candidate pending G2 acceptance
+
+[PR #28](https://github.com/bynanci/storytelling/pull/28) merged head `2d23b21dcfbfc49c3d76087f054cc76724c23053` to
+main as `5a5702ba4c1392d763929f89da3cf7d16d5f13f4` at 2026-11-07 13:47:15 UTC. The two exact-head runs
+[42378356866](https://github.com/bynanci/storytelling/actions/runs/42378356866)
+and [42378352463](https://github.com/bynanci/storytelling/actions/runs/42378352463)
+passed Quality, Required, Linux, Windows, macOS and Dependency Audit. The main
+merge run [42378550750](https://github.com/bynanci/storytelling/actions/runs/42378550750)
+also passed all six gates. The 40-package lockfile audit loaded 1,422 advisories
+and reported no findings.
+
+- [x] Bounded M3-A01/A02 implementation and tests are integrated on main.
+- [x] Current dependency pins, provenance/status documents and hosted audit are integrated.
+- [x] PR #28 merged under the user's instruction after exact-head gates passed.
+- [ ] Independent G2 security review and explicit candidate acceptance remain pending.
+- [ ] Canonical M3-01/P1 work in issue #27 remains open and separate.
+
+This merge does not establish trusted signer authorization, same-snapshot
+compiler provenance, replay prevention, host execution, product acceptance or release.
 
 [Issues #3–#6](https://github.com/bynanci/storytelling/issues/6),
 [#12](https://github.com/bynanci/storytelling/issues/12),
@@ -218,18 +240,14 @@ review identity and declared-context freshness. The source map has15actual blob
 identities; proposed M3-RB01–RB07, wire/CLI names and budgets still need independent
 G2 freezing and functional RED before implementation. No code or passing M3 test
 is claimed. Use the existing importer/compiler input because the planner→OTIO
-bridge is absent; matching hashes/context never grant human approval. Concurrent Draft [#28](https://github.com/bynanci/storytelling/pull/28) proposes
-cryptographic approval identity and remains unaccepted pending independent G2
-review. Its M3-A01–A03 IDs are distinct from this preparation proposal. Its prior
-head `40de8fa7b21c7581af2f4b1dbd4122ac86c7d9f0` passed candidate checks on
-the earlier main base. After dependency PRs #8, #21, #10 and #9 advanced main to
-`fefb038ec1699727da2c0f436a097bbdedcfd08a`, synchronized head `9670be947535a3e15b70280fd7500a83b373d55f` passed
-Quality, Required, Linux, Windows, macOS and hosted Cargo Audit in both runs
-`42377965601` and `42377961928`; the audit scanned 40 locked packages against
-1,422 advisories with no findings (lock SHA-256 `f3a69dd97731666785474156249bd1c27d2d1c3048162edfeb111e98024d7e66`). G2 remains pending and
-this candidate is not accepted. The evidence reconciliation commit requires its
-own same-head checks; the PR body tracks the live result.
-This candidate does not complete canonical M3-01/P1. Full M3-01 approval
+bridge is absent; matching hashes/context never grant human approval. Merged
+candidate [PR #28](https://github.com/bynanci/storytelling/pull/28) implements
+separate M3-A01–A03 scope and remains unaccepted pending independent G2 review.
+Its final head `2d23b21dcfbfc49c3d76087f054cc76724c23053` merged as `5a5702ba4c1392d763929f89da3cf7d16d5f13f4` after both exact-head runs passed all
+six jobs; the main merge run also passed all six gates. Cargo Audit scanned 40
+locked packages against 1,422 advisories with no findings. The PR body and
+validation record retain the precise run and lockfile identities. This candidate
+does not complete canonical M3-01/P1. Full M3-01 approval
 issuance, M3-02 durability and M3-03 execution remain open.
 
 ## Not in the current backlog

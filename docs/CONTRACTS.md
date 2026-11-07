@@ -107,7 +107,7 @@ must distinguish StoryBrief, evidence, immutable proposal, compiled losses,
 approval and execution receipt. Approval must bind actual source identities,
 proposal/compiled-plan identity, host snapshot and accepted degradation choices.
 
-## Concurrent PR #28 Approval Identity v1 candidate (not accepted)
+## Merged PR #28 Approval Identity v1 candidate (not accepted)
 
 This is a separate bounded cryptographic identity/verifier candidate. The
 canonical M3-01/P1 scope remains proposed in

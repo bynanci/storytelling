@@ -7,19 +7,15 @@ at main `5533fcb5d0f857ad1066a76505071653b66d1f89`; the earlier inspection ident
 below are retained for traceability. Proposed APIs/requirements here are not
 implemented, frozen or accepted capabilities.
 
-Concurrent Draft [PR #28](https://github.com/bynanci/storytelling/pull/28)
-proposes a separate cryptographic identity API (M3-A01–A03), with independent G2
-review pending. Its former head `40de8fa7b21c7581af2f4b1dbd4122ac86c7d9f0`
-was superseded after dependency PRs #8, #21, #10 and #9 advanced main to
-`fefb038ec1699727da2c0f436a097bbdedcfd08a`. Synchronized head `9670be947535a3e15b70280fd7500a83b373d55f` passed
-Quality, Required, Linux, Windows, macOS and hosted Cargo Audit in runs
-`42377965601` and `42377961928`; the audit scanned 40 locked dependencies against
-1,422 advisories with no findings (lock SHA-256 `f3a69dd97731666785474156249bd1c27d2d1c3048162edfeb111e98024d7e66`). G2 remains pending;
-this is not candidate acceptance or completion of canonical M3-01/P1. The
-subsequent documentation-only evidence commit requires its own same-head checks,
-which the live PR body tracks. This readiness proposal uses distinct M3-RB01–RB07
-IDs; evaluate overlap and compilation linkage after independent review, before
-freezing either the next review-binding contract or its final API names.
+Merged candidate [PR #28](https://github.com/bynanci/storytelling/pull/28) proposes
+a separate cryptographic identity API (M3-A01–A03); it is integrated at main
+commit `5a5702ba4c1392d763929f89da3cf7d16d5f13f4` but remains unaccepted while independent G2 review is pending.
+Final head `2d23b21dcfbfc49c3d76087f054cc76724c23053` passed Quality, Required, Linux, Windows, macOS and hosted
+Cargo Audit in both runs `42378356866` and `42378352463`; the merge commit passed
+all six main gates in run `42378550750`. Audit scanned the 40-package lockfile
+against 1,422 advisories with no findings. This does not complete canonical
+M3-01/P1. This readiness proposal uses distinct M3-RB01–RB07 IDs; evaluate
+compilation linkage and freeze that contract only after independent review.
 
 ## Observed state and readiness
 

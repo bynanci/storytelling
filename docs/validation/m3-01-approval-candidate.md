@@ -1,22 +1,22 @@
 <!-- SPDX-License-Identifier: MIT AND Apache-2.0 -->
 # PR #28 approval-identity candidate validation
 
-Status: implemented candidate, not accepted. Canonical M3-01/P1 is a separate
-proposed finite-OTIO review-binding task. After dependency PRs #8, #21, #10 and #9
-merged, current main is `fefb038ec1699727da2c0f436a097bbdedcfd08a`. Synchronized
-head `9670be947535a3e15b70280fd7500a83b373d55f` passed both same-head runs `42377965601` and `42377961928`, including
-Quality, Required, Linux, Windows, macOS and hosted Cargo Audit. Cargo Audit 0.22.1
-loaded 1,422 advisories and scanned 40 dependencies without findings; the scanned
-lockfile SHA-256 is `f3a69dd97731666785474156249bd1c27d2d1c3048162edfeb111e98024d7e66`. Independent G2 security review remains pending.
-The evidence reconciliation in this commit requires fresh exact-head checks before
-merge; passing checks or merging will not grant G2 or product acceptance.
+Status: merged candidate, not accepted. Canonical M3-01/P1 is a separate
+proposed finite-OTIO review-binding task. PR #28 head `2d23b21dcfbfc49c3d76087f054cc76724c23053` merged into main
+as `5a5702ba4c1392d763929f89da3cf7d16d5f13f4` on 2026-11-07 at 13:47:15 UTC. Both same-head runs
+`42378356866` and `42378352463` passed Quality, Required, Linux, Windows, macOS
+and hosted Cargo Audit. Cargo Audit 0.22.1 loaded 1,422 advisories and scanned
+40 dependencies without findings; the lockfile SHA-256 is
+`f3a69dd97731666785474156249bd1c27d2d1c3048162edfeb111e98024d7e66`. The main
+merge run `42378550750` passed all six gates. Independent G2 security review
+remains pending; merging did not grant G2 or product acceptance.
 
 The initial PR head `d321049add005363618f58451b913301eb6d1e96` passed hosted
 CI run `42347452265` on all five jobs. Main advanced via PR #26 before review;
 the candidate branch now includes that main, so the old run is not evidence for
 the refreshed head. The latest post-reconciliation CI status is tracked live by
-[PR #28](https://github.com/bynanci/storytelling/pull/28); the historical runs
-below describe their stated earlier heads only.
+[merged PR #28](https://github.com/bynanci/storytelling/pull/28); the historical
+runs below describe their stated earlier heads only.
 
 ## Test-first evidence
 
@@ -62,8 +62,8 @@ Heads `010b7405a1e9eceb397c461ef676d132bc13fbdf` and
 `5bb99ad446800a69109869dca2732f395ce93933` passed the earlier five-job hosted
 sets in runs `42350601091`, `42350603918`, `42350992888` and duplicate run
 `42350998048`. Those historical checks neither accept this candidate nor canonical
-M3-01/P1. The subsequent synchronized-head evidence is recorded at the top of this
-file; every later commit requires its own exact-head checks.
+M3-01/P1. The synchronized-head and merge-commit evidence is recorded at the top of this
+file; every later code change requires its own exact-head checks.
 
 | Command | Result |
 | --- | --- |
@@ -100,4 +100,4 @@ The CI workflow adds a checksum-pinned Cargo Audit 0.22.1 dependency job to the
 Required gate. Historical candidate head `f9057f24ecf25b9594e276bd115317c7463dd9f1`
 passed both runs `42375033929` and `42375029946` with 39 locked dependencies.
 The current 40-package lockfile result is recorded at the top of this file.
-Independent G2 review remains pending; the candidate remains unaccepted.
+Independent G2 review remains pending; the merged candidate remains unaccepted.

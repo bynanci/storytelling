@@ -2,7 +2,7 @@
 
 Status: accepted M0, finite M1-01/M1-02, M2-01 bounded audit, M2-02 fixed-window
 planner and M1-03 supplied-byte verification/isolated host proof. The separate
-PR #28 approval-identity candidate is not accepted; independent G2 review is pending.
+PR #28 approval-identity candidate is merged but not accepted; independent G2 review is pending.
 See [M0 contract](CONTRACTS.md) and [finite-v1 contract](migration/FINITE_V1.md).
 
 ## Implemented dependency direction
@@ -90,7 +90,7 @@ owns declared types; pure engine planner/clock modules emit an actual M0-valid p
 with reason paths. It adds no production dependencies or execution authority.
 Full multi-beat solving remains outside this profile.
 
-## Concurrent PR #28 approval-identity candidate (not accepted)
+## Merged PR #28 approval-identity candidate (not accepted)
 
 This candidate is distinct from the proposed canonical M3-01/P1 finite-OTIO
 review-binding task in [M3-01-NEXT](migration/M3-01-NEXT.md). It does not satisfy

@@ -115,7 +115,7 @@ Linux CI，production Rust／Cargo／既有 fixtures 與宿主 receipt 均未變
 [M2-03 接受證據](../migration/records/M2-03.md#accepted-delivery-and-clean-candidate-proof)。
 
 [任務 #24](https://github.com/bynanci/storytelling/issues/24) 已於06:27:33UTC全數勾選並
-關閉 completed；原始八個已完成任務紀錄不變。依賴 PR #8／#9／#10／#21
+關閉 completed；原始八個已完成任務紀錄不變。截至該歷史快照，依賴 PR #8／#9／#10／#21
 仍是待審更新；本次交付沒有接受其 dependency closure 或將舊 CI 當作目前主線驗證。
 M2-03 僅接受 frozen profile 內的 synthetic selected domains，完整 solver、正式
 宿主執行與人工剪輯驗收仍為後續工作。
@@ -133,3 +133,25 @@ MSRV 與 licenses；但其依賴文件要求 exact-head CI audit，workflow 尚�
 另開 [#27](https://github.com/bynanci/storytelling/issues/27) 準備 review-binding／
 freshness 範圍；[規劃文件](../migration/M3-01-NEXT.md) 明列 proposed M3-RB IDs，
 避免與 #28 的 M3-A IDs 混用。#27 保持 open，尚無實作驗收或勾選完成。
+
+
+## Current lifecycle reconciliation: 2026-11-07 13:50 UTC
+
+The earlier tables above remain historical observations. Since that snapshot,
+PRs [#8](https://github.com/bynanci/storytelling/pull/8),
+[#21](https://github.com/bynanci/storytelling/pull/21),
+[#10](https://github.com/bynanci/storytelling/pull/10) and
+[#9](https://github.com/bynanci/storytelling/pull/9) merged their action and
+Serde dependency updates; their PR-head and post-merge main checks passed.
+
+[PR #28](https://github.com/bynanci/storytelling/pull/28) merged head
+`2d23b21dcfbfc49c3d76087f054cc76724c23053` at
+`5a5702ba4c1392d763929f89da3cf7d16d5f13f4` on 2026-11-07 13:47:15 UTC. Both
+same-head CI runs and the post-merge main run passed Quality, Required, Linux,
+Windows, macOS and Dependency Audit. The audit loaded 1,422 advisories and
+scanned the 40-package lockfile without findings. The merge integrates a bounded
+candidate only: independent G2 review and product acceptance remain pending.
+Issue [#27](https://github.com/bynanci/storytelling/issues/27) remains open for
+the separate finite-OTIO review identity and declared-context freshness scope.
+At this observation there are zero open pull requests; the prior machine snapshot
+is preserved and this state is appended in `pr-register.json`.

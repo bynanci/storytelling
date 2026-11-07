@@ -94,5 +94,16 @@
     "FilmCraft or other Host execution, rollback or compatibility",
     "Release acceptance",
     "Compiler provenance or same-snapshot linkage from the approval identity alone"
-  ]
+  ],
+  "integration": {
+    "pull_request": 28,
+    "head_sha": "2d23b21dcfbfc49c3d76087f054cc76724c23053",
+    "merge_commit_sha": "5a5702ba4c1392d763929f89da3cf7d16d5f13f4",
+    "merged_at": "2026-11-07T13:47:15Z",
+    "merged": true,
+    "accepted": false,
+    "independent_g2_review": "pending",
+    "canonical_issue": 27,
+    "canonical_issue_state": "open"
+  }
 }

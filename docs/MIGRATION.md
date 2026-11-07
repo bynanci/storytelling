@@ -62,7 +62,7 @@ buffers and proves one synthetic FilmCraft Linux 25 fps CPU profile. See its
 [record](migration/records/M1-03.md); filesystem identity, general execution and
 human acceptance remain future adapter/workflow gates.
 
-## Concurrent PR #28 approval-identity candidate
+## Merged PR #28 approval-identity candidate
 
 This unaccepted candidate adds only bounded exact-plan identity and
 Ed25519 verification in pure core. It consumes the existing supplied-buffer
