@@ -10,7 +10,7 @@ Apache-2.0 component attribution and applicable notices retained.
 
 | Capability | M0 decision | Later migration condition |
 | --- | --- | --- |
-| Evidence/source identity concepts | Minimal declared hash and asset reference only | Actual byte verification and provenance supplied by an authorized adapter |
+| Evidence/source identity concepts | Declared references plus explicit bounded supplied-buffer SHA-256 verification | Filesystem identity/TOCTOU and stronger adapter provenance remain future work |
 | StoryPlan/constraints/planner | Define finite new wire subset; no full port yet | Pin upstream SHA, map behavior and add differential fixtures |
 | OpenFilm Catalog/Composition/history | Stay owned by OpenFilm | Read-only snapshot importer; never write its SQLite directly |
 | Review/Jobs/owner recovery | Document requirements, no empty implementation | Add workflow/storage only with fault-tested vertical slice |
@@ -57,4 +57,7 @@ Use the [machine ledger](migration/openfilm-port-index.json),
 The original 48+16 inventory added planning artifacts, not implementation or a release. Source modules were
 located through pinned entrypoints/tree and selected code inspection; a per-task
 implementation review must still read exact symbols and tests. Preserve the original
-M0 declared-metadata-only scope until actual byte verification is implemented and proven.
+M0 declared-metadata-only scope: later M1-03 separately verifies explicit supplied
+buffers and proves one synthetic FilmCraft Linux 25 fps CPU profile. See its
+[record](migration/records/M1-03.md); filesystem identity, general execution and
+human acceptance remain future adapter/workflow gates.

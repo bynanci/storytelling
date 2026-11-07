@@ -13,12 +13,14 @@
 11. Run formatting, clippy, workspace tests, release-mode tests, docs and repository checks. Read same-head hosted results. Report blocked, cancelled and failed checks separately.
 12. Update task IDs, traceability, ADRs and validation evidence. State what is implemented, automatically verified and still manual. No product percentage from checkbox counts.
 
-Current scope: accepted M0/M1-01/M1-02 finite native OTIO; bounded M2-01 audit in review.
+Current scope: accepted M0, finite M1-01/M1-02, bounded M2-01 audit and M1-03
+supplied-buffer verification plus an actual isolated25fps FilmCraft CPU proof.
 Read [finite-v1](docs/migration/FINITE_V1.md) and its
 [comparison record](docs/migration/records/M1-01.md) for the admitted input and losses.
 Read [finite OTIO](docs/migration/FINITE_OTIO_V1.md) and its
 [comparison record](docs/migration/records/M1-02.md) before format changes.
-Next: M1-03 actual isolated FilmCraft proof; parser acceptance is not host proof.
+Read [host proof](docs/migration/records/M1-03.md) for its exact tested scope.
+Next: M2-02 selection/shot planning; full host execution and human acceptance remain separate.
 A test-first scaffold commit exists in history intentionally; it is not a release.
 
 For the 2026-11-07 continuation, the user explicitly authorized merging completed,

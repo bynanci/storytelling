@@ -32,5 +32,5 @@ Add `audit-brief FILE|->` and real process tests; preserve existing commands.
 - [x] Observe CLI RED, implement only composition-root I/O, then GREEN.
 - [x] Add M2-Bxx requirement/test mapping, source comparison, per-file provenance and work index.
 - [x] Incorporate fresh main/M1-02 aggregate guard; run all required quality/docs/repo/source checks.
-- [ ] Independent whole-branch review, actual same-head CI, one task PR.
-- [ ] Wait for parent's M1-02-landed signal before integration/merge; mark only completed task scope.
+- [x] Independent whole-branch review, all 10 same-head CI checks, task PR #17 merged.
+- [x] Parent M1-02 landed before integration; bounded M2-01 accepted and #14 fully checked/closed.

@@ -1,6 +1,7 @@
 # Architecture
 
-Status: accepted M0/M1-01 and M1-02 finite OTIO candidate, plus future design.
+Status: accepted M0, finite M1-01/M1-02, M2-01 bounded audit and M1-03
+supplied-byte verification/isolated host proof, plus future design.
 See [M0 contract](CONTRACTS.md) and [finite-v1 contract](migration/FINITE_V1.md).
 
 ## Implemented dependency direction
@@ -45,7 +46,10 @@ It is not general OpenFilm-project, media or host compatibility.
 M1-02 serializes the strict visual profile to native OTIO with one bounded integer
 content clock, explicit picture-only/metadata-only-lock choices, and retained
 source facts. Official parser Python is test-only. Project FPS remains separate;
-actual FilmCraft/source/output proof belongs to M1-03. No host executor is added.
+the accepted [M1-03 proof](migration/records/M1-03.md) separately verifies one
+synthetic FilmCraft Linux 25 fps CPU profile and supplied source bytes. No production
+host executor is added. M2-01 audits declared hard membership/order conflicts;
+selection and general feasibility remain future planner work.
 
 ## Time and identity
 

@@ -2,9 +2,10 @@
 
 以 Rust 建立的本機優先 Story SDK／可審閱剪輯工作流核心。
 
-**M0 validator、M1-01 importer 與 M1-02 finite OTIO 已接受並合併 main；M2-01 audit 審查中。**
+**M0、有限 M1-01／M1-02、M2-01 稽核與 M1-03 宿主證據均已接受並合併 main；尚未發布 release。**
 可驗證有界故事計畫 JSON，並將有限 OpenFilm composition export 唯讀映射為 declared visual plan。
-不會讀取來源媒體、驗證真實檔案 SHA、產生故事、渲染或操作外部剪輯器。
+`verify-source` 另可雜湊明確提供的來源 bytes；產品尚未產生故事或自動操作剪輯器。
+獨立測試工具已完成一個有界 FilmCraft 實際往返案例。
 
 ## 直接執行
 
@@ -39,6 +40,12 @@ video 帶 `audio.not_mapped / blocks-host-handoff`，明確 audio/effects/animat
 證明目標時長可達。見 [brief 契約](docs/migration/STORY_BRIEF_V1.md)
 與 [M2-01 證據](docs/migration/records/M2-01.md)。
 
+`verify-source FILE|- SHA256` 比對最多 16 MiB 的明確輸入與預期小寫 SHA-256，
+只輸出 metadata；不可從 receipt 反序列化出可信 buffer，也不證明往後的檔案讀取。
+[M1-03 證據](docs/migration/records/M1-03.md) 已驗證 FilmCraft v0.18.0 Linux／25 fps
+原生 1920×1080 時間區間、儲存重開與 OTIO 再匯入，以及 45 格 192×108 CPU H.264
+預覽輸出。音訊、GUI／GPU、全解析度輸出及人工剪輯驗收仍是後續工作。
+
 ## 三層基礎架構
 
 | 層 | 已實作責任 | 不負責 |
@@ -63,5 +70,5 @@ video 帶 `audio.not_mapped / blocks-host-handoff`，明確 audio/effects/animat
 - [MIGRATION](docs/MIGRATION.md)：從 OpenFilm 抽離、shadow 比較與漸進替換。
 - [驗證紀錄](docs/validation/m0-foundation.md)：RED、最終 CI 與人工 gate 的區別。
 
-M1-02 finite OTIO 已完成；下一個宿主任務是 M1-03 FilmCraft
-真實 roundtrip；不先增加空 crate、全面 Rust 改寫、雙向同步或通用 Agent 平台。
+有限 OTIO 與有界 FilmCraft 往返證據已完成；下一個規劃任務為 M2-02 選片／shot planner。
+正式宿主執行、更多媒體與人工驗收仍有獨立門檻。

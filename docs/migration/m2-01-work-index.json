@@ -3,7 +3,7 @@
   "task": "M2-01",
   "tracking_issue": "https://github.com/bynanci/storytelling/issues/14",
   "tracking_issue_number": 14,
-  "tracking_issue_status": "open",
+  "tracking_issue_status": "closed",
   "base": "440209f21d2b5fd6e7b4cad0823359c802cf8c8e",
   "red_commit": "ac364f87c3dcf2317f3cfa4f759360a04f057362",
   "source": "7add4762fe8174d76f43b863375ea39b73121e76",
@@ -12,40 +12,43 @@
   "comparison_record": "docs/migration/records/M2-01.md",
   "source_evidence": "tests/oracles/story-brief-v1/source-evidence.json",
   "source_comparator": "tests/oracles/story-brief-v1/compare.py",
-  "state": "review",
+  "state": "accepted",
   "scope": "declared-constraint-audit-only",
-  "lifecycle_note": "Bounded implementation, independent code/docs/integration reviews, fresh-main combined124debug/release tests, fmt/clippy/Rustdoc/repository guard and actual source/import/OTIO comparisons passed. Exact published-head hosted checks, feature PR merge and accepted lifecycle remain pending. M2-02/M2-03, source/media/host proof and release remain separate.",
+  "lifecycle_note": "Accepted after independent review and all 10 same-head push/PR checks; feature PR merged under user authorization and tracking issue fully checked/closed. Historical bases and source identities retained; excluded capabilities remain open.",
   "tasks": [
     {
       "id": "M2-01/P1",
       "url": "https://github.com/bynanci/storytelling/issues/14",
       "number": 14,
       "title": "Freeze bounded StoryBrief contract and pinned source/provenance evidence",
-      "state": "review",
+      "state": "accepted",
       "depends_on": [],
-      "acceptance": "Strict downstream audit contract and source-informed Apache policy recorded; actual source symbols/blobs distinguished from new schema/preferences and from full planner behavior"
+      "acceptance": "Strict downstream audit contract and source-informed Apache policy recorded; actual source symbols/blobs distinguished from new schema/preferences and from full planner behavior",
+      "merge_commit": "422190e27bc604bd71485f78279373992f99e68c"
     },
     {
       "id": "M2-01/P2",
       "url": "https://github.com/bynanci/storytelling/issues/14",
       "number": 14,
       "title": "Implement pure hard-constraint audit and read-only file/stdin CLI",
-      "state": "review",
+      "state": "accepted",
       "depends_on": [
         "M2-01/P1"
       ],
-      "acceptance": "Manual requirements/order retained, typed conflicts and soft warnings reported, strict resource bounds enforced, no plan or feasibility claim; functional RED preserved in red_commit before implementation"
+      "acceptance": "Manual requirements/order retained, typed conflicts and soft warnings reported, strict resource bounds enforced, no plan or feasibility claim; functional RED preserved in red_commit before implementation",
+      "merge_commit": "422190e27bc604bd71485f78279373992f99e68c"
     },
     {
       "id": "M2-01/P3",
       "url": "https://github.com/bynanci/storytelling/issues/14",
       "number": 14,
       "title": "Complete selected-policy comparison, independent review and exact-head verification",
-      "state": "in-progress",
+      "state": "accepted",
       "depends_on": [
         "M2-01/P2"
       ],
-      "acceptance": "Replay actual pinned source policy evidence against Rust, run required local/hosted checks and independent review, then publish concrete task/PR evidence for the authorized acceptance lifecycle"
+      "acceptance": "Replay actual pinned source policy evidence against Rust, run required local/hosted checks and independent review, then publish concrete task/PR evidence for the authorized acceptance lifecycle",
+      "merge_commit": "422190e27bc604bd71485f78279373992f99e68c"
     }
   ],
   "requirements": [
@@ -128,9 +131,25 @@
     "source/media/hash verification",
     "host import, playback, save/reopen or rendering proof",
     "human editorial acceptance",
-    "accepted lifecycle or release"
+    "release"
   ],
   "integration_base": "9a5232e97435f543238b90a2006460f319f4e651",
   "rebased_red_commit": "ec614fbc2597c4d4927f37423c2d3b279698d3d9",
-  "local_red_commit": "c514850a5850f3b30c11128f8dbc0ab8fe30be16"
+  "local_red_commit": "c514850a5850f3b30c11128f8dbc0ab8fe30be16",
+  "tracking_issue_state": "closed",
+  "accepted_lifecycle": {
+    "authority": "Explicit user authorization to merge completed verified PRs and check tasks; no release/repository-policy authority",
+    "feature_pull_request": 17,
+    "accepted_head": "1c8c01da48af75b860b1ce49241c3fd509b16c59",
+    "accepted_tree": "6b106afdb8d58f5a16ae86a0704ad7f61dc9995c",
+    "merge_commit": "422190e27bc604bd71485f78279373992f99e68c",
+    "merged_at": "2026-11-07T03:20:26Z",
+    "workflow_runs": [
+      42333371450,
+      42333382773
+    ],
+    "accepted_scope": "Bounded declared hard-constraint audit; no shot selection or general feasibility",
+    "tracking_issue_state": "closed",
+    "same_head_checks": "10 succeeded"
+  }
 }

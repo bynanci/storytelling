@@ -2,10 +2,11 @@
 
 A Rust foundation for local-first story planning and reviewed editor workflows.
 
-**Status: M0/M1-01/M1-02 accepted on main; bounded M2-01 audit in review; no editor integration release.**
+**Status: M0, finite M1-01/M1-02, bounded M2-01 audit and M1-03 host proof are accepted on main. No release is published.**
 The executable slices validate a bounded story-plan JSON document and map a finite
 OpenFilm composition export into a declared visual plan. They do not
-read media, verify file hashes, generate a story, render a film or drive FilmCraft.
+generate a story or drive an editor. `verify-source` separately hashes explicitly
+supplied bytes; the isolated test harness has proved one real FilmCraft profile.
 Future functionality is tracked separately in [TASKS](TASKS.md) and [ROADMAP](ROADMAP.md).
 
 [繁體中文](README.zh-TW.md) · [Architecture](docs/ARCHITECTURE.md) · [SDLC](docs/SDLC.md) · [Contract](docs/CONTRACTS.md)
@@ -55,6 +56,14 @@ and `duration_analysis: "not-performed"`. It does not produce a shot selection
 or establish achievable timing. See the [brief contract](docs/migration/STORY_BRIEF_V1.md)
 and [M2-01 evidence](docs/migration/records/M2-01.md).
 
+`verify-source FILE|- SHA256` verifies at most 16 MiB of explicitly supplied bytes
+against a lowercase SHA-256 and returns metadata only. Its immutable owned buffer
+cannot be reconstructed from a serialized receipt. This does not verify later
+filesystem reads. The [M1-03 proof](docs/migration/records/M1-03.md) exercised
+FilmCraft v0.18.0 Linux at 25 fps: exact native 1920×1080 ranges, save/reopen and OTIO
+reimport, plus a 45-frame 192×108 CPU H.264 review export. Audio, GUI/GPU,
+full-resolution export and human editorial acceptance remain open.
+
 ## Current architecture
 
 ```text
@@ -77,9 +86,10 @@ planned external editor. Storytelling will own story intent, evidence references
 reviewed proposals and execution receipts; the host owns its edited timeline.
 No second live timeline, codec stack or full nonlinear editor is planned.
 
-Next are limited OTIO (M1-02) and an editable StoryPlan-to-FilmCraft handoff validated
-by real import, playback, save/reopen and readback. A structurally valid OTIO file
-alone will not close that gate. See [migration](docs/MIGRATION.md) and [risks](docs/RISKS.md).
+Finite OTIO and the bounded synthetic FilmCraft proof are accepted. Next is
+M2-02 deterministic selection/shot planning; reviewed production execution and
+broader host/media acceptance remain later gates. See [migration](docs/MIGRATION.md)
+and [risks](docs/RISKS.md).
 
 ## Develop and review
 

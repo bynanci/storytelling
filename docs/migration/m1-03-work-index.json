@@ -7,25 +7,28 @@
   "tasks": [
     {
       "id": "M1-03/P1",
-      "state": "verified",
+      "state": "accepted",
       "depends_on": [],
-      "acceptance": "G2 independent native scope/dependency review and native functional RED/GREEN"
+      "acceptance": "G2 independent native scope/dependency review and native functional RED/GREEN",
+      "merge_commit": "e0a5ade7ee2c0414f87aa121bef1bdf259a7e75e"
     },
     {
       "id": "M1-03/P2",
-      "state": "verified",
+      "state": "accepted",
       "depends_on": [
         "M1-03/P1"
       ],
-      "acceptance": "Full final clean-candidate isolated synthetic host25fps CPU proof passed, exact actual receipt committed"
+      "acceptance": "Final clean release candidate proof passed; 25 commands/60 hashed artifacts; exact native ticks, 45 PTS n/25 and 20 red / 5 blue / 20 green frames; bounded scope only",
+      "merge_commit": "e0a5ade7ee2c0414f87aa121bef1bdf259a7e75e"
     },
     {
       "id": "M1-03/P3",
-      "state": "review",
+      "state": "accepted",
       "depends_on": [
         "M1-03/P2"
       ],
-      "acceptance": "Final committed receipt, independent review and same-head hosted CI before merge"
+      "acceptance": "Committed actual receipt, independent reviews and all 10 same-head hosted checks passed; PR18 merged and issue15 checked/closed",
+      "merge_commit": "e0a5ade7ee2c0414f87aa121bef1bdf259a7e75e"
     }
   ],
   "requirements": [
@@ -79,5 +82,24 @@
     "tree": "95635f276d8107fa0846911284a642a3c1024af2",
     "harness_sha256": "47b4b73fd1b3581c6954383680d546517c6ca99401fd87e2b9e3d988614d9aea",
     "run_root": "/workspace/scratch/filmcraft-proof-final-01"
+  },
+  "state": "accepted",
+  "tracking_issue_status": "closed",
+  "tracking_issue_state": "closed",
+  "lifecycle_note": "Accepted after independent review and all 10 same-head push/PR checks; feature PR merged under user authorization and tracking issue fully checked/closed. Historical bases and source identities retained; excluded capabilities remain open.",
+  "accepted_lifecycle": {
+    "authority": "Explicit user authorization to merge completed verified PRs and check tasks; no release/repository-policy authority",
+    "feature_pull_request": 18,
+    "accepted_head": "2b859d29e22f6f2a39f73822086b59618bb8a402",
+    "accepted_tree": "9b6b3d34b1289ab78ffc453ca094289a0de91f89",
+    "merge_commit": "e0a5ade7ee2c0414f87aa121bef1bdf259a7e75e",
+    "merged_at": "2026-11-07T03:26:40Z",
+    "workflow_runs": [
+      42333852548,
+      42333863897
+    ],
+    "accepted_scope": "Explicit supplied-buffer SHA-256 and actual synthetic FilmCraft Linux 25 fps CPU profile; 192×108 preview of a 1920×1080 sequence",
+    "tracking_issue_state": "closed",
+    "same_head_checks": "10 succeeded"
   }
 }
