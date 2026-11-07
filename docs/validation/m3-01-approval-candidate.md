@@ -100,8 +100,12 @@ proposal/artifact byte ceilings explicit. Key binding mismatches use the stable
 `approval.approver_key_mismatch` error.
 
 The CI workflow adds a checksum-pinned Cargo Audit 0.22.1 dependency job to the
-Required gate. This workspace has no Rust/Cargo toolchain, so Rust formatting,
-clippy, workspace tests, rustdoc, and the hosted audit must be verified on the
-new same-head CI run before this evidence record can claim they passed. Static
-checks completed locally: `scripts/check_repo.py`, JSON/YAML parsing, and
-`git diff --check`.
+Required gate. Candidate head `f9057f24ecf25b9594e276bd115317c7463dd9f1` passed
+both same-head hosted runs: PR run `42375033929` and push run `42375029946`.
+Quality, Required, Linux, Windows, macOS, and Dependency audit all succeeded.
+The audit job loaded 1,422 advisories and scanned 39 locked dependencies with
+no findings. Rust formatting, clippy, release-mode workspace tests, rustdoc,
+and the existing Linux, Windows, and macOS regression suites passed on that
+head. Static checks also passed locally: `scripts/check_repo.py`, JSON/YAML
+parsing, and `git diff --check`. Independent G2 review remains pending; this
+candidate remains Draft and unaccepted.

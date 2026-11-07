@@ -56,6 +56,12 @@ The job fetches the current RustSec advisory database, so each run is a
 time-specific scan rather than a guarantee against later advisories. The local
 snapshot above remains separate evidence.
 
+On candidate head `f9057f24ecf25b9594e276bd115317c7463dd9f1`, hosted Dependency
+audit passed in PR workflow run `42375033929`: Cargo Audit 0.22.1 loaded 1,422
+advisories and scanned all 39 locked dependencies without findings. The scan
+used the unchanged lockfile hash recorded above. The candidate still awaits
+independent G2 maintainer review.
+
 `cargo tree -p storytelling-core -e features --locked` showed only the
 `ed25519-dalek/fast` feature and Curve25519 precomputed tables for the new direct
 dependency; `rand_core`, `zeroize`, `hazmat`, `pem` and `pkcs8` are not enabled.

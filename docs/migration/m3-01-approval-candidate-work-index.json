@@ -25,7 +25,7 @@
       "depends_on": [
         "PR28/C2"
       ],
-      "acceptance": "Dependency, architecture, contract, task and validation evidence; checksum-pinned hosted Cargo Audit is required; independent G2 remains open"
+      "acceptance": "Dependency, architecture, contract, task and validation evidence recorded; same-head Linux/Windows/macOS and hosted Cargo Audit passed; independent G2 remains open"
     }
   ],
   "requirements": [
@@ -81,8 +81,8 @@
     }
   ],
   "manual_gates": [
-    "Independent G2 security review",
-    "Same-head Linux/Windows/macOS checks",
+    "Independent G2 security review and explicit maintainer acceptance",
+    "Re-run same-head Quality, Required, Linux/Windows/macOS and Cargo Audit after any new revision",
     "M3-02 durable replay/owner fencing before execution",
     "M3-03 observed Host identity/capability evidence before execution"
   ],
