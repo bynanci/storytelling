@@ -2344,6 +2344,13 @@
               42348221843,
               42348225264
             ]
+          },
+          "review": {
+            "scope": "Exact-supplied-byte signature binding only; no compilation linkage, current host trust, human approval or replay claim",
+            "code_security": "No blocker found within the stated limited scope",
+            "dependency_closure": "39packages/15newversions actual checksum/MSRV/license/features reviewed",
+            "remaining_gate": "Dependency review doc requires exact-head CI audit but workflow has no cargo-audit step; reconcile gate/evidence and source-comparison/first-party classification boundary before acceptance",
+            "accepted": false
           }
         }
       ],

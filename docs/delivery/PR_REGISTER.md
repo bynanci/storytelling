@@ -125,8 +125,10 @@ M2-03 僅接受 frozen profile 內的 synthetic selected domains，完整 solver
 另於2026-11-07觀察到 Draft [#28](https://github.com/bynanci/storytelling/pull/28)：
 `c162a47dcb8de4c582a3c66c22396ecfd8cb0134`，基底為已接受的
 `5533fcb5d0f857ad1066a76505071653b66d1f89`。它提出 bounded approval identity
-與新的 Ed25519 相依套件；該 head 的10項 CI 已成功，但獨立
-G2／security／dependency review 仍待完成，尚未接受或合併。這不改寫原始快照或上述已接受交付。
+與新的 Ed25519 相依套件；該 head 的10項 CI 已成功。獨立程式／依賴審查
+未發現限定簽章驗證範圍的程式阻礙，並核對39packages／15新增版本的 features、
+MSRV 與 licenses；但其依賴文件要求 exact-head CI audit，workflow 尚無
+`cargo audit` 步驟。這項門檻及來源比較／第一方分類邊界仍需釐清，尚未接受或合併。這不改寫原始快照或上述已接受交付。
 
 另開 [#27](https://github.com/bynanci/storytelling/issues/27) 準備 review-binding／
 freshness 範圍；[規劃文件](../migration/M3-01-NEXT.md) 明列 proposed M3-RB IDs，

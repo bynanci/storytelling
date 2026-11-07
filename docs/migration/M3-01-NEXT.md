@@ -63,7 +63,7 @@ as supported by the actual 25 fps host proof.
 
 ## Concrete requirement/test outcomes for G2
 
-Suggested new requirement IDs M3-RB01–A07 preserve existing M3-R01/R02 IDs. Freeze
+Suggested new requirement IDs M3-RB01–RB07 preserve existing M3-R01/R02 IDs. Freeze
 exact signatures, wire fields, error precedence and budgets before functional RED.
 
 1. **M3-RB01: typed deterministic identity.** Domain-separated versioned SHA-256
