@@ -11,7 +11,7 @@ repository = "https://github.com/bynanci/storytelling"
 publish = false
 
 [workspace.dependencies]
-serde = { version = "=1.0.228", features = ["derive"] }
+serde = { version = "=1.0.229", features = ["derive"] }
 serde_json = { version = "=1.0.145", features = ["raw_value"] }
 sha2 = { version = "=0.10.9", default-features = false, features = ["force-soft"] }
 storytelling-core = { path = "crates/storytelling-core" }
