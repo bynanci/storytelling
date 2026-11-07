@@ -1,0 +1,29 @@
+OpenFilm Apache-2.0 restoration — 2026-10-18
+
+OpenFilm's current first-party distribution and authorized new contributions
+are offered under Apache-2.0. Previously granted Apache-2.0 and GPL-3.0-only
+rights remain available for the material covered by those grants. This change
+does not relicense third-party components or claim copyright assignments.
+See LICENSE, docs/licensing.md and LICENSES/GPL-3.0-only.txt for the current
+terms and historical licensing record. Third-party terms remain applicable.
+
+Original attribution notice, retained verbatim:
+--------------------------------------------
+OpenFilm
+Copyright 2026 OpenFilm contributors
+
+Licensed under the Apache License, Version 2.0.
+Third-party dependencies retain their own licenses; see docs/third-party.md.
+
+Local title rendering uses fontkit (MIT) and resvg (MPL-2.0), with their
+upstream copyright and license notices retained in the installed packages.
+Noto CJK fonts, when installed separately, are SIL Open Font License 1.1.
+No operating-system fonts or private photographic material are redistributed
+as part of this implementation.
+--------------------------------------------
+
+Atomic directory publication uses Koffi 3.3.3 under MIT, copyright 2026
+Niels Martignène. Its bundled Node API headers carry separate MIT notices
+for the Node.js API collaborators (2017) and Node.js (2021). Installed
+packages and staged runtimes retain all three complete upstream notices;
+see docs/third-party.md.

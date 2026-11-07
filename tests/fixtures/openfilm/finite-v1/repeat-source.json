@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "composition": {
+    "id": "finite-repeated",
+    "storyId": "synthetic-story",
+    "duration": 5,
+    "tracks": [{
+      "id": "picture-track",
+      "type": "video",
+      "clips": [
+        {"id": "occurrence-z", "assetId": "reused-photo", "timelineStart": 0, "timelineDuration": 2},
+        {"id": "occurrence-a", "assetId": "reused-photo", "timelineStart": 2, "timelineDuration": 3}
+      ]
+    }]
+  },
+  "assets": [{
+    "id": "reused-photo",
+    "uri": "synthetic://finite/reused.jpg",
+    "mediaType": "image",
+    "name": "Synthetic repeated photo",
+    "contentHash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "tags": [],
+    "state": {},
+    "metadata": {}
+  }],
+  "settings": {"width": 1280, "height": 720, "frameRate": 24}
+}
