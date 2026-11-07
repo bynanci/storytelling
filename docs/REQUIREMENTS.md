@@ -1,9 +1,8 @@
 # Requirements and verification traceability
 
-M0, finite M1-01 and format-only M1-02 are accepted on main. The bounded M2-01 audit below is
-implemented and in review; its remaining verification/acceptance work is in
-progress. Host and full-planner requirements remain proposals. Tests are checked
-by the repository guard.
+M0, finite M1-01/M1-02, bounded M2-01 audit and M1-H01–H04's M1-03 source/host
+proof are accepted on main. Broader host, full-planner and human acceptance remain
+separate. Tests are checked by the repository guard.
 
 | ID | Requirement | Implementation owner | Acceptance test |
 | --- | --- | --- | --- |
@@ -58,8 +57,8 @@ gates. See [contract](migration/FINITE_OTIO_V1.md),
 ## M2-01 bounded brief audit requirements
 
 M2-Bxx identifies this declared-constraint audit subset separately from the
-M2-R01 full-planner goal. Implementation is present and in review; no accepted,
-host or full-planner status is inferred. See the frozen
+M2-R01 full-planner goal. The bounded M2-B01–B06 scope is accepted through
+merged PR #17; no release, host or full-planner status follows from this audit. See the frozen
 [contract](migration/STORY_BRIEF_V1.md),
 [source comparison record](migration/records/M2-01.md),
 [per-file provenance](migration/provenance-m2-01.json) and

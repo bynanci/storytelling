@@ -1,8 +1,9 @@
 # Development tasks
 
 Baseline: `551ff38920e2085e1d53a7ba777c9680678e9725` (original README + MIT LICENSE).
-Updated: 2026-11-07. M0, finite M1-01 and format-only M1-02 are accepted and merged on main; release
-remains a separate decision. [SDLC](docs/SDLC.md) owns the process and
+Updated: 2026-11-07. M0, finite M1-01/M1-02, bounded M2-01 audit and M1-03
+supplied-byte/host proof are accepted on main; release remains a separate decision.
+[SDLC](docs/SDLC.md) owns the process and
 [requirements](docs/REQUIREMENTS.md) owns acceptance traceability.
 
 ## Status rules
@@ -23,11 +24,18 @@ completed tasks. The GitHub merge metadata records:
 | [#2 transfer planning](https://github.com/bynanci/storytelling/pull/2) | `95291d31c47601181070bf89a28b1a182ddf6ed8` | `9fb403be811643baf948acdb6d72232d4a6207bb` | 2026-11-07 02:17:48 |
 | [#7 finite M1-01 importer](https://github.com/bynanci/storytelling/pull/7) | `c2fb478c278550b682efba5f898082e8bcd20e24` | `610ed49673d6f554e539008b34f5fc5479b9dbc1` | 2026-11-07 02:18:09 |
 | [#16 finite M1-02 OTIO](https://github.com/bynanci/storytelling/pull/16) | `fb65753df617c7df80ef2581396eead6b07a6434` | `9a5232e97435f543238b90a2006460f319f4e651` | 2026-11-07 03:09:33 |
+| [#17 bounded M2-01 audit](https://github.com/bynanci/storytelling/pull/17) | `1c8c01da48af75b860b1ce49241c3fd509b16c59` | `422190e27bc604bd71485f78279373992f99e68c` | 2026-11-07 03:20:26 |
+| [#18 bounded M1-03 proof](https://github.com/bynanci/storytelling/pull/18) | `2b859d29e22f6f2a39f73822086b59618bb8a402` | `e0a5ade7ee2c0414f87aa121bef1bdf259a7e75e` | 2026-11-07 03:26:40 |
 
-[Issues #3–#6](https://github.com/bynanci/storytelling/issues/6) are checked and closed.
-The main tree after these merges is `53fbfe24bf734634d4374d2b0eb133ebba937299`,
-identical to the verified M1-01 candidate tree. Historical base/source/head evidence
-below and in comparison records remains unchanged.
+[Issues #3–#6](https://github.com/bynanci/storytelling/issues/6),
+[#12](https://github.com/bynanci/storytelling/issues/12),
+[#14](https://github.com/bynanci/storytelling/issues/14) and
+[#15](https://github.com/bynanci/storytelling/issues/15) are checked and closed completed.
+The historical tree after PR #7 was `53fbfe24bf734634d4374d2b0eb133ebba937299`.
+PR #18's accepted tree is `9b6b3d34b1289ab78ffc453ca094289a0de91f89`;
+feature heads passed all 10 same-head push/PR checks before merge. Historical
+base/source/head evidence remains unchanged. Draft #13 was closed unmerged as
+superseded by #11/#16/#17, with useful source-drift corrections retained.
 
 This task-session authority also covers later completed, verified PRs after their
 same-head gates pass. It does not authorize releases, tags, repository policy or
@@ -58,8 +66,8 @@ permission changes, nor replace real-media/host or human editorial acceptance.
 | --- | --- | --- | --- | --- |
 | M1-01 | P1 / accepted | Finite composition-export visual mapper and read-only CLI | M0 and transfer planning accepted; PR #7 merged on main | M1-I01–I06; exact clocks, occurrence IDs, original facts and explicit limitations; no live Catalog writes |
 | M1-02 | P1 / accepted | Native finite OTIO writer, explicit picture-only/lock choices and direct CLI artifact | Accepted M1-01 | M1-O01–O06; official 0.18.1 parser oracle, exact content ticks, explicit loss; actual host proof remains M1-03 |
-| M1-03 | P1 / review | FilmCraft 25 fps picture-only isolated roundtrip and bounded native source-byte verification | M1-02 | M1-H01–H04; actual CPU encoded preview/import/save/reopen/OTIO readback; original project/source bytes unchanged |
-| M2-01 | P1 / review | Bounded StoryBrief hard constraints vs preferences and typed conflicts | M1 profile | M2-B01–B06; manual choices preserved, declared reference/membership/order contradictions explained; full planner/feasibility separate |
+| M1-03 | P1 / accepted | Bounded supplied-byte verification and FilmCraft isolated 25 fps CPU proof | Accepted M1-02; PR #18 merged | M1-H01–H04; exact native ranges, 45-frame 192×108 preview, save/reopen/reimport, unchanged inputs; broader acceptance open |
+| M2-01 | P1 / accepted | Bounded StoryBrief hard constraints vs preferences and typed conflicts | M1 profile; PR #17 merged | M2-B01–B06; manual choices preserved, declared reference/membership/order contradictions explained; full planner/feasibility separate |
 | M2-02 | P1 / proposed | Deterministic bounded selection and shot planner | M2-01 | Same frozen evidence/version produces same plan; semantic reasons cite evidence |
 | M2-03 | P1 / proposed | Shadow compare selected TS planner behavior with Rust | M2-02 | Differences triaged as port bug, prior bug, unsupported or intentional change |
 | M3-01 | P1 / proposed | Approval and compiled-plan identity contracts | M1-03, M2-02 | Approval binds source, plan, host version/capabilities and accepted losses |
@@ -109,10 +117,9 @@ See [contract](docs/migration/FINITE_OTIO_V1.md),
 - [x] Same-head hosted gates passed; PR #16 merged and issue #12 checked/closed.
 - [x] Accepted-status reconciliation records the finite format scope; host proof remains M1-03.
 
-FilmCraft v0.18.0 Linux headless CLI is now provisioned with verified official
-artifact/binary identities. M1-03 is pending actual isolated 25fps host proof,
-not blocked merely by an unavailable executable. Audio/full-editor parity and
-human editorial/real-user/release gates remain separate.
+M1-03 has now supplied actual isolated FilmCraft v0.18.0 Linux 25 fps proof;
+see its record below. The generic exporter retains its format-only report.
+Audio/full-editor parity and human editorial/real-user/release gates remain separate.
 
 ## M2-01 bounded brief audit
 
@@ -123,8 +130,8 @@ See the [frozen profile](docs/migration/STORY_BRIEF_V1.md),
 - [x] Versioned strict StoryBrief schema and independently reviewed G2 profile.
 - [x] Pure hard-reference/membership/order audit, manual choices preserved, typed conflicts and soft preference warnings.
 - [x] Actual engine/CLI RED→GREEN, ten pinned source policy cases and Rust comparison.
-- [ ] Fresh-main integration, independent implementation review and same-head hosted gates.
-- [ ] Verified PR merged and tracking issue checked/closed under user authorization.
+- [x] Fresh-main integration, independent implementation review and same-head hosted gates.
+- [x] Verified PR #17 merged and tracking issue #14 fully checked/closed under user authorization.
 
 This audit produces no selected shots, timing feasibility or executable plan.
 M2-02 planner and M2-03 planner shadow comparison remain separate proposed work.
@@ -141,7 +148,7 @@ M2-02 planner and M2-03 planner shadow comparison remain separate proposed work.
 - [x] Actual FilmCraft v0.18.0 25 fps picture-only import and exact native range/identity readback.
 - [x] CPU H.264 192×108 preview: 45 frames, exact 1.8 s and PTS; decoded 20 red / 5 blue / 20 green.
 - [x] Native save/reopen, OTIO reimport, external source/native ID mapping and unchanged input/source hashes.
-- [ ] Final candidate receipt, independent review, same-head hosted gates and merge.
+- [x] Final clean candidate receipt, independent review, all 10 same-head hosted gates; PR #18 merged and #15 fully checked/closed.
 
 Only this synthetic Linux headless CPU profile is proved. Audio, GUI/GPU,
 full-resolution export, real-user media, filesystem race closure and human

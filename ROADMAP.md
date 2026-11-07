@@ -19,8 +19,8 @@ planned host, followed by a real second-editor compatibility trial.
 | Milestone | Current state | User-visible outcome | Exit gate |
 | --- | --- | --- | --- |
 | M0 foundation | Accepted and merged on main | Validate a declared StoryPlan through a usable Rust CLI | Strict contract, source bounds, immutable input, same-head 3-OS CI, maintainer acceptance |
-| M1 / v0.1 handoff | M1-01 accepted; finite OTIO candidate; actual host proof pending | Existing story choices become an editable FilmCraft rough cut | Real import/render/readback/save/reopen; supported profile and loss report |
-| M2 / v0.2 planning | Planned | Constraints and evidence produce an explainable shot proposal | Hard constraints satisfied or explicit conflicts; frozen-input reproducibility |
+| M1 / v0.1 handoff | Finite M1-01/M1-02 and bounded M1-03 Linux 25 fps proof accepted; broader acceptance open | Existing story choices become an editable FilmCraft rough cut | Tested picture-only profile passed import/CPU preview/readback/save/reopen; audio, other profiles and human acceptance remain open |
+| M2 / v0.2 planning | M2-01 bounded audit accepted; selection/planning open | Constraints and evidence produce an explainable shot proposal | Hard constraints satisfied or explicit conflicts; frozen-input reproducibility |
 | M3 / v0.3 reviewed execution | Planned | Accepted plans execute without silently damaging prior work | Approval binding, owner fencing, durable journal, partial/unknown recovery |
 | M4 / v0.4 consumers | Planned | OpenFilm and an external TypeScript consumer use one SDK | Single authority, full Review/Accept workflow, optional thin MCP |
 | M5 / beta | Planned | Independent users and a second host finish a real story | Measured user outcomes, target-host matrix, distribution evidence |
@@ -65,8 +65,9 @@ acceptance remain separate from synthetic CI.
 Use the [OpenFilm transfer map](docs/migration/OPENFILM_RUST_PORT_MAP.md) and
 [gap gates](docs/migration/NATIVE_BOUNDARIES_AND_GAPS.md) as the detailed task inventory.
 The original planning inventory itself changed no runtime behavior. The accepted
-runtime scope is now M0 and the finite M1-01 subset, recorded in
-[TASKS](TASKS.md#accepted-lifecycle); this does not mark the M1 host handoff or M2–M5 complete.
+runtime scope includes M0, finite importer/OTIO, explicit supplied-byte verification
+and the bounded brief audit. The actual synthetic25fps host proof is recorded in
+[TASKS](TASKS.md#accepted-lifecycle); broader M1 acceptance and M2–M5 remain open.
 
 - First native boundary: strict models, precise clocks, read-only snapshot mapping,
   capability/loss compilation and finite OTIO. Prove one host handoff before a full planner.
