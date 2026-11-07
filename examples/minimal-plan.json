@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "plan_id": "travel-recap",
+  "assets": [
+    {"id": "source-a", "content_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "duration": {"numerator": "10", "denominator": "1"}}
+  ],
+  "shots": [
+    {"id": "opening", "asset_id": "source-a", "source_range": {"start": {"numerator": "0", "denominator": "1"}, "end": {"numerator": "3", "denominator": "1"}}},
+    {"id": "return", "asset_id": "source-a", "source_range": {"start": {"numerator": "7", "denominator": "1"}, "end": {"numerator": "10", "denominator": "1"}}}
+  ]
+}

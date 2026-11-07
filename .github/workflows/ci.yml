@@ -1,0 +1,68 @@
+name: CI
+on:
+  push:
+    branches: [main, 'codex/**']
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  quality:
+    name: Quality and contracts
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Install pinned toolchain
+        run: rustup toolchain install 1.85.0 --profile minimal --component rustfmt,clippy
+      - name: Format gate
+        run: |
+          cargo fmt --all
+          git diff --exit-code -- '*.rs'
+      - name: Clippy
+        run: cargo clippy --workspace --all-targets --locked -- -D warnings
+      - name: Rust documentation
+        run: cargo doc --workspace --no-deps --locked
+        env:
+          RUSTDOCFLAGS: -D warnings
+      - name: SDLC traceability and architecture
+        run: python3 scripts/check_repo.py
+      - name: Release-mode arithmetic regression
+        run: cargo test --workspace --release --locked
+  test:
+    name: Rust (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Install pinned toolchain
+        run: rustup toolchain install 1.85.0 --profile minimal
+      - name: Build
+        run: cargo build --workspace --locked
+      - name: Unit and real CLI integration tests
+        run: cargo test --workspace --locked
+      - name: Read-only sample
+        run: cargo run --locked -p storytelling-cli -- validate examples/minimal-plan.json
+      - name: Checkout remains unchanged
+        run: git diff --exit-code
+  required:
+    name: Required gates
+    if: always()
+    needs: [quality, test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: All lanes must pass
+        env:
+          QUALITY: ${{ needs.quality.result }}
+          TEST: ${{ needs.test.result }}
+        run: test "$QUALITY" = success && test "$TEST" = success
