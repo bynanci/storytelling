@@ -7,6 +7,13 @@ at main `5533fcb5d0f857ad1066a76505071653b66d1f89`; the earlier inspection ident
 below are retained for traceability. Proposed APIs/requirements here are not
 implemented, frozen or accepted capabilities.
 
+Concurrent Draft [PR #28](https://github.com/bynanci/storytelling/pull/28) now
+proposes a separate cryptographic identity API (head
+`c162a47dcb8de4c582a3c66c22396ecfd8cb0134`, M3-A01–A03), with independent G2
+review pending. It is not merged/accepted. This readiness proposal uses distinct
+M3-RB01–RB07 IDs; evaluate overlap and compilation linkage after that review,
+before freezing either the next review-binding contract or its final API names.
+
 ## Observed state and readiness
 
 - At initial inspection target checkout `/workspace/storytelling-shadow` was clean at
@@ -56,39 +63,39 @@ as supported by the actual 25 fps host proof.
 
 ## Concrete requirement/test outcomes for G2
 
-Suggested new requirement IDs M3-A01–A07 preserve existing M3-R01/R02 IDs. Freeze
+Suggested new requirement IDs M3-RB01–A07 preserve existing M3-R01/R02 IDs. Freeze
 exact signatures, wire fields, error precedence and budgets before functional RED.
 
-1. **M3-A01: typed deterministic identity.** Domain-separated versioned SHA-256
+1. **M3-RB01: typed deterministic identity.** Domain-separated versioned SHA-256
    commits to normalized validated plan, source asset/occurrence identities,
    compiler/schema/profile versions, exact OTIO bytes and complete loss report.
    Preserve every semantic array order. Use existing core SHA2 via a pure helper;
    engine already owns serde_json. Fixed ASCII DTO field keys, normalized exact
    rational strings and unchanged UTF-8 string values avoid arbitrary JSON/JCS
    ambiguity. Freeze Unicode/no-NFC and byte-versus-semantic digest rules.
-2. **M3-A02: exact compilation linkage.** Recompile from the reviewed snapshot;
+2. **M3-RB02: exact compilation linkage.** Recompile from the reviewed snapshot;
    never accept a caller's artifact/report digest as proof of compilation. One
    change to shot order/range, source hash, artifact bytes, profile/compiler
    version, native/baked/metadata-only disposition or explicit loss choice must
    invalidate the binding. Bind source snapshot revision separately from plan
    identity so changed retained facts are not silently ignored.
-3. **M3-A03: strict declared context.** Bind project ID/base revision, expected
+3. **M3-RB03: strict declared context.** Bind project ID/base revision, expected
    target snapshot fingerprint, exact required capabilities and accepted loss
    choices. Unknown/null/duplicate fields, malformed versions/digests and excess
    bytes/items/depth reject before hashing. Keep existing 1 MiB composition input,
    4 MiB compiled-output and 16 MiB supplied-buffer limits; give new context and
    report their own small explicit limits rather than increasing old limits.
-4. **M3-A04: immutable domain boundary.** Construct only through successful native
+4. **M3-RB04: immutable domain boundary.** Construct only through successful native
    validation/compilation; private fields, immutable byte access and no
    Deserialize/Default/public unchecked constructor on any validated result.
    Serialized review records remain untrusted DTOs and can never reconstruct an
    `ApprovedPlan` or `VerifiedBufferV1`.
-5. **M3-A05: no self-approval.** Reject caller `confirmed:true`, `approved:true`,
+5. **M3-RB05: no self-approval.** Reject caller `confirmed:true`, `approved:true`,
    actor labels, MCP annotations or imported receipt-shaped fields as unknown/
    unsupported input; do not expose approve/execute commands. Identity matching
    must never return a capability/token or set authority flags. This is a code
    boundary test, not evidence that a trusted human approved anything.
-6. **M3-A06: freshness and revocation semantics.** Compare the exact current
+6. **M3-RB06: freshness and revocation semantics.** Compare the exact current
    context against the bound context, including one-field mutations of source,
    proposal, compiled artifact, target revision, capability/profile and losses.
    Expiry/revocation can be pure *declared-state* evaluation only, with explicit
@@ -96,7 +103,7 @@ exact signatures, wire fields, error precedence and budgets before functional RE
    request consumption or replay safety until an authoritative runtime exists.
    A request ID reused with another fingerprint must be distinguishable; durable
    enforcement remains M3-02.
-7. **M3-A07: usable honest CLI/evidence.** Explicit file/stdin input, path-free
+7. **M3-RB07: usable honest CLI/evidence.** Explicit file/stdin input, path-free
    errors, stable validation/usage/I/O exits and unchanged inputs. Use complete
    positive fixtures and mutate one semantic field per negative test. Functional
    RED precedes implementation; debug/release, three-platform same-head CI,

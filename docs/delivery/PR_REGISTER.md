@@ -119,3 +119,15 @@ Linux CI，production Rust／Cargo／既有 fixtures 與宿主 receipt 均未變
 仍是待審更新；本次交付沒有接受其 dependency closure 或將舊 CI 當作目前主線驗證。
 M2-03 僅接受 frozen profile 內的 synthetic selected domains，完整 solver、正式
 宿主執行與人工剪輯驗收仍為後續工作。
+
+## 後續觀察到的待審實作
+
+另於2026-11-07觀察到 Draft [#28](https://github.com/bynanci/storytelling/pull/28)：
+`c162a47dcb8de4c582a3c66c22396ecfd8cb0134`，基底為已接受的
+`5533fcb5d0f857ad1066a76505071653b66d1f89`。它提出 bounded approval identity
+與新的 Ed25519 相依套件；該 head 的10項 CI 已成功，但獨立
+G2／security／dependency review 仍待完成，尚未接受或合併。這不改寫原始快照或上述已接受交付。
+
+另開 [#27](https://github.com/bynanci/storytelling/issues/27) 準備 review-binding／
+freshness 範圍；[規劃文件](../migration/M3-01-NEXT.md) 明列 proposed M3-RB IDs，
+避免與 #28 的 M3-A IDs 混用。#27 保持 open，尚無實作驗收或勾選完成。

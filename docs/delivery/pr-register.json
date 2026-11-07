@@ -2321,6 +2321,39 @@
         21
       ],
       "snapshot_excludes_own_followup_pr": true
+    },
+    {
+      "kind": "open-candidate-observation",
+      "date": "2026-11-07",
+      "observed_after_pr": 29,
+      "pull_requests": [
+        {
+          "number": 28,
+          "url": "https://github.com/bynanci/storytelling/pull/28",
+          "state": "open",
+          "draft": true,
+          "merged": false,
+          "head_sha": "c162a47dcb8de4c582a3c66c22396ecfd8cb0134",
+          "base_sha": "5533fcb5d0f857ad1066a76505071653b66d1f89",
+          "scope": "Concurrent exact-supplied-byte cryptographic identity/signature proposal; CIpassed, independent G2/security/dependency review pending; no compilation-linkage or trusted approval acceptance",
+          "accepted": false,
+          "same_head_checks": {
+            "total": 10,
+            "all_success": true,
+            "runs": [
+              42348221843,
+              42348225264
+            ]
+          }
+        }
+      ],
+      "prepared_task": {
+        "number": 27,
+        "state": "open",
+        "unchecked_items": 6,
+        "proposed_requirement_ids": "M3-RB01–RB07",
+        "note": "distinct from PR28M3-A01–A03; reconcile scope after independent review"
+      }
     }
   ]
 }

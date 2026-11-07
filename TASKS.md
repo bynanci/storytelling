@@ -201,11 +201,13 @@ editorial acceptance remain separate. The runner opens no user project.
 [Tracking #27](https://github.com/bynanci/storytelling/issues/27) and
 [source/readiness scope](docs/migration/M3-01-NEXT.md) prepare immutable finite-OTIO
 review identity and declared-context freshness. The source map has15actual blob
-identities; proposed M3-A01–A07, wire/CLI names and budgets still need independent
+identities; proposed M3-RB01–RB07, wire/CLI names and budgets still need independent
 G2 freezing and functional RED before implementation. No code or passing M3 test
 is claimed. Use the existing importer/compiler input because the planner→OTIO
-bridge is absent; matching hashes/context never grant human approval. Full M3-01
-approval issuance, M3-02 durability and M3-03 execution remain open.
+bridge is absent; matching hashes/context never grant human approval. Concurrent Draft [#28](https://github.com/bynanci/storytelling/pull/28) proposes
+cryptographic approval identity and awaits independent G2 review; it is not
+accepted. Its M3-A01–A03 IDs are distinct from this preparation proposal. Full
+M3-01 approval issuance, M3-02 durability and M3-03 execution remain open.
 
 ## Not in the current backlog
 
