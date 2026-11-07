@@ -102,7 +102,10 @@ pub fn validate_plan_json(input: &[u8]) -> Result<ValidationReport, ValidationEr
         let duration = assets.get(shot.asset_id.as_str()).ok_or_else(|| {
             ValidationError::new("plan.unknown_asset", format!("{path}.asset_id"))
         })?;
-        let start = time(&shot.source_range.start, format!("{path}.source_range.start"))?;
+        let start = time(
+            &shot.source_range.start,
+            format!("{path}.source_range.start"),
+        )?;
         let end = time(&shot.source_range.end, format!("{path}.source_range.end"))?;
         if start >= end {
             return Err(ValidationError::new(

@@ -42,7 +42,7 @@ fn rejects_unknown_and_duplicate_json_fields() {
     assert_eq!(code(&value), "input.invalid_json");
     let bytes = serde_json::to_string(&valid())
         .unwrap()
-        .replacen("{", "{\"schema_version\":1,", 1);
+        .replacen('{', "{\"schema_version\":1,", 1);
     assert_eq!(
         validate_plan_json(bytes.as_bytes()).unwrap_err().code,
         "input.invalid_json"
@@ -146,8 +146,7 @@ fn rejects_malformed_or_oversized_input() {
 #[test]
 fn accepts_exact_rational_intervals_and_is_deterministic() {
     let mut value = valid();
-    value["shots"][0]["source_range"]["end"] =
-        json!({"numerator":"1001","denominator":"30000"});
+    value["shots"][0]["source_range"]["end"] = json!({"numerator":"1001","denominator":"30000"});
     let bytes = serde_json::to_vec(&value).unwrap();
     let first = serde_json::to_vec(&validate_plan_json(&bytes).unwrap()).unwrap();
     let second = serde_json::to_vec(&validate_plan_json(&bytes).unwrap()).unwrap();

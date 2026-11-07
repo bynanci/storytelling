@@ -17,7 +17,10 @@ fn emit(value: Value, code: u8) -> ExitCode {
 }
 
 fn failure(code: &str, exit: u8) -> ExitCode {
-    emit(json!({"ok": false, "error": {"code": code, "path": "$"}}), exit)
+    emit(
+        json!({"ok": false, "error": {"code": code, "path": "$"}}),
+        exit,
+    )
 }
 
 fn text(message: &str) -> ExitCode {
@@ -40,7 +43,9 @@ fn main() -> ExitCode {
     let (command, input, extra) = (args.next(), args.next(), args.next());
     match command.as_deref() {
         Some(value) if value == OsStr::new("--help") && input.is_none() => {
-            return text("Usage: storytelling validate <FILE|->\nRead-only declared-metadata validation; no source hashing or editor execution.\n");
+            return text(
+                "Usage: storytelling validate <FILE|->\nRead-only declared-metadata validation; no source hashing or editor execution.\n",
+            );
         }
         Some(value) if value == OsStr::new("--version") && input.is_none() => {
             return text(concat!("storytelling ", env!("CARGO_PKG_VERSION"), "\n"));
