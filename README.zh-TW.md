@@ -2,7 +2,7 @@
 
 以 Rust 建立的本機優先 Story SDK／可審閱剪輯工作流核心。
 
-**目前為 M0 validator 與 M1-01 finite importer 候選，FilmCraft 整合尚未完成。**
+**M0 validator 與 M1-01 finite importer 已接受並合併 main；FilmCraft 整合尚未完成。**
 可驗證有界故事計畫 JSON，並將有限 OpenFilm composition export 唯讀映射為 declared visual plan。
 不會讀取來源媒體、驗證真實檔案 SHA、產生故事、渲染或操作外部剪輯器。
 
@@ -36,6 +36,8 @@ video 帶 `audio.not_mapped / blocks-host-handoff`，明確 audio/effects/animat
 使用 Rust 2024／resolver 3；固定 1.85.0 作為可重現 bootstrap 基線，並非宣稱最新版。
 原 MIT LICENSE 不變；來源衍生 importer／regression component 採 Apache-2.0，
 保留逐檔 [provenance](docs/migration/provenance-m1-01.json) 與適用 LICENSE／NOTICE。
+使用者已明確授權在同 head 驗證通過後合併已完成 PR；發布、tag 與 repository policy
+仍須獨立決策。實際合併紀錄見 [accepted lifecycle](TASKS.md#accepted-lifecycle)。
 
 ## SDLC 導覽
 

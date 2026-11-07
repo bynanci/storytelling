@@ -11,48 +11,53 @@
       "id": "M1-01/P1",
       "url": "https://github.com/bynanci/storytelling/issues/3",
       "title": "M1-01/P1：凍結 finite-v1 composition import 契約與來源證據",
-      "state": "review",
+      "state": "accepted",
       "depends_on": [],
-      "acceptance": "Maintainer review pending; actual validation evidence in records/M1-01.md and Draft PR",
-      "number": 3
+      "acceptance": "Explicit user authorization; PR #7 merged on main and this issue checked/closed; actual validation evidence retained in records/M1-01.md and PR",
+      "number": 3,
+      "merge_commit": "610ed49673d6f554e539008b34f5fc5479b9dbc1"
     },
     {
       "id": "M1-01/P2",
       "url": "https://github.com/bynanci/storytelling/issues/4",
       "title": "M1-01/P2：實作純 Rust snapshot mapper 與精確時間／loss report",
-      "state": "review",
+      "state": "accepted",
       "depends_on": [
         "M1-01/P1"
       ],
-      "acceptance": "Maintainer review pending; actual validation evidence in records/M1-01.md and Draft PR",
-      "number": 4
+      "acceptance": "Explicit user authorization; PR #7 merged on main and this issue checked/closed; actual validation evidence retained in records/M1-01.md and PR",
+      "number": 4,
+      "merge_commit": "610ed49673d6f554e539008b34f5fc5479b9dbc1"
     },
     {
       "id": "M1-01/P3",
       "url": "https://github.com/bynanci/storytelling/issues/5",
       "title": "M1-01/P3：提供 import-openfilm CLI、驗證與單一 Draft PR",
-      "state": "review",
+      "state": "accepted",
       "depends_on": [
         "M1-01/P2"
       ],
-      "acceptance": "Maintainer review pending; actual validation evidence in records/M1-01.md and Draft PR",
-      "number": 5
+      "acceptance": "Explicit user authorization; PR #7 merged on main and this issue checked/closed; actual validation evidence retained in records/M1-01.md and PR",
+      "number": 5,
+      "merge_commit": "610ed49673d6f554e539008b34f5fc5479b9dbc1"
     }
   ],
   "manual_gates": [
     {
       "id": "M0-G01",
       "owner": "maintainer",
-      "state": "pending",
-      "unblock": "Explicit acceptance of PR #1; current work is on a dependent branch",
-      "evidence": "https://github.com/bynanci/storytelling/pull/1"
+      "state": "accepted",
+      "unblock": "Satisfied: explicit user authorization and verified PR #1 merged on main",
+      "evidence": "https://github.com/bynanci/storytelling/pull/1",
+      "merge_commit": "22279814ff6b147c386186569d7f77f3a803cf8b"
     },
     {
       "id": "PORT-G01",
       "owner": "maintainer",
-      "state": "pending",
-      "unblock": "Accept transfer planning PR #2; component policy separately approved",
-      "evidence": "https://github.com/bynanci/storytelling/pull/2"
+      "state": "accepted",
+      "unblock": "Satisfied: transfer planning PR #2 accepted/merged; component policy explicitly approved, with M1-01 accepted separately",
+      "evidence": "https://github.com/bynanci/storytelling/pull/2",
+      "merge_commit": "9fb403be811643baf948acdb6d72232d4a6207bb"
     }
   ],
   "requirements": [
@@ -101,5 +106,16 @@
         "treats_missing_video_media_and_instruction_text_as_opaque_declarations"
       ]
     }
-  ]
+  ],
+  "state": "accepted",
+  "accepted_lifecycle": {
+    "authority": "explicit user authorization in 2026-11-07 continuation to merge completed verified PRs and check completed tasks; no release/repository-policy authority",
+    "feature_pull_request": 7,
+    "accepted_head": "c2fb478c278550b682efba5f898082e8bcd20e24",
+    "merge_commit": "610ed49673d6f554e539008b34f5fc5479b9dbc1",
+    "merged_at": "2026-11-07T02:18:09Z",
+    "accepted_scope": "M0 and finite declared-visual M1-01 only; OTIO, actual media/audio/host proof, release and human editorial acceptance remain separate",
+    "tracking_issue_state": "closed",
+    "historical_fields": "base/source/observed_source_main retain the implementation inspection identities, not current main"
+  }
 }

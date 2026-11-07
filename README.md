@@ -2,7 +2,7 @@
 
 A Rust foundation for local-first story planning and reviewed editor workflows.
 
-**Status: M0 validator + M1-01 finite import candidate, not a released editor integration.**
+**Status: M0 validator + M1-01 finite import accepted and merged on main; no editor integration release.**
 The executable slices validate a bounded story-plan JSON document and map a finite
 OpenFilm composition export into a declared visual plan. They do not
 read media, verify file hashes, generate a story, render a film or drive FilmCraft.
@@ -78,7 +78,9 @@ installer, GPU or listening certification. Exact-head results belong in the PR
 and [validation record](docs/validation/m0-foundation.md).
 
 See [contributing](CONTRIBUTING.md), [agent rules](AGENTS.md), [security](SECURITY.md)
-and [requirements traceability](docs/REQUIREMENTS.md). No automatic merge or release.
+and [requirements traceability](docs/REQUIREMENTS.md). Completed, verified PRs may
+be merged under the user's explicit task authorization; releases and repository
+policy changes remain separate decisions. See [accepted lifecycle](TASKS.md#accepted-lifecycle).
 
 ## License
 
