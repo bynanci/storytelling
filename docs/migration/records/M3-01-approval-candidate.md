@@ -1,17 +1,16 @@
 <!-- SPDX-License-Identifier: MIT AND Apache-2.0 -->
 # PR #28 Approval Identity candidate record
 
-State: implemented candidate, not accepted. Canonical M3-01/P1 remains proposed
-in `docs/migration/M3-01-NEXT.md`; this candidate does not satisfy that scope.
-Independent G2 review is pending. After dependency PRs #8, #21, #10 and #9 merged,
-main advanced to `fefb038ec1699727da2c0f436a097bbdedcfd08a`. Synchronized head
-`9670be947535a3e15b70280fd7500a83b373d55f` passed both hosted same-head runs, including all five code/quality gates
-and Dependency Audit; the audit scanned the 40-package lockfile with no findings.
-The current record updates those results and therefore requires a new exact-head
-CI run before a merge. A successful merge will not itself grant G2 or acceptance.
+State: merged candidate, not accepted. Canonical M3-01/P1 remains proposed in
+`docs/migration/M3-01-NEXT.md`; this candidate does not satisfy that scope.
+Independent G2 review is pending. PR #28 head `2d23b21dcfbfc49c3d76087f054cc76724c23053` merged to main as `5a5702ba4c1392d763929f89da3cf7d16d5f13f4`
+on 2026-11-07 at 13:47:15 UTC. Both exact-head runs passed all six jobs and the
+main merge run passed all six gates. Hosted Cargo Audit loaded 1,422 advisories
+and scanned 40 locked dependencies without findings. Merge is integration, not
+G2 approval or product acceptance.
 
 The initial worktree began at `867fcde6acd0dd1339122aaf4bb23003aac3942e` and was
-rebased onto main after PR #25. PR #26 advanced main while Draft PR #28 was open,
+rebased onto main after PR #25. PR #26 advanced main while PR #28 was open,
 and the branch included the accepted M2-03 integration. PR #29 advanced main
 again and defines the separate finite-OTIO review-binding proposal. The later
 routine dependency merges are recorded in `TASKS.md` and do not change this
@@ -51,6 +50,6 @@ Host-execution gates.
 Focused tests and full local gates are recorded in
 [validation/m3-01-approval-candidate.md](../../validation/m3-01-approval-candidate.md).
 The cryptographic dependency and advisory status are in
-[dependency-review-pr28-approval-candidate.md](../dependency-review-pr28-approval-candidate.md). Independent G2
-security review, current exact-head hosted CI, and the new hosted Cargo Audit
-job are still required before any acceptance decision for this separate candidate.
+[dependency-review-pr28-approval-candidate.md](../dependency-review-pr28-approval-candidate.md). The exact-head hosted CI and Cargo Audit passed before merge. Independent G2
+security review remains required before any acceptance decision for this separate
+candidate.

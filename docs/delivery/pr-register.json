@@ -2361,6 +2361,80 @@
         "proposed_requirement_ids": "M3-RB01–RB07",
         "note": "distinct from PR28M3-A01–A03; reconcile scope after independent review"
       }
+    },
+    {
+      "kind": "post-pr28-merge-current-state",
+      "observed_at": "2026-11-07T13:50:59Z",
+      "observed_main": {
+        "sha": "5a5702ba4c1392d763929f89da3cf7d16d5f13f4",
+        "tree_sha": "d90a3f486d92dee136eeec8f1d2f168aa4704d21",
+        "merge_ci_run": 42378550750,
+        "merge_ci_all_six_success": true
+      },
+      "scope": "Current lifecycle reconciliation after dependency PRs and PR #28; merged candidate does not imply G2 approval, acceptance, release, or completion of canonical M3-01/P1.",
+      "pull_requests": [
+        {
+          "number": 8,
+          "state": "closed",
+          "merged": true,
+          "head_sha": "f3bf985acbd6abb67b3ce5f781535387dc602373",
+          "merge_commit_sha": "3905135b3fd811e7639dffd2a98116aa6543b53f",
+          "merged_at": "2026-11-07T13:19:26Z",
+          "same_head_and_main_checks": "success"
+        },
+        {
+          "number": 21,
+          "state": "closed",
+          "merged": true,
+          "head_sha": "ad4e33f0406a78336279fe7916d3372660169d02",
+          "merge_commit_sha": "23a8c60051c8ab81310bb4e67e7c8b2fbcf44810",
+          "merged_at": "2026-11-07T13:20:47Z",
+          "same_head_and_main_checks": "success"
+        },
+        {
+          "number": 10,
+          "state": "closed",
+          "merged": true,
+          "head_sha": "6a2456a2008d937b1658bbb77866bee4f2b694b0",
+          "merge_commit_sha": "a4c07d5cf29a4845757ada0cb6eea664cfeb98a0",
+          "merged_at": "2026-11-07T13:22:15Z",
+          "same_head_and_main_checks": "success"
+        },
+        {
+          "number": 9,
+          "state": "closed",
+          "merged": true,
+          "head_sha": "14992f18dc36804b8fa752ea2383194a9993bd38",
+          "merge_commit_sha": "fefb038ec1699727da2c0f436a097bbdedcfd08a",
+          "merged_at": "2026-11-07T13:25:36Z",
+          "same_head_and_main_checks": "success"
+        },
+        {
+          "number": 28,
+          "state": "closed",
+          "merged": true,
+          "draft": false,
+          "head_sha": "2d23b21dcfbfc49c3d76087f054cc76724c23053",
+          "base_sha": "fefb038ec1699727da2c0f436a097bbdedcfd08a",
+          "merge_commit_sha": "5a5702ba4c1392d763929f89da3cf7d16d5f13f4",
+          "merged_at": "2026-11-07T13:47:15Z",
+          "accepted": false,
+          "g2_review": "pending",
+          "exact_head_runs": [
+            42378356866,
+            42378352463
+          ],
+          "merge_commit_run": 42378550750
+        }
+      ],
+      "open_pull_requests": [],
+      "open_issues": [
+        {
+          "number": 27,
+          "state": "open",
+          "scope": "canonical M3-01/P1 finite-OTIO review identity and declared-context freshness"
+        }
+      ]
     }
   ]
 }

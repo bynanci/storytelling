@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: MIT AND Apache-2.0 -->
 # PR #28 approval-candidate dependency review
 
-This records a bounded dependency review for the concurrent PR #28 candidate,
+This records the bounded dependency review for the merged PR #28 candidate,
 not G2 acceptance of the canonical M3-01/P1 finite-OTIO review-binding scope.
 Independent G2 review of the candidate remains pending.
 
@@ -48,11 +48,11 @@ advisories from database commit
 scanning 39 packages. That older lockfile had SHA-256
 `ac030012f2595fe5eb118cb2640a2e2e06c858f72d72f76cad0fa82313112bb0`.
 After merging dependency PRs #9 and #10, the synchronized 40-package lockfile
-has SHA-256 `f3a69dd97731666785474156249bd1c27d2d1c3048162edfeb111e98024d7e66`; the earlier scan does not cover it. On synchronized head
-`9670be947535a3e15b70280fd7500a83b373d55f`, Cargo Audit 0.22.1 passed in both runs `42377965601` and
-`42377961928`, loaded 1,422 advisories and scanned 40 dependencies without
-findings. This is point-in-time hosted evidence; the evidence-reconciliation
-commit must pass the same job again before merge.
+has SHA-256 `f3a69dd97731666785474156249bd1c27d2d1c3048162edfeb111e98024d7e66`; the earlier scan does not cover it. On PR #28 head
+`2d23b21dcfbfc49c3d76087f054cc76724c23053`, Cargo Audit 0.22.1 passed in both runs `42378356866` and
+`42378352463`, loaded 1,422 advisories and scanned 40 dependencies without
+findings. The main merge commit `5a5702ba4c1392d763929f89da3cf7d16d5f13f4` also passed Dependency Audit in run
+`42378550750`. Independent G2 review remains pending.
 
 The workflow now defines a dedicated hosted Dependency audit job. It downloads
 Cargo Audit `0.22.1` from the RustSec release asset and checks the asset SHA-256

@@ -134,9 +134,9 @@ hosted checks passed; the comparison record preserves the accepted identities.
 | M2-S05 | Actual live run/provenance/validator/failed evidence and CI test-only closure | `run.py`, `test_orchestration.py` |
 | M2-S06 | Actual completed PR classification/register/lifecycle metadata with preserved history | `PR_REGISTER.md`, `pr-register.json` |
 
-## Concurrent PR #28 approval-identity candidate (not accepted)
+## Merged PR #28 approval-identity candidate (not accepted)
 
-The following M3-A requirements describe a separate Draft candidate, not the
+The following M3-A requirements describe a separate merged candidate, not the
 canonical proposed M3-01/P1 finite-OTIO review-binding task tracked in
 [`M3-01-NEXT`](migration/M3-01-NEXT.md). They do not establish G2 acceptance,
 trusted human authorization, replay protection or host execution. Independent
