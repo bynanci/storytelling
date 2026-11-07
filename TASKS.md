@@ -1,8 +1,9 @@
 # Development tasks
 
 Baseline: `551ff38920e2085e1d53a7ba777c9680678e9725` (original README + MIT LICENSE).
-Updated: 2026-11-07. This branch delivers M0 and finite M1-01 candidates; merge and
-release are separate decisions. [SDLC](docs/SDLC.md) owns the process and
+Updated: 2026-11-07. Current main contains merged M0 and the verified finite
+M1-01 importer. M1-02 OTIO and M1-03 host validation remain open; release is a
+separate decision. [SDLC](docs/SDLC.md) owns the process and
 [requirements](docs/REQUIREMENTS.md) owns acceptance traceability.
 
 ## Status rules
@@ -16,11 +17,11 @@ Exact-head test results belong in the PR and [validation record](docs/validation
 
 | ID | State | Deliverable | Dependency | Acceptance |
 | --- | --- | --- | --- | --- |
-| M0-01 | review | Architecture, requirements, SDLC, ADRs and extraction boundary | Original repository | Scope/authority/license agreed; no invented host capability |
-| M0-02 | review | core/engine/CLI Cargo workspace and read-only validator | M0-01 | M0-R01–R08 tests; valid JSON accepted, invalid ranges rejected |
-| M0-03 | review | Pinned toolchain, Cargo.lock, three-OS CI, docs guard | M0-02 | Same-head quality, debug/release tests and Required gates green |
-| M0-04 | review | README, contribution/security policy, templates and provenance | M0-01 | Commands reproducible, local links valid, MIT bytes unchanged |
-| M0-G01 | pending | Maintainer review and acceptance of bootstrap PR | M0-01–04 | Read exact-head evidence, approve scope, decide merge |
+| M0-01 | accepted (PR #1 merged) | Architecture, requirements, SDLC, ADRs and extraction boundary | Original repository | Scope/authority/license agreed; no invented host capability |
+| M0-02 | accepted (PR #1 merged) | core/engine/CLI Cargo workspace and read-only validator | M0-01 | M0-R01–R08 tests; valid JSON accepted, invalid ranges rejected |
+| M0-03 | accepted (PR #1 merged) | Pinned toolchain, Cargo.lock, three-OS CI, docs guard | M0-02 | Same-head quality, debug/release tests and Required gates green |
+| M0-04 | accepted (PR #1 merged) | README, contribution/security policy, templates and provenance | M0-01 | Commands reproducible, local links valid, MIT bytes unchanged |
+| M0-G01 | accepted (PR #1 merged) | Maintainer review and acceptance of bootstrap PR | M0-01–04 | Exact-head evidence reviewed and merge accepted |
 
 - [x] Three real crates; no empty workflow/adapter placeholders.
 - [x] Canonical reduced rational source time; no float rounding.
@@ -28,14 +29,14 @@ Exact-head test results belong in the PR and [validation record](docs/validation
 - [x] Machine-readable CLI with distinct validation/usage/I/O exits.
 - [x] Test-first RED scaffold and actual hosted failure evidence.
 - [x] SDLC artifacts and requirement-to-test map committed.
-- [ ] Maintainer accepts the verified PR; branch remains unmerged until approved.
+- [x] Maintainer accepted and merged PR #1 at `22279814ff6b147c386186569d7f77f3a803cf8b`; exact-head CI is recorded in the PR.
 - [ ] Configure repository required checks/private vulnerability reporting with owner approval; a workflow file alone does not enable protection.
 
 ## Next actionable work
 
 | ID | Priority/state | Scope | Depends on | Definition of done / PR boundary |
 | --- | --- | --- | --- | --- |
-| M1-01 | P1 / review on dependent branch | Finite composition-export visual mapper and read-only CLI | Explicit PR #2/#1 stack; M0 acceptance remains pending | M1-I01–I06; exact clocks, occurrence IDs, original facts and explicit limitations; no live Catalog writes |
+| M1-01 | accepted (PR #7 merged) | Finite composition-export visual mapper and read-only CLI | M0 accepted; migration map merged | M1-I01–I06; exact clocks, occurrence IDs, original facts and explicit limitations; no live Catalog writes |
 | M1-02 | P1 / proposed | Limited OTIO writer and loss report | M1-01 | Official parser oracle, deterministic source mapping, unknown effects fail closed |
 | M1-03 | P1 / proposed | FilmCraft isolated-project roundtrip proof | M1-02 | Pinned host import/render/readback/save/reopen; original project unchanged |
 | M2-01 | P1 / proposed | StoryBrief, hard constraints vs preferences and typed conflicts | M1 profile | Infeasible constraints explained; manual choices never silently dropped |
@@ -66,7 +67,7 @@ See [work queue](docs/migration/M1-01-WORK-QUEUE.md),
 - [x] Direct composition JSON profile frozen after independent G2 review.
 - [x] 33 pure importer and 8 CLI regressions; actual RED→GREEN observed.
 - [x] Six pinned TS source export/oracle cases and actual Rust differential.
-- [ ] Maintainer accepts this Draft candidate; #1/#2 acceptance stays separate.
+- [x] PR #7 merged at `610ed49673d6f554e539008b34f5fc5479b9dbc1` from exact head `c2fb478c278550b682efba5f898082e8bcd20e24`; same-head push and PR-integration CI passed on Linux, Windows and macOS.
 
 Implemented output is declared visual metadata with `executable:false`, not an
 OTIO/FilmCraft handoff. OF-03 canonical digest is deferred; original ledger entries
@@ -88,16 +89,27 @@ relax source, approval, license or host-compatibility gates.
 
 ## OpenFilm to Rust transfer ledger — 2026-11-07
 
+Current Storytelling main is `610ed49673d6f554e539008b34f5fc5479b9dbc1`.
+PR #1 (M0) and PR #2 (migration map) are merged, followed by PR #7 (M1-01).
+PR #7 is a finite declared-visual mapping only; it does not complete OTIO,
+FilmCraft, byte verification, or the full 48+16 inventory. The original source
+inventory remains pinned to OpenFilm `7add4762fe8174d76f43b863375ea39b73121e76`;
+its later source drift and M1-01 implementation evidence are linked below.
+
 The [48-capability map](docs/migration/OPENFILM_RUST_PORT_MAP.md),
 [16 gap tasks](docs/migration/NATIVE_BOUNDARIES_AND_GAPS.md),
 [machine ledger](docs/migration/openfilm-port-index.json), and
 [Codex runbook](docs/migration/CODEX_PORTING_RUNBOOK.md) refine the existing
 milestones; they do not replace them or claim any port completed.
 
-Source is OpenFilm `7add4762fe8174d76f43b863375ea39b73121e76`. Target M0 is PR #1
-head `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`, still unmerged at inspection.
-OF-01/02 have only partial M0 declaration-validation foundations. Other native
-ports are proposed. Six retain-host entries are exclusions, not rewrite tasks.
+The target M0 exact head was PR #1 `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`,
+merged at `22279814ff6b147c386186569d7f77f3a803cf8b`; PR #2 map head
+`95291d31c47601181070bf89a28b1a182ddf6ed8` was merged at
+`9fb403be811643baf948acdb6d72232d4a6207bb`. M1-01 PR #7 head and merge SHA
+are recorded above. OF-01/02 remain partial at the full-capability level; the
+finite M1-01 profile does not complete canonical digest or all source clocks.
+Other native ports remain proposed. Six retain-host entries are exclusions, not
+rewrite tasks.
 
 | Wave / parent tasks | Transfer scope | Required outcome |
 | --- | --- | --- |
@@ -110,9 +122,9 @@ ports are proposed. Six retain-host entries are exclusions, not rewrite tasks.
 | W6 / M4-M5 | OF-37–41 as needed; GAP-12–15 | Provider/consumer adapters, native distribution and real-user/second-host evidence |
 
 - [x] PORT-PLAN-01: written source-to-Rust inventory, classifications, proposed targets/tests and gap map (documentation only).
-- [ ] PORT-G01: maintainer accepts the transfer boundary and provenance policy before source-derived implementation.
-- [ ] PORT-G02: freeze actual per-task source symbols/tests/blob identities and require differential evidence.
-- [x] PORT-G03: execute the finite M1-01 candidate on the explicit dependent branch after profile/provenance admission; remaining capability subsets and maintainer acceptance stay separate.
+- [x] PORT-G01: transfer boundary and provenance policy accepted through merged PR #2 and the source-informed Apache component policy in merged PR #7.
+- [x] PORT-G02 / M1-01: freeze source symbols, fixtures, identities and differential evidence for this importer; see the [M1-01 record](docs/migration/records/M1-01.md). Repeat the same gate for every later transfer task.
+- [x] PORT-G03: execute the finite M1-01 importer after M0/profile prerequisites; remaining capability subsets and M1-02/M1-03 acceptance stay separate.
 
 Every transfer PR records OF/GAP IDs together with original M task and new requirement IDs.
 The full task index is a coverage inventory, not a demand to build 64 items before M1.

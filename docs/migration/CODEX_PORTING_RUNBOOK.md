@@ -5,9 +5,9 @@
 ## 1. 開始前必須核實
 
 - Source baseline：bynanci/open-film@7add4762fe8174d76f43b863375ea39b73121e76。
-- Target main at inspection：551ff38920e2085e1d53a7ba777c9680678e9725；M0 PR #1 head：4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b，當次仍Draft。
-- 重新fetch兩個repo與open PR。若M0未合併，只有明確相依branch能使用它；不能對只有README的main假設三crate存在。
-- 固定來源已含coverage PR #121、frame time PR #125；PR #126 在最初規劃快照是 Draft，2026-11-07 重查已 merged，main 為 `5f737a6c8f35dce48e213370ff27900962c9304c`。M1-01 保留原 pinned source，見 [drift record](records/M1-01.md)；新的狀態仍由實際查詢更新。
+- Historical first target inspection：`551ff38920e2085e1d53a7ba777c9680678e9725`。Current target main checked 2026-11-07：`610ed49673d6f554e539008b34f5fc5479b9dbc1`，including merged M0 PR #1, map PR #2 and finite M1-01 PR #7. PR #7 exact head: `c2fb478c278550b682efba5f898082e8bcd20e24`.
+- 重新fetch兩個repo與open PR；以上SHA是本次查核快照，不可取代每次移植前的即時查核。M0 已合併，有限M1-01也已合併；M1-02/M1-03仍未完成。
+- 固定OpenFilm來源快照已含coverage PR #121、frame time PR #125；PR #126 於 2026-11-07 合併在 OpenFilm main `5f737a6c8f35dce48e213370ff27900962c9304c`。M1-01依自己的來源與實作證據記錄在 [M1-01 record](records/M1-01.md)；新任務仍須按實際查詢更新來源狀態。
 - 對每個選定source path執行git存在檢查，讀取實作與實際呼叫者/測試。表列位置是定位入口，不是對整個檔案的正確性保證。
 
 ## 2. 一個任務的comparison record

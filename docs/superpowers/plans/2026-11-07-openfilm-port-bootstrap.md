@@ -1,6 +1,6 @@
 # OpenFilm finite snapshot import: implementation plan
 
-> For agentic workers: use task-by-task execution and self/independent review as available; never invent a subagent review. Checkboxes describe this finite candidate; exact-head hosted evidence belongs in the PR.
+> M1-01 implementation plan; status checked 2026-11-07: delivered in PR #7, merged at `610ed49673d6f554e539008b34f5fc5479b9dbc1` from head `c2fb478c278550b682efba5f898082e8bcd20e24`. Same-head push and PR CI passed on Linux, Windows and macOS. Checkboxes below record the completed M1-01 slice; M1-02 and M1-03 remain separate.
 
 **Goal:** Add one read-only, native Rust mapping from a frozen OpenFilm snapshot to a bounded Storytelling handoff document, with explicit losses and no media/host mutation.
 
@@ -12,7 +12,7 @@
 
 ## Global constraints
 
-Source baseline is OpenFilm `7add4762fe8174d76f43b863375ea39b73121e76`; target foundation candidate is `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`. Refresh actual branch metadata first. M0 PR #1 is not assumed merged. Preserve source IDs, original clocks, user choices and existing MIT license. Do not copy Apache implementation/tests without GAP-01 provenance decision. This importer validates declarations; it never claims actual source SHA verification or host compatibility.
+Pinned source baseline is OpenFilm `7add4762fe8174d76f43b863375ea39b73121e76`; observed source main at M1-01 implementation was `5f737a6c8f35dce48e213370ff27900962c9304c`. Original candidate used foundation head `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`; M0 PR #1 is now merged. Refresh actual branch metadata before any later transfer task. Preserve source IDs, original clocks, user choices and existing MIT license. Do not copy Apache implementation/tests without GAP-01 provenance decision. This importer validates declarations; it never claims actual source SHA verification or host compatibility.
 
 ## Review focus
 
@@ -53,7 +53,7 @@ Current frozen contract and evidence: [finite-v1](../../migration/FINITE_V1.md),
 - [x] Write RED for the new importer via file/stdin, JSON-only stdout, stable error/exit, no input changes and no attempt to open external media paths.
 - [x] Implement only the composition-root I/O; delegate all mapping and validation to the pure engine.
 - [x] Run format/clippy/tests/release/doc/repository guards and production CLI with Node/Python/FFmpeg unavailable on PATH; source oracle tools remain test-only.
-Submission: one coherent Draft PR records actual source/target SHA, requirements-to-tests, evidence, unsupported cases and rollback. Consult its metadata for publication and exact-head CI status; OTIO/FilmCraft support is not claimed.
+Delivery: PR #7 records actual source/target SHA, requirements-to-tests, evidence, unsupported cases and rollback, and is merged. Exact-head CI passed on Linux, Windows and macOS. This plan does not claim OTIO/FilmCraft support; implement those as separate M1-02/M1-03 slices.
 
 ## Following slices, not part of M1-01
 

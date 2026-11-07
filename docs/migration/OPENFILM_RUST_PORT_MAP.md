@@ -1,10 +1,10 @@
 # OpenFilm → Storytelling：Rust 技術移轉對照表
 
-日期：2026-11-07。這是 **G1/G2 規劃候選**，不是已完成移植。
+日期：2026-11-07。此 48+16 inventory 主要是 **G1/G2 規劃對照**；Storytelling 已另完成有限 M1-01 visual snapshot importer，並不代表整份 capability map 已移植。
 
 - OpenFilm 固定來源：`7add4762fe8174d76f43b863375ea39b73121e76`。涵蓋 16 個 packages 的責任邊界，另看 application、CLI/server、desktop/native 與測試入口。
-- Storytelling main：`551ff38920e2085e1d53a7ba777c9680678e9725`；Rust M0 仍位於未合併 PR #1 的 `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`。
-- M0 只驗證宣告資料、ID、hash 形狀與有理數來源區間；不讀來源 bytes、不執行 planner、不交接宿主。
+- Storytelling current main checked 2026-11-07：`610ed49673d6f554e539008b34f5fc5479b9dbc1`。M0 PR #1, migration map PR #2, and finite read-only M1-01 PR #7 are merged; exact delivery heads and merge SHAs are tracked in [TASKS](../../TASKS.md).
+- M0 只驗證宣告資料、ID、hash 形狀與有理數來源區間；M1-01僅新增有限 visual-snapshot 到 declared-plan 的唯讀映射。它不驗證被引用媒體的實際 bytes、不執行 planner、不產生OTIO，也不交接宿主。
 - 本輪未修改 Rust 產品程式、未搬 OpenFilm 程式/測試/資產；未執行來源 TS 或新 Rust 測試。
 - 來源索引/exports 與選定實作已讀取。這是模組級對照，不是每個函式均完成 correctness audit；Codex 必須在該 task 的 G1/G2 補讀實作與實際 tests。
 
@@ -595,17 +595,17 @@
 
 **新增回歸命名：** `data_preset_cannot_execute_arbitrary_code`。先找到來源tests，保留授權與合成fixture來源；不得把這個規劃名稱寫成已存在或已通過。
 
-### OF-48｜尚未合併視覺keyframes與進階NLE擴張
+### OF-48｜已合併視覺 keyframes 的宿主 capability / loss mapping
 
-**里程碑：** watch-only；**Rust狀態：** not-planned-for-core；**前置：** 不進核心開發排程。
+**里程碑：** M1-02 capability/loss mapping；**Rust狀態：** not-planned-for-core；**前置：** OF-35/36。
 
-**OpenFilm來源：** `packages/core/src/sequence.ts`；`TASKS.md`。
+**OpenFilm來源：** `packages/core/src/sequence.ts`；`packages/core/src/clip-animation.ts`；`TASKS.md`。
 
-**Rust規劃落點：** `watch-upstream-PR-126`。
+**Rust規劃落點：** `crates/storytelling-engine/src/host_compile.rs`；`crates/storytelling-adapters/src/interchange/profiles.rs`。
 
-**範圍／驗收：** PR #125精確frame時間已納OF-02；PR #126視覺keyframe當次仍Draft，不作main已完成來源。speed ramps/compound/multicam不趁Rust遷移擴張；後續只做宿主capability與loss mapping。
+**範圍／驗收：** OpenFilm PR #126 feature head `b4aba4c4bb70b8cb03edd54342f1b94cec649245` 已併入來源 main `5f737a6c8f35dce48e213370ff27900962c9304c`。Storytelling 按明確 host/profile 對視覺 keyframes 分類 native/baked/metadata-only/unsupported，並回報精確時間、easing、opacity 與 source mapping；不重做 OpenFilm evaluator/renderer。Speed ramps、compound editing、multicam維持延後。
 
-**新增回歸命名：** `draft_work_is_not_marked_as_available_source`。先找到來源tests，保留授權與合成fixture來源；不得把這個規劃名稱寫成已存在或已通過。
+此項不是 M1-01 已實作內容；需與 M1-02 OTIO/loss report 一起規劃，不得把未驗證宿主能力標為 native。
 
 ## 來源核對層級與範圍
 
@@ -615,4 +615,4 @@ Codex要執行任何一項，先以 `git cat-file -e <sha>:<path>` 確認來源�
 
 `packages/ui`/desktop/template等目錄級來源是責任邊界，不是整包複製授權。FFmpeg/第三方字型/模型/素材各有條款。原有Apache標記與NOTICE須保留；本次沒有把MIT改成Apache，也沒有授權將Apache內容改掛MIT。
 
-來源主線已有PR #121 coverage constraints及PR #125 frame time；PR #126當次仍draft。PR描述中殘留「未合併」字樣不能推翻GitHub實際merged欄位。
+原始來源索引建立時的 Draft/watch-only 觀察已由 M1-01 source recheck 校正：OpenFilm PR #126 已合併在來源 main `5f737a6c8f35dce48e213370ff27900962c9304c`。PR 描述或固定歷史索引中的舊狀態不能取代 GitHub merged metadata 與實際 source tree。

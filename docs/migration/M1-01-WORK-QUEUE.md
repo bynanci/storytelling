@@ -5,33 +5,34 @@ visual plan。實際來源、差異與驗證見 [comparison record](records/M1-0
 精確輸入／輸出／錯誤契約見 [finite-v1](FINITE_V1.md)，任務連結見
 [工作索引](m1-01-work-index.json)。
 
-## 核實基線（2026-11-07 UTC）
+## 核實基線與目前狀態（2026-11-07 UTC）
 
 | 項目 | 完整 SHA / 狀態 |
 | --- | --- |
-| Storytelling main | `551ff38920e2085e1d53a7ba777c9680678e9725`；尚無 workspace |
-| M0 / PR #1 | `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`；open Draft、未合併 |
-| 本 PR 的 base / 規劃 PR #2 | `95291d31c47601181070bf89a28b1a182ddf6ed8`；open Draft、stack 在 #1 |
+| Storytelling main | `610ed49673d6f554e539008b34f5fc5479b9dbc1`；M0、移轉索引與 M1-01 已在主線 |
+| M0 / PR #1 | head `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`；merge `22279814ff6b147c386186569d7f77f3a803cf8b` |
+| 移轉索引 / PR #2 | head `95291d31c47601181070bf89a28b1a182ddf6ed8`；merge `9fb403be811643baf948acdb6d72232d4a6207bb` |
+| M1-01 / PR #7 | head `c2fb478c278550b682efba5f898082e8bcd20e24`；merge `610ed49673d6f554e539008b34f5fc5479b9dbc1` |
 | 固定 OpenFilm 來源 | `7add4762fe8174d76f43b863375ea39b73121e76` |
-| 查詢時 OpenFilm main | `5f737a6c8f35dce48e213370ff27900962c9304c`；PR #126 已合併 |
+| M1-01 實際比對的 OpenFilm main | `5f737a6c8f35dce48e213370ff27900962c9304c`；PR #126 已合併 |
 
-附件與原 ledger 的 Draft/watch-only 是固定來源快照時的歷史狀態。本次未默默改用新
-main；新增 animation 以 unsupported regression 防止無聲遺失。PR #1/#2 各自 head
-查詢到的 Quality、三 OS、Required gates 均成功，但不代替本 PR 的同 head CI。
-
+PR #7 的 exact-head push 與 PR-integration 均通過 Quality/contracts、Linux、Windows、
+macOS Rust jobs 與 Required gates：[push 42327081582](https://github.com/bynanci/storytelling/actions/runs/42327081582)、[PR 42327143353](https://github.com/bynanci/storytelling/actions/runs/42327143353)。
+Draft/watch-only 描述只代表初始快照的歷史狀態；M1-01 僅接受 finite-v1 visual profile，
+明確拒絕新增 animation。它不涵蓋 OTIO、media source-byte 驗證或 FilmCraft host proof.
 ## 工作分解
 
-| ID | 交付 | 依賴／驗收 |
-| --- | --- | --- |
-| M1-01/P1 | 固定來源、權利、原 producer 與 finite-v1 契約 | GAP-01/02/03/16；獨立 G2 review，source oracle，逐檔 provenance |
-| M1-01/P2 | 純 Rust mapper、精確 clocks、immutable snapshot、loss | P1；實際 RED→GREEN；每個來源 occurrence 保留，回傳 M0 plan 可驗證 |
-| M1-01/P3 | 可用 file/stdin CLI 與 JSON/exit 契約 | P2；CLI process regressions、乾淨 PATH smoke、debug/release/quality/CI |
-| M0-G01 / PORT-G01 | 維護者接受 foundation 與規劃 PR | 仍待人工接受；本 PR 明確 stack，不能以實作或 CI 代替批准 |
+| ID | 交付 | 依賴／驗收 | 狀態 |
+| --- | --- | --- | --- |
+| M1-01/P1 | 固定來源、權利、原 producer 與 finite-v1 契約 | GAP-01/02/03/16；獨立 G2 review，source oracle，逐檔 provenance | 完成；PR #7 合併 |
+| M1-01/P2 | 純 Rust mapper、精確 clocks、immutable snapshot、loss | P1；實際 RED→GREEN；每個來源 occurrence 保留，回傳 M0 plan 可驗證 | 完成；PR #7 合併 |
+| M1-01/P3 | 可用 file/stdin CLI 與 JSON/exit 契約 | P2；CLI process regressions、乾淨 PATH smoke、debug/release/quality/CI | 完成；PR #7 合併 |
+| M0-G01 / PORT-G01 | 維護者接受 foundation 與移轉邊界 | PR #1/#2；source-derived Apache component policy in PR #7 | 接受；PR #1/#2/#7 合併 |
 
 2026-11-07 使用者已批准來源衍生 component 政策：原 MIT LICENSE 不變，來源衍生
 modules/tests/fixtures 採 Apache-2.0、逐檔 provenance、適用 LICENSE/NOTICE；其餘整合
 逐檔分類。見 [清單](provenance-m1-01.json) 與 [PROVENANCE](../../PROVENANCE.md)。
-這項政策批准不代表維護者已接受／合併任何 PR。
+政策批准與 PR 合併分別記錄；目前 PR #1/#2/#7 已合併，具體 SHA 列於上表。
 
 ## 本次邊界與後續
 

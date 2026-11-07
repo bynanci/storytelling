@@ -54,7 +54,10 @@ Use the [machine ledger](migration/openfilm-port-index.json),
 [Codex runbook](migration/CODEX_PORTING_RUNBOOK.md), and
 [M1-01 implementation plan](superpowers/plans/2026-11-07-openfilm-port-bootstrap.md).
 
-The original 48+16 inventory added planning artifacts, not implementation or a release. Source modules were
-located through pinned entrypoints/tree and selected code inspection; a per-task
-implementation review must still read exact symbols and tests. Preserve the original
-M0 declared-metadata-only scope until actual byte verification is implemented and proven.
+The original 48+16 inventory added planning artifacts. M0 and the finite M1-01
+visual snapshot importer are now merged; the M1-01 result is declared metadata
+with `executable:false`, not verified source bytes or an audiovisual handoff.
+M1-02 OTIO compilation and M1-03 actual host proof remain open. Source modules were
+located through pinned entrypoints/tree and selected code inspection; every later
+transfer still requires exact symbols/tests review. Preserve the original M0
+no-byte-verification boundary.

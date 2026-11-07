@@ -11,31 +11,31 @@
       "id": "M1-01/P1",
       "url": "https://github.com/bynanci/storytelling/issues/3",
       "title": "M1-01/P1：凍結 finite-v1 composition import 契約與來源證據",
-      "state": "review",
+      "state": "accepted",
       "depends_on": [],
-      "acceptance": "Maintainer review pending; actual validation evidence in records/M1-01.md and Draft PR",
+      "acceptance": "Implemented in merged PR #7; exact-head checks and evidence are recorded in docs/migration/records/M1-01.md",
       "number": 3
     },
     {
       "id": "M1-01/P2",
       "url": "https://github.com/bynanci/storytelling/issues/4",
       "title": "M1-01/P2：實作純 Rust snapshot mapper 與精確時間／loss report",
-      "state": "review",
+      "state": "accepted",
       "depends_on": [
         "M1-01/P1"
       ],
-      "acceptance": "Maintainer review pending; actual validation evidence in records/M1-01.md and Draft PR",
+      "acceptance": "Implemented in merged PR #7; exact-head checks and evidence are recorded in docs/migration/records/M1-01.md",
       "number": 4
     },
     {
       "id": "M1-01/P3",
       "url": "https://github.com/bynanci/storytelling/issues/5",
       "title": "M1-01/P3：提供 import-openfilm CLI、驗證與單一 Draft PR",
-      "state": "review",
+      "state": "accepted",
       "depends_on": [
         "M1-01/P2"
       ],
-      "acceptance": "Maintainer review pending; actual validation evidence in records/M1-01.md and Draft PR",
+      "acceptance": "Implemented in merged PR #7; exact-head checks and evidence are recorded in docs/migration/records/M1-01.md",
       "number": 5
     }
   ],
@@ -43,16 +43,16 @@
     {
       "id": "M0-G01",
       "owner": "maintainer",
-      "state": "pending",
-      "unblock": "Explicit acceptance of PR #1; current work is on a dependent branch",
+      "state": "accepted",
+      "unblock": "Accepted through merged M0 PR #1",
       "evidence": "https://github.com/bynanci/storytelling/pull/1"
     },
     {
       "id": "PORT-G01",
       "owner": "maintainer",
-      "state": "pending",
-      "unblock": "Accept transfer planning PR #2; component policy separately approved",
-      "evidence": "https://github.com/bynanci/storytelling/pull/2"
+      "state": "accepted",
+      "unblock": "Accepted through merged migration map PR #2 and source-informed policy in M1-01 PR #7",
+      "evidence": "https://github.com/bynanci/storytelling/pull/2; https://github.com/bynanci/storytelling/pull/7"
     }
   ],
   "requirements": [
@@ -101,5 +101,27 @@
         "treats_missing_video_media_and_instruction_text_as_opaque_declarations"
       ]
     }
-  ]
+  ],
+  "status_checked_at": "2026-11-07",
+  "current_target_main": "610ed49673d6f554e539008b34f5fc5479b9dbc1",
+  "completed_pull_requests": [
+    {
+      "number": 1,
+      "head": "4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b",
+      "merge": "22279814ff6b147c386186569d7f77f3a803cf8b"
+    },
+    {
+      "number": 2,
+      "head": "95291d31c47601181070bf89a28b1a182ddf6ed8",
+      "merge": "9fb403be811643baf948acdb6d72232d4a6207bb"
+    },
+    {
+      "number": 7,
+      "head": "c2fb478c278550b682efba5f898082e8bcd20e24",
+      "merge": "610ed49673d6f554e539008b34f5fc5479b9dbc1"
+    }
+  ],
+  "next_milestone": "M1-02: finite OTIO compiler and explicit loss report; M1-03 requires actual FilmCraft roundtrip",
+  "tracking_issue_state": "closed",
+  "tracking_issue_evidence": "M1-01 completed and merged in PR #7; exact SHA and CI are in docs/migration/records/M1-01.md"
 }
