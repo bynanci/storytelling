@@ -99,13 +99,66 @@ Stable codes: `input.invalid_json`, `input.too_large`, `input.io`, `cli.usage`,
 `plan.too_many_items`. Diagnostic paths may be refined; callers should branch on
 codes, not prose or line/column messages.
 
-## Future public workflow (design only)
+## M3-01/P1 provisional review binding
 
-`observe -> propose -> compile -> preview -> approve -> executeApproved -> verify`.
-M0 has no approve/apply command, token, database or host adapter. Future contracts
-must distinguish StoryBrief, evidence, immutable proposal, compiled losses,
-approval and execution receipt. Approval must bind actual source identities,
-proposal/compiled-plan identity, host snapshot and accepted degradation choices.
+Implementation candidate for tracking [issue #27](https://github.com/bynanci/storytelling/issues/27);
+the schema, names and limits below are still subject to independent G2 review and maintainer
+acceptance. They do not close M3-R01/R02 or the broader issue.
+
+| Command / API | Inputs | Behavior |
+| --- | --- | --- |
+| `prepare-review <COMPOSITION|-> <CONTEXT_FILE>` / `prepare_review` | finite composition bytes ≤1 MiB, strict context ≤65,536 bytes | Imports and compiles OTIO from the same exact composition byte slice and declared losses; returns an untrusted portable review record |
+| `check-review <REVIEW_RECORD> <COMPOSITION|-> <CONTEXT_FILE>` / `check_review` | record ≤98,304 bytes, current composition ≤1 MiB, context ≤65,536 bytes | Validates the untrusted record, reimports/recompiles current bytes, reports sorted stale fields; matching means only declaration consistency |
+| `BoundReviewV1` | constructed only by `prepare_review` | In-process private result retaining the portable DTO and exact compiled OTIO bytes; no Serialize/Deserialize/Default or public unchecked constructor |
+
+Context v1 has exact fields `schema_version`, `project_id`, `target_revision`, `host`,
+`loss_choices`; host contains `id`, `version`, `profile_id`, `binary_sha256`, and
+`declared_capabilities`. Identifiers are 1–128 ASCII bytes matching
+`[A-Za-z0-9][A-Za-z0-9._-]*`; hashes are 64 lowercase hex characters. Capabilities are
+unique ASCII-sorted identifiers, maximum 64. Loss choices are the unique sorted subset of
+`metadata_only_locks` and `picture_only`. Unknown, duplicate, missing, null or malformed fields
+reject. Review JSON nesting is limited to 64; existing OTIO output cap is 4 MiB.
+
+Identity v1 contains exact raw `composition_sha256`; SHA-256 of serialized typed M0 plan,
+serialized OTIO document and complete OTIO loss report under separate versioned domains; engine
+crate/compiler version; selected OTIO profile; full context digest; and independently domain-
+separated context-field digests. The final binding digest commits to schema version plus the full
+identity under `storytelling.finite-otio-review-binding.v1`, with a big-endian u64 payload length.
+Composition digest covers exact caller-supplied bytes, so a trailing newline stales composition
+even when parsing produces the same artifact. It is not a canonicalized source identity. Context
+arrays must use canonical order; other semantic arrays retain their source/compiler order. JSON
+serialization here is this Rust versioned DTO encoding, not general JCS.
+
+The portable record is an untrusted DTO and is never authority. `scope` must be
+`declared-review-binding-only`; `executable`, `approval_granted`, `source_verified`, and
+`host_verified` must all be false. `check_review` recomputes the binding digest before comparing
+the current inputs. A stale record is a successful report (`ok:true`, exit 0, `current:false`);
+malformed or forged claims are domain errors (exit 1). Stable stale identifiers include
+`composition`, `plan`, `artifact`, `report`, `compiler_version`, `profile_id`, `context`,
+`context.project_id`, `context.target_revision`, `context.host.id`, `context.host.version`,
+`context.host.profile_id`, `context.host.binary_sha256`,
+`context.host.declared_capabilities`, and `context.loss_choices`.
+
+This design separates three guarantees:
+
+1. A mathematically valid signature only proves that a signature verifies under a supplied public
+   key for the exact signed message. A portable key/signature does not establish that the key is
+   trusted or currently authorized.
+2. Trusted signer authorization requires a separately governed trust-root/key registry and
+   authorization/revocation policy. This implementation has none and performs no signature check.
+3. Binding review to the actual compiled artifact requires rebuilding from the same immutable
+   input snapshot and comparing exact compiler output. This candidate does that for one supplied
+   finite composition byte slice and its OTIO export. It does not prove that those bytes came from a
+   verified build, host snapshot, trusted producer or planner proposal.
+
+There is no replay protection, request consumption, authoritative time, expiry/revocation state,
+filesystem identity/TOCTOU protection, host observation, execution, or publication. The host
+binary fingerprint and capability list are declarations only. Durable idempotency and late-response
+reconciliation remain M3-02; trusted grant/authorization and execution remain broader M3 work.
+See [the provisional CLI contract](CLI_GUIDE.md#7-建立與檢查有限審核識別) and
+[M3-01 continuation record](migration/records/M3-01-P1.md).
+
+## Future public workflow (design only)
 
 ## Merged PR #28 Approval Identity v1 candidate (not accepted)
 

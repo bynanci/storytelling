@@ -1,7 +1,8 @@
 <!-- SPDX-License-Identifier: MIT -->
 # CLI 使用指南
 
-本指南從 repository 根目錄執行，使用已接受的有限資料契約。各指令是不同的入口，
+本指南從 repository 根目錄執行，使用已接受契約及一個明確標為 provisional 的 M3-01/P1
+review-binding 候選契約。各指令是不同的入口，
 不是把前一個 stdout 直接交給下一個指令的通用 pipeline。格式與穩定錯誤碼見
 [契約索引](CONTRACTS.md)，實作進度見 [TASKS](../TASKS.md)。
 
@@ -16,7 +17,7 @@ cargo run --release --quiet --locked -p storytelling-cli -- --help
 ```
 
 產物在 `target/release/storytelling`；Windows 為 `storytelling.exe`。
-下方使用 `cargo run`，免去 shell 與執行檔副檔名差異。這六個 production 指令
+下方使用 `cargo run`，免去 shell 與執行檔副檔名差異。六個已接受的 production 指令
 不需要 Node、Python、FFmpeg 或 FilmCraft。來源比對、官方 OTIO oracle 與真實
 宿主測試另有 test-only 工具需求，見後段。
 
@@ -30,6 +31,8 @@ cargo run --release --quiet --locked -p storytelling-cli -- --help
 | `import-openfilm` | 有限 OpenFilm composition export JSON | declared visual plan 與原始事實／限制報告 |
 | `export-otio` | 同一個有限 composition export JSON | 可儲存的原生 OTIO Timeline JSON，附明確 loss 選擇 |
 | `verify-source` | 明確提供的 FILE／stdin bytes 與預期 SHA-256 | 該次提供的實際 bytes 符合預期 digest |
+| `prepare-review` | 有限 composition＋declared review context | Provisional same-input importer/OTIO identity record；不授予批准 |
+| `check-review` | 不可信 review record＋目前 composition/context | Provisional freshness/stale-field report；matching 僅表示宣告一致 |
 
 JSON 輸入最多 1 MiB；`verify-source` 的 bytes 最多 16 MiB。更細的 collection、
 metadata、diagnostic 和 output 預算由各自的 frozen contract 管理。
@@ -169,6 +172,68 @@ CLI 不回傳素材內容或實際不符的 digest。Rust API 的成功結果私
 來源換檔後的未來讀取仍需 filesystem identity／TOCTOU 契約。
 見 [supplied-buffer 契約](migration/FILMCRAFT_25_V1.md#native-supplied-buffer-contract)。
 
+## 7. 建立與檢查有限審核識別
+
+這兩個 M3-01/P1 指令是暫定、未接受的 declared-review-binding 切片。它們只接受有限
+OpenFilm composition export；review context 是呼叫者提供的 JSON 檔案。composition
+可用 `-` 從 stdin 讀取，context 與 review record 必須是明確檔案：
+
+```sh
+cargo run --release --quiet --locked -p storytelling-cli -- prepare-review tests/fixtures/openfilm/finite-v1/repeat-source.json review-context.json
+cargo run --release --quiet --locked -p storytelling-cli -- check-review review-record.json tests/fixtures/openfilm/finite-v1/repeat-source.json review-context.json
+```
+
+Context 的 schema version 為 1，必須提供完整欄位，不可增加未知欄位：
+
+```json
+{
+  "schema_version": 1,
+  "project_id": "project-1",
+  "target_revision": "new-isolated-project",
+  "host": {
+    "id": "filmcraft",
+    "version": "0.18.0",
+    "profile_id": "isolated25fps",
+    "binary_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "declared_capabilities": [
+      "arbitrary-content-tick-rate",
+      "external-reference",
+      "single-video-track",
+      "still-hold"
+    ]
+  },
+  "loss_choices": ["metadata_only_locks", "picture_only"]
+}
+```
+
+`project_id`、`target_revision`、host 的 ID/version/profile 均限 ASCII identifier；host
+SHA-256 必須是 64 個小寫十六進位字元。capabilities 依 ASCII 升冪排序且不可重複，最多
+64 個；loss choices 也須依固定 enum 名稱排序且不可重複。`prepare-review` 對同一組
+composition bytes/context 重編 importer plan、OTIO artifact 與完整 report，並輸出
+`scope:"declared-review-binding-only"`、identity hashes 和全為 false 的 authority/evidence
+flags。review record 不包含 context 明文或可重建的授權物件。
+
+`check-review` 把 record 當不可信 JSON，驗證它的 schema、flags、digest 格式與 binding
+digest，再以目前提供的 composition/context 重新編譯。有效且一致時 `current:true`；內容
+不同時仍以退出碼 0 回報 `current:false` 與排序後的 `stale_fields`（例如
+`composition`、`plan`、`artifact`、`report`、`context.project_id`）。這只表示傳入宣告與
+重新計算結果相符；record 可由任何人編造，SHA-256 也不提供簽章或來源信任。
+
+composition 上限 1 MiB，context 65,536 bytes，record 98,304 bytes，OTIO artifact 延用
+4 MiB 上限；review JSON 巢狀深度最多 64，identifier 最多 128 bytes。超限在解析／編譯
+前拒絕。錯誤採一般 JSON `error` envelope：`review.invalid_context_json`、
+`review.invalid_record_json`、`review.unsupported_version`、`review.invalid_claims`、
+`review.invalid_digest`、`review.record_digest_mismatch`、`review.json_too_deep`、
+`review.too_many`、`review.noncanonical_order`、`review.context_missing_capability`、
+`review.context_too_large` 或 `review.record_too_large`。錯誤不輸出本機路徑或輸入內容；
+usage 為退出碼 2、I/O 為 3、domain/格式/預算拒絕為 1。
+
+host ID、binary digest、revision 與 capabilities 都是 context 裡的宣告，沒有呼叫 host、
+檢查 binary、鎖定可信金鑰、驗證媒體或執行 freshness/revocation authority。identity 綁定
+的是明確提供的 composition bytes 與由這些 bytes 編譯出的 OTIO，不包括另一個 planner
+proposal 的編譯橋接，也沒有授權、抗重放或執行保證。此切片在 G2 再審查及接受前維持
+暫定狀態；詳見 [M3-01 審查契約](CONTRACTS.md#m3-01-p1-provisional-review-binding)。
+
 ## 回應、退出碼與檔案處理
 
 | 退出碼 | 呼叫者應如何理解 |
@@ -182,7 +247,7 @@ CLI 不回傳素材內容或實際不符的 digest。Rust API 的成功結果私
 完整 JSON。CLI 可讀取明確本機檔案並解析指向 regular file 的 symlink，
 不是 server path broker 或 OS sandbox。路徑、檔名與檔內文字都不授予新權限。
 
-這六個入口沒有通用的 approve／apply／render 指令。即使 Brief 沒有衝突、
+這些入口沒有通用的 approve／apply／render 指令。即使 Brief 沒有衝突、
 bytes digest 相符且 OTIO 可解析，正式 executor／批准／恢復與人工驗收仍有各自門檻。
 
 ## 重播來源與官方格式驗證

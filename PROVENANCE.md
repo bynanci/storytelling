@@ -105,3 +105,18 @@ MIT and applicable source notices are unchanged. Independent CI/status/delivery
 documentation retains MIT. No upstream tests/code/media or new production package
 is copied or installed; [actual test-only Node/npm closure](docs/migration/dependency-evidence-m2-03.json)
 records external tools and the reused integrity lock.
+
+## M3-01/P1 provisional finite-OTIO review binding
+
+The [per-file inventory](docs/migration/provenance-m3-01-p1.json) records source repository SHA,
+source path/blob identities, modifications and component license for every new or extended Apache
+module/test. The original MIT LICENSE and retained OpenFilm license/NOTICE remain unchanged. The
+new review DTOs, binding engine and synthetic regressions are independently authored under the
+previously approved Apache-2.0 component policy; no upstream implementation, test, fixture or media
+was copied. CLI/module wiring and independent usage/contract/status documentation are classified
+MIT. The existing `sha2` dependency is reused and no production dependency is added.
+
+This provisional component makes no signer trust, grant issuance, host observation, replay safety,
+source verification or execution claim. It reuses the existing synthetic finite-v1 composition
+fixture. G2 contract/code review, exact-head hosted dependency audit, cross-platform CI and
+maintainer acceptance are pending; this record does not close issue #27.

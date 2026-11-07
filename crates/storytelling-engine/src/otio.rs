@@ -12,7 +12,7 @@ use storytelling_core::compiled_plan::{
     OtioProfileV1,
 };
 
-const MAX_OUTPUT_BYTES: usize = 4_194_304;
+pub const MAX_OTIO_OUTPUT_BYTES: usize = 4_194_304;
 
 #[derive(Debug, Serialize)]
 pub struct CompiledOtioV1 {
@@ -135,7 +135,7 @@ pub fn export_openfilm_otio(
         }
     });
     let mut output_bytes = serialized_size(&document)?;
-    if output_bytes > MAX_OUTPUT_BYTES {
+    if output_bytes > MAX_OTIO_OUTPUT_BYTES {
         return Err(error("otio.output_too_large", "$"));
     }
     let children = document["tracks"]["children"][0]["children"]
@@ -158,11 +158,11 @@ pub fn export_openfilm_otio(
         output_bytes = output_bytes
             .checked_add(serialized_size(&clip)?)
             .and_then(|size| size.checked_add(usize::from(index > 0)))
-            .filter(|size| *size <= MAX_OUTPUT_BYTES)
+            .filter(|size| *size <= MAX_OTIO_OUTPUT_BYTES)
             .ok_or_else(|| error("otio.output_too_large", "$"))?;
         children.push(clip);
     }
-    if serialized_size(&document)? > MAX_OUTPUT_BYTES {
+    if serialized_size(&document)? > MAX_OTIO_OUTPUT_BYTES {
         return Err(error("otio.output_too_large", "$"));
     }
     Ok(CompiledOtioV1 { document, report })

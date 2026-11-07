@@ -6,6 +6,11 @@ use sha2::{Digest, Sha256};
 
 pub const MAX_VERIFIED_BUFFER_BYTES: usize = 16_777_216;
 
+/// Hashes bytes already held in memory. This reports no source or authority claim.
+pub fn sha256_digest(bytes: &[u8]) -> [u8; 32] {
+    Sha256::digest(bytes).into()
+}
+
 #[derive(Serialize)]
 /// An owned, immutable buffer whose supplied expected SHA-256 matched.
 /// Serialization exports a report, never bytes or a reusable trust token.
@@ -60,7 +65,7 @@ pub fn verify_supplied_sha256(
             "$.expected_sha256",
         ));
     }
-    let digest = Sha256::digest(bytes);
+    let digest = sha256_digest(bytes);
     let sha256: String = digest
         .iter()
         .flat_map(|byte| {

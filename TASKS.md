@@ -232,28 +232,28 @@ This is synthetic selected-domain differential evidence. Fractional optional
 budgets, full solver behavior, live Catalog authority, host execution and human
 editorial acceptance remain separate. The runner opens no user project.
 
-## Prepared next slice: M3-01/P1
+## M3-01/P1 finite-OTIO review binding — provisional implementation
 
-[Tracking #27](https://github.com/bynanci/storytelling/issues/27) and
-[source/readiness scope](docs/migration/M3-01-NEXT.md) prepare immutable finite-OTIO
-review identity and declared-context freshness. The proposed
-[G2 review packet](docs/migration/M3-01-G2-REVIEW-PACKET.md) distinguishes
-signature validity, signer authorization and same-input compilation linkage, and
-specifies a concrete contract/test proposal. The source map has 15 actual blob
-identities; proposed M3-RB01–RB07, wire/CLI names and budgets still need independent
-G2 freezing and functional RED before implementation. No code or passing M3 test
-is claimed. Draft [PR #31](https://github.com/bynanci/storytelling/pull/31) contains
-this documentation-only proposal; it does not complete an Issue #27 checklist
-item. Use the existing importer/compiler input because the planner→OTIO
-bridge is absent; matching hashes/context never grant human approval. Merged
-candidate [PR #28](https://github.com/bynanci/storytelling/pull/28) implements
-separate M3-A01–A03 scope and remains unaccepted pending independent G2 review.
-Its final head `2d23b21dcfbfc49c3d76087f054cc76724c23053` merged as `5a5702ba4c1392d763929f89da3cf7d16d5f13f4` after both exact-head runs passed all
-six jobs; the main merge run also passed all six gates. Cargo Audit scanned 40
-locked packages against 1,422 advisories with no findings. The PR body and
-validation record retain the precise run and lockfile identities. This candidate
-does not complete canonical M3-01/P1. Full M3-01 approval
-issuance, M3-02 durability and M3-03 execution remain open.
+[Tracking #27](https://github.com/bynanci/storytelling/issues/27) owns immutable finite-OTIO
+review identity and declared-context freshness. The initial readiness audit and source map remain
+in [M3-01-NEXT](docs/migration/M3-01-NEXT.md). The user authorized a provisional implementation
+while independent G2 review remains pending; M3-RB01–RB07 and the wire/CLI budgets are therefore
+implementation-candidate details, not accepted/frozen product contracts.
+
+- [x] Functional RED recorded: tests initially failed to compile because the review API did not exist.
+- [x] Provisional engine binding and read-only `prepare-review` / `check-review` CLI implemented with synthetic regression tests.
+- [x] CLI, contract, requirements, provenance, validation record and work index documentation added.
+- [x] Full workspace debug/release tests, clippy, rustdoc and repository guard verification passed locally.
+- [ ] Exact-head hosted Linux / Windows / macOS and dependency-audit checks.
+- [ ] Independent G2 code/security review and maintainer acceptance.
+- [ ] Resolve review comments, update register/issue checklist only after accepted verification.
+
+The candidate recompiles importer plan and OTIO from the same exact composition bytes. It does not
+bridge fixed-window planner output into OTIO, verify that the input came from a trusted build, inspect
+the declared host/binary, authorize a signer, issue approval, prevent replay, or execute a host edit.
+PR #28's separate cryptographic candidate and PR #31's G2 contract packet remain distinct; neither
+is silently treated as acceptance of this binding. Full trusted approval, M3-02 durability and M3-03
+execution remain open.
 
 ## Not in the current backlog
 

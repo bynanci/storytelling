@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "task": "M3-01/P1",
+  "tracking_issue": "https://github.com/bynanci/storytelling/issues/27",
+  "state": "implementation-candidate",
+  "acceptance_state": "pending-independent-g2-and-maintainer-acceptance",
+  "base": "1d8d0e3652aa2afe77375550876639b726928eba",
+  "scope": "finite-openfilm-composition-to-otio-declared-review-binding",
+  "implementation_branch": "codex/m3-01-finite-review-binding-20261107",
+  "draft_pr": "pending-creation",
+  "tasks": [
+    {
+      "id": "M3-01/P1-contract",
+      "state": "provisional-candidate",
+      "depends_on": [],
+      "acceptance": "Independent G2 review freezes schema, digest framing, limits and error contract; not yet complete"
+    },
+    {
+      "id": "M3-01/P1-implementation",
+      "state": "implemented-provisionally",
+      "depends_on": [
+        "M3-01/P1-contract"
+      ],
+      "acceptance": "Same-byte importer/compiler binding, strict declared context, immutable in-process type and read-only freshness CLI; provisional implementation is ready for review"
+    },
+    {
+      "id": "M3-01/P1-verification",
+      "state": "pending-hosted-and-independent-review",
+      "depends_on": [
+        "M3-01/P1-implementation"
+      ],
+      "acceptance": "Full workspace debug/release/docs/guard, exact-head Linux/Windows/macOS and dependency audit, independent G2 code/security review and maintainer acceptance"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M3-RB01",
+      "tests": [
+        "same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact",
+        "semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding"
+      ],
+      "verification_paths": [
+        "crates/storytelling-engine/src/review_binding.rs",
+        "crates/storytelling-engine/tests/review_binding.rs"
+      ]
+    },
+    {
+      "id": "M3-RB02",
+      "tests": [
+        "changed_composition_and_each_declared_context_field_are_reported_stale",
+        "semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding"
+      ],
+      "verification_paths": [
+        "crates/storytelling-engine/tests/review_binding.rs"
+      ]
+    },
+    {
+      "id": "M3-RB03",
+      "tests": [
+        "context_parser_rejects_unknown_duplicate_unsorted_and_over_budget_values",
+        "json_depth_scanner_accepts_exact_limit_and_ignores_string_contents",
+        "json_depth_and_record_byte_budgets_are_enforced_before_deserialization",
+        "exact_context_and_record_byte_limits_are_accepted",
+        "capability_collection_accepts_exact_limit_and_rejects_limit_plus_one",
+        "context_must_declare_compiler_required_capabilities_and_record_digest_is_checked"
+      ],
+      "verification_paths": [
+        "crates/storytelling-core/src/review.rs",
+        "crates/storytelling-engine/tests/review_binding.rs"
+      ]
+    },
+    {
+      "id": "M3-RB04",
+      "tests": [
+        "same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact"
+      ],
+      "verification_paths": [
+        "crates/storytelling-engine/src/review_binding.rs"
+      ]
+    },
+    {
+      "id": "M3-RB05",
+      "tests": [
+        "review_record_rejects_unknown_duplicate_forged_claims_and_invalid_digests",
+        "same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact"
+      ],
+      "verification_paths": [
+        "crates/storytelling-engine/tests/review_binding.rs"
+      ]
+    },
+    {
+      "id": "M3-RB06",
+      "tests": [
+        "changed_composition_and_each_declared_context_field_are_reported_stale",
+        "every_declared_context_field_has_a_stable_stale_identifier",
+        "semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding"
+      ],
+      "verification_paths": [
+        "crates/storytelling-engine/tests/review_binding.rs"
+      ]
+    },
+    {
+      "id": "M3-RB07",
+      "tests": [
+        "prepare_and_check_are_read_only_and_stale_is_a_successful_report",
+        "prepare_review_reads_composition_from_stdin_but_context_remains_an_explicit_file",
+        "review_commands_keep_usage_and_io_errors_distinct_and_path_free"
+      ],
+      "verification_paths": [
+        "crates/storytelling-cli/src/main.rs",
+        "crates/storytelling-cli/tests/review_cli.rs"
+      ]
+    }
+  ],
+  "local_evidence": {
+    "functional_red": "cargo test -p storytelling-engine --test review_binding --locked failed before implementation: review module and APIs were unresolved",
+    "green": [
+      "cargo fmt --all",
+      "cargo clippy --workspace --all-targets --locked -- -D warnings",
+      "cargo test --workspace --locked",
+      "cargo test --workspace --release --locked",
+      "RUSTDOCFLAGS=-D warnings cargo doc --workspace --no-deps --locked",
+      "python3 scripts/check_repo.py",
+      "git diff --check"
+    ],
+    "coverage": "Workspace debug/release tests passed, including 1 engine depth-scanner unit test, 10 engine integration tests, 3 CLI integration tests and 4 compile-fail BoundReviewV1 doctests",
+    "base_limitation": "Local base predates latest remote main and PR #28 merge; exact-base compatibility must be established by hosted checks on the stacked PR"
+  },
+  "not_completed": [
+    "independent G2 contract/code review and maintainer acceptance",
+    "hosted dependency security audit",
+    "exact-head Linux, Windows and macOS CI",
+    "planner-to-composition/OTIO bridge",
+    "trusted signer/key authorization, expiry/revocation, replay consumption",
+    "filesystem identity/TOCTOU, host observation, execution and publication",
+    "issue #27 completion checkboxes"
+  ]
+}

@@ -17,25 +17,26 @@ against 1,422 advisories with no findings. This does not complete canonical
 M3-01/P1. This readiness proposal uses distinct M3-RB01–RB07 IDs; evaluate
 compilation linkage and freeze that contract only after independent review.
 
-## Observed state and readiness
+## 2026-11-07 implementation continuation
 
-- At initial inspection target checkout `/workspace/storytelling-shadow` was clean at
-  `4bf888949107a21b560b09222175ff1f25118a3b` (M2-03 Draft PR #26 candidate),
-  parent `073b5a415324d588019e2155dcf24ddddd860adf`. CI was reported pending at that inspection; this audit made no remote status
-  query. Implementation must start on fresh main after #26 and its lifecycle
-  documentation, using the later observed acceptance in the M2-03 record.
-- Later status showed concurrent parent lifecycle-document edits in that checkout;
-  this audit changed none of them. The target SHA above is an inspection identity,
-  not a claim about the final accepted main.
-- Source checkout `/workspace/open-film-oracle` is clean and pinned to
-  `7add4762fe8174d76f43b863375ea39b73121e76`. Source drift/main was not fetched here.
-- M1-03 supplies real SHA2, private `VerifiedBufferV1`, and one historical actual
-  FilmCraft profile proof. M2-02 supplies a fixed-window proposal. No production
-  approval authority, canonical identity API, journal or host executor exists.
-- Ready without another human decision: a pure bounded review-binding contract,
-  exact artifact identity, stale-context diagnostics, read-only CLI and source
-  differential fixtures. Existing user authority covers this development and
-  verified merges. It does not constitute human approval of a future edit.
+After the separate G2 review packet was prepared, the maintainer authorized a provisional
+implementation candidate on an isolated branch. The candidate now adds same-byte finite importer /
+OTIO binding, strict declared context, read-only freshness checks, CLI commands and synthetic tests;
+see [M3-01/P1 validation record](records/M3-01-P1.md), [provisional contract](../CONTRACTS.md#m3-01-p1-provisional-review-binding),
+and [work index](m3-01-p1-work-index.json). The implementation uses existing source SHA-256 and
+adds no production dependency. The first local RED preceded implementation; its baseline was the
+available local commit `1d8d0e3652aa2afe77375550876639b726928eba`, which predates the latest remote
+main/merged approval candidate. Exact-base compatibility and multi-platform behavior therefore
+require hosted checks on the stacked implementation PR.
+
+The candidate preserves all four authority/evidence flags as false. The serialized record is
+untrusted, has no signature/trust-key/revocation/replay semantics, and its context does not observe
+the host. G2 has not frozen or accepted these provisional names, field encoding or budgets. The
+planner→OTIO bridge remains absent, so binding covers only composition bytes passed directly to both
+importer and compiler. No issue acceptance checkbox or completion state is claimed; the tracking
+issue remains open until same-head hosted evidence, independent G2 review and maintainer acceptance.
+
+## Observed state and readiness
 
 ## Recommended single PR boundary
 
