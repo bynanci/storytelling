@@ -126,11 +126,13 @@ with the repository-pinned Rust 1.85.0 and locked dependencies. No new hosted CI
 paired M3 runtime oracle or host/media test was run. Existing frozen/live lanes
 were not rerun locally for this documentation-only correction.
 
-Publishing the six evidence files through GitHub create_tree was denied by
-automatic approval review. After checking the original user instruction and
-confirming the connected user owns bynanci/storytelling with push/admin rights,
-one retry was also denied: the reviewer still required explicit authorization
-for the external write of task-derived documents to the public repository.
-No remote tree/commit/branch/PR or issue edit was made. Local changes remain on
-codex/issue27-evidence-audit-20261108. Do not bypass the denial with git push or
-another upload route. Issue #27's remote checkbox is therefore not yet corrected.
+The initial attempt to publish the six evidence files through GitHub create_tree
+was denied by automatic approval review. A retry was also denied because the
+external write to the public repository still required explicit authorization.
+The user later explicitly authorized publishing these six files and opening a
+Draft PR. That authorization resolved the publication block: the files were
+published on PR #39 at head `d96a2a3fab35389214be20d5884006a928619e3a` and its
+hosted checks passed. The earlier denial is retained as historical evidence; it
+does not block this scoped documentation change. No Issue #27 checklist update
+was made by this PR, and the remaining source-oracle/profile and independent
+review evidence stays open.
