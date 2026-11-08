@@ -9,7 +9,7 @@
     {
       "id": "M2-O1-01",
       "depends_on": [],
-      "state": "implemented",
+      "state": "accepted",
       "scope": "Private heap scheduler and exhaustive equivalence regressions"
     },
     {
@@ -17,7 +17,7 @@
       "depends_on": [
         "M2-O1-01"
       ],
-      "state": "implemented",
+      "state": "accepted",
       "scope": "Manual informational release benchmark and source/provenance records"
     },
     {
@@ -25,7 +25,7 @@
       "depends_on": [
         "M2-O1-02"
       ],
-      "state": "locally-verified",
+      "state": "accepted",
       "scope": "Full local/hosted gates; final delivery lifecycle is tracked by GitHub issue33"
     }
   ],
@@ -62,7 +62,7 @@
     }
   ],
   "lifecycle_source": "https://github.com/bynanci/storytelling/issues/33",
-  "lifecycle_note": "This versioned implementation/verification snapshot does not infer future merge or independent review. Final head/run/merge is recorded in the associated PR and issue.",
+  "lifecycle_note": "Original local evidence retained; accepted delivery now reconciled below from actual PR/issue metadata.",
   "not_claimed": [
     "Independent G2 review of M3 PR31/32",
     "Full OpenFilm solver parity",
@@ -78,5 +78,22 @@
     "shadow_regressions": 40,
     "live_pairs": 64,
     "unclassified_pairs": 0
+  },
+  "accepted_lifecycle": {
+    "feature_pull_request": 34,
+    "accepted_head": "5bbc3a0e867a90e3f8829c3cf7ab6b2c3961b3b0",
+    "merge_commit": "f07ab6940484ef8b8e4f2bdb37b96893e9f92270",
+    "merged_at": "2026-11-08T01:37:08Z",
+    "head_workflow_runs": [
+      42434851833,
+      42434822453
+    ],
+    "head_jobs_passed": 12,
+    "main_workflow_run": 42435022548,
+    "main_jobs_passed": 6,
+    "issue": 33,
+    "issue_state": "closed-completed-four-items-checked",
+    "review": "self-review; existing G2 profile retained",
+    "authority": "standing user verified-merge authority; no release"
   }
 }

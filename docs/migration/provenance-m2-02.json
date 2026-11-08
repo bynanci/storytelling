@@ -78,7 +78,7 @@
         "packages/story/src/index.ts",
         "packages/story/src/story-planner.ts"
       ],
-      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied; 2026-11-08: private heap-order delegation and full-report admission-priority regression; see M2-ORDER-OPT record"
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied; 2026-11-08: private heap-order delegation and full-report admission-priority regression; see M2-ORDER-OPT record; 2026-11-08 M2-02/O2: register clock regressions and public full-LCM error-priority regression"
     },
     {
       "path": "crates/storytelling-engine/src/planner/clock.rs",
@@ -92,7 +92,7 @@
         "packages/story/src/index.ts",
         "packages/story/src/story-planner.ts"
       ],
-      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied"
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied; 2026-11-08 M2-02/O2: cached denominator/scaled ticks and error-only diagnostic formatting, preserving the accepted exact arithmetic and error order"
     },
     {
       "path": "crates/storytelling-engine/tests/planner.rs",
@@ -106,7 +106,7 @@
         "packages/story/src/index.ts",
         "packages/story/src/story-planner.ts"
       ],
-      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied; 2026-11-08: private heap-order delegation and full-report admission-priority regression; see M2-ORDER-OPT record"
+      "modifications": "New downstream fixed source-window schema, exact bounded clock, required-first deterministic selection/order and explicit limited parity; no upstream implementation copied; 2026-11-08: private heap-order delegation and full-report admission-priority regression; see M2-ORDER-OPT record; 2026-11-08 M2-02/O2: register clock regressions and public full-LCM error-priority regression"
     },
     {
       "path": "tests/fixtures/planner-v1/README.md",

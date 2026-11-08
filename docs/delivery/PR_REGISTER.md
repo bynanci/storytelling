@@ -171,3 +171,19 @@ PR #32's six jobs passed in run 42427010497 and no review thread exists.
 Issue #27 remains open. A separate scheduling optimisation of the accepted
 M2-02 contract is tracked by [#33](https://github.com/bynanci/storytelling/issues/33);
 its final CI/merge metadata belongs to that issue and its associated PR.
+
+
+## Accepted ordering optimisation — 2026-11-08 reconciliation
+
+PR [#34](https://github.com/bynanci/storytelling/pull/34) merged accepted head
+`5bbc3a0e867a90e3f8829c3cf7ab6b2c3961b3b0` as
+`f07ab6940484ef8b8e4f2bdb37b96893e9f92270` at 01:37:08 UTC.
+Head runs 42434851833/42434822453 passed all 12 jobs, and main run 42435022548
+passed all six; the file trees match. Issue #33 is fully checked and closed
+completed. The scope preserves the accepted fixed-window profile and received
+self-review under user merge authority. No release or M3 G2 grant is implied.
+
+At the 04:21 UTC continuation, PRs #31/#32 still have no submitted review and
+remain Draft. A separate cached-clock follow-up is tracked in
+[issue #35](https://github.com/bynanci/storytelling/issues/35); its final hosted
+checks/merge belong to that issue and its associated PR.

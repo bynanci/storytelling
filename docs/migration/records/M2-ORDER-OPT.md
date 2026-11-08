@@ -128,3 +128,14 @@ with no submitted review; #32 has no review threads and its current six hosted
 jobs passed. They still require independent G2 disposition of the contract and
 static-source comparison. They are not eligible to merge solely because CI is
 green. Issue #27 stays open; this task does not grant G2 approval or complete it.
+
+
+## Accepted delivery reconciliation — 2026-11-08
+
+PR [#34](https://github.com/bynanci/storytelling/pull/34), head
+`5bbc3a0e867a90e3f8829c3cf7ab6b2c3961b3b0`, merged as
+`f07ab6940484ef8b8e4f2bdb37b96893e9f92270` at 01:37:08 UTC. Head runs
+42434851833/42434822453 passed all twelve jobs; main run 42435022548 passed all six.
+The merged file tree equals the accepted head tree. Issue #33 has all four items
+checked and is closed completed. Scope is the private scheduler optimisation
+under standing user authority and self-review; M3 G2 and release remain separate.
