@@ -184,7 +184,9 @@ G2 review is pending. Implementation and verification evidence are in the
 
 This implementation candidate follows the separately prepared [M3-01 contract and source map](migration/M3-01-NEXT.md)
 and is tracked by [issue #27](https://github.com/bynanci/storytelling/issues/27). M3-RB01–RB07
-are provisional identifiers pending independent G2 review and acceptance. The current candidate
+remain implementation-candidate identifiers. The user reported review complete and requested
+merge on 2026-11-08; that is recorded as maintainer merge authority, without inventing a
+GitHub approval or independent-review artifact. The current candidate
 only binds a caller-provided composition byte slice to an importer plan, its OTIO serialization,
 the complete OTIO report and declared context; it does not implement trusted approval.
 
@@ -206,8 +208,9 @@ connect the fixed-window planner to OTIO. Hosted dependency audit, three-platfor
 all existing repository regression/oracle lanes and the six exact-head hosted gates have passed for
 PR #32 head `2e7662405a49698be1ebee2136f54ab539ef7c2e` (run 42425697537). An upstream TypeScript
 runtime pairing was not run; the source comparison is static and source-informed. Independent G2
-review and maintainer acceptance remain required before this provisional slice can be checked
-complete. See the [M3-01 work index](migration/m3-01-p1-work-index.json).
+review artifacts and explicit source-oracle disposition remain separately traceable before
+all Issue #27 acceptance items can be checked complete. The user's later review-complete/merge
+instruction authorises this bounded integration after current-head verification. See the [M3-01 work index](migration/m3-01-p1-work-index.json).
 
 ## Remaining breadth and future requirements
 

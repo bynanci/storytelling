@@ -142,4 +142,7 @@ source verification or execution claim. It reuses the existing synthetic finite-
 fixture. Exact-head hosted Linux, Windows, macOS, Required, Quality and Dependency Audit checks
 passed for PR #32 head `2e7662405a49698be1ebee2136f54ab539ef7c2e` in run
 [42425697537](https://github.com/bynanci/storytelling/actions/runs/42425697537). Independent G2
-contract/code review and maintainer acceptance remain pending; this record does not close issue #27.
+review artifacts and source-oracle disposition remain separately traceable. On 2026-11-08 the user
+reported review complete and explicitly requested merging; that instruction is recorded as
+maintainer merge authority, not a fabricated independent-review artifact. This record does not
+close the remaining Issue #27 acceptance evidence.

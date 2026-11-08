@@ -2,34 +2,33 @@
   "schema_version": 1,
   "task": "M3-01/P1",
   "tracking_issue": "https://github.com/bynanci/storytelling/issues/27",
-  "state": "implementation-candidate",
-  "acceptance_state": "pending-independent-g2-and-maintainer-acceptance",
+  "state": "maintainer-authorised-integration",
+  "acceptance_state": "user-reported-review-complete; remaining source-oracle and independent-review evidence tracked in issue27",
   "base": "1d8d0e3652aa2afe77375550876639b726928eba",
   "scope": "finite-openfilm-composition-to-otio-declared-review-binding",
   "implementation_branch": "codex/m3-01-finite-review-binding-20261107",
-  "draft_pr": "https://github.com/bynanci/storytelling/pull/32",
   "tasks": [
     {
       "id": "M3-01/P1-contract",
-      "state": "provisional-candidate",
+      "state": "maintainer-reported-review-complete",
       "depends_on": [],
-      "acceptance": "Independent G2 review freezes schema, digest framing, limits and error contract; not yet complete"
+      "acceptance": "User explicitly reports review complete and requests merge; no GitHub review submission or independent reviewer artifact is fabricated"
     },
     {
       "id": "M3-01/P1-implementation",
-      "state": "implemented-provisionally",
+      "state": "implemented-and-locally-verified",
       "depends_on": [
         "M3-01/P1-contract"
       ],
-      "acceptance": "Same-byte importer/compiler binding, strict declared context, immutable in-process type and read-only freshness CLI; provisional implementation is ready for review"
+      "acceptance": "Same-byte binding and immutable/read-only interfaces verified on refreshed main; original M3 Rust code/test blobs unchanged by synchronization"
     },
     {
       "id": "M3-01/P1-verification",
-      "state": "hosted-passed-pending-independent-review",
+      "state": "refreshed-local-passed-hosted-pending",
       "depends_on": [
         "M3-01/P1-implementation"
       ],
-      "acceptance": "Full workspace debug/release/docs/guard and all six exact-head hosted checks passed; independent G2 code/security review and maintainer acceptance remain pending"
+      "acceptance": "217 tests passed in debug/release with warnings-denied clippy/rustdoc and repository guard; final exact-head CI recorded after observation"
     }
   ],
   "requirements": [
@@ -131,11 +130,31 @@
     "base_limitation": "Local base predates latest remote main and PR #28 merge; exact-base compatibility is covered by the listed hosted run"
   },
   "not_completed": [
-    "independent G2 contract/code review and maintainer acceptance",
-    "independent G2 acceptance of the static source-informed comparison; no upstream TypeScript paired runtime was run",
+    "paired upstream TypeScript review runtime oracle or explicit recorded disposition of the static oracle requirement",
+    "independent review artifact (user review-complete statement is recorded separately)",
     "planner-to-composition/OTIO bridge",
     "trusted signer/key authorization, expiry/revocation, replay consumption",
     "filesystem identity/TOCTOU, host observation, execution and publication",
-    "issue #27 completion checkboxes"
-  ]
+    "full issue27 acceptance; verified scoped checklist entries are reconciled after integration"
+  ],
+  "integration_base": "baa97903e3d3c02e2eb2747140d62f1ddca3c60c",
+  "original_candidate_head": "1a281aa93a73026d24f9305ea46a6fe91e204299",
+  "pull_request": "https://github.com/bynanci/storytelling/pull/32",
+  "published_as_draft": true,
+  "review_instruction": {
+    "date": "2026-11-08",
+    "source": "user task conversation",
+    "text": "\u5be9\u67e5\u5b8c\u7562 merge",
+    "github_review_submissions": 0,
+    "technical_review": "assistant self-review within declared-input scope; no blocking correctness defect found"
+  },
+  "refreshed_local_verification": {
+    "code_integration_head": "0f5635bb5ca779e76a23d2596f51770abb307f7c",
+    "debug_tests_passed": 217,
+    "release_tests_passed": 217,
+    "ignored_informational_benchmarks": 2,
+    "clippy_warnings_denied": true,
+    "rustdoc_warnings_denied": true,
+    "guard_passed": true
+  }
 }

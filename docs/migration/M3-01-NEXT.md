@@ -17,6 +17,18 @@ against 1,422 advisories with no findings. This does not complete canonical
 M3-01/P1. This readiness proposal uses distinct M3-RB01–RB07 IDs; evaluate
 compilation linkage and freeze that contract only after independent review.
 
+## 2026-11-08 maintainer merge instruction
+
+The later user statement “審查完畢 merge” explicitly authorises integrating
+PRs #31/#32 after current-main technical checks. It supersedes earlier merge holds
+for this bounded integration; the older proposal/candidate observations below
+remain historical. The instruction is recorded as maintainer-reported review
+completion, without creating a GitHub review submission, independent reviewer
+identity, runtime oracle result or trusted editorial approval. PR #31 has merged
+as baa97903e3d3c02e2eb2747140d62f1ddca3c60c; PR #32 is being refreshed on that
+baseline. Source comparison stays static and Issue #27's remaining evidence
+is reconciled separately. See [merge review](records/M3-01-MERGE-REVIEW-2026-11-08.md).
+
 ## 2026-11-07 implementation continuation
 
 After the separate G2 review packet was prepared, the maintainer authorized a provisional

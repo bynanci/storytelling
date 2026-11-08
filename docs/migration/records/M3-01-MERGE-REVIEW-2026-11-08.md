@@ -45,3 +45,11 @@ work; full acceptance/source-comparison evidence remains separately traceable.
 
 Local and hosted refreshed results and actual merge identities are appended after
 observation. Existing historical head/run/source records remain intact.
+
+
+Local refreshed integration validation passed format, warnings-denied clippy,
+217 debug tests, 217 release tests, warnings-denied rustdoc, repository/provenance
+guard and whitespace checks. PR #31 refreshed head 937cf5a passed all 12 jobs
+in runs 42449119799/42449115934 and merged as baa97903e3d3c02e2eb2747140d62f1ddca3c60c
+at 2026-11-08T05:04:52Z. Its main run 42449339199 succeeded. PR #32 final head
+and frozen/live/hosted results are recorded only after observation.
