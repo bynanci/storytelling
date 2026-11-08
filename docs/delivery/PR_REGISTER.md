@@ -220,3 +220,23 @@ The accepted head and merge file trees match. Issue #35 is fully checked and
 closed completed. The scope retains the accepted fixed-window time/error
 contract and was self-reviewed under user authority. M3 PRs #31/#32 remain
 Draft candidates pending independent G2; no release was published.
+
+
+## M3 contract/candidate integration — 2026-11-08 05:12 UTC
+
+The user reported “審查完畢 merge” and explicitly requested integrating the
+remaining PRs. Both are now merged after current-main conflict resolution and
+new head checks; original M3 Rust code/test blobs were retained.
+
+| PR | Refreshed head | Merge | Head runs / main run |
+| --- | --- | --- | --- |
+| [#31](https://github.com/bynanci/storytelling/pull/31) | 937cf5a1db61d1bccb401241c8d3001bc02e49f5 | baa97903e3d3c02e2eb2747140d62f1ddca3c60c | 42449119799, 42449115934 / 42449339199 |
+| [#32](https://github.com/bynanci/storytelling/pull/32) | 58b536d0bc597b43c7f5a1eb87eef922cfadd062 | 3d121398e2c14c4a43d101a5b9a55a4616a81174 | 42449548994, 42449545432 / 42449705252 |
+
+Each refreshed head passed all twelve jobs across two runs, and each merge
+passed all six main jobs. Head/merge file trees match. GitHub review submissions
+and threads were empty at inspection; the task-conversation statement is the
+recorded maintainer authority, without inventing independent review artifacts.
+Issue #27 checks delivered items 2/3/6 and remains open for 1/4/5 evidence. The
+M3 review-source comparison is static. No trusted editorial approval, host
+execution, full M3 acceptance or release is asserted by this integration.

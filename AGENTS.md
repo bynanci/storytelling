@@ -24,8 +24,12 @@ M2-02 fixed-window planner is accepted via PR #22; read its
 [profile](docs/migration/FIXED_WINDOW_PLANNER_V1.md) before planner changes.
 M2-03 selected-domain live shadow is accepted via PR #26; read its
 [profile](docs/migration/PLANNER_SHADOW_V1.md) and [record](docs/migration/records/M2-03.md).
-Next: M3-01/P1 proposed [review identity/freshness scope](docs/migration/M3-01-NEXT.md),
-tracking #27; freeze its G2 contract before implementation. Full solver, host execution and human acceptance remain separate.
+M3-01/P1 bounded review-binding code and CLI are integrated via PR #32 following
+the user's 2026-11-08 review-complete/merge instruction. Read the
+[scope and remaining evidence](docs/migration/M3-01-NEXT.md) and tracking #27.
+Next: resolve the remaining source-oracle/profile review evidence; do not repeat
+the delivered candidate or invent independent review artifacts. Full solver,
+trusted approval, host execution and human editorial acceptance remain separate.
 A test-first scaffold commit exists in history intentionally; it is not a release.
 
 For the 2026-11-07 continuation, the user explicitly authorized merging completed,

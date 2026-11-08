@@ -2,8 +2,8 @@
   "schema_version": 1,
   "task": "M3-01/P1",
   "tracking_issue": "https://github.com/bynanci/storytelling/issues/27",
-  "state": "maintainer-authorised-integration",
-  "acceptance_state": "user-reported-review-complete; remaining source-oracle and independent-review evidence tracked in issue27",
+  "state": "merged-bounded-integration",
+  "acceptance_state": "maintainer-authorised integration complete; full issue27 source-oracle/profile review evidence remains open",
   "base": "1d8d0e3652aa2afe77375550876639b726928eba",
   "scope": "finite-openfilm-composition-to-otio-declared-review-binding",
   "implementation_branch": "codex/m3-01-finite-review-binding-20261107",
@@ -16,7 +16,7 @@
     },
     {
       "id": "M3-01/P1-implementation",
-      "state": "implemented-and-locally-verified",
+      "state": "integrated-and-automated-verified",
       "depends_on": [
         "M3-01/P1-contract"
       ],
@@ -24,11 +24,11 @@
     },
     {
       "id": "M3-01/P1-verification",
-      "state": "refreshed-local-passed-hosted-pending",
+      "state": "automated-verified-remaining-source-and-independent-evidence",
       "depends_on": [
         "M3-01/P1-implementation"
       ],
-      "acceptance": "217 tests passed in debug/release with warnings-denied clippy/rustdoc and repository guard; final exact-head CI recorded after observation"
+      "acceptance": "217 debug/release tests and refreshed head/main CI passed; remaining Issue27 evidence is not fabricated"
     }
   ],
   "requirements": [
@@ -156,5 +156,42 @@
     "clippy_warnings_denied": true,
     "rustdoc_warnings_denied": true,
     "guard_passed": true
+  },
+  "integration_lifecycle": {
+    "authority": "User task-conversation statement: \u5be9\u67e5\u5b8c\u7562 merge; maintainer-reported review complete and explicit merge instruction",
+    "github_review_submissions": 0,
+    "packet_pr": 31,
+    "packet_head": "937cf5a1db61d1bccb401241c8d3001bc02e49f5",
+    "packet_merge": "baa97903e3d3c02e2eb2747140d62f1ddca3c60c",
+    "packet_head_runs": [
+      42449119799,
+      42449115934
+    ],
+    "packet_main_run": 42449339199,
+    "implementation_pr": 32,
+    "implementation_head": "58b536d0bc597b43c7f5a1eb87eef922cfadd062",
+    "implementation_merge": "3d121398e2c14c4a43d101a5b9a55a4616a81174",
+    "implementation_merged_at": "2026-11-08T05:10:16Z",
+    "implementation_head_runs": [
+      42449548994,
+      42449545432
+    ],
+    "implementation_main_run": 42449705252,
+    "head_jobs_per_pr": 12,
+    "main_jobs_per_merge": 6,
+    "accepted_head_trees_match_merges": true,
+    "issue27_state": "open",
+    "checked_issue27_items": [
+      2,
+      3,
+      6
+    ],
+    "remaining_issue27_items": [
+      1,
+      4,
+      5
+    ],
+    "m3_source_comparison": "static-only; no paired upstream review runtime",
+    "release": false
   }
 }

@@ -25,8 +25,9 @@ for this bounded integration; the older proposal/candidate observations below
 remain historical. The instruction is recorded as maintainer-reported review
 completion, without creating a GitHub review submission, independent reviewer
 identity, runtime oracle result or trusted editorial approval. PR #31 has merged
-as baa97903e3d3c02e2eb2747140d62f1ddca3c60c; PR #32 is being refreshed on that
-baseline. Source comparison stays static and Issue #27's remaining evidence
+as baa97903e3d3c02e2eb2747140d62f1ddca3c60c; PR #32 subsequently merged as
+3d121398e2c14c4a43d101a5b9a55a4616a81174 after refreshed 217-test debug/release,
+frozen/live and head/main CI checks. Source comparison stays static and Issue #27's remaining evidence
 is reconciled separately. See [merge review](records/M3-01-MERGE-REVIEW-2026-11-08.md).
 
 ## 2026-11-07 implementation continuation
