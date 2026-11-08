@@ -2619,6 +2619,63 @@
         }
       ],
       "scope_note": "Accepted private exact-clock construction optimisation only; M3 G2 and release remain separate."
+    },
+    {
+      "schema_version": 1,
+      "repository": "bynanci/storytelling",
+      "checked_at": "2026-11-08T05:12:34Z",
+      "kind": "maintainer-authorised-M3-integration",
+      "observed_main": {
+        "sha": "3d121398e2c14c4a43d101a5b9a55a4616a81174"
+      },
+      "pull_requests": [
+        {
+          "number": 31,
+          "state": "closed",
+          "merged": true,
+          "draft": false,
+          "head_sha": "937cf5a1db61d1bccb401241c8d3001bc02e49f5",
+          "merge_commit_sha": "baa97903e3d3c02e2eb2747140d62f1ddca3c60c",
+          "head_runs": [
+            42449119799,
+            42449115934
+          ],
+          "head_jobs_passed": 12,
+          "main_run": 42449339199,
+          "main_jobs_passed": 6
+        },
+        {
+          "number": 32,
+          "state": "closed",
+          "merged": true,
+          "draft": false,
+          "head_sha": "58b536d0bc597b43c7f5a1eb87eef922cfadd062",
+          "merge_commit_sha": "3d121398e2c14c4a43d101a5b9a55a4616a81174",
+          "merged_at": "2026-11-08T05:10:16Z",
+          "head_runs": [
+            42449548994,
+            42449545432
+          ],
+          "head_jobs_passed": 12,
+          "main_run": 42449705252,
+          "main_jobs_passed": 6
+        }
+      ],
+      "review_authority": "User reports review complete and explicitly requests merge in task conversation; no GitHub review submission or independent reviewer is fabricated",
+      "issue27": {
+        "state": "open",
+        "checked_items": [
+          2,
+          3,
+          6
+        ],
+        "remaining_items": [
+          1,
+          4,
+          5
+        ]
+      },
+      "scope_note": "Bounded supplied-composition review binding integrated. M3 source comparison remains static; no trusted approval, source/host observation, replay, execution or release claim."
     }
   ]
 }

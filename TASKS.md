@@ -269,7 +269,7 @@ passed runs 42446786881/42446759799; merge `00ef8de` passed main run 42446933790
 Delivery was accepted under standing user authority and explicit self-review of
 the unchanged planner profile; M3 G2 and release remain separate.
 
-## M3-01/P1 finite-OTIO review binding — maintainer-authorised integration
+## M3-01/P1 finite-OTIO review binding — integrated bounded slice
 
 [Issue #27](https://github.com/bynanci/storytelling/issues/27) tracks the bounded
 same-input review binding. The user stated “審查完畢 merge” on 2026-11-08 and
@@ -281,8 +281,10 @@ review submission, independent reviewer identity or signature is invented.
 - [x] Same-byte importer/compiler binding, private immutable BoundReviewV1 and strict declared context implemented.
 - [x] Read-only prepare-review/check-review CLI, tests, provenance and static source comparison supplied.
 - [x] Current-main Planner optimisations and their accepted completion records retained during integration.
-- [ ] Refreshed local/hosted integration checks and merge receipt (record after observation).
-- [ ] Reconcile remaining Issue #27 acceptance evidence separately; no paired upstream TypeScript review oracle has been run.
+- [x] Refreshed debug/release each passed 217 tests; PR #31/#32 each passed 12 head jobs and six post-merge main jobs.
+- [x] PR #31 merged as `baa97903e3d3c02e2eb2747140d62f1ddca3c60c`; PR #32 merged as `3d121398e2c14c4a43d101a5b9a55a4616a81174` under the user review-complete/merge instruction.
+- [x] Issue #27 scoped entries 2/3/6 are checked; remaining profile/source-oracle/independent-evidence entries stay open.
+- [ ] Supply a paired upstream review oracle or explicit static-oracle disposition, and attach the remaining independent source/G2 evidence.
 
 Matching supplied composition/context establishes declaration and recomputed
 artifact consistency only. It does not authenticate a signer, verify source

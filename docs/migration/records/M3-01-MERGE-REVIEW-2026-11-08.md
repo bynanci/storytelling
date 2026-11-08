@@ -53,3 +53,27 @@ guard and whitespace checks. PR #31 refreshed head 937cf5a passed all 12 jobs
 in runs 42449119799/42449115934 and merged as baa97903e3d3c02e2eb2747140d62f1ddca3c60c
 at 2026-11-08T05:04:52Z. Its main run 42449339199 succeeded. PR #32 final head
 and frozen/live/hosted results are recorded only after observation.
+
+
+## Observed integration receipts — 2026-11-08
+
+PR #31 refreshed head `937cf5a1db61d1bccb401241c8d3001bc02e49f5` passed 12 jobs
+in runs 42449119799/42449115934; merge
+`baa97903e3d3c02e2eb2747140d62f1ddca3c60c` passed all six jobs in main run
+42449339199. PR #32 head `58b536d0bc597b43c7f5a1eb87eef922cfadd062` passed
+12 jobs in runs 42449548994/42449545432; merge
+`3d121398e2c14c4a43d101a5b9a55a4616a81174` at 05:10:16 UTC passed all six
+jobs in main run 42449705252. Both head/merge file trees match.
+
+Refreshed debug/release each passed 217 tests. All 36 existing frozen importer/
+OTIO/Brief/Planner cases, six host-checker regressions, 40 shadow regressions and
+a fresh 64-pair live Planner run passed (56 agreement, four intentional deltas,
+four unsupported, zero unclassified). Both new review CLI commands passed with
+no external tools on PATH; source/host/approval/execution flags stayed false.
+These existing source lanes are not a paired M3 review-runtime oracle.
+
+The merge instruction and reported review completion are attributed to the user
+in the task conversation; no GitHub approval/independent reviewer identity or
+signature is invented. Issue #27 now checks observed items 2/3/6 and retains
+1/4/5 for complete source-oracle/profile review evidence. It remains open.
+This integrates the bounded candidate, not trusted approval or host execution.
