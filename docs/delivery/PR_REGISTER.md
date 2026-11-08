@@ -155,3 +155,19 @@ Issue [#27](https://github.com/bynanci/storytelling/issues/27) remains open for
 the separate finite-OTIO review identity and declared-context freshness scope.
 At this observation there are zero open pull requests; the prior machine snapshot
 is preserved and this state is appended in `pr-register.json`.
+
+
+## Conditional merge review — 2026-11-08
+
+At 01:33 UTC, the remaining open feature/design PRs are the following Drafts.
+Their green CI does not close their explicit independent G2 conditions.
+
+| PR | Observed head | Delivery decision |
+| --- | --- | --- |
+| [#31](https://github.com/bynanci/storytelling/pull/31) | 67abf6d443abf11a0cbced519eeac2a86396a7f7 | Retain Draft; no submitted independent G2 review |
+| [#32](https://github.com/bynanci/storytelling/pull/32) | 1a281aa93a73026d24f9305ea46a6fe91e204299 | Retain Draft; no submitted G2 review; static source comparison still needs disposition |
+
+PR #32's six jobs passed in run 42427010497 and no review thread exists.
+Issue #27 remains open. A separate scheduling optimisation of the accepted
+M2-02 contract is tracked by [#33](https://github.com/bynanci/storytelling/issues/33);
+its final CI/merge metadata belongs to that issue and its associated PR.

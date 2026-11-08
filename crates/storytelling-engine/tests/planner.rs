@@ -33,6 +33,42 @@ fn basic() -> Value {
     input(&["a"], &["a"], vec![candidate("a", 4, 0, 4, 0)], 8, 4)
 }
 
+#[test]
+fn newly_unblocked_required_asset_keeps_admission_priority_in_the_full_report() {
+    let mut document = input(
+        &["omega", "middle", "alpha", "zeta"],
+        &[],
+        ["omega", "middle", "alpha", "zeta"]
+            .into_iter()
+            .map(|id| candidate(id, 1, 0, 1, 0))
+            .collect(),
+        4,
+        4,
+    );
+    document["brief"]["hard_constraints"] = json!([
+        {"type":"must-include","asset_ids":["zeta","alpha","middle","omega"]},
+        {"type":"asset-order","asset_ids":["middle","zeta"]}
+    ]);
+    let report = planned(&document);
+    assert_eq!(selected(&report), ["alpha", "middle", "zeta", "omega"]);
+    assert_eq!(
+        report["plan"]["assets"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|row| row["id"].as_str().unwrap())
+            .collect::<Vec<_>>(),
+        ["omega", "middle", "alpha", "zeta"]
+    );
+    for (i, row) in report["selections"].as_array().unwrap().iter().enumerate() {
+        assert_eq!(row["timeline_start"], time(i, 1));
+        assert_eq!(row["duration"], time(1, 1));
+        assert_eq!(row["shot_id"], format!("shot-{:06}", i + 1));
+        assert_eq!(row["required"], true);
+    }
+    validate_plan_json(&serde_json::to_vec(&report["plan"]).unwrap()).unwrap();
+}
+
 fn planned(input: &Value) -> Value {
     serde_json::to_value(plan_story(&serde_json::to_vec(input).unwrap()).unwrap()).unwrap()
 }

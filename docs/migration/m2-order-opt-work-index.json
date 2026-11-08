@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "task": "M2-02/O1",
+  "tracking_issue": 33,
+  "source_commit": "7add4762fe8174d76f43b863375ea39b73121e76",
+  "target_base": "9513913e849f8cf15d9e5bbb2977fe587ce8b953",
+  "scope": "Internal stable ordering performance under the accepted fixed-window v1 contract",
+  "tasks": [
+    {
+      "id": "M2-O1-01",
+      "depends_on": [],
+      "state": "implemented",
+      "scope": "Private heap scheduler and exhaustive equivalence regressions"
+    },
+    {
+      "id": "M2-O1-02",
+      "depends_on": [
+        "M2-O1-01"
+      ],
+      "state": "implemented",
+      "scope": "Manual informational release benchmark and source/provenance records"
+    },
+    {
+      "id": "M2-O1-03",
+      "depends_on": [
+        "M2-O1-02"
+      ],
+      "state": "locally-verified",
+      "scope": "Full local/hosted gates; final delivery lifecycle is tracked by GitHub issue33"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M2-O01",
+      "requirement": "Retain earliest-ready admission priority and exact no-partial-plan errors",
+      "tests": [
+        "compares_every_four_vertex_graph_with_brute_force_priority_order",
+        "newly_ready_earlier_admission_precedes_already_queued_vertex",
+        "duplicate_edges_empty_graphs_and_admission_permutations_preserve_results",
+        "rejects_unselected_endpoints_self_edges_and_cycles_without_partial_order",
+        "newly_unblocked_required_asset_keeps_admission_priority_in_the_full_report"
+      ]
+    },
+    {
+      "id": "M2-O02",
+      "requirement": "Bounded ready scheduling without repeated full scans; supported-size graphs and descriptive benchmarks",
+      "tests": [
+        "maximum_candidate_graphs_keep_every_vertex_and_precedence",
+        "benchmark_ordering"
+      ]
+    },
+    {
+      "id": "M2-O03",
+      "requirement": "Retained frozen/live conformance, provenance and platform checks",
+      "tests": [],
+      "verification_paths": [
+        "docs/migration/records/M2-ORDER-OPT.md",
+        "docs/migration/provenance-m2-order-opt.json",
+        "tests/oracles/fixed-window-planner-v1/compare.py",
+        "tests/oracles/planner-shadow-v1/run.py"
+      ]
+    }
+  ],
+  "lifecycle_source": "https://github.com/bynanci/storytelling/issues/33",
+  "lifecycle_note": "This versioned implementation/verification snapshot does not infer future merge or independent review. Final head/run/merge is recorded in the associated PR and issue.",
+  "not_claimed": [
+    "Independent G2 review of M3 PR31/32",
+    "Full OpenFilm solver parity",
+    "Trusted approval or host execution",
+    "Release or package publication"
+  ],
+  "local_evidence": {
+    "rust_debug_passed": 191,
+    "rust_release_passed": 191,
+    "manual_benchmark_executed": true,
+    "frozen_cases": 36,
+    "host_checker_regressions": 6,
+    "shadow_regressions": 40,
+    "live_pairs": 64,
+    "unclassified_pairs": 0
+  }
+}

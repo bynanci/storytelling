@@ -2,6 +2,13 @@
 // Source-informed fixed-window planner; see provenance-m2-02.json and NOTICE.openfilm.
 //! Pure deterministic selection of declared fixed windows; no execution authority.
 mod clock;
+mod ordering;
+
+use ordering::order;
+
+#[cfg(test)]
+#[path = "planner/order_tests.rs"]
+mod order_tests;
 
 use clock::Clock;
 use serde::Deserialize;
@@ -370,41 +377,4 @@ pub fn plan_story(bytes: &[u8]) -> Result<PlannedStoryV1, PlanningErrorV1> {
         return Err(error("planner.output_too_large", "$"));
     }
     Ok(report)
-}
-
-fn order(
-    admitted: &[usize],
-    candidates: &[PlanningCandidateV1],
-    edges: &[storytelling_core::brief::PrecedenceEdgeV1],
-) -> Result<Vec<usize>, PlanningErrorV1> {
-    let positions: BTreeMap<&str, usize> = admitted
-        .iter()
-        .enumerate()
-        .map(|(position, &index)| (candidates[index].asset_id.as_str(), position))
-        .collect();
-    let mut degrees = vec![0; admitted.len()];
-    let mut outgoing = vec![Vec::new(); admitted.len()];
-    for edge in edges {
-        let before = positions
-            .get(edge.before.as_str())
-            .ok_or_else(|| error("planner.brief_conflict", "$.brief"))?;
-        let after = positions
-            .get(edge.after.as_str())
-            .ok_or_else(|| error("planner.brief_conflict", "$.brief"))?;
-        outgoing[*before].push(*after);
-        degrees[*after] += 1;
-    }
-    let mut emitted = vec![false; admitted.len()];
-    let mut ordered = Vec::new();
-    while ordered.len() < admitted.len() {
-        let next = (0..admitted.len())
-            .find(|&i| !emitted[i] && degrees[i] == 0)
-            .ok_or_else(|| error("planner.brief_conflict", "$.brief"))?;
-        emitted[next] = true;
-        ordered.push(admitted[next]);
-        for &after in &outgoing[next] {
-            degrees[after] -= 1;
-        }
-    }
-    Ok(ordered)
 }
