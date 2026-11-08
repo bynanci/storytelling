@@ -14,8 +14,8 @@ The accepted scope is M3-01/P1 only: same-input finite composition import and
 OTIO compilation, immutable review binding, strict declared-context freshness,
 and read-only CLI under M3-RB01–RB07. The historical functional RED remains
 unproven and was explicitly waived as a completion blocker; no past test pass is
-claimed. Issue #27 is completed for this bounded scope after the signed acceptance
-record's PR merges with passing same-head checks. The wider M3 milestone, PR #28,
+claimed. Issue #27 was closed completed after signed acceptance PR #42 merged
+and its same-head and post-merge checks passed. The wider M3 milestone, PR #28,
 planner bridge, trusted key authorization, replay controls, host observation and
 execution remain separate.
 
@@ -233,7 +233,9 @@ surface-specific API/CLI error precedence also have regression coverage. See the
 [paired runtime record](records/M3-01-RUNTIME-ORACLE-2026-11-08.md) and
 [evidence audit](records/M3-01-EVIDENCE-AUDIT-2026-11-08.md).
 
-This evidence covers a small finite composition domain and does not establish
-full runtime parity or approve M3-RB01–RB07. Issue #27 now has observed evidence
-for its CLI/oracle item and implementation item. Independent profile/G2 review,
-historical functional RED and the complete review/acceptance record remain open.
+At the time this evidence note was written, the runtime comparison covered a
+small finite composition domain and did not establish full parity or profile
+acceptance. The later signed record accepts M3-RB01–RB07 for this bounded scope
+and explicitly waives the historically unproven functional RED as a completion
+blocker. Issue #27 is closed completed; the wider M3 milestone and PR #28 remain
+outside that acceptance.

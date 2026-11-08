@@ -2743,6 +2743,76 @@
       },
       "review_authority": "User requested review completion and merge; no independent G2 reviewer or review approval is fabricated",
       "scope_note": "PR #39 corrects provenance/functional-RED description. PR #40 runs a small pinned OpenFilm review-service oracle and fixes the cross-platform byte fixture; no full parity, trusted approval, host execution or release claim."
+    },
+    {
+      "schema_version": 1,
+      "repository": "bynanci/storytelling",
+      "checked_at": "2026-11-08T13:27:30Z",
+      "kind": "m3-01-signed-acceptance-and-issue-completion",
+      "observed_main": {
+        "sha": "92f7f20b63656ec3e676309310f8a5350d6d0662",
+        "tree_sha": "2abb1cdde241aef6207b7d0ffaae1b7b1e7aa6cb",
+        "merge_ci_run": 42484845782,
+        "merge_ci_all_six_success": true
+      },
+      "pull_requests": [
+        {
+          "number": 41,
+          "state": "closed",
+          "merged": true,
+          "draft": false,
+          "head_sha": "0d63c1ff13e6d0ec228e08ac7db612c2e184bd94",
+          "merge_commit_sha": "4f43de0010e4e912c6367338d15b75bae5cf2720",
+          "head_runs": [
+            42477942627
+          ],
+          "head_jobs_passed_per_run": 6,
+          "push_run": 42477922639,
+          "push_run_success_attempt": 3,
+          "main_run": 42478627181,
+          "main_jobs_passed": 6
+        },
+        {
+          "number": 42,
+          "state": "closed",
+          "merged": true,
+          "draft": false,
+          "head_sha": "65914146227faac62c4c045f3548786067376925",
+          "merge_commit_sha": "92f7f20b63656ec3e676309310f8a5350d6d0662",
+          "merged_at": "2026-11-08T13:24:51Z",
+          "head_runs": [
+            42484654708
+          ],
+          "head_jobs_passed_per_run": 6,
+          "main_run": 42484845782,
+          "main_jobs_passed": 6,
+          "codex_review_findings": false
+        }
+      ],
+      "issue27": {
+        "state": "closed",
+        "state_reason": "completed",
+        "closed_at": "2026-11-08T13:27:29Z",
+        "checked_items": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "remaining_items": [],
+        "item_2_disposition": "waived-historical-functional-red-unproven; no historical result is invented"
+      },
+      "signed_acceptance": {
+        "signer": "NAN CHUN WANG",
+        "email": "by.nanci.tw@gmail.com",
+        "scope": "M3-RB01\u2013RB07 bounded finite-OTIO declared-review profile",
+        "record": "docs/migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md",
+        "signature_type": "textual DCO-style sign-off per user instruction; no GPG/SSH signature or project-wide DCO policy"
+      },
+      "review_authority": "User explicitly supplied signer identity and authorized bounded completion; no separate GitHub approving review or PR #28 acceptance is claimed",
+      "scope_note": "Historical functional RED stays unproven and is waived as this profile completion blocker. No trusted runtime signer authorization, verified source/build origin, planner bridge, replay protection, host execution, full OpenFilm parity or release is claimed."
     }
   ]
 }

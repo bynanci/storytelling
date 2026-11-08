@@ -31,8 +31,9 @@ The bounded M3-01 runtime oracle, fixed digest vector and error-order tests now
 accompany the integrated profile. The signed bounded G2 acceptance and
 historical-RED waiver are recorded in
 [the acceptance record](docs/migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md);
-Issue #27 is completed for this bounded scope after the acceptance PR's same-head
-gates pass. The historical pre-implementation functional RED remains unproven.
+Issue #27 is closed completed for this bounded scope after PR #42 and its
+post-merge checks passed. The historical pre-implementation functional RED
+remains unproven.
 Do not repeat the delivered candidate or invent review artifacts. PR #28 remains
 separate and unaccepted; full solver, trusted approval, host execution and human
 editorial acceptance remain separate.

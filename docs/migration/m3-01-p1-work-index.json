@@ -3,7 +3,7 @@
   "task": "M3-01/P1",
   "tracking_issue": "https://github.com/bynanci/storytelling/issues/27",
   "state": "accepted-bounded-profile",
-  "acceptance_state": "Signed human G2 acceptance of bounded M3-RB01–RB07; historical functional RED is unproven and explicitly waived as a completion blocker; broader M3 and PR #28 remain separate",
+  "acceptance_state": "Signed human G2 acceptance of bounded M3-RB01\u2013RB07; historical functional RED is unproven and explicitly waived as a completion blocker; broader M3 and PR #28 remain separate",
   "base": "1d8d0e3652aa2afe77375550876639b726928eba",
   "scope": "finite-openfilm-composition-to-otio-declared-review-binding",
   "implementation_branch": "codex/m3-01-finite-review-binding-20261107",
@@ -171,7 +171,7 @@
     }
   },
   "not_completed": [
-    "historical pre-implementation functional RED was never observed; explicit signed waiver removes it as this profile’s completion blocker",
+    "historical pre-implementation functional RED was never observed; explicit signed waiver removes it as this profile\u2019s completion blocker",
     "planner-to-composition/OTIO bridge",
     "trusted signer/key authorization, expiry/revocation, replay consumption",
     "filesystem identity/TOCTOU, host observation, execution and publication",
@@ -185,7 +185,7 @@
   "review_instruction": {
     "date": "2026-11-08",
     "source": "user task conversation",
-    "text": "審查完畢 merge",
+    "text": "\u5be9\u67e5\u5b8c\u7562 merge",
     "github_review_submissions": 0,
     "technical_review": "assistant self-review within declared-input scope; no blocking correctness defect found"
   },
@@ -199,7 +199,7 @@
     "guard_passed": true
   },
   "integration_lifecycle": {
-    "authority": "User task-conversation statement: 審查完畢 merge; maintainer-reported review complete and explicit merge instruction",
+    "authority": "User task-conversation statement: \u5be9\u67e5\u5b8c\u7562 merge; maintainer-reported review complete and explicit merge instruction",
     "github_review_submissions": 0,
     "packet_pr": 31,
     "packet_head": "937cf5a1db61d1bccb401241c8d3001bc02e49f5",
@@ -221,7 +221,7 @@
     "head_jobs_per_pr": 12,
     "main_jobs_per_merge": 6,
     "accepted_head_trees_match_merges": true,
-    "issue27_state": "bounded-acceptance-signed; issue closure follows same-head acceptance-PR merge",
+    "issue27_state": "closed-completed",
     "checked_issue27_items": [
       1,
       2,
@@ -261,14 +261,15 @@
       "independent_review_submissions": 0
     },
     "current_main": {
-      "sha": "4f43de0010e4e912c6367338d15b75bae5cf2720",
-      "run": 42478627181,
+      "sha": "92f7f20b63656ec3e676309310f8a5350d6d0662",
+      "tree_sha": "2abb1cdde241aef6207b7d0ffaae1b7b1e7aa6cb",
+      "run": 42484845782,
       "all_six_jobs_passed": true
     },
     "issue27_completion_disposition": {
-      "item_2": "waived-historical-functional-red-unproven; historical failure/pass is not asserted",
-      "closure_reason": "completed after signed bounded acceptance and acceptance-PR same-head CI pass",
-      "scope": "M3-RB01–RB07 bounded finite-OTIO declared-review profile only"
+      "item_2": "waived-historical-functional-red-unproven; no historical failure/pass is asserted",
+      "closure_reason": "signed bounded acceptance and exact-head plus post-merge CI passed",
+      "scope": "M3-RB01\u2013RB07 bounded finite-OTIO declared-review profile only"
     },
     "evidence_followup_pr41": {
       "number": 41,
@@ -280,6 +281,19 @@
       "push_run_success_attempt": 3,
       "main_run": 42478627181,
       "main_jobs_passed": 6
+    },
+    "issue27_closed_at": "2026-11-08T13:27:29Z",
+    "issue27_close_reason": "completed",
+    "evidence_followup_pr42": {
+      "number": 42,
+      "head": "65914146227faac62c4c045f3548786067376925",
+      "merge": "92f7f20b63656ec3e676309310f8a5350d6d0662",
+      "merged_at": "2026-11-08T13:24:51Z",
+      "head_run": 42484654708,
+      "head_jobs_passed": 6,
+      "main_run": 42484845782,
+      "main_jobs_passed": 6,
+      "codex_review_findings": false
     }
   },
   "evidence_audit": {
@@ -287,10 +301,10 @@
     "reviewed_main": "72e619c1ca25d363a6c62ee38164be6a4bec421f",
     "historical_functional_red": "unproven",
     "source_oracle": "bounded paired source/runtime oracle executed for finite synthetic cases; accepted as scoped evidence, with no full parity claim",
-    "profile_acceptance": "signed human G2 acceptance of bounded M3-RB01–RB07; broader M3 and PR #28 excluded",
+    "profile_acceptance": "signed human G2 acceptance of bounded M3-RB01\u2013RB07; broader M3 and PR #28 excluded",
     "last_reviewed_main": "3d858aea9901fdcd8436503ae7d314cfb0c75431",
     "current_issue27_checklist": {
-      "state": "all six criteria disposed; item 2 closed by explicit historical-RED waiver; issue closure after acceptance-PR merge",
+      "state": "closed-completed; all six items checked; item 2 is an explicit historical-RED waiver",
       "checked_items": [
         1,
         2,
@@ -301,7 +315,8 @@
       ],
       "remaining_items": []
     },
-    "functional_red_disposition": "historical functional RED unproven; explicit signed waiver as bounded-profile completion blocker"
+    "functional_red_disposition": "historical functional RED unproven; explicit signed waiver as bounded-profile completion blocker",
+    "issue27_closed_at": "2026-11-08T13:27:29Z"
   },
   "latest_followup_local": {
     "base": "3d858aea9901fdcd8436503ae7d314cfb0c75431",
@@ -315,7 +330,7 @@
     "repo_guard_passed": true,
     "git_diff_check_passed": true,
     "openfilm_runtime_oracle": "passed against pinned source SHA 7add4762fe8174d76f43b863375ea39b73121e76; see M3-01-RUNTIME-ORACLE-2026-11-08.md",
-    "hosted_ci": "PR #39/#40 exact-head and main checks passed; PR #41 documentation checks passed; current acceptance PR gates pending",
+    "hosted_ci": "PR #39\u2013#42 exact-head checks and corresponding main checks passed; PR #42 head run 42484654708 and main run 42484845782 each passed all six jobs",
     "head": "a9b80723e0171497d9b1cc63bc30c6fac88e0ecc",
     "pull_request": 40,
     "merge": "3d858aea9901fdcd8436503ae7d314cfb0c75431",
@@ -333,13 +348,19 @@
     "signer": "NAN CHUN WANG",
     "email": "by.nanci.tw@gmail.com",
     "date": "2026-11-08",
-    "scope": "M3-01/P1 bounded finite-OTIO declared-review profile, M3-RB01–RB07",
+    "scope": "M3-01/P1 bounded finite-OTIO declared-review profile, M3-RB01\u2013RB07",
     "document": "docs/migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md",
     "identity_source": "direct user instruction; connected GitHub owner login bynanci has admin permission; profile does not independently expose the supplied name/email",
     "signature_type": "one-time textual DCO-style sign-off; not GPG/SSH; no project-wide DCO enforcement",
     "historical_functional_red": "unproven and waived as a completion blocker; no historical test result is invented",
     "pr28_accepted": false,
     "broader_m3_accepted": false,
-    "issue27_close_after_acceptance_pr_merge": true
+    "issue27_state": "closed-completed",
+    "issue27_close_reason": "completed",
+    "acceptance_pr": 42,
+    "acceptance_pr_head": "65914146227faac62c4c045f3548786067376925",
+    "acceptance_pr_merge": "92f7f20b63656ec3e676309310f8a5350d6d0662",
+    "acceptance_pr_head_run": 42484654708,
+    "post_merge_main_run": 42484845782
   }
 }
