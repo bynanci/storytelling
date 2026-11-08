@@ -113,7 +113,6 @@
     }
   ],
   "local_evidence": {
-    "functional_red": "cargo test -p storytelling-engine --test review_binding --locked failed before implementation: review module and APIs were unresolved",
     "green": [
       "cargo fmt --all",
       "cargo clippy --workspace --all-targets --locked -- -D warnings",
@@ -127,7 +126,9 @@
     "hosted_head": "2e7662405a49698be1ebee2136f54ab539ef7c2e",
     "hosted_run": "https://github.com/bynanci/storytelling/actions/runs/42425697537",
     "hosted_result": "All six hosted jobs passed: Quality and contracts, Required gates, Rust Linux, Rust Windows, Rust macOS and Dependency audit",
-    "base_limitation": "Local base predates latest remote main and PR #28 merge; exact-base compatibility is covered by the listed hosted run"
+    "base_limitation": "Local base predates latest remote main and PR #28 merge; exact-base compatibility is covered by the listed hosted run",
+    "compile_red": "cargo test -p storytelling-engine --test review_binding --locked failed before implementation: review module and APIs were unresolved",
+    "functional_red": "Not established historically: recorded unresolved imports prevented test execution. Separate 2026-11-08 mutation evidence does not establish pre-implementation functional RED."
   },
   "not_completed": [
     "paired upstream TypeScript review runtime oracle or explicit recorded disposition of the static oracle requirement",
@@ -193,5 +194,12 @@
     ],
     "m3_source_comparison": "static-only; no paired upstream review runtime",
     "release": false
+  },
+  "evidence_audit": {
+    "record": "docs/migration/records/M3-01-EVIDENCE-AUDIT-2026-11-08.md",
+    "reviewed_main": "72e619c1ca25d363a6c62ee38164be6a4bec421f",
+    "historical_functional_red": "unproven",
+    "source_oracle": "static-only; insufficient for runtime parity",
+    "profile_acceptance": "open; see findings and exit criteria"
   }
 }
