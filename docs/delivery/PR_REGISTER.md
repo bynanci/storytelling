@@ -283,8 +283,10 @@ The maintainer/reviewer supplied the sign-off `NAN CHUN WANG
 at reviewed main `4f43de0010e4e912c6367338d15b75bae5cf2720`. The decision,
 guarantee boundaries, CI evidence and explicit historical-RED waiver are in the
 [signed acceptance record](../migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md).
-The record is being delivered through a documentation/provenance PR; Issue #27
-will close as completed only after that same-head PR checks pass and merges.
+The record was delivered through [PR #42](https://github.com/bynanci/storytelling/pull/42),
+which merged as `92f7f20b63656ec3e676309310f8a5350d6d0662` at 2026-11-08T13:24:51Z.
+Its exact-head CI run 42484654708 and post-merge main run 42484845782 passed all
+six jobs. Issue #27 is closed with reason `completed` for this bounded profile.
 
 The historical functional RED remains unproven and is waived solely as a
 completion blocker; this register does not claim it occurred. PR #28 remains a
@@ -292,3 +294,8 @@ separate unaccepted Ed25519 candidate. This bounded acceptance does not establis
 trusted signer authorization, source/build provenance, the planner-to-OTIO
 bridge, host observation, replay protection, execution, full OpenFilm parity or
 release.
+
+The issue's six items are checked with item 2 explicitly recorded as a waiver
+disposition, not a historical functional test result. The checked-in machine
+work index and appended `pr-register.json` observation carry the same final
+receipts and preserve the earlier pre-acceptance observations.

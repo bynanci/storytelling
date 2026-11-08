@@ -87,3 +87,9 @@ functional RED are recorded in
 [M3-01-G2-ACCEPTANCE-2026-11-08.md](M3-01-G2-ACCEPTANCE-2026-11-08.md).
 This later record does not change what GitHub reviews existed at the earlier
 observation, and it does not accept PR #28 or broader M3 work.
+
+The acceptance record merged in PR #42 as
+`92f7f20b63656ec3e676309310f8a5350d6d0662`. Its head run 42484654708 and
+post-merge main run 42484845782 passed all six jobs; Issue #27 was closed
+completed at 2026-11-08T13:27:29Z. The closure records item 2 as an explicit
+historical-RED waiver, not a retroactive test result.

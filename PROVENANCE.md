@@ -161,3 +161,9 @@ tree matches the accepted head. The follow-up harness is independently authored
 MIT and imports only the pinned upstream service at runtime. The paired synthetic
 outcomes do not authorize a signer or establish full source, host or digest parity.
 See the [delivery register](docs/delivery/PR_REGISTER.md) for PR #39 and #40 receipts.
+
+The signed acceptance was published in PR #42, head
+`65914146227faac62c4c045f3548786067376925`, merged as
+`92f7f20b63656ec3e676309310f8a5350d6d0662`. Its head run 42484654708 and
+post-merge main run 42484845782 passed all six jobs. Issue #27 is closed
+completed for the accepted bounded profile; see the appended delivery receipt.

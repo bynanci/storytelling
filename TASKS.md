@@ -287,7 +287,7 @@ functional RED as a blocker. The waiver does not claim a historical test passed.
 - [x] PR #31 merged as `baa97903e3d3c02e2eb2747140d62f1ddca3c60c`; PR #32 merged as `3d121398e2c14c4a43d101a5b9a55a4616a81174` under the user review-complete/merge instruction.
 - [x] Issue #27 entries 1/3/4/5/6 have scoped acceptance, implementation, oracle, automation, merge and reconciliation evidence; item 2 is completed by an explicit waiver, not by a retroactive test claim.
 - [x] [Evidence audit](docs/migration/records/M3-01-EVIDENCE-AUDIT-2026-11-08.md) corrects provenance and historical RED claims; [runtime record](docs/migration/records/M3-01-RUNTIME-ORACLE-2026-11-08.md) adds a bounded actual source/runtime comparison.
-- [x] Independent human G2 acceptance is signed. Issue #27 closes for this bounded profile after this acceptance record merges with passing same-head CI.
+- [x] Independent human G2 acceptance is signed. Issue #27 closed completed after PR #42 head run 42484654708 and post-merge main run 42484845782 passed all six jobs.
 
 Matching supplied composition/context establishes declaration and recomputed
 artifact consistency only. It does not authenticate a signer, verify source
