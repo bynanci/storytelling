@@ -269,16 +269,23 @@ passed runs 42446786881/42446759799; merge `00ef8de` passed main run 42446933790
 Delivery was accepted under standing user authority and explicit self-review of
 the unchanged planner profile; M3 G2 and release remain separate.
 
-## M3-01/P1 candidate awaiting independent G2
+## M3-01/P1 maintainer-authorised integration
 
 [Tracking #27](https://github.com/bynanci/storytelling/issues/27) and
 [source/readiness scope](docs/migration/M3-01-NEXT.md) prepare immutable finite-OTIO
-review identity and declared-context freshness. The source map has15actual blob
+review identity and declared-context freshness. The proposed
+[G2 review packet](docs/migration/M3-01-G2-REVIEW-PACKET.md) distinguishes
+signature validity, signer authorization and same-input compilation linkage, and
+specifies a concrete contract/test proposal. The source map has 15 actual blob
 identities; proposed M3-RB01–RB07, wire/CLI names and budgets still need independent
-G2 freezing before acceptance. A provisional implementation and passing candidate
-tests exist in Draft [PR #32](https://github.com/bynanci/storytelling/pull/32),
-stacked on the [PR #31](https://github.com/bynanci/storytelling/pull/31) contract
-packet; canonical M3-01/P1 is still unaccepted. Use the existing importer/compiler input because the planner→OTIO
+G2 evidence for complete acceptance. A provisional implementation and passing
+candidate tests exist in Draft [PR #32](https://github.com/bynanci/storytelling/pull/32),
+stacked on [PR #31](https://github.com/bynanci/storytelling/pull/31). On 2026-11-08,
+the user reported review completion and explicitly requested merging these PRs.
+This is maintainer merge authority from the task conversation; no GitHub review
+submission, reviewer identity/signature or independent review artifact is invented.
+Issue #27's remaining evidence and capability boundaries are tracked separately.
+Use the existing importer/compiler input because the planner→OTIO
 bridge is absent; matching hashes/context never grant human approval. Merged
 candidate [PR #28](https://github.com/bynanci/storytelling/pull/28) implements
 separate M3-A01–A03 scope and remains unaccepted pending independent G2 review.
