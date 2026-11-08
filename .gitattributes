@@ -1,0 +1,2 @@
+# This fixture is embedded and hashed as exact source bytes by cross-platform tests.
+tests/fixtures/openfilm/finite-v1/repeat-source.json -text

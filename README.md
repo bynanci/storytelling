@@ -9,8 +9,9 @@ supplied windows; narrative interpretation and editor execution remain separate.
 `verify-source` separately hashes explicitly supplied bytes; the isolated test harness has proved one real FilmCraft profile.
 Main also integrates the bounded `prepare-review` / `check-review` candidate via
 PR #32: same-input OTIO binding and declared-context freshness, with all approval/
-source/host/execution flags false. Remaining source-oracle/profile evidence is
-tracked in [issue #27](https://github.com/bynanci/storytelling/issues/27).
+source/host/execution flags false. A bounded pinned OpenFilm review-runtime comparison
+and fixed Rust digest/error-order tests are recorded for [issue #27](https://github.com/bynanci/storytelling/issues/27);
+independent G2 profile acceptance remains open.
 Future functionality is tracked separately in [TASKS](TASKS.md) and [ROADMAP](ROADMAP.md).
 
 [繁體中文](README.zh-TW.md) · [PR register](docs/delivery/PR_REGISTER.md) · [CLI guide](docs/CLI_GUIDE.md) · [Architecture](docs/ARCHITECTURE.md) · [SDLC](docs/SDLC.md) · [Contract](docs/CONTRACTS.md)
