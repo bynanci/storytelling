@@ -9,7 +9,7 @@
     {
       "id": "M2-O2-01",
       "depends_on": [],
-      "state": "implemented",
+      "state": "accepted",
       "scope": "Cached denominator/scaled ticks and deferred diagnostic paths"
     },
     {
@@ -17,7 +17,7 @@
       "depends_on": [
         "M2-O2-01"
       ],
-      "state": "locally-verified",
+      "state": "accepted",
       "scope": "Resource RED/GREEN, compatibility/golden regressions and release benchmark"
     },
     {
@@ -25,7 +25,7 @@
       "depends_on": [
         "M2-O2-02"
       ],
-      "state": "locally-verified",
+      "state": "accepted",
       "scope": "Debug/release/docs/frozen/live/provenance checks; final head CI and merge in issue35"
     }
   ],
@@ -75,12 +75,32 @@
     "unclassified_pairs": 0
   },
   "lifecycle_source": "https://github.com/bynanci/storytelling/issues/35",
-  "lifecycle_note": "Versioned pre-publication implementation/verification snapshot; issue and PR own the final head/run/merge result.",
+  "lifecycle_note": "Original local evidence retained; final feature delivery reconciled here from observed PR/issue/check metadata. Documentation-only sync has its own PR checks.",
   "not_claimed": [
     "New wire/API/time policy",
     "Independent M3 G2 approval",
     "Full OpenFilm solver parity",
     "Host/editorial execution acceptance",
     "Release or package publication"
-  ]
+  ],
+  "state": "accepted",
+  "tracking_issue_status": "closed-completed",
+  "accepted_lifecycle": {
+    "feature_pull_request": 36,
+    "accepted_head": "bdd502a8f8cd36c7b822c91fba4ff87215e8beb1",
+    "merge_commit": "00ef8decbf1fecc7258bbc683973d41d656c8097",
+    "merged_at": "2026-11-08T04:28:04Z",
+    "head_workflow_runs": [
+      42446786881,
+      42446759799
+    ],
+    "head_jobs_passed": 12,
+    "main_workflow_run": 42446933790,
+    "main_jobs_passed": 6,
+    "accepted_tree_matches_merge": true,
+    "issue": 35,
+    "issue_state": "closed-completed-four-items-checked",
+    "review": "self-review under unchanged accepted planner G2 profile",
+    "authority": "standing user verified-merge and task update authority; no release"
+  }
 }

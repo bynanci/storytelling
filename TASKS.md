@@ -250,7 +250,7 @@ are maintained in issue #33 and its associated PR. This optimisation does not
 complete the broader OpenFilm map or M3-01. Existing Draft PRs #31/#32 still await
 independent G2 review; issue #27 remains open.
 
-## M2-02/O2 cached exact-time construction
+## M2-02/O2 cached exact-time construction — accepted
 
 Follow-up [issue #35](https://github.com/bynanci/storytelling/issues/35) preserves
 the accepted planner contract while caching denominators/scaled ticks and
@@ -260,11 +260,14 @@ formatting diagnostic paths only on failures.
 - [x] Golden fractions, error-priority, 2,048 generated compatibility cases and 1,024-candidate coverage added.
 - [x] Informational constructor/full-plan release measurements recorded.
 - [x] Local debug/release/docs and frozen/live conformance verification passed.
+- [x] PR #36 merged as `00ef8decbf1fecc7258bbc683973d41d656c8097`; both head CI runs (12 jobs) and main run (6 jobs) passed. Issue #35 is fully checked and closed completed.
 
 The [validation record](docs/migration/records/M2-CLOCK-OPT.md),
 [work index](docs/migration/m2-clock-opt-work-index.json) and provenance capture
-the versioned local evidence. Final hosted checks and merge/checklist metadata
-are maintained in issue #35 and its associated PR under standing user authority.
+the local and accepted delivery evidence. Head `bdd502a8f8cd36c7b822c91fba4ff87215e8beb1`
+passed runs 42446786881/42446759799; merge `00ef8de` passed main run 42446933790.
+Delivery was accepted under standing user authority and explicit self-review of
+the unchanged planner profile; M3 G2 and release remain separate.
 
 ## M3-01/P1 candidate awaiting independent G2
 

@@ -109,3 +109,19 @@ LCM-before-scale ordering, exact u128 bounds, descriptor/field order and no
 serialized authority change. This preserves the already accepted G2 profile;
 no independent reviewer or M3 G2 approval is asserted. Final hosted head/run,
 merge and completion checklist live in issue #35 and its associated PR.
+
+## Accepted delivery — 2026-11-08
+
+[PR #36](https://github.com/bynanci/storytelling/pull/36), head
+`bdd502a8f8cd36c7b822c91fba4ff87215e8beb1`, merged as
+`00ef8decbf1fecc7258bbc683973d41d656c8097` at 04:28:04 UTC under standing user
+authority. Both head runs
+[42446786881](https://github.com/bynanci/storytelling/actions/runs/42446786881) /
+[42446759799](https://github.com/bynanci/storytelling/actions/runs/42446759799)
+passed all six jobs each (12 total), including hosted Dependency Audit and
+Linux/Windows/macOS tests. Main run
+[42446933790](https://github.com/bynanci/storytelling/actions/runs/42446933790)
+also passed all six jobs. Git comparison confirms the accepted head and merge
+file trees are identical. Issue #35 has all four items checked and is closed
+completed. This accepts only the private clock optimisation with the already
+accepted planner contract and self-review; M3 G2 and release remain pending.
