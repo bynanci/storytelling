@@ -177,3 +177,46 @@ items unchecked. No reviewer has been requested; maintainer/G2 acceptance remain
 is mergeable but remains Draft and is intentionally stacked on #31 so the review packet and merged
 PR #28 code remain in its hosted integration baseline. Rebase or merge only after the independent
 G2 contract decision; do not interpret green CI as product acceptance.
+
+
+## Conditional merge review — 2026-11-08
+
+At 01:33 UTC, the remaining open feature/design PRs are the following Drafts.
+Their green CI does not close their explicit independent G2 conditions.
+
+| PR | Observed head | Delivery decision |
+| --- | --- | --- |
+| [#31](https://github.com/bynanci/storytelling/pull/31) | 67abf6d443abf11a0cbced519eeac2a86396a7f7 | Retain Draft; no submitted independent G2 review |
+| [#32](https://github.com/bynanci/storytelling/pull/32) | 1a281aa93a73026d24f9305ea46a6fe91e204299 | Retain Draft; no submitted G2 review; static source comparison still needs disposition |
+
+PR #32's six jobs passed in run 42427010497 and no review thread exists.
+Issue #27 remains open. A separate scheduling optimisation of the accepted
+M2-02 contract is tracked by [#33](https://github.com/bynanci/storytelling/issues/33);
+its final CI/merge metadata belongs to that issue and its associated PR.
+
+
+## Accepted ordering optimisation — 2026-11-08 reconciliation
+
+PR [#34](https://github.com/bynanci/storytelling/pull/34) merged accepted head
+`5bbc3a0e867a90e3f8829c3cf7ab6b2c3961b3b0` as
+`f07ab6940484ef8b8e4f2bdb37b96893e9f92270` at 01:37:08 UTC.
+Head runs 42434851833/42434822453 passed all 12 jobs, and main run 42435022548
+passed all six; the file trees match. Issue #33 is fully checked and closed
+completed. The scope preserves the accepted fixed-window profile and received
+self-review under user merge authority. No release or M3 G2 grant is implied.
+
+At the 04:21 UTC continuation, PRs #31/#32 still have no submitted review and
+remain Draft. A separate cached-clock follow-up is tracked in
+[issue #35](https://github.com/bynanci/storytelling/issues/35); its final hosted
+checks/merge belong to that issue and its associated PR.
+
+## Accepted cached-clock optimisation — 2026-11-08
+
+PR [#36](https://github.com/bynanci/storytelling/pull/36) merged head
+`bdd502a8f8cd36c7b822c91fba4ff87215e8beb1` as
+`00ef8decbf1fecc7258bbc683973d41d656c8097` at 04:28:04 UTC. Head runs
+42446786881/42446759799 passed all 12 jobs; main run 42446933790 passed all six.
+The accepted head and merge file trees match. Issue #35 is fully checked and
+closed completed. The scope retains the accepted fixed-window time/error
+contract and was self-reviewed under user authority. M3 PRs #31/#32 remain
+Draft candidates pending independent G2; no release was published.

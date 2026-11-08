@@ -232,31 +232,65 @@ This is synthetic selected-domain differential evidence. Fractional optional
 budgets, full solver behavior, live Catalog authority, host execution and human
 editorial acceptance remain separate. The runner opens no user project.
 
-## M3-01/P1 finite-OTIO review binding — provisional implementation
+## M2-02/O1 stable ordering optimisation — accepted
 
-[Tracking #27](https://github.com/bynanci/storytelling/issues/27) owns immutable finite-OTIO
-review identity and declared-context freshness. The initial readiness audit and source map remain
-in [M3-01-NEXT](docs/migration/M3-01-NEXT.md). The user authorized a provisional implementation
-while independent G2 review remains pending; M3-RB01–RB07 and the wire/CLI budgets are therefore
-implementation-candidate details, not accepted/frozen product contracts.
+2026-11-08 follow-up under the user's optimise/upgrade instruction; tracked in
+[issue #33](https://github.com/bynanci/storytelling/issues/33). The accepted M2-02
+wire, priority policy, timing and input limits remain the contract.
 
-- [x] Functional RED recorded: tests initially failed to compile because the review API did not exist.
-- [x] Provisional engine binding and read-only `prepare-review` / `check-review` CLI implemented with synthetic regression tests.
-- [x] CLI, contract, requirements, provenance, validation record and work index documentation added.
-- [x] Delivery register updated with the current open Draft PR #31 and #32 states and exact-head checks.
-- [x] Full workspace debug/release tests, clippy, rustdoc and repository guard verification passed locally.
-- [x] Exact-head hosted Linux / Windows / macOS, Required, Quality and Dependency Audit checks passed at implementation/source-comparison head `a979c6ad6244a9d20a8c276f43e21d310d8d8fbd` (run [42426266361](https://github.com/bynanci/storytelling/actions/runs/42426266361)) and follow-up head `5b61c0d1a87d4b33dd99bdfe03cccb8724ac151d` (run [42426713053](https://github.com/bynanci/storytelling/actions/runs/42426713053)). The final documentation-only follow-up's exact-head result is recorded in the PR description.
-- [ ] Independent G2 code/security review and maintainer acceptance.
-- [ ] Resolve review comments, update register/issue checklist only after accepted verification.
+- [x] Internal min-priority ready queue replaces repeated candidate scans.
+- [x] Exhaustive four-vertex graph comparison, supported-size graph tests and public report regression added.
+- [x] Manual release benchmark recorded, including small-graph overhead and limited end-to-end gains.
+- [x] Requirements, source refresh, component provenance and validation record added.
+- [x] PR #34 merged as `f07ab6940484ef8b8e4f2bdb37b96893e9f92270`; both head runs (12 jobs) and main run (6 jobs) passed. Issue #33 is fully checked and closed completed.
 
-The candidate is in Draft [PR #32](https://github.com/bynanci/storytelling/pull/32), stacked on the
-G2 packet PR #31 so hosted checks include the merged PR #28 code. It recompiles importer plan and
-OTIO from the same exact composition bytes. It does not
-bridge fixed-window planner output into OTIO, verify that the input came from a trusted build, inspect
-the declared host/binary, authorize a signer, issue approval, prevent replay, or execute a host edit.
-PR #28's separate cryptographic candidate and PR #31's G2 contract packet remain distinct; neither
-is silently treated as acceptance of this binding. Full trusted approval, M3-02 durability and M3-03
-execution remain open.
+The [validation record](docs/migration/records/M2-ORDER-OPT.md) is a versioned
+implementation snapshot. Final hosted checks, review and merge/checklist status
+are maintained in issue #33 and its associated PR. This optimisation does not
+complete the broader OpenFilm map or M3-01. Existing Draft PRs #31/#32 still await
+independent G2 review; issue #27 remains open.
+
+## M2-02/O2 cached exact-time construction — accepted
+
+Follow-up [issue #35](https://github.com/bynanci/storytelling/issues/35) preserves
+the accepted planner contract while caching denominators/scaled ticks and
+formatting diagnostic paths only on failures.
+
+- [x] Observed resource RED then GREEN for error-only path formatting.
+- [x] Golden fractions, error-priority, 2,048 generated compatibility cases and 1,024-candidate coverage added.
+- [x] Informational constructor/full-plan release measurements recorded.
+- [x] Local debug/release/docs and frozen/live conformance verification passed.
+- [x] PR #36 merged as `00ef8decbf1fecc7258bbc683973d41d656c8097`; both head CI runs (12 jobs) and main run (6 jobs) passed. Issue #35 is fully checked and closed completed.
+
+The [validation record](docs/migration/records/M2-CLOCK-OPT.md),
+[work index](docs/migration/m2-clock-opt-work-index.json) and provenance capture
+the local and accepted delivery evidence. Head `bdd502a8f8cd36c7b822c91fba4ff87215e8beb1`
+passed runs 42446786881/42446759799; merge `00ef8de` passed main run 42446933790.
+Delivery was accepted under standing user authority and explicit self-review of
+the unchanged planner profile; M3 G2 and release remain separate.
+
+## M3-01/P1 finite-OTIO review binding — maintainer-authorised integration
+
+[Issue #27](https://github.com/bynanci/storytelling/issues/27) tracks the bounded
+same-input review binding. The user stated “審查完畢 merge” on 2026-11-08 and
+explicitly authorised integrating PRs #31/#32 after refreshed technical checks.
+This records the user's review-complete statement and merge decision; no GitHub
+review submission, independent reviewer identity or signature is invented.
+
+- [x] Functional RED recorded before the new review module/API existed.
+- [x] Same-byte importer/compiler binding, private immutable BoundReviewV1 and strict declared context implemented.
+- [x] Read-only prepare-review/check-review CLI, tests, provenance and static source comparison supplied.
+- [x] Current-main Planner optimisations and their accepted completion records retained during integration.
+- [ ] Refreshed local/hosted integration checks and merge receipt (record after observation).
+- [ ] Reconcile remaining Issue #27 acceptance evidence separately; no paired upstream TypeScript review oracle has been run.
+
+Matching supplied composition/context establishes declaration and recomputed
+artifact consistency only. It does not authenticate a signer, verify source
+origin or a host, bridge planner output to OTIO, prevent replay or execute edits.
+PR #28 remains the separate supplied-payload signature candidate. Full OF-25 /
+GAP-06, trusted approval, M3-02 durability and M3-03 execution remain broader.
+The [merge review](docs/migration/records/M3-01-MERGE-REVIEW-2026-11-08.md)
+records the technical review and exact evidence boundaries.
 
 ## Not in the current backlog
 

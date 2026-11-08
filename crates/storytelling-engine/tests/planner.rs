@@ -33,6 +33,42 @@ fn basic() -> Value {
     input(&["a"], &["a"], vec![candidate("a", 4, 0, 4, 0)], 8, 4)
 }
 
+#[test]
+fn newly_unblocked_required_asset_keeps_admission_priority_in_the_full_report() {
+    let mut document = input(
+        &["omega", "middle", "alpha", "zeta"],
+        &[],
+        ["omega", "middle", "alpha", "zeta"]
+            .into_iter()
+            .map(|id| candidate(id, 1, 0, 1, 0))
+            .collect(),
+        4,
+        4,
+    );
+    document["brief"]["hard_constraints"] = json!([
+        {"type":"must-include","asset_ids":["zeta","alpha","middle","omega"]},
+        {"type":"asset-order","asset_ids":["middle","zeta"]}
+    ]);
+    let report = planned(&document);
+    assert_eq!(selected(&report), ["alpha", "middle", "zeta", "omega"]);
+    assert_eq!(
+        report["plan"]["assets"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|row| row["id"].as_str().unwrap())
+            .collect::<Vec<_>>(),
+        ["omega", "middle", "alpha", "zeta"]
+    );
+    for (i, row) in report["selections"].as_array().unwrap().iter().enumerate() {
+        assert_eq!(row["timeline_start"], time(i, 1));
+        assert_eq!(row["duration"], time(1, 1));
+        assert_eq!(row["shot_id"], format!("shot-{:06}", i + 1));
+        assert_eq!(row["required"], true);
+    }
+    validate_plan_json(&serde_json::to_vec(&report["plan"]).unwrap()).unwrap();
+}
+
 fn planned(input: &Value) -> Value {
     serde_json::to_value(plan_story(&serde_json::to_vec(input).unwrap()).unwrap()).unwrap()
 }
@@ -432,6 +468,36 @@ fn scaled_declared_duration_overflow_has_its_exact_input_path() {
     let mut a = candidate("a", u64::MAX, 0, 1, 0);
     a["source_range"]["end"] = time(1, 2);
     let document = input(&["a"], &["a"], vec![a], 1, 1);
+    rejected(
+        &document,
+        "planner.unrepresentable_time",
+        "$.candidates[0].duration",
+    );
+}
+
+#[test]
+fn clock_error_priority_keeps_the_full_lcm_pass_before_scaling() {
+    let mut a = candidate("a", 1, 0, 1, 0);
+    a["source_range"]["end"] = time(1, 2);
+    let mut b = candidate("b", 1, 0, 1, 0);
+    b["source_range"]["end"] = time(1, u64::MAX);
+    let mut document = input(&["a", "b"], &["a", "b"], vec![a, b], u64::MAX, 2);
+    // The late LCM failure must win over the already unscalable maximum.
+    rejected(&document, "planner.unrepresentable_time", "$");
+    document["candidates"][1]["source_range"]["end"] = time(1, 1);
+    rejected(&document, "planner.unrepresentable_time", "$.max_duration");
+    document["max_duration"] = time(1, 1);
+    document["brief"]["preferences"]["target_duration"] = time(u64::MAX, 1);
+    rejected(
+        &document,
+        "planner.unrepresentable_time",
+        "$.brief.preferences.target_duration",
+    );
+    document["brief"]["preferences"]
+        .as_object_mut()
+        .unwrap()
+        .remove("target_duration");
+    document["candidates"][0]["duration"] = time(u64::MAX, 1);
     rejected(
         &document,
         "planner.unrepresentable_time",

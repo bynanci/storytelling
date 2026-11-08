@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "task": "M2-02/O1",
+  "source": {
+    "repository": "bynanci/open-film",
+    "commit": "7add4762fe8174d76f43b863375ea39b73121e76",
+    "license": "Apache-2.0",
+    "files": [
+      {
+        "path": "packages/solver/src/index.ts",
+        "blob": "c701b985495c8c76292880b5acbc9c062b03006c"
+      },
+      {
+        "path": "packages/solver/tests/solver.test.ts",
+        "blob": "0049a6d28c5662dadf33154b93800ae13a2aa214"
+      },
+      {
+        "path": "packages/story/src/story-planner.ts",
+        "blob": "c942438ba96e08294393a5683813f4830cb654d2"
+      }
+    ]
+  },
+  "observed_source": {
+    "commit": "73f9df9810770d52cab0cc2978e55ef8301f884e",
+    "relevant_blobs_unchanged": true,
+    "date": "2026-11-08"
+  },
+  "downstream_base": {
+    "commit": "9513913e849f8cf15d9e5bbb2977fe587ce8b953",
+    "path": "crates/storytelling-engine/src/planner.rs"
+  },
+  "approval": {
+    "authority": "inherited user-approved component/SPDX policy; explicit optimise/upgrade request on 2026-11-08",
+    "date": "2026-11-08"
+  },
+  "files": [
+    {
+      "path": "crates/storytelling-engine/src/planner/ordering.rs",
+      "license": "Apache-2.0",
+      "relationship": "downstream refactor of existing source-informed Rust planner",
+      "source_paths": [
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "Move the accepted admission-priority Kahn policy to a private helper and replace repeated readiness scans with a min-heap. No upstream implementation copied."
+    },
+    {
+      "path": "crates/storytelling-engine/src/planner/order_tests.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored downstream regressions and benchmark",
+      "source_paths": [
+        "packages/solver/src/index.ts",
+        "packages/solver/tests/solver.test.ts",
+        "packages/story/src/story-planner.ts"
+      ],
+      "modifications": "Exhaustive whole-permutation oracle, supported-size graphs and test-only original Rust scan benchmark. No upstream tests, fixtures or media copied."
+    }
+  ],
+  "notices": [
+    {
+      "path": "LICENSES/Apache-2.0.txt",
+      "source_path": "LICENSE",
+      "blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "relationship": "retained verbatim upstream license"
+    },
+    {
+      "path": "NOTICE.openfilm",
+      "source_path": "NOTICE",
+      "blob": "cfb73de041af0e9e3e73bd8eb5cfb6135b676095",
+      "relationship": "retained verbatim historical/third-party attribution"
+    }
+  ],
+  "original_mit_blob": "f317799529d13f4d9301daa2dba63dfea559ff69",
+  "integration_classification": "New requirements/task/provenance/evidence documentation is independently authored MIT. Existing planner and integration test ownership stays in provenance-m2-02.json.",
+  "production_dependencies_added": [],
+  "source_tests_copied": false,
+  "media_copied": false
+}

@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "task": "M2-02/O1",
+  "tracking_issue": 33,
+  "source_commit": "7add4762fe8174d76f43b863375ea39b73121e76",
+  "target_base": "9513913e849f8cf15d9e5bbb2977fe587ce8b953",
+  "scope": "Internal stable ordering performance under the accepted fixed-window v1 contract",
+  "tasks": [
+    {
+      "id": "M2-O1-01",
+      "depends_on": [],
+      "state": "accepted",
+      "scope": "Private heap scheduler and exhaustive equivalence regressions"
+    },
+    {
+      "id": "M2-O1-02",
+      "depends_on": [
+        "M2-O1-01"
+      ],
+      "state": "accepted",
+      "scope": "Manual informational release benchmark and source/provenance records"
+    },
+    {
+      "id": "M2-O1-03",
+      "depends_on": [
+        "M2-O1-02"
+      ],
+      "state": "accepted",
+      "scope": "Full local/hosted gates; final delivery lifecycle is tracked by GitHub issue33"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M2-O01",
+      "requirement": "Retain earliest-ready admission priority and exact no-partial-plan errors",
+      "tests": [
+        "compares_every_four_vertex_graph_with_brute_force_priority_order",
+        "newly_ready_earlier_admission_precedes_already_queued_vertex",
+        "duplicate_edges_empty_graphs_and_admission_permutations_preserve_results",
+        "rejects_unselected_endpoints_self_edges_and_cycles_without_partial_order",
+        "newly_unblocked_required_asset_keeps_admission_priority_in_the_full_report"
+      ]
+    },
+    {
+      "id": "M2-O02",
+      "requirement": "Bounded ready scheduling without repeated full scans; supported-size graphs and descriptive benchmarks",
+      "tests": [
+        "maximum_candidate_graphs_keep_every_vertex_and_precedence",
+        "benchmark_ordering"
+      ]
+    },
+    {
+      "id": "M2-O03",
+      "requirement": "Retained frozen/live conformance, provenance and platform checks",
+      "tests": [],
+      "verification_paths": [
+        "docs/migration/records/M2-ORDER-OPT.md",
+        "docs/migration/provenance-m2-order-opt.json",
+        "tests/oracles/fixed-window-planner-v1/compare.py",
+        "tests/oracles/planner-shadow-v1/run.py"
+      ]
+    }
+  ],
+  "lifecycle_source": "https://github.com/bynanci/storytelling/issues/33",
+  "lifecycle_note": "Original local evidence retained; accepted delivery now reconciled below from actual PR/issue metadata.",
+  "not_claimed": [
+    "Independent G2 review of M3 PR31/32",
+    "Full OpenFilm solver parity",
+    "Trusted approval or host execution",
+    "Release or package publication"
+  ],
+  "local_evidence": {
+    "rust_debug_passed": 191,
+    "rust_release_passed": 191,
+    "manual_benchmark_executed": true,
+    "frozen_cases": 36,
+    "host_checker_regressions": 6,
+    "shadow_regressions": 40,
+    "live_pairs": 64,
+    "unclassified_pairs": 0
+  },
+  "accepted_lifecycle": {
+    "feature_pull_request": 34,
+    "accepted_head": "5bbc3a0e867a90e3f8829c3cf7ab6b2c3961b3b0",
+    "merge_commit": "f07ab6940484ef8b8e4f2bdb37b96893e9f92270",
+    "merged_at": "2026-11-08T01:37:08Z",
+    "head_workflow_runs": [
+      42434851833,
+      42434822453
+    ],
+    "head_jobs_passed": 12,
+    "main_workflow_run": 42435022548,
+    "main_jobs_passed": 6,
+    "issue": 33,
+    "issue_state": "closed-completed-four-items-checked",
+    "review": "self-review; existing G2 profile retained",
+    "authority": "standing user verified-merge authority; no release"
+  }
+}

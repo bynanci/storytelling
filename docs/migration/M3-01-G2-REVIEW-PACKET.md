@@ -1,9 +1,17 @@
 # M3-01/P1 G2 contract proposal: finite-OTIO review binding
 
-Status: **proposed for independent G2 review**. This document is a review packet,
+Original 2026-11-07 status: **proposed for independent G2 review**. This document is a review packet,
 not a frozen contract, accepted requirement, implementation, human approval, or
 source/host verification. Tracking issue: [#27](https://github.com/bynanci/storytelling/issues/27).
 No Issue #27 checklist item is completed by this document.
+
+On 2026-11-08 the user stated “審查完畢 merge” in the task conversation and
+explicitly requested merging PRs #31/#32. The design packet is therefore being
+integrated under that maintainer instruction after current-main verification.
+GitHub has no submitted review at this observation; this note records the user's
+review-complete statement and merge authority without inventing an independent
+reviewer, signature or runtime source-comparison evidence. The runtime candidate
+and remaining Issue #27 acceptance evidence are tracked separately.
 
 The proposed first profile reviews one finite OpenFilm composition snapshot using
 the existing importer and OTIO exporter. It does not review `plan-story` output:

@@ -85,6 +85,27 @@ fixtures. Native receipts prove supplied immutable bytes, not future files or
 host/approval authority.
 
 
+## M2-02/O2 private exact-time construction optimisation
+
+The 2026-11-08 follow-up retains the accepted component policy and fixed source
+baseline. The new exact-clock regression/benchmark module, including the prior
+downstream Rust factory as a test-only baseline, is covered by
+[its inventory](docs/migration/provenance-m2-clock-opt.json). Modified existing
+planner/clock/integration files remain in the M2-02 inventory. No upstream code,
+tests or media, dependency or notice change is introduced. Task/requirements and
+benchmark evidence documentation is independently authored MIT. Self-review
+does not assert independent M3 G2 approval or a maintainer signature.
+
+## M2-02/O1 private ordering optimisation
+
+The 2026-11-08 performance refactor retains the existing approved Apache component
+policy and fixed source baseline. New private ordering/test modules are listed in
+[per-file inventory](docs/migration/provenance-m2-order-opt.json); existing planner
+and integration tests remain in the M2-02 inventory. Independently authored task,
+requirements and benchmark documentation retain MIT. No upstream implementation,
+tests, media, new dependency or notice change is introduced. The record discloses
+AI implementation and self-review without a maintainer signature or G2 approval.
+
 ## M2-02 fixed-window planner
 
 Source-informed core/engine planner modules, synthetic regressions and pinned source
