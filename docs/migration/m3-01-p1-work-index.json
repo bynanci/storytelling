@@ -155,7 +155,19 @@
       "repo_guard_passed": true,
       "git_diff_check_passed": true,
       "openfilm_runtime_oracle": "passed against pinned source SHA 7add4762fe8174d76f43b863375ea39b73121e76; see M3-01-RUNTIME-ORACLE-2026-11-08.md",
-      "hosted_ci": "pending exact follow-up PR head"
+      "hosted_ci": "both exact-head runs and the post-merge main run passed all six jobs",
+      "head": "a9b80723e0171497d9b1cc63bc30c6fac88e0ecc",
+      "pull_request": 40,
+      "merge": "3d858aea9901fdcd8436503ae7d314cfb0c75431",
+      "tree_sha": "8ea001a17b1b60716c5672644a040adcdbd56e8a",
+      "head_runs": [
+        42477209609,
+        42477206413
+      ],
+      "head_jobs_per_run": 6,
+      "main_run": 42477392236,
+      "main_jobs_passed": 6,
+      "windows_regression": "superseded head 19b38d6 exposed a fixture-byte digest mismatch; final head marks the exact fixture -text and both final Windows jobs pass"
     }
   },
   "not_completed": [
@@ -221,13 +233,60 @@
       5
     ],
     "m3_source_comparison": "static source map plus bounded actual paired TypeScript/Rust runtime oracle; no full parity",
-    "release": false
+    "release": false,
+    "evidence_followup_pr39": {
+      "number": 39,
+      "head": "6f4fea7180b2941b4997c0e17b17ae3835516d6f",
+      "merge": "0611026eb1dd0379c685b9098dbb60839c83e1e2",
+      "head_runs": [
+        42474991033,
+        42474986836
+      ],
+      "head_jobs_per_run": 6,
+      "main_run": 42475637859,
+      "main_jobs_passed": 6
+    },
+    "evidence_followup_pr40": {
+      "number": 40,
+      "head": "a9b80723e0171497d9b1cc63bc30c6fac88e0ecc",
+      "merge": "3d858aea9901fdcd8436503ae7d314cfb0c75431",
+      "tree_sha": "8ea001a17b1b60716c5672644a040adcdbd56e8a",
+      "merged_at": "2026-11-08T11:48:59Z",
+      "head_runs": [
+        42477209609,
+        42477206413
+      ],
+      "head_jobs_per_run": 6,
+      "main_run": 42477392236,
+      "main_jobs_passed": 6,
+      "independent_review_submissions": 0
+    },
+    "current_main": {
+      "sha": "3d858aea9901fdcd8436503ae7d314cfb0c75431",
+      "tree_sha": "8ea001a17b1b60716c5672644a040adcdbd56e8a",
+      "run": 42477392236,
+      "all_six_jobs_passed": true
+    }
   },
   "evidence_audit": {
     "record": "docs/migration/records/M3-01-EVIDENCE-AUDIT-2026-11-08.md",
     "reviewed_main": "72e619c1ca25d363a6c62ee38164be6a4bec421f",
     "historical_functional_red": "unproven",
     "source_oracle": "bounded paired source/runtime oracle executed for finite synthetic cases; independent profile acceptance remains open",
-    "profile_acceptance": "open; see findings and exit criteria"
+    "profile_acceptance": "open; see findings and exit criteria",
+    "last_reviewed_main": "3d858aea9901fdcd8436503ae7d314cfb0c75431",
+    "current_issue27_checklist": {
+      "state": "open",
+      "checked_items": [
+        3,
+        4,
+        6
+      ],
+      "remaining_items": [
+        1,
+        2,
+        5
+      ]
+    }
   }
 }

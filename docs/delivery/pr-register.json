@@ -2676,6 +2676,73 @@
         ]
       },
       "scope_note": "Bounded supplied-composition review binding integrated. M3 source comparison remains static; no trusted approval, source/host observation, replay, execution or release claim."
+    },
+    {
+      "schema_version": 1,
+      "repository": "bynanci/storytelling",
+      "checked_at": "2026-11-08T11:51:27Z",
+      "kind": "m3-01-evidence-correction-and-runtime-followup",
+      "observed_main": {
+        "sha": "3d858aea9901fdcd8436503ae7d314cfb0c75431",
+        "tree_sha": "8ea001a17b1b60716c5672644a040adcdbd56e8a",
+        "merge_ci_run": 42477392236,
+        "merge_ci_all_six_success": true
+      },
+      "pull_requests": [
+        {
+          "number": 39,
+          "state": "closed",
+          "merged": true,
+          "draft": false,
+          "head_sha": "6f4fea7180b2941b4997c0e17b17ae3835516d6f",
+          "merge_commit_sha": "0611026eb1dd0379c685b9098dbb60839c83e1e2",
+          "merged_at": "2026-11-08T11:24:50Z",
+          "head_runs": [
+            42474991033,
+            42474986836
+          ],
+          "head_jobs_passed_per_run": 6,
+          "main_run": 42475637859,
+          "main_jobs_passed": 6
+        },
+        {
+          "number": 40,
+          "state": "closed",
+          "merged": true,
+          "draft": false,
+          "head_sha": "a9b80723e0171497d9b1cc63bc30c6fac88e0ecc",
+          "head_tree_sha": "8ea001a17b1b60716c5672644a040adcdbd56e8a",
+          "merge_commit_sha": "3d858aea9901fdcd8436503ae7d314cfb0c75431",
+          "merged_at": "2026-11-08T11:48:59Z",
+          "head_runs": [
+            42477209609,
+            42477206413
+          ],
+          "head_jobs_passed_per_run": 6,
+          "main_run": 42477392236,
+          "main_jobs_passed": 6,
+          "local_tests": {
+            "debug_passed": 219,
+            "release_passed": 219
+          },
+          "review_submissions": 0
+        }
+      ],
+      "issue27": {
+        "state": "open",
+        "checked_items": [
+          3,
+          4,
+          6
+        ],
+        "remaining_items": [
+          1,
+          2,
+          5
+        ]
+      },
+      "review_authority": "User requested review completion and merge; no independent G2 reviewer or review approval is fabricated",
+      "scope_note": "PR #39 corrects provenance/functional-RED description. PR #40 runs a small pinned OpenFilm review-service oracle and fixes the cross-platform byte fixture; no full parity, trusted approval, host execution or release claim."
     }
   ]
 }
