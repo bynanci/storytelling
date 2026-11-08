@@ -66,10 +66,6 @@ fn same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifa
     // Fixed vector runs on Linux, Windows, and macOS to catch byte/order drift.
     let identity = &first.record().identity;
     assert_eq!(
-        first.record().binding_sha256,
-        "85ee60f9a2ea0327ea977b48f73e6160f769e65921ee64ce7dbef81c3eb14a4f"
-    );
-    assert_eq!(
         identity.composition_sha256,
         "04e320f4fe6c1ebd65c11c0392ab48b3c61abc8ce44de09c1e7ffccd1ef087b9"
     );
@@ -122,6 +118,10 @@ fn same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifa
     assert_eq!(
         identity.context_fields.loss_choices,
         "95347900bb76bc57ce1eada9675be372e21326227cf2aa9d68dda7a1ebeed6ff"
+    );
+    assert_eq!(
+        first.record().binding_sha256,
+        "85ee60f9a2ea0327ea977b48f73e6160f769e65921ee64ce7dbef81c3eb14a4f"
     );
 
     let portable_record = serde_json::to_vec(first.record()).unwrap();

@@ -13,6 +13,8 @@ independent G2 acceptance, real-host behavior or media correctness.
 - Synthetic Rust/host composition fixture:
   `tests/fixtures/openfilm/finite-v1/repeat-source.json`, SHA-256
   `04e320f4fe6c1ebd65c11c0392ab48b3c61abc8ce44de09c1e7ffccd1ef087b9`.
+- The fixture's `.gitattributes` entry disables text conversion because the
+  importer and identity hash the exact embedded bytes on every platform.
 - Rust dependency lock SHA-256:
   `f3a69dd97731666785474156249bd1c27d2d1c3048162edfeb111e98024d7e66`.
 - The source harness is [m3-01-openfilm-runtime.mjs](../../../scripts/oracles/m3-01-openfilm-runtime.mjs).
