@@ -4,6 +4,10 @@
 mod clock;
 mod ordering;
 
+#[cfg(test)]
+#[path = "planner/clock_tests.rs"]
+mod clock_tests;
+
 use ordering::order;
 
 #[cfg(test)]

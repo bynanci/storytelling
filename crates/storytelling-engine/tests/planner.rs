@@ -476,6 +476,36 @@ fn scaled_declared_duration_overflow_has_its_exact_input_path() {
 }
 
 #[test]
+fn clock_error_priority_keeps_the_full_lcm_pass_before_scaling() {
+    let mut a = candidate("a", 1, 0, 1, 0);
+    a["source_range"]["end"] = time(1, 2);
+    let mut b = candidate("b", 1, 0, 1, 0);
+    b["source_range"]["end"] = time(1, u64::MAX);
+    let mut document = input(&["a", "b"], &["a", "b"], vec![a, b], u64::MAX, 2);
+    // The late LCM failure must win over the already unscalable maximum.
+    rejected(&document, "planner.unrepresentable_time", "$");
+    document["candidates"][1]["source_range"]["end"] = time(1, 1);
+    rejected(&document, "planner.unrepresentable_time", "$.max_duration");
+    document["max_duration"] = time(1, 1);
+    document["brief"]["preferences"]["target_duration"] = time(u64::MAX, 1);
+    rejected(
+        &document,
+        "planner.unrepresentable_time",
+        "$.brief.preferences.target_duration",
+    );
+    document["brief"]["preferences"]
+        .as_object_mut()
+        .unwrap()
+        .remove("target_duration");
+    document["candidates"][0]["duration"] = time(u64::MAX, 1);
+    rejected(
+        &document,
+        "planner.unrepresentable_time",
+        "$.candidates[0].duration",
+    );
+}
+
+#[test]
 fn future_schema_is_probed_and_nested_unknown_missing_null_fields_reject() {
     let mut future = basic();
     future["schema_version"] = json!(2);

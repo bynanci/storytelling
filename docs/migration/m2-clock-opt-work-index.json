@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "task": "M2-02/O2",
+  "tracking_issue": 35,
+  "source_commit": "7add4762fe8174d76f43b863375ea39b73121e76",
+  "target_base": "f07ab6940484ef8b8e4f2bdb37b96893e9f92270",
+  "scope": "Internal cached exact-time construction under the accepted fixed-window v1 profile",
+  "tasks": [
+    {
+      "id": "M2-O2-01",
+      "depends_on": [],
+      "state": "implemented",
+      "scope": "Cached denominator/scaled ticks and deferred diagnostic paths"
+    },
+    {
+      "id": "M2-O2-02",
+      "depends_on": [
+        "M2-O2-01"
+      ],
+      "state": "locally-verified",
+      "scope": "Resource RED/GREEN, compatibility/golden regressions and release benchmark"
+    },
+    {
+      "id": "M2-O2-03",
+      "depends_on": [
+        "M2-O2-02"
+      ],
+      "state": "locally-verified",
+      "scope": "Debug/release/docs/frozen/live/provenance checks; final head CI and merge in issue35"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M2-CT01",
+      "requirement": "Success avoids error-path formatting while exact arithmetic and failure priority stay compatible",
+      "tests": [
+        "successful_cached_scaling_never_formats_an_error_path",
+        "cached_scaling_formats_the_precise_failure_path_once",
+        "fractional_clock_preserves_exact_windows_and_reduced_placements",
+        "lcm_overflow_precedes_earlier_scaled_value_overflow",
+        "scaling_failure_priority_remains_maximum_then_target_then_candidate",
+        "clock_error_priority_keeps_the_full_lcm_pass_before_scaling"
+      ]
+    },
+    {
+      "id": "M2-CT02",
+      "requirement": "Generated/supported-size equivalence and descriptive release performance evidence",
+      "tests": [
+        "generated_canonical_clock_inputs_match_the_accepted_implementation",
+        "full_candidate_budget_cache_and_empty_private_clock_keep_exact_results",
+        "benchmark_clock_cache"
+      ]
+    },
+    {
+      "id": "M2-CT03",
+      "requirement": "Retained source/provenance, frozen/live conformance and platform CI",
+      "tests": [],
+      "verification_paths": [
+        "docs/migration/records/M2-CLOCK-OPT.md",
+        "docs/migration/provenance-m2-clock-opt.json",
+        "tests/oracles/fixed-window-planner-v1/compare.py",
+        "tests/oracles/planner-shadow-v1/run.py"
+      ]
+    }
+  ],
+  "local_evidence": {
+    "rust_debug_passed": 199,
+    "rust_release_passed": 199,
+    "informational_benchmark_executed": true,
+    "default_ignored_benchmarks": 2,
+    "frozen_cases": 36,
+    "host_checker_regressions": 6,
+    "shadow_regressions": 40,
+    "live_pairs": 64,
+    "unclassified_pairs": 0
+  },
+  "lifecycle_source": "https://github.com/bynanci/storytelling/issues/35",
+  "lifecycle_note": "Versioned pre-publication implementation/verification snapshot; issue and PR own the final head/run/merge result.",
+  "not_claimed": [
+    "New wire/API/time policy",
+    "Independent M3 G2 approval",
+    "Full OpenFilm solver parity",
+    "Host/editorial execution acceptance",
+    "Release or package publication"
+  ]
+}

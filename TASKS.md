@@ -232,7 +232,7 @@ This is synthetic selected-domain differential evidence. Fractional optional
 budgets, full solver behavior, live Catalog authority, host execution and human
 editorial acceptance remain separate. The runner opens no user project.
 
-## M2-02/O1 stable ordering optimisation
+## M2-02/O1 stable ordering optimisation — accepted
 
 2026-11-08 follow-up under the user's optimise/upgrade instruction; tracked in
 [issue #33](https://github.com/bynanci/storytelling/issues/33). The accepted M2-02
@@ -242,6 +242,7 @@ wire, priority policy, timing and input limits remain the contract.
 - [x] Exhaustive four-vertex graph comparison, supported-size graph tests and public report regression added.
 - [x] Manual release benchmark recorded, including small-graph overhead and limited end-to-end gains.
 - [x] Requirements, source refresh, component provenance and validation record added.
+- [x] PR #34 merged as `f07ab6940484ef8b8e4f2bdb37b96893e9f92270`; both head runs (12 jobs) and main run (6 jobs) passed. Issue #33 is fully checked and closed completed.
 
 The [validation record](docs/migration/records/M2-ORDER-OPT.md) is a versioned
 implementation snapshot. Final hosted checks, review and merge/checklist status
@@ -249,14 +250,32 @@ are maintained in issue #33 and its associated PR. This optimisation does not
 complete the broader OpenFilm map or M3-01. Existing Draft PRs #31/#32 still await
 independent G2 review; issue #27 remains open.
 
-## Prepared next slice: M3-01/P1
+## M2-02/O2 cached exact-time construction
+
+Follow-up [issue #35](https://github.com/bynanci/storytelling/issues/35) preserves
+the accepted planner contract while caching denominators/scaled ticks and
+formatting diagnostic paths only on failures.
+
+- [x] Observed resource RED then GREEN for error-only path formatting.
+- [x] Golden fractions, error-priority, 2,048 generated compatibility cases and 1,024-candidate coverage added.
+- [x] Informational constructor/full-plan release measurements recorded.
+- [x] Local debug/release/docs and frozen/live conformance verification passed.
+
+The [validation record](docs/migration/records/M2-CLOCK-OPT.md),
+[work index](docs/migration/m2-clock-opt-work-index.json) and provenance capture
+the versioned local evidence. Final hosted checks and merge/checklist metadata
+are maintained in issue #35 and its associated PR under standing user authority.
+
+## M3-01/P1 candidate awaiting independent G2
 
 [Tracking #27](https://github.com/bynanci/storytelling/issues/27) and
 [source/readiness scope](docs/migration/M3-01-NEXT.md) prepare immutable finite-OTIO
 review identity and declared-context freshness. The source map has15actual blob
 identities; proposed M3-RB01–RB07, wire/CLI names and budgets still need independent
-G2 freezing and functional RED before implementation. No code or passing M3 test
-is claimed. Use the existing importer/compiler input because the planner→OTIO
+G2 freezing before acceptance. A provisional implementation and passing candidate
+tests exist in Draft [PR #32](https://github.com/bynanci/storytelling/pull/32),
+stacked on the [PR #31](https://github.com/bynanci/storytelling/pull/31) contract
+packet; canonical M3-01/P1 is still unaccepted. Use the existing importer/compiler input because the planner→OTIO
 bridge is absent; matching hashes/context never grant human approval. Merged
 candidate [PR #28](https://github.com/bynanci/storytelling/pull/28) implements
 separate M3-A01–A03 scope and remains unaccepted pending independent G2 review.

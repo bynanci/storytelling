@@ -2469,6 +2469,56 @@
       "tracking_issue_27": "open-no-checklist-completion",
       "separate_optimization_issue": 33,
       "authority_note": "User conditionally authorised verified merges and algorithm optimisation; this does not itself grant independent G2 acceptance."
+    },
+    {
+      "schema_version": 1,
+      "repository": "bynanci/storytelling",
+      "checked_at": "2026-11-08T04:21:35Z",
+      "kind": "accepted-delivery-reconciliation",
+      "observed_main": {
+        "sha": "f07ab6940484ef8b8e4f2bdb37b96893e9f92270"
+      },
+      "pull_requests": [
+        {
+          "number": 34,
+          "state": "closed",
+          "merged": true,
+          "draft": false,
+          "head_sha": "5bbc3a0e867a90e3f8829c3cf7ab6b2c3961b3b0",
+          "merge_commit_sha": "f07ab6940484ef8b8e4f2bdb37b96893e9f92270",
+          "merged_at": "2026-11-08T01:37:08Z",
+          "head_workflow_runs": [
+            42434851833,
+            42434822453
+          ],
+          "head_jobs_passed": 12,
+          "main_workflow_run": 42435022548,
+          "main_jobs_passed": 6,
+          "review": "self-review under unchanged accepted G2 profile"
+        }
+      ],
+      "completed_task_issues": [
+        {
+          "number": 33,
+          "state": "closed",
+          "reason": "completed",
+          "checked_items": 4
+        }
+      ],
+      "remaining_drafts": [
+        {
+          "number": 31,
+          "independent_reviews": 0,
+          "disposition": "await-independent-G2"
+        },
+        {
+          "number": 32,
+          "independent_reviews": 0,
+          "disposition": "await-independent-G2-and-source-comparison-disposition"
+        }
+      ],
+      "separate_followup_issue": 35,
+      "scope_note": "Accepts the completed private ordering optimisation only; M3 and release gates remain separate."
     }
   ]
 }
