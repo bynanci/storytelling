@@ -2519,6 +2519,44 @@
       ],
       "separate_followup_issue": 35,
       "scope_note": "Accepts the completed private ordering optimisation only; M3 and release gates remain separate."
+    },
+    {
+      "schema_version": 1,
+      "repository": "bynanci/storytelling",
+      "checked_at": "2026-11-08T04:30:08Z",
+      "kind": "accepted-delivery-reconciliation",
+      "observed_main": {
+        "sha": "00ef8decbf1fecc7258bbc683973d41d656c8097"
+      },
+      "pull_requests": [
+        {
+          "number": 36,
+          "state": "closed",
+          "merged": true,
+          "draft": false,
+          "head_sha": "bdd502a8f8cd36c7b822c91fba4ff87215e8beb1",
+          "merge_commit_sha": "00ef8decbf1fecc7258bbc683973d41d656c8097",
+          "merged_at": "2026-11-08T04:28:04Z",
+          "head_workflow_runs": [
+            42446786881,
+            42446759799
+          ],
+          "head_jobs_passed": 12,
+          "main_workflow_run": 42446933790,
+          "main_jobs_passed": 6,
+          "accepted_tree_matches_merge": true,
+          "review": "self-review under unchanged accepted G2 profile"
+        }
+      ],
+      "completed_task_issues": [
+        {
+          "number": 35,
+          "state": "closed",
+          "reason": "completed",
+          "checked_items": 4
+        }
+      ],
+      "scope_note": "Accepted private exact-clock construction optimisation only; M3 G2 and release remain separate."
     }
   ]
 }
