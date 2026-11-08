@@ -59,8 +59,8 @@ and reported no findings.
 - [x] Bounded M3-A01/A02 implementation and tests are integrated on main.
 - [x] Current dependency pins, provenance/status documents and hosted audit are integrated.
 - [x] PR #28 merged under the user's instruction after exact-head gates passed.
-- [ ] Independent G2 security review and explicit candidate acceptance remain pending.
-- [ ] Canonical M3-01/P1 work in issue #27 remains open and separate.
+- [ ] Independent G2 security review and explicit candidate acceptance remain pending for PR #28.
+- [x] The separate bounded M3-01/P1 finite-OTIO profile is signed and accepted; see [Issue #27](https://github.com/bynanci/storytelling/issues/27) and its acceptance record.
 
 This merge does not establish trusted signer authorization, same-snapshot
 compiler provenance, replay prevention, host execution, product acceptance or release.
@@ -110,7 +110,7 @@ permission changes, nor replace real-media/host or human editorial acceptance.
 | M2-01 | P1 / accepted | Bounded StoryBrief hard constraints vs preferences and typed conflicts | M1 profile; PR #17 merged | M2-B01–B06; manual choices preserved, declared reference/membership/order contradictions explained; full planner/feasibility separate |
 | M2-02 | P1 / accepted | Finite fixed-window selection and shot planner | Accepted M2-01; PR #22 merged | M2-P01–P06; exact source windows, hard choices/order, deterministic declared ranks/reason paths; full solver remains open |
 | M2-03 | P1 / accepted | Actual selected-domain TS/native live shadow and completed PR register | Accepted M2-02; tracking #24 | M2-S01–S06; exact 64-pair evidence, fail-closed regressions, source/tool provenance and same-head acceptance |
-| M3-01 | P1 / proposed | Approval and compiled-plan identity contracts | M1-03, M2-02 | Approval binds source, plan, host version/capabilities and accepted losses |
+| M3-01 | P1 / bounded subprofile accepted; broader milestone proposed | Approval and compiled-plan identity contracts | M1-03, M2-02 | Accepted subprofile binds same-input finite OTIO and declared context; trusted approval, planner bridge and execution remain open |
 | M3-02 | P1 / proposed | SQLite operation journal and owner-fenced recovery | M3-01 | Fault injection: crash/retry/late callback/ack failure; no duplicate apply |
 | M3-03 | P1 / proposed | FilmCraft executor with unknown-result reconciliation | M3-02 | New isolated project only; timeout readback before retry; no blind Undo rollback |
 | M4-01 | P2 / proposed | Thin TypeScript client and one OpenFilm feature flag | M2-03, M3-03 | One writer/authority; external sample consumes stable CLI protocol |
@@ -247,8 +247,9 @@ wire, priority policy, timing and input limits remain the contract.
 The [validation record](docs/migration/records/M2-ORDER-OPT.md) is a versioned
 implementation snapshot. Final hosted checks, review and merge/checklist status
 are maintained in issue #33 and its associated PR. This optimisation does not
-complete the broader OpenFilm map or M3-01. Existing Draft PRs #31/#32 still await
-independent G2 review; issue #27 remains open.
+complete the broader OpenFilm map or M3-01. PRs #31/#32 were subsequently merged;
+the bounded M3-01/P1 profile now has its own signed acceptance. PR #28 remains a
+separate unaccepted candidate.
 
 ## M2-02/O2 cached exact-time construction — accepted
 
@@ -269,25 +270,24 @@ passed runs 42446786881/42446759799; merge `00ef8de` passed main run 42446933790
 Delivery was accepted under standing user authority and explicit self-review of
 the unchanged planner profile; M3 G2 and release remain separate.
 
-## M3-01/P1 finite-OTIO review binding — integrated bounded slice
+## M3-01/P1 finite-OTIO review binding — accepted bounded profile
 
 [Issue #27](https://github.com/bynanci/storytelling/issues/27) tracks the bounded
-same-input review binding. The user stated “審查完畢 merge” on 2026-11-08 and
-explicitly authorised integrating PRs #31/#32 after refreshed technical checks.
-This records the user's review-complete statement and merge decision; no GitHub
-review submission, independent reviewer identity or signature is invented.
+same-input review binding. The signed [G2 acceptance record](docs/migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md)
+accepts M3-RB01–RB07 with explicit boundaries and waives the unprovable historical
+functional RED as a blocker. The waiver does not claim a historical test passed.
 
-- [x] Pre-implementation compile RED recorded (unresolved imports; no test body ran).
-- [ ] Historical functional RED remains unproven; later mutation experiments are separate evidence.
+- [x] Pre-implementation compile failure recorded (unresolved imports; no test body ran).
+- [x] Historical functional RED remains unproven and is explicitly waived as a blocker; later mutation experiments remain separate current evidence.
 - [x] Same-byte importer/compiler binding, private immutable BoundReviewV1 and strict declared context implemented.
 - [x] Read-only prepare-review/check-review CLI, tests, provenance, static source map and bounded paired OpenFilm runtime oracle supplied.
 - [x] Current-main Planner optimisations and their accepted completion records retained during integration.
 - [x] Refreshed debug/release each passed 217 tests at integration; follow-up golden-vector and error-order tests are tracked separately.
 - [x] PR #40 adds the fixed cross-platform digest vector, API/CLI error-precedence regressions and pinned source-runtime evidence. Full workspace debug/release runs each pass 219 tests; both exact-head runs and the post-merge main run pass all six jobs.
 - [x] PR #31 merged as `baa97903e3d3c02e2eb2747140d62f1ddca3c60c`; PR #32 merged as `3d121398e2c14c4a43d101a5b9a55a4616a81174` under the user review-complete/merge instruction.
-- [x] Issue #27 entries 3/4/6 have implementation, paired oracle and merge/reconciliation evidence; entries 1/2/5 remain open.
+- [x] Issue #27 entries 1/3/4/5/6 have scoped acceptance, implementation, oracle, automation, merge and reconciliation evidence; item 2 is completed by an explicit waiver, not by a retroactive test claim.
 - [x] [Evidence audit](docs/migration/records/M3-01-EVIDENCE-AUDIT-2026-11-08.md) corrects provenance and historical RED claims; [runtime record](docs/migration/records/M3-01-RUNTIME-ORACLE-2026-11-08.md) adds a bounded actual source/runtime comparison.
-- [ ] Obtain independent G2 profile review/acceptance; the historical pre-implementation functional RED remains unproven.
+- [x] Independent human G2 acceptance is signed. Issue #27 closes for this bounded profile after this acceptance record merges with passing same-head CI.
 
 Matching supplied composition/context establishes declaration and recomputed
 artifact consistency only. It does not authenticate a signer, verify source

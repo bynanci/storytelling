@@ -180,17 +180,16 @@ G2 review is pending. Implementation and verification evidence are in the
 | M3-A02 | Strict bounded Ed25519 verification returns an opaque result and rejects tampering, malformed data and untrusted signer bindings | Candidate work index and approval integration tests | Implemented on PR #28; independent G2 pending |
 | M3-A03 | A valid signature does not establish human authorization, durable replay safety or host execution | Candidate API-boundary review, compile-fail examples and work index | Candidate scope; broader requirements remain open |
 
-## M3-01/P1 provisional finite-OTIO review binding
+## M3-01/P1 accepted bounded finite-OTIO review binding
 
-This implementation candidate follows the separately prepared [M3-01 contract and source map](migration/M3-01-NEXT.md)
-and is tracked by [issue #27](https://github.com/bynanci/storytelling/issues/27). M3-RB01–RB07
-remain implementation-candidate identifiers. The user reported review complete and requested
-merge on 2026-11-08; that is recorded as maintainer merge authority, without inventing a
-GitHub approval or independent-review artifact. The current candidate
-only binds a caller-provided composition byte slice to an importer plan, its OTIO serialization,
-the complete OTIO report and declared context; it does not implement trusted approval.
+The bounded first profile follows the [M3-01 contract and source map](migration/M3-01-NEXT.md)
+and [issue #27](https://github.com/bynanci/storytelling/issues/27). M3-RB01–RB07 are accepted
+for this scope by the signed [G2 acceptance record](migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md).
+This does not accept broader M3-01 or PR #28. The implementation binds a caller-provided
+composition byte slice to an importer plan, its OTIO serialization, the complete OTIO report
+and declared context; it does not implement trusted approval.
 
-| ID | Provisional requirement | Implementation | Actual tests / evidence |
+| ID | Accepted bounded requirement | Implementation | Actual tests / evidence |
 | --- | --- | --- | --- |
 | M3-RB01 | Deterministic versioned SHA-256 identity commits to typed plan, OTIO artifact, full loss report, profile/compiler and context | `core/source_evidence.rs`, `engine/review_binding.rs` | `same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact` asserts the fixed cross-platform golden vector; `semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding` |
 | M3-RB02 | Import and compile from one exact composition input; artifact is regenerated during freshness checks, never accepted as caller-supplied digest evidence | `engine/review_binding.rs` | `changed_composition_and_each_declared_context_field_are_reported_stale`, `semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding` |
@@ -209,10 +208,9 @@ all existing repository regression/oracle lanes and the six exact-head hosted ga
 PR #32 head `2e7662405a49698be1ebee2136f54ab539ef7c2e` (run 42425697537). A bounded paired
 OpenFilm `NleHandoffService.review/publish` and Rust CLI runtime oracle now runs on the pinned
 synthetic finite composition; its outcomes and limits are in the [runtime record](migration/records/M3-01-RUNTIME-ORACLE-2026-11-08.md).
-The encoding intentionally differs and no full source parity is claimed. Independent G2
-profile review and maintainer acceptance remain separate before all Issue #27 acceptance items
-can be checked complete. The user's later review-complete/merge
-instruction authorises this bounded integration after current-head verification. See the [M3-01 work index](migration/m3-01-p1-work-index.json).
+The encoding intentionally differs and no full source parity is claimed. The historical
+functional RED was unproven and is explicitly waived as a blocker in the signed acceptance
+record; it is not represented as a test that passed. See the [M3-01 work index](migration/m3-01-p1-work-index.json).
 
 ## Remaining breadth and future requirements
 

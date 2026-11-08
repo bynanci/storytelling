@@ -275,3 +275,20 @@ runtime evidence is limited to synthetic review cases and does not establish
 digest parity, trusted signer authorization, full upstream parity or G2
 acceptance. The historical pre-implementation functional RED remains unproven;
 no independent approval or release is asserted.
+
+## M3-01/P1 signed bounded G2 acceptance — 2026-11-08
+
+The maintainer/reviewer supplied the sign-off `NAN CHUN WANG
+<by.nanci.tw@gmail.com>` and accepted M3-RB01–RB07 for the finite-OTIO profile
+at reviewed main `4f43de0010e4e912c6367338d15b75bae5cf2720`. The decision,
+guarantee boundaries, CI evidence and explicit historical-RED waiver are in the
+[signed acceptance record](../migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md).
+The record is being delivered through a documentation/provenance PR; Issue #27
+will close as completed only after that same-head PR checks pass and merges.
+
+The historical functional RED remains unproven and is waived solely as a
+completion blocker; this register does not claim it occurred. PR #28 remains a
+separate unaccepted Ed25519 candidate. This bounded acceptance does not establish
+trusted signer authorization, source/build provenance, the planner-to-OTIO
+bridge, host observation, replay protection, execution, full OpenFilm parity or
+release.

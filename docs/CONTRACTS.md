@@ -99,11 +99,12 @@ Stable codes: `input.invalid_json`, `input.too_large`, `input.io`, `cli.usage`,
 `plan.too_many_items`. Diagnostic paths may be refined; callers should branch on
 codes, not prose or line/column messages.
 
-## M3-01/P1 provisional review binding
+## M3-01/P1 accepted bounded review binding
 
-Implementation candidate for tracking [issue #27](https://github.com/bynanci/storytelling/issues/27);
-the schema, names and limits below are still subject to independent G2 review and maintainer
-acceptance. They do not close M3-R01/R02 or the broader issue.
+The bounded first profile for [issue #27](https://github.com/bynanci/storytelling/issues/27)
+is accepted under the signed [M3-01/P1 G2 acceptance record](migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md).
+M3-RB01–RB07 are frozen for this profile only; they do not accept the whole M3-01 milestone,
+the separate PR #28 candidate, or broader M3 requirements.
 
 | Command / API | Inputs | Behavior |
 | --- | --- | --- |
@@ -164,17 +165,17 @@ There is no replay protection, request consumption, authoritative time, expiry/r
 filesystem identity/TOCTOU protection, host observation, execution, or publication. The host
 binary fingerprint and capability list are declarations only. Durable idempotency and late-response
 reconciliation remain M3-02; trusted grant/authorization and execution remain broader M3 work.
-See [the provisional CLI contract](CLI_GUIDE.md#7-建立與檢查有限審核識別) and
-[M3-01 continuation record](migration/records/M3-01-P1.md).
+See [the CLI contract](CLI_GUIDE.md#7-建立與檢查有限審核識別) and
+[M3-01/P1 acceptance record](migration/records/M3-01-P1.md).
 
 ## Future public workflow (design only)
 
 ## Merged PR #28 Approval Identity v1 candidate (not accepted)
 
 This is a separate bounded cryptographic identity/verifier candidate. The
-canonical M3-01/P1 scope remains proposed in
-[M3-01-NEXT](migration/M3-01-NEXT.md), requires independent G2 freeze, and is
-not implemented by this candidate.
+bounded M3-01/P1 profile is documented in
+[M3-01-NEXT](migration/M3-01-NEXT.md); this candidate remains separate and
+unaccepted pending its own G2 decision.
 
 The bounded core contract is documented in
 [Approval Identity v1](migration/APPROVAL_IDENTITY_V1.md). It is not a CLI

@@ -164,3 +164,14 @@ unchecked. Item 2 remains historically unproven, while the automated portions
 of item 5 passed; independent G2/profile acceptance is the outstanding human
 gate. See the [delivery register](../../delivery/PR_REGISTER.md) for PR #39/#40
 and full run receipts.
+
+## Signed acceptance disposition — 2026-11-08
+
+The maintainer/reviewer subsequently accepted the bounded M3-RB01–RB07 profile
+in the [signed G2 acceptance record](M3-01-G2-ACCEPTANCE-2026-11-08.md). The
+historical functional RED remains unproven; the signed record explicitly waives
+that historical observation as a completion blocker without claiming a past
+functional failure or pass. Issue #27 is completed for this scope after the
+acceptance record's same-head PR checks pass and merge. This later human
+disposition does not alter the source audit, retroactively establish RED, accept
+PR #28, or claim full profile/runtime parity.

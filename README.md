@@ -7,11 +7,12 @@ The executable slices validate declared plans, map finite OpenFilm snapshots and
 propose fixed-window StoryPlans from supplied constraints. The planner selects
 supplied windows; narrative interpretation and editor execution remain separate.
 `verify-source` separately hashes explicitly supplied bytes; the isolated test harness has proved one real FilmCraft profile.
-Main also integrates the bounded `prepare-review` / `check-review` candidate via
-PR #32: same-input OTIO binding and declared-context freshness, with all approval/
-source/host/execution flags false. A bounded pinned OpenFilm review-runtime comparison
-and fixed Rust digest/error-order tests are recorded for [issue #27](https://github.com/bynanci/storytelling/issues/27);
-independent G2 profile acceptance remains open.
+Main integrates the bounded `prepare-review` / `check-review` profile via PR #32:
+same-input OTIO binding and declared-context freshness, with all approval/source/
+host/execution flags false. The profile has signed bounded G2 acceptance in
+[the M3-01/P1 record](docs/migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md);
+this does not accept PR #28 or broader M3 work. Its paired OpenFilm runtime evidence
+and fixed Rust digest/error-order tests are recorded for [issue #27](https://github.com/bynanci/storytelling/issues/27).
 Future functionality is tracked separately in [TASKS](TASKS.md) and [ROADMAP](ROADMAP.md).
 
 [繁體中文](README.zh-TW.md) · [PR register](docs/delivery/PR_REGISTER.md) · [CLI guide](docs/CLI_GUIDE.md) · [Architecture](docs/ARCHITECTURE.md) · [SDLC](docs/SDLC.md) · [Contract](docs/CONTRACTS.md)

@@ -28,12 +28,14 @@ M3-01/P1 bounded review-binding code and CLI are integrated via PR #32 following
 the user's 2026-11-08 review-complete/merge instruction. Read the
 [scope and remaining evidence](docs/migration/M3-01-NEXT.md) and tracking #27.
 The bounded M3-01 runtime oracle, fixed digest vector and error-order tests now
-accompany the integrated candidate. Next: obtain independent G2 profile
-review/acceptance and reconcile Issue #27's remaining checklist items from
-observed evidence; the historical pre-implementation functional RED cannot be
-retroactively established. Do not repeat the delivered candidate or invent
-independent review artifacts. Full solver, trusted approval, host execution and
-human editorial acceptance remain separate.
+accompany the integrated profile. The signed bounded G2 acceptance and
+historical-RED waiver are recorded in
+[the acceptance record](docs/migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md);
+Issue #27 is completed for this bounded scope after the acceptance PR's same-head
+gates pass. The historical pre-implementation functional RED remains unproven.
+Do not repeat the delivered candidate or invent review artifacts. PR #28 remains
+separate and unaccepted; full solver, trusted approval, host execution and human
+editorial acceptance remain separate.
 A test-first scaffold commit exists in history intentionally; it is not a release.
 
 For the 2026-11-07 continuation, the user explicitly authorized merging completed,
