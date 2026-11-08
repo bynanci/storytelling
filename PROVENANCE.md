@@ -151,3 +151,12 @@ profile review and acceptance remain separately traceable. On 2026-11-08 the use
 reported review complete and explicitly requested merging; that instruction is recorded as
 maintainer merge authority, not a fabricated independent-review artifact. This record does not
 close the remaining Issue #27 acceptance evidence.
+
+PR #39's evidence correction and PR #40's runtime/test follow-up are merged on
+main. PR #40 final head `a9b80723e0171497d9b1cc63bc30c6fac88e0ecc` passed both
+six-job head runs 42477209609/42477206413 and main run 42477392236; its merge
+tree matches the accepted head. The follow-up harness is independently authored
+MIT and imports only the pinned upstream service at runtime. The paired synthetic
+outcomes do not authorize a signer or establish full source, host or profile
+acceptance. See the [delivery register](docs/delivery/PR_REGISTER.md) for PR #39
+and #40 receipts.

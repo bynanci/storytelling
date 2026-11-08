@@ -283,7 +283,7 @@ review submission, independent reviewer identity or signature is invented.
 - [x] Read-only prepare-review/check-review CLI, tests, provenance, static source map and bounded paired OpenFilm runtime oracle supplied.
 - [x] Current-main Planner optimisations and their accepted completion records retained during integration.
 - [x] Refreshed debug/release each passed 217 tests at integration; follow-up golden-vector and error-order tests are tracked separately.
-- [x] Follow-up adds the fixed cross-platform digest vector and API/CLI error-precedence regressions; the current full workspace debug and release runs each pass 219 tests. Exact-head hosted checks are recorded with the follow-up PR.
+- [x] PR #40 adds the fixed cross-platform digest vector, API/CLI error-precedence regressions and pinned source-runtime evidence. Full workspace debug/release runs each pass 219 tests; both exact-head runs and the post-merge main run pass all six jobs.
 - [x] PR #31 merged as `baa97903e3d3c02e2eb2747140d62f1ddca3c60c`; PR #32 merged as `3d121398e2c14c4a43d101a5b9a55a4616a81174` under the user review-complete/merge instruction.
 - [x] Issue #27 entries 3/4/6 have implementation, paired oracle and merge/reconciliation evidence; entries 1/2/5 remain open.
 - [x] [Evidence audit](docs/migration/records/M3-01-EVIDENCE-AUDIT-2026-11-08.md) corrects provenance and historical RED claims; [runtime record](docs/migration/records/M3-01-RUNTIME-ORACLE-2026-11-08.md) adds a bounded actual source/runtime comparison.

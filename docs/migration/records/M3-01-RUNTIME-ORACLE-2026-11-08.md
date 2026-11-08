@@ -87,8 +87,10 @@ plan `2083a48c4862e1be7289602e5f218dac615f5c98e149141bf42e832bc0da482b`,
 artifact `6456c0a184a3cb3105f1b4d5026954df52d12a34006228da69589fcbeb09412b`,
 report `5ddb5d4978099360cae5ae70044cdc908cec99b75b0ea27ee2fb1cb2c0408e1d`
 and context `59c96b9162978a60a22c21fcaa1542ced70fbc345b526e2b9cc1d976fc5f533c`.
-The fixed assertions are part of the existing Linux/Windows/macOS test matrix;
-the hosted matrix must pass on this exact PR head before merge.
+The fixed assertions ran in the Linux/Windows/macOS matrix on final PR #40 head
+`a9b80723e0171497d9b1cc63bc30c6fac88e0ecc`. Both six-job head runs
+42477209609 and 42477206413 passed; post-merge run 42477392236 also passed all
+six jobs. The accepted head and merge tree are identical.
 
 `direct_review_api_error_precedence_is_size_record_context_then_compile` and
 `review_cli_reads_arguments_before_domain_validation_and_keeps_error_order`
@@ -106,6 +108,12 @@ The scoped review suite has 11 engine and four CLI integration tests; the new
 cases pin fixed cross-platform digests and multi-invalid-input ordering. These
 are local results; exact-head hosted Linux, Windows and macOS jobs establish the
 cross-platform run for the merged candidate.
+
+The first superseded candidate, `19b38d6cc8f8c9c8dedbc8a8ced2217aeed7f54f`,
+failed the fixed aggregate hash on Windows while Linux passed. The final change
+marks the embedded source fixture `-text` in `.gitattributes`, preserving its
+exact bytes across checkouts, and checks component hashes before the aggregate
+digest. Final Windows runs passed on the corrected head.
 
 ## Limits and acceptance
 

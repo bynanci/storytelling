@@ -154,3 +154,13 @@ missing small runtime execution and evidence gaps for the tested cases. They do
 not retroactively establish historical functional RED, cross-runtime digest
 parity, full profile acceptance, or independent G2 review. Issue #27 remains
 open for the unchecked acceptance evidence.
+
+PR #40 merged the paired oracle and fixed-vector/error-order follow-up. Its final
+head `a9b80723e0171497d9b1cc63bc30c6fac88e0ecc` passed both six-job runs
+42477209609/42477206413; merge `3d858aea9901fdcd8436503ae7d314cfb0c75431`
+passed all six jobs in main run 42477392236. Local debug and release suites each
+passed 219 tests. Issue #27 now has evidence for items 3/4/6; items 1/2/5 remain
+unchecked. Item 2 remains historically unproven, while the automated portions
+of item 5 passed; independent G2/profile acceptance is the outstanding human
+gate. See the [delivery register](../../delivery/PR_REGISTER.md) for PR #39/#40
+and full run receipts.

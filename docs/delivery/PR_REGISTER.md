@@ -237,6 +237,41 @@ Each refreshed head passed all twelve jobs across two runs, and each merge
 passed all six main jobs. Head/merge file trees match. GitHub review submissions
 and threads were empty at inspection; the task-conversation statement is the
 recorded maintainer authority, without inventing independent review artifacts.
-Issue #27 checks delivered items 2/3/6 and remains open for 1/4/5 evidence. The
-M3 review-source comparison is static. No trusted editorial approval, host
-execution, full M3 acceptance or release is asserted by this integration.
+At this 05:12 integration snapshot, Issue #27 showed items 2/3/6 checked and
+1/4/5 open. PR #39 later corrected item 2's unsupported historical functional-
+RED claim, and PR #40 added the bounded runtime evidence described below. No
+trusted editorial approval, host execution, full M3 acceptance or release is
+asserted by this integration.
+
+
+## M3 evidence correction and paired runtime follow-up — 2026-11-08 11:51 UTC
+
+PR [#39](https://github.com/bynanci/storytelling/pull/39) corrected the pinned
+source-test blob and the historical RED classification. Head
+`6f4fea7180b2941b4997c0e17b17ae3835516d6f` merged as
+`0611026eb1dd0379c685b9098dbb60839c83e1e2` at 11:24:50 UTC. Runs
+42474991033/42474986836 passed all six jobs each; post-merge run 42475637859
+passed all six jobs.
+
+PR [#40](https://github.com/bynanci/storytelling/pull/40) adds the actual
+pinned OpenFilm review-service oracle, a fixed Rust digest vector, and API/CLI
+error-order regressions. Final head
+`a9b80723e0171497d9b1cc63bc30c6fac88e0ecc` merged as
+`3d858aea9901fdcd8436503ae7d314cfb0c75431` at 11:48:59 UTC. Both head runs
+42477209609/42477206413 passed all six jobs, and post-merge run 42477392236
+passed all six. The accepted head and merge tree are identical. Full local
+debug/release suites each passed 219 tests; strict Clippy, rustdoc, format,
+repo guard and diff checks passed. The source harness ran locally against
+OpenFilm `7add4762fe8174d76f43b863375ea39b73121e76`.
+
+The first, superseded PR #40 candidate (`19b38d6`) exposed a Windows-only
+golden digest mismatch on the embedded fixture. The final head marks that
+fixture as non-text so checkout cannot transform its bytes; both final Windows
+runs passed. This fixes deterministic byte input, not an upstream identity
+algorithm.
+
+Issue #27 remains open with items 3/4/6 checked and 1/2/5 unchecked. The paired
+runtime evidence is limited to synthetic review cases and does not establish
+digest parity, trusted signer authorization, full upstream parity or G2
+acceptance. The historical pre-implementation functional RED remains unproven;
+no independent approval or release is asserted.
