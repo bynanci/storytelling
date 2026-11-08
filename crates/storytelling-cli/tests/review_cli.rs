@@ -181,3 +181,83 @@ fn review_commands_keep_usage_and_io_errors_distinct_and_path_free() {
     assert_eq!(output.status.code(), Some(3));
     assert!(!String::from_utf8_lossy(&output.stdout).contains("removed-context"));
 }
+
+#[test]
+fn review_cli_reads_arguments_before_domain_validation_and_keeps_error_order() {
+    let mut temp = TempFiles::new();
+    let invalid_composition = temp.write("invalid-composition", b"{");
+    let invalid_context = temp.write("invalid-context", b"{");
+
+    let missing_context = temp.write("missing-context", b"{}");
+    std::fs::remove_file(&missing_context).unwrap();
+    let output = Command::new(env!("CARGO_BIN_EXE_storytelling"))
+        .arg("prepare-review")
+        .arg(&invalid_composition)
+        .arg(&missing_context)
+        .output()
+        .unwrap();
+    assert_eq!(output.status.code(), Some(3));
+    let result: Value = serde_json::from_slice(&output.stdout).unwrap();
+    assert_eq!(result["error"]["code"], "input.io");
+
+    let context_path = temp.write("context", &serde_json::to_vec(&context()).unwrap());
+    let prepared = Command::new(env!("CARGO_BIN_EXE_storytelling"))
+        .arg("prepare-review")
+        .arg(fixture(
+            "tests/fixtures/openfilm/finite-v1/repeat-source.json",
+        ))
+        .arg(&context_path)
+        .output()
+        .unwrap();
+    assert_eq!(prepared.status.code(), Some(0));
+    let prepared_json: Value = serde_json::from_slice(&prepared.stdout).unwrap();
+    let record_path = temp.write(
+        "record",
+        &serde_json::to_vec(&prepared_json["review"]).unwrap(),
+    );
+
+    let invalid_context_output = Command::new(env!("CARGO_BIN_EXE_storytelling"))
+        .arg("prepare-review")
+        .arg(&invalid_composition)
+        .arg(&invalid_context)
+        .output()
+        .unwrap();
+    assert_eq!(invalid_context_output.status.code(), Some(1));
+    let invalid_context_result: Value =
+        serde_json::from_slice(&invalid_context_output.stdout).unwrap();
+    assert_eq!(
+        invalid_context_result["error"]["code"],
+        "review.invalid_context_json"
+    );
+
+    let invalid_record = temp.write("invalid-record", b"{");
+    let invalid_record_output = Command::new(env!("CARGO_BIN_EXE_storytelling"))
+        .arg("check-review")
+        .arg(&invalid_record)
+        .arg(&invalid_composition)
+        .arg(&invalid_context)
+        .output()
+        .unwrap();
+    assert_eq!(invalid_record_output.status.code(), Some(1));
+    let invalid_record_result: Value =
+        serde_json::from_slice(&invalid_record_output.stdout).unwrap();
+    assert_eq!(
+        invalid_record_result["error"]["code"],
+        "review.invalid_record_json"
+    );
+
+    let valid_record_bad_composition = Command::new(env!("CARGO_BIN_EXE_storytelling"))
+        .arg("check-review")
+        .arg(&record_path)
+        .arg(&invalid_composition)
+        .arg(&invalid_context)
+        .output()
+        .unwrap();
+    assert_eq!(valid_record_bad_composition.status.code(), Some(1));
+    let valid_record_bad_composition_result: Value =
+        serde_json::from_slice(&valid_record_bad_composition.stdout).unwrap();
+    assert_eq!(
+        valid_record_bad_composition_result["error"]["code"],
+        "review.invalid_context_json"
+    );
+}

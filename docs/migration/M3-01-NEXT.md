@@ -210,3 +210,18 @@ keep the aggregate guard and core/engine I/O restrictions. No empty workflow or
 adapter crate, no new external runtime or crypto dependency is needed. Freeze
 the subset honestly, implement/test/publish under existing authorization, merge
 only after same-head gates, and leave full approval/execution/runtime gates open.
+
+## 2026-11-08 follow-up evidence
+
+The later evidence audit corrected one upstream test blob and clarified that the
+original unresolved-import failure was a compile failure, not functional RED.
+The pinned OpenFilm `NleHandoffService.review/publish` runtime has now been run
+against corresponding synthetic Rust CLI cases. Fixed digest values and
+surface-specific API/CLI error precedence also have regression coverage. See the
+[paired runtime record](records/M3-01-RUNTIME-ORACLE-2026-11-08.md) and
+[evidence audit](records/M3-01-EVIDENCE-AUDIT-2026-11-08.md).
+
+This evidence covers a small finite composition domain and does not establish
+full runtime parity or approve M3-RB01–RB07. Issue #27 now has observed evidence
+for its CLI/oracle item and implementation item. Independent profile/G2 review,
+historical functional RED and the complete review/acceptance record remain open.

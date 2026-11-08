@@ -147,7 +147,17 @@
     "docs/delivery/PR_REGISTER.md",
     "docs/delivery/pr-register.json",
     "TASKS.md",
-    "PROVENANCE.md"
+    "PROVENANCE.md",
+    "scripts/oracles/m3-01-openfilm-runtime.mjs"
   ],
-  "test_tool_review": "No new test-only dependency; hosted dependency audit and exact-head CI remain pending"
+  "test_tool_review": "No repository dependency added. The external paired source oracle uses the pinned Node/tsx test-only runtime; hosted Rust CI does not depend on OpenFilm or Node.",
+  "runtime_oracles": [
+    {
+      "path": "scripts/oracles/m3-01-openfilm-runtime.mjs",
+      "license": "MIT",
+      "relationship": "independently authored test-only harness dynamically imports the pinned OpenFilm NleHandoffService and executes synthetic freshness cases; no upstream implementation, test body or fixture copied",
+      "source_commit": "7add4762fe8174d76f43b863375ea39b73121e76",
+      "runtime_requirement": "external Node 24 and test-only tsx loader supplied by the oracle runner; not a Storytelling production or Cargo dependency"
+    }
+  ]
 }

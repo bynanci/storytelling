@@ -3,7 +3,7 @@
   "task": "M3-01/P1",
   "tracking_issue": "https://github.com/bynanci/storytelling/issues/27",
   "state": "merged-bounded-integration",
-  "acceptance_state": "maintainer-authorised integration complete; full issue27 source-oracle/profile review evidence remains open",
+  "acceptance_state": "maintainer-authorised bounded integration and finite runtime oracle complete; independent full profile acceptance remains open",
   "base": "1d8d0e3652aa2afe77375550876639b726928eba",
   "scope": "finite-openfilm-composition-to-otio-declared-review-binding",
   "implementation_branch": "codex/m3-01-finite-review-binding-20261107",
@@ -28,7 +28,7 @@
       "depends_on": [
         "M3-01/P1-implementation"
       ],
-      "acceptance": "217 debug/release tests and refreshed head/main CI passed; remaining Issue27 evidence is not fabricated"
+      "acceptance": "The original M3 integration passed 217 debug/release tests; this follow-up adds fixed digest and API/CLI error-order regressions and passes 219 debug/release workspace tests, with exact-head hosted checks recorded in the delivery register."
     }
   ],
   "requirements": [
@@ -103,7 +103,8 @@
       "tests": [
         "prepare_and_check_are_read_only_and_stale_is_a_successful_report",
         "prepare_review_reads_composition_from_stdin_but_context_remains_an_explicit_file",
-        "review_commands_keep_usage_and_io_errors_distinct_and_path_free"
+        "review_commands_keep_usage_and_io_errors_distinct_and_path_free",
+        "review_cli_reads_arguments_before_domain_validation_and_keeps_error_order"
       ],
       "verification_paths": [
         "crates/storytelling-cli/src/main.rs",
@@ -122,21 +123,48 @@
       "python3 scripts/check_repo.py",
       "git diff --check"
     ],
-    "coverage": "Workspace debug/release tests passed, including 1 engine depth-scanner unit test, 10 engine integration tests, 3 CLI integration tests and 4 compile-fail BoundReviewV1 doctests",
+    "coverage": "The follow-up workspace debug and release suites each passed 219 tests. The scoped review suite has 11 engine integration tests and four CLI integration tests, plus four BoundReviewV1 compile-fail doctests; two new integration tests freeze digest values and API/CLI error precedence.",
     "hosted_head": "2e7662405a49698be1ebee2136f54ab539ef7c2e",
     "hosted_run": "https://github.com/bynanci/storytelling/actions/runs/42425697537",
     "hosted_result": "All six hosted jobs passed: Quality and contracts, Required gates, Rust Linux, Rust Windows, Rust macOS and Dependency audit",
     "base_limitation": "Local base predates latest remote main and PR #28 merge; exact-base compatibility is covered by the listed hosted run",
     "compile_red": "cargo test -p storytelling-engine --test review_binding --locked failed before implementation: review module and APIs were unresolved",
-    "functional_red": "Not established historically: recorded unresolved imports prevented test execution. Separate 2026-11-08 mutation evidence does not establish pre-implementation functional RED."
+    "functional_red": "Not established historically: recorded unresolved imports prevented test execution. Separate 2026-11-08 mutation evidence does not establish pre-implementation functional RED.",
+    "runtime_oracle": {
+      "source_sha": "7add4762fe8174d76f43b863375ea39b73121e76",
+      "source_service": "NleHandoffService.review/publish",
+      "fixture_sha256": "04e320f4fe6c1ebd65c11c0392ab48b3c61abc8ce44de09c1e7ffccd1ef087b9",
+      "source_script": "scripts/oracles/m3-01-openfilm-runtime.mjs",
+      "corresponding_rust_cli_cases": [
+        "unchanged",
+        "project_id_change",
+        "composition_change",
+        "forged_approval"
+      ],
+      "result": "bounded matching stale-review policy; no digest parity or full upstream parity"
+    },
+    "latest_followup_local": {
+      "base": "0611026eb1dd0379c685b9098dbb60839c83e1e2",
+      "review_engine_integration_tests": 11,
+      "review_cli_integration_tests": 4,
+      "debug_tests_passed": 219,
+      "release_tests_passed": 219,
+      "cargo_fmt_check": true,
+      "clippy_warnings_denied": true,
+      "rustdoc_warnings_denied": true,
+      "repo_guard_passed": true,
+      "git_diff_check_passed": true,
+      "openfilm_runtime_oracle": "passed against pinned source SHA 7add4762fe8174d76f43b863375ea39b73121e76; see M3-01-RUNTIME-ORACLE-2026-11-08.md",
+      "hosted_ci": "pending exact follow-up PR head"
+    }
   },
   "not_completed": [
-    "paired upstream TypeScript review runtime oracle or explicit recorded disposition of the static oracle requirement",
-    "independent review artifact (user review-complete statement is recorded separately)",
+    "independent G2 review artifact and acceptance of the provisional profile",
+    "historical pre-implementation functional RED remains unproven",
     "planner-to-composition/OTIO bridge",
     "trusted signer/key authorization, expiry/revocation, replay consumption",
     "filesystem identity/TOCTOU, host observation, execution and publication",
-    "full issue27 acceptance; verified scoped checklist entries are reconciled after integration"
+    "full issue27 acceptance; checked checklist entries are reconciled from observed evidence"
   ],
   "integration_base": "baa97903e3d3c02e2eb2747140d62f1ddca3c60c",
   "original_candidate_head": "1a281aa93a73026d24f9305ea46a6fe91e204299",
@@ -145,7 +173,7 @@
   "review_instruction": {
     "date": "2026-11-08",
     "source": "user task conversation",
-    "text": "\u5be9\u67e5\u5b8c\u7562 merge",
+    "text": "審查完畢 merge",
     "github_review_submissions": 0,
     "technical_review": "assistant self-review within declared-input scope; no blocking correctness defect found"
   },
@@ -159,7 +187,7 @@
     "guard_passed": true
   },
   "integration_lifecycle": {
-    "authority": "User task-conversation statement: \u5be9\u67e5\u5b8c\u7562 merge; maintainer-reported review complete and explicit merge instruction",
+    "authority": "User task-conversation statement: 審查完畢 merge; maintainer-reported review complete and explicit merge instruction",
     "github_review_submissions": 0,
     "packet_pr": 31,
     "packet_head": "937cf5a1db61d1bccb401241c8d3001bc02e49f5",
@@ -183,23 +211,23 @@
     "accepted_head_trees_match_merges": true,
     "issue27_state": "open",
     "checked_issue27_items": [
-      2,
       3,
+      4,
       6
     ],
     "remaining_issue27_items": [
       1,
-      4,
+      2,
       5
     ],
-    "m3_source_comparison": "static-only; no paired upstream review runtime",
+    "m3_source_comparison": "static source map plus bounded actual paired TypeScript/Rust runtime oracle; no full parity",
     "release": false
   },
   "evidence_audit": {
     "record": "docs/migration/records/M3-01-EVIDENCE-AUDIT-2026-11-08.md",
     "reviewed_main": "72e619c1ca25d363a6c62ee38164be6a4bec421f",
     "historical_functional_red": "unproven",
-    "source_oracle": "static-only; insufficient for runtime parity",
+    "source_oracle": "bounded paired source/runtime oracle executed for finite synthetic cases; independent profile acceptance remains open",
     "profile_acceptance": "open; see findings and exit criteria"
   }
 }

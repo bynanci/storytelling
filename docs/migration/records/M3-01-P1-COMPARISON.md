@@ -1,12 +1,12 @@
 <!-- SPDX-License-Identifier: MIT -->
 # M3-01/P1 source-informed comparison
 
-Status: **static comparison only**. OpenFilm is pinned to
-`7add4762fe8174d76f43b863375ea39b73121e76`; the listed upstream files and tests were inspected
-by path/blob identity but the TypeScript runtime/tests were not executed in this Rust worktree.
-This is not runtime differential parity, source verification, or acceptance of M3-01. The independent
-G2 reviewer must decide whether this static comparison plus the Rust mutation tests satisfies the
-small source-informed oracle requirement, or whether a paired TypeScript runtime oracle is needed.
+Status: **static source map plus bounded paired runtime oracle**. OpenFilm is pinned to
+`7add4762fe8174d76f43b863375ea39b73121e76`. The table below records source behavior inspected
+by path/blob identity. A later synthetic run exercised the actual `NleHandoffService.review/publish`
+runtime and corresponding Rust CLI outcomes; see the [runtime record](M3-01-RUNTIME-ORACLE-2026-11-08.md).
+This small comparison is not full runtime parity, source verification or acceptance of M3-01.
+Independent profile/G2 review remains open.
 
 | Pinned OpenFilm source/test | Observed policy from inspected source/test | Rust candidate correspondence | Intentional boundary/delta |
 | --- | --- | --- | --- |
@@ -30,9 +30,11 @@ composition bytes by compiling from the same slice and re-compiling for freshnes
 prove the bytes came from a verified source build, an observed host snapshot or a reviewed planner
 proposal. These claims must not be combined.
 
-## Subsequent independent inspection
+## Follow-up runtime evidence
 
-The [2026-11-08 evidence audit](M3-01-EVIDENCE-AUDIT-2026-11-08.md) re-read the pinned
-source and corrected the story-plan test blob above. Static policy correspondence
-is useful design evidence but is not accepted as a paired runtime oracle. The
-remaining domain, golden-encoding and functional-RED limits are explicit there.
+The [2026-11-08 evidence audit](M3-01-EVIDENCE-AUDIT-2026-11-08.md) corrected the story-plan
+test blob above and documented why its first pass was static-only. The follow-up
+[runtime record](M3-01-RUNTIME-ORACLE-2026-11-08.md) now executes the pinned OpenFilm service
+alongside corresponding Rust CLI cases, adds a fixed Rust digest vector and freezes API/CLI error
+precedence. Input-domain and digest-encoding differences remain explicit; this does not establish
+complete upstream parity or resolve independent G2/profile acceptance.

@@ -27,9 +27,13 @@ M2-03 selected-domain live shadow is accepted via PR #26; read its
 M3-01/P1 bounded review-binding code and CLI are integrated via PR #32 following
 the user's 2026-11-08 review-complete/merge instruction. Read the
 [scope and remaining evidence](docs/migration/M3-01-NEXT.md) and tracking #27.
-Next: resolve the remaining source-oracle/profile review evidence; do not repeat
-the delivered candidate or invent independent review artifacts. Full solver,
-trusted approval, host execution and human editorial acceptance remain separate.
+The bounded M3-01 runtime oracle, fixed digest vector and error-order tests now
+accompany the integrated candidate. Next: obtain independent G2 profile
+review/acceptance and reconcile Issue #27's remaining checklist items from
+observed evidence; the historical pre-implementation functional RED cannot be
+retroactively established. Do not repeat the delivered candidate or invent
+independent review artifacts. Full solver, trusted approval, host execution and
+human editorial acceptance remain separate.
 A test-first scaffold commit exists in history intentionally; it is not a release.
 
 For the 2026-11-07 continuation, the user explicitly authorized merging completed,

@@ -136,3 +136,21 @@ hosted checks passed. The earlier denial is retained as historical evidence; it
 does not block this scoped documentation change. No Issue #27 checklist update
 was made by this PR, and the remaining source-oracle/profile and independent
 review evidence stays open.
+
+## Follow-up after this audit
+
+After PR #39's evidence correction, the pinned OpenFilm source runtime was
+executed with the synthetic finite composition. `NleHandoffService.review`
+returned the same revision for unchanged inputs and a timestamp-only `updatedAt`
+change; changing project ID or a clip occurrence ID changed the revision and
+made publishing the previous review fail as stale. An extra `approved: true`
+request field was rejected. Corresponding native CLI checks reported current,
+stale project/content and rejected-claim outcomes. The exact source command,
+fixture hash and results are in [the follow-up runtime record](M3-01-RUNTIME-ORACLE-2026-11-08.md).
+
+The Rust review suite also gained fixed digest assertions and multi-invalid-input
+API/CLI precedence checks. These later results resolve the earlier audit's
+missing small runtime execution and evidence gaps for the tested cases. They do
+not retroactively establish historical functional RED, cross-runtime digest
+parity, full profile acceptance, or independent G2 review. Issue #27 remains
+open for the unchecked acceptance evidence.

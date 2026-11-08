@@ -192,24 +192,26 @@ the complete OTIO report and declared context; it does not implement trusted app
 
 | ID | Provisional requirement | Implementation | Actual tests / evidence |
 | --- | --- | --- | --- |
-| M3-RB01 | Deterministic versioned SHA-256 identity commits to typed plan, OTIO artifact, full loss report, profile/compiler and context | `core/source_evidence.rs`, `engine/review_binding.rs` | `same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact`, `semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding` |
+| M3-RB01 | Deterministic versioned SHA-256 identity commits to typed plan, OTIO artifact, full loss report, profile/compiler and context | `core/source_evidence.rs`, `engine/review_binding.rs` | `same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact` asserts the fixed cross-platform golden vector; `semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding` |
 | M3-RB02 | Import and compile from one exact composition input; artifact is regenerated during freshness checks, never accepted as caller-supplied digest evidence | `engine/review_binding.rs` | `changed_composition_and_each_declared_context_field_are_reported_stale`, `semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding` |
 | M3-RB03 | Strict bounded context/record schemas, exact identifiers/digests, sorted unique choices/capabilities and required compiler capabilities | `core/review.rs`, `engine/review_binding.rs` | `context_parser_rejects_unknown_duplicate_unsorted_and_over_budget_values`, `json_depth_scanner_accepts_exact_limit_and_ignores_string_contents`, `json_depth_and_record_byte_budgets_are_enforced_before_deserialization`, `exact_context_and_record_byte_limits_are_accepted`, `capability_collection_accepts_exact_limit_and_rejects_limit_plus_one`, `context_must_declare_compiler_required_capabilities_and_record_digest_is_checked` |
 | M3-RB04 | In-process result has private fields and cannot be constructed, mutated or deserialized through public API | `engine/review_binding.rs` | Four compile-fail examples on `BoundReviewV1`; `same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact` |
 | M3-RB05 | No self-approval: portable records are untrusted and authority/evidence flags stay false; forged true claims reject | `core/review.rs`, `engine/review_binding.rs` | `review_record_rejects_unknown_duplicate_forged_claims_and_invalid_digests`, `same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact` |
 | M3-RB06 | Compare a supplied current composition/context and identify changed fields; do not claim authoritative time, revocation, replay or request consumption | `engine/review_binding.rs` | `changed_composition_and_each_declared_context_field_are_reported_stale`, `every_declared_context_field_has_a_stable_stale_identifier`, `semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding` |
-| M3-RB07 | Read-only file/stdin CLI with path-free errors, stable usage/I/O/domain exits and unchanged explicit inputs | CLI composition root | `prepare_and_check_are_read_only_and_stale_is_a_successful_report`, `prepare_review_reads_composition_from_stdin_but_context_remains_an_explicit_file`, `review_commands_keep_usage_and_io_errors_distinct_and_path_free` |
+| M3-RB07 | Read-only file/stdin CLI with path-free errors, stable usage/I/O/domain exits and unchanged explicit inputs | CLI composition root | `prepare_and_check_are_read_only_and_stale_is_a_successful_report`, `prepare_review_reads_composition_from_stdin_but_context_remains_an_explicit_file`, `review_commands_keep_usage_and_io_errors_distinct_and_path_free`, `review_cli_reads_arguments_before_domain_validation_and_keeps_error_order`, `direct_review_api_error_precedence_is_size_record_context_then_compile` |
 
 The portable record digest detects accidental/tampered field changes but is not a MAC or signature;
 the current caller can create a self-consistent record. A supplied context's host fingerprint and
 capabilities are declarations, not observations. Exact artifact linkage applies only to the one
 composition slice passed to importer+compiler and does not establish verified source provenance or
 connect the fixed-window planner to OTIO. Hosted dependency audit, three-platform same-head CI,
-all existing repository regression/oracle lanes and the six exact-head hosted gates have passed for
-PR #32 head `2e7662405a49698be1ebee2136f54ab539ef7c2e` (run 42425697537). An upstream TypeScript
-runtime pairing was not run; the source comparison is static and source-informed. Independent G2
-review artifacts and explicit source-oracle disposition remain separately traceable before
-all Issue #27 acceptance items can be checked complete. The user's later review-complete/merge
+all existing repository regression/oracle lanes and the six exact-head hosted gates passed for
+PR #32 head `2e7662405a49698be1ebee2136f54ab539ef7c2e` (run 42425697537). A bounded paired
+OpenFilm `NleHandoffService.review/publish` and Rust CLI runtime oracle now runs on the pinned
+synthetic finite composition; its outcomes and limits are in the [runtime record](migration/records/M3-01-RUNTIME-ORACLE-2026-11-08.md).
+The encoding intentionally differs and no full source parity is claimed. Independent G2
+profile review and maintainer acceptance remain separate before all Issue #27 acceptance items
+can be checked complete. The user's later review-complete/merge
 instruction authorises this bounded integration after current-head verification. See the [M3-01 work index](migration/m3-01-p1-work-index.json).
 
 ## Remaining breadth and future requirements

@@ -129,6 +129,15 @@ even when parsing produces the same artifact. It is not a canonicalized source i
 arrays must use canonical order; other semantic arrays retain their source/compiler order. JSON
 serialization here is this Rust versioned DTO encoding, not general JCS.
 
+Error order is surface-specific and covered by multi-invalid-input tests. The direct
+`prepare_review` API validates the typed context before importing the composition.
+`check_review` checks record, composition and context byte limits in that order before parsing;
+then it validates the record, parses/validates context, and reimports/recompiles the composition.
+The CLI first validates argument shape, then reads and size-checks each explicit argument in its
+command order (`composition, context` for prepare; `record, composition, context` for check)
+before domain parsing. Thus a later file I/O error can precede an earlier input's JSON error.
+After all inputs are read, the engine's API precedence applies.
+
 The portable record is an untrusted DTO and is never authority. `scope` must be
 `declared-review-binding-only`; `executable`, `approval_granted`, `source_verified`, and
 `host_verified` must all be false. `check_review` recomputes the binding digest before comparing

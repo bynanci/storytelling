@@ -62,6 +62,68 @@ fn same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifa
     assert!(!first.record().approval_granted);
     assert!(!first.record().source_verified);
     assert!(!first.record().host_verified);
+
+    // Fixed vector runs on Linux, Windows, and macOS to catch byte/order drift.
+    let identity = &first.record().identity;
+    assert_eq!(
+        first.record().binding_sha256,
+        "85ee60f9a2ea0327ea977b48f73e6160f769e65921ee64ce7dbef81c3eb14a4f"
+    );
+    assert_eq!(
+        identity.composition_sha256,
+        "04e320f4fe6c1ebd65c11c0392ab48b3c61abc8ce44de09c1e7ffccd1ef087b9"
+    );
+    assert_eq!(
+        identity.plan_sha256,
+        "2083a48c4862e1be7289602e5f218dac615f5c98e149141bf42e832bc0da482b"
+    );
+    assert_eq!(
+        identity.artifact_sha256,
+        "6456c0a184a3cb3105f1b4d5026954df52d12a34006228da69589fcbeb09412b"
+    );
+    assert_eq!(
+        identity.report_sha256,
+        "5ddb5d4978099360cae5ae70044cdc908cec99b75b0ea27ee2fb1cb2c0408e1d"
+    );
+    assert_eq!(
+        identity.context_sha256,
+        "59c96b9162978a60a22c21fcaa1542ced70fbc345b526e2b9cc1d976fc5f533c"
+    );
+    assert_eq!(identity.compiler_version, "storytelling-engine-0.1.0-dev.0");
+    assert_eq!(identity.profile_id, "storytelling.otio-visual-ticks.v1");
+    assert_eq!(
+        identity.context_fields.project_id,
+        "4556ce39523a47476c0b6e24d0287468873d29e05e998ea6df0bee9e895a05db"
+    );
+    assert_eq!(
+        identity.context_fields.target_revision,
+        "c770df0395f59da0c400669061699f84576f80abde3591878839f0009a7af360"
+    );
+    assert_eq!(
+        identity.context_fields.host_id,
+        "252a352be568f8e4ca27fb440870205d32e522fa482851438854ad29e7d9881a"
+    );
+    assert_eq!(
+        identity.context_fields.host_version,
+        "a2471ab142822d16704c5c5e945150633c8e86458eb9d2a0710e61aa7be1e8c2"
+    );
+    assert_eq!(
+        identity.context_fields.host_profile_id,
+        "c3e898295b2811ef00f0d6ede712d076edd0dc489fe2a6f29fb4fd3df72aa16f"
+    );
+    assert_eq!(
+        identity.context_fields.host_binary_sha256,
+        "65a903f85f81089ba6dd2839191df690702c70e8908165e11084ec9a2353fcaf"
+    );
+    assert_eq!(
+        identity.context_fields.host_declared_capabilities,
+        "076daf7c5728b13234625dd72e3fd79d7dedfc4580f5eee4decafe4911817fb1"
+    );
+    assert_eq!(
+        identity.context_fields.loss_choices,
+        "95347900bb76bc57ce1eada9675be372e21326227cf2aa9d68dda7a1ebeed6ff"
+    );
+
     let portable_record = serde_json::to_vec(first.record()).unwrap();
     let portable_record = String::from_utf8(portable_record).unwrap();
     assert!(!portable_record.contains("project-1"));
@@ -281,6 +343,48 @@ fn context_must_declare_compiler_required_capabilities_and_record_digest_is_chec
     )
     .unwrap_err();
     assert_eq!(error.code, "review.record_digest_mismatch");
+}
+
+#[test]
+fn direct_review_api_error_precedence_is_size_record_context_then_compile() {
+    let error = check_review(
+        &vec![b' '; MAX_REVIEW_RECORD_BYTES + 1],
+        &vec![b' '; storytelling_engine::MAX_INPUT_BYTES + 1],
+        &vec![b' '; MAX_REVIEW_CONTEXT_BYTES + 1],
+    )
+    .unwrap_err();
+    assert_eq!(error.code, "review.record_too_large");
+
+    let invalid_record = b"{";
+    let invalid_composition = b"{";
+    let invalid_context = b"{";
+    let error = check_review(invalid_record, invalid_composition, invalid_context).unwrap_err();
+    assert_eq!(error.code, "review.invalid_record_json");
+
+    let record = record_bytes(REPEATED, &context());
+    let error = check_review(
+        &record,
+        &vec![b' '; storytelling_engine::MAX_INPUT_BYTES + 1],
+        &vec![b' '; MAX_REVIEW_CONTEXT_BYTES + 1],
+    )
+    .unwrap_err();
+    assert_eq!(error.code, "input.too_large");
+
+    let error =
+        check_review(&record, REPEATED, &vec![b' '; MAX_REVIEW_CONTEXT_BYTES + 1]).unwrap_err();
+    assert_eq!(error.code, "review.context_too_large");
+
+    let error = check_review(&record, invalid_composition, invalid_context).unwrap_err();
+    assert_eq!(error.code, "review.invalid_context_json");
+
+    let valid_context = context_bytes(&context());
+    let error = check_review(&record, invalid_composition, &valid_context).unwrap_err();
+    assert_eq!(error.code, "input.invalid_json");
+
+    let mut invalid_typed_context = context();
+    invalid_typed_context.host.declared_capabilities.reverse();
+    let error = prepare_review(invalid_composition, &invalid_typed_context).unwrap_err();
+    assert_eq!(error.code, "review.noncanonical_order");
 }
 
 #[test]

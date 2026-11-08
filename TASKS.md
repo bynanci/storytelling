@@ -280,13 +280,14 @@ review submission, independent reviewer identity or signature is invented.
 - [x] Pre-implementation compile RED recorded (unresolved imports; no test body ran).
 - [ ] Historical functional RED remains unproven; later mutation experiments are separate evidence.
 - [x] Same-byte importer/compiler binding, private immutable BoundReviewV1 and strict declared context implemented.
-- [x] Read-only prepare-review/check-review CLI, tests, provenance and static source comparison supplied.
+- [x] Read-only prepare-review/check-review CLI, tests, provenance, static source map and bounded paired OpenFilm runtime oracle supplied.
 - [x] Current-main Planner optimisations and their accepted completion records retained during integration.
-- [x] Refreshed debug/release each passed 217 tests; PR #31/#32 each passed 12 head jobs and six post-merge main jobs.
+- [x] Refreshed debug/release each passed 217 tests at integration; follow-up golden-vector and error-order tests are tracked separately.
+- [x] Follow-up adds the fixed cross-platform digest vector and API/CLI error-precedence regressions; the current full workspace debug and release runs each pass 219 tests. Exact-head hosted checks are recorded with the follow-up PR.
 - [x] PR #31 merged as `baa97903e3d3c02e2eb2747140d62f1ddca3c60c`; PR #32 merged as `3d121398e2c14c4a43d101a5b9a55a4616a81174` under the user review-complete/merge instruction.
-- [x] Integration historically checked Issue #27 entries 2/3/6; the evidence audit corrects the unsupported functional-RED claim for item 2.
-- [x] Separate source/profile [evidence audit](docs/migration/records/M3-01-EVIDENCE-AUDIT-2026-11-08.md) records provenance correction and bounded mutation evidence.
-- [ ] Supply a paired upstream review oracle or explicit static-oracle disposition, and attach the remaining independent source/G2 evidence.
+- [x] Issue #27 entries 3/4/6 have implementation, paired oracle and merge/reconciliation evidence; entries 1/2/5 remain open.
+- [x] [Evidence audit](docs/migration/records/M3-01-EVIDENCE-AUDIT-2026-11-08.md) corrects provenance and historical RED claims; [runtime record](docs/migration/records/M3-01-RUNTIME-ORACLE-2026-11-08.md) adds a bounded actual source/runtime comparison.
+- [ ] Obtain independent G2 profile review/acceptance; the historical pre-implementation functional RED remains unproven.
 
 Matching supplied composition/context establishes declaration and recomputed
 artifact consistency only. It does not authenticate a signer, verify source
