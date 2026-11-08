@@ -127,7 +127,7 @@ documentation retains MIT. No upstream tests/code/media or new production packag
 is copied or installed; [actual test-only Node/npm closure](docs/migration/dependency-evidence-m2-03.json)
 records external tools and the reused integrity lock.
 
-## M3-01/P1 provisional finite-OTIO review binding
+## M3-01/P1 accepted bounded finite-OTIO review binding
 
 The [per-file inventory](docs/migration/provenance-m3-01-p1.json) records source repository SHA,
 source path/blob identities, modifications and component license for every new or extended Apache
@@ -146,17 +146,18 @@ fixture. Exact-head hosted Linux, Windows, macOS, Required, Quality and Dependen
 passed for PR #32 head `2e7662405a49698be1ebee2136f54ab539ef7c2e` in run
 [42425697537](https://github.com/bynanci/storytelling/actions/runs/42425697537). The bounded paired
 source-runtime outcomes and fixed digest/error-order vectors are recorded in
-[M3-01 runtime evidence](docs/migration/records/M3-01-RUNTIME-ORACLE-2026-11-08.md). Independent G2
-profile review and acceptance remain separately traceable. On 2026-11-08 the user
-reported review complete and explicitly requested merging; that instruction is recorded as
-maintainer merge authority, not a fabricated independent-review artifact. This record does not
-close the remaining Issue #27 acceptance evidence.
+[M3-01 runtime evidence](docs/migration/records/M3-01-RUNTIME-ORACLE-2026-11-08.md). The bounded
+profile now has signed human G2 acceptance in
+[the acceptance record](docs/migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md). Its sign-off is
+textual per the user's direct instruction, not a GPG/SSH signature or project-wide DCO policy.
+This acceptance does not authorize signer trust, grant issuance, host observation, replay safety,
+source verification or execution. The historical functional RED is unproven and waived as a
+completion blocker; the original evidence is preserved without rewriting its outcome.
 
 PR #39's evidence correction and PR #40's runtime/test follow-up are merged on
 main. PR #40 final head `a9b80723e0171497d9b1cc63bc30c6fac88e0ecc` passed both
 six-job head runs 42477209609/42477206413 and main run 42477392236; its merge
 tree matches the accepted head. The follow-up harness is independently authored
 MIT and imports only the pinned upstream service at runtime. The paired synthetic
-outcomes do not authorize a signer or establish full source, host or profile
-acceptance. See the [delivery register](docs/delivery/PR_REGISTER.md) for PR #39
-and #40 receipts.
+outcomes do not authorize a signer or establish full source, host or digest parity.
+See the [delivery register](docs/delivery/PR_REGISTER.md) for PR #39 and #40 receipts.

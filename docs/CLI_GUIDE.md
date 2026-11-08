@@ -231,8 +231,9 @@ usage 為退出碼 2、I/O 為 3、domain/格式/預算拒絕為 1。
 host ID、binary digest、revision 與 capabilities 都是 context 裡的宣告，沒有呼叫 host、
 檢查 binary、鎖定可信金鑰、驗證媒體或執行 freshness/revocation authority。identity 綁定
 的是明確提供的 composition bytes 與由這些 bytes 編譯出的 OTIO，不包括另一個 planner
-proposal 的編譯橋接，也沒有授權、抗重放或執行保證。此切片在 G2 再審查及接受前維持
-暫定狀態；詳見 [M3-01 審查契約](CONTRACTS.md#m3-01-p1-provisional-review-binding)。
+proposal 的編譯橋接，也沒有授權、抗重放或執行保證。此有限 profile 已由簽署紀錄接受，
+更廣泛的 M3-01 仍未接受；詳見 [M3-01 審查契約](CONTRACTS.md#m3-01-p1-accepted-bounded-review-binding)
+與[簽署驗收紀錄](migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md)。
 
 ## 回應、退出碼與檔案處理
 

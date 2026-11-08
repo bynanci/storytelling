@@ -2,8 +2,9 @@
 
 Original 2026-11-07 status: **proposed for independent G2 review**. This document is a review packet,
 not a frozen contract, accepted requirement, implementation, human approval, or
-source/host verification. Tracking issue: [#27](https://github.com/bynanci/storytelling/issues/27).
-No Issue #27 checklist item is completed by this document.
+source/host verification at the time it was prepared. Tracking issue:
+[#27](https://github.com/bynanci/storytelling/issues/27). The current signed
+disposition appears in the [acceptance record](records/M3-01-G2-ACCEPTANCE-2026-11-08.md).
 
 On 2026-11-08 the user stated “審查完畢 merge” in the task conversation and
 explicitly requested merging PRs #31/#32. The design packet is therefore being
@@ -242,5 +243,18 @@ opaque type/serialization boundary, source/compiler/profile version scope, and
 the separation from PR #28. The review must also confirm the first-profile
 importer-to-OTIO path and the unsupported planner bridge. Record reviewer identity,
 reviewed commit, findings and disposition without asking Codex to sign or self-
-approve. Until then, this packet remains a Draft proposal and the Issue #27 G2
-checkbox stays open.
+approve. At the original packet publication this remained a Draft proposal and
+the Issue #27 G2 checkbox was open. The later signed acceptance below supersedes
+that status only for bounded M3-01/P1.
+
+## Signed bounded acceptance — 2026-11-08
+
+The maintainer/reviewer accepted M3-RB01–RB07 for the finite-OTIO profile under
+the [signed acceptance record](records/M3-01-G2-ACCEPTANCE-2026-11-08.md).
+The historical functional RED remains unproven and is explicitly waived as a
+completion blocker. The packet's three-guarantee distinction remains in force:
+mathematical signature validity does not establish trusted signer authorization,
+and neither claim proves that an artifact came from the verified compilation.
+PR #28 remains a separate unaccepted candidate; the signed acceptance does not
+authorize a trusted key registry, replay-safe approval, host observation or
+execution.

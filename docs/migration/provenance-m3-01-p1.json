@@ -156,7 +156,8 @@
     "docs/delivery/pr-register.json",
     "TASKS.md",
     "PROVENANCE.md",
-    "scripts/oracles/m3-01-openfilm-runtime.mjs"
+    "scripts/oracles/m3-01-openfilm-runtime.mjs",
+    "docs/migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md"
   ],
   "test_tool_review": "No repository dependency added. The external paired source oracle uses the pinned Node/tsx test-only runtime; hosted Rust CI does not depend on OpenFilm or Node.",
   "runtime_oracles": [

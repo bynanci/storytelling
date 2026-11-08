@@ -77,3 +77,13 @@ in the task conversation; no GitHub approval/independent reviewer identity or
 signature is invented. Issue #27 now checks observed items 2/3/6 and retains
 1/4/5 for complete source-oracle/profile review evidence. It remains open.
 This integrates the bounded candidate, not trusted approval or host execution.
+
+## Later signed acceptance — 2026-11-08
+
+After this technical merge review, NAN CHUN WANG
+<by.nanci.tw@gmail.com> signed bounded G2 acceptance of M3-RB01–RB07. The
+independent human acceptance and explicit waiver of the historically unproven
+functional RED are recorded in
+[M3-01-G2-ACCEPTANCE-2026-11-08.md](M3-01-G2-ACCEPTANCE-2026-11-08.md).
+This later record does not change what GitHub reviews existed at the earlier
+observation, and it does not accept PR #28 or broader M3 work.

@@ -92,9 +92,9 @@ Full multi-beat solving remains outside this profile.
 
 ## Merged PR #28 approval-identity candidate (not accepted)
 
-This candidate is distinct from the proposed canonical M3-01/P1 finite-OTIO
-review-binding task in [M3-01-NEXT](migration/M3-01-NEXT.md). It does not satisfy
-that task, and independent G2 review is still pending.
+This candidate is distinct from the accepted bounded M3-01/P1 finite-OTIO
+review-binding profile in [M3-01-NEXT](migration/M3-01-NEXT.md). It does not
+satisfy that profile, and PR #28 remains unaccepted pending its own G2 review.
 
 `storytelling-core::approval` is a pure contract/verifier. It derives source
 identity only from the existing private `VerifiedBufferV1`; it hashes the exact

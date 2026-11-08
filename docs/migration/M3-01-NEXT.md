@@ -1,11 +1,23 @@
-# M3-01 next slice: immutable review identity and freshness contracts
+# M3-01/P1 finite-OTIO review binding: scope and acceptance history
 
-Proposed preparation scope; tracking [#27](https://github.com/bynanci/storytelling/issues/27).
-This read-only readiness audit on 2026-11-07 performed no product edits, tests,
-approval issuance or host execution. M2-03 has since been accepted through PR #26
-at main `5533fcb5d0f857ad1066a76505071653b66d1f89`; the earlier inspection identities
-below are retained for traceability. Proposed APIs/requirements here are not
-implemented, frozen or accepted capabilities.
+This document preserves the original preparation and source map for tracking
+[#27](https://github.com/bynanci/storytelling/issues/27). The 2026-11-07
+readiness audit performed no product edits, tests, approval issuance or host
+execution. Its provisional statements below are historical; the bounded profile
+was later accepted by the signed [G2 acceptance record](records/M3-01-G2-ACCEPTANCE-2026-11-08.md).
+M2-03 was accepted through PR #26 at main `5533fcb5d0f857ad1066a76505071653b66d1f89`;
+the earlier inspection identities remain for traceability.
+
+## Current accepted scope — 2026-11-08
+
+The accepted scope is M3-01/P1 only: same-input finite composition import and
+OTIO compilation, immutable review binding, strict declared-context freshness,
+and read-only CLI under M3-RB01–RB07. The historical functional RED remains
+unproven and was explicitly waived as a completion blocker; no past test pass is
+claimed. Issue #27 is completed for this bounded scope after the signed acceptance
+record's PR merges with passing same-head checks. The wider M3 milestone, PR #28,
+planner bridge, trusted key authorization, replay controls, host observation and
+execution remain separate.
 
 Merged candidate [PR #28](https://github.com/bynanci/storytelling/pull/28) proposes
 a separate cryptographic identity API (M3-A01–A03); it is integrated at main
@@ -35,7 +47,7 @@ is reconciled separately. See [merge review](records/M3-01-MERGE-REVIEW-2026-11-
 After the separate G2 review packet was prepared, the maintainer authorized a provisional
 implementation candidate on an isolated branch. The candidate now adds same-byte finite importer /
 OTIO binding, strict declared context, read-only freshness checks, CLI commands and synthetic tests;
-see [M3-01/P1 validation record](records/M3-01-P1.md), [provisional contract](../CONTRACTS.md#m3-01-p1-provisional-review-binding),
+see [M3-01/P1 validation record](records/M3-01-P1.md), [accepted bounded contract](../CONTRACTS.md#m3-01-p1-accepted-bounded-review-binding),
 the [source-informed comparison](records/M3-01-P1-COMPARISON.md), and [work index](m3-01-p1-work-index.json).
 The implementation uses existing source SHA-256 and
 adds no production dependency. The first local RED preceded implementation; its baseline was the

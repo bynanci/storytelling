@@ -6,8 +6,8 @@
 可驗證有界故事計畫 JSON，並將有限 OpenFilm composition export 唯讀映射為 declared visual plan。
 `verify-source` 另可雜湊明確提供的來源 bytes；規劃器依明確提供的區間與限制提出 StoryPlan，正式宿主執行仍為後續工作流任務。
 獨立測試工具已完成一個有界 FilmCraft 實際往返案例。
-main 另已整合 PR #32 的 `prepare-review`／`check-review` 有限候選：同輸入 OTIO 綁定與 declared-context freshness；
-批准、來源、宿主與執行旗標均為 false。有限 OpenFilm review runtime 對照與 Rust digest/error-order 回歸已補入 [Issue #27](https://github.com/bynanci/storytelling/issues/27) 證據；獨立 G2 profile 驗收仍待完成。
+main 另已整合 PR #32 的 `prepare-review`／`check-review` 有界 profile：同輸入 OTIO 綁定與 declared-context freshness；
+批准、來源、宿主與執行旗標均為 false。有限 OpenFilm review runtime 對照與 Rust digest/error-order 回歸已補入 [Issue #27](https://github.com/bynanci/storytelling/issues/27) 證據；M3-01/P1 有界 profile 已依[簽署驗收紀錄](docs/migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md)完成 G2 接受，此接受不涵蓋 PR #28 或更廣泛的 M3 工作。
 
 完整的八個指令、輸入格式及可執行範例見 [CLI 使用指南](docs/CLI_GUIDE.md)；
 已合併／已關閉／待審 PR 見 [交付登錄](docs/delivery/PR_REGISTER.md)。
