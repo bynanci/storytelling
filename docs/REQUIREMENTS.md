@@ -115,6 +115,35 @@ and [component inventory](migration/provenance-m2-02.json).
 
 Complete test mapping is in the work index; M2-R01 full solver feasibility remains broader.
 
+## M2-02/O1 ordering optimisation
+
+The private scheduler preserves the accepted fixed-window v1 profile. It reduces
+repeated readiness scans while retaining admission-priority order and exact errors.
+See [record](migration/records/M2-ORDER-OPT.md),
+[work index](migration/m2-order-opt-work-index.json) and
+[provenance](migration/provenance-m2-order-opt.json). Final delivery status is in
+[issue #33](https://github.com/bynanci/storytelling/issues/33).
+
+| ID | Requirement | Actual test / evidence |
+| --- | --- | --- |
+| M2-O01 | Preserve minimum-ready admission priority and no-partial-plan errors | `compares_every_four_vertex_graph_with_brute_force_priority_order`, `newly_ready_earlier_admission_precedes_already_queued_vertex`, `rejects_unselected_endpoints_self_edges_and_cycles_without_partial_order`, `newly_unblocked_required_asset_keeps_admission_priority_in_the_full_report` |
+| M2-O02 | Heap-based scheduling within existing graph limits, with descriptive performance evidence | `maximum_candidate_graphs_keep_every_vertex_and_precedence`, `benchmark_ordering` (manual, informational, no timing assertion) |
+| M2-O03 | Keep frozen/live source conformance, pure dependency boundary and cross-platform checks | Existing planner comparison, live shadow, per-file provenance and CI; full mapping in the work index |
+
+## M2-02/O2 exact-clock construction optimisation
+
+The private constructor preserves the existing exact-time and failure contract.
+See [record](migration/records/M2-CLOCK-OPT.md),
+[work index](migration/m2-clock-opt-work-index.json) and
+[provenance](migration/provenance-m2-clock-opt.json). Final delivery is tracked by
+[issue #35](https://github.com/bynanci/storytelling/issues/35).
+
+| ID | Requirement | Actual test / evidence |
+| --- | --- | --- |
+| M2-CT01 | Error-only diagnostic formatting, exact reduced times and unchanged LCM/field error precedence | `successful_cached_scaling_never_formats_an_error_path`, `cached_scaling_formats_the_precise_failure_path_once`, `fractional_clock_preserves_exact_windows_and_reduced_placements`, `clock_error_priority_keeps_the_full_lcm_pass_before_scaling` |
+| M2-CT02 | Generated/supported-size compatibility with the previous factory and descriptive performance measurements | `generated_canonical_clock_inputs_match_the_accepted_implementation`, `full_candidate_budget_cache_and_empty_private_clock_keep_exact_results`, `benchmark_clock_cache` (manual, no timing assertion) |
+| M2-CT03 | Retain frozen/live source conformance, provenance and cross-platform gates | Existing fixed-window comparison/live shadow; complete mappings in the work index |
+
 ## M2-03 selected-domain live shadow requirements
 
 The scoped live shadow is accepted via merged PR #26. It invokes

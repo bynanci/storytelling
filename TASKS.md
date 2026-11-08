@@ -232,7 +232,44 @@ This is synthetic selected-domain differential evidence. Fractional optional
 budgets, full solver behavior, live Catalog authority, host execution and human
 editorial acceptance remain separate. The runner opens no user project.
 
-## Prepared next slice: M3-01/P1
+## M2-02/O1 stable ordering optimisation — accepted
+
+2026-11-08 follow-up under the user's optimise/upgrade instruction; tracked in
+[issue #33](https://github.com/bynanci/storytelling/issues/33). The accepted M2-02
+wire, priority policy, timing and input limits remain the contract.
+
+- [x] Internal min-priority ready queue replaces repeated candidate scans.
+- [x] Exhaustive four-vertex graph comparison, supported-size graph tests and public report regression added.
+- [x] Manual release benchmark recorded, including small-graph overhead and limited end-to-end gains.
+- [x] Requirements, source refresh, component provenance and validation record added.
+- [x] PR #34 merged as `f07ab6940484ef8b8e4f2bdb37b96893e9f92270`; both head runs (12 jobs) and main run (6 jobs) passed. Issue #33 is fully checked and closed completed.
+
+The [validation record](docs/migration/records/M2-ORDER-OPT.md) is a versioned
+implementation snapshot. Final hosted checks, review and merge/checklist status
+are maintained in issue #33 and its associated PR. This optimisation does not
+complete the broader OpenFilm map or M3-01. Existing Draft PRs #31/#32 still await
+independent G2 review; issue #27 remains open.
+
+## M2-02/O2 cached exact-time construction — accepted
+
+Follow-up [issue #35](https://github.com/bynanci/storytelling/issues/35) preserves
+the accepted planner contract while caching denominators/scaled ticks and
+formatting diagnostic paths only on failures.
+
+- [x] Observed resource RED then GREEN for error-only path formatting.
+- [x] Golden fractions, error-priority, 2,048 generated compatibility cases and 1,024-candidate coverage added.
+- [x] Informational constructor/full-plan release measurements recorded.
+- [x] Local debug/release/docs and frozen/live conformance verification passed.
+- [x] PR #36 merged as `00ef8decbf1fecc7258bbc683973d41d656c8097`; both head CI runs (12 jobs) and main run (6 jobs) passed. Issue #35 is fully checked and closed completed.
+
+The [validation record](docs/migration/records/M2-CLOCK-OPT.md),
+[work index](docs/migration/m2-clock-opt-work-index.json) and provenance capture
+the local and accepted delivery evidence. Head `bdd502a8f8cd36c7b822c91fba4ff87215e8beb1`
+passed runs 42446786881/42446759799; merge `00ef8de` passed main run 42446933790.
+Delivery was accepted under standing user authority and explicit self-review of
+the unchanged planner profile; M3 G2 and release remain separate.
+
+## M3-01/P1 maintainer-authorised integration
 
 [Tracking #27](https://github.com/bynanci/storytelling/issues/27) and
 [source/readiness scope](docs/migration/M3-01-NEXT.md) prepare immutable finite-OTIO
@@ -241,10 +278,14 @@ review identity and declared-context freshness. The proposed
 signature validity, signer authorization and same-input compilation linkage, and
 specifies a concrete contract/test proposal. The source map has 15 actual blob
 identities; proposed M3-RB01–RB07, wire/CLI names and budgets still need independent
-G2 freezing and functional RED before implementation. No code or passing M3 test
-is claimed. Draft [PR #31](https://github.com/bynanci/storytelling/pull/31) contains
-this documentation-only proposal; it does not complete an Issue #27 checklist
-item. Use the existing importer/compiler input because the planner→OTIO
+G2 evidence for complete acceptance. A provisional implementation and passing
+candidate tests exist in Draft [PR #32](https://github.com/bynanci/storytelling/pull/32),
+stacked on [PR #31](https://github.com/bynanci/storytelling/pull/31). On 2026-11-08,
+the user reported review completion and explicitly requested merging these PRs.
+This is maintainer merge authority from the task conversation; no GitHub review
+submission, reviewer identity/signature or independent review artifact is invented.
+Issue #27's remaining evidence and capability boundaries are tracked separately.
+Use the existing importer/compiler input because the planner→OTIO
 bridge is absent; matching hashes/context never grant human approval. Merged
 candidate [PR #28](https://github.com/bynanci/storytelling/pull/28) implements
 separate M3-A01–A03 scope and remains unaccepted pending independent G2 review.
