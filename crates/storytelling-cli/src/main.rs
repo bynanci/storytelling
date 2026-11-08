@@ -4,8 +4,9 @@ use std::fs::File;
 use std::io::{self, Read, Write};
 use std::process::ExitCode;
 use storytelling_engine::{
-    MAX_INPUT_BYTES, MAX_VERIFIED_BUFFER_BYTES, OtioLossChoicesV1, audit_story_brief,
-    export_openfilm_otio, import_openfilm_snapshot, plan_story, validate_plan_json,
+    MAX_INPUT_BYTES, MAX_REVIEW_CONTEXT_BYTES, MAX_REVIEW_RECORD_BYTES, MAX_VERIFIED_BUFFER_BYTES,
+    OtioLossChoicesV1, audit_story_brief, check_review, export_openfilm_otio,
+    import_openfilm_snapshot, parse_review_context, plan_story, prepare_review, validate_plan_json,
     verify_supplied_sha256,
 };
 
@@ -48,6 +49,25 @@ fn read_with_limit(reader: impl Read, limit: usize) -> io::Result<Vec<u8>> {
     Ok(bytes)
 }
 
+fn read_file_with_limit(path: &OsStr, limit: usize) -> io::Result<Vec<u8>> {
+    let file = File::open(path)?;
+    if !file.metadata()?.is_file() {
+        return Err(io::Error::new(
+            io::ErrorKind::InvalidInput,
+            "not a regular file",
+        ));
+    }
+    read_with_limit(file, limit)
+}
+
+fn read_argument(path: &OsStr, limit: usize) -> io::Result<Vec<u8>> {
+    if path == OsStr::new("-") {
+        read_with_limit(io::stdin().lock(), limit)
+    } else {
+        read_file_with_limit(path, limit)
+    }
+}
+
 fn main() -> ExitCode {
     let args: Vec<_> = std::env::args_os().skip(1).collect();
     if args
@@ -79,12 +99,85 @@ fn main() -> ExitCode {
             Err(error) => emit(json!({"ok": false, "error": error}), 1),
         };
     }
+    if args
+        .first()
+        .is_some_and(|v| v == OsStr::new("prepare-review"))
+    {
+        if args.len() != 3
+            || args[2] == OsStr::new("-")
+            || args[2].as_encoded_bytes().starts_with(b"--")
+            || args[1].as_encoded_bytes().starts_with(b"--")
+        {
+            return failure("cli.usage", 2);
+        }
+        let composition = match read_argument(&args[1], MAX_INPUT_BYTES) {
+            Ok(bytes) => bytes,
+            Err(_) => return failure("input.io", 3),
+        };
+        if composition.len() > MAX_INPUT_BYTES {
+            return failure("input.too_large", 1);
+        }
+        let context_bytes = match read_file_with_limit(&args[2], MAX_REVIEW_CONTEXT_BYTES) {
+            Ok(bytes) => bytes,
+            Err(_) => return failure("input.io", 3),
+        };
+        if context_bytes.len() > MAX_REVIEW_CONTEXT_BYTES {
+            return failure("review.context_too_large", 1);
+        }
+        let context = match parse_review_context(&context_bytes) {
+            Ok(context) => context,
+            Err(error) => return emit(json!({"ok": false, "error": error}), 1),
+        };
+        return match prepare_review(&composition, &context) {
+            Ok(review) => emit(json!({"ok": true, "review": review.record()}), 0),
+            Err(error) => emit(json!({"ok": false, "error": error}), 1),
+        };
+    }
+    if args
+        .first()
+        .is_some_and(|v| v == OsStr::new("check-review"))
+    {
+        if args.len() != 4
+            || args[1] == OsStr::new("-")
+            || args[3] == OsStr::new("-")
+            || args[1].as_encoded_bytes().starts_with(b"--")
+            || args[3].as_encoded_bytes().starts_with(b"--")
+            || args[2].as_encoded_bytes().starts_with(b"--")
+        {
+            return failure("cli.usage", 2);
+        }
+        let record = match read_file_with_limit(&args[1], MAX_REVIEW_RECORD_BYTES) {
+            Ok(bytes) => bytes,
+            Err(_) => return failure("input.io", 3),
+        };
+        if record.len() > MAX_REVIEW_RECORD_BYTES {
+            return failure("review.record_too_large", 1);
+        }
+        let composition = match read_argument(&args[2], MAX_INPUT_BYTES) {
+            Ok(bytes) => bytes,
+            Err(_) => return failure("input.io", 3),
+        };
+        if composition.len() > MAX_INPUT_BYTES {
+            return failure("input.too_large", 1);
+        }
+        let context = match read_file_with_limit(&args[3], MAX_REVIEW_CONTEXT_BYTES) {
+            Ok(bytes) => bytes,
+            Err(_) => return failure("input.io", 3),
+        };
+        if context.len() > MAX_REVIEW_CONTEXT_BYTES {
+            return failure("review.context_too_large", 1);
+        }
+        return match check_review(&record, &composition, &context) {
+            Ok(freshness) => emit(json!({"ok": true, "freshness": freshness}), 0),
+            Err(error) => emit(json!({"ok": false, "error": error}), 1),
+        };
+    }
     let command = args.first().map(|value| value.as_os_str());
     let mut otio_choices = OtioLossChoicesV1::default();
     match command {
         Some(value) if value == OsStr::new("--help") && args.len() == 1 => {
             return text(
-                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\n       storytelling plan-story <FILE|->\n       storytelling verify-source <FILE|-> <SHA256>\nRead-only metadata, interchange and explicit supplied-byte verification; no editor execution.\n",
+                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\n       storytelling plan-story <FILE|->\n       storytelling prepare-review <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling check-review <REVIEW_RECORD> <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling verify-source <FILE|-> <SHA256>\nRead-only metadata, interchange and declared review identity; no editor execution.\n",
             );
         }
         Some(value) if value == OsStr::new("--version") && args.len() == 1 => {

@@ -17,8 +17,14 @@ pub use storytelling_core::source_evidence::{
 };
 
 mod otio;
-pub use otio::{CompiledOtioV1, export_openfilm_otio};
+pub use otio::{CompiledOtioV1, MAX_OTIO_OUTPUT_BYTES, export_openfilm_otio};
 pub use storytelling_core::compiled_plan::{OtioLossChoicesV1, OtioProfileV1};
+
+mod review_binding;
+pub use review_binding::{
+    BoundReviewV1, MAX_REVIEW_CONTEXT_BYTES, MAX_REVIEW_RECORD_BYTES, check_review,
+    parse_review_context, prepare_review,
+};
 
 pub const MAX_INPUT_BYTES: usize = 1_048_576;
 pub const MAX_ASSETS: usize = 1024;

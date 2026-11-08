@@ -180,20 +180,39 @@ G2 review is pending. Implementation and verification evidence are in the
 | M3-A02 | Strict bounded Ed25519 verification returns an opaque result and rejects tampering, malformed data and untrusted signer bindings | Candidate work index and approval integration tests | Implemented on PR #28; independent G2 pending |
 | M3-A03 | A valid signature does not establish human authorization, durable replay safety or host execution | Candidate API-boundary review, compile-fail examples and work index | Candidate scope; broader requirements remain open |
 
+## M3-01/P1 provisional finite-OTIO review binding
+
+This implementation candidate follows the separately prepared [M3-01 contract and source map](migration/M3-01-NEXT.md)
+and is tracked by [issue #27](https://github.com/bynanci/storytelling/issues/27). M3-RB01–RB07
+remain implementation-candidate identifiers. The user reported review complete and requested
+merge on 2026-11-08; that is recorded as maintainer merge authority, without inventing a
+GitHub approval or independent-review artifact. The current candidate
+only binds a caller-provided composition byte slice to an importer plan, its OTIO serialization,
+the complete OTIO report and declared context; it does not implement trusted approval.
+
+| ID | Provisional requirement | Implementation | Actual tests / evidence |
+| --- | --- | --- | --- |
+| M3-RB01 | Deterministic versioned SHA-256 identity commits to typed plan, OTIO artifact, full loss report, profile/compiler and context | `core/source_evidence.rs`, `engine/review_binding.rs` | `same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact`, `semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding` |
+| M3-RB02 | Import and compile from one exact composition input; artifact is regenerated during freshness checks, never accepted as caller-supplied digest evidence | `engine/review_binding.rs` | `changed_composition_and_each_declared_context_field_are_reported_stale`, `semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding` |
+| M3-RB03 | Strict bounded context/record schemas, exact identifiers/digests, sorted unique choices/capabilities and required compiler capabilities | `core/review.rs`, `engine/review_binding.rs` | `context_parser_rejects_unknown_duplicate_unsorted_and_over_budget_values`, `json_depth_scanner_accepts_exact_limit_and_ignores_string_contents`, `json_depth_and_record_byte_budgets_are_enforced_before_deserialization`, `exact_context_and_record_byte_limits_are_accepted`, `capability_collection_accepts_exact_limit_and_rejects_limit_plus_one`, `context_must_declare_compiler_required_capabilities_and_record_digest_is_checked` |
+| M3-RB04 | In-process result has private fields and cannot be constructed, mutated or deserialized through public API | `engine/review_binding.rs` | Four compile-fail examples on `BoundReviewV1`; `same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact` |
+| M3-RB05 | No self-approval: portable records are untrusted and authority/evidence flags stay false; forged true claims reject | `core/review.rs`, `engine/review_binding.rs` | `review_record_rejects_unknown_duplicate_forged_claims_and_invalid_digests`, `same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact` |
+| M3-RB06 | Compare a supplied current composition/context and identify changed fields; do not claim authoritative time, revocation, replay or request consumption | `engine/review_binding.rs` | `changed_composition_and_each_declared_context_field_are_reported_stale`, `every_declared_context_field_has_a_stable_stale_identifier`, `semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding` |
+| M3-RB07 | Read-only file/stdin CLI with path-free errors, stable usage/I/O/domain exits and unchanged explicit inputs | CLI composition root | `prepare_and_check_are_read_only_and_stale_is_a_successful_report`, `prepare_review_reads_composition_from_stdin_but_context_remains_an_explicit_file`, `review_commands_keep_usage_and_io_errors_distinct_and_path_free` |
+
+The portable record digest detects accidental/tampered field changes but is not a MAC or signature;
+the current caller can create a self-consistent record. A supplied context's host fingerprint and
+capabilities are declarations, not observations. Exact artifact linkage applies only to the one
+composition slice passed to importer+compiler and does not establish verified source provenance or
+connect the fixed-window planner to OTIO. Hosted dependency audit, three-platform same-head CI,
+all existing repository regression/oracle lanes and the six exact-head hosted gates have passed for
+PR #32 head `2e7662405a49698be1ebee2136f54ab539ef7c2e` (run 42425697537). An upstream TypeScript
+runtime pairing was not run; the source comparison is static and source-informed. Independent G2
+review artifacts and explicit source-oracle disposition remain separately traceable before
+all Issue #27 acceptance items can be checked complete. The user's later review-complete/merge
+instruction authorises this bounded integration after current-head verification. See the [M3-01 work index](migration/m3-01-p1-work-index.json).
+
 ## Remaining breadth and future requirements
-
-M1-R01: the first bounded 25 fps picture-only profile now has actual proof through
-M1-H03/H04; other media/rates/features remain uncertified. M1-R02: every unsupported feature or quantization
-is reported before approval. M1-R03: host and source identities are verified by the
-adapter, with path-free portable provenance.
-
-M2-R01: the full planner satisfies hard constraints or returns explicit conflict,
-never silently relaxing them. The M2-Bxx audit implements only bounded declared
-reference/membership/order checks; M2-Pxx now adds bounded fixed-window selection.
-General feasibility and the remaining full-solver breadth stay open.
-M3-R01: an Agent cannot authorize itself. M3-R02: uncertain external effects
-are reconciled before retry. M4-R01: external consumers need not depend on Vue/Tauri.
-M5-R01: supported host/platform claims have actual target evidence.
 
 ## Evidence levels
 

@@ -269,32 +269,28 @@ passed runs 42446786881/42446759799; merge `00ef8de` passed main run 42446933790
 Delivery was accepted under standing user authority and explicit self-review of
 the unchanged planner profile; M3 G2 and release remain separate.
 
-## M3-01/P1 maintainer-authorised integration
+## M3-01/P1 finite-OTIO review binding — maintainer-authorised integration
 
-[Tracking #27](https://github.com/bynanci/storytelling/issues/27) and
-[source/readiness scope](docs/migration/M3-01-NEXT.md) prepare immutable finite-OTIO
-review identity and declared-context freshness. The proposed
-[G2 review packet](docs/migration/M3-01-G2-REVIEW-PACKET.md) distinguishes
-signature validity, signer authorization and same-input compilation linkage, and
-specifies a concrete contract/test proposal. The source map has 15 actual blob
-identities; proposed M3-RB01–RB07, wire/CLI names and budgets still need independent
-G2 evidence for complete acceptance. A provisional implementation and passing
-candidate tests exist in Draft [PR #32](https://github.com/bynanci/storytelling/pull/32),
-stacked on [PR #31](https://github.com/bynanci/storytelling/pull/31). On 2026-11-08,
-the user reported review completion and explicitly requested merging these PRs.
-This is maintainer merge authority from the task conversation; no GitHub review
-submission, reviewer identity/signature or independent review artifact is invented.
-Issue #27's remaining evidence and capability boundaries are tracked separately.
-Use the existing importer/compiler input because the planner→OTIO
-bridge is absent; matching hashes/context never grant human approval. Merged
-candidate [PR #28](https://github.com/bynanci/storytelling/pull/28) implements
-separate M3-A01–A03 scope and remains unaccepted pending independent G2 review.
-Its final head `2d23b21dcfbfc49c3d76087f054cc76724c23053` merged as `5a5702ba4c1392d763929f89da3cf7d16d5f13f4` after both exact-head runs passed all
-six jobs; the main merge run also passed all six gates. Cargo Audit scanned 40
-locked packages against 1,422 advisories with no findings. The PR body and
-validation record retain the precise run and lockfile identities. This candidate
-does not complete canonical M3-01/P1. Full M3-01 approval
-issuance, M3-02 durability and M3-03 execution remain open.
+[Issue #27](https://github.com/bynanci/storytelling/issues/27) tracks the bounded
+same-input review binding. The user stated “審查完畢 merge” on 2026-11-08 and
+explicitly authorised integrating PRs #31/#32 after refreshed technical checks.
+This records the user's review-complete statement and merge decision; no GitHub
+review submission, independent reviewer identity or signature is invented.
+
+- [x] Functional RED recorded before the new review module/API existed.
+- [x] Same-byte importer/compiler binding, private immutable BoundReviewV1 and strict declared context implemented.
+- [x] Read-only prepare-review/check-review CLI, tests, provenance and static source comparison supplied.
+- [x] Current-main Planner optimisations and their accepted completion records retained during integration.
+- [ ] Refreshed local/hosted integration checks and merge receipt (record after observation).
+- [ ] Reconcile remaining Issue #27 acceptance evidence separately; no paired upstream TypeScript review oracle has been run.
+
+Matching supplied composition/context establishes declaration and recomputed
+artifact consistency only. It does not authenticate a signer, verify source
+origin or a host, bridge planner output to OTIO, prevent replay or execute edits.
+PR #28 remains the separate supplied-payload signature candidate. Full OF-25 /
+GAP-06, trusted approval, M3-02 durability and M3-03 execution remain broader.
+The [merge review](docs/migration/records/M3-01-MERGE-REVIEW-2026-11-08.md)
+records the technical review and exact evidence boundaries.
 
 ## Not in the current backlog
 

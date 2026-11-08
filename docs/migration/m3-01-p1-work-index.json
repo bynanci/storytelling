@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "task": "M3-01/P1",
+  "tracking_issue": "https://github.com/bynanci/storytelling/issues/27",
+  "state": "maintainer-authorised-integration",
+  "acceptance_state": "user-reported-review-complete; remaining source-oracle and independent-review evidence tracked in issue27",
+  "base": "1d8d0e3652aa2afe77375550876639b726928eba",
+  "scope": "finite-openfilm-composition-to-otio-declared-review-binding",
+  "implementation_branch": "codex/m3-01-finite-review-binding-20261107",
+  "tasks": [
+    {
+      "id": "M3-01/P1-contract",
+      "state": "maintainer-reported-review-complete",
+      "depends_on": [],
+      "acceptance": "User explicitly reports review complete and requests merge; no GitHub review submission or independent reviewer artifact is fabricated"
+    },
+    {
+      "id": "M3-01/P1-implementation",
+      "state": "implemented-and-locally-verified",
+      "depends_on": [
+        "M3-01/P1-contract"
+      ],
+      "acceptance": "Same-byte binding and immutable/read-only interfaces verified on refreshed main; original M3 Rust code/test blobs unchanged by synchronization"
+    },
+    {
+      "id": "M3-01/P1-verification",
+      "state": "refreshed-local-passed-hosted-pending",
+      "depends_on": [
+        "M3-01/P1-implementation"
+      ],
+      "acceptance": "217 tests passed in debug/release with warnings-denied clippy/rustdoc and repository guard; final exact-head CI recorded after observation"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M3-RB01",
+      "tests": [
+        "same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact",
+        "semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding"
+      ],
+      "verification_paths": [
+        "crates/storytelling-engine/src/review_binding.rs",
+        "crates/storytelling-engine/tests/review_binding.rs"
+      ]
+    },
+    {
+      "id": "M3-RB02",
+      "tests": [
+        "changed_composition_and_each_declared_context_field_are_reported_stale",
+        "semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding"
+      ],
+      "verification_paths": [
+        "crates/storytelling-engine/tests/review_binding.rs"
+      ]
+    },
+    {
+      "id": "M3-RB03",
+      "tests": [
+        "context_parser_rejects_unknown_duplicate_unsorted_and_over_budget_values",
+        "json_depth_scanner_accepts_exact_limit_and_ignores_string_contents",
+        "json_depth_and_record_byte_budgets_are_enforced_before_deserialization",
+        "exact_context_and_record_byte_limits_are_accepted",
+        "capability_collection_accepts_exact_limit_and_rejects_limit_plus_one",
+        "context_must_declare_compiler_required_capabilities_and_record_digest_is_checked"
+      ],
+      "verification_paths": [
+        "crates/storytelling-core/src/review.rs",
+        "crates/storytelling-engine/tests/review_binding.rs"
+      ]
+    },
+    {
+      "id": "M3-RB04",
+      "tests": [
+        "same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact"
+      ],
+      "verification_paths": [
+        "crates/storytelling-engine/src/review_binding.rs"
+      ]
+    },
+    {
+      "id": "M3-RB05",
+      "tests": [
+        "review_record_rejects_unknown_duplicate_forged_claims_and_invalid_digests",
+        "same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact"
+      ],
+      "verification_paths": [
+        "crates/storytelling-engine/tests/review_binding.rs"
+      ]
+    },
+    {
+      "id": "M3-RB06",
+      "tests": [
+        "changed_composition_and_each_declared_context_field_are_reported_stale",
+        "every_declared_context_field_has_a_stable_stale_identifier",
+        "semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding"
+      ],
+      "verification_paths": [
+        "crates/storytelling-engine/tests/review_binding.rs"
+      ]
+    },
+    {
+      "id": "M3-RB07",
+      "tests": [
+        "prepare_and_check_are_read_only_and_stale_is_a_successful_report",
+        "prepare_review_reads_composition_from_stdin_but_context_remains_an_explicit_file",
+        "review_commands_keep_usage_and_io_errors_distinct_and_path_free"
+      ],
+      "verification_paths": [
+        "crates/storytelling-cli/src/main.rs",
+        "crates/storytelling-cli/tests/review_cli.rs",
+        "docs/migration/records/M3-01-P1-COMPARISON.md"
+      ]
+    }
+  ],
+  "local_evidence": {
+    "functional_red": "cargo test -p storytelling-engine --test review_binding --locked failed before implementation: review module and APIs were unresolved",
+    "green": [
+      "cargo fmt --all",
+      "cargo clippy --workspace --all-targets --locked -- -D warnings",
+      "cargo test --workspace --locked",
+      "cargo test --workspace --release --locked",
+      "RUSTDOCFLAGS=-D warnings cargo doc --workspace --no-deps --locked",
+      "python3 scripts/check_repo.py",
+      "git diff --check"
+    ],
+    "coverage": "Workspace debug/release tests passed, including 1 engine depth-scanner unit test, 10 engine integration tests, 3 CLI integration tests and 4 compile-fail BoundReviewV1 doctests",
+    "hosted_head": "2e7662405a49698be1ebee2136f54ab539ef7c2e",
+    "hosted_run": "https://github.com/bynanci/storytelling/actions/runs/42425697537",
+    "hosted_result": "All six hosted jobs passed: Quality and contracts, Required gates, Rust Linux, Rust Windows, Rust macOS and Dependency audit",
+    "base_limitation": "Local base predates latest remote main and PR #28 merge; exact-base compatibility is covered by the listed hosted run"
+  },
+  "not_completed": [
+    "paired upstream TypeScript review runtime oracle or explicit recorded disposition of the static oracle requirement",
+    "independent review artifact (user review-complete statement is recorded separately)",
+    "planner-to-composition/OTIO bridge",
+    "trusted signer/key authorization, expiry/revocation, replay consumption",
+    "filesystem identity/TOCTOU, host observation, execution and publication",
+    "full issue27 acceptance; verified scoped checklist entries are reconciled after integration"
+  ],
+  "integration_base": "baa97903e3d3c02e2eb2747140d62f1ddca3c60c",
+  "original_candidate_head": "1a281aa93a73026d24f9305ea46a6fe91e204299",
+  "pull_request": "https://github.com/bynanci/storytelling/pull/32",
+  "published_as_draft": true,
+  "review_instruction": {
+    "date": "2026-11-08",
+    "source": "user task conversation",
+    "text": "\u5be9\u67e5\u5b8c\u7562 merge",
+    "github_review_submissions": 0,
+    "technical_review": "assistant self-review within declared-input scope; no blocking correctness defect found"
+  },
+  "refreshed_local_verification": {
+    "code_integration_head": "0f5635bb5ca779e76a23d2596f51770abb307f7c",
+    "debug_tests_passed": 217,
+    "release_tests_passed": 217,
+    "ignored_informational_benchmarks": 2,
+    "clippy_warnings_denied": true,
+    "rustdoc_warnings_denied": true,
+    "guard_passed": true
+  }
+}

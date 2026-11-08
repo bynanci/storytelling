@@ -17,25 +17,42 @@ against 1,422 advisories with no findings. This does not complete canonical
 M3-01/P1. This readiness proposal uses distinct M3-RB01–RB07 IDs; evaluate
 compilation linkage and freeze that contract only after independent review.
 
-## Observed state and readiness
+## 2026-11-08 maintainer merge instruction
 
-- At initial inspection target checkout `/workspace/storytelling-shadow` was clean at
-  `4bf888949107a21b560b09222175ff1f25118a3b` (M2-03 Draft PR #26 candidate),
-  parent `073b5a415324d588019e2155dcf24ddddd860adf`. CI was reported pending at that inspection; this audit made no remote status
-  query. Implementation must start on fresh main after #26 and its lifecycle
-  documentation, using the later observed acceptance in the M2-03 record.
-- Later status showed concurrent parent lifecycle-document edits in that checkout;
-  this audit changed none of them. The target SHA above is an inspection identity,
-  not a claim about the final accepted main.
-- Source checkout `/workspace/open-film-oracle` is clean and pinned to
-  `7add4762fe8174d76f43b863375ea39b73121e76`. Source drift/main was not fetched here.
-- M1-03 supplies real SHA2, private `VerifiedBufferV1`, and one historical actual
-  FilmCraft profile proof. M2-02 supplies a fixed-window proposal. No production
-  approval authority, canonical identity API, journal or host executor exists.
-- Ready without another human decision: a pure bounded review-binding contract,
-  exact artifact identity, stale-context diagnostics, read-only CLI and source
-  differential fixtures. Existing user authority covers this development and
-  verified merges. It does not constitute human approval of a future edit.
+The later user statement “審查完畢 merge” explicitly authorises integrating
+PRs #31/#32 after current-main technical checks. It supersedes earlier merge holds
+for this bounded integration; the older proposal/candidate observations below
+remain historical. The instruction is recorded as maintainer-reported review
+completion, without creating a GitHub review submission, independent reviewer
+identity, runtime oracle result or trusted editorial approval. PR #31 has merged
+as baa97903e3d3c02e2eb2747140d62f1ddca3c60c; PR #32 is being refreshed on that
+baseline. Source comparison stays static and Issue #27's remaining evidence
+is reconciled separately. See [merge review](records/M3-01-MERGE-REVIEW-2026-11-08.md).
+
+## 2026-11-07 implementation continuation
+
+After the separate G2 review packet was prepared, the maintainer authorized a provisional
+implementation candidate on an isolated branch. The candidate now adds same-byte finite importer /
+OTIO binding, strict declared context, read-only freshness checks, CLI commands and synthetic tests;
+see [M3-01/P1 validation record](records/M3-01-P1.md), [provisional contract](../CONTRACTS.md#m3-01-p1-provisional-review-binding),
+the [source-informed comparison](records/M3-01-P1-COMPARISON.md), and [work index](m3-01-p1-work-index.json).
+The implementation uses existing source SHA-256 and
+adds no production dependency. The first local RED preceded implementation; its baseline was the
+available local commit `1d8d0e3652aa2afe77375550876639b726928eba`, which predates the latest remote
+main/merged approval candidate. Exact-base compatibility and multi-platform behavior were then
+verified on stacked [Draft PR #32](https://github.com/bynanci/storytelling/pull/32) at head
+`2e7662405a49698be1ebee2136f54ab539ef7c2e`; all six jobs passed in run
+[42425697537](https://github.com/bynanci/storytelling/actions/runs/42425697537).
+
+The candidate preserves all four authority/evidence flags as false. The serialized record is
+untrusted, has no signature/trust-key/revocation/replay semantics, and its context does not observe
+the host. G2 has not frozen or accepted these provisional names, field encoding or budgets. The
+planner→OTIO bridge remains absent, so binding covers only composition bytes passed directly to both
+importer and compiler. No issue acceptance checkbox or completion state is claimed; the tracking
+issue remains open until source-comparison scope is accepted, independent G2 review and maintainer
+acceptance.
+
+## Observed state and readiness
 
 ## Recommended single PR boundary
 

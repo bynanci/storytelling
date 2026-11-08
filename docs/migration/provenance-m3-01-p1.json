@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "task": "M3-01/P1",
+  "source": {
+    "repository": "bynanci/open-film",
+    "commit": "7add4762fe8174d76f43b863375ea39b73121e76",
+    "license": "Apache-2.0",
+    "files": [
+      {
+        "path": "packages/application/src/nle-handoff.ts",
+        "blob": "7af8931a969e4eb13abe92b3db0b6b859c494e1c"
+      },
+      {
+        "path": "packages/application/src/scene-script-review.ts",
+        "blob": "11c4bcfa1b29e3094f636787a5010de29b445461"
+      },
+      {
+        "path": "packages/application/src/silence.ts",
+        "blob": "f94bb561f1f24936b2c2a05087e6e66746f5b99e"
+      },
+      {
+        "path": "packages/application/src/editor.ts",
+        "blob": "bb5fc1d38a12fb17cdaf09a01e6bc61aeca3ebd9"
+      },
+      {
+        "path": "packages/core/src/preset-json.ts",
+        "blob": "d9d232c4255acdd9510153e15a0347c13a4b08fd"
+      },
+      {
+        "path": "packages/media/src/verified-source.ts",
+        "blob": "f7b8b33445fb2a14394d34544a5b97d6d01f267c"
+      },
+      {
+        "path": "packages/exporters/src/handoff.ts",
+        "blob": "debc8308b472372bd60870a6ec9e6d7d15189c66"
+      },
+      {
+        "path": "packages/application/tests/silence-review.test.ts",
+        "blob": "11fbcd692e37db9ef106b8689e3e3b64fcd2cbc2"
+      },
+      {
+        "path": "packages/application/tests/story-plan.test.ts",
+        "blob": "7ac3357de7aa9885f893ceae8c9ec3effc2bb5c5"
+      }
+    ]
+  },
+  "approval": {
+    "authority": "maintainer task conversation",
+    "date": "2026-11-07",
+    "policy": "Preserve original MIT LICENSE; new source-informed review component and regression tests use Apache-2.0 SPDX with per-file source origins and applicable retained notices; integration wiring and independent documentation remain MIT"
+  },
+  "files": [
+    {
+      "path": "crates/storytelling-core/src/review.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored strict declared review-context and untrusted-record contracts informed by pinned review/handoff source; no upstream code or tests copied",
+      "source_paths": [
+        "packages/application/src/nle-handoff.ts",
+        "packages/application/src/scene-script-review.ts",
+        "packages/core/src/preset-json.ts"
+      ],
+      "modifications": "New versioned Rust DTOs with deny-unknown-fields semantics; declared context and false claim flags do not grant approval or authority"
+    },
+    {
+      "path": "crates/storytelling-core/src/source_evidence.rs",
+      "license": "Apache-2.0",
+      "relationship": "existing bounded supplied-buffer SHA-256 component extended with a shared pure digest helper informed by pinned source identity boundary; no upstream code copied",
+      "source_paths": [
+        "packages/media/src/verified-source.ts"
+      ],
+      "modifications": "Expose pure sha256_digest for in-memory bytes and reuse it in existing verification; no path, host, source-origin or approval claim"
+    },
+    {
+      "path": "crates/storytelling-engine/src/otio.rs",
+      "license": "Apache-2.0",
+      "relationship": "existing finite OTIO exporter extended for bounded identity use; source-informed handoff context only, no upstream code copied",
+      "source_paths": [
+        "packages/exporters/src/handoff.ts",
+        "packages/application/src/nle-handoff.ts"
+      ],
+      "modifications": "Export the existing OTIO byte budget constant for the review-binding module; serialization behavior is unchanged"
+    },
+    {
+      "path": "crates/storytelling-engine/src/review_binding.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded same-input importer/compiler binding and declared freshness checker informed by pinned review/revision/strict-JSON source; no upstream code copied",
+      "source_paths": [
+        "packages/application/src/nle-handoff.ts",
+        "packages/application/src/scene-script-review.ts",
+        "packages/application/src/silence.ts",
+        "packages/application/src/editor.ts",
+        "packages/core/src/preset-json.ts",
+        "packages/exporters/src/handoff.ts"
+      ],
+      "modifications": "New domain-separated SHA-256 identity, strict bounded parsing, recompilation from the same caller-provided composition bytes, context freshness report and private non-deserializable result; no signer authority, replay protection or host/source observation"
+    },
+    {
+      "path": "crates/storytelling-engine/tests/review_binding.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored synthetic regressions informed by pinned stale-review and strict-input test scenarios; no upstream test or fixture copied",
+      "source_paths": [
+        "packages/application/tests/silence-review.test.ts",
+        "packages/application/tests/story-plan.test.ts",
+        "packages/core/src/preset-json.ts"
+      ],
+      "modifications": "Tests same-input identity, stale source/context/plan/artifact, exact limits, strict JSON, capability declarations, forged claims, digest consistency and opaque type boundary; reuses preexisting synthetic finite-v1 fixture"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/review_cli.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored synthetic read-only CLI regressions informed by pinned review lifecycle tests; no upstream test or fixture copied",
+      "source_paths": [
+        "packages/application/tests/silence-review.test.ts",
+        "packages/application/tests/story-plan.test.ts"
+      ],
+      "modifications": "Tests file/stdin modes, current/stale outcomes, unchanged inputs, and distinct path-free usage/I/O errors; reuses preexisting synthetic finite-v1 fixture"
+    }
+  ],
+  "notices": [
+    {
+      "path": "LICENSES/Apache-2.0.txt",
+      "source_path": "LICENSE",
+      "blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "relationship": "retained verbatim upstream license"
+    },
+    {
+      "path": "NOTICE.openfilm",
+      "source_path": "NOTICE",
+      "blob": "cfb73de041af0e9e3e73bd8eb5cfb6135b676095",
+      "relationship": "retained verbatim historical/third-party attribution"
+    }
+  ],
+  "original_mit_blob": "f317799529d13f4d9301daa2dba63dfea559ff69",
+  "production_dependencies_added": [],
+  "source_tests_copied": false,
+  "media_copied": false,
+  "independent_mit_changes": [
+    "crates/storytelling-core/src/lib.rs",
+    "crates/storytelling-engine/src/lib.rs",
+    "crates/storytelling-cli/src/main.rs",
+    "docs/CLI_GUIDE.md",
+    "docs/CONTRACTS.md",
+    "docs/REQUIREMENTS.md",
+    "docs/migration/M3-01-NEXT.md",
+    "docs/migration/records/M3-01-P1-COMPARISON.md",
+    "docs/migration/records/M3-01-P1.md",
+    "docs/delivery/PR_REGISTER.md",
+    "docs/delivery/pr-register.json",
+    "TASKS.md",
+    "PROVENANCE.md"
+  ],
+  "test_tool_review": "No new test-only dependency; hosted dependency audit and exact-head CI remain pending"
+}
