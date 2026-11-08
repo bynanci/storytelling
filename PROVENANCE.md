@@ -85,6 +85,16 @@ fixtures. Native receipts prove supplied immutable bytes, not future files or
 host/approval authority.
 
 
+## M2-02/O1 private ordering optimisation
+
+The 2026-11-08 performance refactor retains the existing approved Apache component
+policy and fixed source baseline. New private ordering/test modules are listed in
+[per-file inventory](docs/migration/provenance-m2-order-opt.json); existing planner
+and integration tests remain in the M2-02 inventory. Independently authored task,
+requirements and benchmark documentation retain MIT. No upstream implementation,
+tests, media, new dependency or notice change is introduced. The record discloses
+AI implementation and self-review without a maintainer signature or G2 approval.
+
 ## M2-02 fixed-window planner
 
 Source-informed core/engine planner modules, synthetic regressions and pinned source

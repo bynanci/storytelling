@@ -1980,7 +1980,7 @@
         {
           "number": 14,
           "url": "https://github.com/bynanci/storytelling/issues/14",
-          "title": "M2-01：完成 bounded StoryBrief 硬限制稽核、typed conflicts 與唯讀 CLI",
+          "title": "M2-01\uff1a\u5b8c\u6210 bounded StoryBrief \u786c\u9650\u5236\u7a3d\u6838\u3001typed conflicts \u8207\u552f\u8b80 CLI",
           "state": "closed",
           "state_reason": "completed",
           "closed_at": "2026-11-07T03:20:28Z",
@@ -1989,7 +1989,7 @@
         {
           "number": 12,
           "url": "https://github.com/bynanci/storytelling/issues/12",
-          "title": "M1-02：有限 OTIO 原生匯出、明確 loss 與官方 oracle",
+          "title": "M1-02\uff1a\u6709\u9650 OTIO \u539f\u751f\u532f\u51fa\u3001\u660e\u78ba loss \u8207\u5b98\u65b9 oracle",
           "state": "closed",
           "state_reason": "completed",
           "closed_at": "2026-11-07T03:09:35Z",
@@ -1998,7 +1998,7 @@
         {
           "number": 6,
           "url": "https://github.com/bynanci/storytelling/issues/6",
-          "title": "M1-01：OpenFilm finite snapshot import 工作追蹤",
+          "title": "M1-01\uff1aOpenFilm finite snapshot import \u5de5\u4f5c\u8ffd\u8e64",
           "state": "closed",
           "state_reason": "completed",
           "closed_at": "2026-11-07T02:19:19Z",
@@ -2007,7 +2007,7 @@
         {
           "number": 5,
           "url": "https://github.com/bynanci/storytelling/issues/5",
-          "title": "M1-01/P3：提供 import-openfilm CLI、驗證與單一 Draft PR",
+          "title": "M1-01/P3\uff1a\u63d0\u4f9b import-openfilm CLI\u3001\u9a57\u8b49\u8207\u55ae\u4e00 Draft PR",
           "state": "closed",
           "state_reason": "completed",
           "closed_at": "2026-11-07T02:19:12Z",
@@ -2016,7 +2016,7 @@
         {
           "number": 4,
           "url": "https://github.com/bynanci/storytelling/issues/4",
-          "title": "M1-01/P2：實作純 Rust snapshot mapper 與精確時間／loss report",
+          "title": "M1-01/P2\uff1a\u5be6\u4f5c\u7d14 Rust snapshot mapper \u8207\u7cbe\u78ba\u6642\u9593\uff0floss report",
           "state": "closed",
           "state_reason": "completed",
           "closed_at": "2026-11-07T02:19:05Z",
@@ -2025,7 +2025,7 @@
         {
           "number": 3,
           "url": "https://github.com/bynanci/storytelling/issues/3",
-          "title": "M1-01/P1：凍結 finite-v1 composition import 契約與來源證據",
+          "title": "M1-01/P1\uff1a\u51cd\u7d50 finite-v1 composition import \u5951\u7d04\u8207\u4f86\u6e90\u8b49\u64da",
           "state": "closed",
           "state_reason": "completed",
           "closed_at": "2026-11-07T02:18:58Z",
@@ -2358,8 +2358,8 @@
         "number": 27,
         "state": "open",
         "unchecked_items": 6,
-        "proposed_requirement_ids": "M3-RB01–RB07",
-        "note": "distinct from PR28M3-A01–A03; reconcile scope after independent review"
+        "proposed_requirement_ids": "M3-RB01\u2013RB07",
+        "note": "distinct from PR28M3-A01\u2013A03; reconcile scope after independent review"
       }
     },
     {
@@ -2435,6 +2435,40 @@
           "scope": "canonical M3-01/P1 finite-OTIO review identity and declared-context freshness"
         }
       ]
+    },
+    {
+      "schema_version": 1,
+      "repository": "bynanci/storytelling",
+      "checked_at": "2026-11-08T01:33:35Z",
+      "kind": "conditional-merge-review",
+      "observed_main": {
+        "sha": "9513913e849f8cf15d9e5bbb2977fe587ce8b953"
+      },
+      "pull_requests": [
+        {
+          "number": 31,
+          "state": "open",
+          "draft": true,
+          "head_sha": "67abf6d443abf11a0cbced519eeac2a86396a7f7",
+          "submitted_reviews": 0,
+          "disposition": "retain-draft-pending-independent-G2",
+          "passed_ci_run": 42381290915
+        },
+        {
+          "number": 32,
+          "state": "open",
+          "draft": true,
+          "head_sha": "1a281aa93a73026d24f9305ea46a6fe91e204299",
+          "base": "codex/m3-01-g2-review-packet-20261107",
+          "submitted_reviews": 0,
+          "review_threads": 0,
+          "disposition": "retain-draft-pending-independent-G2-and-source-comparison-disposition",
+          "passed_ci_run": 42427010497
+        }
+      ],
+      "tracking_issue_27": "open-no-checklist-completion",
+      "separate_optimization_issue": 33,
+      "authority_note": "User conditionally authorised verified merges and algorithm optimisation; this does not itself grant independent G2 acceptance."
     }
   ]
 }

@@ -232,6 +232,23 @@ This is synthetic selected-domain differential evidence. Fractional optional
 budgets, full solver behavior, live Catalog authority, host execution and human
 editorial acceptance remain separate. The runner opens no user project.
 
+## M2-02/O1 stable ordering optimisation
+
+2026-11-08 follow-up under the user's optimise/upgrade instruction; tracked in
+[issue #33](https://github.com/bynanci/storytelling/issues/33). The accepted M2-02
+wire, priority policy, timing and input limits remain the contract.
+
+- [x] Internal min-priority ready queue replaces repeated candidate scans.
+- [x] Exhaustive four-vertex graph comparison, supported-size graph tests and public report regression added.
+- [x] Manual release benchmark recorded, including small-graph overhead and limited end-to-end gains.
+- [x] Requirements, source refresh, component provenance and validation record added.
+
+The [validation record](docs/migration/records/M2-ORDER-OPT.md) is a versioned
+implementation snapshot. Final hosted checks, review and merge/checklist status
+are maintained in issue #33 and its associated PR. This optimisation does not
+complete the broader OpenFilm map or M3-01. Existing Draft PRs #31/#32 still await
+independent G2 review; issue #27 remains open.
+
 ## Prepared next slice: M3-01/P1
 
 [Tracking #27](https://github.com/bynanci/storytelling/issues/27) and
