@@ -98,13 +98,17 @@ binary and compares stdout bytes.
 
 The [standalone Traditional Chinese reader sheet](open-issues-2026-11-11/reader-sheet.zh-TW.md)
 can be handed to a reader without the surrounding treatment labels or source
-IDs in this validation record. It is still blank; preparing it is not a reader
-trial. Record assignment order and prior exposure as described in the
-[open-issue audit](open-issues-2026-11-11.md#human-work-still-required).
+IDs in this validation record. The checked-in sheet remains a blank template;
+the later attested sessions are recorded below, not filled into that template.
+It contains text and sound cues and plays no audio.
 
-For a reader trial, show the two passages below as A and B, randomly swap their
-order per reader, and hide the treatment names and source IDs. Do not explain
-the intended difference before the reader responds.
+For any additional reading, give the reader only that sheet. Before presenting
+it, draw a fair coin for AB or BA and actually display, fold or cover its sections
+in that sequence while keeping the original A/B labels. Privately record the
+anonymous reader code, date/time/timezone, prior-exposure answer, draw and actual
+order, including any deviation. A new blind reader must not have seen the drafts
+or related explanations. Hide the treatment names, this validation record and
+the source key; do not explain the intended difference before the response.
 
 **A**
 
@@ -127,18 +131,65 @@ Ask:
 3. What do you think the two sounds are? Which details came from the supplied material, and which might be an author's choice?
 4. Was anything confusing or unsupported?
 
-**Official reader trial pending.** The facilitator supplied five human workshop responses from a separate questionnaire. Its fourth question asked for a retelling. The official sheet asks what confused the reader or lacked support. The [intake review](https://github.com/bynanci/storytelling/issues/65#issuecomment-6798144382) retains the workshop responses as supplementary observations. To complete #65, collect one eligible reader’s four original answers to the official sheet. Record exposure and actual order. Save the answers before revealing the source key.
+Save all four answers verbatim, including uncertainty and unexpected answers,
+before revealing the source key. Keep a frozen original and its save time;
+record the disclosure time and later discussion separately. Afterwards identify
+differences, evidence used and unclear points by referring to those original
+answers, with facilitator interpretation labeled separately. This procedure is
+a handoff for any additional session, not a new reading or an automatic reason
+to reopen the completed issue. The [original facilitator handoff](https://github.com/bynanci/storytelling/issues/65#issuecomment-6795973320)
+provides a blank private log. Do not give that log's source context to the reader.
 
-## Merge reconciliation and remaining N-08 gate
+## Maintainer-attested closure · 2026-11-12
+
+Issue #65 is **closed/completed on maintainer attestation with disclosed study
+limitations**, as recorded in the [qualified closure](https://github.com/bynanci/storytelling/issues/65#issuecomment-6809829263).
+The maintainer attests two readings of the original sheet at `5201c488`, with
+the unchanged A/B passages and all four full questions. Prior exposure was
+denied, no sound file was played, and all four original answers were saved
+before the source key was revealed. These are facilitator accounts accepted by
+the maintainer; they are not independently audited device telemetry. The private
+verbatim answers and reader identifiers are not republished here. The following
+table summarizes that public attestation, not newly collected answers or quotes.
+
+| Attested session | Differences and evidence reported | Unclear or unsupported points reported | Answer save → key disclosure; actual order |
+| --- | --- | --- | --- |
+| First | Identifies the Saturday umbrella workshop and one umbrella; uses the explicit event sentence in A versus the opening cue in B to identify the earlier reveal. Distinguishes supplied synthesized taps from the author's placement and metaphor. | Unknown venue, time and sound origin. | 2026-11-11 21:18:42 +08 → 21:25:10 +08; A→B. |
+| Second | Recognizes the same source-versus-editorial distinction according to the closure summary; no separate Q2 wording is published there. | Treating the metaphor as a literal event lacks support. | 2026-11-12 04:30:15 +08 → 04:36:00 +08; A→B. |
+
+Both actual orders were A→B. The randomization method and draw were not supplied,
+so this record does **not** establish a randomized presentation or control for
+order effects. The second session's +08 time is a newly asserted correction to
+an earlier export's `Z` suffix; the original export and its timestamps remain
+unchanged. Neither device timing nor this summary supplies independent audit.
+
+Earlier alternate-questionnaire responses remain separate supplementary
+observations. The [first intake](https://github.com/bynanci/storytelling/issues/65#issuecomment-6798144382)
+used a different fourth question. A [later intake](https://github.com/bynanci/storytelling/issues/65#issuecomment-6800952835)
+preserves an unexpected B-earlier interpretation and an unclear link between the
+opening cue and repair; that response must not be corrected into the intended
+interpretation. The [subsequent clarification](https://github.com/bynanci/storytelling/issues/65#issuecomment-6809409205)
+says exported question labels had been rewritten, so those labels alone do not
+establish what was displayed. Preserve all submitted wording, answer sets and
+timing discrepancies without silently merging files or inflating participant
+counts. This document reconciliation does not overwrite any original response.
+
+The two attested official-sheet accounts support the issue's bounded qualitative
+observation criterion. They do not establish aesthetic superiority, preference,
+general reader comprehension or broad efficacy. This update records the existing
+closure and performs no new participant session.
+
+## Merge reconciliation and N-08 acceptance scope
 
 PR #75 was reconciled with the intervening main changes from #76, #77 and #79.
 The English-first and Traditional Chinese documentation updates were retained
 alongside the profile contract. The final PR head was
 `99765e0eae28e0338d78fa465bf4c44edaf792d1`; exact-head CI run #265 passed all
 configured jobs, and PR #75 was squash-merged as
-`003191c834bfc46903f1a436fd73c5df6edd9a77`. Issue #65 remains open because the
-blind reader trial is a human acceptance criterion. Deterministic replay is
-covered by the CLI integration test; it does not substitute for that trial.
+`003191c834bfc46903f1a436fd73c5df6edd9a77`. At that original merge the blind-reader
+criterion was still pending. The later qualified closure above records its
+acceptance on maintainer attestation. Deterministic replay is covered by the CLI
+integration test; it does not substitute for a human observation.
 
 ## Automated evidence
 
@@ -150,5 +201,6 @@ differentials passed locally.
 
 PR #75 exact-head CI run #265 on `99765e0eae28e0338d78fa465bf4c44edaf792d1`
 passed all configured jobs. PR #75 was subsequently squash-merged as
-`003191c834bfc46903f1a436fd73c5df6edd9a77`. Human editorial acceptance remains
-a separate manual gate.
+`003191c834bfc46903f1a436fd73c5df6edd9a77`. Reader observation was later accepted
+on the qualified attestation above. Aesthetic and creative-intent judgments
+remain human decisions; the automated checks do not grant them.

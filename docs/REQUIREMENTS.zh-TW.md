@@ -313,7 +313,7 @@ see the [validation record](validation/m3-03-filmcraft-execution.md).
 | N-R04／N-04 | 保留多款草稿，找出一項修訂影響的版本。 | [修訂契約](narrative/NARRATIVE_REVISION_LEDGER_V1.md)、[格式](../contracts/narrative-revision-ledger-v1.schema.json)、[案例](../tests/fixtures/narrative-v1/n04-revision-history-v1.json)與[驗證紀錄](validation/n04-narrative-revisions.md)可供重播。修訂 S02 影響口述與兩款構圖。審閱後再修訂 C01，只影響構圖 B。歷史保留來源、變體及宣告的作者選擇。提案事件不可夾帶決定。CLI 只計算直接引用，無法驗證決定者身分。PR #76 於 `9eb12eefe41ef965acee1f5e78e373e3b782372c` 合併；同一提交與合併後 CI run #218 的已設定檢查均通過。真人檢視仍待完成。 |
 | N-R05／N-05 | 寫出商業文案大綱並檢視措辭依據。 | `audit-copy-claims --report-v2` 讀取虛構產品文案與 N-04 修訂簿。試行組 10→8 分鐘與所有團隊 20% 兩句都引用 PILOT_LOG@1，引用皆 current，但仍須真人審查。CLI 預期輸出測試涵蓋有效、缺漏、懸空及舊版來源；來源修訂只列出兩句相依主張，保留原措辭、歷史／目前文字及未受影響提案。維持嚴格 JSON、唯讀重播、影片與 OTIO 回歸。[契約](narrative/COMMERCIAL_COPY_V1.md) · [N-R05 測試對照及實際輸出](validation/n05-commercial-copy.md)。 |
 | N-R06／N-06 | 選出值得開發的新模式。 | [格式探索紀錄](validation/n06-format-discovery.md)比較三個候選方向、現有契約相容性與最小可行變更。請求者已[明確暫緩三者](https://github.com/bynanci/storytelling/issues/53#issuecomment-6792555714)；不宣稱任務試用或耗時結果。 |
-| N-R07／N-07 | 依實際 native 工作流證據決定繼續、縮小或停止。 | [N-07 腳本與報告](validation/n07-pilot.zh-TW.md)固定 N-01 的明示 native 對照，記錄版本、分母、作者時間、歸因、重複輸入與重工；CLI 毫秒另列，真人欄留白。run_cli 及 test_run_cli.py／test_packet.py 保護新輸出、識別與試用材料。產品決策待真人證據，不推薦 RC。 |
+| N-R07／N-07 | 依實際 native 工作流證據決定繼續、縮小或停止。 | [N-07 處置](validation/n07-pilot.zh-TW.md)記錄外部流程五份產物的實際 Stop／不發布：0/5 主要完成、5/5 重大 U01 錯誤。固定 ce73836／ReportV1 native 驗收仍未證實，結果待真人證據。保留準備快照、原始量測保護與 helper／packet 測試；未來評估和 G5 發布另案決定。 |
 
 N-R02 的資料契約與 N-01 的試用條件已固定。新增觀察可以補充證據。變更契約或試用條件時，須另行記錄決定。
 
@@ -347,7 +347,7 @@ M0、M1-01 與限定範圍的 M2-01 稽核只支援前兩項。
 
 | 需求／任務 | 可觀察的結果 |
 | --- | --- |
-| N-R08／[N-08](https://github.com/bynanci/storytelling/issues/65) | 以同一份合成素材比較兩種開場。綁定敘事文件 revision 的 `NarrativeStyleProfileV1` CLI 檢查口述變體 beat 順序。有效規則可通過；同一變體的循環會列出規則 ID；順序違反、舊 revision 和未知版本均回傳穩定診斷。[N-08 驗證紀錄](validation/n08-style-profile.md)列出重跑測試及成對案例。真人盲讀仍待執行；檢查器不宣稱評價美感或代表作者核准。 |
+| N-R08／[N-08](https://github.com/bynanci/storytelling/issues/65) | 以同一份合成素材比較兩種開場。綁定敘事文件 revision 的 `NarrativeStyleProfileV1` CLI 檢查口述變體 beat 順序。有效規則可通過；同一變體的循環會列出規則 ID；順序違反、舊 revision 和未知版本均回傳穩定診斷。[N-08 驗證紀錄](validation/n08-style-profile.md)列出重跑測試及成對案例。兩次官方表單閱讀依維護者證言完成定性門檻；皆為 A→B，隨機方法未記錄，私人逐字答案及裝置未獨立稽核。紀錄保留意外補充回覆與揭露限制；檢查器不宣稱評價美感或代表作者核准。 |
 | N-R09／[N-09](https://github.com/bynanci/storytelling/issues/66) | `render-cue-sheet` 輸出綁定口述 `NarrativeDocumentV1` revision 的獨立封閉提示表。保留工作坊受眾、週六活動與帶一把傘的素材；旁白標為待錄、停頓標示估時，`taps.wav` 標為已宣告音效。允許跨軌疊音與半開區間首尾相接；拒絕互斥軌衝突、反向區間、重複 ID 與未知版本。保存輸出與結束碼，證明逐位元一致重播，並維持 `NarrativeDocumentV1` 不變。[規格](narrative/NARRATIVE_CUE_SHEET_V1.zh-TW.md) · [N-09 驗證紀錄](validation/n09-cue-sheet.zh-TW.md)。 |
 | N-R10／[N-10](https://github.com/bynanci/storytelling/issues/67) | 依 N-06 請求者決策暫緩。後續決策須明選一案並列作者需求與版本範圍，才啟動正常 CLI 正反例及既有影片回歸。 |
 | N-R11／[N-11](https://github.com/bynanci/storytelling/issues/68) | `render-handoff` 透過原有 N-04 修訂簿對照文字、圖像與聲音部分。[規格](narrative/NARRATIVE_HANDOFF_MANIFEST_V1.zh-TW.md)、[案例](../tests/fixtures/narrative-handoff-v1/README.md)及[證據](validation/n11-handoff.md)涵蓋事先固定的日期影響集合、遺失與過期引用、專屬提案外溢、完整對照、描述來源、來源未變及一致重播。語意另由作者檢視。 |
