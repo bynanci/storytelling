@@ -123,6 +123,8 @@ npx skills add ./node_modules/@bynanci/storytelling/skills/storytelling --skill 
 
 ## 核對素材與修改草稿
 
+[研究、14 項編輯規則與六個流程](docs/research/README.zh-TW.md)提供一手來源、適用限制與既有任務對照。依任務載入，不需新增安裝。
+
 - **核對來源。** 對照原始筆記與草稿。分別標示作者提供的事實、推論與創作提議。[修訂範例](skills/storytelling/references/examples.zh-TW.md)
 - **安排工作順序。** 先完成後續步驟需要的工作。Python 腳本可規劃相依步驟，也可檢查執行紀錄。[流程與重試規則](skills/storytelling/references/graph-loops.zh-TW.md)
 - **查找佐證。** 若多份文件已有 Graphify 索引，可用索引定位段落。請回到原文核對主張。[索引查詢指引](skills/storytelling/references/graphify-tools.zh-TW.md)

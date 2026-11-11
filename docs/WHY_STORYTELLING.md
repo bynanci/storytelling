@@ -42,6 +42,8 @@ These examples describe outcomes a team can observe. Authors and readers must tr
 
 ## How research informs the design
 
+The [research design map](research/README.md) connects a broader evidence register to stable editorial rules, six skill workflows and existing requirements. It records access limits, counterexamples and evaluation priorities.
+
 | Research and scope | Design inference |
 | --- | --- |
 | Zwaan, Langston, and Graesser (1995) studied short written narratives. They examined how readers connect events through time, space, characters, causes, and intentions. [Paper](https://doi.org/10.1111/j.1467-9280.1995.tb00513.x) | Ask readers to describe who acted and what changed. Authors can retain gaps, ambiguity, or an open ending. |
