@@ -91,6 +91,8 @@ N-02 的來源與衍生關係可參考 [W3C PROV-DM](https://www.w3.org/TR/prov-
 空間分組可參考 [JSON Canvas 1.0](https://jsoncanvas.org/spec/1.0/)。
 用合成案例評估實作成本。將決定記在[敘事任務](../TASKS.zh-TW.md#cross-media-narrative-backlog)指定的架構決策紀錄。
 
+N-05 的 `audit-copy-claims` 沿用相同邊界：core 保存版本化文案與報告型別，engine 對照呼叫端提供的敘事修訂簿驗證有上限的引用，CLI 讀取兩份本機輸入並輸出一行 JSON。報告附上所引用 revision 的原始文字供人比對。引用目前有效不代表語意上獲得佐證、來源真實或文案可發布。
+
 <a id="workflow-and-editor-adapters"></a>
 
 ### 工作流程與宿主轉接器
@@ -217,3 +219,4 @@ PR #28 已合併，獨立 G2 審查仍待完成。已驗收的 M3-01/P1 限於�
 此候選方案未涵蓋金鑰儲存、防重播日誌、到期或撤銷服務、核准資料庫、CLI 簽署與宿主執行。
 後續執行須支援持久化的防重播與寫入者隔離。執行前須取得宿主的實際證據。
 欄位順序、正規表示方式及資料上限見[核准身分契約](migration/APPROVAL_IDENTITY_V1.md)。
+

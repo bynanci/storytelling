@@ -19,6 +19,7 @@ Choose the command for your task. Supply the document that its profile accepts. 
 | `track-narrative-revisions` | NarrativeRevisionLedgerV1 JSON, 1,048,576 | Source and variant history, suggestions, author choices and current review status. | [Revision ledger](narrative/NARRATIVE_REVISION_LEDGER_V1.md) |
 | `query-narrative-impact` | The same ledger and one source change event ID | Variants that directly reference the changed source revision. | [Revision ledger](narrative/NARRATIVE_REVISION_LEDGER_V1.md) |
 | `check-narrative-style` | NarrativeDocumentV1 JSON and NarrativeStyleProfileV1 JSON, each 1,048,576 | `{"ok":true,"style_check":...}`; errors exit 1. | [Editorial style profile V1](narrative/EDITORIAL_STYLE_PROFILE_V1.md) |
+| `audit-copy-claims` | CommercialCopyDocumentV1 JSON and NarrativeRevisionLedgerV1 JSON, each 1,048,576 | `{"ok":true,"commercial_copy":...}`; errors exit 1. | [Commercial copy](narrative/COMMERCIAL_COPY_V1.md) |
 | `verify-source` | Supplied bytes, 16,777,216, and expected SHA-256 | `{"ok":true,"verification":...}` | [Supplied buffer](migration/FILMCRAFT_25_V1.md#native-supplied-buffer-contract) |
 | `prepare-story-review` | Planner response, 4,194,336. Snapshot, 1,048,576. Context, 65,536. | `{ok:true,review:...,otio:Timeline}` with the actual OTIO artifact. | [Selected proposal](migration/PLANNER_OTIO_REVIEW_V1.md) |
 | `export-story-otio` | Same three inputs | The same native OTIO directly. | [Selected proposal](migration/PLANNER_OTIO_REVIEW_V1.md) |
@@ -39,6 +40,7 @@ Extract `planning.plan` for the M0 validator. It rejects a full `planning` respo
 Supply an append-only ledger as a file or on standard input. Use `track-narrative-revisions <FILE|->` to replay history and review state. Use `query-narrative-impact <FILE|-> <CHANGE_ID>` with a source revision event ID. The engine computes impact from direct `source_refs`. The caller cannot supply the result list. The engine does not propagate impact through indirect `based_on` links. Any pending variant review blocks the next source revision. Author decisions and assistant suggestions require separate events. The CLI cannot authenticate who submitted an author decision.
 
 The `check-narrative-style` command takes a document and its revision-bound profile. It checks declared spoken beat order and does not evaluate style or author approval.
+The `audit-copy-claims` command emits one JSON report. Its `reference_status` describes source ID/revision state only; it does not judge semantic support.
 
 `render-cue-sheet <DOCUMENT_FILE|-> <CUE_SHEET_FILE|->` takes one narrative document and one separate closed cue sheet. It validates their declared identities, beat and asset references, timing, and exclusive-track conflicts, then emits deterministic human-readable text. Only one input may use standard input. The command does not read asset bytes, record, play or mix audio. `NarrativeDocumentV1` remains unchanged.
 
@@ -229,3 +231,4 @@ The signer receives `storytelling.approval.v1\0` followed by the frozen compact 
 `VerifiedApprovalV1` has private fields and read-only accessors. It has no Serde traits. The token establishes that the supplied key signed the exact payload. It cannot establish registry trust, principal authorization or the truth of an `observed` host claim. It cannot establish absence of replay, revocation or expiry. It cannot establish host execution.
 
 Trusted approval surfaces, the journal and the host executor have separate responsibilities. See the [PR #28 evidence record](migration/records/M3-01-approval-candidate.md).
+

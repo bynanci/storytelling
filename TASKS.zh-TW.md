@@ -35,7 +35,7 @@
 | [N-02／#49](https://github.com/bynanci/storytelling/issues/49) · N-R02 共用契約 | G2 已採納。參考 N-01 試用包。 | [ADR 0005](docs/adr/0005-independent-narrative-document-v1.md) 與 [V1 規格](docs/narrative/NARRATIVE_DOCUMENT_V1.md)定義口述、構圖、來源和變體。維護者已同意開發 N-03。[PR #71](https://github.com/bynanci/storytelling/pull/71) |
 | [N-03／#50](https://github.com/bynanci/storytelling/issues/50) · N-R03 口述與插畫 | 接續 N-02。主分支已有本機指令，作者試讀待完成。 | `render-narrative` 依同一份來源輸出口述與兩種構圖。檢查來源、故障案例、輸入唯讀與重播一致性。另跑既有影片與 OTIO 回歸。[命令與輸出](docs/validation/n03-narrative-cli.md) |
 | [N-04／#51](https://github.com/bynanci/storytelling/issues/51) · N-R04 修訂與作者決定 | 接續 N-03。主分支已有修訂查詢。真人檢視另列。 | 先改共同事實，再改單一構圖。工具依直接引用列出受影響的版本。歷史保留舊稿、提案及宣告的作者決定。[修訂驗證紀錄](docs/validation/n04-narrative-revisions.md) |
-| [N-05／#52](https://github.com/bynanci/storytelling/issues/52) · N-R05 文案與證據 | G3–G4。接續 N-04。 | 交付受眾、主張、引用、文案與下一步。標出過期或已移除的引用。由審閱者判斷來源是否支持主張。 |
+| [N-05／#52](https://github.com/bynanci/storytelling/issues/52) · N-R05 文案與證據 | PR #83 加入唯讀 CLI 切片；仍需真人判斷來源是否支持措辭。 | `audit-copy-claims` 顯示受眾、主張、CTA、被引用的歷史文字與 revision 狀態。同 head CI 與語意審查分開追蹤。[契約](docs/narrative/COMMERCIAL_COPY_V1.md) · [驗證紀錄](docs/validation/n05-commercial-copy.md) |
 | [N-06／#53](https://github.com/bynanci/storytelling/issues/53) · N-R06 選擇新模式 | G0–G2。接續 N-04。 | 比較未決的構思分支、劇本揭露順序與缺素材的影片對照。記錄作者需求、成本與相容範圍。最多採用一種，也可全部暫緩。 |
 | [N-07／#54](https://github.com/bynanci/storytelling/issues/54) · N-R07 產品決定 | G4–G6。接續 N-05。 | 重做基準任務。分組報告完成數與總數、耗時及歸因錯誤。將可重現的失敗連到測試案例。維護者決定繼續、縮小或停止。另行評估發布。 |
 
@@ -118,3 +118,4 @@
 - <a id="openfilm-to-rust-transfer-ledger--2026-11-07"></a>[歷史來源移轉清單](docs/delivery/VIDEO_TASK_HISTORY.md#openfilm-to-rust-transfer-ledger--2026-11-07)
 
 </details>
+
