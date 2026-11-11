@@ -1,0 +1,1 @@
+Our two sessions logged 18 check-ins, counting each visit. One participant recalled attending twice: “My daughter came with me the first time. The next time I came on my own.” What would you like to ask the group? Send us one question.

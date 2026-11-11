@@ -1,0 +1,1 @@
+At minute 2 the blue edge was 1 cm above the waterline. By minute 8 it was 4 cm above it. Sketch each reading: draw a horizontal waterline, mark the upper blue edge and bracket the distance between them. How did the height of the blue edge change?

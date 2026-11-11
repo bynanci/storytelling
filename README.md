@@ -47,7 +47,7 @@ A narrator can record the cue and an illustrator can sketch either brief. The Sk
 
 ## Choose a template and an approach
 
-Each template includes a brief you can copy, two ways to treat the material and a check for the result.
+Each template includes a brief you can copy, two ways to treat the material and a check for the result. Try the [audience readings and revision exercises](https://github.com/bynanci/storytelling/blob/main/examples/README.md) with a reader and a handoff editor.
 
 | Situation | Two approaches to try | What you take away |
 | --- | --- | --- |

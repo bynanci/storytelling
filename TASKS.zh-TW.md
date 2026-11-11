@@ -45,6 +45,8 @@
 
 ### 執行作者試用
 
+若要另做盲讀或接手改稿試驗，可使用[情境範例](examples/README.zh-TW.md)。請與原 N-01 試用分開記錄。
+
 1. 在 [#48](https://github.com/bynanci/storytelling/issues/48) 記錄主分支提交碼及可能重疊的 PR。
 2. 開啟[真人試用包](docs/narrative/N-01-AUTHOR-STUDY.zh-TW.md)。請作者修改修繕者身分，再指出哪些稿件須改，並說明雨傘細節的來源。
 3. 依試用包的門檻招募五位參與者。每位完成兩次各八分鐘的配對試驗。分開記錄一般筆記與 Skill 的結果。原生工具若另行試用，獨立記錄該組結果。

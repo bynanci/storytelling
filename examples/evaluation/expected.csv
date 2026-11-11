@@ -1,0 +1,33 @@
+case,card,expected
+museum-ticket-punch,R1,A B
+museum-ticket-punch,R2,C
+account-review,R1,A B
+account-review,R2,B
+ux-interview,R1,A B C
+ux-interview,R2,A
+open-source-release,R1,A B
+open-source-release,R2,C
+nonprofit-report,R1,A B
+nonprofit-report,R2,B
+branching-game,R1,A B
+branching-game,R2,A
+private-family-film,R1,A B C
+private-family-film,R2,C
+regional-localization,R1,A B C
+regional-localization,R2,B
+audio-description,R1,A B
+audio-description,R2,A
+family-reunion,R1,A B
+family-reunion,R2,C
+classroom-change,R1,A B
+classroom-change,R2,C
+documentary-podcast,R1,A B
+documentary-podcast,R2,B
+product-announcement,R1,A B C
+product-announcement,R2,C
+screenplay-openings,R1,A B C
+screenplay-openings,R2,A
+workshop-poster-radio,R1,A B C
+workshop-poster-radio,R2,B
+gate-repair,R1,A B
+gate-repair,R2,C

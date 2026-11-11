@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 260" role="img" aria-labelledby="title desc">
+  <title id="title">Measurement on a paper strip · 紙條的量測位置</title>
+  <desc id="desc">A bracket connects the waterline and the upper edge of the blue patch. The drawing is not to scale. 括線從水面線延伸至藍色區塊上緣。此圖為位置示意。</desc>
+  <rect width="480" height="260" fill="white"/>
+  <rect x="65" y="20" width="90" height="220" fill="#faf7ef" stroke="#252d35" stroke-width="3"/>
+  <path d="M67 85h86v153H67z" fill="#8fccec"/>
+  <path d="M65 85h90" fill="none" stroke="#12577b" stroke-width="4"/>
+  <path d="M25 175h170" stroke="#252d35" stroke-width="3" stroke-dasharray="7 5"/>
+  <path d="M163 85h16v90h-16" fill="none" stroke="#252d35" stroke-width="3"/>
+  <g font-family="sans-serif" font-size="18" fill="#19232b">
+    <text x="206" y="82">Upper blue edge</text><text x="206" y="106">藍色上緣</text>
+    <text x="206" y="174">Waterline</text><text x="206" y="198">水面線</text>
+  </g>
+</svg>

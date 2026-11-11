@@ -1,0 +1,1 @@
+Spot a header that did not match before you import. Select Review mapping to inspect it. In our trial, four volunteers each imported the same six-row sheet with both versions. Median time went from ten minutes to eight.

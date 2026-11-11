@@ -1,0 +1,1 @@
+I don't remember deciding we'd make dinner together from then on. I remember learning to break broccoli into small florets, a pair of hands beside mine. In the photo a blue colander sits between our hands.

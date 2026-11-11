@@ -1,0 +1,1 @@
+“My daughter came with me the first time. The next time I came on my own.” One participant shared that memory. Across the two sessions the sheet records 18 check-ins. It counts visits, including visits by anyone who came twice.

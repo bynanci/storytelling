@@ -1,0 +1,1 @@
+In 1972, according to the collection card, this ticket punch was in use. Look down at its jaws, then at the round hole in the ticket corner. The shapes invite a comparison. The record leaves open which tool made the hole.

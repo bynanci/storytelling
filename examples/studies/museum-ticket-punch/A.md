@@ -1,0 +1,1 @@
+Find the round hole in the corner of the ticket. Now look at the jaws beside it. Which edges would you compare? The collection card dates the use of this punch to 1972. How that particular hole was made is still an open question.

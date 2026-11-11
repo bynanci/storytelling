@@ -1,0 +1,1 @@
+When the two sites moved, did both still appear on this bill? You raised that question last time. The four-week totals went from 10,000 to 8,800 minutes, a 12% decrease. Could we mark the move dates on the usage chart?
