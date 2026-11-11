@@ -7,7 +7,7 @@ use storytelling_core::narrative::{
     NarrativeOriginV1, NarrativeUnitReferenceV1, NarrativeValidationErrorV1, NarrativeVariantV1,
 };
 use storytelling_core::narrative_revision::{
-    NarrativeAuthorDecisionV1, NarrativeAuthorDecisionRecordV1, NarrativeCurrentVariantV1,
+    NarrativeAuthorDecisionRecordV1, NarrativeAuthorDecisionV1, NarrativeCurrentVariantV1,
     NarrativeRevisionEventResultV1, NarrativeRevisionEventV1, NarrativeRevisionLedgerV1,
     NarrativeRevisionReportV1, NarrativeSourceRevisionV1, NarrativeSuggestionRecordV1,
     NarrativeVariantSnapshotV1,
@@ -19,6 +19,7 @@ use crate::narrative::{
 };
 
 const MAX_EVENTS: usize = 128;
+const MAX_VARIANT_REFS: usize = 64;
 
 #[derive(Clone)]
 struct ActiveVariant {
@@ -94,7 +95,9 @@ fn source_record(
     }
 }
 
-fn source_refs(variant: &NarrativeVariantV1) -> (String, String, Vec<NarrativeUnitReferenceV1>, String) {
+fn source_refs(
+    variant: &NarrativeVariantV1,
+) -> (String, String, Vec<NarrativeUnitReferenceV1>, String) {
     match variant {
         NarrativeVariantV1::SpokenOutline { id, beats, .. } => (
             id.clone(),
@@ -111,7 +114,12 @@ fn source_refs(variant: &NarrativeVariantV1) -> (String, String, Vec<NarrativeUn
             unit_refs,
             brief,
             ..
-        } => (id.clone(), "single_illustration".to_owned(), unit_refs.clone(), brief.clone()),
+        } => (
+            id.clone(),
+            "single_illustration".to_owned(),
+            unit_refs.clone(),
+            brief.clone(),
+        ),
     }
 }
 
@@ -148,10 +156,16 @@ fn require_source<'a>(
 ) -> Result<&'a NarrativeSourceRevisionV1, NarrativeValidationErrorV1> {
     check_id(&reference.unit_id, &format!("{path}.unit_id"))?;
     let Some(source) = sources.get(&reference.unit_id) else {
-        return Err(error("narrative.dangling_reference", format!("{path}.unit_id")));
+        return Err(error(
+            "narrative.dangling_reference",
+            format!("{path}.unit_id"),
+        ));
     };
     if source.revision != reference.revision {
-        return Err(error("narrative.stale_revision", format!("{path}.revision")));
+        return Err(error(
+            "narrative.stale_revision",
+            format!("{path}.revision"),
+        ));
     }
     Ok(source)
 }
@@ -168,7 +182,10 @@ fn variant_index(
         .ok_or_else(|| error("narrative.dangling_reference", path))
 }
 
-fn next_variant_revision(state: &ActiveVariant, path: &str) -> Result<u32, NarrativeValidationErrorV1> {
+fn next_variant_revision(
+    state: &ActiveVariant,
+    path: &str,
+) -> Result<u32, NarrativeValidationErrorV1> {
     state
         .revision
         .checked_add(1)
@@ -231,13 +248,19 @@ fn review_variant(
     let index = variant_index(states, variant_id, &format!("{path}.variant_id"))?;
     let state = &mut states[index];
     if state.stale_source_refs.is_empty() {
-        return Err(error("revision.variant_not_pending", format!("{path}.variant_id")));
+        return Err(error(
+            "revision.variant_not_pending",
+            format!("{path}.variant_id"),
+        ));
     }
     // The initial N-02 document has already enforced the per-kind reference
     // limit (512 beats for oral, 64 refs for illustration). Review cannot add
     // or remove references, so equality preserves that validated bound.
     if refs.len() != state.source_refs.len() {
-        return Err(error("revision.reference_set_changed", format!("{path}.source_refs")));
+        return Err(error(
+            "revision.reference_set_changed",
+            format!("{path}.source_refs"),
+        ));
     }
     for (ref_index, (old, new)) in state.source_refs.iter().zip(refs).enumerate() {
         let ref_path = format!("{path}.source_refs[{ref_index}]");
@@ -291,17 +314,23 @@ pub fn track_narrative_revisions(
     let _ = base;
 
     let mut sources = BTreeMap::new();
-    let mut source_history = Vec::with_capacity(ledger.base_document.units.len() + ledger.events.len());
+    let mut source_history =
+        Vec::with_capacity(ledger.base_document.units.len() + ledger.events.len());
     for unit in &ledger.base_document.units {
-        let source = source_record(&unit.id, unit.revision, unit.origin, &unit.text, &unit.based_on);
+        let source = source_record(
+            &unit.id,
+            unit.revision,
+            unit.origin,
+            &unit.text,
+            &unit.based_on,
+        );
         source_history.push(source.clone());
         sources.insert(unit.id.clone(), source);
     }
 
     let mut states = Vec::with_capacity(ledger.base_document.variants.len());
-    let mut variant_history = Vec::with_capacity(
-        ledger.base_document.variants.len() + ledger.events.len(),
-    );
+    let mut variant_history =
+        Vec::with_capacity(ledger.base_document.variants.len() + ledger.events.len());
     for variant in &ledger.base_document.variants {
         let (id, kind, refs, content) = source_refs(variant);
         let name = match variant {
@@ -347,11 +376,7 @@ pub fn track_narrative_revisions(
                         format!("{path}.variant_id"),
                     ));
                 }
-                ensure_creative_proposal(
-                    &sources,
-                    proposal_ref,
-                    &format!("{path}.proposal_ref"),
-                )?;
+                ensure_creative_proposal(&sources, proposal_ref, &format!("{path}.proposal_ref"))?;
                 check_text(text, MAX_TEXT_CHARS, &format!("{path}.text"))?;
                 suggestions.push(NarrativeSuggestionRecordV1 {
                     id: id.clone(),
@@ -391,11 +416,7 @@ pub fn track_narrative_revisions(
                         format!("{path}.variant_id"),
                     ));
                 }
-                ensure_creative_proposal(
-                    &sources,
-                    proposal_ref,
-                    &format!("{path}.proposal_ref"),
-                )?;
+                ensure_creative_proposal(&sources, proposal_ref, &format!("{path}.proposal_ref"))?;
                 check_text(content, MAX_TEXT_CHARS, &format!("{path}.content"))?;
                 match decision {
                     NarrativeAuthorDecisionV1::Accepted | NarrativeAuthorDecisionV1::Edited => {
@@ -469,9 +490,9 @@ pub fn track_narrative_revisions(
                         format!("{path}.expected_revision"),
                     ));
                 }
-                let next = expected_revision
-                    .checked_add(1)
-                    .ok_or_else(|| error("revision.too_many_versions", format!("{path}.unit_id")))?;
+                let next = expected_revision.checked_add(1).ok_or_else(|| {
+                    error("revision.too_many_versions", format!("{path}.unit_id"))
+                })?;
                 let affected: Vec<String> = states
                     .iter()
                     .filter(|variant| {
@@ -481,21 +502,13 @@ pub fn track_narrative_revisions(
                     })
                     .map(|variant| variant.id.clone())
                     .collect();
-                let revised = source_record(
-                    unit_id,
-                    next,
-                    old.origin,
-                    text,
-                    &old.based_on,
-                );
+                let revised = source_record(unit_id, next, old.origin, text, &old.based_on);
                 source_history.push(revised.clone());
                 sources.insert(unit_id.clone(), revised);
                 for variant in &mut states {
-                    if let Some(reference) = variant
-                        .source_refs
-                        .iter()
-                        .find(|reference| reference.unit_id == *unit_id && reference.revision == old.revision)
-                    {
+                    if let Some(reference) = variant.source_refs.iter().find(|reference| {
+                        reference.unit_id == *unit_id && reference.revision == old.revision
+                    }) {
                         variant.stale_source_refs.push(reference.clone());
                     }
                 }

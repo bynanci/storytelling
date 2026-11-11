@@ -258,7 +258,9 @@ fn revision_tracking_queries_shared_and_variant_local_impacts() {
     let history = String::from_utf8(history.stdout).unwrap();
     assert!(history.contains("Choice decline-red-umbrella-in-a: illustration-wide C01@1 declined"));
     assert!(history.contains("Choice accept-red-umbrella-in-b: illustration-close C01@1 accepted"));
-    assert!(history.contains("Suggestion suggest-red-umbrella-for-b: illustration-close C01@1 pending"));
+    assert!(
+        history.contains("Suggestion suggest-red-umbrella-for-b: illustration-close C01@1 pending")
+    );
     assert!(history.contains("Source S02@1"));
     assert!(history.contains("Source S02@2"));
     assert!(history.contains("Source C01@1"));

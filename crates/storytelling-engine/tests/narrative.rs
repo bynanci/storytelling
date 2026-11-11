@@ -267,12 +267,14 @@ fn revision_ledger_reports_exact_impacts_and_preserves_snapshots_and_choices() {
     assert!(!oral.content.contains("紅傘") && !oral.content.contains("C01"));
     assert!(!wide.content.contains("紅傘") && !wide.content.contains("C01"));
     assert!(close.content.contains("紅傘") && close.content.contains("C01"));
-    assert!(report
-        .variant_history
-        .iter()
-        .any(|variant| variant.variant_id == "illustration-wide"
+    assert!(report.variant_history.iter().any(|variant| {
+        variant.variant_id == "illustration-wide"
             && variant.revision == 1
-            && variant.source_refs.iter().any(|reference| reference.unit_id == "C01")));
+            && variant
+                .source_refs
+                .iter()
+                .any(|reference| reference.unit_id == "C01")
+    }));
 
     let prior_proposal = report
         .source_history
