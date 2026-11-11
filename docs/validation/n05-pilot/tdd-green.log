@@ -1,0 +1,26 @@
+
+running 5 tests
+test labels_a_claim_against_an_older_source_revision_as_revised ... ok
+test outlines_audience_claims_wording_and_call_to_action_with_reference_only_status ... ok
+test labels_a_missing_source_id_as_dangling_without_claiming_support ... ok
+test rejects_unknown_versions_fields_duplicate_fields_and_mismatched_ledgers ... ok
+test repeated_file_run_is_identical_and_does_not_modify_input_files ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+
+running 8 tests
+test dangling_citation_identifies_the_claim_and_keeps_the_declared_reference ... ok
+test default_report_v1_preserves_the_reviewed_cli_receipt_bytes ... ok
+test current_citation_does_not_certify_scoped_or_overbroad_product_wording ... ok
+test missing_citation_identifies_the_claim_without_rewriting_its_wording ... ok
+test source_revision_flags_both_pilot_claims_and_preserves_other_copy ... ok
+test report_selection_rejects_bad_flags_and_does_not_upgrade_input_schema ... ok
+test all_four_cases_replay_identically_and_leave_every_input_unchanged ... ok
+test report_v2_output_limit_does_not_shrink_accepted_report_v1_capacity ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.19s
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.03s
+     Running tests/commercial_copy.rs (target/debug/deps/commercial_copy-37ddbed9d53c7271)
+     Running tests/commercial_copy_pilot.rs (target/debug/deps/commercial_copy_pilot-a3024132075dd220)

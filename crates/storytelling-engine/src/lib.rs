@@ -38,11 +38,12 @@ pub use storytelling_core::narrative_revision::{
 };
 
 mod commercial_copy;
-pub use commercial_copy::audit_commercial_copy;
+pub use commercial_copy::{audit_commercial_copy, audit_commercial_copy_v2};
 pub use storytelling_core::commercial_copy::{
-    CommercialCopyClaimReportV1, CommercialCopyClaimV1, CommercialCopyDocumentV1,
-    CommercialCopyEvidenceReferenceV1, CommercialCopyKindV1, CommercialCopyReferenceReportV1,
-    CommercialCopyReportV1,
+    CommercialCopyClaimReportV1, CommercialCopyClaimReportV2, CommercialCopyClaimV1,
+    CommercialCopyDocumentV1, CommercialCopyEvidenceReferenceV1, CommercialCopyKindV1,
+    CommercialCopyReferenceReportV1, CommercialCopyReferenceReportV2, CommercialCopyReportV1,
+    CommercialCopyReportV2,
 };
 
 mod openfilm_snapshot;

@@ -1,0 +1,21 @@
+{
+  "command": [
+    "./target/release/storytelling",
+    "audit-copy-claims",
+    "tests/fixtures/commercial-copy-v1/n05-copy-reviewed-v1.json",
+    "tests/fixtures/narrative-v1/n04-revision-history-v1.json"
+  ],
+  "exit_code": 0,
+  "replay_stdout_identical": true,
+  "input_sha256_before": {
+    "tests/fixtures/commercial-copy-v1/n05-copy-reviewed-v1.json": "d82a942aa46148bec6a35b5705cdbc5eb0fb9631f73c6d4c29d5e0e20294c8cf",
+    "tests/fixtures/narrative-v1/n04-revision-history-v1.json": "29d51fa72c3ad872d442c45d03ec2458bf948fb7bb4b804b46247de6c4714f6c"
+  },
+  "input_sha256_after": {
+    "tests/fixtures/commercial-copy-v1/n05-copy-reviewed-v1.json": "d82a942aa46148bec6a35b5705cdbc5eb0fb9631f73c6d4c29d5e0e20294c8cf",
+    "tests/fixtures/narrative-v1/n04-revision-history-v1.json": "29d51fa72c3ad872d442c45d03ec2458bf948fb7bb4b804b46247de6c4714f6c"
+  },
+  "unchanged_inputs": true,
+  "exactly_matches_accepted_v1_receipt": true,
+  "original_receipt_head": "67e01469afd6bbe5b34daf47e00c01d1a6549c2d"
+}

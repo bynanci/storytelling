@@ -1,0 +1,87 @@
+{
+  "ok": true,
+  "commercial_copy": {
+    "schema_version": 2,
+    "copy_id": "pilot-product-outreach",
+    "copy_revision": 1,
+    "evidence_document_id": "sortbox-pilot",
+    "purpose": "介紹虛構產品理序盒的有限試行結果，邀請申請試用。",
+    "audience": "需要整理工作紀錄、評估是否參加試行的小型協作團隊。",
+    "claims": [
+      {
+        "id": "pilot-average-time",
+        "kind": "factual_claim",
+        "wording": "試行組平均整理時間由 10 分鐘降到 8 分鐘",
+        "reference_status": "missing",
+        "support_status": "human_review_required",
+        "evidence_refs": []
+      },
+      {
+        "id": "all-teams-efficiency",
+        "kind": "factual_claim",
+        "wording": "所有團隊效率都提升 20%",
+        "reference_status": "current",
+        "support_status": "human_review_required",
+        "evidence_refs": [
+          {
+            "unit_id": "PILOT_LOG",
+            "revision": 1,
+            "current_revision": 1,
+            "cited_source_origin": "supplied_observation",
+            "cited_source_text": "虛構試行紀錄：理序盒由 3 個自願參與的團隊試用一週；同一份整理任務的試行組平均整理時間由 10 分鐘降到 8 分鐘。樣本不涵蓋所有團隊，也未測量整體工作效率。",
+            "current_source_text": "虛構試行紀錄：理序盒由 3 個自願參與的團隊試用一週；同一份整理任務的試行組平均整理時間由 10 分鐘降到 8 分鐘。樣本不涵蓋所有團隊，也未測量整體工作效率。",
+            "reference_status": "current"
+          }
+        ]
+      },
+      {
+        "id": "product-checklist",
+        "kind": "factual_claim",
+        "wording": "理序盒提供工作紀錄分類清單。",
+        "reference_status": "current",
+        "support_status": "human_review_required",
+        "evidence_refs": [
+          {
+            "unit_id": "PRODUCT",
+            "revision": 1,
+            "current_revision": 1,
+            "cited_source_origin": "supplied_observation",
+            "cited_source_text": "虛構產品資料：理序盒提供工作紀錄分類清單。",
+            "current_source_text": "虛構產品資料：理序盒提供工作紀錄分類清單。",
+            "reference_status": "current"
+          }
+        ]
+      },
+      {
+        "id": "proposed-tagline",
+        "kind": "creative_proposal",
+        "wording": "把紀錄理順，讓討論開始。",
+        "reference_status": "current",
+        "support_status": "not_applicable",
+        "evidence_refs": [
+          {
+            "unit_id": "TAGLINE",
+            "revision": 1,
+            "current_revision": 1,
+            "cited_source_origin": "creative_proposal",
+            "cited_source_text": "創作提議：把紀錄理順，讓討論開始。",
+            "current_source_text": "創作提議：把紀錄理順，讓討論開始。",
+            "reference_status": "current"
+          }
+        ]
+      }
+    ],
+    "call_to_action": {
+      "id": "cta-pilot-signup",
+      "kind": "creative_proposal",
+      "wording": "申請理序盒的小型團隊試行，先看看是否符合你的整理流程。",
+      "reference_status": "not_applicable",
+      "support_status": "not_applicable",
+      "evidence_refs": []
+    },
+    "reference_attention_claim_ids": [
+      "pilot-average-time"
+    ],
+    "reference_scope": "reference-identity-and-revision-only"
+  }
+}
