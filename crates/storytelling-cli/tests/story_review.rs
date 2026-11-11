@@ -35,10 +35,10 @@ impl Sandbox {
             .stderr(Stdio::piped())
             .spawn()
             .unwrap();
-        if let Some(bytes) = input {
-            if let Err(error) = child.stdin.take().unwrap().write_all(bytes) {
-                assert_eq!(error.kind(), std::io::ErrorKind::BrokenPipe);
-            }
+        if let Some(bytes) = input
+            && let Err(error) = child.stdin.take().unwrap().write_all(bytes)
+        {
+            assert_eq!(error.kind(), std::io::ErrorKind::BrokenPipe);
         }
         child.wait_with_output().unwrap()
     }

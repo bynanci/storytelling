@@ -88,6 +88,9 @@ Rust可重寫pure算法與I/O控制，但「全部不依賴Node/Python」是prod
 
 SQLite commit不包含外部宿主操作；用operation journal、intent fingerprint、attempt/receipt做reconcile。逾時先讀回，不盲重送、不Undo N次；無法證明結果時保留unknown/partial，禁止宣稱exactly-once。
 
+目前只有 M3-02 的 SQLite journal storage slice；它記錄 caller-supplied readback
+而不呼叫宿主或證明該觀察為真。實際已套用後逾時、宿主請求停止與安全重試仍由 M3-03 驗收。
+
 **新增驗收測試：** `timeout_after_host_commit_does_not_duplicate_import`。
 
 ### GAP-09｜結構與媒體結果的獨立驗證
@@ -111,6 +114,10 @@ SQLite commit不包含外部宿主操作；用operation journal、intent fingerp
 **P1／M3-02；前置：** GAP-02。
 
 覆蓋Windows路徑/大小寫/檔案鎖、Linux/macOS fsync/rename、SQLite busy/WAL/crash、PID reuse/unknown。正常unknown不當dead；故障後queue不能永久poison；資料量上限可測。
+
+有限的 WAL/FULL、SQLite busy、模擬程序重啟、owner fencing 與操作資料上限已在
+[M3-02 journal contract](M3-02-OPERATION-JOURNAL.md)實作/測試；三平台 hosted CI
+與各 OS 真實 crash/power-loss/network-filesystem 行為仍是獨立證據，整項 GAP-11 未完成。
 
 **新增驗收測試：** `crash_lock_and_write_failure_recover_without_loss`。
 

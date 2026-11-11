@@ -8,7 +8,7 @@ Storytelling 是用 Rust 開發、在本機執行的敘事規劃工具。第一�
 
 ## 快速開始
 
-透過 [rustup](https://rustup.rs/) 安裝 Rust，再下載專案、執行內附的合成範例。專案會選用固定的 Rust 1.85.0 工具鏈。
+透過 [rustup](https://rustup.rs/) 安裝 Rust，再下載專案、執行內附的合成範例。專案會選用固定的 Rust 1.89.0 工具鏈。
 
 ```sh
 git clone https://github.com/bynanci/storytelling.git
@@ -40,7 +40,7 @@ OpenFilm 提供剪輯快照，工作中的時間軸由目標剪輯器管理。�
 
 ## 架構與參與開發
 
-Workspace 由三個 crate 組成。`storytelling-core` 定義資料交換型別與精確的有理數時間。`storytelling-engine` 在記憶體中執行驗證、規劃與匯出。`storytelling-cli` 負責檔案與標準輸入、標準輸出及退出碼。[架構說明](docs/ARCHITECTURE.md) · [資料與 CLI 契約](docs/CONTRACTS.md)
+Workspace 由四個 crate 組成。`storytelling-core` 定義資料交換型別與精確的有理數時間。`storytelling-engine` 在記憶體中執行驗證、規劃與匯出。`storytelling-cli` 負責檔案與標準輸入、標準輸出及退出碼。`storytelling-journal` 以 SQLite 持久化操作紀錄並隔離舊執行者；它不會呼叫剪輯器，也不授予執行權限。目前 M3-02 日誌候選仍在審查中。[架構說明](docs/ARCHITECTURE.md) · [資料與 CLI 契約](docs/CONTRACTS.md)
 
 從[任務清單](TASKS.md)挑一個範圍明確的工作，查看[進行中的 PR](https://github.com/bynanci/storytelling/pulls)，並對應到[需求與驗收紀錄](docs/REQUIREMENTS.md)。本機檢查命令列於[貢獻指南](CONTRIBUTING.md)，開發、審查與發布條件見 [SDLC](docs/SDLC.md)。[回報問題](https://github.com/bynanci/storytelling/issues/new/choose)時可附上能重現問題的合成範例。涉及敏感內容請依[安全政策](SECURITY.md)處理。
 

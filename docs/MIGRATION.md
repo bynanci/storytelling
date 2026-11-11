@@ -13,7 +13,7 @@ Apache-2.0 component attribution and applicable notices retained.
 | Evidence/source identity concepts | Declared references plus explicit bounded supplied-buffer SHA-256 verification | Filesystem identity/TOCTOU and stronger adapter provenance remain future work |
 | StoryPlan/constraints/planner | Accepted M2-01 audit and M2-02 fixed-window declared plans; full solver remains open | Extend only through frozen source-aware profiles and classified differential evidence |
 | OpenFilm Catalog/Composition/history | Stay owned by OpenFilm | Read-only snapshot importer; never write its SQLite directly |
-| Review/Jobs/owner recovery | Document requirements, no empty implementation | Add workflow/storage only with fault-tested vertical slice |
+| Review/Jobs/owner recovery | Bounded owner-fenced SQLite journal candidate; no host executor | Add FilmCraft workflow only with fault-tested isolated-project/readback slice |
 | FFmpeg/render/GUI/media analysis | Remain outside pure core | Consumer or adapter supplies results |
 | FilmCraft | No crate dependency or fork | Public protocol/file handoff with a pinned tested host |
 

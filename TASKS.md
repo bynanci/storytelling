@@ -104,6 +104,7 @@ and reported no findings.
 - [x] Current dependency pins, provenance/status documents and hosted audit are integrated.
 - [x] PR #28 merged under the user's instruction after exact-head gates passed.
 - [ ] Independent G2 security review and explicit candidate acceptance remain pending for PR #28.
+- [x] Read-only technical review packet added at [PR #28 security review](docs/validation/pr28-technical-security-review-2026-11-11.md); it is AI analysis and does not satisfy human G2.
 - [x] The separate bounded M3-01/P1 finite-OTIO profile is signed and accepted; see [Issue #27](https://github.com/bynanci/storytelling/issues/27) and its acceptance record.
 
 This merge does not establish trusted signer authorization, same-snapshot
@@ -156,7 +157,7 @@ permission changes, nor replace real-media/host or human editorial acceptance.
 | M2-03 | P1 / accepted | Actual selected-domain TS/native live shadow and completed PR register | Accepted M2-02; tracking #24 | M2-S01–S06; exact 64-pair evidence, fail-closed regressions, source/tool provenance and same-head acceptance |
 | M3-01 | P1 / bounded subprofile accepted; broader milestone proposed | Approval and compiled-plan identity contracts | M1-03, M2-02 | Accepted subprofile binds same-input finite OTIO and declared context; planner bridge is delivered in P2; trusted approval and execution remain open |
 | M3-01/P2 | P1 / accepted bounded technical delivery | Selected fixed-window proposal → actual read-only OTIO review bundle | Accepted M2-02 and M3-01/P1 | M3-PB01–PB07; reproducible chosen cuts/loss report; changed asset/cut/loss invalidates review; non-bundle paths skip bundle serialization; no Catalog/host writes |
-| M3-02 | P1 / ready for contract and test-first journal work | SQLite operation journal and owner-fenced recovery | Accepted M3-01/P2; journal does not itself grant execution authority | Crash/restart/retry/late callback/ack failure; persist unknown outcome and exact operation identity before host call; no duplicate apply |
+| M3-02 | P1 / in-progress, bounded implementation under review | SQLite operation journal and owner-fenced recovery | Accepted M3-01/P2; journal does not itself grant execution authority | Persist exact review/artifact identity before dispatch; recover crashes as unknown; fence owners and late callbacks; no retry without explicit NotApplied readback; exact-head CI pending |
 | M3-03 | P1 / proposed, queued after M3-02 | FilmCraft executor with unknown-result reconciliation | Accepted M3-02 | New isolated project only; already-applied + response-timeout requires readback before retry; ambiguous readback blocks; no blind Undo rollback |
 | M4-01 | P2 / proposed | Thin TypeScript client and one OpenFilm feature flag | M2-03, M3-03 | One writer/authority; external sample consumes stable CLI protocol |
 | M4-02 | P2 / proposed | Story Companion review-to-host user journey | M4-01 | Propose/compare/approve/execute/verify visible and accessible |
@@ -362,6 +363,28 @@ OpenFilm feature flag. The critical future fault is apply-success/response-timeo
 persist `unknown`, read back the project, and only retry when non-application is
 proven. Ambiguous/missing readback must never trigger a second apply. PR #28's
 independent G2 security review/explicit candidate acceptance stays separate.
+
+## M3-02 SQLite operation journal — implementation in review
+
+The [v1 contract](docs/migration/M3-02-OPERATION-JOURNAL.md) and
+[requirement map](docs/REQUIREMENTS.md#sqlite-operation-journal) define the
+bounded storage slice. `storytelling-journal` is a native SQLite adapter; it does
+not call FilmCraft, modify OpenFilm Catalog or grant execution authority.
+
+- [x] Test-first RED observed: three executed regressions fail at the incomplete journal API.
+- [x] Domain-separated operation fingerprint binds operation/request/project, review-binding digest and exact artifact digest; conflicting idempotency reuse rejects.
+- [x] Write-ahead attempt marker, WAL/FULL transactions, append-only event history and owner/fence epoch persisted.
+- [x] Crash/unknown recovery, no automatic retry, stale owner fencing and late response/readback rejection covered by tests.
+- [x] SQLite busy lock returns a stable error without partial insertion; retry after lock release succeeds.
+- [x] Local Cargo Audit found RUSTSEC-2026-0459 in two SQLite trial pins; rejected both, upgraded to the fixed `libsqlite3-sys` line and aligned workspace MSRV/toolchain at 1.89. See the [dependency review](docs/migration/DEPENDENCY_REVIEW_M3_02.md).
+- [x] Bounds, state distinctions, limitations and M3-03 retry/readback requirements documented.
+- [ ] Same-head hosted Linux/Windows/macOS, quality and Dependency Audit gates pass.
+- [ ] Merge and close/check the M3-02 task after final same-head review.
+
+The local and hosted validation snapshots are maintained in
+[the M3-02 record](docs/validation/m3-02-operation-journal.md). Independent
+human acceptance is still separate from this implementation review. PR #28's
+G2 gate also remains pending.
 
 ## Not in the current backlog
 

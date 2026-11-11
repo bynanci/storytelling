@@ -8,7 +8,7 @@
 
 ## 建置與依賴
 
-安裝官方 Rust 工具鏈後，repository 的 `rust-toolchain.toml` 會選用固定 1.85.0。
+安裝官方 Rust 工具鏈後，repository 的 `rust-toolchain.toml` 會選用固定 1.89.0。
 使用已提交的 lockfile 建置：
 
 ```sh

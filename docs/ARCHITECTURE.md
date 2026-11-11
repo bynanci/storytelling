@@ -1,8 +1,10 @@
 # Architecture
 
 Status: accepted M0, finite M1-01/M1-02, M2-01 bounded audit, M2-02 fixed-window
-planner and M1-03 supplied-byte verification/isolated host proof. The separate
-PR #28 approval-identity candidate is merged but not accepted; independent G2 review is pending.
+planner, M1-03 supplied-byte verification/isolated host proof and M3-01/P2
+read-only OTIO bridge. The M3-02 SQLite journal is a bounded adapter candidate
+under review; it has no host execution path. PR #28 is merged but not accepted;
+independent G2 review remains pending.
 See [M0 contract](CONTRACTS.md) and [finite-v1 contract](migration/FINITE_V1.md).
 
 ## Implemented dependency direction
@@ -11,6 +13,8 @@ See [M0 contract](CONTRACTS.md) and [finite-v1 contract](migration/FINITE_V1.md)
 CLI: local bytes / stdout / exit codes
   -> engine: bounded validation + finite snapshot mapping + pure OTIO serialization
     -> core: strict DTOs + rational source time + typed errors
+
+SQLite journal adapter: durable operation state + owner fencing (no host client)
 ```
 
 Core uses Serde and the task-reviewed SHA2 software implementation for bounded
@@ -18,6 +22,9 @@ caller-supplied buffers. Engine adds serde_json but has no filesystem, clocks, r
 state, database, networking or editor dependency. CLI owns I/O. `scripts/check_repo.py`
 checks direct dependency boundaries; review must also examine transitive dependencies
 and behavior. First-party unsafe is forbidden, not a claim about every dependency.
+The separate `storytelling-journal` crate is the first native-runtime adapter slice:
+it adds bundled SQLite for durable state and keeps database I/O out of core and
+engine. CLI does not yet compose or invoke the journal.
 
 ## Future boundaries, not empty crates
 
@@ -53,7 +60,9 @@ Record the decision in the ADR specified by the [narrative backlog](../TASKS.md#
 `workflow -> engine + core`: application use cases and ports.
 `adapters -> workflow ports + core`: SQLite, OpenFilm reader, OTIO, FilmCraft and
 optional provider implementations. `cli -> workflow + adapters` composes them.
-Add these crates only with an executable slice, not for speculative architecture.
+The SQLite journal now has an executable adapter slice; the broader workflow,
+FilmCraft executor and OpenFilm adapter remain future work. Add other crates only
+with executable slices, not for speculative architecture.
 TypeScript initially wraps the CLI/JSON protocol. MCP, WASM and HTTP are transports;
 no transport owns planning or approval policy.
 
@@ -104,6 +113,11 @@ and explicit loss choices. Human approval comes from a trusted surface, not an L
 unknown -> readback/reconcile, never blind retry or Undo N times. SQLite cannot make
 host effects transactional. Execution receipts distinguish succeeded, failed,
 partial and unknown; planning, job lifecycle and freshness stay separate.
+The journal persists review-binding and exact artifact digests, attempt receipts,
+executor ID and monotonically increasing fence epochs. `AppliedReported` remains
+distinct from `AppliedObserved`; expired in-flight attempts recover as unknown.
+Fencing protects journal updates only. M3-03 must establish old-request quiescence
+before treating a host readback as permission to retry.
 
 ## Decisions
 

@@ -1,11 +1,11 @@
 [workspace]
-members = ["crates/storytelling-core", "crates/storytelling-engine", "crates/storytelling-cli"]
+members = ["crates/storytelling-core", "crates/storytelling-engine", "crates/storytelling-cli", "crates/storytelling-journal"]
 resolver = "3"
 
 [workspace.package]
 version = "0.1.0-dev.0"
 edition = "2024"
-rust-version = "1.85"
+rust-version = "1.89"
 license = "MIT"
 repository = "https://github.com/bynanci/storytelling"
 publish = false
@@ -15,6 +15,7 @@ serde = { version = "=1.0.229", features = ["derive"] }
 serde_json = { version = "=1.0.154", features = ["raw_value"] }
 sha2 = { version = "=0.10.9", default-features = false, features = ["force-soft"] }
 ed25519-dalek = { version = "=3.0.0", default-features = false, features = ["fast"] }
+rusqlite = { version = "=0.41.1", default-features = false, features = ["bundled"] }
 storytelling-core = { path = "crates/storytelling-core" }
 storytelling-engine = { path = "crates/storytelling-engine" }
 
