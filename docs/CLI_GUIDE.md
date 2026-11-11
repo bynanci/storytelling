@@ -340,3 +340,26 @@ CPU H.264 preview 為 192×108，45 格共 1.8 秒；另檢查真實 import、�
 儲存重開、OTIO 再匯入、source hashes 與逐格順序。
 音訊、GUI／GPU、全解析度、更多時鐘／媒體、人工剪輯驗收和正式宿主 executor
 仍保留為後續工作。詳細重播入口見 [host harness README](../tests/oracles/filmcraft-25-v1/README.md)。
+
+## 重現 M3-03 遺失回應／回讀證明
+
+這是測試專用的合成案例，不是產品寫入指令。先建置 CLI，並提供 pinned
+FilmCraft、FFmpeg、Cargo 與新的絕對 run directory：
+
+```sh
+cargo build --release --locked -p storytelling-cli
+python3 tests/oracles/m3-03-filmcraft-v1/run.py \
+  --storytelling /absolute/storytelling \
+  --filmcraft /absolute/filmcraft-cli \
+  --ffmpeg /absolute/ffmpeg \
+  --cargo /absolute/cargo \
+  --run-root /absolute/new-m3-03-run
+```
+
+harness 會建立合成來源與目前 freshness 的提案，先將空專案建立及一次匯入各自
+寫入 SQLite journal，再於 FilmCraft 成功退出後刻意扣住回應。呼叫端記為
+unknown、讀回 native 專案與序列，確認剪點後記為 applied-observed；不重送也不 Undo。
+只有一個 25 fps、單一畫面剪點 profile。審核 freshness 不代表人工核准，
+且此測試沒有可信簽章授權或正式 executor。所有輸出放在該全新 run directory。
+詳細限制及結果見 [M3-03 oracle README](../tests/oracles/m3-03-filmcraft-v1/README.md)
+和[驗證紀錄](validation/m3-03-filmcraft-execution.md)。

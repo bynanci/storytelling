@@ -230,10 +230,11 @@ declarations and the exact generated artifact, not source media or human approva
 | M3-PB07 | Export and freshness paths share compile/bind semantics while avoiding unused portable-bundle serialization; artifact bytes and freshness identity remain unchanged | `story_review_compiles_selected_subset_and_order_and_binds_the_exact_owned_artifact`, `story_review_invalidates_asset_cut_loss_and_detects_displayed_artifact_tampering`; same-head CI |
 
 The bounded M3-02 journal implementation is traced separately below. It does not
-call a host or make a `NotApplied` observation true. M3-03 must cover **already
-applied, response timed out**: read back project state before retry; unresolved,
-in-flight or ambiguous state blocks rather than sends a second cut. M4's OpenFilm
-feature flag follows accepted journal/executor readback, with one writer.
+call a host or make a `NotApplied` observation true. The M3-03 proof covers an
+already-applied import whose response is lost after the host exits. The production
+executor still must handle requests that remain in flight, establish process
+quiescence before any retry, and stop on unresolved or ambiguous readback. M4's
+OpenFilm feature flag follows accepted journal/executor readback, with one writer.
 
 ## SQLite operation journal
 
@@ -259,9 +260,34 @@ passed. PR #56 exact-head CI and post-merge main CI passed all six jobs; see the
 
 Known limits: executor IDs and timestamps are caller supplied; journal fencing
 cannot stop a previously dispatched host call; a `NotApplied` observation is
-trusted input and is safe for retry only after M3-03 proves the old request is no
-longer in flight. No exactly-once effect, trusted approval or key authorization
-is claimed.
+trusted input and is safe for retry only after a production host adapter proves
+the old request is no longer in flight. That quiescence gate remains open after
+the bounded M3-03 proof. No exactly-once effect, trusted approval or key
+authorization is claimed.
+
+## M3-03 isolated FilmCraft execution proof
+
+The [M3-03 profile](migration/M3-03-ISOLATED-FILMCRAFT.md) and
+[work index](migration/m3-03-filmcraft-work-index.json) track an initial
+test-only execution/readback slice. It does not add a product executor command,
+trusted approval, retry policy or cross-platform FilmCraft support.
+
+| ID | Acceptance | Implementation | Regression evidence |
+| --- | --- | --- | --- |
+| M3-XE01 | Regenerate and freshness-check the selected proposal, snapshot, context and exact OTIO bytes before a synthetic host operation | Pinned integration oracle | `isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback`; machine evidence |
+| M3-XE02 | Persist project-creation and import identity, owner/fence and attempt marker before each host mutation; recover the final states after reopening SQLite | Test-only adapter calls M3-02 journal API | `isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback`, `exact_review_and_artifact_identity_survive_restart_and_idempotent_prepare` |
+| M3-XE03 | Lost successful import response becomes durable unknown; native readback matches exact 25 fps clip/source ranges before recording applied-observed | FilmCraft v0.18.0 Linux oracle | `isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback`; [evidence](../tests/oracles/m3-03-filmcraft-v1/evidence.json) |
+| M3-XE04 | No duplicate apply or Undo; terminal readback cannot be overwritten by a late response | Journal fence plus host proof | `isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback`, `stale_owner_and_late_attempt_response_cannot_overwrite_newer_state` |
+| M3-XE05 | All write paths are new files under a fresh run root; no existing project or OpenFilm Catalog is opened | Oracle preflight and isolated FilmCraft data directory | [oracle README](../tests/oracles/m3-03-filmcraft-v1/README.md), machine evidence |
+| M3-XE06 | Ambiguous outcome cannot begin another attempt; existing journal failure regressions remain portable across workspace CI | Accepted M3-02 state machine | `unknown_response_and_applied_response_never_enable_a_retry`, `repeated_ambiguous_readbacks_have_a_per_attempt_bound` |
+
+The lost-response fault is injected only after the FilmCraft subprocess has
+exited successfully. It does not demonstrate a hung host or safe retry following
+NotApplied. The actual host proof is Linux-only; Windows/macOS run the journal
+regressions and compile the ignored integration test. Review freshness remains
+distinct from human approval: the proof explicitly records approval_granted=false
+and executable=false. The production executor and PR #28 G2 gate remain open;
+see the [validation record](validation/m3-03-filmcraft-execution.md).
 
 ## Remaining breadth and future requirements
 

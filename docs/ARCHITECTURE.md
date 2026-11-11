@@ -119,6 +119,11 @@ distinct from `AppliedObserved`; expired in-flight attempts recover as unknown.
 Fencing protects journal updates only. M3-03 must establish old-request quiescence
 before treating a host readback as permission to retry.
 
+A pinned Linux test harness now covers one lost acknowledgement after FilmCraft
+has exited successfully, then reconciles the isolated native project. It does
+not establish quiescence for a hung host process or make the test-only harness a
+product executor; see the [M3-03 validation record](validation/m3-03-filmcraft-execution.md).
+
 ## Decisions
 
 [ADR 0001](adr/0001-scope-and-boundaries.md) records the Rust extraction strategy;

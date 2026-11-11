@@ -160,7 +160,7 @@ permission changes, nor replace real-media/host or human editorial acceptance.
 | M3-01 | P1 / bounded subprofile accepted; broader milestone proposed | Approval and compiled-plan identity contracts | M1-03, M2-02 | Accepted subprofile binds same-input finite OTIO and declared context; planner bridge is delivered in P2; trusted approval and execution remain open |
 | M3-01/P2 | P1 / accepted bounded technical delivery | Selected fixed-window proposal → actual read-only OTIO review bundle | Accepted M2-02 and M3-01/P1 | M3-PB01–PB07; reproducible chosen cuts/loss report; changed asset/cut/loss invalidates review; non-bundle paths skip bundle serialization; no Catalog/host writes |
 | M3-02 | P1 / accepted bounded journal slice | SQLite operation journal and owner-fenced recovery | Accepted M3-01/P2; journal does not itself grant execution authority | PR #56 merged; exact-head Quality, Required, Linux, Windows, macOS and Dependency Audit all pass; post-merge main run passes; host execution remains M3-03 |
-| M3-03 | P1 / proposed, queued after M3-02 | FilmCraft executor with unknown-result reconciliation | Accepted M3-02 | New isolated project only; already-applied + response-timeout requires readback before retry; ambiguous readback blocks; no blind Undo rollback |
+| M3-03 | P1 / in progress; test-only isolated proof passed, production executor open | FilmCraft executor with unknown-result reconciliation | Accepted M3-02 | Pinned Linux proof journals a new isolated project and cut import, resolves a lost reply from exact native readback without retry/Undo; product executor, in-flight host timeout, safe NotApplied retry and broader host matrix remain open |
 | M4-01 | P2 / proposed | Thin TypeScript client and one OpenFilm feature flag | M2-03, M3-03 | One writer/authority; external sample consumes stable CLI protocol |
 | M4-02 | P2 / proposed | Story Companion review-to-host user journey | M4-01 | Propose/compare/approve/execute/verify visible and accessible |
 | M4-03 | P2 / proposed | Optional MCP transport over the same services | M4-01 | Agent cannot self-approve; capability/token separation; no new scheduler |
@@ -341,7 +341,7 @@ Matching supplied composition/context establishes declaration and recomputed
 artifact consistency only. It does not authenticate a signer, verify source
 origin or a host, bridge planner output to OTIO, prevent replay or execute edits.
 PR #28 remains the separate supplied-payload signature candidate. Full OF-25 /
-GAP-06, trusted approval, M3-02 durability and M3-03 execution remain broader.
+GAP-06, trusted approval and production M3-03 execution remain broader.
 The [merge review](docs/migration/records/M3-01-MERGE-REVIEW-2026-11-08.md)
 records the technical review and exact evidence boundaries.
 
@@ -390,6 +390,26 @@ exactly-once effects. Validation evidence is maintained in
 [the M3-02 record](docs/validation/m3-02-operation-journal.md). PR #28's
 independent G2 review and explicit candidate acceptance remain pending and do
 not block this journal slice.
+
+## M3-03 FilmCraft execution/readback — bounded proof only
+
+The [profile](docs/migration/M3-03-ISOLATED-FILMCRAFT.md),
+[requirement map](docs/REQUIREMENTS.md#m3-03-isolated-filmcraft-execution),
+[work index](docs/migration/m3-03-filmcraft-work-index.json) and
+[validation record](docs/validation/m3-03-filmcraft-execution.md) document the
+first actual host slice. The task remains in progress; this harness adds no
+production editor-writing command.
+
+- [x] Fresh synthetic proposal, snapshot, context, bound OTIO and source-byte identity checked before the host call.
+- [x] Create-project and import operations each persist project/review/artifact identity, executor and attempt marker before FilmCraft changes the isolated run root.
+- [x] Official FilmCraft v0.18.0 Linux host imported one 25-frame proposal cut; native project readback confirmed 25/1 fps, exact 1/25..26/25 source range and online synthetic media.
+- [x] Synthetic source, proposal/snapshot/context/bundle/OTIO inputs and pre-import empty project remained byte-identical.
+- [x] Lost acknowledgement after successful host exit was recorded as unknown; native readback resolved applied-observed; late response rejected; one attempt, zero retry, zero Undo.
+- [x] Existing ambiguous-readback, crash-recovery and stale-owner journal regressions remain in the three-OS workspace suite.
+- [ ] Production executor with bounded host-process supervision and a trusted, accepted authorization gate.
+- [ ] Demonstrate safe stop when FilmCraft hangs or readback is ambiguous/partial; establish host-request quiescence before any NotApplied retry.
+- [ ] Actual FilmCraft runs on Windows/macOS and human editor review.
+- [ ] PR #28 independent G2 review and explicit candidate acceptance remain separately pending.
 
 ## Not in the current backlog
 

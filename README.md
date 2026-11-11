@@ -32,7 +32,7 @@ To try the handoff, follow the [CLI guide](docs/CLI_GUIDE.md) from a saved plann
 | Review an existing composition | `prepare-review`, `check-review` | Bind a finite composition and its OTIO to a declared review context. A match establishes consistency. Human approval and editor execution remain separate steps. |
 | Check supplied bytes | `verify-source` | Compare an explicit file or stdin against a SHA-256 digest, up to 16 MiB. |
 
-OpenFilm supplies the composition snapshot. The target editor owns the working timeline. An isolated test exercised FilmCraft v0.18.0 on Linux at 25 fps, including save/reopen, OTIO reimport and a 45-frame CPU preview. Production editor execution is planned. Audio handoff and full-resolution output are outside the tested profile. [FilmCraft test record](docs/migration/records/M1-03.md) · [Review contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md)
+OpenFilm supplies the composition snapshot. The target editor owns the working timeline. An isolated test exercised FilmCraft v0.18.0 on Linux at 25 fps, including save/reopen, OTIO reimport and a 45-frame CPU preview. A separate test-only M3-03 proof journals a new isolated project and one proposal import, then resolves a lost reply from exact native readback; it adds no product editor-writing command. Trusted approval and a production executor remain open. Audio handoff and full-resolution output are outside the tested profile. [FilmCraft test record](docs/migration/records/M1-03.md) · [M3-03 proof](docs/validation/m3-03-filmcraft-execution.md) · [Review contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md)
 
 ## Cross-media direction
 
@@ -40,7 +40,7 @@ The proposed first use case starts with one account of an event and produces a s
 
 ## Architecture and contributions
 
-The workspace contains four crates. `storytelling-core` defines wire types and exact rational time. `storytelling-engine` validates, plans and exports in memory. `storytelling-cli` owns file and stdin access, stdout and exit codes. `storytelling-journal` provides a durable SQLite operation log and owner fencing for future adapters; its bounded M3-02 storage slice is merged in PR #56, but it does not call an editor or grant execution authority. [Architecture](docs/ARCHITECTURE.md) · [Wire and CLI contracts](docs/CONTRACTS.md)
+The workspace contains four crates. `storytelling-core` defines wire types and exact rational time. `storytelling-engine` validates, plans and exports in memory. `storytelling-cli` owns file and stdin access, stdout and exit codes. `storytelling-journal` provides a durable SQLite operation log and owner fencing; its bounded M3-02 storage slice is merged in PR #56. A test-only integration harness exercises FilmCraft against a fresh project, but the journal crate and product CLI still grant no editor execution authority. [Architecture](docs/ARCHITECTURE.md) · [Wire and CLI contracts](docs/CONTRACTS.md)
 
 Pick a [task](TASKS.md), check [open pull requests](https://github.com/bynanci/storytelling/pulls) and connect the change to its [requirements](docs/REQUIREMENTS.md). The [contribution guide](CONTRIBUTING.md) lists the local checks, and the [SDLC](docs/SDLC.md) explains when a change is ready for implementation, review or release. Use a synthetic example when reporting a [bug](https://github.com/bynanci/storytelling/issues/new/choose). For sensitive reports, follow the [security policy](SECURITY.md).
 

@@ -32,7 +32,7 @@ cargo run --locked -p storytelling-cli -- plan-story tests/fixtures/planner-v1/v
 | 審閱既有剪輯 | `prepare-review`、`check-review` | 將支援範圍內的剪輯資料及其 OTIO 對應到指定的審閱條件。比對結果用來確認一致性。人工核准與寫入剪輯器屬於後續工作。 |
 | 核對素材內容 | `verify-source` | 以 SHA-256 比對明確提供的檔案或標準輸入，最多 16 MiB。 |
 
-OpenFilm 提供剪輯快照，工作中的時間軸由目標剪輯器管理。專案曾以 FilmCraft v0.18.0 在 Linux、25 fps 的單一條件下測試儲存、重開、重新匯入 OTIO，以及輸出 45 格 CPU 預覽。自動將剪輯套用至正式專案仍在規劃中。音訊交接和全解析度輸出也有待實測。[FilmCraft 測試紀錄](docs/migration/records/M1-03.md) · [審閱契約](docs/migration/PLANNER_OTIO_REVIEW_V1.md)
+OpenFilm 提供剪輯快照，工作中的時間軸由目標剪輯器管理。專案曾以 FilmCraft v0.18.0 在 Linux、25 fps 的單一條件下測試儲存、重開、重新匯入 OTIO，以及輸出 45 格 CPU 預覽。另有一項 M3-03 測試專用證明：先記錄新隔離專案與提案匯入，再以 native readback 解決遺失回應；尚未加入產品寫入指令，可信核准與正式 executor 仍待完成。音訊交接和全解析度輸出也有待實測。[FilmCraft 測試紀錄](docs/migration/records/M1-03.md) · [M3-03 證明](docs/validation/m3-03-filmcraft-execution.md) · [審閱契約](docs/migration/PLANNER_OTIO_REVIEW_V1.md)
 
 ## 跨媒介發展方向
 

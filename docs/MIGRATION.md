@@ -13,7 +13,7 @@ Apache-2.0 component attribution and applicable notices retained.
 | Evidence/source identity concepts | Declared references plus explicit bounded supplied-buffer SHA-256 verification | Filesystem identity/TOCTOU and stronger adapter provenance remain future work |
 | StoryPlan/constraints/planner | Accepted M2-01 audit and M2-02 fixed-window declared plans; full solver remains open | Extend only through frozen source-aware profiles and classified differential evidence |
 | OpenFilm Catalog/Composition/history | Stay owned by OpenFilm | Read-only snapshot importer; never write its SQLite directly |
-| Review/Jobs/owner recovery | Accepted bounded owner-fenced SQLite journal via PR #56; no host executor | Add FilmCraft workflow only with fault-tested isolated-project/readback slice |
+| Review/Jobs/owner recovery | Accepted bounded owner-fenced SQLite journal via PR #56; test-only M3-03 Linux lost-reply/readback proof completed | Production FilmCraft executor, trusted approval, hung-process recovery and safe retry gates remain open |
 | FFmpeg/render/GUI/media analysis | Remain outside pure core | Consumer or adapter supplies results |
 | FilmCraft | No crate dependency or fork | Public protocol/file handoff with a pinned tested host |
 
@@ -74,5 +74,6 @@ finite-OTIO review-binding scope in
 [Approval Identity v1](migration/APPROVAL_IDENTITY_V1.md), the
 [PR #28 candidate record](migration/records/M3-01-approval-candidate.md) and its
 [dependency review](migration/dependency-review-pr28-approval-candidate.md). Independent G2 review
-is pending. M3-02 delivers bounded durable journal recovery; M3-03 remains the
-separate milestone for actual Host execution and readback evidence.
+is pending. M3-02 delivers bounded durable journal recovery. M3-03 has a separate
+test-only Linux host proof; the production Host executor and full timeout/readback
+gates remain open.
