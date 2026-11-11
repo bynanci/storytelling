@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: MIT -->
 # N-05 / N-R05 · Fictional product copy and evidence revisions
 
-Issue [#52](https://github.com/bynanci/storytelling/issues/52), SDLC G3–G4, following merged PR [#83](https://github.com/bynanci/storytelling/pull/83). Delivery base main: `ad798e2a888850b4ac15e99ad65633cb67e51fe6`; prior N-05 head: `41d6d4b5a10cbc3ff26678d0e8484f075f65fb4c`. No product-case author session has occurred. The author-review fields below are intentionally blank.
+Issue [#52](https://github.com/bynanci/storytelling/issues/52), SDLC G3–G4, following merged PR [#83](https://github.com/bynanci/storytelling/pull/83); product continuation: [PR #87](https://github.com/bynanci/storytelling/pull/87). Delivery base main: `ad798e2a888850b4ac15e99ad65633cb67e51fe6`; prior N-05 head: `41d6d4b5a10cbc3ff26678d0e8484f075f65fb4c`. No product-case author session has occurred. The author-review fields below are intentionally blank.
 
 ## Usable outline and source
 
