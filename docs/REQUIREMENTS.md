@@ -293,6 +293,14 @@ see the [validation record](validation/m3-03-filmcraft-execution.md).
 
 ### Proposed cross-media narrative requirements
 
+The [product rationale and author scenarios](WHY_STORYTELLING.md) explain which
+decisions an author makes and who can verify the outcome. In N-R04, compare
+expected and actual affected IDs and record both omissions and unrelated rewrites.
+In N-R05, report reference validity separately from editorial support for a claim.
+For N-R07, record the author's choice and whether the recipient could use the
+handoff alongside the existing pilot measures. These observations do not alter
+the accepted N-R02 wire contract or the N-01 comparison protocol.
+
 The following are acceptance targets for the [N-track tasks](../TASKS.md#cross-media-narrative-backlog).
 Implementation PRs record their real fixture paths, test names and evidence here.
 Each example below describes evidence to collect during future development.

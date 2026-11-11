@@ -1,12 +1,16 @@
 # Development tasks
 
-Baseline: `551ff38920e2085e1d53a7ba777c9680678e9725` (original README + MIT LICENSE).
-Updated: 2026-11-11. M0, finite M1-01/M1-02, bounded M2-01/M2-02 audit/planning, M1-03
-supplied-byte/host proof, selected-domain M2-03 live shadow, the bounded M3-02
-SQLite journal and the M3-03 test-only lost-reply proof are merged on main;
-production FilmCraft execution and release remain separate decisions.
-[SDLC](docs/SDLC.md) owns the process and
-[requirements](docs/REQUIREMENTS.md) owns acceptance traceability.
+The next authoring implementation is [N-03 / #50](https://github.com/bynanci/storytelling/issues/50):
+render one author’s declared material as a spoken outline and two illustration
+briefs. The [N-02 contract](docs/narrative/NARRATIVE_DOCUMENT_V1.md) is accepted.
+The [N-01 author study](#starting-n-01) can run alongside implementation.
+
+| If you are working on… | Start here |
+| --- | --- |
+| The problem an author needs to solve | [Why Storytelling?](docs/WHY_STORYTELLING.md) and the [roadmap](ROADMAP.md#cross-media-narrative-roadmap) |
+| The next engineering or study task | [N-01 through N-07](#cross-media-narrative-backlog) and the [requirement-to-evidence table](docs/REQUIREMENTS.md#proposed-cross-media-narrative-requirements) |
+| Audio, style, interactive profiles or mixed media | [Multimodal Rust backlog](#multimodal-rust-backlog) |
+| The video SDK, editor integration or porting work | [Video delivery queue](#next-actionable-work), [acceptance history](#accepted-lifecycle) and [transfer map](docs/migration/OPENFILM_RUST_PORT_MAP.md) |
 
 ## Status rules
 
@@ -24,29 +28,43 @@ Exact-head test results belong in the PR and [validation record](docs/validation
 
 ## Cross-media narrative backlog
 
-The [cross-media roadmap](ROADMAP.md#cross-media-narrative-roadmap) proposes
-using one collection of sources and ideas for different forms of expression.
-These N tasks are planned work. Each maps to the identically numbered N-R
-requirement in the [traceability table](docs/REQUIREMENTS.md#proposed-cross-media-narrative-requirements). The [video delivery
-queue](#next-actionable-work) continues independently.
+A contributor should be able to show the author’s request, the resulting work
+and the smallest correction that proves the work can be revised. Each task maps
+to the matching N-R requirement in the [traceability table](docs/REQUIREMENTS.md#proposed-cross-media-narrative-requirements).
+The [SDLC](docs/SDLC.md) defines the gates. The video work has its own queue.
 
 | Task / requirement | Status and SDLC gate | Depends on | Deliverable and acceptance example |
 | --- | --- | --- | --- |
-| [N-01](https://github.com/bynanci/storytelling/issues/48) / N-R01 · Authoring examples | Packet prepared · G0–G1; human pilot and study decision pending | Can start from current main | [Author-ready study packet](docs/narrative/N-01-AUTHOR-STUDY.zh-TW.md) contains synthetic observations, a spoken outline, two contrasting compositions, an unsupported claim, a matched revision task, measures and predeclared thresholds. No human result is recorded. The current maintainer direction authorizes N-03 using the accepted N-02 contract; it does not treat the pilot or N-01 study decision as complete. |
-| [N-02](https://github.com/bynanci/storytelling/issues/49) / N-R02 · Additive contract | Accepted for N-03 · G2 | N-01 packet prepared; human pilot remains a separate evidence task | [Accepted ADR 0005](docs/adr/0005-independent-narrative-document-v1.md), [NarrativeDocumentV1 profile](docs/narrative/NARRATIVE_DOCUMENT_V1.md), schema and fixtures define the frozen V1 cross-media boundary. Separate Codex review findings were addressed and the latest re-review found no unresolved automated findings. The maintainer authorized N-03 without claiming N-01 human-study results. |
-| [N-03](https://github.com/bynanci/storytelling/issues/50) / N-R03 · Oral and visual planning | Proposed · G3–G4 | N-02 | Deliver one local CLI workflow with structured input and human-readable outlines. One source yields ordered speaking points and two illustration briefs with focal subject, foreground and background. Re-running the same input and options reproduces the result. A fixture with no media path, duration or cut points must succeed. |
-| [N-04](https://github.com/bynanci/storytelling/issues/51) / N-R04 · Source and variant revisions | Proposed · G3–G4 | N-03 | Preserve source and revision IDs and author selections. Accept an invented visual detail in only one variant, revise a source, then report which variants cite the superseded revision. Show an unrelated variant stays current and prior revisions remain inspectable. A supplied model suggestion cannot confirm itself as fact. |
-| [N-05](https://github.com/bynanci/storytelling/issues/52) / N-R05 · Evidence in commercial copy | Proposed · G3–G4 | N-04 | From a synthetic product note, build a copy outline pairing audience, claim, evidence and next action. A cited claim points back to its source. Removing the citation flags that claim for substantiation. The output labels a proposed slogan separately. Record an author's assessment of the claim and evidence. |
-| [N-06](https://github.com/bynanci/storytelling/issues/53) / N-R06 · Evaluate additional profiles | Proposed · G0–G2 | N-04 | Compare three small examples: a brainstorm with two alternative branches, a script whose reveal order differs from event order, and an optional mapping from selected units to real video references. Record author feedback and recommend at most one follow-up slice. Missing video references must remain unresolved. |
-| [N-07](https://github.com/bynanci/storytelling/issues/54) / N-R07 · Pilot and release decision | Proposed · G4–G6 | N-05 | Run the N-01 comparison on the oral/visual and copy workflows. Report observed times, attribution errors and completion counts with denominators. Record a continue, narrow or stop decision and convert reproducible failures into synthetic regression cases. Document compatibility and rollback for any proposed release. |
+| [N-01](https://github.com/bynanci/storytelling/issues/48) / N-R01 · Author study | Packet prepared · G0–G1 | Ready in parallel with N-03 | A facilitator runs the [matched revision task](docs/narrative/N-01-AUTHOR-STUDY.zh-TW.md). Report completion, revision time, attribution errors and repeated input against ordinary notes. The pilot and maintainer decision are pending. |
+| [N-02](https://github.com/bynanci/storytelling/issues/49) / N-R02 · Shared contract | Accepted · G2, [PR #71](https://github.com/bynanci/storytelling/pull/71) | N-01 packet available | [ADR 0005](docs/adr/0005-independent-narrative-document-v1.md), the [V1 profile](docs/narrative/NARRATIVE_DOCUMENT_V1.md), schema and fixtures define the frozen oral/illustration boundary. Maintainer direction authorized N-03. |
+| [N-03](https://github.com/bynanci/storytelling/issues/50) / N-R03 · Oral and visual workflows | Ready for implementation · G3–G4 | Accepted N-02 | Implement the specified `storytelling render-narrative <FILE\|->` entry point. Render an oral outline and two distinct briefs from already-declared text, keeping source IDs, revisions and origins. Compare exact UTF-8 output on rerun, exercise a stale reference and preserve the input and existing video fixtures. |
+| [N-04](https://github.com/bynanci/storytelling/issues/51) / N-R04 · Author decisions and revisions | Proposed · G3–G4 | N-03 | Change a shared fact, then a single-variant detail. Compare the reported affected variants with the fixture’s expected set; keep the earlier revisions and author’s choice inspectable. Keep an author’s declined or edited suggestion visible in the test record; an accepted prop stays local to its illustration. |
+| [N-05](https://github.com/bynanci/storytelling/issues/52) / N-R05 · Evidence in commercial copy | Proposed · G3–G4 | N-04 | Show an audience, claim, reference, wording and next action. Remove or revise one reference and flag its claim. A reviewer checks whether the source supports the wording; keep an unsupported slogan separate. |
+| [N-06](https://github.com/bynanci/storytelling/issues/53) / N-R06 · Choose an additional profile | Proposed · G0–G2 | N-04 | Compare an unresolved brainstorm branch, screenplay reveal order and a story-to-video mapping with a missing asset. Record what an author could do, cost and compatibility. Recommend at most one profile for N-10, or defer all three. |
+| [N-07](https://github.com/bynanci/storytelling/issues/54) / N-R07 · Product decision | Proposed · G4–G6 | N-05 | Repeat the baseline with the implemented oral/visual and copy workflows. Report each condition separately, including n/N, revision time and attribution errors. Link reproducible failures to fixtures. The maintainer records continue, narrow or stop and separately considers release readiness. |
 
-**Author-facing entry point.** Start each cross-media acceptance case with a
-natural-language request to the [Storytelling skill](skills/storytelling/SKILL.md).
-Keep the request, the output shown to the author, and any separately observed
-engine checks. Discovery and draft examples can run with the skill alone. For
-N-03 onward, the CLI provides repeatable checks where a contract has shipped.
-The pilot measures what an author can complete from the skill. Use the
-[seven Codex handoffs](docs/CODEX_NARRATIVE_PROMPTS.zh-TW.md) when picking up a task.
+**What to put in the review.** As the authoring research is translated into
+work, keep the evidence with its existing ticket:
+
+- **N-03 / N-04.** Include the author's request, the rendered outputs and a
+  source correction. In N-04, write down the expected changed variants before
+  running the test. Report any missed variant and any unrelated one flagged for
+  change. Show that editing or declining a suggestion preserves the author's
+  decision across the correction.
+- **N-06 / N-08.** Keep audience, material and factual constraints fixed across
+  two treatments. Vary one meaningful choice such as when a listener learns
+  a detail or where a poster places it. Record the author's reason for selecting,
+  editing or declining a treatment. Keep a reader's or listener's description
+  of the difference separate from the check of declared order or composition.
+- **N-01 / N-07.** Keep the authored outputs, per-condition counts and observed
+  errors. A successful renderer run belongs with the engineering evidence. A
+  faster correction or clearer account of where a detail came from requires
+  a person completing the task.
+
+Use the [Storytelling skill](skills/storytelling/SKILL.md) for the author-facing
+request and the [seven Codex handoffs](docs/CODEX_NARRATIVE_PROMPTS.zh-TW.md)
+for the engineering tasks. [Why Storytelling?](docs/WHY_STORYTELLING.md)
+explains how the research informs these choices.
 
 ### Starting N-01
 
@@ -60,14 +78,12 @@ The pilot measures what an author can complete from the skill. Use the
 3. Compare ordinary notes with the available Storytelling skill, recording
    completion, revision time, source-judgment errors and duplicate input. Treat
    the skill only as a proxy for a future deterministic tool; keep the tool arm
-   separate until it exists. Use the packet's predeclared thresholds and leave
-   actual results blank until an author has run the study. Record outstanding
+   separate until it exists. Use the packet's predeclared thresholds for five participants and paired,
+   eight-minute trials. Leave result fields blank until an author has run the study. Record outstanding
    evidence questions and gaps.
-4. Submit the packet and any separately collected, anonymized results in one
-   documentation PR. The maintainer records whether there is a shared authoring
-   problem worth taking to G2. A prepared packet does not count as author-test
-   evidence or a decision to start #49. Narrow or stop if the measured results
-   show no shared benefit.
+4. Attach the anonymized results to #48. The maintainer applies the packet’s
+   predeclared continue/narrow/stop rules and records the product decision.
+   The accepted contract and authorization for N-03 are already recorded in #49.
 
 The maintainer owns scope and the pilot decision. An implementer owns each
 contract or runnable slice, a reviewer checks its evidence, and authors assess
@@ -414,7 +430,7 @@ not block this journal slice.
 ## M3-03 FilmCraft execution/readback — bounded proof only
 
 The [profile](docs/migration/M3-03-ISOLATED-FILMCRAFT.md),
-[requirement map](docs/REQUIREMENTS.md#m3-03-isolated-filmcraft-execution),
+[requirement map](docs/REQUIREMENTS.md#m3-03-isolated-filmcraft-execution-proof),
 [work index](docs/migration/m3-03-filmcraft-work-index.json) and
 [validation record](docs/validation/m3-03-filmcraft-execution.md) document the
 first actual host slice. The task remains in progress; this harness adds no
@@ -496,4 +512,15 @@ authoring tasks to the CLI capabilities on main and the work needed for repeatab
 | Podcast, silence and sound cues | A supplied WAV file can be hashed. A sound cue sheet, independent sound tracks and a rendered mix have distinct requirements. | [N-09 cue sheets](https://github.com/bynanci/storytelling/issues/66) |
 | Mixed handoff or actual media artifact | The CLI can verify supplied bytes and export a finite picture-only timeline. A declared hash does not describe image or audio content. | [N-11 manifest](https://github.com/bynanci/storytelling/issues/68) and [N-12 host feasibility](https://github.com/bynanci/storytelling/issues/69) |
 
-**Implementation order.** Finish the [author problem](https://github.com/bynanci/storytelling/issues/48) and the shared contract (#49); ship the existing oral/illustration and revision slices (#50–51) before building on their wire types. N-08 and N-09 can be designed independently after #49. N-11 consumes #51. N-10 depends on a positive N-06 decision. N-12 can evaluate one real host independently and reuses [OF-37–39](docs/migration/OPENFILM_RUST_PORT_MAP.md) where applicable. Each new issue is open and proposed, with positive and negative cases. The [pilot](https://github.com/bynanci/storytelling/issues/54) remains a separate author decision.
+**Priorities after contract acceptance.** Start N-03 now and use its fixture and
+output to build N-04. N-08 and N-09 can explore style rules and cue sheets
+against the accepted contract. Choose one treatment rule or cue-sheet conflict
+per first implementation. N-11 uses N-04 revision identities. Start N-10 only
+for a profile selected in N-06. For N-12, an adapter contributor can try one host
+with one authorized input and inspect the returned artifact. If the tool is
+unavailable, record the usable handoff and capability gap. Reuse the applicable
+[OF-37–39 work](docs/migration/OPENFILM_RUST_PORT_MAP.md).
+
+The [pilot decision](https://github.com/bynanci/storytelling/issues/54) belongs
+to the maintainer and participating authors. An engineer can verify byte-stable
+output; only the observed study can establish a change in authors’ effort.

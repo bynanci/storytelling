@@ -1,8 +1,14 @@
 # Storytelling
 
-[繁體中文](README.zh-TW.md) · [Template collection](skills/storytelling/references/multimodal-templates.md) · [Installation by platform](https://github.com/bynanci/storytelling/blob/main/docs/PLATFORMS.md) · [Contributing](CONTRIBUTING.md) · [CI](https://github.com/bynanci/storytelling/actions/workflows/ci.yml)
+[繁體中文](README.zh-TW.md) · [Try the workshop](#try-one-source-set-in-two-media) · [Install](#start-with-the-skill) · [Templates](skills/storytelling/references/multimodal-templates.md) · [Contributing](CONTRIBUTING.md) · [CI](https://github.com/bynanci/storytelling/actions/workflows/ci.yml)
 
-Storytelling is an open-source [Agent Skill](skills/storytelling/SKILL.md) for writers, illustrators, editors and anyone who wants to tell a story. Give it source notes, images or recordings that your host can inspect, or use a supplied description or transcript. Choose who the work is for, what they should receive and which storytelling approach to try. The same material can become a scene, a composition brief, an audio script or a pitch.
+Storytelling is an open-source [Agent Skill](skills/storytelling/SKILL.md) for turning source material into a story for a particular audience. Bring notes, images or recordings your agent can read, or work from a description or transcript. Ask for a spoken account, scene, illustration brief, audio script or another form you can use.
+
+## Why Storytelling?
+
+Two neighbors repair a gate. Open with “One held the gate while the other tightened the hinge,” and a newsletter reader sees the cooperation. Open with “This time the gate cleared the ground,” and a listener has a reason to stay for the next line. The event is the same. Choosing what the audience learns first changes how they understand it. Storytelling helps you draft both openings and decide which one serves your purpose.
+
+For a quick anecdote, a paragraph may be all you need. When you adapt it into a spoken piece and two illustrations, more decisions carry over. If your notes change who tightened the screw, ask which lines and drawings need reviewing. If you approved an imaginary red umbrella for one drawing, it belongs to that version alone. You choose the interpretation and what goes into each draft. [Author exercise](https://github.com/bynanci/storytelling/blob/main/docs/narrative/N-01-AUTHOR-STUDY.zh-TW.md) · [Research and product decisions](https://github.com/bynanci/storytelling/blob/main/docs/WHY_STORYTELLING.md)
 
 ## Try one source set in two media
 
@@ -43,7 +49,7 @@ Each template includes a brief you can copy, two ways to treat the material and 
 
 ## Cross-media Rust support
 
-The templates work in an agent or as Markdown. The current Rust CLI validates declared video inputs and plans within the profiles above. Cross-media source references, per-format validation and revision tracking need additional Rust contracts. The backlog lists the missing capabilities and their acceptance criteria. [Multimodal Rust tasks and issues](TASKS.md#multimodal-rust-backlog) · [Roadmap](ROADMAP.md)
+Use the templates now with an agent or as Markdown. The Rust CLI validates structured video plans and proposes an order for supplied shot windows. For cross-media work, the project has accepted a [narrative document contract](https://github.com/bynanci/storytelling/blob/main/docs/narrative/NARRATIVE_DOCUMENT_V1.md). A local workflow for one spoken outline and two illustration briefs is the next implementation task. Native revision tracking follows it. [Oral and visual workflow](https://github.com/bynanci/storytelling/issues/50) · [Revision tracking](https://github.com/bynanci/storytelling/issues/51) · [Rust backlog](TASKS.md#multimodal-rust-backlog) · [Roadmap](ROADMAP.md)
 
 ## Start with the skill
 
@@ -81,9 +87,9 @@ The table gives the project locations and invocation syntax. For a manual instal
 
 For personal installs, other clients and verification status, see the [platform guide](https://github.com/bynanci/storytelling/blob/main/docs/PLATFORMS.md).
 
-## What works today
+## Working with sources and revisions
 
-- **Draft and adapt.** Organize notes, explore alternatives, preserve source attribution and revise the versions that use a changed detail. [Worked examples](skills/storytelling/references/examples.md)
+- **Review a draft.** Compare the author’s notes with a draft, mark what was inferred or invented, and ask for revisions to the affected versions. [Worked examples](skills/storytelling/references/examples.md)
 - **Coordinate complex work.** Use the graph-loop playbook for dependencies, independent branches, review and bounded retries. The skill includes optional Python helpers for planning a dependency graph and checking a recorded execution order. [Playbook](skills/storytelling/references/graph-loops.md)
 - **Find supporting material.** When a question spans documents and a suitable Graphify index is available, locate candidate passages and check them against the originals. [Graphify guide](skills/storytelling/references/graphify-tools.md)
 
