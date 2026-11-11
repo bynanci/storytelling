@@ -25,7 +25,7 @@ queue](#next-actionable-work) continues independently.
 
 | Task / requirement | Status and SDLC gate | Depends on | Deliverable and acceptance example |
 | --- | --- | --- | --- |
-| [N-01](https://github.com/bynanci/storytelling/issues/48) / N-R01 · Authoring examples | Proposed · G0–G1 | Can start from current main | Produce a synthetic source note, one spoken outline, two sketches described in words and a plain-notes comparison. Annotate supplied details, interpretations and invented details. Include a second example of a commercial claim with missing evidence. Record a measurable revision task and pilot decision criteria. |
+| [N-01](https://github.com/bynanci/storytelling/issues/48) / N-R01 · Authoring examples | Packet prepared · G0–G1; human pilot pending | Can start from current main | [Author-ready study packet](docs/narrative/N-01-AUTHOR-STUDY.zh-TW.md) contains synthetic observations, a spoken outline, two contrasting compositions, an unsupported claim, a matched revision task, measures and predeclared thresholds. Human results and the maintainer decision remain pending. |
 | [N-02](https://github.com/bynanci/storytelling/issues/49) / N-R02 · Additive contract | Proposed · G2 | N-01 | Review an ADR and versioned contract for source units, relations, constraints and named variants. Show strict parsing/size limits, version refusal and a compatible path alongside video V1. A free association cycle is valid. A cycle of mandatory precedence edges is a conflict. A dangling unit reference has a diagnostic. |
 | [N-03](https://github.com/bynanci/storytelling/issues/50) / N-R03 · Oral and visual planning | Proposed · G3–G4 | N-02 | Deliver one local CLI workflow with structured input and human-readable outlines. One source yields ordered speaking points and two illustration briefs with focal subject, foreground and background. Re-running the same input and options reproduces the result. A fixture with no media path, duration or cut points must succeed. |
 | [N-04](https://github.com/bynanci/storytelling/issues/51) / N-R04 · Source and variant revisions | Proposed · G3–G4 | N-03 | Preserve source and revision IDs and author selections. Accept an invented visual detail in only one variant, revise a source, then report which variants cite the superseded revision. Show an unrelated variant stays current and prior revisions remain inspectable. A supplied model suggestion cannot confirm itself as fact. |
@@ -46,18 +46,21 @@ The pilot measures what an author can complete from the skill. Use the
 1. Start with [issue #48](https://github.com/bynanci/storytelling/issues/48). Record N-01 /
    N-R01, the current main SHA and any overlapping PR. The outcome is an author
    revising one source in two presentations and identifying what changed.
-2. Write a fictional observation, for example two neighbors fixing a gate. Give
-   every detail a stable label. Introduce an imagined red umbrella in one
-   illustration only. Ask a reader to reconstruct the original observations
-   from the spoken outline and explain where the umbrella came from.
-3. Record the same revision using plain notes, including time, errors and any
-   need to re-enter the source. Include the claim scenario, planned measures
-   and criteria for continuing in the pilot. Publish synthetic examples and
-   anonymized findings. Record outstanding research questions and evidence gaps.
-4. Submit the examples and results in one documentation PR. The maintainer
-   records whether there is a shared authoring problem worth taking to G2.
-   If the examples work as separate templates and revision tracking offers no
-   observed benefit, narrow or stop the shared-contract work.
+2. Use the [N-01 author study packet](docs/narrative/N-01-AUTHOR-STUDY.zh-TW.md)
+   for the source IDs, spoken outline, contrasting compositions and single-variant
+   creative detail. Ask the reader to revise the repairers' identities and explain
+   which outputs change and where the umbrella came from.
+3. Compare ordinary notes with the available Storytelling skill, recording
+   completion, revision time, source-judgment errors and duplicate input. Treat
+   the skill only as a proxy for a future deterministic tool; keep the tool arm
+   separate until it exists. Use the packet's predeclared thresholds and leave
+   actual results blank until an author has run the study. Record outstanding
+   evidence questions and gaps.
+4. Submit the packet and any separately collected, anonymized results in one
+   documentation PR. The maintainer records whether there is a shared authoring
+   problem worth taking to G2. A prepared packet does not count as author-test
+   evidence or a decision to start #49. Narrow or stop if the measured results
+   show no shared benefit.
 
 The maintainer owns scope and the pilot decision. An implementer owns each
 contract or runnable slice, a reviewer checks its evidence, and authors assess
