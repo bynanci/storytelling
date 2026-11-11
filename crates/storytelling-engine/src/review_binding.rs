@@ -88,10 +88,18 @@ pub fn prepare_review(
         .map_err(|error| ValidationError::new(&error.code, error.path))?;
     let plan_bytes = serde_json::to_vec(&imported.plan)
         .map_err(|_| ValidationError::new("review.serialization_failed", "$.plan"))?;
-
     let choices = loss_choices(context);
     let compiled = crate::export_openfilm_otio(composition_bytes, &Default::default(), &choices)
         .map_err(|error| ValidationError::new(&error.code, error.path))?;
+    bind_compiled_review(composition_bytes, &plan_bytes, compiled, context)
+}
+
+pub(crate) fn bind_compiled_review(
+    composition_bytes: &[u8],
+    plan_bytes: &[u8],
+    compiled: crate::CompiledOtioV1,
+    context: &ReviewContextV1,
+) -> Result<BoundReviewV1, ValidationError> {
     let artifact_bytes = serde_json::to_vec(&compiled.document)
         .map_err(|_| ValidationError::new("review.serialization_failed", "$.artifact"))?;
     if artifact_bytes.len() > crate::MAX_OTIO_OUTPUT_BYTES {
@@ -122,7 +130,7 @@ pub fn prepare_review(
         .map_err(|_| ValidationError::new("review.serialization_failed", "$.context"))?;
     let identity = ReviewIdentityV1 {
         composition_sha256: sha256_hex(composition_bytes),
-        plan_sha256: hash_framed(b"storytelling.review-plan.v1", &plan_bytes),
+        plan_sha256: hash_framed(b"storytelling.review-plan.v1", plan_bytes),
         artifact_sha256: sha256_hex(&artifact_bytes),
         report_sha256: hash_framed(b"storytelling.review-report.v1", &report_bytes),
         compiler_version: concat!("storytelling-engine-", env!("CARGO_PKG_VERSION")).to_owned(),
@@ -238,7 +246,7 @@ fn validate_context(context: &ReviewContextV1) -> Result<(), ValidationError> {
     Ok(())
 }
 
-fn validate_record(record: &ReviewRecordV1) -> Result<(), ValidationError> {
+pub(crate) fn validate_record(record: &ReviewRecordV1) -> Result<(), ValidationError> {
     if record.schema_version != 1 {
         return Err(ValidationError::new(
             "review.unsupported_version",
@@ -341,7 +349,7 @@ fn validate_sorted_ids(values: &[String], path: &str) -> Result<(), ValidationEr
     Ok(())
 }
 
-fn loss_choices(context: &ReviewContextV1) -> crate::OtioLossChoicesV1 {
+pub(crate) fn loss_choices(context: &ReviewContextV1) -> crate::OtioLossChoicesV1 {
     crate::OtioLossChoicesV1 {
         picture_only: context
             .loss_choices
@@ -396,7 +404,7 @@ fn hash_framed(domain: &[u8], payload: &[u8]) -> String {
     sha256_hex(&bytes)
 }
 
-fn sha256_hex(bytes: &[u8]) -> String {
+pub(crate) fn sha256_hex(bytes: &[u8]) -> String {
     let digest = storytelling_core::source_evidence::sha256_digest(bytes);
     digest
         .iter()
@@ -409,7 +417,7 @@ fn sha256_hex(bytes: &[u8]) -> String {
         .collect()
 }
 
-fn check_json_depth(bytes: &[u8]) -> Result<(), ValidationError> {
+pub(crate) fn check_json_depth(bytes: &[u8]) -> Result<(), ValidationError> {
     let mut depth = 0usize;
     let mut in_string = false;
     let mut escaped = false;
@@ -439,7 +447,10 @@ fn check_json_depth(bytes: &[u8]) -> Result<(), ValidationError> {
     Ok(())
 }
 
-fn identity_differences(previous: &ReviewIdentityV1, current: &ReviewIdentityV1) -> Vec<String> {
+pub(crate) fn identity_differences(
+    previous: &ReviewIdentityV1,
+    current: &ReviewIdentityV1,
+) -> Vec<String> {
     let mut stale = Vec::new();
     if previous.composition_sha256 != current.composition_sha256 {
         stale.push("composition".to_owned());

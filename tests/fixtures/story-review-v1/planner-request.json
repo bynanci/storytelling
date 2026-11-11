@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "brief": {
+    "schema_version": 1,
+    "brief_id": "proposal-A",
+    "intent": "Synthetic fixed-window proposal",
+    "assets": [{"id": "synthetic-video"}],
+    "manual_selected_asset_ids": ["synthetic-video"],
+    "hard_constraints": [],
+    "preferences": {"preferred_asset_ids": []}
+  },
+  "candidates": [{
+    "asset_id": "synthetic-video",
+    "content_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "duration": {"numerator": "10", "denominator": "1"},
+    "source_range": {
+      "start": {"numerator": "1", "denominator": "3"},
+      "end": {"numerator": "4", "denominator": "3"}
+    },
+    "score": 10
+  }],
+  "max_duration": {"numerator": "10", "denominator": "1"},
+  "max_shots": 1
+}

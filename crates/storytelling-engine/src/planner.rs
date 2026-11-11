@@ -358,13 +358,13 @@ pub fn plan_story(bytes: &[u8]) -> Result<PlannedStoryV1, PlanningErrorV1> {
         .collect();
     let report = PlannedStoryV1 {
         schema_version: 1,
-        profile: "storytelling.fixed-window-planner.v1",
-        scope: "declared-fixed-window-plan-only",
+        profile: "storytelling.fixed-window-planner.v1".to_owned(),
+        scope: "declared-fixed-window-plan-only".to_owned(),
         executable: false,
         source_verified: false,
         host_verified: false,
         selection_planned: true,
-        duration_analysis: "exact-fixed-windows",
+        duration_analysis: "exact-fixed-windows".to_owned(),
         content_clock_rate: clock.rate.to_string(),
         total_duration: clock.time(total),
         target_status,

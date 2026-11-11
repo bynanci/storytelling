@@ -47,6 +47,8 @@ jobs:
           "$RUNNER_TEMP/otio-oracle/bin/python" -m pip install --require-hashes --only-binary=:all: --no-deps -r tests/oracles/otio-finite-v1/requirements-linux-py312.txt
       - name: Official OTIO parse write read and source conformance
         run: '"$RUNNER_TEMP/otio-oracle/bin/python" tests/oracles/otio-finite-v1/verify.py target/release/storytelling --output "$RUNNER_TEMP/otio-differential.json"'
+      - name: Selected proposal to reviewed OTIO and official parser roundtrip
+        run: '"$RUNNER_TEMP/otio-oracle/bin/python" tests/oracles/story-review-v1/verify.py target/release/storytelling'
       - name: Frozen StoryBrief hard-constraint policy comparison
         run: python3 tests/oracles/story-brief-v1/compare.py target/release/storytelling --output "$RUNNER_TEMP/story-brief-differential.json"
       - name: Frozen fixed-window planner source comparison

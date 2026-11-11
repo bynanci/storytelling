@@ -15,6 +15,12 @@ this does not accept PR #28 or broader M3 work. Its paired OpenFilm runtime evid
 and fixed Rust digest/error-order tests are recorded for [issue #27](https://github.com/bynanci/storytelling/issues/27).
 Future functionality is tracked separately in [TASKS](TASKS.md) and [ROADMAP](ROADMAP.md).
 
+The [M3-01/P2 candidate](docs/migration/PLANNER_OTIO_REVIEW_V1.md) connects saved
+`plan-story` stdout to `prepare-story-review` / `export-story-otio` and
+`check-story-review`: the selected cuts compile against one explicit snapshot,
+the bundle contains the actual reviewed OTIO, and changed declarations/loss choices
+invalidate it. This remains read-only and grants no approval or host authority.
+
 [繁體中文](README.zh-TW.md) · [PR register](docs/delivery/PR_REGISTER.md) · [CLI guide](docs/CLI_GUIDE.md) · [Architecture](docs/ARCHITECTURE.md) · [SDLC](docs/SDLC.md) · [Contract](docs/CONTRACTS.md)
 
 ## Quick start

@@ -21,7 +21,7 @@ planned host, followed by a real second-editor compatibility trial.
 | M0 foundation | Accepted and merged on main | Validate a declared StoryPlan through a usable Rust CLI | Strict contract, source bounds, immutable input, same-head 3-OS CI, maintainer acceptance |
 | M1 / v0.1 handoff | Finite M1-01/M1-02 and bounded M1-03 Linux 25 fps proof accepted; broader acceptance open | Existing story choices become an editable FilmCraft rough cut | Tested picture-only profile passed import/CPU preview/readback/save/reopen; audio, other profiles and human acceptance remain open |
 | M2 / v0.2 planning | M2-01 audit accepted; M2-02 fixed-window planner accepted; M2-03 selected-domain live shadow accepted; full solver open | Constraints and evidence produce an explainable shot proposal | Hard constraints satisfied or explicit conflicts; frozen-input reproducibility |
-| M3 / v0.3 reviewed execution | Bounded review-binding candidate integrated via PR #32; trusted execution planned | Accepted plans execute without silently damaging prior work | Approval binding, owner fencing, durable journal, partial/unknown recovery |
+| M3 / v0.3 reviewed execution | Bounded P1 composition review accepted; P2 planner bridge is a review candidate; trusted execution planned | Accepted plans execute without silently damaging prior work | Selected proposal/artifact binding, owner fencing, durable journal, partial/unknown recovery |
 | M4 / v0.4 consumers | Planned | OpenFilm and an external TypeScript consumer use one SDK | Single authority, full Review/Accept workflow, optional thin MCP |
 | M5 / beta | Planned | Independent users and a second host finish a real story | Measured user outcomes, target-host matrix, distribution evidence |
 | v1.0 | Not scheduled | Stable public contract with a supported upgrade path | Schema/SDK migrations, security/recovery and compatibility gates accepted |
@@ -31,13 +31,21 @@ planned host, followed by a real second-editor compatibility trial.
 ```text
 M0 -> M1-01 -> M1-02 -> M1-03
           \-> M2-01 -> M2-02 -> M2-03
-M1-03 + M2-02 -> M3-01 -> M3-02 -> M3-03
+M1-03 + M2-02 -> M3-01/P1 composition review (accepted)
+             -> M3-01/P2 selected proposal -> read-only OTIO review
+             -> M3-02 operation journal -> M3-03 FilmCraft apply + readback
 M2-03 + M3-03 -> M4 -> M5 -> v1.0
 ```
 
 Requirement drafting and fixtures can overlap; host execution cannot skip the
 finite interchange proof. No deadlines or aggregate product completion percentage
 are inferred from code or test counts.
+
+M3-01/P2 is the next usable bridge, with its [bounded contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md).
+Only after bridge acceptance should M3-02 implementation start, then M3-03 and
+the M4 OpenFilm flag. A FilmCraft apply timeout has unknown outcome: durable
+recovery must read back the project before retry. If the same operation may already
+have applied and readback is ambiguous, stop instead of resending the cut.
 
 ## Investment decisions
 

@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "task": "M3-01/P2",
+  "state": "implemented-review-candidate",
+  "base": "a7907d071894959487a0ae6df6948e09fef70596",
+  "scope": "selected-planner-proposal-to-read-only-otio-review",
+  "tasks": [
+    {
+      "id": "M3-01/P2-contract",
+      "state": "proposed-for-review",
+      "depends_on": []
+    },
+    {
+      "id": "M3-01/P2-implementation",
+      "state": "implemented",
+      "depends_on": [
+        "M3-01/P2-contract"
+      ]
+    },
+    {
+      "id": "M3-01/P2-verification",
+      "state": "local-verified-hosted-pending",
+      "depends_on": [
+        "M3-01/P2-implementation"
+      ]
+    },
+    {
+      "id": "M3-01/P2-acceptance",
+      "state": "pending-profile-and-maintainer-review",
+      "depends_on": [
+        "M3-01/P2-verification"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M3-PB01",
+      "tests": [
+        "story_review_connects_actual_planner_output_to_exact_otio_without_source_or_host_writes",
+        "story_review_compiles_selected_subset_and_order_and_binds_the_exact_owned_artifact",
+        "story_review_fixture_has_a_fixed_cross_platform_artifact_and_binding_vector"
+      ],
+      "verification_paths": [
+        "crates/storytelling-engine/src/story_review.rs",
+        "tests/oracles/story-review-v1/verify.py",
+        "docs/migration/records/M3-01-P2.md"
+      ]
+    },
+    {
+      "id": "M3-PB02",
+      "tests": [
+        "story_review_invalidates_asset_cut_loss_and_detects_displayed_artifact_tampering",
+        "story_review_is_stale_when_proposal_bytes_change_even_if_the_selected_plan_does_not"
+      ],
+      "verification_paths": [
+        "crates/storytelling-engine/src/story_review.rs",
+        "tests/oracles/story-review-v1/verify.py",
+        "docs/migration/records/M3-01-P2.md"
+      ]
+    },
+    {
+      "id": "M3-PB03",
+      "tests": [
+        "story_review_rejects_unsupported_audio_effects_missing_loss_choices_and_bad_cli_usage",
+        "story_review_preserves_still_hold_and_rejects_still_source_offsets"
+      ],
+      "verification_paths": [
+        "crates/storytelling-engine/src/story_review.rs",
+        "tests/oracles/story-review-v1/verify.py",
+        "docs/migration/records/M3-01-P2.md"
+      ]
+    },
+    {
+      "id": "M3-PB04",
+      "tests": [
+        "story_review_rejects_unknown_duplicate_forged_or_inconsistent_proposals",
+        "story_review_requires_snapshot_asset_identity_duration_and_declared_capabilities",
+        "story_review_rejects_forged_bundle_claims_and_never_accepts_a_composition_only_record"
+      ],
+      "verification_paths": [
+        "crates/storytelling-engine/src/story_review.rs",
+        "tests/oracles/story-review-v1/verify.py",
+        "docs/migration/records/M3-01-P2.md"
+      ]
+    },
+    {
+      "id": "M3-PB05",
+      "tests": [
+        "story_review_preflights_every_size_and_accepts_exact_snapshot_and_bundle_limits"
+      ],
+      "verification_paths": [
+        "crates/storytelling-engine/src/story_review.rs",
+        "tests/oracles/story-review-v1/verify.py",
+        "docs/migration/records/M3-01-P2.md"
+      ]
+    },
+    {
+      "id": "M3-PB06",
+      "tests": [
+        "story_review_connects_actual_planner_output_to_exact_otio_without_source_or_host_writes"
+      ],
+      "verification_paths": [
+        "crates/storytelling-engine/src/story_review.rs",
+        "tests/oracles/story-review-v1/verify.py",
+        "docs/migration/records/M3-01-P2.md"
+      ]
+    }
+  ],
+  "future_dependency_order": [
+    "M3-01/P2 acceptance",
+    "M3-02 durable owner-fenced journal",
+    "M3-03 FilmCraft execute/readback",
+    "M4-01 OpenFilm feature flag"
+  ],
+  "critical_future_fault": "Host may have applied before response timeout. Persist unknown, read back project before retry; if ambiguous, block. Never blindly resend."
+}

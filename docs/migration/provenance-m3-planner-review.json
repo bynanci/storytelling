@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "task": "M3-01/P2",
+  "source": {
+    "repository": "bynanci/open-film",
+    "commit": "7add4762fe8174d76f43b863375ea39b73121e76",
+    "license": "Apache-2.0",
+    "files": [
+      {
+        "path": "packages/application/src/story-plan.ts",
+        "blob": "23cad980b2f8ae29c794800661f6f9e6d638031d"
+      },
+      {
+        "path": "packages/application/src/nle-handoff.ts",
+        "blob": "7af8931a969e4eb13abe92b3db0b6b859c494e1c"
+      },
+      {
+        "path": "packages/exporters/src/handoff.ts",
+        "blob": "debc8308b472372bd60870a6ec9e6d7d15189c66"
+      },
+      {
+        "path": "packages/application/tests/story-plan.test.ts",
+        "blob": "7ac3357de7aa9885f893aece8a9ec3effc2bb5c5"
+      }
+    ]
+  },
+  "approval": {
+    "authority": "inherited user-approved Apache component policy; 2026-11-11 bridge implementation request",
+    "date": "2026-11-11",
+    "policy": "Original MIT and retained notices unchanged; source-informed modules/tests/fixtures Apache-2.0; independent integration/docs MIT"
+  },
+  "files": [
+    {
+      "path": "crates/storytelling-cli/tests/story_review.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded bridge or extension of accepted downstream native components; no upstream implementation, tests or media copied",
+      "source_paths": [
+        "packages/application/src/story-plan.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/tests/story-plan.test.ts"
+      ],
+      "modifications": "Strict saved planner DTO admission; selected snapshot asset matching; exact read-only OTIO projection and immutable displayed-artifact binding; synthetic tests/oracle. Existing composition-only output/digest contract retained."
+    },
+    {
+      "path": "crates/storytelling-core/src/brief.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded bridge or extension of accepted downstream native components; no upstream implementation, tests or media copied",
+      "source_paths": [
+        "packages/application/src/story-plan.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/tests/story-plan.test.ts"
+      ],
+      "modifications": "Strict saved planner DTO admission; selected snapshot asset matching; exact read-only OTIO projection and immutable displayed-artifact binding; synthetic tests/oracle. Existing composition-only output/digest contract retained."
+    },
+    {
+      "path": "crates/storytelling-core/src/planner.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded bridge or extension of accepted downstream native components; no upstream implementation, tests or media copied",
+      "source_paths": [
+        "packages/application/src/story-plan.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/tests/story-plan.test.ts"
+      ],
+      "modifications": "Strict saved planner DTO admission; selected snapshot asset matching; exact read-only OTIO projection and immutable displayed-artifact binding; synthetic tests/oracle. Existing composition-only output/digest contract retained."
+    },
+    {
+      "path": "crates/storytelling-engine/src/brief.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded bridge or extension of accepted downstream native components; no upstream implementation, tests or media copied",
+      "source_paths": [
+        "packages/application/src/story-plan.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/tests/story-plan.test.ts"
+      ],
+      "modifications": "Strict saved planner DTO admission; selected snapshot asset matching; exact read-only OTIO projection and immutable displayed-artifact binding; synthetic tests/oracle. Existing composition-only output/digest contract retained."
+    },
+    {
+      "path": "crates/storytelling-engine/src/otio.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded bridge or extension of accepted downstream native components; no upstream implementation, tests or media copied",
+      "source_paths": [
+        "packages/application/src/story-plan.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/tests/story-plan.test.ts"
+      ],
+      "modifications": "Strict saved planner DTO admission; selected snapshot asset matching; exact read-only OTIO projection and immutable displayed-artifact binding; synthetic tests/oracle. Existing composition-only output/digest contract retained."
+    },
+    {
+      "path": "crates/storytelling-engine/src/otio/clock.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded bridge or extension of accepted downstream native components; no upstream implementation, tests or media copied",
+      "source_paths": [
+        "packages/application/src/story-plan.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/tests/story-plan.test.ts"
+      ],
+      "modifications": "Strict saved planner DTO admission; selected snapshot asset matching; exact read-only OTIO projection and immutable displayed-artifact binding; synthetic tests/oracle. Existing composition-only output/digest contract retained."
+    },
+    {
+      "path": "crates/storytelling-engine/src/planner.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded bridge or extension of accepted downstream native components; no upstream implementation, tests or media copied",
+      "source_paths": [
+        "packages/application/src/story-plan.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/tests/story-plan.test.ts"
+      ],
+      "modifications": "Strict saved planner DTO admission; selected snapshot asset matching; exact read-only OTIO projection and immutable displayed-artifact binding; synthetic tests/oracle. Existing composition-only output/digest contract retained."
+    },
+    {
+      "path": "crates/storytelling-engine/src/review_binding.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded bridge or extension of accepted downstream native components; no upstream implementation, tests or media copied",
+      "source_paths": [
+        "packages/application/src/story-plan.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/tests/story-plan.test.ts"
+      ],
+      "modifications": "Strict saved planner DTO admission; selected snapshot asset matching; exact read-only OTIO projection and immutable displayed-artifact binding; synthetic tests/oracle. Existing composition-only output/digest contract retained."
+    },
+    {
+      "path": "crates/storytelling-engine/src/story_review.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded bridge or extension of accepted downstream native components; no upstream implementation, tests or media copied",
+      "source_paths": [
+        "packages/application/src/story-plan.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/tests/story-plan.test.ts"
+      ],
+      "modifications": "Strict saved planner DTO admission; selected snapshot asset matching; exact read-only OTIO projection and immutable displayed-artifact binding; synthetic tests/oracle. Existing composition-only output/digest contract retained."
+    },
+    {
+      "path": "crates/storytelling-engine/tests/story_review.rs",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded bridge or extension of accepted downstream native components; no upstream implementation, tests or media copied",
+      "source_paths": [
+        "packages/application/src/story-plan.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/tests/story-plan.test.ts"
+      ],
+      "modifications": "Strict saved planner DTO admission; selected snapshot asset matching; exact read-only OTIO projection and immutable displayed-artifact binding; synthetic tests/oracle. Existing composition-only output/digest contract retained."
+    },
+    {
+      "path": "tests/fixtures/story-review-v1/README.md",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded bridge or extension of accepted downstream native components; no upstream implementation, tests or media copied",
+      "source_paths": [
+        "packages/application/src/story-plan.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/tests/story-plan.test.ts"
+      ],
+      "modifications": "Strict saved planner DTO admission; selected snapshot asset matching; exact read-only OTIO projection and immutable displayed-artifact binding; synthetic tests/oracle. Existing composition-only output/digest contract retained."
+    },
+    {
+      "path": "tests/fixtures/story-review-v1/context.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded bridge or extension of accepted downstream native components; no upstream implementation, tests or media copied",
+      "source_paths": [
+        "packages/application/src/story-plan.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/tests/story-plan.test.ts"
+      ],
+      "modifications": "Strict saved planner DTO admission; selected snapshot asset matching; exact read-only OTIO projection and immutable displayed-artifact binding; synthetic tests/oracle. Existing composition-only output/digest contract retained."
+    },
+    {
+      "path": "tests/fixtures/story-review-v1/planner-request.json",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded bridge or extension of accepted downstream native components; no upstream implementation, tests or media copied",
+      "source_paths": [
+        "packages/application/src/story-plan.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/tests/story-plan.test.ts"
+      ],
+      "modifications": "Strict saved planner DTO admission; selected snapshot asset matching; exact read-only OTIO projection and immutable displayed-artifact binding; synthetic tests/oracle. Existing composition-only output/digest contract retained."
+    },
+    {
+      "path": "tests/oracles/story-review-v1/README.md",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded bridge or extension of accepted downstream native components; no upstream implementation, tests or media copied",
+      "source_paths": [
+        "packages/application/src/story-plan.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/tests/story-plan.test.ts"
+      ],
+      "modifications": "Strict saved planner DTO admission; selected snapshot asset matching; exact read-only OTIO projection and immutable displayed-artifact binding; synthetic tests/oracle. Existing composition-only output/digest contract retained."
+    },
+    {
+      "path": "tests/oracles/story-review-v1/verify.py",
+      "license": "Apache-2.0",
+      "relationship": "independently authored bounded bridge or extension of accepted downstream native components; no upstream implementation, tests or media copied",
+      "source_paths": [
+        "packages/application/src/story-plan.ts",
+        "packages/application/src/nle-handoff.ts",
+        "packages/exporters/src/handoff.ts",
+        "packages/application/tests/story-plan.test.ts"
+      ],
+      "modifications": "Strict saved planner DTO admission; selected snapshot asset matching; exact read-only OTIO projection and immutable displayed-artifact binding; synthetic tests/oracle. Existing composition-only output/digest contract retained."
+    }
+  ],
+  "notices": [
+    {
+      "path": "LICENSES/Apache-2.0.txt",
+      "source_path": "LICENSE",
+      "blob": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "relationship": "retained verbatim upstream license"
+    },
+    {
+      "path": "NOTICE.openfilm",
+      "source_path": "NOTICE",
+      "blob": "cfb73de041af0e9e3e73bd8eb5cfb6135b676095",
+      "relationship": "retained verbatim historical/third-party attribution"
+    }
+  ],
+  "integration_files_mit": [
+    "crates/storytelling-cli/src/main.rs",
+    "crates/storytelling-engine/src/lib.rs",
+    ".github/workflows/ci.yml"
+  ],
+  "source_drift_check": {
+    "date": "2026-11-11",
+    "observed_main": "08e38b6a63a0b0fbcfd3a073c8bfa5dcc8c08224",
+    "selected_source_blobs_unchanged": true,
+    "open_prs": [
+      {
+        "number": 129,
+        "head": "54534d8cf985203e8b5abbd09a771436f8fe09e5",
+        "draft": true,
+        "used_as_baseline": false
+      }
+    ]
+  }
+}

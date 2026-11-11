@@ -212,6 +212,28 @@ The encoding intentionally differs and no full source parity is claimed. The his
 functional RED was unproven and is explicitly waived as a blocker in the signed acceptance
 record; it is not represented as a test that passed. See the [M3-01 work index](migration/m3-01-p1-work-index.json).
 
+## M3-01/P2 selected proposal to actual read-only OTIO (review candidate)
+
+The [contract](migration/PLANNER_OTIO_REVIEW_V1.md) and
+[work index](migration/m3-planner-review-work-index.json) implement the requested
+planner bridge independently of PR #28 acceptance. All guarantees refer to supplied
+declarations and the exact generated artifact, not source media or human approval.
+
+| ID | Acceptance | Automated evidence |
+| --- | --- | --- |
+| M3-PB01 | Same snapshot and chosen fixed-window proposal produce reproducible actual OTIO; native/metadata-only/rejected semantics are explicit | `story_review_connects_actual_planner_output_to_exact_otio_without_source_or_host_writes`, `story_review_compiles_selected_subset_and_order_and_binds_the_exact_owned_artifact`; official oracle |
+| M3-PB02 | Any supplied asset/URI/hash, selected cut/order, proposal byte or accepted-loss/context change makes the old bundle stale or rejects it; displayed-artifact tampering rejects | `story_review_invalidates_asset_cut_loss_and_detects_displayed_artifact_tampering`, `story_review_is_stale_when_proposal_bytes_change_even_if_the_selected_plan_does_not` |
+| M3-PB03 | Unsupported audio/effects reject even with picture-only choice; stills retain zero-origin bounded holds | `story_review_rejects_unsupported_audio_effects_missing_loss_choices_and_bad_cli_usage`, `story_review_preserves_still_hold_and_rejects_still_source_offsets` |
+| M3-PB04 | Strict whole planner output and nested DTOs; matched asset declarations; opaque immutable result; forged authority and composition-only record reject | `story_review_rejects_unknown_duplicate_forged_or_inconsistent_proposals`, `story_review_requires_snapshot_asset_identity_duration_and_declared_capabilities`, `story_review_rejects_forged_bundle_claims_and_never_accepts_a_composition_only_record`; compile-fail doctests |
+| M3-PB05 | Bound all input/output sizes/depth; refuse malformed/unknown/duplicate data with stable field-only diagnostics | `story_review_preflights_every_size_and_accepts_exact_snapshot_and_bundle_limits`; existing OTIO expansion tests |
+| M3-PB06 | Actual CLI file/stdin flow works with empty external-tool PATH and unchanged Catalog/project/input sentinels; no host calls | `story_review_connects_actual_planner_output_to_exact_otio_without_source_or_host_writes`; official oracle |
+
+M3-02 follows acceptance of this bridge. Its separate fault matrix must persist
+operation/owner/request identity before host apply and survive crash/ack failure.
+M3-03 must cover **already applied, response timed out**: read back project state
+before retry; unresolved/ambiguous state blocks rather than sends a second cut.
+M4's OpenFilm feature flag follows accepted journal/executor readback, with one writer.
+
 ## Remaining breadth and future requirements
 
 ## Evidence levels

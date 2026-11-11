@@ -50,20 +50,22 @@ pub struct BriefPreferencesV1 {
     pub target_duration: Option<TimeValue>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 pub struct AssetBindingV1 {
     pub asset_id: String,
     pub origins: Vec<String>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 pub struct PrecedenceEdgeV1 {
     pub before: String,
     pub after: String,
     pub origins: Vec<String>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize, Serialize)]
 #[serde(rename_all = "kebab-case")]
 pub enum BriefConflictKindV1 {
     UnknownAsset,
@@ -71,36 +73,39 @@ pub enum BriefConflictKindV1 {
     OrderCycle,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 pub struct BriefConflictV1 {
     pub kind: BriefConflictKindV1,
     pub path: String,
     pub asset_ids: Vec<String>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize, Serialize)]
 #[serde(rename_all = "kebab-case")]
 pub enum BriefWarningKindV1 {
     UnknownPreferredAsset,
     ExcludedPreference,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 pub struct BriefWarningV1 {
     pub kind: BriefWarningKindV1,
     pub path: String,
     pub asset_ids: Vec<String>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 pub struct BriefAuditV1 {
     pub schema_version: u32,
     pub brief_id: String,
     pub intent: String,
-    pub scope: &'static str,
+    pub scope: String,
     pub executable: bool,
     pub selection_planned: bool,
-    pub duration_analysis: &'static str,
+    pub duration_analysis: String,
     pub consistent: bool,
     pub manual_selected_asset_ids: Vec<String>,
     pub required_assets: Vec<AssetBindingV1>,

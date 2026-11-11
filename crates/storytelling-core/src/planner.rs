@@ -15,7 +15,7 @@ pub struct PlanningCandidateV1 {
     pub score: i32,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize, Serialize)]
 #[serde(rename_all = "kebab-case")]
 pub enum TargetStatusV1 {
     NotRequested,
@@ -24,7 +24,7 @@ pub enum TargetStatusV1 {
     Above,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize, Serialize)]
 #[serde(rename_all = "kebab-case")]
 pub enum SkippedReasonV1 {
     Excluded,
@@ -33,14 +33,16 @@ pub enum SkippedReasonV1 {
     DurationLimit,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 pub struct SkippedCandidateV1 {
     pub asset_id: String,
     pub path: String,
     pub reason: SkippedReasonV1,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 pub struct SelectionDecisionV1 {
     pub asset_id: String,
     pub shot_id: String,
@@ -51,16 +53,17 @@ pub struct SelectionDecisionV1 {
     pub reason_paths: Vec<String>,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 pub struct PlannedStoryV1 {
     pub schema_version: u32,
-    pub profile: &'static str,
-    pub scope: &'static str,
+    pub profile: String,
+    pub scope: String,
     pub executable: bool,
     pub source_verified: bool,
     pub host_verified: bool,
     pub selection_planned: bool,
-    pub duration_analysis: &'static str,
+    pub duration_analysis: String,
     pub content_clock_rate: String,
     pub total_duration: TimeValue,
     pub target_status: TargetStatusV1,
