@@ -9,6 +9,23 @@ EXAMPLES = EVALUATION.parent
 
 
 class CatalogTests(unittest.TestCase):
+    def test_each_source_has_a_separate_handoff_boundary_in_both_languages(self):
+        for suffix in (".md", ".zh-TW.md"):
+            boundaries = (EVALUATION / ("source-boundaries" + suffix)).read_text(encoding="utf-8")
+            sections = re.split(r'^<a name="([a-z-]+)"></a>$', boundaries, flags=re.M)
+            folders = {p.name for p in (EXAMPLES / "studies").iterdir() if p.is_dir()}
+            self.assertCountEqual(sections[1::2], folders)
+            for case, body in zip(sections[1::2], sections[2::2], strict=True):
+                with self.subTest(case=case, language=suffix):
+                    original = (EXAMPLES / "studies" / case / ("README" + suffix)).read_text(encoding="utf-8")
+                    expected = re.findall(r"^\| ([SP][0-9]+) \|", original, re.M)
+                    rows = re.findall(r"^\| `?([SP][0-9]+)`? \| ([^|\n]+) \| ([^|\n]+) \|$", body, re.M)
+                    self.assertTrue(expected)
+                    self.assertCountEqual([row[0] for row in rows], expected)
+                    for _, supported, limit in rows:
+                        self.assertTrue(supported.strip() and limit.strip())
+                        self.assertNotRegex(supported + limit, r"\bR[12]\b")
+
     def test_source_maps_and_scorer_agree_in_both_languages(self):
         folders = {p.name for p in (EXAMPLES / "studies").iterdir() if p.is_dir()}
         with (EVALUATION / "expected.csv").open(encoding="utf-8", newline="") as file:

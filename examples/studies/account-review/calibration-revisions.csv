@@ -1,0 +1,7 @@
+participant,case,language,condition,card,received,changed,corrected,collateral,seconds,finished
+syn-1,account-review,zh-TW,mapped,R1,A B C,A B,A B,,0,yes
+syn-2,account-review,zh-TW,mapped,R1,A B C,A B C,,,0,yes
+syn-3,account-review,zh-TW,mapped,R1,A B C,A B,A B,B,0,yes
+syn-4,account-review,zh-TW,mapped,R2,A B C,B,B,,0,yes
+syn-5,account-review,zh-TW,mapped,R2,A B C,B,B,,0,yes
+syn-6,account-review,zh-TW,mapped,R2,A B C,A B,B,,0,yes

@@ -4,6 +4,8 @@
 
 Freeze the key before distributing excerpts. For the mapped condition, copy only the three source-map rows to the recipient. Keep intended readings, required edits and protected details with the rater. Score each card against fresh originals. Accept equivalent wording.
 
+For a separate mapped-bounds trial, give editors the same three map rows and the corresponding [source boundaries](source-boundaries.md).
+
 <a name="museum-ticket-punch"></a>
 
 ## A ticket punch and a hole in a ticket

@@ -45,7 +45,7 @@
 
 ### 執行作者試用
 
-若要另做盲讀或接手改稿試驗，可使用[情境範例](examples/README.zh-TW.md)。請與原 N-01 試用分開記錄。
+若要另做盲讀或接手改稿試驗，可使用[情境範例](examples/README.zh-TW.md)。請與原 N-01 試用分開記錄。[客戶用量的主持人校準](examples/studies/account-review/calibration.zh-TW.md)提供合成計分示例。另可配對測量在既有來源表上加註佐證邊界的效果。
 
 1. 在 [#48](https://github.com/bynanci/storytelling/issues/48) 記錄主分支提交碼及可能重疊的 PR。
 2. 開啟[真人試用包](docs/narrative/N-01-AUTHOR-STUDY.zh-TW.md)。請作者修改修繕者身分，再指出哪些稿件須改，並說明雨傘細節的來源。

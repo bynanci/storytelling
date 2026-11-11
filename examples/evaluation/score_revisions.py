@@ -38,8 +38,8 @@ def read_scores(path):
                     raise ValueError("unexpected number of CSV fields")
                 if not row["participant"].strip() or row["language"] not in {"en", "zh-TW"}:
                     raise ValueError("supply a participant code and language en or zh-TW")
-                if row["condition"] not in {"notes", "mapped"}:
-                    raise ValueError("use condition notes or mapped")
+                if row["condition"] not in {"notes", "mapped", "mapped-bounds"}:
+                    raise ValueError("use condition notes, mapped or mapped-bounds")
                 if row["finished"] not in {"yes", "no"} or int(row["seconds"]) < 0:
                     raise ValueError("supply nonnegative whole seconds and finished yes or no")
                 key = (row["case"], row["card"])
