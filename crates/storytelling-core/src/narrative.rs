@@ -157,6 +157,50 @@ pub struct NarrativeValidationErrorV1 {
     pub relation_ids: Vec<String>,
 }
 
+/// A style profile is a separate versioned document; it does not extend NarrativeDocumentV1.
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct NarrativeStyleProfileV1 {
+    pub schema_version: u32,
+    pub profile_id: String,
+    pub document_id: String,
+    pub document_revision: u32,
+    pub rules: Vec<NarrativeStyleRuleV1>,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Deserialize, Serialize)]
+#[serde(rename_all = "snake_case")]
+pub enum NarrativeStyleRuleKindV1 {
+    MustPrecede,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
+pub struct NarrativeStyleRuleV1 {
+    pub id: String,
+    pub kind: NarrativeStyleRuleKindV1,
+    pub variant_id: String,
+    pub before_beat_id: String,
+    pub after_beat_id: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+pub struct NarrativeStyleValidationErrorV1 {
+    pub code: String,
+    pub path: String,
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub rule_ids: Vec<String>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+pub struct NarrativeStyleCheckV1 {
+    pub profile_id: String,
+    pub document_id: String,
+    pub document_revision: u32,
+    pub checked_rules: usize,
+    pub scope: &'static str,
+}
+
 impl NarrativeValidationErrorV1 {
     pub fn new(code: &str, path: impl Into<String>) -> Self {
         Self {
