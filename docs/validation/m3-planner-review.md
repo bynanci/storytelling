@@ -62,3 +62,23 @@ The fixed artifact/binding vector passed on all three OSes.
 This integrates/accepts the bounded technical delivery under the user's standing
 verified-merge instruction. It is technical self-review, not an independent human
 G2 approval or editorial sign-off; PR #28 acceptance remains pending.
+
+
+## M3-PB07 bundle-allocation follow-up
+
+The new `export_story_otio` API and CLI path return the shared compile/bind
+artifact directly; freshness checking uses the same helper without building a
+portable bundle. The prepare command remains the only bundle-producing path.
+The parity assertion passed, the fixed artifact/binding vector remains unchanged,
+and existing stale/tamper regressions passed in debug and release workspace suites.
+
+PR [#46](https://github.com/bynanci/storytelling/pull/46) head `1a77e4fd0c942ece58223135013d83a744d96921`
+(tree `28aa466ed03737ccb13e364296dfe7fc9b9025ea`) merged as `d9778ebdd4b7666cff0c47889c81f6c91079acce`. Exact-head runs
+[42935098963](https://github.com/bynanci/storytelling/actions/runs/42935098963) and
+[42935144867](https://github.com/bynanci/storytelling/actions/runs/42935144867), and
+post-merge run [42935450529](https://github.com/bynanci/storytelling/actions/runs/42935450529),
+all passed six jobs.
+
+This removes construction of an unused bundle on two paths; no memory or latency
+measurement is claimed. All inputs remain caller-supplied declarations; no host,
+Catalog, media or editor project is opened.

@@ -322,3 +322,17 @@ candidate acceptance remain pending. Human editorial acceptance and execution
 are separate. Tasks now queue M3-02 journal, M3-03 FilmCraft apply/readback, then
 M4 OpenFilm feature flag. A host apply timeout requires persisted unknown state
 and readback before retry; ambiguous outcome must stop instead of duplicate apply.
+
+
+## M3-PB07 allocation-path optimization — 2026-11-11
+
+[PR #46](https://github.com/bynanci/storytelling/pull/46) adds a direct OTIO API
+and reuses the compile/bind result in freshness checks, avoiding an unused portable
+bundle on both paths. Prepare output and artifact identity remain byte-stable.
+
+Head `1a77e4fd0c942ece58223135013d83a744d96921` (tree `28aa466ed03737ccb13e364296dfe7fc9b9025ea`) merged as
+`d9778ebdd4b7666cff0c47889c81f6c91079acce` at 2026-11-11T00:58:14Z. Exact-head runs
+[42935098963](https://github.com/bynanci/storytelling/actions/runs/42935098963) and
+[42935144867](https://github.com/bynanci/storytelling/actions/runs/42935144867), plus
+post-merge run [42935450529](https://github.com/bynanci/storytelling/actions/runs/42935450529),
+passed all six jobs each. No quantified performance claim is made.

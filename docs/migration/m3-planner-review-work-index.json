@@ -140,5 +140,21 @@
     "main_run": 42932270960,
     "jobs_per_run": 6,
     "each_run_all_success": true
+  },
+  "optimization_delivery": {
+    "requirement": "M3-PB07",
+    "pr": 46,
+    "head": "1a77e4fd0c942ece58223135013d83a744d96921",
+    "tree": "28aa466ed03737ccb13e364296dfe7fc9b9025ea",
+    "merge": "d9778ebdd4b7666cff0c47889c81f6c91079acce",
+    "merged_at": "2026-11-11T00:58:14Z",
+    "head_runs": [
+      42935098963,
+      42935144867
+    ],
+    "main_run": 42935450529,
+    "jobs_per_run": 6,
+    "each_run_all_success": true,
+    "scope": "avoid unused portable bundle serialization in direct export and freshness compilation; no quantified performance claim"
   }
 }

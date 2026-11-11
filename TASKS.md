@@ -311,7 +311,7 @@ The [bounded contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md),
 - [x] Official parser roundtrip oracle supplied for the selected video/still profiles; actual results are recorded separately.
 - [x] Both head runs and post-merge main run passed all six jobs; technical self-review complete, without an independent-review claim.
 - [x] Bounded technical bridge integrated via PR #44 under standing verified-merge authority; M3-02 is next, with execution authority still separate.
-- [ ] Export and freshness compile paths avoid constructing unused portable bundles while preserving OTIO bytes and review identity; mark complete after same-head verification is recorded under M3-PB07.
+- [x] Export and freshness compile paths avoid constructing unused portable bundles while preserving OTIO bytes and review identity; M3-PB07 passed local and same-head/post-merge verification.
 
 Follow the dependency order P2 -> operation journal -> FilmCraft execution/readback ->
 OpenFilm feature flag. The critical future fault is apply-success/response-timeout:
