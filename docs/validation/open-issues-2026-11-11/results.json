@@ -1,0 +1,328 @@
+{
+  "observed_at_utc": "2026-11-11T10:04:02.983103+00:00",
+  "observation_kind": "automated CLI replay; no human assessment",
+  "cli_code_commit": "ad798e2a888850b4ac15e99ad65633cb67e51fe6",
+  "fixture_basis": "main corpus plus proposed N-03 document revision 2 in this change",
+  "results": [
+    {
+      "case": "n03-render",
+      "cli_code_commit": "ad798e2a888850b4ac15e99ad65633cb67e51fe6",
+      "command": [
+        "storytelling",
+        "render-narrative",
+        "tests/fixtures/narrative-v1/n03-authoring-v1.json"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "stdout_file": "n03-render.stdout",
+      "stderr_empty": true,
+      "repeat_stdout_identical": true,
+      "repeat_exit_identical": true
+    },
+    {
+      "case": "n03-dangling",
+      "cli_code_commit": "ad798e2a888850b4ac15e99ad65633cb67e51fe6",
+      "command": [
+        "storytelling",
+        "render-narrative",
+        "tests/fixtures/narrative-v1/invalid-dangling-reference.json"
+      ],
+      "expected_exit": 1,
+      "exit": 1,
+      "stdout_file": "n03-dangling.stdout",
+      "stderr_empty": true,
+      "repeat_stdout_identical": true,
+      "repeat_exit_identical": true
+    },
+    {
+      "case": "n04-shared-impact",
+      "cli_code_commit": "ad798e2a888850b4ac15e99ad65633cb67e51fe6",
+      "command": [
+        "storytelling",
+        "query-narrative-impact",
+        "tests/fixtures/narrative-v1/n04-revision-history-v1.json",
+        "shared-observation-change"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "stdout_file": "n04-shared-impact.stdout",
+      "stderr_empty": true,
+      "repeat_stdout_identical": true,
+      "repeat_exit_identical": true
+    },
+    {
+      "case": "n04-local-impact",
+      "cli_code_commit": "ad798e2a888850b4ac15e99ad65633cb67e51fe6",
+      "command": [
+        "storytelling",
+        "query-narrative-impact",
+        "tests/fixtures/narrative-v1/n04-revision-history-v1.json",
+        "b-only-detail-change"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "stdout_file": "n04-local-impact.stdout",
+      "stderr_empty": true,
+      "repeat_stdout_identical": true,
+      "repeat_exit_identical": true
+    },
+    {
+      "case": "n08-render",
+      "cli_code_commit": "ad798e2a888850b4ac15e99ad65633cb67e51fe6",
+      "command": [
+        "storytelling",
+        "render-narrative",
+        "tests/fixtures/narrative-v1/n08-umbrella-openings-v1.json"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "stdout_file": "n08-render.stdout",
+      "stderr_empty": true,
+      "repeat_stdout_identical": true,
+      "repeat_exit_identical": true
+    },
+    {
+      "case": "n08-valid",
+      "cli_code_commit": "ad798e2a888850b4ac15e99ad65633cb67e51fe6",
+      "command": [
+        "storytelling",
+        "check-narrative-style",
+        "tests/fixtures/narrative-v1/n08-umbrella-openings-v1.json",
+        "tests/fixtures/narrative-v1/n08-style-profile-v1.json"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "stdout_file": "n08-valid.stdout",
+      "stderr_empty": true,
+      "repeat_stdout_identical": true,
+      "repeat_exit_identical": true
+    },
+    {
+      "case": "n08-conflict",
+      "cli_code_commit": "ad798e2a888850b4ac15e99ad65633cb67e51fe6",
+      "command": [
+        "storytelling",
+        "check-narrative-style",
+        "tests/fixtures/narrative-v1/n08-umbrella-openings-v1.json",
+        "tests/fixtures/narrative-v1/n08-style-profile-conflicting-v1.json"
+      ],
+      "expected_exit": 1,
+      "exit": 1,
+      "stdout_file": "n08-conflict.stdout",
+      "stderr_empty": true,
+      "repeat_stdout_identical": true,
+      "repeat_exit_identical": true
+    },
+    {
+      "case": "n08-unknown-version",
+      "cli_code_commit": "ad798e2a888850b4ac15e99ad65633cb67e51fe6",
+      "command": [
+        "storytelling",
+        "check-narrative-style",
+        "tests/fixtures/narrative-v1/n08-umbrella-openings-v1.json",
+        "tests/fixtures/narrative-v1/n08-style-profile-unknown-version.json"
+      ],
+      "expected_exit": 1,
+      "exit": 1,
+      "stdout_file": "n08-unknown-version.stdout",
+      "stderr_empty": true,
+      "repeat_stdout_identical": true,
+      "repeat_exit_identical": true
+    },
+    {
+      "case": "n05-current",
+      "cli_code_commit": "ad798e2a888850b4ac15e99ad65633cb67e51fe6",
+      "command": [
+        "storytelling",
+        "audit-copy-claims",
+        "tests/fixtures/commercial-copy-v1/n05-copy-v1.json",
+        "tests/fixtures/narrative-v1/n04-revision-history-v1.json"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "stdout_file": "n05-current.stdout",
+      "stderr_empty": true,
+      "repeat_stdout_identical": true,
+      "repeat_exit_identical": true
+    },
+    {
+      "case": "n05-revised",
+      "cli_code_commit": "ad798e2a888850b4ac15e99ad65633cb67e51fe6",
+      "command": [
+        "storytelling",
+        "audit-copy-claims",
+        "tests/fixtures/commercial-copy-v1/n05-copy-revised-ref-v1.json",
+        "tests/fixtures/narrative-v1/n04-revision-history-v1.json"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "stdout_file": "n05-revised.stdout",
+      "stderr_empty": true,
+      "repeat_stdout_identical": true,
+      "repeat_exit_identical": true
+    },
+    {
+      "case": "n05-dangling",
+      "cli_code_commit": "ad798e2a888850b4ac15e99ad65633cb67e51fe6",
+      "command": [
+        "storytelling",
+        "audit-copy-claims",
+        "tests/fixtures/commercial-copy-v1/n05-copy-dangling-ref-v1.json",
+        "tests/fixtures/narrative-v1/n04-revision-history-v1.json"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "stdout_file": "n05-dangling.stdout",
+      "stderr_empty": true,
+      "repeat_stdout_identical": true,
+      "repeat_exit_identical": true
+    },
+    {
+      "case": "n05-unknown-version",
+      "cli_code_commit": "ad798e2a888850b4ac15e99ad65633cb67e51fe6",
+      "command": [
+        "storytelling",
+        "audit-copy-claims",
+        "-",
+        "tests/fixtures/narrative-v1/n04-revision-history-v1.json"
+      ],
+      "expected_exit": 1,
+      "exit": 1,
+      "stdout_file": "n05-unknown-version.stdout",
+      "stderr_empty": true,
+      "repeat_stdout_identical": true,
+      "repeat_exit_identical": true,
+      "stdin_utf8": "{\"schema_version\":2}"
+    },
+    {
+      "case": "n03-reviewed",
+      "cli_code_commit": "ad798e2a888850b4ac15e99ad65633cb67e51fe6",
+      "command": [
+        "storytelling",
+        "render-narrative",
+        "tests/fixtures/narrative-v1/n03-author-reviewed-v1.json"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "stdout_file": "n03-reviewed.stdout",
+      "stderr_empty": true,
+      "repeat_stdout_identical": true,
+      "repeat_exit_identical": true
+    },
+    {
+      "case": "n05-reviewed",
+      "cli_code_commit": "ad798e2a888850b4ac15e99ad65633cb67e51fe6",
+      "command": [
+        "storytelling",
+        "audit-copy-claims",
+        "tests/fixtures/commercial-copy-v1/n05-copy-reviewed-v1.json",
+        "tests/fixtures/narrative-v1/n04-revision-history-v1.json"
+      ],
+      "expected_exit": 0,
+      "exit": 0,
+      "stdout_file": "n05-reviewed.stdout",
+      "stderr_empty": true,
+      "repeat_stdout_identical": true,
+      "repeat_exit_identical": true
+    }
+  ],
+  "inputs": [
+    {
+      "path": "tests/fixtures/commercial-copy-v1/n05-copy-dangling-ref-v1.json",
+      "before_sha256": "56af714e9f93336c366747063c5b4cdb63fe83c3b9411ba6f3df438be59482c4",
+      "after_sha256": "56af714e9f93336c366747063c5b4cdb63fe83c3b9411ba6f3df438be59482c4",
+      "unchanged": true
+    },
+    {
+      "path": "tests/fixtures/commercial-copy-v1/n05-copy-reviewed-v1.json",
+      "before_sha256": "d82a942aa46148bec6a35b5705cdbc5eb0fb9631f73c6d4c29d5e0e20294c8cf",
+      "after_sha256": "d82a942aa46148bec6a35b5705cdbc5eb0fb9631f73c6d4c29d5e0e20294c8cf",
+      "unchanged": true
+    },
+    {
+      "path": "tests/fixtures/commercial-copy-v1/n05-copy-revised-ref-v1.json",
+      "before_sha256": "34e327bedd11baa65575796b2db4a60a077bd2f0d672905cda74ca208e037b87",
+      "after_sha256": "34e327bedd11baa65575796b2db4a60a077bd2f0d672905cda74ca208e037b87",
+      "unchanged": true
+    },
+    {
+      "path": "tests/fixtures/commercial-copy-v1/n05-copy-v1.json",
+      "before_sha256": "c4759c7ee0cf31a051f5d17918649734dfd4a5ccbfef2efdd06f5a24f0baafba",
+      "after_sha256": "c4759c7ee0cf31a051f5d17918649734dfd4a5ccbfef2efdd06f5a24f0baafba",
+      "unchanged": true
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/invalid-dangling-reference.json",
+      "before_sha256": "976a831f9cb5142b1c7875608679077b11c7be6fc4dafb3de6b93f6752f740c1",
+      "after_sha256": "976a831f9cb5142b1c7875608679077b11c7be6fc4dafb3de6b93f6752f740c1",
+      "unchanged": true
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n03-author-reviewed-v1.json",
+      "before_sha256": "674f4fbea82152abf8f85b70399341e0615bcd1c0e66b240a6dadf431d632f15",
+      "after_sha256": "674f4fbea82152abf8f85b70399341e0615bcd1c0e66b240a6dadf431d632f15",
+      "unchanged": true
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n03-authoring-v1.json",
+      "before_sha256": "cccff034e9d6a434ec7ee22a16c45629bf584b2ff9d4943b3e27c5fec8889a20",
+      "after_sha256": "cccff034e9d6a434ec7ee22a16c45629bf584b2ff9d4943b3e27c5fec8889a20",
+      "unchanged": true
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n04-revision-history-v1.json",
+      "before_sha256": "29d51fa72c3ad872d442c45d03ec2458bf948fb7bb4b804b46247de6c4714f6c",
+      "after_sha256": "29d51fa72c3ad872d442c45d03ec2458bf948fb7bb4b804b46247de6c4714f6c",
+      "unchanged": true
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n08-style-profile-conflicting-v1.json",
+      "before_sha256": "fdfd77b8103778eae337d0d2573819999d2befe90bf39f0bfe243c76a288e09a",
+      "after_sha256": "fdfd77b8103778eae337d0d2573819999d2befe90bf39f0bfe243c76a288e09a",
+      "unchanged": true
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n08-style-profile-unknown-version.json",
+      "before_sha256": "f8d707d529d667579e1d6892229c28152d79767bb8694107e4edcf4665bd5238",
+      "after_sha256": "f8d707d529d667579e1d6892229c28152d79767bb8694107e4edcf4665bd5238",
+      "unchanged": true
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n08-style-profile-v1.json",
+      "before_sha256": "daf4d320a1101f0b01c2e557436e9c58d8d5317ec9edfc0fbbd42ed4ae72b419",
+      "after_sha256": "daf4d320a1101f0b01c2e557436e9c58d8d5317ec9edfc0fbbd42ed4ae72b419",
+      "unchanged": true
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n08-umbrella-openings-v1.json",
+      "before_sha256": "12132e9f4edd3a8d1f2c01684bb7e236a74371a321c602eadb4223f083355e5e",
+      "after_sha256": "12132e9f4edd3a8d1f2c01684bb7e236a74371a321c602eadb4223f083355e5e",
+      "unchanged": true
+    }
+  ],
+  "stdin_parity": [
+    {
+      "case": "n03-reviewed",
+      "command": [
+        "storytelling",
+        "render-narrative",
+        "-"
+      ],
+      "stdin_file": "tests/fixtures/narrative-v1/n03-author-reviewed-v1.json",
+      "exit": 0,
+      "stdout_identical_to_file": true
+    },
+    {
+      "case": "n05-reviewed",
+      "command": [
+        "storytelling",
+        "audit-copy-claims",
+        "-",
+        "tests/fixtures/narrative-v1/n04-revision-history-v1.json"
+      ],
+      "stdin_file": "tests/fixtures/commercial-copy-v1/n05-copy-reviewed-v1.json",
+      "exit": 0,
+      "stdout_identical_to_file": true
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "document_id": "n06-brainstorm",
+  "document_revision": 1,
+  "purpose": "保留互斥的維修構思，等作者決定；不是後續行動的觀察紀錄。",
+  "audience": "規劃下一次維護的作者。",
+  "units": [
+    {
+      "id": "S02",
+      "revision": 1,
+      "origin": "supplied_observation",
+      "text": "阿梅扶住門；阿安收緊上方鉸鏈的一顆螺絲。",
+      "based_on": []
+    },
+    {
+      "id": "S03",
+      "revision": 1,
+      "origin": "supplied_observation",
+      "text": "兩人試關一次；這一次門沒有磨到地面。",
+      "based_on": []
+    },
+    {
+      "id": "P_KEEP",
+      "revision": 1,
+      "origin": "creative_proposal",
+      "text": "選項 A：先保留現有鉸鏈，安排一段觀察期。",
+      "based_on": [
+        {
+          "unit_id": "S03",
+          "revision": 1
+        }
+      ]
+    },
+    {
+      "id": "P_REPLACE",
+      "revision": 1,
+      "origin": "creative_proposal",
+      "text": "選項 B：先安排更換鉸鏈，再開放下一次使用。",
+      "based_on": [
+        {
+          "unit_id": "S02",
+          "revision": 1
+        }
+      ]
+    }
+  ],
+  "relations": [],
+  "variants": [
+    {
+      "id": "keep-hinge",
+      "name": "A：保留後觀察（尚未選定）",
+      "kind": "spoken_outline",
+      "beats": [
+        {
+          "id": "A_ACTION",
+          "unit_ref": {
+            "unit_id": "S02",
+            "revision": 1
+          },
+          "text": "原始紀錄：阿梅扶門，阿安收緊上方鉸鏈的一顆螺絲。"
+        },
+        {
+          "id": "A_TEST",
+          "unit_ref": {
+            "unit_id": "S03",
+            "revision": 1
+          },
+          "text": "原始紀錄只有一次試關沒有磨地。"
+        },
+        {
+          "id": "A_OPTION",
+          "unit_ref": {
+            "unit_id": "P_KEEP",
+            "revision": 1
+          },
+          "text": "創作提議 A：保留鉸鏈並觀察。未解問題：連續使用與雨後是否仍會磨地？"
+        }
+      ]
+    },
+    {
+      "id": "replace-hinge",
+      "name": "B：先換再使用（尚未選定）",
+      "kind": "spoken_outline",
+      "beats": [
+        {
+          "id": "B_ACTION",
+          "unit_ref": {
+            "unit_id": "S02",
+            "revision": 1
+          },
+          "text": "原始紀錄：阿梅扶門，阿安收緊上方鉸鏈的一顆螺絲。"
+        },
+        {
+          "id": "B_TEST",
+          "unit_ref": {
+            "unit_id": "S03",
+            "revision": 1
+          },
+          "text": "原始紀錄只有一次試關沒有磨地。"
+        },
+        {
+          "id": "B_OPTION",
+          "unit_ref": {
+            "unit_id": "P_REPLACE",
+            "revision": 1
+          },
+          "text": "創作提議 B：先安排更換鉸鏈。未解問題：規格、費用與共用門的授權由誰確認？"
+        }
+      ]
+    }
+  ]
+}

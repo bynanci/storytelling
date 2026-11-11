@@ -1,0 +1,13 @@
+Narrative: n08-umbrella-openings@1 (schema v1)
+Purpose: "讓鄰居知道週六的修傘活動與帶傘條件，比較兩種口述開場。"
+Audience: "附近居民；第一次聽到修傘工作坊邀請的人。"
+
+## Variant documentary-opening — "直接告知開場" [spoken_outline]
+1. [D01_EVENT] [S1@1 | supplied_observation] "週六有修傘工作坊，請帶一把傘。"
+2. [D02_TAPS] [S3@1 | supplied_observation] "（收尾播放 S3 的兩聲敲擊音效。）"
+
+## Variant imagery-opening — "意象開場" [spoken_outline]
+1. [I01_TAPS] [S3@1 | supplied_observation] "（先播放 S3 的兩聲敲擊；合成音效，沒有說話聲。）"
+2. [I02_METAPHOR] [P1@1 | creative_proposal] "一下敲門，一下回應。"
+3. [I03_EVENT] [S1@1 | supplied_observation] "週六有修傘工作坊，請帶一把傘。"
+

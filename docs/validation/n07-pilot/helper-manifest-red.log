@@ -1,0 +1,13 @@
+F......
+======================================================================
+FAIL: test_manifest_mutation_is_failure_and_original_identity_is_retained (test_run_cli.MeasurementTests.test_manifest_mutation_is_failure_and_original_identity_is_retained)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 148, in test_manifest_mutation_is_failure_and_original_identity_is_retained
+    self.assertFalse(result["machine_success"])
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.015s
+
+FAILED (failures=1)

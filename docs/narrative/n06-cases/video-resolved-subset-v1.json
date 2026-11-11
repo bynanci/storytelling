@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "brief": {
+    "schema_version": 1,
+    "brief_id": "n06-declared-resolved-subset",
+    "intent": "僅檢查宣告的鉸鏈片段；不是完整敘事銜接。",
+    "assets": [
+      {
+        "id": "clip-hinge-declared"
+      }
+    ],
+    "manual_selected_asset_ids": [
+      "clip-hinge-declared"
+    ],
+    "hard_constraints": [],
+    "preferences": {
+      "preferred_asset_ids": []
+    }
+  },
+  "candidates": [
+    {
+      "asset_id": "clip-hinge-declared",
+      "content_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "duration": {
+        "numerator": "12",
+        "denominator": "1"
+      },
+      "source_range": {
+        "start": {
+          "numerator": "5",
+          "denominator": "2"
+        },
+        "end": {
+          "numerator": "9",
+          "denominator": "2"
+        }
+      },
+      "score": 0
+    }
+  ],
+  "max_duration": {
+    "numerator": "2",
+    "denominator": "1"
+  },
+  "max_shots": 1
+}
