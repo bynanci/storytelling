@@ -1,0 +1,22 @@
+{
+  "command": [
+    "storytelling",
+    "render-narrative",
+    "tests/fixtures/narrative-v1/n03-author-reviewed-v1.json"
+  ],
+  "exits": [
+    0,
+    0
+  ],
+  "repeat_stdout_identical": true,
+  "unchanged_oral_and_wide_sections": true,
+  "original_fixture_unchanged": true,
+  "original_fixture_sha256": "cccff034e9d6a434ec7ee22a16c45629bf584b2ff9d4943b3e27c5fec8889a20",
+  "reviewed_fixture_sha256": "674f4fbea82152abf8f85b70399341e0615bcd1c0e66b240a6dadf431d632f15",
+  "new_close_choice": "C02@1; creative_proposal; not a recorded author approval",
+  "original_units_preserved": true,
+  "c02_only_in_close": true,
+  "stdin_stdout_identical": true,
+  "schema_version": 1,
+  "document_revision": 2
+}

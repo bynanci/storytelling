@@ -3,7 +3,7 @@
 
 **Task / requirement:** Issue #50 · N-03 / N-R03 · SDLC G3–G4  
 **Implementation base:** `0c400b4d1f8308316328cf7e79e156ec5cb9806c` (latest main at implementation start; includes merged documentation PRs #72 and #73).  
-**Human author inspection:** pending; no author response or usability result is claimed.
+**Requester inspection:** received on 2026-11-11 and recorded below with the corrective draft. No comparative usability or timed participant result is claimed.
 
 ## Skill request and structured input
 
@@ -145,9 +145,44 @@ from the repository root, then check these questions without editing the input:
 4. Are the source labels and quoted text easy to review in terminal output?
 
 Record observed reactions, corrections and the author's decision separately
-from tests and CI. No author has inspected the outputs in this delivery yet.
+from tests and CI. The original delivery left the table blank. The requester
+subsequently inspected the replayed draft text in this conversation:
 
 | Reviewer code | Date | Outputs inspected | Observed response / requested change | Decision |
 | --- | --- | --- | --- | --- |
-|  |  |  |  |  |
+| requester-session | 2026-11-11 | Original oral, wide and close draft text shown in chat | Overall usable; provenance boundaries and composition contrast clear. Clarify close framing, hand-held tools and background. | Apply the corrections below; no second reading or terminal UX measurement reported. |
+
+<a id="requester-inspection-and-corrective-draft--2026-11-11"></a>
+
+## Requester inspection and corrective draft · 2026-11-11
+
+The [submitted inspection](https://github.com/bynanci/storytelling/issues/50#issuecomment-6792812347)
+is requester feedback, not an independent participant trial. It also alleged
+spellings “餃鏈”, “跤鏈” and “絞鏈”. The original fixture and actual replay already
+use “鉸鏈”; searching those alleged alternatives returns no matches. No phantom
+spelling correction is included. The source records one test and does not
+establish a mechanical cause or a permanent repair.
+
+| Close-draft element | Original draft | Corrective draft |
+| --- | --- | --- |
+| Framing | Close detail of hinge, screw and supporting hands, with unspecified room for both actions. | Use a wider close framing that can contain the upper hinge and both people's hands; do not require an extreme close-up. |
+| Tools | “手和工具在前景” could be confused with the toolbox. | Limit tools to those beside the working hand; do not specify an unrecorded tool type. Keep the ground-level toolbox out of frame. |
+| Background | Specified an indoor background not supplied by the notes. | Use only the local door frame; do not specify indoor space. |
+| Source/choice boundary | Source tags accompany the composition. | Add C02@1 as an explicit close-only creative proposal for framing, hand placement and depth. It is not an observation or an author-approval event. |
+
+The new [document revision 2](../../tests/fixtures/narrative-v1/n03-author-reviewed-v1.json)
+preserves every original unit, keeps C01 in the wide draft only and references
+C02 only in the close draft. The original fixture is retained unchanged.
+
+```sh
+cargo run --release --quiet --locked -p storytelling-cli -- render-narrative tests/fixtures/narrative-v1/n03-author-reviewed-v1.json
+```
+
+The actual [revised output](open-issues-2026-11-11/n03-reviewed.stdout) exits 0.
+The [receipt](open-issues-2026-11-11/n03-reviewed-replay.json) confirms two identical
+runs, unchanged original bytes and byte-identical oral/wide sections. Only the
+document header revision, new choice and close draft change. The updated CLI
+guide and quick start use this revision. A second requester reading of C02 was
+not reported. N-01/N-07 comparison measures and the N-08 blind reading remain
+unobserved.
 

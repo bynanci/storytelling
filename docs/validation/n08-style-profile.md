@@ -96,6 +96,12 @@ binary and compares stdout bytes.
 
 ## Blind reader prompt
 
+The [standalone Traditional Chinese reader sheet](open-issues-2026-11-11/reader-sheet.zh-TW.md)
+can be handed to a reader without the surrounding treatment labels or source
+IDs in this validation record. It is still blank; preparing it is not a reader
+trial. Record assignment order and prior exposure as described in the
+[open-issue audit](open-issues-2026-11-11.md#human-work-still-required).
+
 For a reader trial, show the two passages below as A and B, randomly swap their
 order per reader, and hide the treatment names and source IDs. Do not explain
 the intended difference before the reader responds.

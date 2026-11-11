@@ -1,0 +1,1 @@
+{"error":{"code":"narrative.dangling_reference","path":"$.variants[0].beats[1].unit_ref.unit_id"},"ok":false}
