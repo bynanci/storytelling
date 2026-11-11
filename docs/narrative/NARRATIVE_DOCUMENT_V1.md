@@ -86,9 +86,15 @@ Unknown relation kinds reject. Repeated declarations are not silently
 coalesced; duplicate relation IDs reject. For each spoken variant, the directed
 `must_precede` graph must be acyclic. A valid A-before-B plus B-before-A
 association pair does not enter this graph. A hard-order cycle returns
-`narrative.order_conflict`, with the stable cycle's relation IDs reported in
-input declaration order. The validator never deletes an edge or chooses a
-replacement order.
+`narrative.order_conflict`. To select one witness deterministically, process
+variants in declaration order; for each oral variant, run depth-first search
+from beats left-to-right, traversing that variant's precedence edges in relation
+array order. Use the standard white/gray/black DFS rule: the first edge to a
+gray ancestor closes the reported simple cycle, and traversal stops. Report
+that cycle's relation IDs in document declaration order. This chooses the first
+DFS witness, not necessarily the shortest cycle. The multiple-cycle fixture pins
+the tie-break: it must report R03/R04/R05 before the also-valid R03/R06 cycle.
+The validator never deletes an edge or chooses a replacement order.
 
 ## Named variants
 

@@ -116,6 +116,16 @@ regressions are in the profile. Disable the future path by not invoking (or
 omitting from a distribution) the explicit N-02 validation command; existing
 projects need no migration and no implicit conversion exists.
 
+## Review log
+
+The automated Codex review of the initial PR head `ede961b8d4d9e8ab025567be1cceff5c0e92c044`
+raised one P2 finding: ordering IDs inside a chosen cycle did not define which
+cycle to report when several cycles shared the first traversal path. This
+revision specifies beat-order DFS, relation-array edge order, the first gray
+back-edge witness, and a multiple-cycle fixture expecting R03/R04/R05. The
+finding is addressed in the current proposal. This automated review is useful
+feedback, not the independent human G2 review required by SDLC.
+
 ## G2 review conditions and open decisions
 
 Before N-03 implementation, an independent reviewer and maintainer must record
