@@ -83,9 +83,9 @@ Freeze the key before distributing excerpts. For the mapped condition, copy only
 
 | Draft | Direct references |
 | --- | --- |
-| A | S1, S2, P1 |
+| A | S1, S2 |
 | B | S1, S2 |
-| C | S1 |
+| C | S1, P1 |
 
 ### R1 · S1
 
@@ -97,9 +97,9 @@ Freeze the key before distributing excerpts. For the mapped condition, copy only
 
 ### R2 · P1
 
-- **A**　Replace the last sentence with an invitation to record a follow-up question for U4.
+- **C**　Remove the follow-up question field from the review note; preserve the attribution and permission check.
 
-**Protect**　Preserve the approved words, their attribution and the event sequence; the editorial exercise is separate from the interview.
+**Protect**　Preserve the approved words, their attribution and the event sequence; the review field belongs only to the editorial note.
 
 <a name="open-source-release"></a>
 

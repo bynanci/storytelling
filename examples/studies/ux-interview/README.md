@@ -14,7 +14,7 @@ Draft two short bulletin openings about one observed session: one starts with U4
 | --- | --- |
 | S1 | The approved interview excerpt from participant U4 is “I thought Save would send it.” This is one person’s account. |
 | S2 | In that same session the event log shows Preview opened, Save pressed, then the tab closed. It records no Share action. |
-| P1 | For the quotation-led bulletin only, the editor proposes a closing invitation to circle the word that suggested delivery. |
+| P1 | On the private review note only, the editor requests a separate line to record one follow-up question. |
 
 ## Three deliverables
 
@@ -23,6 +23,8 @@ Draft two short bulletin openings about one observed session: one starts with U4
 ### Draft C
 
 Case editor: the approved wording is “I thought Save would send it.” Attribute the sentence to U4 alone. Check permission for the intended audience before using this quote outside the research team.
+
+Follow-up question: ____________________
 
 ## Change cards for the next editor
 
@@ -34,6 +36,6 @@ After comparing the recording, U4 approves this exact replacement: “I thought 
 
 ### R2
 
-The editor replaces the circle-a-word task with an invitation to write down one follow-up question for U4.
+The editor withdraws the proposed follow-up field from the handoff material. Leave the approval instructions in place.
 
 [Facilitator protocol](../../evaluation/README.md) · [Scoring key for this case](../../evaluation/keys.md#ux-interview)
