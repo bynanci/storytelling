@@ -1,0 +1,53 @@
+{
+  "human_evidence_included": false,
+  "checks": [
+    {
+      "check": "Independent S01 impact is exactly oral/wide",
+      "passed": true
+    },
+    {
+      "check": "Independent S02 impact is exactly all three",
+      "passed": true
+    },
+    {
+      "check": "Corrected document snapshot2 renders three variants",
+      "passed": true
+    },
+    {
+      "check": "Old names absent, corrected names retained",
+      "passed": true
+    },
+    {
+      "check": "Creative C01@2 only in wide source tags",
+      "passed": true
+    },
+    {
+      "check": "Factual citations current/missing remain reference-only",
+      "passed": true
+    },
+    {
+      "check": "No candidate ReportV2 is used",
+      "passed": true
+    },
+    {
+      "check": "S03 text remains one close, no timing/cost",
+      "passed": true
+    },
+    {
+      "check": "n01-atomic-batch-guard expected diagnostic",
+      "passed": true
+    },
+    {
+      "check": "commercial-version-control expected diagnostic",
+      "passed": true
+    },
+    {
+      "check": "untrusted-author-control expected diagnostic",
+      "passed": true
+    },
+    {
+      "check": "narrative-dangling-control expected diagnostic",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+<!-- SPDX-License-Identifier: MIT -->
+# Shared starting drafts / matched native adaptation
+
+Narrative: n07-door-repair@1 (schema v1)
+Purpose: "呈現兩位鄰居一起處理共用木門的小事。"
+Audience: "社區電子報讀者"
+
+## Variant oral — "口述大綱" [spoken_outline]
+1. [beat-01] [S01@1 | supplied_observation] "星期六上午，兩位鄰居在共用木門旁準備工具。"
+2. [beat-02] [S02@1 | supplied_observation] "阿梅扶住門，阿安收緊上方鉸鏈的一顆螺絲。"
+3. [beat-03] [S03@1 | supplied_observation] "兩人試關一次；這一次門沒有磨到地面。"
+4. [beat-04] [I01@1 | author_interpretation] "一起處理一件日常小事，可以成為鄰里互助的畫面。"
+
+## Variant illustration-wide — "插畫 A｜兩人與共用門（寬景）" [single_illustration]
+Sources: [S01@1 | supplied_observation], [S02@1 | supplied_observation], [S04@1 | supplied_observation], [I01@1 | author_interpretation], [C01@1 | creative_proposal]
+Brief: "平視、寬幅三分之四視角：木門居中，兩位鄰居全身入鏡；阿梅扶門，阿安收緊上方鉸鏈螺絲，工具箱放在門邊。C01 想像紅傘只靠在此畫面一側的圍欄上，不是原始觀察。"
+
+## Variant illustration-close — "插畫 B｜鉸鏈與雙手（近景）" [single_illustration]
+Sources: [S02@1 | supplied_observation], [S03@1 | supplied_observation], [I01@1 | author_interpretation]
+Brief: "低角度近景：緊密裁切在鉸鏈、門框和兩人的手部；視覺焦點為扶穩門與收緊螺絲。阿梅扶門，阿安收緊上方鉸鏈螺絲；背景只保留辨識動作所需的門框與工具，不加入紅傘或其他未提供細節。"
+

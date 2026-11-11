@@ -32,6 +32,7 @@ jobs:
       - name: SDLC traceability and architecture
         run: |
           python3 scripts/check_repo.py
+          python3 -m unittest discover -s examples/evaluation/n07-pilot -p 'test_*.py'
           python3 scripts/test_storytelling_graph_plan.py
           python3 scripts/test_storytelling_graph_trace.py
       - name: Host proof evidence rejection checks (no host invocation)

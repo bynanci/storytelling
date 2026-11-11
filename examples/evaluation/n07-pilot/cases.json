@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "input_files": [
+    "tests/fixtures/narrative-v1/n03-authoring-v1.json",
+    "examples/evaluation/n07-pilot/participant-kit/cli/copy-template.json",
+    "examples/evaluation/n07-pilot/facilitator/copy-unknown-version.json",
+    "tests/fixtures/commercial-copy-v1/n05-copy-revised-ref-v1.json",
+    "tests/fixtures/commercial-copy-v1/n05-copy-dangling-ref-v1.json",
+    "tests/fixtures/narrative-v1/n04-revision-history-v1.json",
+    "tests/fixtures/narrative-v1/n04-invalid-self-confirm-v1.json",
+    "tests/fixtures/narrative-v1/invalid-dangling-reference.json",
+    "examples/evaluation/n07-pilot/participant-kit/cli/working-document.json",
+    "examples/evaluation/n07-pilot/participant-kit/cli/evidence-ledger.json",
+    "examples/evaluation/n07-pilot/facilitator/document-corrected.json",
+    "examples/evaluation/n07-pilot/facilitator/ledger-batch-pending.json",
+    "examples/evaluation/n07-pilot/facilitator/ledger-s01-only.json",
+    "examples/evaluation/n07-pilot/facilitator/ledger-s02-only.json",
+    "examples/evaluation/n07-pilot/participant-kit/cli/base-document.json"
+  ],
+  "cases": [
+    {
+      "id": "n01-matched-baseline-render",
+      "args": [
+        "render-narrative",
+        "examples/evaluation/n07-pilot/participant-kit/cli/base-document.json"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "commercial-current-and-missing",
+      "args": [
+        "audit-copy-claims",
+        "examples/evaluation/n07-pilot/participant-kit/cli/copy-template.json",
+        "examples/evaluation/n07-pilot/participant-kit/cli/evidence-ledger.json"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "commercial-revised-control",
+      "args": [
+        "audit-copy-claims",
+        "tests/fixtures/commercial-copy-v1/n05-copy-revised-ref-v1.json",
+        "tests/fixtures/narrative-v1/n04-revision-history-v1.json"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "commercial-dangling-control",
+      "args": [
+        "audit-copy-claims",
+        "tests/fixtures/commercial-copy-v1/n05-copy-dangling-ref-v1.json",
+        "tests/fixtures/narrative-v1/n04-revision-history-v1.json"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "commercial-version-control",
+      "args": [
+        "audit-copy-claims",
+        "examples/evaluation/n07-pilot/facilitator/copy-unknown-version.json",
+        "examples/evaluation/n07-pilot/participant-kit/cli/evidence-ledger.json"
+      ],
+      "expected_exit": 1
+    },
+    {
+      "id": "untrusted-author-control",
+      "args": [
+        "track-narrative-revisions",
+        "tests/fixtures/narrative-v1/n04-invalid-self-confirm-v1.json"
+      ],
+      "expected_exit": 1
+    },
+    {
+      "id": "narrative-dangling-control",
+      "args": [
+        "render-narrative",
+        "tests/fixtures/narrative-v1/invalid-dangling-reference.json"
+      ],
+      "expected_exit": 1
+    },
+    {
+      "id": "n01-corrected-snapshot",
+      "args": [
+        "render-narrative",
+        "examples/evaluation/n07-pilot/facilitator/document-corrected.json"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "n01-s01-independent-impact",
+      "args": [
+        "query-narrative-impact",
+        "examples/evaluation/n07-pilot/facilitator/ledger-s01-only.json",
+        "rename-s01"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "n01-s02-independent-impact",
+      "args": [
+        "query-narrative-impact",
+        "examples/evaluation/n07-pilot/facilitator/ledger-s02-only.json",
+        "rename-s02"
+      ],
+      "expected_exit": 0
+    },
+    {
+      "id": "n01-atomic-batch-guard",
+      "args": [
+        "track-narrative-revisions",
+        "examples/evaluation/n07-pilot/facilitator/ledger-batch-pending.json"
+      ],
+      "expected_exit": 1
+    }
+  ]
+}

@@ -313,7 +313,7 @@ see the [validation record](validation/m3-03-filmcraft-execution.md).
 | N-R04／N-04 | 保留多款草稿，找出一項修訂影響的版本。 | [修訂契約](narrative/NARRATIVE_REVISION_LEDGER_V1.md)、[格式](../contracts/narrative-revision-ledger-v1.schema.json)、[案例](../tests/fixtures/narrative-v1/n04-revision-history-v1.json)與[驗證紀錄](validation/n04-narrative-revisions.md)可供重播。修訂 S02 影響口述與兩款構圖。審閱後再修訂 C01，只影響構圖 B。歷史保留來源、變體及宣告的作者選擇。提案事件不可夾帶決定。CLI 只計算直接引用，無法驗證決定者身分。PR #76 於 `9eb12eefe41ef965acee1f5e78e373e3b782372c` 合併；同一提交與合併後 CI run #218 的已設定檢查均通過。真人檢視仍待完成。 |
 | N-R05／N-05 | 寫出文案大綱，辨識還缺依據的主張。 | `audit-copy-claims` 唯讀輸出受眾、主張、提議措辭、引用及 CTA。測試目前、缺漏、懸空、舊版、未知版本／欄位、重複鍵及文件不匹配。報告附上被引用的歷史文字；`reference_status` 只判斷 ID 與 revision。真人仍須判斷語意佐證和發布適宜性。[契約](narrative/COMMERCIAL_COPY_V1.md) · [驗證紀錄](validation/n05-commercial-copy.md) |
 | N-R06／N-06 | 選出值得開發的新模式。 | [格式探索紀錄](validation/n06-format-discovery.md)比較三個候選方向、現有契約相容性與最小可行變更。請求者已[明確暫緩三者](https://github.com/bynanci/storytelling/issues/53#issuecomment-6792555714)；不宣稱任務試用或耗時結果。 |
-| N-R07／N-07 | 決定繼續開發、縮小範圍或停止。 | 在 G4–G6 重做 N-01 的合成任務。記錄作者的選擇、接手方能否使用產物、量測值與回歸問題。提出發布候選版時，須附相容性、遷移與回退證據。 |
+| N-R07／N-07 | 依實際 native 工作流證據決定繼續、縮小或停止。 | [N-07 腳本與報告](validation/n07-pilot.zh-TW.md)固定 N-01 的明示 native 對照，記錄版本、分母、作者時間、歸因、重複輸入與重工；CLI 毫秒另列，真人欄留白。run_cli 及 test_run_cli.py／test_packet.py 保護新輸出、識別與試用材料。產品決策待真人證據，不推薦 RC。 |
 
 N-R02 的資料契約與 N-01 的試用條件已固定。新增觀察可以補充證據。變更契約或試用條件時，須另行記錄決定。
 
