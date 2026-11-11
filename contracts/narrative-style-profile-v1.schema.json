@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:storytelling:narrative-style-profile:1",
+  "title": "Storytelling NarrativeStyleProfileV1",
+  "$comment": "SPDX-License-Identifier: MIT. Shape constraints only; profile/document binding, duplicate-key checks, beat references, conflict and order semantics are defined by docs/narrative/EDITORIAL_STYLE_PROFILE_V1.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "profile_id",
+    "document_id",
+    "document_revision",
+    "rules"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "profile_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "document_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "document_revision": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4294967295
+    },
+    "rules": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4096,
+      "items": {
+        "$ref": "#/$defs/mustPrecedeRule"
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "mustPrecedeRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "variant_id",
+        "before_beat_id",
+        "after_beat_id"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "kind": {
+          "const": "must_precede"
+        },
+        "variant_id": {
+          "$ref": "#/$defs/id"
+        },
+        "before_beat_id": {
+          "$ref": "#/$defs/id"
+        },
+        "after_beat_id": {
+          "$ref": "#/$defs/id"
+        }
+      }
+    }
+  }
+}
