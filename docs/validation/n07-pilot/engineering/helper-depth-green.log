@@ -1,0 +1,6 @@
+{"command": ["python3", "-m", "unittest", "discover", "-s", "examples/evaluation/n07-pilot", "-p", "test_*.py"], "exit_code": 0, "run_cli_sha256": "b602e334bfa4d39fc75c682f940e8fb7158378f7a6bc8b572f3124998ba48897"}
+............
+----------------------------------------------------------------------
+Ran 12 tests in 0.022s
+
+OK

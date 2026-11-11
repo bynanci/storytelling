@@ -1,0 +1,21 @@
+{
+  "cli_source_commit": "ce73836caa86502933f538821fdbf5dac92c1224",
+  "build_command": "cargo build --release --locked -p storytelling-cli",
+  "runtime_source_diff_from_baseline": 0,
+  "crates_tree": "d3b5dc1c248be72441a07f25b451f0fd8844c1d4",
+  "cargo_lock_sha256": "145165518ae1cee8775131e241545a4e6036b14f63493f5b5f9afc62988a9797",
+  "binary_sha256": "c14c080b71be0fafd1f1c0fb8c6d0c5e24b01651416603076357e9181a1c176d",
+  "version_stdout": "storytelling 0.1.0-dev.0",
+  "rust_toolchain": "1.89.0",
+  "logical_cpu_count": 5,
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "environment_limitations": [
+    "shared sandbox",
+    "no CPU pinning",
+    "cache/scheduler uncontrolled",
+    "five warm process runs per case; not a human timing or broad benchmark"
+  ],
+  "original_n01_protocol_sha256": "4254aef28f6e458b3bc8092291767335e353b9ecfe2f71c54f11453175f018af",
+  "native_protocol_sha256": "4a67b762ba86c5c1e8a375f12f6f79f542feb1b6a39948d5a2d5d6821ee656b9",
+  "measurement_helper_sha256": "b602e334bfa4d39fc75c682f940e8fb7158378f7a6bc8b572f3124998ba48897"
+}

@@ -1,0 +1,19 @@
+{
+  "examples/evaluation/n07-pilot/README.md": "0e4fccc863f41cc35b3161898cff8815f55cce09bf8c7c3a948e81e7dbef5d5f",
+  "examples/evaluation/n07-pilot/forms/agreement.csv": "ad8e39718c04bbae0a0540eea75c48bf60cf0126dbe6e3f228b28de076ec5044",
+  "examples/evaluation/n07-pilot/forms/cli-calls.csv": "0d888c7e023f8ed03e7f84bd26a42a223c334a96de2f654188c20ed94986f61d",
+  "examples/evaluation/n07-pilot/forms/errors.csv": "741db31383eae009cd754087075a94a2c5747069b9650a60fee2a2dd2be01ecd",
+  "examples/evaluation/n07-pilot/forms/feedback.csv": "c4986f128e0d5c68ae87909b338120c0e5565d3aff97203de274f5c9386dd72e",
+  "examples/evaluation/n07-pilot/forms/sessions.csv": "7e855e62acc4c3beeb5f917b33930e83a54a6a229285d29adb79a64317bc756f",
+  "examples/evaluation/n07-pilot/participant-kit/cli/CLI-instructions.md": "33e0861d29b2549f8e2e6945933d913af7004f9c7bf1b8334aa1672e8f853ff7",
+  "examples/evaluation/n07-pilot/participant-kit/cli/base-document.json": "af4abd553f6f226748ca93138430729fa723e23eeb522e0f4b98767250270c63",
+  "examples/evaluation/n07-pilot/participant-kit/cli/copy-template.json": "3df97b4de44ae4db5ff0b38452782e0219b7d6e33c5a2027468f9b24af36672a",
+  "examples/evaluation/n07-pilot/participant-kit/cli/evidence-ledger.json": "860a76fef4fbca59faf8c5f004330c5ef6b28c70430b7998e653f609aab67b98",
+  "examples/evaluation/n07-pilot/participant-kit/cli/working-document.json": "af4abd553f6f226748ca93138430729fa723e23eeb522e0f4b98767250270c63",
+  "examples/evaluation/n07-pilot/participant-kit/shared/answers.md": "6f120e5740940bb51b186acce87b58417603897fc225372433dfdf87a1e02c29",
+  "examples/evaluation/n07-pilot/participant-kit/shared/change-card.md": "a398774018cba19a1ab9b915a7d8b3507166738e22c3adceb008ccf967b5a5dc",
+  "examples/evaluation/n07-pilot/participant-kit/shared/commercial-draft.md": "f20f390fdb18a4df75e67c1941cf671e134175e3b6fc519e5e1a9f5e3c5abd1c",
+  "examples/evaluation/n07-pilot/participant-kit/shared/narrative-drafts.md": "d2ecac602a2071faecd80f030bb95e18827ce474434622779193921f888d7c70",
+  "examples/evaluation/n07-pilot/participant-kit/shared/source-cards.md": "392b62b3128768139914a32a6e29e43ba7b5285ec3bc23569c984219125c0ae3",
+  "examples/evaluation/n07-pilot/protocol.zh-TW.md": "4a67b762ba86c5c1e8a375f12f6f79f542feb1b6a39948d5a2d5d6821ee656b9"
+}

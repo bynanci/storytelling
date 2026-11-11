@@ -1,0 +1,32 @@
+{"command": ["python3", "-m", "unittest", "discover", "-s", "examples/evaluation/n07-pilot", "-p", "test_run_cli.py", "-k", "deep_manifest"], "exit_code": 1, "run_cli_sha256": "25962f5c5bb5caa3a2e1112583499cb5676edbd377d35327d1d80b9ec0481f8c"}
+E
+======================================================================
+ERROR: test_deep_manifest_is_rejected_before_output_or_process_invocation (test_run_cli.MeasurementTests.test_deep_manifest_is_rejected_before_output_or_process_invocation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 131, in test_deep_manifest_is_rejected_before_output_or_process_invocation
+    self.invoke()
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 42, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 189, in run_manifest
+    data, paths, manifest_before = _load_manifest(manifest_path, root)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 76, in _load_manifest
+    data = json.loads(raw.decode("utf-8"), object_pairs_hook=_unique_object)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py", line 359, in loads
+    return cls(**kw).decode(s)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py", line 354, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+RecursionError: maximum recursion depth exceeded while decoding a JSON array from a unicode string
+
+----------------------------------------------------------------------
+Ran 1 test in 0.007s
+
+FAILED (errors=1)

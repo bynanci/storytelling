@@ -1,0 +1,96 @@
+{
+  "kind": "engineering-preflight-finding",
+  "human_failure": false,
+  "initial_manifest_sha256": "9e9dd64a35c89c8d81e890e1685de82db0a2f1260ba29cd16ddc795824b2ee73",
+  "initial_checkout": {
+    "commit": "ce73836caa86502933f538821fdbf5dac92c1224",
+    "dirty": true,
+    "available": true
+  },
+  "case": {
+    "id": "n01-corrected-history",
+    "args": [
+      "track-narrative-revisions",
+      "examples/evaluation/n07-pilot/facilitator/ledger-corrected.json"
+    ],
+    "expected_exit": 0,
+    "warmup": {
+      "index": 0,
+      "exit_code": 1,
+      "wallclock_ms": 1.412344,
+      "stdout_sha256": "9e1dac4d3307a267017f9f445afad90c97e3dd9276eab7db53ab006a7723ba99",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "timed_out": false,
+      "launch_error": false
+    },
+    "measured_runs": [
+      {
+        "index": 1,
+        "exit_code": 1,
+        "wallclock_ms": 1.155397,
+        "stdout_sha256": "9e1dac4d3307a267017f9f445afad90c97e3dd9276eab7db53ab006a7723ba99",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false,
+        "launch_error": false
+      },
+      {
+        "index": 2,
+        "exit_code": 1,
+        "wallclock_ms": 1.233024,
+        "stdout_sha256": "9e1dac4d3307a267017f9f445afad90c97e3dd9276eab7db53ab006a7723ba99",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false,
+        "launch_error": false
+      },
+      {
+        "index": 3,
+        "exit_code": 1,
+        "wallclock_ms": 1.098161,
+        "stdout_sha256": "9e1dac4d3307a267017f9f445afad90c97e3dd9276eab7db53ab006a7723ba99",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false,
+        "launch_error": false
+      },
+      {
+        "index": 4,
+        "exit_code": 1,
+        "wallclock_ms": 1.308388,
+        "stdout_sha256": "9e1dac4d3307a267017f9f445afad90c97e3dd9276eab7db53ab006a7723ba99",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false,
+        "launch_error": false
+      },
+      {
+        "index": 5,
+        "exit_code": 1,
+        "wallclock_ms": 1.671323,
+        "stdout_sha256": "9e1dac4d3307a267017f9f445afad90c97e3dd9276eab7db53ab006a7723ba99",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false,
+        "launch_error": false
+      }
+    ],
+    "wallclock_ms_summary": {
+      "count": 5,
+      "min": 1.098161,
+      "median": 1.233024,
+      "max": 1.671323
+    },
+    "replay_identical": true,
+    "failures": [
+      "unexpected_exit"
+    ],
+    "success": false
+  },
+  "actual_diagnostic": {
+    "error": {
+      "code": "revision.pending_review",
+      "path": "$.events[1].unit_id"
+    },
+    "ok": false
+  },
+  "current_reproducer": "examples/evaluation/n07-pilot/facilitator/ledger-batch-pending.json",
+  "classification": "accepted pending-review guard, not a changed runtime defect",
+  "response": "Keep guard; primary native task uses a new versioned NarrativeDocumentV1 snapshot. Independent ledger probes are engineering controls, not one combined history.",
+  "next_task_draft": "N07-UX01: design an explicit atomic multi-unit correction/review workflow before any implementation"
+}

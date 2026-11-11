@@ -1,0 +1,269 @@
+EEEEEEEEEEEEEEEEEEEE
+======================================================================
+ERROR: test_nondeterminism_and_source_mutation_are_failures (test_run_cli.MeasurementTests.test_nondeterminism_and_source_mutation_are_failures)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 153, in test_nondeterminism_and_source_mutation_are_failures
+    result = self.invoke(runs=2)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+======================================================================
+ERROR: test_refuses_existing_output_without_touching_private_records (test_run_cli.MeasurementTests.test_refuses_existing_output_without_touching_private_records)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 55, in test_refuses_existing_output_without_touching_private_records
+    self.invoke()
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+======================================================================
+ERROR: test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing (test_run_cli.MeasurementTests.test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing) (data={'schema_version': 2, 'input_files': ['input.json'], 'cases': [{'id': 'narrative', 'args': ['render-narrative', 'input.json'], 'expected_exit': 0}]})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 87, in test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing
+    self.invoke()
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+======================================================================
+ERROR: test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing (test_run_cli.MeasurementTests.test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing) (data={'schema_version': 1, 'input_files': ['input.json'], 'cases': [{'id': 'narrative', 'args': ['render-narrative', 'input.json'], 'expected_exit': 0}], 'unexpected': True})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 87, in test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing
+    self.invoke()
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+======================================================================
+ERROR: test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing (test_run_cli.MeasurementTests.test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing) (data={'schema_version': 1, 'input_files': ['../outside.json'], 'cases': [{'id': 'narrative', 'args': ['render-narrative', 'input.json'], 'expected_exit': 0}]})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 87, in test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing
+    self.invoke()
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+======================================================================
+ERROR: test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing (test_run_cli.MeasurementTests.test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing) (data={'schema_version': 1, 'input_files': ['missing.json'], 'cases': [{'id': 'narrative', 'args': ['render-narrative', 'input.json'], 'expected_exit': 0}]})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 87, in test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing
+    self.invoke()
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+======================================================================
+ERROR: test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing (test_run_cli.MeasurementTests.test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing) (data={'schema_version': 1, 'input_files': ['input.json'], 'cases': []})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 87, in test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing
+    self.invoke()
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+======================================================================
+ERROR: test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing (test_run_cli.MeasurementTests.test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing) (data={'schema_version': 1, 'input_files': ['input.json'], 'cases': [{'id': '../escape', 'args': ['render-narrative', 'input.json'], 'expected_exit': 0}]})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 87, in test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing
+    self.invoke()
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+======================================================================
+ERROR: test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing (test_run_cli.MeasurementTests.test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing) (data={'schema_version': 1, 'input_files': ['input.json'], 'cases': [{'id': 'bad', 'args': ['export-otio', 'input.json'], 'expected_exit': 0}]})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 87, in test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing
+    self.invoke()
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+======================================================================
+ERROR: test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing (test_run_cli.MeasurementTests.test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing) (data={'schema_version': 1, 'input_files': ['input.json'], 'cases': [{'id': 'bad', 'args': ['render-narrative', '-'], 'expected_exit': 0}]})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 87, in test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing
+    self.invoke()
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+======================================================================
+ERROR: test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing (test_run_cli.MeasurementTests.test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing) (data={'schema_version': 1, 'input_files': ['input.json'], 'cases': [{'id': 'bad', 'args': ['render-narrative', 'undeclared.json'], 'expected_exit': 0}]})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 87, in test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing
+    self.invoke()
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+======================================================================
+ERROR: test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing (test_run_cli.MeasurementTests.test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing) (data={'schema_version': 1, 'input_files': ['input.json'], 'cases': [{'id': 'bad', 'args': ['render-narrative', 'input.json'], 'expected_exit': 2}]})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 87, in test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing
+    self.invoke()
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+======================================================================
+ERROR: test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing (test_run_cli.MeasurementTests.test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing) (data={'schema_version': 1, 'input_files': ['input.json'], 'cases': [{'id': 'narrative', 'args': ['render-narrative', 'input.json'], 'expected_exit': 0}, {'id': 'narrative', 'args': ['render-narrative', 'input.json'], 'expected_exit': 0}]})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 87, in test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing
+    self.invoke()
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+======================================================================
+ERROR: test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing (test_run_cli.MeasurementTests.test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing) (kwargs={'runs': 0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 94, in test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing
+    self.invoke(**kwargs)
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+======================================================================
+ERROR: test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing (test_run_cli.MeasurementTests.test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing) (kwargs={'runs': 21})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 94, in test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing
+    self.invoke(**kwargs)
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+======================================================================
+ERROR: test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing (test_run_cli.MeasurementTests.test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing) (kwargs={'timeout': 0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 94, in test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing
+    self.invoke(**kwargs)
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+======================================================================
+ERROR: test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing (test_run_cli.MeasurementTests.test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing) (kwargs={'timeout': 61})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 94, in test_rejects_bad_manifest_paths_commands_and_run_bounds_before_writing
+    self.invoke(**kwargs)
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+======================================================================
+ERROR: test_timeout_is_recorded_separately_and_does_not_become_completion (test_run_cli.MeasurementTests.test_timeout_is_recorded_separately_and_does_not_become_completion)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 137, in test_timeout_is_recorded_separately_and_does_not_become_completion
+    result = self.invoke(runs=1, timeout=1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+======================================================================
+ERROR: test_unexpected_exit_is_machine_failure_with_saved_evidence (test_run_cli.MeasurementTests.test_unexpected_exit_is_machine_failure_with_saved_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 129, in test_unexpected_exit_is_machine_failure_with_saved_evidence
+    result = self.invoke(runs=1)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+======================================================================
+ERROR: test_warmup_is_excluded_from_process_timing_and_human_metrics_absent (test_run_cli.MeasurementTests.test_warmup_is_excluded_from_process_timing_and_human_metrics_absent)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 103, in test_warmup_is_excluded_from_process_timing_and_human_metrics_absent
+    result = self.invoke(runs=2)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/test_run_cli.py", line 46, in invoke
+    return run_cli.run_manifest(self.cli, self.manifest, self.out,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-n07-pilot/examples/evaluation/n07-pilot/run_cli.py", line 12, in run_manifest
+    raise NotImplementedError("N-07 measurement helper not implemented")
+NotImplementedError: N-07 measurement helper not implemented
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.010s
+
+FAILED (errors=20)
