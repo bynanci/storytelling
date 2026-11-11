@@ -1,0 +1,52 @@
+{
+  "decoder": "Pillow 13.0.0",
+  "format": "PNG",
+  "size": [
+    640,
+    360
+  ],
+  "mode": "RGBA",
+  "fills": {
+    "blue_canopy": {
+      "rgb": [
+        67,
+        116,
+        131
+      ],
+      "pixel_count": 5719,
+      "bbox_inclusive": [
+        112,
+        158,
+        307,
+        248
+      ],
+      "centroid": [
+        184.18884420353208,
+        201.73247071166287
+      ],
+      "expected_side": "left",
+      "side_check_passed": true
+    },
+    "ochre_thread": {
+      "rgb": [
+        206,
+        147,
+        62
+      ],
+      "pixel_count": 3002,
+      "bbox_inclusive": [
+        443,
+        154,
+        510,
+        217
+      ],
+      "centroid": [
+        476.5383077948035,
+        186.63424383744172
+      ],
+      "expected_side": "right",
+      "side_check_passed": true
+    }
+  },
+  "passed": true
+}

@@ -134,6 +134,7 @@ M3-03 must establish that the prior request stopped before readback can support 
 - [ADR 0001](adr/0001-scope-and-boundaries.md) defines the Rust extraction strategy.
 - [ADR 0002](adr/0002-exact-time-and-wire.md) defines time and wire constraints.
 - [ADR 0003](adr/0003-license-and-provenance.md) records repository licensing and source attribution.
+- [ADR 0008](adr/0008-local-png-host-feasibility.md) proposes the N-12 local PNG delivery boundary with separate host and readback evidence.
 
 <a id="固定時間窗規劃器"></a>
 

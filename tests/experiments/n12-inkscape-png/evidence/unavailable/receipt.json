@@ -1,0 +1,18 @@
+{
+  "trial": "N-12 / N-R12 G0-G2",
+  "host": "Inkscape",
+  "capability": "local SVG to PNG",
+  "platform": "Linux",
+  "request_sha256": "14014b129c6790129e28ecd6cf2d26fc591bc25a5a122bfb6bbc0bbeb945c517",
+  "source": "skills/storytelling/assets/umbrella-workshop/bench.svg",
+  "source_sha256_before": "87687584b8f4d01360feea9fbf84e510560f44c745a5973e001e55c01a35d1c9",
+  "probe": "shutil.which('inkscape')",
+  "available": false,
+  "provider_invocations": [],
+  "status": "brief_delivered_png_pending",
+  "host_version": "not invoked",
+  "missing_capability": "SVG-to-PNG export entry point is not exposed on PATH",
+  "png_created": false,
+  "source_sha256_after": "87687584b8f4d01360feea9fbf84e510560f44c745a5973e001e55c01a35d1c9",
+  "source_unchanged": true
+}
