@@ -70,4 +70,4 @@ unmerged N-12 and author-study files. Those out-of-scope references were
 removed. Corrected exact-head run [#285](https://github.com/bynanci/storytelling/actions/runs/42987880590)
 passed all six configured jobs on `0ffca71dbf31cd3182df2d36834e641c9b3d5201`:
 Quality and contracts, Dependency audit, Linux, Windows, macOS and Required
-gates. A later documentation-only commit will receive its own exact-head run.
+gates. The branch was reconciled with main `c1f164354c3e88d90acb32075828954091c149d8`, retaining its task-index updates. Exact-head run [#315](https://github.com/bynanci/storytelling/actions/runs/42995331966) passed all six configured jobs on `406db25514449254df1cef286846699e652352a1`.
