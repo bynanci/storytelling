@@ -2,8 +2,8 @@
 
 Base: `a7907d071894959487a0ae6df6948e09fef70596`. Scope requested 2026-11-11:
 connect an actual `plan-story` stdout proposal to reproducible picture OTIO and
-an immutable in-process review binding. This is a new bounded profile, pending
-review; it does not accept the separate PR #28 security candidate.
+an immutable in-process review binding. This bounded technical profile merged through PR #44 under the user's completed-and-verified merge authority; it does not accept the separate PR #28
+security candidate or claim independent human review.
 
 Inputs are the complete successful planner CLI JSON, an admitted finite-v1
 OpenFilm composition snapshot and the existing strict declared review context.

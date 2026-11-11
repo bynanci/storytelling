@@ -1,32 +1,32 @@
 {
   "schema_version": 1,
   "task": "M3-01/P2",
-  "state": "implemented-review-candidate",
+  "state": "accepted-bounded-technical-delivery",
   "base": "a7907d071894959487a0ae6df6948e09fef70596",
   "scope": "selected-planner-proposal-to-read-only-otio-review",
   "tasks": [
     {
       "id": "M3-01/P2-contract",
-      "state": "proposed-for-review",
+      "state": "bounded-contract-implemented-and-self-reviewed",
       "depends_on": []
     },
     {
       "id": "M3-01/P2-implementation",
-      "state": "implemented",
+      "state": "integrated-via-pr44",
       "depends_on": [
         "M3-01/P2-contract"
       ]
     },
     {
       "id": "M3-01/P2-verification",
-      "state": "local-verified-hosted-pending",
+      "state": "same-head-and-main-automated-verified",
       "depends_on": [
         "M3-01/P2-implementation"
       ]
     },
     {
       "id": "M3-01/P2-acceptance",
-      "state": "pending-profile-and-maintainer-review",
+      "state": "accepted-bounded-technical-delivery-under-user-merge-authority",
       "depends_on": [
         "M3-01/P2-verification"
       ]
@@ -112,5 +112,19 @@
     "M3-03 FilmCraft execute/readback",
     "M4-01 OpenFilm feature flag"
   ],
-  "critical_future_fault": "Host may have applied before response timeout. Persist unknown, read back project before retry; if ambiguous, block. Never blindly resend."
+  "critical_future_fault": "Host may have applied before response timeout. Persist unknown, read back project before retry; if ambiguous, block. Never blindly resend.",
+  "acceptance_basis": "User standing completed-and-verified merge authorization; all same-head and main checks passed. Technical self-review only; no independent human G2 or editorial acceptance asserted. PR #28 remains unaccepted.",
+  "delivery": {
+    "pr": 44,
+    "head": "42329d987f032ba979d76b4b0c1db993102a8383",
+    "tree": "5b36af3c76656924359f5043338c7fde027fadc9",
+    "merge": "29efb79e4f68291ffd70259573a63e9f2bf2f113",
+    "head_runs": [
+      42931642146,
+      42931558985
+    ],
+    "main_run": 42932270960,
+    "jobs_per_run": 6,
+    "each_run_all_success": true
+  }
 }

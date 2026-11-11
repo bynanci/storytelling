@@ -1,6 +1,6 @@
 # ADR 0004: compile the selected proposal and review the actual artifact
 
-Date: 2026-11-11. Status: implemented candidate, pending review.
+Date: 2026-11-11. Status: bounded technical delivery accepted via PR #44 under verified-merge authority; no independent or editorial acceptance asserted.
 Task: M3-01/P2, requirements M3-PB01–PB06.
 
 The composition-only review profile proves consistency of an imported timeline;

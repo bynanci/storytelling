@@ -110,9 +110,9 @@ permission changes, nor replace real-media/host or human editorial acceptance.
 | M2-01 | P1 / accepted | Bounded StoryBrief hard constraints vs preferences and typed conflicts | M1 profile; PR #17 merged | M2-B01–B06; manual choices preserved, declared reference/membership/order contradictions explained; full planner/feasibility separate |
 | M2-02 | P1 / accepted | Finite fixed-window selection and shot planner | Accepted M2-01; PR #22 merged | M2-P01–P06; exact source windows, hard choices/order, deterministic declared ranks/reason paths; full solver remains open |
 | M2-03 | P1 / accepted | Actual selected-domain TS/native live shadow and completed PR register | Accepted M2-02; tracking #24 | M2-S01–S06; exact 64-pair evidence, fail-closed regressions, source/tool provenance and same-head acceptance |
-| M3-01 | P1 / bounded subprofile accepted; broader milestone proposed | Approval and compiled-plan identity contracts | M1-03, M2-02 | Accepted subprofile binds same-input finite OTIO and declared context; trusted approval, planner bridge and execution remain open |
-| M3-01/P2 | P1 / review candidate | Selected fixed-window proposal → actual read-only OTIO review bundle | Accepted M2-02 and M3-01/P1 | M3-PB01–PB06; reproducible chosen cuts/loss report; changed asset/cut/loss invalidates review; no Catalog/host writes |
-| M3-02 | P1 / proposed, queued after P2 acceptance | SQLite operation journal and owner-fenced recovery | Accepted M3-01/P2; separate trusted execution authorization contract | Crash/restart/retry/late callback/ack failure; persist unknown outcome and exact operation identity before host call; no duplicate apply |
+| M3-01 | P1 / bounded subprofile accepted; broader milestone proposed | Approval and compiled-plan identity contracts | M1-03, M2-02 | Accepted subprofile binds same-input finite OTIO and declared context; planner bridge is delivered in P2; trusted approval and execution remain open |
+| M3-01/P2 | P1 / accepted bounded technical delivery | Selected fixed-window proposal → actual read-only OTIO review bundle | Accepted M2-02 and M3-01/P1 | M3-PB01–PB06; reproducible chosen cuts/loss report; changed asset/cut/loss invalidates review; no Catalog/host writes |
+| M3-02 | P1 / ready for contract and test-first journal work | SQLite operation journal and owner-fenced recovery | Accepted M3-01/P2; journal does not itself grant execution authority | Crash/restart/retry/late callback/ack failure; persist unknown outcome and exact operation identity before host call; no duplicate apply |
 | M3-03 | P1 / proposed, queued after M3-02 | FilmCraft executor with unknown-result reconciliation | Accepted M3-02 | New isolated project only; already-applied + response-timeout requires readback before retry; ambiguous readback blocks; no blind Undo rollback |
 | M4-01 | P2 / proposed | Thin TypeScript client and one OpenFilm feature flag | M2-03, M3-03 | One writer/authority; external sample consumes stable CLI protocol |
 | M4-02 | P2 / proposed | Story Companion review-to-host user journey | M4-01 | Propose/compare/approve/execute/verify visible and accessible |
@@ -300,7 +300,7 @@ records the technical review and exact evidence boundaries.
 
 ## M3-01/P2 selected proposal to read-only OTIO
 
-The [candidate contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md),
+The [bounded contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md),
 [ADR](docs/adr/0004-selected-proposal-artifact-binding.md),
 [work index](docs/migration/m3-planner-review-work-index.json) and
 [comparison/validation record](docs/migration/records/M3-01-P2.md) own this PR.
@@ -309,8 +309,8 @@ The [candidate contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md),
 - [x] Same-snapshot asset matching, exact selected cuts/order and immutable actual-artifact bundle implemented.
 - [x] Read-only prepare/export/check CLI and native regression tests supplied.
 - [x] Official parser roundtrip oracle supplied for the selected video/still profiles; actual results are recorded separately.
-- [ ] Same-head hosted gates and independent profile/maintainer review completed.
-- [ ] Accept this bounded bridge before starting M3-02 implementation.
+- [x] Both head runs and post-merge main run passed all six jobs; technical self-review complete, without an independent-review claim.
+- [x] Bounded technical bridge integrated via PR #44 under standing verified-merge authority; M3-02 is next, with execution authority still separate.
 
 Follow the dependency order P2 -> operation journal -> FilmCraft execution/readback ->
 OpenFilm feature flag. The critical future fault is apply-success/response-timeout:

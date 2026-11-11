@@ -9,7 +9,7 @@
 main 另已整合 PR #32 的 `prepare-review`／`check-review` 有界 profile：同輸入 OTIO 綁定與 declared-context freshness；
 批准、來源、宿主與執行旗標均為 false。有限 OpenFilm review runtime 對照與 Rust digest/error-order 回歸已補入 [Issue #27](https://github.com/bynanci/storytelling/issues/27) 證據；M3-01/P1 有界 profile 已依[簽署驗收紀錄](docs/migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md)完成 G2 接受，此接受不涵蓋 PR #28 或更廣泛的 M3 工作。
 
-[M3-01/P2 候選](docs/migration/PLANNER_OTIO_REVIEW_V1.md)另接通選定的 `plan-story`
+[M3-01/P2 已合併唯讀橋接](docs/migration/PLANNER_OTIO_REVIEW_V1.md)另接通選定的 `plan-story`
 stdout → `prepare-story-review`／`export-story-otio` → `check-story-review`。
 bundle 包含實際 OTIO；提案、snapshot 或接受的轉換損失變更會使舊審核失效。
 這仍是唯讀宣告／產物一致性檢查，不授予批准或宿主執行權。

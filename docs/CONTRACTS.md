@@ -11,9 +11,9 @@ runnable examples; each linked profile owns its strict wire fields and limits.
 | `audit-brief` | StoryBrief v1 JSON / 1,048,576 | `{"ok":true,"audit":...}` | [Bounded brief audit](migration/STORY_BRIEF_V1.md) |
 | `plan-story` | Fixed-window planner envelope JSON / 1,048,576 | `{"ok":true,"planning":...}` | [Fixed-window planner](migration/FIXED_WINDOW_PLANNER_V1.md) |
 | `verify-source` | Supplied bytes / 16,777,216, plus expected SHA-256 | `{"ok":true,"verification":...}` | [Supplied-buffer contract](migration/FILMCRAFT_25_V1.md#native-supplied-buffer-contract) |
-| `prepare-story-review` | Planner stdout / 4,194,336 + finite snapshot file / 1,048,576 + context file / 65,536 | `{ok:true,review:...,otio:Timeline}`; actual artifact included | [Selected proposal candidate](migration/PLANNER_OTIO_REVIEW_V1.md) |
-| `export-story-otio` | Same three inputs | The same native OTIO directly | [Selected proposal candidate](migration/PLANNER_OTIO_REVIEW_V1.md) |
-| `check-story-review` | Prepare bundle / 4,292,672 + current proposal/snapshot/context | `{ok:true,freshness:...}`; stale exits 1 | [Selected proposal candidate](migration/PLANNER_OTIO_REVIEW_V1.md) |
+| `prepare-story-review` | Planner stdout / 4,194,336 + finite snapshot file / 1,048,576 + context file / 65,536 | `{ok:true,review:...,otio:Timeline}`; actual artifact included | [Bounded selected proposal](migration/PLANNER_OTIO_REVIEW_V1.md) |
+| `export-story-otio` | Same three inputs | The same native OTIO directly | [Bounded selected proposal](migration/PLANNER_OTIO_REVIEW_V1.md) |
+| `check-story-review` | Prepare bundle / 4,292,672 + current proposal/snapshot/context | `{ok:true,freshness:...}`; stale exits 1 | [Bounded selected proposal](migration/PLANNER_OTIO_REVIEW_V1.md) |
 
 The original single-input commands read the named regular file or `-` for stdin;
 `verify-source` also requires an expected digest argument. The new story-review

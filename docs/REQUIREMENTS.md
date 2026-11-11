@@ -212,7 +212,7 @@ The encoding intentionally differs and no full source parity is claimed. The his
 functional RED was unproven and is explicitly waived as a blocker in the signed acceptance
 record; it is not represented as a test that passed. See the [M3-01 work index](migration/m3-01-p1-work-index.json).
 
-## M3-01/P2 selected proposal to actual read-only OTIO (review candidate)
+## M3-01/P2 selected proposal to actual read-only OTIO (merged bounded delivery)
 
 The [contract](migration/PLANNER_OTIO_REVIEW_V1.md) and
 [work index](migration/m3-planner-review-work-index.json) implement the requested

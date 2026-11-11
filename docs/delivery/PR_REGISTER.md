@@ -299,3 +299,26 @@ The issue's six items are checked with item 2 explicitly recorded as a waiver
 disposition, not a historical functional test result. The checked-in machine
 work index and appended `pr-register.json` observation carry the same final
 receipts and preserve the earlier pre-acceptance observations.
+
+## Selected planner proposal → read-only OTIO — 2026-11-11
+
+[PR #44](https://github.com/bynanci/storytelling/pull/44) delivers bounded M3-01/P2,
+M3-PB01–PB06. It compiles the selected proposal's actual cuts/order against matched
+snapshot asset facts and includes the real artifact in a checked review bundle.
+Changed supplied asset/cut/loss choices stale/reject; unsupported audio/effects
+reject. No Catalog or FilmCraft project is written.
+
+Head `42329d987f032ba979d76b4b0c1db993102a8383` merged as
+`29efb79e4f68291ffd70259573a63e9f2bf2f113`; both share tree
+`5b36af3c76656924359f5043338c7fde027fadc9`. Head CI runs
+42931642146/42931558985 and main run 42932270960 each passed all six jobs, including
+Linux/Windows/macOS fixed digest vectors and the official OTIO roundtrip step.
+Original composition-only regressions, lockfile, licenses and production
+dependency boundary are retained.
+
+This is a bounded technical delivery under the user's verified-merge authority,
+with self-review disclosed. PR #28's independent G2 security review and explicit
+candidate acceptance remain pending. Human editorial acceptance and execution
+are separate. Tasks now queue M3-02 journal, M3-03 FilmCraft apply/readback, then
+M4 OpenFilm feature flag. A host apply timeout requires persisted unknown state
+and readback before retry; ambiguous outcome must stop instead of duplicate apply.

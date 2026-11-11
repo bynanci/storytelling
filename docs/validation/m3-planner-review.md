@@ -21,8 +21,8 @@ results follow below.
 
 The implemented path is read-only. Synthetic Catalog/project sentinels and explicit
 input files are compared byte-for-byte; PATH excludes external runtimes in actual
-CLI tests. The official oracle checks format only. Independent human profile
-review, PR #28 G2 acceptance, media/host observation and execution remain separate.
+CLI tests. The official oracle checks format only. No independent human review is asserted; PR #28 G2 acceptance, media/host
+observation, human editorial acceptance and execution remain separate.
 
 ## Observed local results
 
@@ -46,3 +46,19 @@ Self-review checked source/type/time bounds, record/artifact integrity, input-on
 I/O, capability/loss changes and the timeout dependency boundary. This is not an
 independent review. Same-head hosted checks are recorded on the PR after upload;
 no local run is described as hosted or as a human acceptance.
+
+## PR #44 delivery receipt
+
+Head `42329d987f032ba979d76b4b0c1db993102a8383`, tree
+`5b36af3c76656924359f5043338c7fde027fadc9` merged as
+`29efb79e4f68291ffd70259573a63e9f2bf2f113`; the merge tree equals the verified head.
+Both head runs [42931642146](https://github.com/bynanci/storytelling/actions/runs/42931642146)
+and [42931558985](https://github.com/bynanci/storytelling/actions/runs/42931558985)
+passed all six jobs, including the new official-parser bridge step. Post-merge
+main run [42932270960](https://github.com/bynanci/storytelling/actions/runs/42932270960)
+also passed Quality, Required, Linux, Windows, macOS and Dependency audit.
+The fixed artifact/binding vector passed on all three OSes.
+
+This integrates/accepts the bounded technical delivery under the user's standing
+verified-merge instruction. It is technical self-review, not an independent human
+G2 approval or editorial sign-off; PR #28 acceptance remains pending.
