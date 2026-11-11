@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: MIT -->
 # ADR 0005: Independent NarrativeDocumentV1 contract
 
-- **Status:** Proposed for G2 review; not accepted or frozen
+- **Status:** Accepted for N-03 implementation by maintainer direction · 2026-11-11
 - **Date:** 2026-11-11
 - **Task / requirement:** Issue #49 · N-02 / N-R02
 - **Design base:** `main` at `906c2c64aba820c06e4a74f4348c746b53e8b17b`
@@ -19,15 +19,16 @@ only. The packet's human study/results table is blank: no author has performed
 the matched task, and the proposed thresholds have not been accepted by a
 maintainer.
 
-At this design base, Issue #48 still says “Keep #49 blocked until the maintainer
-records the N-01 decision”; it has no comments recording such a decision. The
-current maintainer instruction asks for Issue #49 now. This ADR treats that
-instruction as authorization to **prepare and review a G2 proposal only**. It
-does not claim an N-01 continue/narrow/stop decision, waive a human trial, freeze
-this schema, or authorize Issue #50. Whether #50 must wait for the N-01 author
-pilot remains an explicit maintainer decision.
+At the original design base, Issue #48 said “Keep #49 blocked until the maintainer
+records the N-01 decision” and had no comments recording such a decision. The
+maintainer's current instruction explicitly identifies this ADR as accepted and
+authorizes Issue #50. That instruction is recorded here as acceptance of the V1
+contract for N-03 and a decision to start N-03 without waiting for the N-01 human
+author pilot. It does **not** claim that the pilot or N-01 continue/narrow/stop
+decision has happened; that evidence remains outstanding for the author-pilot
+milestone and any release decision.
 
-## Decision proposed
+## Decision
 
 Add an independent, strict, versioned `NarrativeDocumentV1` format that models
 declared source units and named presentations without video assets, media paths,
@@ -58,7 +59,7 @@ still only a set of declarations.
 | --- | --- | --- | --- |
 | Extend M0 `PlanDocumentV1` | Reuses strict JSON and existing validation | M0 assets, hashes, durations, shots and source ranges encode video. Narrative-only authors would need fake assets/times or a breaking M0 V1 change; this violates N-R02's no-media case. | Reject |
 | Extend `StoryBriefV1` or planner V1 | Reuses IDs and hard-order audit | Brief/planner contracts mean selected video assets, candidate windows, durations, shot counts and M0 plan output. Oral beats and spatial single-image composition would be shoehorned into video planning, and existing consumers would risk changed audit/plan behavior. | Reject |
-| Add independent `NarrativeDocumentV1` | Gives cross-media authors their own version/refusal and loss boundary; variants can share source IDs without fabricated media | Adds a schema, parser profile and future adapter/mapping work; later interoperability must be explicit. | **Propose** |
+| Add independent `NarrativeDocumentV1` | Gives cross-media authors their own version/refusal and loss boundary; variants can share source IDs without fabricated media | Adds a schema, parser profile and future adapter/mapping work; later interoperability must be explicit. | **Accepted** |
 
 ## Semantic boundary
 
@@ -126,23 +127,31 @@ back-edge witness, and a multiple-cycle fixture expecting R03/R04/R05. The
 finding is addressed in the current proposal. This automated review is useful
 feedback, not the independent human G2 review required by SDLC.
 
-## G2 review conditions and open decisions
+## Acceptance and deferred work
 
-Before N-03 implementation, an independent reviewer and maintainer must record
-whether this exact profile is accepted, changes requested, or narrowed. The
-maintainer must also decide whether the N-01 human pilot/continue decision is a
-hard prerequisite to #50. Reviewers should specifically examine:
+The maintainer accepted this V1 boundary for N-03 on 2026-11-11 by directing
+Issue #50 to implement against this accepted ADR. The separate automated Codex
+review found a P2 ambiguity in choosing among multiple order cycles; commit
+`2499a9633952b79071d9d50ed91060565b48fcc3` defines deterministic DFS witness
+selection and adds a competing-cycle fixture. Re-review of that head reports no
+unresolved automated findings. This automated review is recorded as reviewer
+evidence, not as human author-study evidence.
 
-1. whether `based_on` is the right declaration name and whether non-observation
-   units must require a basis;
-2. whether association should be directed (as proposed) and whether V1 should
-   forbid derivation cycles;
-3. whether forbidding repeated use of a unit in one oral variant is acceptable;
-4. the 1 MiB/32-depth and collection/text budgets;
-5. the `single_illustration` profile's free-text brief versus structured spatial
-   roles; the design intentionally does not grow a general canvas model;
-6. whether JSON Schema Draft 2020-12 is an adequate published shape reference.
+N-03 is authorized to start without the N-01 author pilot. That is a decision
+about sequencing only. The study table remains blank and the measured
+continue/narrow/stop decision remains unmade; N-07 and any pilot/release decision
+must use actual author results.
 
-No issue author or implementer may count a self-review as independent G2
-acceptance. Until the reviewer/maintainer decision is recorded, this remains a
-proposal; #50 must not treat the fixtures as frozen.
+The accepted decisions for N-03 are: directed non-ordering associations;
+acyclic `based_on` derivation; non-observation units require a basis; one use
+of a source unit per oral variant; a 1 MiB input and the stated collection/text
+budgets; free-text composition for one illustration; and JSON Schema Draft
+2020-12 for the shape reference. Changes to these V1 semantics require a new
+reviewed decision/version, not an implementation-local reinterpretation.
+
+Deferred beyond N-03: immutable historical revision retention (N-04), structured
+spatial layers beyond a single brief, and claim/evidence substantiation (N-05).
+The #50 command selected by this implementation task is
+`storytelling render-narrative <FILE|->`: it validates and renders the declared
+variants deterministically for people to inspect. It does not generate new
+story text or infer facts.

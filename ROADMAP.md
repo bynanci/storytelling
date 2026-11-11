@@ -45,11 +45,10 @@ example beside each runnable technical slice so authors can use it from the skil
 | Choose the next use case | N-06 follows N-04 and draws on N-05 when available | Compare grouped and branching ideas for brainstorming, scene and reveal order for screenwriting, and a mapping from selected units to video assets. Advance one profile only if its fixture and author feedback identify a benefit the existing profiles cannot deliver. |
 | Decide whether to distribute a pilot | N-07 follows N-05. N-06 is optional for the first pilot. | Compare the core workflows against plain notes using the measures recorded in N-01. Report task completion, time to revise, attribution mistakes and aggregate author feedback. Record a continue, narrow or stop decision. A release has its own G5 decision. |
 
-As of 2026-11-11, Issue #49 has a proposed standalone NarrativeDocumentV1
-G2 design in [ADR 0005](docs/adr/0005-independent-narrative-document-v1.md).
-This is design preparation only: N-01's human pilot and study decision remain
-pending, #50 implementation has not started, and the proposed contract is not
-accepted until its independent review and maintainer decision are recorded.
+As of 2026-11-11, Issue #49's NarrativeDocumentV1 boundary is accepted for N-03
+by maintainer direction and recorded in [ADR 0005](docs/adr/0005-independent-narrative-document-v1.md).
+Issue #50 implementation may proceed without treating the N-01 pilot as complete.
+The N-01 human study remains pending for the later author-pilot decision.
 
 The [multimodal Rust backlog](TASKS.md#multimodal-rust-backlog) adds style profiles (N-08),
 audio cue sheets (N-09), the profile selected by N-06 (N-10), a mixed-media handoff

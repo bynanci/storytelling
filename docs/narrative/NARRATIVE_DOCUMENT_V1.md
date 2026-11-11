@@ -1,13 +1,13 @@
 <!-- SPDX-License-Identifier: MIT -->
 # NarrativeDocumentV1 profile
 
-**Status:** proposed for Issue #49 / N-R02 G2 review; not frozen.  
+**Status:** accepted for N-03 by maintainer direction on 2026-11-11.  
 **Schema:** [JSON Schema Draft 2020-12](../../contracts/narrative-document-v1.schema.json).  
 **Positive and negative fixtures:** [narrative-v1 fixtures](../../tests/fixtures/narrative-v1/README.md).
 
 This document is the normative semantic companion to the shape schema.
-“Must” and “must not” describe the proposed V1 profile. It is design material
-until an independent reviewer and maintainer record acceptance.
+“Must” and “must not” describe the accepted V1 profile for N-03. The V1 wire
+shape is frozen for this slice; later changes require a versioned decision.
 
 ## Purpose and boundary
 
@@ -177,23 +177,25 @@ cannot detect repeated raw JSON keys, raw byte/depth budgets, cross-reference
 revision equality, derivation cycles, or precedence semantics. The engine
 profile remains authoritative for those checks.
 
-## Package ownership and proposed CLI surface
+## Package ownership and N-03 CLI surface
 
 - **`storytelling-core`:** DTOs/enums for the V1 data only; no parser I/O,
   filesystem, clocks, hashes, inference, media access, or external authority.
-- **`storytelling-engine`:** pure bounded decode and validation API; duplicate
-  preflight, references/revisions, provenance and relation/order semantics,
-  stable diagnostics. No filesystem, model/network, database, clock or editor.
-- **`storytelling-cli` in Issue #50:** only after G2 acceptance, an explicit
-  `storytelling validate-narrative <FILE|->` command may read a bounded regular
-  file or stdin. Proposed success is one JSON line with
-  `scope: "declared-narrative-structure-only"`; domain rejection exits 1,
-  usage 2, I/O 3. This command is not part of the present G2 design PR.
+- **`storytelling-engine`:** pure bounded decode, validation and deterministic
+  projection of the declared variants; duplicate-key/depth preflight,
+  references/revisions, provenance and relation/order semantics, stable
+  diagnostics. No filesystem, model/network, database, clock or editor.
+- **`storytelling-cli` in Issue #50:** the explicit
+  `storytelling render-narrative <FILE|->` command reads at most 1 MiB from a
+  regular file or stdin, calls the engine, and writes deterministic
+  human-readable text. It prints oral beats in declared order and illustration
+  variants in declaration order, preserving each source ID/revision and origin.
+  Domain rejection exits 1, usage 2, I/O 3. It never auto-detects JSON.
 
-No command auto-detects narrative JSON. The future command is disabled by not
-calling it or leaving it out of the distribution; existing projects and video
-documents require no migration. It does not write a file, Catalog, project,
-timeline, or editor state.
+The command is opt-in. Omitting or not invoking it disables the narrative path;
+existing projects need no migration. It does not write a file, Catalog, project,
+timeline, or editor state. No new story text is inferred: it only validates and
+organizes presentation text already declared in the input.
 
 ## Video compatibility and regression inventory
 
@@ -216,18 +218,14 @@ implemented. A future new command is opt-in. Removing or not invoking that
 command disables the narrative path without editing old JSON or migrating a
 project. No existing digest may be reused as a NarrativeDocument digest.
 
-## Unresolved for G2 review
+## Deferred decisions and evidence
 
-1. Whether the N-01 human pilot and continue/narrow/stop decision are required
-   before starting #50; the issue body currently makes that decision pending.
-2. Whether N-04 needs retained immutable revision history or an external
-   revision store; V1 carries current revision numbers only.
-3. Whether an oral variant should be allowed to cite one unit in multiple beats;
-   V1 forbids repetition for deterministic strict ordering.
-4. Whether future spatial profiles require structured foreground/background
-   fields; V1 keeps one single-image composition brief in text.
-5. Whether claim/evidence provenance belongs in N-05 rather than expanding V1;
-   proposed decision is to defer it.
-6. The exact public Rust API naming and whether the JSON Schema is checked in
-   release artifacts; #50 should implement only after maintainers settle these.
-
+1. N-01's human author pilot and continue/narrow/stop decision have not happened.
+   The maintainer authorized N-03 without that pilot; this does not substitute
+   for the pilot's actual measures.
+2. N-04 must decide how old unit revisions are retained and queried. V1 carries
+   only current unit revisions.
+3. Future spatial profiles may need structured foreground/background fields;
+   N-03 uses the accepted free-text single-image brief.
+4. Claim/evidence support semantics remain N-05 work and are not implied by
+   `based_on`.
