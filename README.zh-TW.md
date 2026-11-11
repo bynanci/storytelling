@@ -1,8 +1,14 @@
 # Storytelling
 
-[English](README.md) · [多模態樣板集](skills/storytelling/references/multimodal-templates.md) · [跨平台安裝](https://github.com/bynanci/storytelling/blob/main/docs/PLATFORMS.md) · [貢獻指南](CONTRIBUTING.md) · [CI](https://github.com/bynanci/storytelling/actions/workflows/ci.yml)
+[English](README.md) · [試做工作坊](#把同一份素材做成廣播與海報) · [安裝](#從-skill-開始) · [樣板集](skills/storytelling/references/multimodal-templates.md) · [參與開發](CONTRIBUTING.md) · [CI](https://github.com/bynanci/storytelling/actions/workflows/ci.yml)
 
-Storytelling 是給編劇、插畫師、剪輯師，以及日常想把事情說清楚的人使用的開源 [Agent Skill](skills/storytelling/SKILL.md)。你可以給它筆記、宿主能讀取的圖片或錄音，也可以提供畫面描述或逐字稿，指定受眾、作品形式與想嘗試的敘事手法。相同材料可以寫成一場戲、一份構圖提案、一段廣播稿，或一則邀請文案。
+Storytelling 是一套開源 [Agent Skill](skills/storytelling/SKILL.md)，幫助作者把手上的素材，整理成特定受眾聽得懂、看得進去的故事。你可以提供筆記、Agent 能讀取的圖片或錄音，也可以用畫面描述或逐字稿，請它寫出口述、劇本場景、插畫構圖或聲音腳本。
+
+## 為什麼需要 Storytelling？
+
+兩位鄰居一起修門。社區電子報用「一個人扶著門，另一個人把鉸鏈上的螺絲鎖緊」開場，讀者先看見兩人的合作。口述如果從「這一次，門關上時沒有再磨到地面」講起，就能留下「剛才是誰做了什麼」這個疑問。同一件事，先讓人知道哪個細節，會改變對方怎麼理解它。Storytelling 可以寫出這兩種開場，讓你依這次想傳達的意義選擇。
+
+只想跟朋友說一件小事，一段話就夠了。要把它改成口述和兩張插畫，才需要照顧版本之間的關係。假設筆記更正了鎖螺絲的人，你可以請 Skill 指出哪些句子和畫面需要重看。若你只同意在一張插畫裡加上想像的紅傘，那把傘就只屬於那一版。詮釋與取捨由作者決定。[作者練習素材](https://github.com/bynanci/storytelling/blob/main/docs/narrative/N-01-AUTHOR-STUDY.zh-TW.md) · [研究與產品設計依據](https://github.com/bynanci/storytelling/blob/main/docs/WHY_STORYTELLING.md)
 
 ## 把同一份素材做成廣播與海報
 
@@ -43,7 +49,7 @@ Storytelling 是給編劇、插畫師、剪輯師，以及日常想把事情說�
 
 ## Rust 對跨模態創作的支援進度
 
-上述樣板已可交給 Agent 起草，也可以直接閱讀 Markdown 使用。現有 Rust CLI 能在既有規格內驗證影片提案與規劃鏡頭。跨模態來源對照、各形式的結構驗證與修訂影響追蹤，需要後續的 Rust 資料契約。各項缺口、開發順序與驗收條件已列入[多模態 Rust 任務與 Issues](TASKS.md#multimodal-rust-backlog)及[開發路線圖](ROADMAP.md)。
+上述樣板已可交給 Agent 起草，也可直接照 Markdown 使用。現有 Rust CLI 能驗證結構化影片提案，依提供的素材區間安排鏡頭順序。跨媒介的[敘事文件契約](https://github.com/bynanci/storytelling/blob/main/docs/narrative/NARRATIVE_DOCUMENT_V1.md)已採用，下一項開發工作是讓本機工具以同一份來源產出一段口述大綱與兩份插畫構圖，再接上來源修訂追蹤。[口述與插畫工作流](https://github.com/bynanci/storytelling/issues/50) · [修訂追蹤](https://github.com/bynanci/storytelling/issues/51) · [Rust 任務清單](TASKS.md#multimodal-rust-backlog) · [開發路線圖](ROADMAP.md)
 
 ## 從 Skill 開始
 
@@ -81,9 +87,9 @@ npx skills add ./node_modules/@bynanci/storytelling/skills/storytelling --skill 
 
 個人安裝、其他平台與各項驗證狀態，見[跨平台使用指南](https://github.com/bynanci/storytelling/blob/main/docs/PLATFORMS.md)。
 
-## 目前可用功能
+## 核對素材與修改草稿
 
-- **創作與改寫。** 把筆記整理成作品、比較不同表達方向並保留來源。某個細節改動時，找出哪些版本用到了它。[使用範例](skills/storytelling/references/examples.md)
+- **核對草稿。** 對照作者的筆記，標出推論或創作新增的細節，並請 Skill 修改受影響的版本。[使用範例](skills/storytelling/references/examples.md)
 - **安排複雜工作。** 流程手冊涵蓋相依步驟、獨立分支、審閱與有限次重試。隨附的 Python 腳本可選用來排列工作依賴或檢查已記錄的執行順序。[情境與迴圈手冊](skills/storytelling/references/graph-loops.md)
 - **追查佐證。** 若問題橫跨多份文件，且已有適用的 Graphify 索引，可以先定位候選段落，再讀原文核對。[Graphify 工具指引](skills/storytelling/references/graphify-tools.md)
 

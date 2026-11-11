@@ -1,68 +1,45 @@
 # Storytelling roadmap
 
-The roadmap is outcome-gated, not a promise of release dates. Package version
-`0.1.0-dev.0` is a development identifier; no package or release is published.
-See [TASKS](TASKS.md), [SDLC](docs/SDLC.md) and [architecture](docs/ARCHITECTURE.md).
+The first cross-media milestone is a correction an author can trust. If a
+source note changes, the author should be able to update the spoken account and
+identify the affected illustrations while keeping a deliberate choice in one
+version. The [product rationale](docs/WHY_STORYTELLING.md) explains the research
+and the cases where ordinary notes may already be sufficient.
 
 ## Product objective
 
-Give authors and integrators a portable way to turn source material into a
-structure they can explain, revise and hand off. A writing team can add the
-[Agent Skill](skills/storytelling/SKILL.md) to its own workspace for
-day-to-day drafting. A project with structured video data can use the local
-[CLI](docs/CLI_GUIDE.md) in a script or automation. These entry points serve
-different tasks and can be adopted independently. See the [platform guide](docs/PLATFORMS.md).
+| Where the work stands | What an author or integrator can do |
+| --- | --- |
+| Available · portable authoring skill | Bring an audience, purpose and material to the [Agent Skill](skills/storytelling/SKILL.md). Draft in a host agent, compare treatments or follow the [eight templates](skills/storytelling/references/multimodal-templates.md) by hand. The [workshop](skills/storytelling/references/workshop-demo.md) includes text, a diagram and a sound file. |
+| Accepted design · cross-media Rust contract | Build against the [NarrativeDocumentV1 profile](docs/narrative/NARRATIVE_DOCUMENT_V1.md) for oral outlines and single-image briefs. The renderer is the next implementation task. The accepted design provides no measured author results. |
+| Available · bounded video CLI | Supply structured clips and planning constraints to the [CLI](docs/CLI_GUIDE.md). It can select fixed windows and export a picture-only timeline under its documented limits. See [video milestones](#milestones) for the OpenFilm snapshot adapter and FilmCraft evidence. |
 
-- **Video planning and handoff (M).** The working Rust CLI selects fixed source
-  windows and exports a bounded picture timeline for review. The reference
-  workflow targets an editable 60–90 second rough cut from 30–50 selected
-  photos, clips and narration. Any project can supply the CLI's declared planning
-  inputs. The current video interchange profile uses OpenFilm's finite snapshot
-  format, and FilmCraft is its first tested editor. See [milestones](#milestones)
-  for the scope of current evidence.
-- **Cross-media narrative planning (N, proposed).** Test whether authors can
-  turn the same observations into a spoken outline, an illustration brief or
-  a supported commercial claim while retaining where each detail came from.
-  The skill already guides a host agent through these drafting tasks. This
-  track starts by comparing authoring examples and then tests the proposed
-  deterministic cross-media workflows and their CLI contracts.
+The skill can be installed independently from the Rust workspace. The package
+version is `0.1.0-dev.0`; [installation from GitHub](docs/PLATFORMS.md) is
+available. Public registry publication remains a separate release decision.
 
 ## Cross-media narrative roadmap
 
-The [Storytelling skill](skills/storytelling/SKILL.md) is the author-facing
-entry point. Authors can start with [eight templates](skills/storytelling/references/multimodal-templates.md)
-or a [small image, sound and text workshop](skills/storytelling/references/workshop-demo.md).
-A host can use the available media or the supplied descriptions to draft in each form.
-The N milestones below add the separately testable contracts, local tool
-integration, revision tracking and measured author outcomes. Keep a natural-language
-example beside each runnable technical slice so authors can use it from the skill.
+**Build next.** [N-02](https://github.com/bynanci/storytelling/issues/49) is
+complete at the design gate. The maintainer authorized [N-03](https://github.com/bynanci/storytelling/issues/50)
+to start from that contract. **Evaluate in parallel.** The
+[N-01 study packet](docs/narrative/N-01-AUTHOR-STUDY.zh-TW.md) is ready, with
+the human trial and study decision still outstanding.
 
-| Outcome | Tasks and dependency | Decision and evidence |
+| Priority and outcome | Work in order | Evidence for the next decision |
 | --- | --- | --- |
-| Establish what authors need to reuse | N-01 discovery, then N-02 contract design | Compare manually prepared outputs for a synthetic everyday event. Keep source units, their relationships and proposed presentations distinct. Review an additive contract against existing video V1 fixtures. Narrow the design if a second output requires invented media fields. |
-| Reuse a source in two media and revise it | N-03 follows N-02. N-04 adds revision tracking to N-03. | Produce one ordered oral outline and two spatial composition briefs from the same input. The author can keep an imagined detail in one visual variant, change a cited observation and identify the affected outputs. Compare repeat runs and inspect the briefs with an author. |
-| Test the model on commercial copy | N-05 follows N-04 | Trace each factual claim to declared evidence or flag it for substantiation. Try removing the evidence and revising a claim. A human judges whether the evidence actually supports the wording. |
-| Choose the next use case | N-06 follows N-04 and draws on N-05 when available | Compare grouped and branching ideas for brainstorming, scene and reveal order for screenwriting, and a mapping from selected units to video assets. Advance one profile only if its fixture and author feedback identify a benefit the existing profiles cannot deliver. |
-| Decide whether to distribute a pilot | N-07 follows N-05. N-06 is optional for the first pilot. | Compare the core workflows against plain notes using the measures recorded in N-01. Report task completion, time to revise, attribution mistakes and aggregate author feedback. Record a continue, narrow or stop decision. A release has its own G5 decision. |
+| 1 · Deliver the first reusable authoring workflow | Implement N-03, then N-04 revision tracking. Run N-01 separately. | With one synthetic source, produce an oral outline and two visual briefs. Change a shared detail and one detail used only in one variant. Verify the affected set and inspect the author’s retained, edited or declined choices. |
+| 2 · Measure value and try a different type of writing | N-05 adds claims and their evidence after N-04. N-07 compares the shipped workflow against the ordinary-notes baseline after N-05. | A reviewer traces a claim as a reference changes. The maintainer uses completion, correction effort and attribution errors to decide whether to continue, narrow or stop. Report the host-assisted skill trial separately from a future trial using the native tool. |
+| 3 · Select additional profiles by demonstrated need | N-06 compares brainstorm branches, screenplay reveals and video mapping after N-04. N-10 implements one profile only if N-06 selects it. N-08 style rules and N-09 audio cues can be explored after N-02. | Use one author brief in two treatments. Have a reader or listener identify the intended change in attention or reveal. If the template already serves the author, retain it and defer native implementation. |
+| 4 · Hand work to another tool | N-11 builds on N-04 source revisions. N-12 can evaluate one external host independently. | A second person can locate the right sources and identify missing or superseded material. For a real media artifact, open or play the result. If a host is unavailable, show which part of the brief remains usable. |
 
-As of 2026-11-11, Issue #49's NarrativeDocumentV1 boundary is accepted for N-03
-by maintainer direction and recorded in [ADR 0005](docs/adr/0005-independent-narrative-document-v1.md).
-Issue #50 implementation may proceed without treating the N-01 pilot as complete.
-The N-01 human study remains pending for the later author-pilot decision.
-
-The [multimodal Rust backlog](TASKS.md#multimodal-rust-backlog) adds style profiles (N-08),
-audio cue sheets (N-09), the profile selected by N-06 (N-10), a mixed-media handoff
-manifest (N-11) and a host feasibility study (N-12). The proposed backend work has
-its own evidence and can be prioritized after the shared N-02 contract.
-
-The N track can start alongside the video operation journal (M3-02). Shared
-ideas include explicit constraints, deterministic output and traceable review
-records. The existing time, shot, OTIO and FilmCraft contracts remain owned by
-the M track. A future video mapping needs real asset identifiers and source
-ranges before it can call the existing planner.
-
-Pick up a [cross-media task](TASKS.md#cross-media-narrative-backlog) for its
-SDLC gate, dependencies, counterexamples and acceptance evidence.
+The technical work belongs in the [task and dependency list](TASKS.md#cross-media-narrative-backlog)
+and [multimodal backlog](TASKS.md#multimodal-rust-backlog). The
+[architecture](docs/ARCHITECTURE.md) places declared data in core, local
+validation in the engine and I/O in the CLI. Drafts and author judgments remain
+with the skill, host and author. Video SDK work proceeds on its own track toward
+an editable 60–90 second rough cut from 30–50 selected photos, clips and
+narration. A future bridge to its planner needs real asset IDs and source ranges.
 
 ## Milestones
 
