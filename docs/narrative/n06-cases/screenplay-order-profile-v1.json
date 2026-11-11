@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "profile_id": "n06-reveal-order",
+  "document_id": "n06-two-reveals",
+  "document_revision": 1,
+  "rules": [
+    {
+      "id": "linear-action-before-test",
+      "kind": "must_precede",
+      "variant_id": "linear",
+      "before_beat_id": "L_ACTION",
+      "after_beat_id": "L_TEST"
+    },
+    {
+      "id": "result-before-explanation",
+      "kind": "must_precede",
+      "variant_id": "result-first",
+      "before_beat_id": "F_TEST",
+      "after_beat_id": "F_ACTION"
+    }
+  ]
+}
