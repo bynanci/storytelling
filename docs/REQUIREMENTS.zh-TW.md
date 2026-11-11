@@ -349,4 +349,4 @@ M0、M1-01 與限定範圍的 M2-01 稽核只支援前兩項。
 | N-R09／[N-09](https://github.com/bynanci/storytelling/issues/66) | 依序重播旁白、停頓及音效提示。時間未知時保留未定。允許宣告的跨軌疊音。拒絕反向區間或互斥軌上的衝突。 |
 | N-R10／[N-10](https://github.com/bynanci/storytelling/issues/67) | N-06 明選一案後才開發。從本機入口執行一個正例及一個反例。既有影片回歸須通過。 |
 | N-R11／[N-11](https://github.com/bynanci/storytelling/issues/68) | 以文字、影像與聲音的版本追溯交接。指出遺失或過期的引用，列出受影響的產物。 |
-| N-R12／[N-12](https://github.com/bynanci/storytelling/issues/69) | 用授權素材測一項宿主能力。讀回實際輸出。再用同一請求測試缺少該能力時可交付哪些內容。 |
+| N-R12／[N-12](https://github.com/bynanci/storytelling/issues/69) | [Inkscape 可行性試驗](validation/n12-inkscape-png.zh-TW.md)以同一請求與 S2 交付真正 PNG、完整解碼及視覺讀回，再受控隱藏匯出入口交付構圖說明。保存來源前後身分與命令／退出碼。正式 adapter 的縮小採用建議待維護者決定。 |

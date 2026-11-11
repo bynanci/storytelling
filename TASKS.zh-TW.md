@@ -68,7 +68,7 @@
 | 聲音與 Podcast | 可起草旁白、停頓及音效。檔案雜湊可核對已提供的位元組。 | [N-09／#66](https://github.com/bynanci/storytelling/issues/66) 依 N-02 驗證提示表及聲軌衝突。 |
 | 編劇、分支構思與影片對照 | 文字樣板可用。影片規劃器支援鏡頭順序。 | [N-06](https://github.com/bynanci/storytelling/issues/53) 明確選案後，[N-10／#67](https://github.com/bynanci/storytelling/issues/67) 才實作該模式。 |
 | 跨媒體交接 | 可附來源說明。純畫面剪輯時間軸已有匯出工具。 | [N-11／#68](https://github.com/bynanci/storytelling/issues/68) 使用 N-04 的修訂識別碼列出受影響產物。 |
-| 實際產出圖檔或音檔 | 須由具備對應能力的平台執行。 | [N-12／#69](https://github.com/bynanci/storytelling/issues/69) 用一份授權素材測一項能力。產出後讀回檔案。缺少工具時交付可用的說明稿。 |
+| 實際產出圖檔或音檔 | N-12 在 Linux 用 Inkscape 1.4 將合成 SVG 匯出 PNG 並讀回；入口不可用時交付構圖說明。[可行性紀錄與真實產物](docs/validation/n12-inkscape-png.zh-TW.md) | [N-12／#69](https://github.com/bynanci/storytelling/issues/69) 的縮小採用建議待維護者決定；正式 adapter 另行排程。 |
 
 <a id="next-actionable-work"></a>
 

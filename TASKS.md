@@ -70,7 +70,7 @@ The [workshop](skills/storytelling/references/workshop-demo.md) supplies a notic
 | Audio and podcasts | The skill can draft voice, silence and effects. A digest can identify supplied bytes. | [N-09 / #66](https://github.com/bynanci/storytelling/issues/66) follows N-02. Check the cue sheet and track conflicts. |
 | Screenplay, brainstorm or video mapping | Text templates are available. The video planner supports shot order. | [N-06](https://github.com/bynanci/storytelling/issues/53) must select one candidate before [N-10 / #67](https://github.com/bynanci/storytelling/issues/67) starts. |
 | Mixed-media handoff | Drafts can include a source map. The video CLI can export a picture-only timeline. | [N-11 / #68](https://github.com/bynanci/storytelling/issues/68) uses N-04 revision identities to identify affected outputs. |
-| Actual image or audio file | A suitable host must generate the file. | [N-12 / #69](https://github.com/bynanci/storytelling/issues/69) tests one authorized input and one capability. Read back the file. Provide a usable brief if the capability is unavailable. |
+| Actual image or audio file | N-12 used Inkscape 1.4 on Linux to export and reopen a synthetic PNG, then delivered a brief with the export entry point unavailable. [Trial and artifacts](docs/validation/n12-inkscape-png.md) | [N-12 / #69](https://github.com/bynanci/storytelling/issues/69): narrow-adoption recommendation awaits the maintainer. Schedule a production adapter separately. |
 
 <a name="影片工程任務"></a>
 
