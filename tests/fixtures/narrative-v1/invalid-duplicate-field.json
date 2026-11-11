@@ -1,0 +1,1 @@
+{"schema_version":1,"schema_version":1,"document_id":"duplicate-root","document_revision":1,"purpose":"p","audience":"a","units":[{"id":"S01","revision":1,"origin":"supplied_observation","text":"x","based_on":[]}],"relations":[],"variants":[{"id":"oral","name":"Oral","kind":"spoken_outline","beats":[{"id":"b1","unit_ref":{"unit_id":"S01","revision":1},"text":"x"}]}]}

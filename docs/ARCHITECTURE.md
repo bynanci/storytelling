@@ -42,9 +42,12 @@ engine. CLI does not yet compose or invoke the journal.
 ### Proposed cross-media authoring model
 
 An oral outline has a speaking order. A single illustration has a focal point,
-background and foreground. Both can refer to the same observation. The proposed
-N track separates source material from the way an author chooses to present it.
-G2 will decide the wire format after contributors try these cases on paper.
+background and foreground. Both can refer to the same observation. The N track
+separates source material from the way an author chooses to present it. The N-01
+paper packet is ready, but no human author trial or continue/narrow/stop decision
+is recorded. The standalone NarrativeDocumentV1 boundary is accepted for N-03 by
+maintainer direction in the 2026-11-11 Issue #50 instruction; see [ADR 0005](adr/0005-independent-narrative-document-v1.md).
+The human study remains pending and no N-01 outcome is claimed.
 
 | Design question | Proposed responsibility |
 | --- | --- |
