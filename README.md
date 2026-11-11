@@ -149,6 +149,16 @@ cargo run --quiet --locked -p storytelling-cli -- query-narrative-impact tests/f
 
 The shared correction affects the oral outline and both illustration briefs. The second change affects only `illustration-close`. The query follows each variant’s direct source references. Authors check indirect references separately. A declared author decision does not authenticate the person who entered it. [Revision ledger format](https://github.com/bynanci/storytelling/blob/main/docs/narrative/NARRATIVE_REVISION_LEDGER_V1.md) · [Expected outputs and validation](https://github.com/bynanci/storytelling/blob/main/docs/validation/n04-narrative-revisions.md)
 
+### Check a narrative order rule (N-08)
+
+The same workshop facts support two openings: one states the event before the taps; the imagery version places two synthetic taps first. A separate `NarrativeStyleProfileV1` binds the order rules to a document revision and explicit spoken-beat IDs.
+
+```sh
+cargo run --quiet --locked -p storytelling-cli -- check-narrative-style tests/fixtures/narrative-v1/n08-umbrella-openings-v1.json tests/fixtures/narrative-v1/n08-style-profile-v1.json
+```
+
+The command checks declared beat order and returns JSON. It does not judge aesthetics or establish author approval. The imagery metaphor is a creative proposal based on S3, not a claim about the sound's cause. The label-free reader trial remains pending. [N-08 profile and validation record](https://github.com/bynanci/storytelling/blob/main/docs/validation/n08-style-profile.md)
+
 <a name="影片整合"></a>
 
 ### Video integrations
