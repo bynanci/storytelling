@@ -1,6 +1,6 @@
 ---
 name: storytelling
-description: Turn notes, memories, ideas, claims or selected clips into a spoken story, screenplay outline, illustration concept, business copy, brainstorm or video plan. Use when someone asks to organize a story, explore ways to tell it, adapt it to another medium, trace a narrative claim across sources (including a Graphify index), or revise variants against their source. 適用於整理故事、日常口述、編劇、插畫構思、商業文案、腦力激盪與影片粗剪規劃。
+description: Turn notes, memories, claims, images, audio or clips into a spoken story, screenplay, illustration brief, business copy, brainstorm, sound cue sheet or video plan. Use when someone asks to organize a story, explore ways to tell it, adapt it to another medium, trace a narrative claim across sources (including a Graphify index), or revise variants against their source. 適用於整理故事、日常口述、編劇、插畫構思、商業文案、腦力激盪、聲音設計、多模態樣板與影片粗剪。
 ---
 
 # Storytelling
@@ -28,7 +28,14 @@ Start with the least work that can satisfy the request. A complete paragraph of 
 
 For an explicit dependency plan, the optional [local DAG planner](scripts/graph_plan.py) validates and schedules named steps. Pass only hard dependency edges. It reads JSON on stdin, prints a plan, and never invokes the named actions. For consequential handoffs, the optional [trace checker](scripts/check_trace.py) can check your recorded starts and verified outcomes against the same dependencies. It checks the supplied record; retain the actual output or readback as evidence. For a small draft, apply the same checks directly. Return the work in the user's language; include a short verification note only when it explains evidence, execution or a material gap.
 
-## Choose the shape
+## Choose a medium and treatment
+
+For a requested template, open the matching section of the [multimodal templates](references/multimodal-templates.md). For actual materials to try, use the [workshop notice, diagram and sound](references/workshop-demo.md). Choose a deliverable and a treatment separately. A poster can use a grid or a collage. A spoken story can start with an observation or hold back a detail for a reveal.
+
+- Follow a named style through observable choices. For example, choose what the listener hears first, which detail the audience learns last, or where a reader's eye lands. If the author asks for alternatives, keep the source facts and hard constraints fixed. Change the named choices and show their effect in the drafts.
+- For mixed inputs, record which note, image, clip or recording supports each relevant detail. Use visual or audio observations only when the host can inspect that file. When working from a caption, supplied transcript or the author's description, name that source. Keep inferred causes, invented dialogue and proposed effects distinct.
+- A request for a cue sheet, script or composition brief can be completed in text. If the author requests a file, use the available creation tool within the requested scope and check the returned artifact. When the tool or input is unavailable, deliver the usable plan and state which artifact or observation is pending.
+
 
 | Requested form | What to deliver |
 | --- | --- |
@@ -37,6 +44,8 @@ For an explicit dependency plan, the optional [local DAG planner](scripts/graph_
 | Single illustration | Describe focal subject, composition, foreground/background and a visual cue for the intended feeling. If exploring options, change a meaningful choice such as viewpoint or distance. |
 | Business copy | Connect audience need, claim, evidence and next action. Preserve the scope of each source. Flag missing or weak support and offer wording the material can sustain. |
 | Brainstorming | Group ideas by what they explore. Keep competing branches and open questions visible. If asked to converge, compare the branches using the author's criteria and recommend a direction. |
+| Audio or podcast | Deliver a recording script or cue sheet showing speaker, exact words, silence, sound source and proposed cues. Mark estimated duration and distinguish a supplied recording from proposed sound design. |
+| Mixed-media handoff | Deliver each requested variant in its form, with a short source map. Check shared facts across variants and keep medium-specific additions local. |
 | Video planning | Map story beats to supplied clips and keep unmapped beats visible. Use explicit asset IDs and ranges when available. Supply a textual shot plan from ordinary notes. |
 
 ## Revise or hand off

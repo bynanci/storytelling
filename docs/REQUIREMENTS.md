@@ -327,3 +327,17 @@ Structural parsing < declared semantic validation < actual source verification <
 host readback/render verification < human editorial acceptance. These are distinct
 claims, not interchangeable scores. M0/M1-01 and the bounded M2-01 audit implement
 only the first two levels.
+
+## Multimodal authoring and follow-up requirements
+
+The bundled [templates](../skills/storytelling/references/multimodal-templates.md)
+and [hands-on demo](../skills/storytelling/references/workshop-demo.md) can be tried today.
+Each proposed Rust or adapter slice has its own acceptance evidence.
+
+| Requirement / task | Observable result and evidence |
+| --- | --- |
+| N-R08 / [N-08](https://github.com/bynanci/storytelling/issues/65) | Compare two treatments of the same source. One checkable structure rule passes, a conflicting pair or unsupported version yields a diagnostic. Record author feedback separately. |
+| N-R09 / [N-09](https://github.com/bynanci/storytelling/issues/66) | Replay an ordered voice/silence/effect sheet. Preserve unknown timing, permit declared multitrack overlap and reject a reversed interval or conflicting exclusive cues. |
+| N-R10 / [N-10](https://github.com/bynanci/storytelling/issues/67) | Only after N-06 selects a candidate, exercise one valid and one invalid case for that candidate through the local entry point and keep existing video fixtures passing. |
+| N-R11 / [N-11](https://github.com/bynanci/storytelling/issues/68) | Trace a handoff through declared text, image and audio revisions. Identify missing or stale targets and expose the precise affected outputs. |
+| N-R12 / [N-12](https://github.com/bynanci/storytelling/issues/69) | Evaluate one host capability with actual authorized inputs and output readback. Record a useful fallback with the same request when the capability is missing. |

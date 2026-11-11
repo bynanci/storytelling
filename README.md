@@ -1,10 +1,49 @@
 # Storytelling
 
-[繁體中文](README.zh-TW.md) · [Platform guide](https://github.com/bynanci/storytelling/blob/main/docs/PLATFORMS.md) · [Examples](skills/storytelling/references/examples.md) · [Contributing](CONTRIBUTING.md) · [CI](https://github.com/bynanci/storytelling/actions/workflows/ci.yml)
+[繁體中文](README.zh-TW.md) · [Template collection](skills/storytelling/references/multimodal-templates.md) · [Installation by platform](https://github.com/bynanci/storytelling/blob/main/docs/PLATFORMS.md) · [Contributing](CONTRIBUTING.md) · [CI](https://github.com/bynanci/storytelling/actions/workflows/ci.yml)
 
-Storytelling is an open-source [Agent Skill](skills/storytelling/SKILL.md) for turning source material into stories, screenplay scenes, illustration briefs, business copy, brainstorms and shot plans. Give it a page of interview notes, for example, and ask for a spoken introduction and two poster concepts. Each version can use a different angle while keeping the speaker's account and the artist's additions distinguishable.
+Storytelling is an open-source [Agent Skill](skills/storytelling/SKILL.md) for writers, illustrators, editors and anyone who wants to tell a story. Give it source notes, images or recordings that your host can inspect, or use a supplied description or transcript. Choose who the work is for, what they should receive and which storytelling approach to try. The same material can become a scene, a composition brief, an audio script or a pitch.
 
-The skill travels as one folder. Add it to a writing project, a client workspace or a software repository. Drafting uses the agent and material you choose. A separate Rust CLI offers local, repeatable checks for structured video plans.
+## Try one source set in two media
+
+Try the fictional workshop with its [event notice and transcript](skills/storytelling/references/workshop-demo.md), [workbench diagram (SVG)](skills/storytelling/assets/umbrella-workshop/bench.svg) and [two-tap sound cue (WAV)](skills/storytelling/assets/umbrella-workshop/taps.wav). Open the files in a host that reads them, or paste the descriptions below.
+
+<img src="skills/storytelling/assets/umbrella-workshop/bench.svg" width="360" alt="Workshop source diagram showing a folded umbrella on the left and a spool of thread on the right.">
+
+```text
+Make an invitation for residents visiting our umbrella workshop for the first time.
+Notice: the session is on Saturday. Bring one umbrella.
+Diagram: a folded umbrella on the left, a spool of thread on the right.
+Audio: two synthesized taps, no speech.
+Write a radio cue and two poster briefs, one Swiss-style grid and one cut-paper
+collage. Show which details come from the sources and which are design choices.
+```
+
+| Deliverable | Example of a usable draft |
+| --- | --- |
+| Radio cue | **SOUND** Play the two taps, then leave a beat. **VOICE** “One umbrella. Bring yours to Saturday’s repair workshop.” The invitation comes from the notice. The taps are a production cue. |
+| Poster A · Swiss-style grid | Keep the diagram’s umbrella and spool in their original order. Set “Saturday” and “Bring one umbrella” on the same left edge below them. Alignment directs the eye to the invitation. |
+| Poster B · cut-paper collage | Cut a yellow paper arc and pull a loose thread across it toward the word “Saturday.” Label the open shape and yellow paper as choices for this illustration. |
+
+A narrator can record the cue and an illustrator can sketch either brief. The Skill supplies scripts and directions. Finished images and audio require a capable host or a separate production tool. [Full mixed-media template](skills/storytelling/references/multimodal-templates.md#mixed)
+
+## Choose a template and an approach
+
+Each template includes a brief you can copy, two ways to treat the material and a check for the result.
+
+| Situation | Two approaches to try | What you take away |
+| --- | --- | --- |
+| [Screenplay](skills/storytelling/references/multimodal-templates.md#screenplay) · A character returns a borrowed object | Social realism follows the exchange in real time. A flashback reveals why returning it matters. | A scene with playable action, dialogue and a reveal. |
+| [Illustration](skills/storytelling/references/multimodal-templates.md#illustration) · Turn an event notice into a poster | Swiss-style typography gives the facts a reading order. Cut-paper collage uses shape to draw the eye. | A composition brief with subject, focal point, layout and text placement. |
+| [Business copy](skills/storytelling/references/multimodal-templates.md#copy) · Invite someone to try a service | AIDA leads from attention to action. Problem–solution copy opens with the reader’s difficulty. | A headline, body, call to action and claims to verify. |
+| [Brainstorm](skills/storytelling/references/multimodal-templates.md#brainstorm) · A team needs three event concepts | SCAMPER varies an existing idea. Reverse brainstorming asks how to make the experience worse, then reverses the answer. | Distinct options, a selection criterion and a small test. |
+| [Everyday story](skills/storytelling/references/multimodal-templates.md#everyday) · Tell a friend what happened | Open inside the scene to build curiosity, or give the outcome first when the listener needs context. | A tellable account that keeps observed events separate from interpretation. |
+| [Audio](skills/storytelling/references/multimodal-templates.md#audio) · Open a podcast with a field recording | A sound diary lets the listener hear the space first. A narrated essay opens with a point of view. | A script with voice, sound cues, pauses and source notes. |
+| [Video](skills/storytelling/references/multimodal-templates.md#video) · Cut a short sequence from supplied clips | Continuity editing follows the action. Associative montage connects images by shape or idea. | A shot plan that maps beats to clips and identifies missing coverage. |
+
+## Cross-media Rust support
+
+The templates work in an agent or as Markdown. The current Rust CLI validates declared video inputs and plans within the profiles above. Cross-media source references, per-format validation and revision tracking need additional Rust contracts. The backlog lists the missing capabilities and their acceptance criteria. [Multimodal Rust tasks and issues](TASKS.md#multimodal-rust-backlog) · [Roadmap](ROADMAP.md)
 
 ## Start with the skill
 
@@ -40,15 +79,7 @@ The table gives the project locations and invocation syntax. For a manual instal
 | Plain Markdown | Open [SKILL.md](skills/storytelling/SKILL.md) and the references it links. A writer or team can follow the workflow by hand. |
 | A script, CI job or application | Use the [standalone CLI](#quick-start) with structured input, JSON output and exit codes. |
 
-After invoking the skill, try this request in either agent:
-
-```text
-Two neighbors fixed a gate together. Write a two-sentence account for the
-neighborhood newsletter and two poster concepts. Add an imaginary red umbrella
-to the second poster only.
-```
-
-The newsletter should preserve the observation. The two posters should make different visual choices, and only the second should introduce the umbrella. This gives you a small, checkable first use in your own project. For personal installs, other clients and verification status, see the [platform guide](https://github.com/bynanci/storytelling/blob/main/docs/PLATFORMS.md).
+For personal installs, other clients and verification status, see the [platform guide](https://github.com/bynanci/storytelling/blob/main/docs/PLATFORMS.md).
 
 ## What works today
 
@@ -73,6 +104,9 @@ cargo run --locked -p storytelling-cli -- plan-story tests/fixtures/planner-v1/v
 
 ### Video integrations
 
+<details>
+<summary>Video commands, input limits and editor compatibility</summary>
+
 | Input | Commands | Result |
 | --- | --- | --- |
 | A plan, brief or fixed-window planning request | `validate`, `audit-brief`, `plan-story` | Check declared references and constraints, or propose a shot order. |
@@ -83,9 +117,7 @@ cargo run --locked -p storytelling-cli -- plan-story tests/fixtures/planner-v1/v
 
 The snapshot adapter reads OpenFilm composition exports. It accepts stills and video cuts on the supported picture track. Video export requires an explicit picture-only choice. A FilmCraft v0.18.0 test on Linux at 25 fps covered save/reopen, OTIO reimport and a 45-frame CPU preview. A separate isolated test recovered from a lost import reply by reading the resulting project state. Production editor writes are planned. Audio handoff and full-resolution output await verification. [FilmCraft test record](docs/migration/records/M1-03.md) · [Recovery test](docs/validation/m3-03-filmcraft-execution.md) · [Review contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md)
 
-## Cross-media direction
-
-Agent-assisted drafting is available today. The roadmap covers a versioned cross-media document format, repeatable source-revision checks, commercial claim tracing and author trials. [Roadmap](ROADMAP.md) · [Narrative backlog](TASKS.md#cross-media-narrative-backlog)
+</details>
 
 ## Architecture and contributions
 

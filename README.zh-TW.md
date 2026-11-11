@@ -1,10 +1,49 @@
 # Storytelling
 
-[English](README.md) · [跨平台使用指南](https://github.com/bynanci/storytelling/blob/main/docs/PLATFORMS.md) · [範例](skills/storytelling/references/examples.md) · [貢獻指南](CONTRIBUTING.md) · [CI](https://github.com/bynanci/storytelling/actions/workflows/ci.yml)
+[English](README.md) · [多模態樣板集](skills/storytelling/references/multimodal-templates.md) · [跨平台安裝](https://github.com/bynanci/storytelling/blob/main/docs/PLATFORMS.md) · [貢獻指南](CONTRIBUTING.md) · [CI](https://github.com/bynanci/storytelling/actions/workflows/ci.yml)
 
-Storytelling 是一套開源 [Agent Skill](skills/storytelling/SKILL.md)，可將手邊的材料整理成故事、劇本場景、插畫構圖、商業文案、腦力激盪提案或分鏡。例如，把一頁訪談筆記交給它，請它寫一段口述開場，再提出兩款海報構圖。三份作品可以各有觀點，同時讓人看得出哪些話出自受訪者、哪些是為了畫面而加的創作。
+Storytelling 是給編劇、插畫師、剪輯師，以及日常想把事情說清楚的人使用的開源 [Agent Skill](skills/storytelling/SKILL.md)。你可以給它筆記、宿主能讀取的圖片或錄音，也可以提供畫面描述或逐字稿，指定受眾、作品形式與想嘗試的敘事手法。相同材料可以寫成一場戲、一份構圖提案、一段廣播稿，或一則邀請文案。
 
-整個 Skill 裝在一個資料夾裡。可以放進寫作專案、客戶工作區或軟體儲存庫，使用你選擇的 Agent 和素材起草。影片工作另有可獨立執行的 Rust CLI，能在本機對結構化提案做可重現的檢查。
+## 把同一份素材做成廣播與海報
+
+這是一個虛構工作坊，附上可開啟的[活動公告與聽寫紀錄](skills/storytelling/references/workshop-demo.md)、[工作桌示意圖（SVG）](skills/storytelling/assets/umbrella-workshop/bench.svg)和[兩聲敲擊音檔（WAV）](skills/storytelling/assets/umbrella-workshop/taps.wav)。可以交給能讀取這些格式的 Agent，也可以直接貼下列素材描述。
+
+<img src="skills/storytelling/assets/umbrella-workshop/bench.svg" width="360" alt="工作坊來源示意圖，左方是收起的傘，右方是線軸。">
+
+```text
+請邀請沒來過的居民參加修傘工作坊。素材有三份。
+公告寫著週六舉辦，請每人帶一把傘。
+工作桌示意圖左邊是一把收好的傘，右邊是一捲線。
+音檔是合成的兩聲敲擊，沒有人聲。
+請寫一段廣播開場，再給兩款海報構圖，一款用瑞士網格，一款用剪紙拼貼。
+標出哪些細節來自素材，哪些是你的創作提議。
+```
+
+| 交付物 | 可以拿去試作的草稿 |
+| --- | --- |
+| 廣播開場 | **音效**　播出兩聲敲擊，停一拍。**口白**　「帶一把傘。這個週六，我們在修傘工作坊見。」週六與帶傘的邀請取自公告，敲擊聲是製作用的音效。 |
+| 海報 A · 瑞士網格 | 保留示意圖「左傘、右線捲」的順序，在圖下將「週六」和「帶一把傘」靠同一條左邊線排齊，用對齊引導讀者讀完邀請。 |
+| 海報 B · 剪紙拼貼 | 用黃紙剪出張開的傘面弧形，讓一段線頭穿過弧形，指向「週六」兩字。張開的傘與黃紙用色只屬於這一版的創作提議。 |
+
+配音員可以照稿試錄，插畫師則能任選一版起稿。Skill 交付文字與製作指引。要產出完稿圖像或音訊檔，需交給具備對應能力的宿主工具或製作軟體。[完整跨模態樣板](skills/storytelling/references/multimodal-templates.md#mixed)
+
+## 依情境選樣板與流派
+
+每個樣板都有可複製的需求、兩種處理方式，以及檢查成品的方法。
+
+| 使用情境 | 兩種可比較的做法 | 拿到什麼 |
+| --- | --- | --- |
+| [編劇](skills/storytelling/references/multimodal-templates.md#screenplay) · 角色歸還一件借來的東西 | 社會寫實按事件順序觀察兩人的動作。倒敘可以等物件交回後，才揭開它的重要性。 | 有可表演動作、對白與揭露點的一場戲。 |
+| [插畫構思](skills/storytelling/references/multimodal-templates.md#illustration) · 把活動通知畫成海報 | 瑞士網格用字級與對齊安排閱讀順序。剪紙拼貼靠形狀引導視線。 | 主體、視覺焦點、構圖與文字位置。 |
+| [商業文案](skills/storytelling/references/multimodal-templates.md#copy) · 邀請讀者試用一項服務 | AIDA 從引起注意寫到行動。問題解決型先寫讀者正在經歷的困難。 | 標題、內文、行動呼籲與待查證主張。 |
+| [腦力激盪](skills/storytelling/references/multimodal-templates.md#brainstorm) · 團隊要想三個活動方案 | SCAMPER 用替換、合併等方式改造舊點子。逆向思考先列出把體驗搞砸的方法，再反推解法。 | 不同方向的選項、篩選標準與小型試驗。 |
+| [日常敘事](skills/storytelling/references/multimodal-templates.md#everyday) · 跟朋友說剛才發生的事 | 從現場起講，讓聽者慢慢拼出經過。先講結果，適合需要快速掌握重點的聽者。 | 一段講得出口，也分得清所見與感受的敘述。 |
+| [聲音敘事](skills/storytelling/references/multimodal-templates.md#audio) · 用現場錄音開一集 Podcast | 聲音日記先讓人聽見空間。口述隨筆先立敘事觀點，再引入聲音。 | 標出旁白、音效、停頓與聲音來源的腳本。 |
+| [影片規劃](skills/storytelling/references/multimodal-templates.md#video) · 從幾段素材剪出短片 | 連續剪輯靠動作接鏡。聯想蒙太奇靠形狀或概念把兩個鏡頭接起來。 | 節拍、對應素材與缺鏡清單。 |
+
+## Rust 對跨模態創作的支援進度
+
+上述樣板已可交給 Agent 起草，也可以直接閱讀 Markdown 使用。現有 Rust CLI 能在既有規格內驗證影片提案與規劃鏡頭。跨模態來源對照、各形式的結構驗證與修訂影響追蹤，需要後續的 Rust 資料契約。各項缺口、開發順序與驗收條件已列入[多模態 Rust 任務與 Issues](TASKS.md#multimodal-rust-backlog)及[開發路線圖](ROADMAP.md)。
 
 ## 從 Skill 開始
 
@@ -40,14 +79,7 @@ npx skills add ./node_modules/@bynanci/storytelling/skills/storytelling --skill 
 | 直接閱讀 Markdown | 開啟 [SKILL.md](skills/storytelling/SKILL.md) 和它連到的參考文件。作者或團隊可手動依步驟整理材料。 |
 | 腳本、CI 或自有應用程式 | 使用[獨立 CLI](#快速開始)，傳入結構化資料，讀取 JSON 輸出與退出碼。 |
 
-在 Codex 或 Claude Code 叫用 Skill 後，可用這段素材試做。
-
-```text
-兩位鄰居一起修好了一扇門。請寫兩句話給社區電子報，再想兩款海報構圖。
-只有第二款海報可以加一把想像的紅傘。
-```
-
-檢查電子報是否忠於原始觀察，並確認兩款海報採用不同的視覺選擇，紅傘只出現在第二款。個人安裝、其他平台與各項驗證狀態，見[跨平台使用指南](https://github.com/bynanci/storytelling/blob/main/docs/PLATFORMS.md)。
+個人安裝、其他平台與各項驗證狀態，見[跨平台使用指南](https://github.com/bynanci/storytelling/blob/main/docs/PLATFORMS.md)。
 
 ## 目前可用功能
 
@@ -72,6 +104,9 @@ cargo run --locked -p storytelling-cli -- plan-story tests/fixtures/planner-v1/v
 
 ### 影片整合
 
+<details>
+<summary>展開影片指令、輸入限制與剪輯器相容性</summary>
+
 | 輸入 | 指令 | 產出 |
 | --- | --- | --- |
 | 影片計畫、故事需求或固定區間的選鏡請求 | `validate`、`audit-brief`、`plan-story` | 檢查宣告的參照與限制，或產生鏡頭順序提案。 |
@@ -82,9 +117,7 @@ cargo run --locked -p storytelling-cli -- plan-story tests/fixtures/planner-v1/v
 
 剪輯快照轉接器可讀取 OpenFilm 匯出的剪輯快照，接受支援畫面軌上的照片與影片硬切，影片匯出須明確選擇僅保留畫面。專案曾以 FilmCraft v0.18.0 在 Linux、25 fps 下驗證儲存與重開、OTIO 重新匯入，以及輸出 45 格 CPU 預覽。另一次隔離測試在匯入回應遺失時讀回專案狀態，確認實際結果。正式寫入剪輯器仍在規劃中。音訊交接與全解析度輸出有待實測。[FilmCraft 測試紀錄](docs/migration/records/M1-03.md) · [復原測試](docs/validation/m3-03-filmcraft-execution.md) · [審閱契約](docs/migration/PLANNER_OTIO_REVIEW_V1.md)
 
-## 跨媒介發展方向
-
-目前已可用 Agent 起草多種形式的作品。具版本的跨媒介資料格式、可重跑的來源修訂檢查、商業主張追溯及作者試用則列入後續開發。[開發路線圖](ROADMAP.md) · [跨媒介任務清單](TASKS.md#cross-media-narrative-backlog)
+</details>
 
 ## 架構與參與開發
 

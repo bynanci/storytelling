@@ -13,6 +13,8 @@ SKILL = Path("skills/storytelling")
 PACKAGE_NAME = "@bynanci/storytelling"
 REQUIRED_SKILL_FILES = {
     "SKILL.md", "LICENSE", "agents/openai.yaml",
+    "assets/umbrella-workshop/bench.svg", "assets/umbrella-workshop/taps.wav",
+    "references/multimodal-templates.md", "references/workshop-demo.md",
     "references/examples.md", "references/graph-loops.md",
     "references/graphify-tools.md", "references/video-cli.md",
     "scripts/check_trace.py", "scripts/graph_plan.py",
