@@ -40,7 +40,7 @@ For the `mapped-bounds` condition, give the next editor the ordinary three-row s
 
 | Source | Supported use | Evidence limit or permitted scope |
 | --- | --- | --- |
-| S1 | The release ledger identifies the platforms on which the named sample import passed. | Report only the steps verified on each platform. A build-only record leaves the sample import result unknown. It cannot establish an import failure or lack of import support. |
+| S1 | The release ledger identifies the platforms on which the named sample import passed. | Report only the steps verified for each platform listed in the release ledger. A build-only record leaves the sample import result unknown. It cannot establish an import failure or lack of import support. |
 | S2 | In the supplied project, M opens the sample folder map and selecting an entry shows its original path. | The demonstration establishes this behavior for the supplied project. It provides no platform test results. |
 | P1 | The speaker proposes holding the pointer on the path during the demo. | The duration is a presentation choice for the speaker's card. It says nothing about program response time. |
 
@@ -52,7 +52,7 @@ For the `mapped-bounds` condition, give the next editor the ordinary three-row s
 | --- | --- | --- |
 | S1 | The sheet counts check-ins across two sessions. Each attendance counts once. | Unique people, return attendance and changes in confidence were not measured. |
 | S2 | One participant permitted an anonymous quotation in the donor update about two visits. | Use the account only as permitted. If the participant withdraws permission, do not retell the experience anonymously, paraphrase it or attribute it to another speaker. The account cannot establish an outcome for the whole group. |
-| P1 | The editor proposes inviting a question in the designated update. | The invitation is editorial wording. It records no responses from readers. |
+| P1 | The editor proposes inviting a question in the designated update. | The invitation is editorial wording. It records no responses from readers and provides no date for the next session. |
 
 <a name="branching-game"></a>
 
