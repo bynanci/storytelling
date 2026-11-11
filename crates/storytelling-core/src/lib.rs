@@ -3,6 +3,7 @@ pub mod approval;
 pub mod brief;
 pub mod compatibility;
 pub mod compiled_plan;
+pub mod narrative;
 pub mod review;
 pub mod source_evidence;
 pub mod time;

@@ -10,6 +10,7 @@ runnable examples; each linked profile owns its strict wire fields and limits.
 | `export-otio` | Same finite composition export / 1,048,576 | Native OTIO `Timeline.1` JSON directly | [Finite OTIO](migration/FINITE_OTIO_V1.md) |
 | `audit-brief` | StoryBrief v1 JSON / 1,048,576 | `{"ok":true,"audit":...}` | [Bounded brief audit](migration/STORY_BRIEF_V1.md) |
 | `plan-story` | Fixed-window planner envelope JSON / 1,048,576 | `{"ok":true,"planning":...}` | [Fixed-window planner](migration/FIXED_WINDOW_PLANNER_V1.md) |
+| `render-narrative` | NarrativeDocumentV1 JSON / 1,048,576 | Deterministic human-readable UTF-8 text; errors are one JSON line | [NarrativeDocumentV1 profile](narrative/NARRATIVE_DOCUMENT_V1.md) |
 | `verify-source` | Supplied bytes / 16,777,216, plus expected SHA-256 | `{"ok":true,"verification":...}` | [Supplied-buffer contract](migration/FILMCRAFT_25_V1.md#native-supplied-buffer-contract) |
 | `prepare-story-review` | Planner stdout / 4,194,336 + finite snapshot file / 1,048,576 + context file / 65,536 | `{ok:true,review:...,otio:Timeline}`; actual artifact included | [Bounded selected proposal](migration/PLANNER_OTIO_REVIEW_V1.md) |
 | `export-story-otio` | Same three inputs | The same native OTIO directly | [Bounded selected proposal](migration/PLANNER_OTIO_REVIEW_V1.md) |
@@ -32,8 +33,9 @@ verified media quality or host execution. The whole `planning` envelope is neith
 a bare M0 plan nor a composition export accepted by `export-otio`.
 
 Common exits are 0 for successful evaluation, 1 for domain rejection/conflict,
-2 for usage and 3 for I/O. Every JSON response is one line; help/version are plain
-text. If stdout fails, no JSON response is promised. JSON collection/depth,
+2 for usage and 3 for I/O. JSON responses are one line; help/version and
+`render-narrative` success output are plain text. If stdout fails, no complete
+response is promised. JSON collection/depth,
 diagnostic and output budgets are profile-specific; a larger source-byte budget
 does not enlarge JSON limits. No command executes an editor or grants approval.
 
