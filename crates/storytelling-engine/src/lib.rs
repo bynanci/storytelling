@@ -37,6 +37,14 @@ pub use storytelling_core::narrative_revision::{
     NarrativeVariantSnapshotV1,
 };
 
+mod commercial_copy;
+pub use commercial_copy::audit_commercial_copy;
+pub use storytelling_core::commercial_copy::{
+    CommercialCopyClaimReportV1, CommercialCopyClaimV1, CommercialCopyDocumentV1,
+    CommercialCopyEvidenceReferenceV1, CommercialCopyKindV1, CommercialCopyReferenceReportV1,
+    CommercialCopyReportV1,
+};
+
 mod openfilm_snapshot;
 pub use openfilm_snapshot::{ImportedPlanV1, import_openfilm_snapshot};
 pub use storytelling_core::source_evidence::{
@@ -184,3 +192,4 @@ pub use story_review::{
     BoundStoryReviewV1, MAX_STORY_PROPOSAL_BYTES, MAX_STORY_REVIEW_BYTES, check_story_review,
     export_story_otio, prepare_story_review,
 };
+

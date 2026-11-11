@@ -6,11 +6,12 @@ use std::process::ExitCode;
 use storytelling_engine::{
     MAX_INPUT_BYTES, MAX_REVIEW_CONTEXT_BYTES, MAX_REVIEW_RECORD_BYTES, MAX_STORY_PROPOSAL_BYTES,
     MAX_STORY_REVIEW_BYTES, MAX_VERIFIED_BUFFER_BYTES, NarrativeRevisionReportV1,
-    OtioLossChoicesV1, audit_story_brief, check_narrative_style_profile, check_review,
-    check_story_review, export_openfilm_otio, export_story_otio, import_openfilm_snapshot,
-    parse_review_context, plan_story, prepare_review, prepare_story_review, query_narrative_impact,
-    render_narrative, render_narrative_cue_sheet, render_narrative_handoff,
-    track_narrative_revisions, validate_plan_json, verify_supplied_sha256,
+    OtioLossChoicesV1, audit_commercial_copy, audit_story_brief, check_narrative_style_profile,
+    check_review, check_story_review, export_openfilm_otio, export_story_otio,
+    import_openfilm_snapshot, parse_review_context, plan_story, prepare_review,
+    prepare_story_review, query_narrative_impact, render_narrative, render_narrative_cue_sheet,
+    render_narrative_handoff, track_narrative_revisions, validate_plan_json,
+    verify_supplied_sha256,
 };
 
 fn emit(value: Value, code: u8) -> ExitCode {
@@ -456,6 +457,29 @@ fn check_narrative_style_command(args: &[OsString]) -> ExitCode {
     }
 }
 
+fn audit_commercial_copy_command(args: &[OsString]) -> ExitCode {
+    if args.len() != 3
+        || args[1..]
+            .iter()
+            .any(|arg| arg.as_encoded_bytes().starts_with(b"--"))
+        || (args[1] == OsStr::new("-") && args[2] == OsStr::new("-"))
+    {
+        return failure("cli.usage", 2);
+    }
+    let copy = match read_argument(&args[1], MAX_INPUT_BYTES) {
+        Ok(bytes) => bytes,
+        Err(_) => return failure("input.io", 3),
+    };
+    let ledger = match read_argument(&args[2], MAX_INPUT_BYTES) {
+        Ok(bytes) => bytes,
+        Err(_) => return failure("input.io", 3),
+    };
+    match audit_commercial_copy(&copy, &ledger) {
+        Ok(report) => emit(json!({"ok": true, "commercial_copy": report}), 0),
+        Err(error) => emit(json!({"ok": false, "error": error}), 1),
+    }
+}
+
 fn read_bounded(reader: impl Read) -> io::Result<Vec<u8>> {
     read_with_limit(reader, MAX_INPUT_BYTES)
 }
@@ -542,7 +566,13 @@ fn main() -> ExitCode {
     let args: Vec<_> = std::env::args_os().skip(1).collect();
     if args
         .first()
-        .is_some_and(|arg| arg == OsStr::new("render-handoff"))
+        .is_some_and(|arg| arg == OsStr::new("audit-copy-claims"))
+    {
+        return audit_commercial_copy_command(&args);
+    }
+    if args
+        .first()
+.is_some_and(|arg| arg == OsStr::new("render-handoff"))
     {
         return render_handoff_command(&args);
     }
@@ -688,7 +718,7 @@ fn main() -> ExitCode {
     match command {
         Some(value) if value == OsStr::new("--help") && args.len() == 1 => {
             return text(
-                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\n       storytelling plan-story <FILE|->\n       storytelling render-narrative <FILE|->\n       storytelling render-cue-sheet <DOCUMENT_FILE|-> <CUE_SHEET_FILE|->\n       storytelling render-handoff <FILE|->\n       storytelling track-narrative-revisions <FILE|->\n       storytelling query-narrative-impact <FILE|-> <CHANGE_ID>\n       storytelling check-narrative-style <DOCUMENT_FILE|-> <PROFILE_FILE|->\n       storytelling prepare-story-review <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling export-story-otio <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling check-story-review <REVIEW_BUNDLE> <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling prepare-review <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling check-review <REVIEW_RECORD> <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling verify-source <FILE|-> <SHA256>\nRead-only metadata, interchange and declared review identity; no editor execution.\n",
+                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\n       storytelling plan-story <FILE|->\n       storytelling render-narrative <FILE|->\n       storytelling render-cue-sheet <DOCUMENT_FILE|-> <CUE_SHEET_FILE|->\n       storytelling render-handoff <FILE|->\n       storytelling track-narrative-revisions <FILE|->\n       storytelling query-narrative-impact <FILE|-> <CHANGE_ID>\n       storytelling check-narrative-style <DOCUMENT_FILE|-> <PROFILE_FILE|->\n       storytelling audit-copy-claims <COPY_FILE|-> <EVIDENCE_LEDGER_FILE|->\n       storytelling prepare-story-review <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling export-story-otio <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling check-story-review <REVIEW_BUNDLE> <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling prepare-review <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling check-review <REVIEW_RECORD> <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling verify-source <FILE|-> <SHA256>\nRead-only metadata, interchange and declared review identity; no editor execution.\n",
             );
         }
         Some(value) if value == OsStr::new("--version") && args.len() == 1 => {
@@ -786,3 +816,4 @@ fn main() -> ExitCode {
         Err(error) => emit(json!({"ok": false, "error": error}), 1),
     }
 }
+

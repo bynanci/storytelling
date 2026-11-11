@@ -74,6 +74,13 @@ Narrative inputs need no asset hashes, source ranges or frame rates. A future vi
 
 For origin and derivation, consult [W3C PROV-DM](https://www.w3.org/TR/prov-dm/). For spatial grouping, consult [JSON Canvas 1.0](https://jsoncanvas.org/spec/1.0/). Use synthetic cases to assess implementation cost. Record the decision in the ADR specified by the [narrative backlog](../TASKS.md#cross-media-narrative-backlog).
 
+The N-05 `audit-copy-claims` slice follows the same boundary: core carries the
+versioned copy/report DTOs, engine checks bounded references against the supplied
+narrative ledger, and CLI reads two local inputs and emits one JSON report. The
+report includes the cited revision's supplied text for human comparison. A
+current reference is not proof of semantic support, source authenticity or
+publishability.
+
 <a id="工作流程與宿主轉接器"></a>
 
 ### Workflow and editor adapters
@@ -160,3 +167,4 @@ PR #28 merged and still needs independent G2 review. The accepted M3-01/P1 profi
 The external signer and trusted key registry belong outside core. The caller supplies the public key binding. Strict Ed25519 verification establishes control of that key over the exact domain-separated payload. Human identity and authorization require separate evidence. `HostBindingV1.observation` binds a caller's claim. It cannot establish an independent host observation. The opaque `VerifiedApprovalV1` cannot become a serialized bearer token.
 
 The candidate excludes key storage, replay journals, expiry, revocation, an approval database, CLI signing and host execution. Future execution needs durable replay protection, owner fencing and actual host evidence. See the [approval identity contract](migration/APPROVAL_IDENTITY_V1.md) for field order, canonical encoding and size limits.
+
