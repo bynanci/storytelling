@@ -37,6 +37,46 @@ class ScoreTests(unittest.TestCase):
         self.assertEqual((score["missed"], score["unnecessary"], score["damaged"], score["exact"]),
                          ("B", "C", "A", "no"))
 
+    def test_published_account_review_calibration(self):
+        fixture = Path(__file__).resolve().parents[1] / "studies/account-review/calibration-revisions.csv"
+        scores = [dict(zip(RESULT, score, strict=True)) for score in read_scores(fixture)]
+        self.assertEqual(
+            [(s["participant"], s["missed"], s["unnecessary"], s["damaged"], s["exact"]) for s in scores],
+            [("syn-1", "", "", "", "yes"), ("syn-2", "A B", "C", "", "no"),
+             ("syn-3", "", "", "B", "no"), ("syn-4", "", "", "", "yes"),
+             ("syn-5", "", "", "", "yes"), ("syn-6", "", "A", "", "no")],
+        )
+
+    def test_bilingual_calibration_tables_match_the_coded_returns(self):
+        folder = Path(__file__).resolve().parents[1] / "studies/account-review"
+        fields = ("changed", "corrected", "collateral", "missed", "unnecessary", "damaged", "exact")
+        fixture = folder / "calibration-revisions.csv"
+        with fixture.open(encoding="utf-8", newline="") as file:
+            inputs = list(csv.DictReader(file))
+        expected = []
+        for input_row, score in zip(inputs, read_scores(fixture), strict=True):
+            result = input_row | dict(zip(RESULT, score, strict=True))
+            expected.append([result[field] or "—" for field in fields])
+        for name in ("calibration.md", "calibration.zh-TW.md"):
+            text = (folder / name).read_text(encoding="utf-8")
+            table_rows = [line.split("|")[2:-1] for line in text.splitlines()
+                          if line.startswith(("| R1", "| R2"))]
+            with self.subTest(name=name):
+                self.assertEqual([[cell.strip() for cell in row] for row in table_rows], expected)
+
+    def test_material_condition_does_not_change_the_scoring_rule(self):
+        row = self.row("A C", "A", "A")
+        attempts = [(*row[:3], condition, *row[4:])
+                    for condition in ("notes", "mapped", "mapped-bounds")]
+        scores = self.scores(*attempts)
+        self.assertEqual([score["condition"] for score in scores],
+                         ["notes", "mapped", "mapped-bounds"])
+        for score in scores:
+            self.assertEqual((score["missed"], score["unnecessary"], score["damaged"]),
+                             ("B", "C", "A"))
+        with self.assertRaises(ValueError):
+            self.scores((*row[:3], "unrecognized", *row[4:]))
+
     def test_timeout_preserves_observation(self):
         score = self.scores(self.row(finished="no"))[0]
         self.assertEqual((score["exact"], score["seconds"], score["finished"]), ("no", "37", "no"))
