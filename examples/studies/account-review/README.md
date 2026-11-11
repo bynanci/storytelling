@@ -36,4 +36,4 @@ A billing adjustment corrects the second period to 9,200 minutes. The first peri
 
 The account manager prefers a site-by-site billing comparison to plotting dates. Replace the proposed next step.
 
-[Facilitator protocol](../../evaluation/README.md) · [Scoring key for this case](../../evaluation/keys.md#account-review)
+[Facilitator protocol](../../evaluation/README.md) · [Scoring key for this case](../../evaluation/keys.md#account-review) · [Facilitator calibration: audience inferences and worked revisions](calibration.md)

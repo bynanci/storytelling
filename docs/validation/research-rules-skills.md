@@ -39,6 +39,21 @@ Observed answer extract: “Neither audience perception nor faster editor revisi
 
 Review identified a small improvement: the continuation decision should explicitly account for unnecessary edits as well as missed, damaged and unreturned drafts. W6 now includes that condition in both languages. This wording change was reviewed directly; the rehearsal was not rerun afterward. No author approval, participant observation or maintainer acceptance is recorded here.
 
+## Six review findings and follow-up
+
+The follow-up incorporated PR #84 through main `c1f164354c3e88d90acb32075828954091c149d8`. See the [eight-scenario rehearsal record](research-review-rehearsals.md) for actual task inputs, source revisions and returned text. Three fresh agents covered W1–W6 without the review discussion or facilitator keys. Observations remain synthetic, not human acceptance.
+
+| Review | Change and evidence |
+| --- | --- |
+| 1 · Cross-branch evaluation | ST-R12/ST-R13 and W6 now separate rating/inference_status, preserve legacy unassessed and distinguish notes–mapped from mapped–mapped-bounds; RV8. |
+| 2 · Indirect effects | ST-R09/W5 cover cross-draft, arithmetic and adjacent interpretation dependencies plus composition occlusion; RV2–RV4. |
+| 3 · Negative inversion | W5 calls W4/ST-R02 for revised comparisons/causality/verification; skill routing agrees; RV5. |
+| 4 · Coverage | RV1 exercises all four W4 labels; RV2 separates player/character knowledge; RV7 exercises media honesty. |
+| 5 · Withdrawal | ST-R08/ST-R14/W5 prohibit preserving withdrawn personal experience through paraphrase, another speaker or anonymity; RV6. |
+| 6 · Traceability | Research rows link #84 and this record links historical CI #300 separately from local blockage and the new head. |
+
+Local evaluation regression (11 tests), package installation (1) and repository checks passed after the rule changes; final tree checks are recorded in PR #86 with hosted results.
+
 ## Automated verification
 
 Results are recorded after execution below. Existing package installation compares all packaged files with the complete source skill, including the new references. Repository checks also reject links escaping the installed skill. No new implementation-mirroring test is needed for this documentation change.
@@ -49,7 +64,7 @@ Results are recorded after execution below. Existing package installation compar
 - `python3 tests/oracles/filmcraft-25-v1/test_checks.py`: 6 evidence-rejection tests passed without a host invocation.
 - `git diff --check`: passed.
 - Local Rust formatting, Clippy, documentation, workspace and release tests: blocked; Cargo/rustup were absent from PATH and the checked standard locations.
-- Hosted CI on the submitted head: pending; read separately from local checks.
+- Historical hosted [CI #300](https://github.com/bynanci/storytelling/actions/runs/42990788126) passed on `fde7f39828903f040eef1d00b7b289e4b8946bff`: quality (including fmt, Clippy, Rust docs and release tests), audit, Linux/macOS/Windows Rust tests and Required gates. This resolves hosted verification for that revision; it does not make local Rust tests executed. The review follow-up has a new head; its current hosted result is recorded in [PR #86](https://github.com/bynanci/storytelling/pull/86), not inferred from this historical run.
 
 ## Human verification still needed
 

@@ -49,7 +49,7 @@ Use the [first seven Codex prompts](docs/CODEX_NARRATIVE_PROMPTS.md) or the [fiv
 
 ### Starting N-01
 
-For a separate reading or handoff exercise, use the [scenario collection](examples/README.md). Keep its observations separate from the original N-01 trial.
+For a separate reading or handoff exercise, use the [scenario collection](examples/README.md). Keep its observations separate from the original N-01 trial. The [account-review calibration](examples/studies/account-review/calibration.md) includes synthetic scoring examples and a separate test of what evidence limits add to a source map.
 
 1. In [issue #48](https://github.com/bynanci/storytelling/issues/48), record the current main commit and overlapping PRs.
 2. Give the author the [study packet](docs/narrative/N-01-AUTHOR-STUDY.md). Ask them to correct the repairers' identities. Ask which outputs change and where the umbrella came from.

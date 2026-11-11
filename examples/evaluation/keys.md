@@ -4,6 +4,8 @@
 
 Freeze the key before distributing excerpts. For the mapped condition, copy only the three source-map rows to the recipient. Keep intended readings, required edits and protected details with the rater. Score each card against fresh originals. Accept equivalent wording.
 
+For a separate mapped-bounds trial, give editors the same three map rows and the corresponding [source boundaries](source-boundaries.md).
+
 <a name="museum-ticket-punch"></a>
 
 ## A ticket punch and a hole in a ticket
@@ -163,7 +165,7 @@ Freeze the key before distributing excerpts. For the mapped condition, copy only
 
 - **B**　Replace the final question and invitation with a single invitation to ask for the next date.
 
-**Protect**　Do not announce a date that was never supplied. Do not reintroduce any withdrawn testimony.
+**Protect**　R2 starts from the original drafts. Keep the anonymous quotation the participant approved for the donor update. Invite readers to ask for the date without announcing one.
 
 <a name="branching-game"></a>
 

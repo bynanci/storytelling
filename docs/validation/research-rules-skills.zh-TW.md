@@ -39,6 +39,21 @@
 
 審閱指出小幅改善：繼續決策須明列多改，以及漏改、誤改、未交。雙語 W6 已加入此條件。文字修正已直接審閱，之後未重跑演練。本紀錄不含作者核准、參與者觀察或維護者驗收。
 
+## 六項審閱修正與新增證據
+
+此次已透過 main `c1f164354c3e88d90acb32075828954091c149d8` 納入 #84。[八情境演練紀錄](research-review-rehearsals.zh-TW.md)列明題目、來源版本與實際回稿；三個全新代理涵蓋 W1–W6，未取得 Review 討論或主持人答案。均為合成觀察，不是人工驗收。
+
+| Review | 修正與證據 |
+| --- | --- |
+| 1 跨分支評估 | ST-R12／ST-R13、W6 同步 rating／inference_status、舊欄 unassessed，以及兩組獨立交接比較；RV8。 |
+| 2 間接影響 | ST-R09／W5 必查跨稿、算術、緊鄰詮釋及構圖遮蔽；RV2–RV4。 |
+| 3 負面反推 | W5 改寫對比、因果、驗證範圍時回呼 W4／ST-R02，技能路由同步；RV5。 |
+| 4 覆蓋率 | RV1 實際使用四個 W4 標籤，RV2 分離玩家／角色所知，RV7 驗證媒體交付誠實。 |
+| 5 授權撤回 | ST-R08／ST-R14、W5 禁止用改述、換說話者或二次匿名保留撤回個人經驗；RV6。 |
+| 6 追溯 | 研究表 P07、P05／P11 補 #84；歷史 CI #300、本機受阻與新 head 結果分開記錄。 |
+
+規則修改後，本機 evaluation 11 項、套件安裝 1 項及 repo 檢查均通過；最終文件樹與 hosted 結果記於 PR #86。
+
 ## 自動驗證
 
 執行後填入結果。既有套件安裝測試逐檔比較完整技能，包含新參考文件。repo 檢查也拒絕逸出安裝資料夾的連結。這次文件修改不新增模仿實作的測試。
@@ -49,7 +64,7 @@
 - `python3 tests/oracles/filmcraft-25-v1/test_checks.py`：6 項證據拒絕測試通過，未呼叫平台。
 - `git diff --check`：通過。
 - 本機 Rust 格式、Clippy、文件、workspace 與 release 測試：受阻；PATH 與檢查的標準位置皆無 Cargo/rustup。
-- 提交 head 的 hosted CI：待查閱，與本機結果分開。
+- 歷史 hosted [CI #300](https://github.com/bynanci/storytelling/actions/runs/42990788126) 已在 `fde7f39828903f040eef1d00b7b289e4b8946bff` 全數通過：quality（含 fmt、Clippy、Rust 文件與 release 測試）、audit、Linux／macOS／Windows Rust 與 Required gates。這只證明該版的 hosted 驗證，不表示本機已執行 Rust。此次審閱修正會產生新 head；其最新 hosted 結果記在 [PR #86](https://github.com/bynanci/storytelling/pull/86)，不沿用歷史結果。
 
 ## 仍需人工驗證
 

@@ -36,4 +36,4 @@
 
 業務希望下一步改為逐點核對帳單，取代在圖上標日期的做法。
 
-[主持人試用流程](../../evaluation/README.zh-TW.md) · [本案評分對照](../../evaluation/keys.zh-TW.md#account-review)
+[主持人試用流程](../../evaluation/README.zh-TW.md) · [本案評分對照](../../evaluation/keys.zh-TW.md#account-review) · [主持人校準：額外推論與實際改稿示範](calibration.zh-TW.md)
