@@ -14,6 +14,8 @@ $storytelling Two neighbors fixed a gate together. Draft a short spoken story an
 
 For another project, copy the entire [storytelling skill folder](.agents/skills/storytelling) into that project's `.agents/skills/`. For all your local Codex projects, copy the folder into `~/.agents/skills/`. In another Agent Skills client, use its skill installation location. The skill includes its references. Spoken drafts, screenwriting, illustration briefs, copy and brainstorming work with the agent alone. The agent can also draft a shot list from ordinary notes. With an appropriate local CLI and structured video inputs, it can additionally run the supported machine checks. [Examples](.agents/skills/storytelling/references/examples.md) · [Codex skills](https://developers.openai.com/codex/skills/) · [Agent Skills format](https://agentskills.io/specification)
 
+For tool routing, branch/review loops and revision handling, see the [workflow playbook](.agents/skills/storytelling/references/graph-loops.md). Its [Graphify guide](.agents/skills/storytelling/references/graphify-tools.md) covers optional lookups on an existing index, and the [local DAG planner](.agents/skills/storytelling/scripts/graph_plan.py) can validate complex execution orders. Short drafting requests can use the skill alone.
+
 ## Quick start
 
 ### Optional Rust CLI

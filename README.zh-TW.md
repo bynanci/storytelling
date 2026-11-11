@@ -14,6 +14,8 @@ $storytelling 兩位鄰居一起修好了一扇門。請寫一段口述故事，
 
 想在其他專案用，將整個 [storytelling 資料夾](.agents/skills/storytelling) 複製到該專案的 `.agents/skills/`。想在個人的所有本機 Codex 專案使用，放入 `~/.agents/skills/`。其他支援 Agent Skills 的工具則使用各自的安裝位置。資料夾內已附範例與使用指引。口述、編劇、插畫構思、商業文案、腦力激盪及文字分鏡可由 Agent 直接起草；本機有對應 CLI 且輸入符合影片契約時，還能執行機器驗證。[使用範例](.agents/skills/storytelling/references/examples.md) · [Codex Skills](https://developers.openai.com/codex/skills/) · [Agent Skills 格式](https://agentskills.io/specification)
 
+要了解何時直接起草、何時查 Graphify、如何局部重算與停止重試，見[情境與迴圈手冊](.agents/skills/storytelling/references/graph-loops.md)。[Graphify 工具指引](.agents/skills/storytelling/references/graphify-tools.md) 負責索引查詢；[本機 DAG 排程器](.agents/skills/storytelling/scripts/graph_plan.py) 可驗證複雜工作的先後順序。單純起草可直接使用 Skill。
+
 ## 快速開始
 
 ### 選用 Rust CLI
