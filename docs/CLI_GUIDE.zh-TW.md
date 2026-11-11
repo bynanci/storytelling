@@ -43,6 +43,7 @@ storytelling validate plan.json
 | `track-narrative-revisions` | `NarrativeRevisionLedgerV1` 修訂簿 | 列出來源與變體的修訂歷史、作者決定和待審狀態。 |
 | `query-narrative-impact` | 修訂簿與來源變更事件 ID | 列出直接引用該來源版本的變體。由引擎計算影響範圍。 |
 | `check-narrative-style` | 敘事文件與綁定 revision 的風格 profile | 以 JSON 回報宣告的口述 beat 順序。 |
+| `audit-copy-claims` | CommercialCopyDocumentV1 與 NarrativeRevisionLedgerV1，各至多 1 MiB | JSON 顯示文案、被引用的來源文字與 revision 狀態；不判斷語意佐證。 |
 | `validate` | `PlanDocumentV1` 計畫 | 檢查宣告的 ID、雜湊格式、引用與精確來源區間。 |
 | `audit-brief` | `StoryBriefV1` 剪輯需求 | 檢查必選、排除、順序及引用衝突。保留作者的手動選擇。 |
 | `plan-story` | 剪輯需求、候選固定區間、宣告分數與硬性上限 | 提出可重現的固定區間提案，列出選擇原因。 |
@@ -141,6 +142,18 @@ cargo run --release --quiet --locked -p storytelling-cli -- render-cue-sheet \
 指令讀取獨立且封閉的 cue sheet，並綁定指定的 `NarrativeDocumentV1` 與口述變體。旁白提示取自其引用的 beat，接著列出估時停頓與宣告的 `taps.wav` 音效。旁白長度未知時保持未解析；停頓估時與 WAV 已知長度不混為一談。相同互斥軌上已解析的疊音回報 `narrative.cue.track_conflict`；跨軌疊音及半開區間首尾相接則允許。輸出為可重播的可讀文字，不錄音、播放或混音。[Cue sheet 規格](narrative/NARRATIVE_CUE_SHEET_V1.zh-TW.md) · [N-09 重播證據](validation/n09-cue-sheet.zh-TW.md)
 
 <a id="export-a-selected-proposal-as-otio"></a>
+
+## 以來源修訂簿檢查文案主張（N-05）
+
+`audit-copy-claims` 同時讀取文案大綱與呼叫端提供的修訂簿。`current` 只表示來源 ID 和 revision 相符；報告會附上被引用的歷史文字，供真人比對。它不會宣稱來源支持措辭、不會查證事實，也不會核准發布。
+
+```sh
+cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-copy-v1.json tests/fixtures/narrative-v1/n04-revision-history-v1.json
+cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-copy-revised-ref-v1.json tests/fixtures/narrative-v1/n04-revision-history-v1.json
+cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-copy-dangling-ref-v1.json tests/fixtures/narrative-v1/n04-revision-history-v1.json
+```
+
+第一份案例含可追溯的關門測試、缺少引用的平均十分鐘／降低三成成本主張、創作標語與 CTA。其他案例分別引用舊版 S02@1 與不存在的 S99@1。輸出狀態只涵蓋引用。見[契約](narrative/COMMERCIAL_COPY_V1.md)與[N-05 驗證紀錄](validation/n05-commercial-copy.md)；真人語意審查仍待完成。
 
 ## 將所選提案交付為 OTIO
 
@@ -420,3 +433,4 @@ python3 tests/oracles/m3-03-filmcraft-v1/run.py \
 5. 剪點相符時，結果記為 `applied-observed`。過程不會重送或復原操作。
 
 所有產物都存於新的輸出目錄。此案例限於每秒 25 格與單一畫面剪點。它不涵蓋人工批准、可信任的簽章授權或正式執行器。[測試說明](../tests/oracles/m3-03-filmcraft-v1/README.md) · [驗證紀錄](validation/m3-03-filmcraft-execution.md)
+
