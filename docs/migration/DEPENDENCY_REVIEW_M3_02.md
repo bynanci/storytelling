@@ -1,7 +1,8 @@
 # M3-02 SQLite dependency review
 
-Date: 2026-11-11. Candidate only; dependency and hosted CI review remain part of
-the M3-02 PR gate.
+Date: 2026-11-11. The reviewed dependency candidate was merged in
+[PR #56](https://github.com/bynanci/storytelling/pull/56); hosted audit passed
+on both its exact head and the post-merge main commit.
 
 The first local trial pinned `rusqlite = 0.37.0` with `bundled`, which resolved
 `libsqlite3-sys = 0.35.0`. Checksum-pinned Cargo Audit 0.22.1 reported
@@ -22,6 +23,7 @@ implementation across hosts but brings C code into the native dependency
 closure, so every candidate still requires lockfile audit and three-platform
 build evidence.
 
-Final lockfile versions, exact-head advisory snapshot and hosted run links are
-recorded after the final PR head passes. The initial vulnerable trial is retained
-here as a resolved dependency finding, not a current dependency claim.
+The checksum-pinned hosted Dependency Audit passed in [PR run 42943528675](https://github.com/bynanci/storytelling/actions/runs/42943528675)
+and [post-merge main run 42943853913](https://github.com/bynanci/storytelling/actions/runs/42943853913).
+The initial vulnerable trial is retained here as a resolved dependency finding,
+not a current dependency claim.

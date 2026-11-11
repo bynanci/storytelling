@@ -68,9 +68,9 @@ finite interchange proof. No deadlines or aggregate product completion percentag
 are inferred from code or test counts.
 
 M3-01/P2 is merged as the bounded bridge, with its [bounded contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md).
-M3-02 now has a bounded SQLite journal candidate under review; same-head hosted
-checks and its acceptance remain gates. M3-03 then adds isolated FilmCraft
-apply/readback, followed by the M4 OpenFilm flag. A FilmCraft apply timeout has
+M3-02's bounded SQLite journal is accepted through [PR #56](https://github.com/bynanci/storytelling/pull/56)
+with exact-head and post-merge hosted checks passed. M3-03 now adds isolated
+FilmCraft apply/readback, followed by the M4 OpenFilm flag. A FilmCraft apply timeout has
 unknown outcome: durable recovery must read back the project before retry. If the
 same operation may still be in flight or readback is ambiguous, stop instead of
 resending the cut.

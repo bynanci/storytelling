@@ -1,8 +1,9 @@
 # Development tasks
 
 Baseline: `551ff38920e2085e1d53a7ba777c9680678e9725` (original README + MIT LICENSE).
-Updated: 2026-11-11. M0, finite M1-01/M1-02, bounded M2-01/M2-02 audit/planning and M1-03
-supplied-byte/host proof and selected-domain M2-03 live shadow are accepted on main; release remains a separate decision.
+Updated: 2026-11-11. M0, finite M1-01/M1-02, bounded M2-01/M2-02 audit/planning, M1-03
+supplied-byte/host proof, selected-domain M2-03 live shadow and the bounded M3-02
+SQLite journal are accepted on main; FilmCraft execution and release remain separate decisions.
 [SDLC](docs/SDLC.md) owns the process and
 [requirements](docs/REQUIREMENTS.md) owns acceptance traceability.
 
@@ -72,6 +73,7 @@ completed tasks. The GitHub merge metadata records:
 | [#18 bounded M1-03 proof](https://github.com/bynanci/storytelling/pull/18) | `2b859d29e22f6f2a39f73822086b59618bb8a402` | `e0a5ade7ee2c0414f87aa121bef1bdf259a7e75e` | 2026-11-07 03:26:40 |
 | [#22 M2-02 fixed-window planner](https://github.com/bynanci/storytelling/pull/22) | `1f4ff082ed27dbc6223af2f0a0b1cfe71a06fe54` | `895257b1bb9993d70cae3f1267f5f6fa3de91905` | 2026-11-07 03:59:29 |
 | [#26 M2-03 selected-domain live shadow](https://github.com/bynanci/storytelling/pull/26) | `4bf888949107a21b560b09222175ff1f25118a3b` | `5533fcb5d0f857ad1066a76505071653b66d1f89` | 2026-11-07 06:27:14 |
+| [#56 M3-02 bounded SQLite operation journal](https://github.com/bynanci/storytelling/pull/56) | `3cd078e56ed4f2d3dd7accf655446851322cd94d` | `73196930e13d8ce53ba792c574ca4de156883a73` | 2026-11-11 02:07:53 |
 
 
 Routine dependency upkeep merged on 2026-11-07 (these rows do not claim product
@@ -157,7 +159,7 @@ permission changes, nor replace real-media/host or human editorial acceptance.
 | M2-03 | P1 / accepted | Actual selected-domain TS/native live shadow and completed PR register | Accepted M2-02; tracking #24 | M2-S01–S06; exact 64-pair evidence, fail-closed regressions, source/tool provenance and same-head acceptance |
 | M3-01 | P1 / bounded subprofile accepted; broader milestone proposed | Approval and compiled-plan identity contracts | M1-03, M2-02 | Accepted subprofile binds same-input finite OTIO and declared context; planner bridge is delivered in P2; trusted approval and execution remain open |
 | M3-01/P2 | P1 / accepted bounded technical delivery | Selected fixed-window proposal → actual read-only OTIO review bundle | Accepted M2-02 and M3-01/P1 | M3-PB01–PB07; reproducible chosen cuts/loss report; changed asset/cut/loss invalidates review; non-bundle paths skip bundle serialization; no Catalog/host writes |
-| M3-02 | P1 / in-progress, bounded implementation under review | SQLite operation journal and owner-fenced recovery | Accepted M3-01/P2; journal does not itself grant execution authority | Persist exact review/artifact identity before dispatch; recover crashes as unknown; fence owners and late callbacks; no retry without explicit NotApplied readback; exact-head CI pending |
+| M3-02 | P1 / accepted bounded journal slice | SQLite operation journal and owner-fenced recovery | Accepted M3-01/P2; journal does not itself grant execution authority | PR #56 merged; exact-head Quality, Required, Linux, Windows, macOS and Dependency Audit all pass; post-merge main run passes; host execution remains M3-03 |
 | M3-03 | P1 / proposed, queued after M3-02 | FilmCraft executor with unknown-result reconciliation | Accepted M3-02 | New isolated project only; already-applied + response-timeout requires readback before retry; ambiguous readback blocks; no blind Undo rollback |
 | M4-01 | P2 / proposed | Thin TypeScript client and one OpenFilm feature flag | M2-03, M3-03 | One writer/authority; external sample consumes stable CLI protocol |
 | M4-02 | P2 / proposed | Story Companion review-to-host user journey | M4-01 | Propose/compare/approve/execute/verify visible and accessible |
@@ -364,7 +366,7 @@ persist `unknown`, read back the project, and only retry when non-application is
 proven. Ambiguous/missing readback must never trigger a second apply. PR #28's
 independent G2 security review/explicit candidate acceptance stays separate.
 
-## M3-02 SQLite operation journal — implementation in review
+## M3-02 SQLite operation journal — accepted bounded storage slice
 
 The [v1 contract](docs/migration/M3-02-OPERATION-JOURNAL.md) and
 [requirement map](docs/REQUIREMENTS.md#sqlite-operation-journal) define the
@@ -378,13 +380,16 @@ not call FilmCraft, modify OpenFilm Catalog or grant execution authority.
 - [x] SQLite busy lock returns a stable error without partial insertion; retry after lock release succeeds.
 - [x] Local Cargo Audit found RUSTSEC-2026-0459 in two SQLite trial pins; rejected both, upgraded to the fixed `libsqlite3-sys` line and aligned workspace MSRV/toolchain at 1.89. See the [dependency review](docs/migration/DEPENDENCY_REVIEW_M3_02.md).
 - [x] Bounds, state distinctions, limitations and M3-03 retry/readback requirements documented.
-- [ ] Same-head hosted Linux/Windows/macOS, quality and Dependency Audit gates pass.
-- [ ] Merge and close/check the M3-02 task after final same-head review.
+- [x] Exact-head PR #56 CI run [42943528675](https://github.com/bynanci/storytelling/actions/runs/42943528675): Quality, Required, Linux, Windows, macOS and Dependency Audit all passed.
+- [x] PR #56 merged as `73196930e13d8ce53ba792c574ca4de156883a73` after all exact-head gates passed.
+- [x] Post-merge main run [42943853913](https://github.com/bynanci/storytelling/actions/runs/42943853913) passed the same six jobs.
 
-The local and hosted validation snapshots are maintained in
-[the M3-02 record](docs/validation/m3-02-operation-journal.md). Independent
-human acceptance is still separate from this implementation review. PR #28's
-G2 gate also remains pending.
+The accepted scope is the non-executable journal only; it does not establish
+host idempotency/quiescence, actual FilmCraft readback, trusted approval or
+exactly-once effects. Validation evidence is maintained in
+[the M3-02 record](docs/validation/m3-02-operation-journal.md). PR #28's
+independent G2 review and explicit candidate acceptance remain pending and do
+not block this journal slice.
 
 ## Not in the current backlog
 

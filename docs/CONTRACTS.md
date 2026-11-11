@@ -177,10 +177,11 @@ This design separates three guarantees:
    finite composition byte slice and its OTIO export. It does not prove that those bytes came from a
    verified build, host snapshot, trusted producer or planner proposal.
 
-There is no replay protection, request consumption, authoritative time, expiry/revocation state,
+There is no approval replay protection, request consumption, authoritative time, expiry/revocation state,
 filesystem identity/TOCTOU protection, host observation, execution, or publication. The host
-binary fingerprint and capability list are declarations only. Durable idempotency and late-response
-reconciliation remain M3-02; trusted grant/authorization and execution remain broader M3 work.
+binary fingerprint and capability list are declarations only. M3-02 now persists bounded operation
+idempotency and fences late journal updates; it does not deduplicate or stop external host calls.
+Trusted grant/authorization and host execution remain broader M3 work.
 See [the CLI contract](CLI_GUIDE.md#7-建立與檢查有限審核識別) and
 [M3-01/P1 acceptance record](migration/records/M3-01-P1.md).
 
