@@ -37,22 +37,52 @@ S99@1 case reported `dangling` with null cited text and no current revision.
 These are the actual output values produced by the CLI; the raw output is one
 JSON line per invocation.
 
-## Human assessment — pending
+## Requester semantic assessment · 2026-11-11
 
-No author assessment is recorded yet. The CLI output and the cited ledger text are ready for review. To complete the manual criterion:
-
-1. Run the three commands above and read the JSON alongside the ledger.
-2. Decide whether cited S03@1 supports the `gate-test-result` wording.
-3. Confirm that no source backs the `unsupported-program-claim` statement of a ten-minute average and a 30% cost reduction. Decide whether it should be removed or qualified before publication.
-4. Confirm the slogan and CTA are proposals, not presented as facts.
-5. Record an anonymized reviewer label, date, per-claim decision and wording corrections on Issue #52. Leave the table below blank until a person completes the review.
+Reviewer code `requester-2026-11-11` read the actual report and S03@1 in the
+conversation and supplied the judgments below. The submitted assessment is
+[recorded on Issue #52](https://github.com/bynanci/storytelling/issues/52#issuecomment-6792555292).
+This is requester review of the sample, not an independent participant study,
+timed trial, release approval or a semantic judgment made by the validator.
 
 | Claim | Human support decision | Suggested correction |
 | --- | --- | --- |
-| `gate-test-result` / S03@1 |  |  |
-| `unsupported-program-claim` / no source |  |  |
-| `neighbor-slogan` / creative proposal |  |  |
-| `cta-repair-day` / creative proposal |  |  |
+| `gate-test-result` / S03@1 | Supported; the requester found the wording consistent with the single observed test. | Retain the one-test qualification. |
+| `unsupported-program-claim` / no source | Unsupported; the requester recommended deletion or rewriting. | Delete from the reviewed draft. The suggested general rewrite still claimed cost savings without a source and was not used. |
+| `neighbor-slogan` / creative proposal | The data tag is correct; make the reader-facing proposal framing explicit. | Retain `creative_proposal` and prefix the wording with `[Proposed Slogan]`. |
+| `cta-repair-day` / creative proposal | The data tag is correct; make the reader-facing proposal framing explicit. | Retain `creative_proposal` and prefix the wording with `[Proposed CTA]`. |
+
+### Revised draft and normal CLI replay
+
+The [reviewed fixture](../../tests/fixtures/commercial-copy-v1/n05-copy-reviewed-v1.json)
+advances the copy revision to 2, removes the unsupported program claim and
+labels both proposals. The original fixture remains unchanged so the missing
+evidence case continues to be testable. The evidence ledger is unchanged.
+
+```sh
+cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-copy-reviewed-v1.json tests/fixtures/narrative-v1/n04-revision-history-v1.json
+```
+
+The actual [JSON output](n05-commercial-copy-reviewed.stdout) exits 0. A
+[replay receipt](n05-commercial-copy-reviewed-replay.json) records two identical
+runs, the exit statuses and unchanged input hashes. Its author-facing copy is:
+
+> In one test, the gate closed without scraping the ground.
+>
+> [Proposed Slogan] A hinge, a helping hand, a neighbor.
+>
+> [Proposed CTA] Ask your neighbors about a repair day.
+
+These edits answer the recorded feedback. A second reading of the revised draft
+was not reported. N-01/N-07 completion, timing and attribution measurements remain
+unobserved.
+
+The requester-review continuation reran formatting, Clippy with warnings denied,
+workspace debug and release tests, rustdoc with warnings denied, repository
+checks and skill distribution. All passed. The five commercial-copy integration
+tests passed, and the corrected fixture passed the normal CLI with identical
+repeat bytes and unchanged source inputs. Hosted results for the final submitted
+head are recorded on PR #83; earlier hosted results below remain historical.
 
 ## RED / GREEN / hosted CI
 

@@ -6,6 +6,7 @@ These independently authored fixtures support Issue #52 / N-R05. They reuse the 
 | File | Expected reference status | Purpose |
 | --- | --- | --- |
 | `n05-copy-v1.json` | `current`, `missing`, `not_applicable` | A factual test result with a current source reference, an unsupported U01-like claim, a proposed slogan and a proposed call to action. |
+| `n05-copy-reviewed-v1.json` | `current`, `not_applicable` | Copy revision 2 applies the requester's review: delete the unsupported program claim and explicitly prefix the slogan and CTA as proposals. |
 | `n05-copy-revised-ref-v1.json` | `revised` | A factual statement still cites S02@1 after the ledger has revised S02 to revision 2. |
 | `n05-copy-dangling-ref-v1.json` | `dangling` | A factual statement cites an absent source ID. |
 
