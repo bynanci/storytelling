@@ -38,6 +38,12 @@ against its record, then recompiles current inputs and compares all identities.
 Exit 0 means current, 1 means stale or rejected, 2 usage, 3 I/O. Only the proposal
 may use stdin. No implicit paths, URI reads, Catalog/editor writes or host calls.
 
+The Rust `export_story_otio` API uses the same bounded compile-and-bind path and
+returns the OTIO bytes directly. It does not serialize a prepare bundle. The
+freshness checker also recompiles directly into the bound artifact and skips
+portable bundle serialization; only `prepare_story_review` builds that bundle.
+These paths preserve the same artifact bytes and identity.
+
 The new compiler profile is `storytelling.planner-otio-visual-ticks.v1`. OTIO owner
 metadata retains the exact selected proposal text and its SHA-256 along with the
 existing original snapshot text and explicit native/metadata-only/unsupported

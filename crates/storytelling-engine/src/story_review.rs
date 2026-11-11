@@ -209,7 +209,52 @@ pub fn prepare_story_review(
     snapshot_bytes: &[u8],
     context_bytes: &[u8],
 ) -> Result<BoundStoryReviewV1, OtioCompileError> {
+    let review = compile_story_review(proposal_bytes, snapshot_bytes, context_bytes)?;
+    let artifact_text = std::str::from_utf8(review.compiled_otio())
+        .map_err(|_| error("review.serialization_failed", "$.otio"))?;
+    let artifact = RawValue::from_string(artifact_text.to_owned())
+        .map_err(|_| error("review.serialization_failed", "$.otio"))?;
+    let bundle = serde_json::to_vec(&OutgoingBundle {
+        ok: true,
+        review: review.record(),
+        otio: &artifact,
+    })
+    .map_err(|_| error("review.serialization_failed", "$"))?;
+    if bundle.len() > MAX_STORY_REVIEW_BYTES {
+        return Err(error("story_review.bundle_too_large", "$"));
+    }
+    Ok(BoundStoryReviewV1 {
+        review,
+        bundle: bundle.into_boxed_slice(),
+    })
+}
+
+/// Compile and bind the selected proposal, returning only the native OTIO bytes.
+/// This path avoids constructing the portable review bundle when the caller only
+/// needs the interchange artifact.
+pub fn export_story_otio(
+    proposal_bytes: &[u8],
+    snapshot_bytes: &[u8],
+    context_bytes: &[u8],
+) -> Result<Vec<u8>, OtioCompileError> {
+    let review = compile_story_review(proposal_bytes, snapshot_bytes, context_bytes)?;
+    Ok(review.compiled_otio().to_vec())
+}
+
+fn compile_story_review(
+    proposal_bytes: &[u8],
+    snapshot_bytes: &[u8],
+    context_bytes: &[u8],
+) -> Result<crate::BoundReviewV1, OtioCompileError> {
     check_sizes(proposal_bytes, snapshot_bytes, context_bytes)?;
+    compile_story_review_after_size_check(proposal_bytes, snapshot_bytes, context_bytes)
+}
+
+fn compile_story_review_after_size_check(
+    proposal_bytes: &[u8],
+    snapshot_bytes: &[u8],
+    context_bytes: &[u8],
+) -> Result<crate::BoundReviewV1, OtioCompileError> {
     let context = crate::parse_review_context(context_bytes).map_err(validation)?;
     check_json_depth(proposal_bytes).map_err(validation)?;
     let proposal: Proposal = serde_json::from_slice(proposal_bytes)
@@ -257,25 +302,7 @@ pub fn prepare_story_review(
         .map_err(|_| error("story_review.invalid_proposal_json", "$"))?;
     let compiled =
         crate::otio::compile_imported_otio(imported, &loss_choices(&context), Some(proposal_text))?;
-    let review = bind_compiled_review(snapshot_bytes, &plan_bytes, compiled, &context)
-        .map_err(validation)?;
-    let artifact_text = std::str::from_utf8(review.compiled_otio())
-        .map_err(|_| error("review.serialization_failed", "$.otio"))?;
-    let artifact = RawValue::from_string(artifact_text.to_owned())
-        .map_err(|_| error("review.serialization_failed", "$.otio"))?;
-    let bundle = serde_json::to_vec(&OutgoingBundle {
-        ok: true,
-        review: review.record(),
-        otio: &artifact,
-    })
-    .map_err(|_| error("review.serialization_failed", "$"))?;
-    if bundle.len() > MAX_STORY_REVIEW_BYTES {
-        return Err(error("story_review.bundle_too_large", "$"));
-    }
-    Ok(BoundStoryReviewV1 {
-        review,
-        bundle: bundle.into_boxed_slice(),
-    })
+    bind_compiled_review(snapshot_bytes, &plan_bytes, compiled, &context).map_err(validation)
 }
 
 /// Check the actual artifact in an untrusted bundle, then recompile current inputs.
@@ -300,7 +327,8 @@ pub fn check_story_review(
     if sha256_hex(bundle.otio.get().as_bytes()) != bundle.review.identity.artifact_sha256 {
         return Err(error("story_review.artifact_digest_mismatch", "$.otio"));
     }
-    let current = prepare_story_review(proposal_bytes, snapshot_bytes, context_bytes)?;
+    let current =
+        compile_story_review_after_size_check(proposal_bytes, snapshot_bytes, context_bytes)?;
     let mut stale_fields =
         identity_differences(&bundle.review.identity, &current.record().identity);
     stale_fields.sort();

@@ -111,7 +111,7 @@ permission changes, nor replace real-media/host or human editorial acceptance.
 | M2-02 | P1 / accepted | Finite fixed-window selection and shot planner | Accepted M2-01; PR #22 merged | M2-P01–P06; exact source windows, hard choices/order, deterministic declared ranks/reason paths; full solver remains open |
 | M2-03 | P1 / accepted | Actual selected-domain TS/native live shadow and completed PR register | Accepted M2-02; tracking #24 | M2-S01–S06; exact 64-pair evidence, fail-closed regressions, source/tool provenance and same-head acceptance |
 | M3-01 | P1 / bounded subprofile accepted; broader milestone proposed | Approval and compiled-plan identity contracts | M1-03, M2-02 | Accepted subprofile binds same-input finite OTIO and declared context; planner bridge is delivered in P2; trusted approval and execution remain open |
-| M3-01/P2 | P1 / accepted bounded technical delivery | Selected fixed-window proposal → actual read-only OTIO review bundle | Accepted M2-02 and M3-01/P1 | M3-PB01–PB06; reproducible chosen cuts/loss report; changed asset/cut/loss invalidates review; no Catalog/host writes |
+| M3-01/P2 | P1 / accepted bounded technical delivery | Selected fixed-window proposal → actual read-only OTIO review bundle | Accepted M2-02 and M3-01/P1 | M3-PB01–PB07; reproducible chosen cuts/loss report; changed asset/cut/loss invalidates review; non-bundle paths skip bundle serialization; no Catalog/host writes |
 | M3-02 | P1 / ready for contract and test-first journal work | SQLite operation journal and owner-fenced recovery | Accepted M3-01/P2; journal does not itself grant execution authority | Crash/restart/retry/late callback/ack failure; persist unknown outcome and exact operation identity before host call; no duplicate apply |
 | M3-03 | P1 / proposed, queued after M3-02 | FilmCraft executor with unknown-result reconciliation | Accepted M3-02 | New isolated project only; already-applied + response-timeout requires readback before retry; ambiguous readback blocks; no blind Undo rollback |
 | M4-01 | P2 / proposed | Thin TypeScript client and one OpenFilm feature flag | M2-03, M3-03 | One writer/authority; external sample consumes stable CLI protocol |
@@ -311,6 +311,7 @@ The [bounded contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md),
 - [x] Official parser roundtrip oracle supplied for the selected video/still profiles; actual results are recorded separately.
 - [x] Both head runs and post-merge main run passed all six jobs; technical self-review complete, without an independent-review claim.
 - [x] Bounded technical bridge integrated via PR #44 under standing verified-merge authority; M3-02 is next, with execution authority still separate.
+- [ ] Export and freshness compile paths avoid constructing unused portable bundles while preserving OTIO bytes and review identity; mark complete after same-head verification is recorded under M3-PB07.
 
 Follow the dependency order P2 -> operation journal -> FilmCraft execution/readback ->
 OpenFilm feature flag. The critical future fault is apply-success/response-timeout:

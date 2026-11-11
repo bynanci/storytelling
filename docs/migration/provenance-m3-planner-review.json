@@ -136,7 +136,7 @@
         "packages/exporters/src/handoff.ts",
         "packages/application/tests/story-plan.test.ts"
       ],
-      "modifications": "Strict saved planner DTO admission; selected snapshot asset matching; exact read-only OTIO projection and immutable displayed-artifact binding; synthetic tests/oracle. Existing composition-only output/digest contract retained."
+      "modifications": "Strict saved planner DTO admission; selected snapshot asset matching; exact read-only OTIO projection and immutable displayed-artifact binding; synthetic tests/oracle. Existing composition-only output/digest contract retained. Shared compile/bind helper lets direct export and freshness checks avoid unused bundle serialization; prepare remains the bundle-producing API."
     },
     {
       "path": "crates/storytelling-engine/tests/story_review.rs",
@@ -148,7 +148,7 @@
         "packages/exporters/src/handoff.ts",
         "packages/application/tests/story-plan.test.ts"
       ],
-      "modifications": "Strict saved planner DTO admission; selected snapshot asset matching; exact read-only OTIO projection and immutable displayed-artifact binding; synthetic tests/oracle. Existing composition-only output/digest contract retained."
+      "modifications": "Strict saved planner DTO admission; selected snapshot asset matching; exact read-only OTIO projection and immutable displayed-artifact binding; synthetic tests/oracle. Existing composition-only output/digest contract retained. Direct export API is checked byte-for-byte against the bound prepare artifact."
     },
     {
       "path": "tests/fixtures/story-review-v1/README.md",
@@ -226,9 +226,9 @@
     }
   ],
   "integration_files_mit": [
+    ".github/workflows/ci.yml",
     "crates/storytelling-cli/src/main.rs",
-    "crates/storytelling-engine/src/lib.rs",
-    ".github/workflows/ci.yml"
+    "crates/storytelling-engine/src/lib.rs"
   ],
   "source_drift_check": {
     "date": "2026-11-11",
