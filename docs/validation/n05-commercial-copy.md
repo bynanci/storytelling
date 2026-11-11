@@ -62,5 +62,12 @@ The implementation was first checked locally with the new CLI tests (5/5).
 Rust 1.89.0 formatting, full workspace debug and release tests, Clippy with
 warnings denied, rustdoc with warnings denied, `scripts/check_repo.py` and
 `scripts/test_skill_distribution.py` all passed. The full workspace suite also
-reran video V1 and the existing OTIO CLI regression tests. Hosted CI remains the
-required exact-head check; PR #83 records its final run and commit SHA.
+reran video V1 and the existing OTIO CLI regression tests.
+
+Hosted run #284 on `a913209be9e10f9d529b02b70b15ba317422e111` failed at the
+repository-link check because the initial docs included unrelated links to
+unmerged N-12 and author-study files. Those out-of-scope references were
+removed. Corrected exact-head run [#285](https://github.com/bynanci/storytelling/actions/runs/42987880590)
+passed all six configured jobs on `0ffca71dbf31cd3182df2d36834e641c9b3d5201`:
+Quality and contracts, Dependency audit, Linux, Windows, macOS and Required
+gates. A later documentation-only commit will receive its own exact-head run.
