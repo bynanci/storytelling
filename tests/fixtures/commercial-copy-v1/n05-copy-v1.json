@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "copy_id": "gate-repair-outreach",
+  "copy_revision": 1,
+  "evidence_document_id": "door-repair",
+  "evidence_document_revision": 1,
+  "purpose": "Invite neighbors to consider a small community gate repair activity.",
+  "audience": "Residents who read the neighborhood bulletin.",
+  "claims": [
+    {
+      "id": "gate-test-result",
+      "kind": "factual_claim",
+      "wording": "In one test, the gate closed without scraping the ground.",
+      "evidence_refs": [{ "unit_id": "S03", "revision": 1 }]
+    },
+    {
+      "id": "unsupported-program-claim",
+      "kind": "factual_claim",
+      "wording": "Our program repairs every gate in ten minutes on average and cuts costs by 30%.",
+      "evidence_refs": []
+    },
+    {
+      "id": "neighbor-slogan",
+      "kind": "creative_proposal",
+      "wording": "A hinge, a helping hand, a neighbor.",
+      "evidence_refs": []
+    }
+  ],
+  "call_to_action": {
+    "id": "cta-repair-day",
+    "kind": "creative_proposal",
+    "wording": "Ask your neighbors about a repair day.",
+    "evidence_refs": []
+  }
+}
