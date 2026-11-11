@@ -58,6 +58,10 @@ No author answers or time measurements are available yet. Do not infer a prefere
 
 The next decision is the author's response to the six prompts above. Keep Issue #53 open and do not start N-10 until the response selects one candidate or explicitly defers the work.
 
+## Automated validation
+
+Exact-head hosted run [#317](https://github.com/bynanci/storytelling/actions/runs/42995948102) passed all six configured jobs on `e16997305d881f235709c68d8434175fc77f7239`: quality/contracts, dependency audit, Linux, Windows, macOS and required gates. This confirms repository consistency and existing regression status for the packet. It does not establish author need, preference or acceptance.
+
 ## Reproduction and document checks
 
 This packet changes no runtime behavior. From the repository root, run python3 scripts/check_repo.py and cargo test --locked --workspace. These checks establish repository consistency and existing regression status only; they do not establish author need or acceptance.
