@@ -130,6 +130,16 @@ cargo run --release --quiet --locked -p storytelling-cli -- check-narrative-styl
 
 Success is one JSON line. The command validates only the declared order. A contradictory rule returns `narrative.style.order_conflict` and its rule IDs. An unsupported profile version returns `narrative.style.unsupported_version`. The profile does not assess aesthetics or establish human approval. P1 is an imagery proposal derived from S3, not an observed explanation of its cause. Reader feedback remains `manual-pending`. See the [profile contract](narrative/EDITORIAL_STYLE_PROFILE_V1.md) and [N-08 validation record](validation/n08-style-profile.md).
 
+## Render a recording cue sheet (N-09)
+
+```sh
+cargo run --release --quiet --locked -p storytelling-cli -- render-cue-sheet \
+  tests/fixtures/narrative-v1/n09-umbrella-source-v1.json \
+  tests/fixtures/narrative-v1/n09-cue-sheet-v1.json
+```
+
+The command reads a separate closed cue sheet bound to the supplied `NarrativeDocumentV1` and spoken variant. It renders a narration cue from its referenced beat, followed by the estimated pause and the declared `taps.wav` effect. Unknown narration length remains unresolved; the pause estimate and known WAV duration stay distinct. Resolved overlapping intervals on one exclusive track return `narrative.cue.track_conflict`; overlaps across tracks and touching half-open intervals are allowed. Output is deterministic, human-readable text. It does not record, play, or mix audio. See the [cue-sheet profile](narrative/NARRATIVE_CUE_SHEET_V1.md) and [N-09 replay evidence](validation/n09-cue-sheet.md).
+
 <a id="將所選提案交付為-otio"></a>
 <a name="選定提案-a--可審核-otio已合併唯讀切片"></a>
 

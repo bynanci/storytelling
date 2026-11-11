@@ -4,6 +4,8 @@ English · [繁體中文](research-rules-skills.zh-TW.md)
 
 Date: 2026-11-11. Base: `b7fcf869d01727dcf408c457fdd42929dca80c7a`. Scope: original research summaries, portable editorial rules, six on-demand workflows and bilingual integration. No Rust, schema, dependency or license changes. The submitted PR identifies the tested head and hosted check results.
 
+Delivery incorporated main `60e302e2ea3b235e9bd7aae58049690ec9dad0f2` (#78 audio cues) without conflicts. The PR diff against that main remains documentation-only. Local documentation/package checks were rerun on the integrated tree.
+
 ## Synthetic agent rehearsal
 
 A fresh GPT-6.1 Sol agent read only `research-workflows.md` and its linked `editorial-rules.md`. The task did not provide expected answers. It had no other repository files, search or media tools. The following are supplied task text and observed answer extracts recorded by the facilitating agent, not a complete transcript. They test one synthetic case, not human outcomes or general effectiveness.

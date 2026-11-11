@@ -1,0 +1,20 @@
+Cue sheet: n09-adjacent-cues@1 (schema v1)
+Narrative: umbrella-workshop@1 · variant oral
+Time unit: milliseconds
+Tracks:
+- voice · channel=voice · policy=exclusive
+
+Cues:
+1. voice-01 · narration · role="旁白" · track=voice
+   Source: "NarrativeDocument umbrella-workshop@1 · S1@1 (supplied_observation) · beat invite"
+   Voice: "週六修傘工作坊，請帶一把傘。"
+   Direction: "以宣告區間測首尾相接。"
+   Time: "ESTIMATED [0, 1000) ms"
+2. pause-01 · silence · role="錄製者" · track=voice
+   Source: "Editorial choice · 同一軌上的緊接停頓。"
+   Direction: "停一拍"
+   Time: "ESTIMATED [1000, 1500) ms"
+
+Validation: resolved intervals: 2; unresolved intervals: 0
+Policy: [start, end) ranges; cross-track overlap allowed; overlapping resolved cues on an exclusive track are rejected.
+Scope: declarations only; unresolved intervals are not conflict-checked, and no audio is read or mixed.

@@ -18,7 +18,7 @@ Contract, editorial and human checks have different authority. A preference can 
 
 ## Research → rule → workflow → existing work
 
-Snapshot: 2026-11-11, base `b7fcf869d01727dcf408c457fdd42929dca80c7a`. This table maps design work, not live issue status. N-03 rendering, N-04 direct-reference impact, N-08 declared spoken order and N-11 handoff have repository implementations; their human outcomes remain separate. At review time PRs #78 (audio cues) and #83 (commercial evidence audit) were open. Recheck their heads before implementation; this change avoids those runtime files.
+Snapshot: 2026-11-11, base `b7fcf869d01727dcf408c457fdd42929dca80c7a`. This table maps design work, not live issue status. N-03 rendering, N-04 direct-reference impact, N-08 declared spoken order and N-11 handoff have repository implementations; their human outcomes remain separate. At initial review PRs #78 (audio cues) and #83 (commercial evidence audit) were open. During delivery, #78 merged as `60e302e2ea3b235e9bd7aae58049690ec9dad0f2`; this branch incorporates it without changing its runtime files. N-09 now has declared cue-sheet checks; produced sound and human outcomes still need separate evidence. Recheck #83 before implementation.
 
 | Evidence | Rule IDs | Workflow | Requirement / existing issue | Next evidence needed |
 | --- | --- | --- | --- | --- |

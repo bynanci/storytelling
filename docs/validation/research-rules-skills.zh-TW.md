@@ -4,6 +4,8 @@
 
 日期：2026-11-11。基準：`b7fcf869d01727dcf408c457fdd42929dca80c7a`。範圍：原創研究摘要、可攜編輯規則、六個按需流程與雙語整合。不改 Rust、schema、依賴或授權。提交 PR 記錄測試 head 與 hosted checks 結果。
 
+交付時已無衝突納入 main `60e302e2ea3b235e9bd7aae58049690ec9dad0f2`（#78 聲音提示）。對該 main 的 PR diff 仍只有文件。整合後已重跑本機文件／套件檢查。
+
 ## 合成代理演練
 
 全新 GPT-6.1 Sol 代理只讀取 `research-workflows.md` 與其連結的 `editorial-rules.md`，未取得預期答案、其他 repo 文件、搜尋或媒體工具。下列為主持代理提供的任務與觀察摘錄，不是完整逐字紀錄。只驗證一個合成案例，不代表人工結果或普遍有效。

@@ -66,6 +66,8 @@ The maintainer accepted the independently versioned narrative contract for N-03 
 
 N-04 starts with a `NarrativeDocumentV1` snapshot. A separate `NarrativeRevisionLedgerV1` stores append-only events. `track-narrative-revisions` replays source and variant history, declared author choices and pending reviews. `query-narrative-impact` accepts a source revision event ID. The engine reports variants with direct references. An author must inspect indirect effects through `based_on`. See the [ledger contract](narrative/NARRATIVE_REVISION_LEDGER_V1.md) and [N-04 evidence](validation/n04-narrative-revisions.md).
 
+N-09 keeps `NarrativeDocumentV1` closed and adds a separate `NarrativeCueSheetV1` for a recording-ready sequence. It binds narration to a spoken beat and source revision, labels production directions, distinguishes known, estimated and unknown time, and checks resolved intervals on exclusive tracks. `render-cue-sheet` emits deterministic text; it does not record or mix audio. See [ADR 0007](adr/0007-versioned-narrative-cue-sheet.md), the [profile](narrative/NARRATIVE_CUE_SHEET_V1.md) and [N-09 evidence](validation/n09-cue-sheet.md).
+
 N-11 adds a separate `NarrativeHandoffManifestV1` around the unchanged ledger. Core owns its wire types; the pure engine binds current source descriptors and complete artifact-component maps to actual variant snapshots. It reuses N-04 direct-reference impact, checks proposal scope across the whole bound snapshot, and keeps historical impact separate from current review status. The CLI reads one explicit manifest and writes reproducible text. File paths and hashes are declarations; no media is opened. See [ADR 0009](adr/0009-read-only-mixed-media-handoff.md), the [profile](narrative/NARRATIVE_HANDOFF_MANIFEST_V1.md) and [evidence](validation/n11-handoff.md).
 
 Narrative inputs need no asset hashes, source ranges or frame rates. A future video adapter could bind selected units to explicit assets and call the planner through its public contract. Keep video V1 inputs, CLI behavior, digest vectors and OTIO fixtures as regression checks.
@@ -136,6 +138,7 @@ M3-03 must establish that the prior request stopped before readback can support 
 - [ADR 0001](adr/0001-scope-and-boundaries.md) defines the Rust extraction strategy.
 - [ADR 0002](adr/0002-exact-time-and-wire.md) defines time and wire constraints.
 - [ADR 0003](adr/0003-license-and-provenance.md) records repository licensing and source attribution.
+- [ADR 0007](adr/0007-versioned-narrative-cue-sheet.md) records the separate closed audio cue-sheet contract.
 - [ADR 0008](adr/0008-local-png-host-feasibility.md) proposes the N-12 local PNG delivery boundary with separate host and readback evidence.
 - [ADR 0009](adr/0009-read-only-mixed-media-handoff.md) proposes a read-only handoff manifest using the existing revision ledger.
 

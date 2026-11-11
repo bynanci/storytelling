@@ -15,6 +15,7 @@
 | `audit-brief` | StoryBrief v1 JSON，1,048,576 | `{"ok":true,"audit":...}` | [創作需求檢查](migration/STORY_BRIEF_V1.md) |
 | `plan-story` | 含固定時間窗的規劃輸入 JSON，1,048,576 | `{"ok":true,"planning":...}` | [固定時間窗規劃器](migration/FIXED_WINDOW_PLANNER_V1.md) |
 | `render-narrative` | NarrativeDocumentV1 JSON，1,048,576 | 內容固定、可直接閱讀的 UTF-8 文字。錯誤時輸出一行 JSON。 | [敘事文件](narrative/NARRATIVE_DOCUMENT_V1.md) |
+| `render-cue-sheet` | NarrativeDocumentV1 與 NarrativeCueSheetV1 JSON，各 1,048,576 | 可重播提示表文字。錯誤時輸出一行 JSON。 | [提示表規格](narrative/NARRATIVE_CUE_SHEET_V1.zh-TW.md) |
 | `render-handoff` | NarrativeHandoffManifestV1 JSON，1,048,576 | 可重播的來源清單、部分影響與審閱狀態；錯誤為一行 JSON。 | [交接清單](narrative/NARRATIVE_HANDOFF_MANIFEST_V1.zh-TW.md) |
 | `track-narrative-revisions` | NarrativeRevisionLedgerV1 修訂紀錄 JSON，1,048,576 | 可重跑的來源與變體歷史、建議、作者選擇及目前的審閱狀態 | [敘事修訂紀錄](narrative/NARRATIVE_REVISION_LEDGER_V1.md) |
 | `query-narrative-impact` | 相同的修訂紀錄，另附一個來源修訂事件 ID | 依直接參照計算該次修訂所影響的變體 | [敘事修訂紀錄](narrative/NARRATIVE_REVISION_LEDGER_V1.md) |
@@ -52,6 +53,8 @@
 作者決定與代理建議各用獨立事件。命令記錄所宣告的選擇，不驗證作者身分。
 
 \`check-narrative-style <DOCUMENT_FILE|-> <PROFILE_FILE|->\` 依綁定的文件 revision 檢查口述變體中宣告的 beat 順序。成功時輸出單行 JSON；錯誤時回報診斷並退出 1。此指令不判斷創作品質或作者核准。
+
+`render-cue-sheet <DOCUMENT_FILE|-> <CUE_SHEET_FILE|->` 接受一份敘事文件及獨立、封閉的提示表，驗證宣告的識別碼、beat 與素材引用、時間及互斥聲軌衝突，然後輸出可重播的可讀文字。最多一項輸入可使用標準輸入。指令不讀取音檔、不錄音、播放或混音，也不修改 `NarrativeDocumentV1`。
 
 | 通用結束碼 | 意義 |
 | --- | --- |

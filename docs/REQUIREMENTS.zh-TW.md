@@ -348,7 +348,7 @@ M0、M1-01 與限定範圍的 M2-01 稽核只支援前兩項。
 | 需求／任務 | 可觀察的結果 |
 | --- | --- |
 | N-R08／[N-08](https://github.com/bynanci/storytelling/issues/65) | 以同一份合成素材比較兩種開場。綁定敘事文件 revision 的 `NarrativeStyleProfileV1` CLI 檢查口述變體 beat 順序。有效規則可通過；同一變體的循環會列出規則 ID；順序違反、舊 revision 和未知版本均回傳穩定診斷。[N-08 驗證紀錄](validation/n08-style-profile.md)列出重跑測試及成對案例。真人盲讀仍待執行；檢查器不宣稱評價美感或代表作者核准。 |
-| N-R09／[N-09](https://github.com/bynanci/storytelling/issues/66) | 依序重播旁白、停頓及音效提示。時間未知時保留未定。允許宣告的跨軌疊音。拒絕反向區間或互斥軌上的衝突。 |
+| N-R09／[N-09](https://github.com/bynanci/storytelling/issues/66) | `render-cue-sheet` 輸出綁定口述 `NarrativeDocumentV1` revision 的獨立封閉提示表。保留工作坊受眾、週六活動與帶一把傘的素材；旁白標為待錄、停頓標示估時，`taps.wav` 標為已宣告音效。允許跨軌疊音與半開區間首尾相接；拒絕互斥軌衝突、反向區間、重複 ID 與未知版本。保存輸出與結束碼，證明逐位元一致重播，並維持 `NarrativeDocumentV1` 不變。[規格](narrative/NARRATIVE_CUE_SHEET_V1.zh-TW.md) · [N-09 驗證紀錄](validation/n09-cue-sheet.zh-TW.md)。 |
 | N-R10／[N-10](https://github.com/bynanci/storytelling/issues/67) | N-06 明選一案後才開發。從本機入口執行一個正例及一個反例。既有影片回歸須通過。 |
 | N-R11／[N-11](https://github.com/bynanci/storytelling/issues/68) | `render-handoff` 透過原有 N-04 修訂簿對照文字、圖像與聲音部分。[規格](narrative/NARRATIVE_HANDOFF_MANIFEST_V1.zh-TW.md)、[案例](../tests/fixtures/narrative-handoff-v1/README.md)及[證據](validation/n11-handoff.md)涵蓋事先固定的日期影響集合、遺失與過期引用、專屬提案外溢、完整對照、描述來源、來源未變及一致重播。語意另由作者檢視。 |
 | N-R12／[N-12](https://github.com/bynanci/storytelling/issues/69) | [Inkscape 可行性試驗](validation/n12-inkscape-png.zh-TW.md)以同一請求與 S2 交付真正 PNG、完整解碼及視覺讀回，再受控隱藏匯出入口交付構圖說明。保存來源前後身分與命令／退出碼。正式 adapter 的縮小採用建議待維護者決定。 |

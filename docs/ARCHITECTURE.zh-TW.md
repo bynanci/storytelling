@@ -79,6 +79,8 @@ N-04 以 `NarrativeDocumentV1` 為初始快照。另以 `NarrativeRevisionLedger
 `based_on` 記錄衍生關係。間接影響仍須由作者檢查。
 [修訂紀錄契約](narrative/NARRATIVE_REVISION_LEDGER_V1.md) · [N-04 驗證](validation/n04-narrative-revisions.md)
 
+N-09 保持 `NarrativeDocumentV1` 封閉，另新增 `NarrativeCueSheetV1` 以排列可供錄音的提示。旁白綁定口述 beat 及來源 revision；製作指示明確標示，並區分已知、估時與未知時間，也會檢查互斥聲軌上的已解析區間。`render-cue-sheet` 輸出可重播文字，不錄音或混音。[ADR 0007](adr/0007-versioned-narrative-cue-sheet.md) · [規格](narrative/NARRATIVE_CUE_SHEET_V1.zh-TW.md) · [N-09 證據](validation/n09-cue-sheet.zh-TW.md)
+
 N-11 在原有修訂簿外新增獨立的 `NarrativeHandoffManifestV1`。Core 定義 wire 型別；純引擎將目前來源描述與完整產物部分對照綁定實際變體快照，沿用 N-04 的直接引用影響，對整個綁定快照檢查提案範圍，並分列歷史影響與目前審閱狀態。CLI 讀取明確指定的清單並輸出可重播文字。路徑與摘要只是宣告，不開啟媒體。[ADR 0009](adr/0009-read-only-mixed-media-handoff.md) · [規格](narrative/NARRATIVE_HANDOFF_MANIFEST_V1.zh-TW.md) · [證據](validation/n11-handoff.md)
 
 敘事輸入獨立於媒體雜湊、來源區間及幀率。
@@ -179,6 +181,7 @@ M3-03 須證明舊請求已停止，才能將宿主讀回用作重試依據。
 - [ADR 0001](adr/0001-scope-and-boundaries.md) 記錄 Rust 移植策略。
 - [ADR 0002](adr/0002-exact-time-and-wire.md) 記錄時間與傳輸限制。
 - [ADR 0003](adr/0003-license-and-provenance.md) 記錄儲存庫授權與來源。
+- [ADR 0007](adr/0007-versioned-narrative-cue-sheet.md) 記錄獨立且封閉的音訊提示表契約。
 - [ADR 0008](adr/0008-local-png-host-feasibility.md) 提議 N-12 本機 PNG 交付邊界，保留獨立宿主與讀回證據。
 - [ADR 0009](adr/0009-read-only-mixed-media-handoff.md) 提議沿用修訂簿的唯讀交接清單。
 
