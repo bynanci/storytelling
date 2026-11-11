@@ -66,6 +66,27 @@ Results are recorded after execution below. Existing package installation compar
 - Local Rust formatting, Clippy, documentation, workspace and release tests: blocked; Cargo/rustup were absent from PATH and the checked standard locations.
 - Historical hosted [CI #300](https://github.com/bynanci/storytelling/actions/runs/42990788126) passed on `fde7f39828903f040eef1d00b7b289e4b8946bff`: quality (including fmt, Clippy, Rust docs and release tests), audit, Linux/macOS/Windows Rust tests and Required gates. This resolves hosted verification for that revision; it does not make local Rust tests executed. The review follow-up has a new head; its current hosted result is recorded in [PR #86](https://github.com/bynanci/storytelling/pull/86), not inferred from this historical run.
 
+## Final integration verification · 2026-11-11
+
+The continuation integrated main `8e2c08094f6bce70a7507e11ed84265bd98e3820`.
+The diff remains the intended 26 documentation/skill-reference files, with no
+Rust, schema, dependency or workflow change relative to that main. Requester
+reviews, the N-06 deferral and the N-07 packet remain intact.
+
+Rust 1.89.0 is available in this continuation environment. Formatting, Clippy,
+workspace debug/release tests, strict rustdoc, repository checks, complete skill
+pack/install/discovery, 11 evaluation regressions, 12 N-07 packet/helper tests,
+graph planner/trace and host-evidence rejection checks all passed. The earlier
+local-toolchain blockage above describes the original authoring environment;
+it is not substituted for these executed results. Final hosted results are
+attached to PR #86's submitted head.
+
+Source spot checks reopened the P05 author PDF and confirmed its two study
+samples (12 and 8) and inconclusive cognitive-load result. The P06 ACL record
+confirmed the cited title and four authors. No paper text or PDF was added to
+the package. No new synthetic rehearsal or human observation was produced by
+this integration review.
+
 ## Human verification still needed
 
 Run the existing N-01 and separate audience/handoff protocols with actual participants. Freeze keys, denominators and decision criteria before recruitment. Collect returned drafts and first responses, not only checklists. Keep setup cost, unwanted changes and incomplete attempts. Any product or release decision remains with the maintainer.

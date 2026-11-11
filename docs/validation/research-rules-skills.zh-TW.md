@@ -66,6 +66,14 @@
 - 本機 Rust 格式、Clippy、文件、workspace 與 release 測試：受阻；PATH 與檢查的標準位置皆無 Cargo/rustup。
 - 歷史 hosted [CI #300](https://github.com/bynanci/storytelling/actions/runs/42990788126) 已在 `fde7f39828903f040eef1d00b7b289e4b8946bff` 全數通過：quality（含 fmt、Clippy、Rust 文件與 release 測試）、audit、Linux／macOS／Windows Rust 與 Required gates。這只證明該版的 hosted 驗證，不表示本機已執行 Rust。此次審閱修正會產生新 head；其最新 hosted 結果記在 [PR #86](https://github.com/bynanci/storytelling/pull/86)，不沿用歷史結果。
 
+## 最後整合查核 · 2026-11-11
+
+此次接續工作已整合 main `8e2c08094f6bce70a7507e11ed84265bd98e3820`。相對主線仍只有預期的 26 份文件與技能參考檔，沒有 Rust、schema、依賴或 CI workflow 差異；請求者審閱、N-06 暫緩及 N-07 包均保留。
+
+目前環境可用 Rust 1.89.0；已實跑並通過格式、Clippy、完整 debug／release 測試、嚴格 rustdoc、儲存庫、完整技能打包／安裝／發現、11 個評估回歸、12 個 N-07 包／helper 測試、圖形規劃／trace 及宿主證據拒絕檢查。前述本機工具鏈阻礙屬原始撰寫環境的歷史紀錄，不代替此次結果。最後 head 的遠端結果記於 PR #86。
+
+來源抽查重新開啟 P05 作者 PDF，確認兩組樣本為 12 與 8，且認知負荷結果不確定；P06 的 ACL 紀錄確認標題與四位作者。沒有將論文或 PDF 納入套件。此次整合審查沒有產生新的代理演練或真人觀察。
+
 ## 仍需人工驗證
 
 以真實參與者進行既有 N-01 與獨立閱讀／交接協定。招募前凍結答案、分母與決策條件。收集實際改稿與第一反應，不只核取表。保留準備成本、多改與未完成嘗試。產品與發版決策由維護者作出。

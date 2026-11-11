@@ -18,6 +18,12 @@ Contract, editorial and human checks have different authority. A preference can 
 
 ## Research → rule → workflow → existing work
 
+Final integration uses main `8e2c08094f6bce70a7507e11ed84265bd98e3820`, including
+the requester-reviewed N-05/N-03 drafts, the explicit N-06 deferral, concrete
+comparison cases and N-07 pilot preparation. Those records and all runtime paths
+are retained. The earlier snapshots below are historical design maps, not a reason
+to reopen completed issues or infer participant outcomes from preparation.
+
 Review follow-up incorporated main `c1f164354c3e88d90acb32075828954091c149d8`, which merged [PR #84](https://github.com/bynanci/storytelling/pull/84) at source head `ec4a879ccbf2ea1b04288d2f0fbec09b94f8dcce`. W6 now follows its independent `rating`/`inference_status` axes and separate mapped–mapped-bounds handoff comparison. W5 covers arithmetic, adjacent interpretation, consent withdrawal and W4 re-audit. These are synthetic validation and protocol changes, not participant outcomes.
 
 Snapshot: 2026-11-11, base `b7fcf869d01727dcf408c457fdd42929dca80c7a`. This table maps design work, not live issue status. N-03 rendering, N-04 direct-reference impact, N-08 declared spoken order and N-11 handoff have repository implementations; their human outcomes remain separate. At initial review PRs #78 (audio cues) and #83 (commercial evidence audit) were open. During delivery, #78 merged as `60e302e2ea3b235e9bd7aae58049690ec9dad0f2`; this branch incorporates it without changing its runtime files. N-09 now has declared cue-sheet checks; produced sound and human outcomes still need separate evidence. Recheck #83 before implementation.
