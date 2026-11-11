@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: MIT -->
 # CLI 使用指南
 
-本指南從 repository 根目錄執行，使用已接受契約與 M3-01/P2 planner-to-OTIO 候選契約。
+本指南從 repository 根目錄執行，使用已接受契約與 M3-01/P2 有界 planner-to-OTIO 契約。
 新路徑可直接讀取 `plan-story` stdout；原本 composition 指令則維持自己的輸入契約。
 格式與穩定錯誤碼見
 [契約索引](CONTRACTS.md)，實作進度見 [TASKS](../TASKS.md)。
@@ -43,7 +43,7 @@ metadata、diagnostic 和 output 預算由各自的 frozen contract 管理。
 新命令只有 proposal 可用 `-`；snapshot/context/bundle 是明確 regular file。
 輸入結束時須送 EOF。
 
-## 選定提案 A → 可審核 OTIO（唯讀候選）
+## 選定提案 A → 可審核 OTIO（已合併唯讀切片）
 
 以下三份 fixture 均為合成宣告，不需要實際素材或編輯器：
 

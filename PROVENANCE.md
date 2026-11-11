@@ -1,6 +1,6 @@
 # Provenance
 
-## M3-01/P2 selected proposal / read-only OTIO candidate
+## M3-01/P2 selected proposal / read-only OTIO delivery
 
 The approved Apache component policy covers the bridge, strict planner/audit DTO
 extensions and synthetic regressions/fixtures/official-parser oracle. Its
