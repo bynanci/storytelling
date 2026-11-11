@@ -1,130 +1,88 @@
-# Storytelling roadmap
+# Storytelling 開發路線圖
 
-The first cross-media milestone is a correction an author can trust. If a
-source note changes, the author should be able to update the spoken account and
-identify the affected illustrations while keeping a deliberate choice in one
-version. The [product rationale](docs/WHY_STORYTELLING.md) explains the research
-and the cases where ordinary notes may already be sufficient.
+Storytelling 的第一個跨媒體目標是讓作者能改稿。試想一張活動通知改了日期。作者應能找出受影響的口述稿和海報，也能保留單一版本的構圖選擇。[設計依據與使用情境](docs/WHY_STORYTELLING.md)
 
-## Product objective
+<a id="product-objective"></a>
 
-| Where the work stands | What an author or integrator can do |
-| --- | --- |
-| Available · portable authoring skill | Bring an audience, purpose and material to the [Agent Skill](skills/storytelling/SKILL.md). Draft in a host agent, compare treatments or follow the [eight templates](skills/storytelling/references/multimodal-templates.md) by hand. The [workshop](skills/storytelling/references/workshop-demo.md) includes text, a diagram and a sound file. |
-| Available · cross-media Rust CLI | `render-narrative` organizes one declared source into an ordered oral outline and two illustration briefs. `track-narrative-revisions` and `query-narrative-impact` are in the N-04 implementation PR. The [N-03](docs/validation/n03-narrative-cli.md) and [N-04](docs/validation/n04-narrative-revisions.md) records separate executable evidence from hosted CI and human inspection. |
-| Available · bounded video CLI | Supply structured clips and planning constraints to the [CLI](docs/CLI_GUIDE.md). It can select fixed windows and export a picture-only timeline under its documented limits. See [video milestones](#milestones) for the OpenFilm snapshot adapter and FilmCraft evidence. |
+## 現有功能
 
-The skill can be installed independently from the Rust workspace. The package
-version is `0.1.0-dev.0`; [installation from GitHub](docs/PLATFORMS.md) is
-available. Public registry publication remains a separate release decision.
-
-## Cross-media narrative roadmap
-
-**N-03 is merged; N-04 source revision tracking is in review.** [N-02](https://github.com/bynanci/storytelling/issues/49) is
-accepted at the design gate. The local CLI produces one ordered oral outline
-and two distinct illustration briefs from the same declared source. N-04 adds
-append-only revisions, choice records and variant impact queries. Automated
-evidence is recorded in the [N-03](docs/validation/n03-narrative-cli.md) and
-[N-04 validation records](docs/validation/n04-narrative-revisions.md); author
-inspection remains pending. **Evaluate in parallel.** The
-[N-01 study packet](docs/narrative/N-01-AUTHOR-STUDY.zh-TW.md) is ready, with
-the separate human trial and study decision still outstanding.
-
-| Priority and outcome | Work in order | Evidence for the next decision |
+| 入口 | 可以交付的成果 | 如何查證 |
 | --- | --- | --- |
-| 1 · Review and revise the first authoring workflow | Inspect the N-03 outputs and N-04 revision history with an author. Run N-01 separately. | Check the oral sequence, two distinct compositions, source tags, both impact queries and variant-local choice. Record actual author corrections separately from CLI/CI results. |
-| 2 · Measure value and try a different type of writing | N-05 adds claims and their evidence after N-04. N-07 compares the shipped workflow against the ordinary-notes baseline after N-05. | A reviewer traces a claim as a reference changes. The maintainer uses completion, correction effort and attribution errors to decide whether to continue, narrow or stop. Report the host-assisted skill trial separately from a future trial using the native tool. |
-| 3 · Select additional profiles by demonstrated need | N-06 compares brainstorm branches, screenplay reveals and video mapping after N-04. N-10 implements one profile only if N-06 selects it. N-08 style rules and N-09 audio cues can be explored after N-02. | Use one author brief in two treatments. Have a reader or listener identify the intended change in attention or reveal. If the template already serves the author, retain it and defer native implementation. |
-| 4 · Hand work to another tool | N-11 builds on N-04 source revisions. N-12 can evaluate one external host independently. | A second person can locate the right sources and identify missing or superseded material. For a real media artifact, open or play the result. If a host is unavailable, show which part of the brief remains usable. |
+| Storytelling Skill | 依受眾、目的與素材起草。可交給支援 Agent Skills 的工具，也可照 Markdown 手動操作。 | [八種敘事樣板](skills/storytelling/references/multimodal-templates.md)與[修傘工作坊](skills/storytelling/references/workshop-demo.md) |
+| 本機敘事指令 | `render-narrative` 將已宣告的內容輸出成口述大綱與插畫構圖。範例含兩款構圖。 | [CLI 指南](docs/CLI_GUIDE.md)與 [N-03 驗證紀錄](docs/validation/n03-narrative-cli.md)。作者試讀仍待完成。 |
+| 本機修訂查詢 | `track-narrative-revisions` 列出修訂歷史。`query-narrative-impact` 找出直接引用變更來源的版本。 | [修訂契約](docs/narrative/NARRATIVE_REVISION_LEDGER_V1.md)與 [N-04 驗證紀錄](docs/validation/n04-narrative-revisions.md)。 |
+| 本機影片指令 | 以明確的素材區間和條件規劃鏡頭。可在支援範圍內匯出純畫面的剪輯時間軸。 | [影片里程碑](#milestones)列出已測的格式、編輯器與限制。 |
 
-The technical work belongs in the [task and dependency list](TASKS.md#cross-media-narrative-backlog)
-and [multimodal backlog](TASKS.md#multimodal-rust-backlog). The
-[architecture](docs/ARCHITECTURE.md) places declared data in core, local
-validation in the engine and I/O in the CLI. Drafts and author judgments remain
-with the skill, host and author. Video SDK work proceeds on its own track toward
-an editable 60–90 second rough cut from 30–50 selected photos, clips and
-narration. A future bridge to its planner needs real asset IDs and source ranges.
+Skill 可以獨立安裝。目前套件版本為 `0.1.0-dev.0`。使用者可從 GitHub 安裝。維護者另行決定何時發布至公開套件登錄站。[安裝方式](docs/PLATFORMS.md)
 
-## Milestones
+<a id="cross-media-narrative-roadmap"></a>
 
-| Milestone | Current state | User-visible outcome | Exit gate |
-| --- | --- | --- | --- |
-| M0 foundation | Accepted and merged on main | Validate a declared StoryPlan through a usable Rust CLI | Strict contract, source bounds, immutable input, same-head 3-OS CI, maintainer acceptance |
-| M1 / v0.1 handoff | Finite M1-01/M1-02 and bounded M1-03 Linux 25 fps proof accepted; broader acceptance open | Existing story choices become an editable FilmCraft rough cut | Tested picture-only profile passed import/CPU preview/readback/save/reopen; audio, other profiles and human acceptance remain open |
-| M2 / v0.2 planning | M2-01 audit accepted; M2-02 fixed-window planner accepted; M2-03 selected-domain live shadow accepted; full solver open | Constraints and evidence produce an explainable shot proposal | Hard constraints satisfied or explicit conflicts; frozen-input reproducibility |
-| M3 / v0.3 reviewed execution | Bounded P1 composition review and P2 read-only planner bridge accepted; M3-02 journal accepted; M3-03 has a local test-only host proof, production executor open | Accepted plans execute without silently damaging prior work | Trusted approval, single writer, selected proposal/artifact binding, owner fencing, durable journal, safe in-flight/partial/unknown recovery |
-| M4 / v0.4 consumers | Planned | OpenFilm and an external TypeScript consumer use one SDK | Single authority, full Review/Accept workflow, optional thin MCP |
-| M5 / beta | Planned | Independent users and a second host finish a real story | Measured user outcomes, target-host matrix, distribution evidence |
-| v1.0 | Not scheduled | Stable public contract with a supported upgrade path | Schema/SDK migrations, security/recovery and compatibility gates accepted |
+## 跨媒體敘事的開發順序
 
-## Dependency path
+| 順序 | 工作與依賴 | 驗收依據 |
+| --- | --- | --- |
+| 1．改稿與修訂 | N-02 契約已採納。N-03 已提供本機輸出。作者可檢視口述順序、來源標記及兩款構圖。N-04 已可呈現來源修訂與作者決定。N-01 可獨立收集真人基準。 | 同一項修訂應找出所有直接引用該來源的版本。只改一款構圖時，另一款應保留原稿。[真人試用包](docs/narrative/N-01-AUTHOR-STUDY.zh-TW.md) |
+| 2．文案與依據 | N-04 之後，N-05 將文案主張連到來源。N-07 接續 N-05，比較一般筆記與本工具。 | 記錄完成數、修改耗時與歸因錯誤。分開回報 Skill 與本機工具的結果。維護者決定繼續、縮小或停止。 |
+| 3．選擇其他模式 | N-06 在 N-04 後比較分支構思、劇本揭露與影片對照。N-10 僅實作 N-06 明選的模式。N-08 流派規則與 N-09 聲音提示表可接續 N-02。 | 用同一份素材製作兩款作品。由讀者指出視線或揭露時機的差異。樣板已足以完成工作時，可暫緩原生實作。 |
+| 4．交接來源與產物 | N-11 使用 N-04 的來源修訂。N-12 可獨立測試一項宿主能力。 | 接手者能辨識缺件與過期來源。產出圖檔或音檔後，必須重新開啟或播放。缺少工具時交付可用的構圖或提示表。 |
 
-```text
-M0 -> M1-01 -> M1-02 -> M1-03
-          \-> M2-01 -> M2-02 -> M2-03
-M1-03 + M2-02 -> M3-01/P1 composition review (accepted)
-             -> M3-01/P2 selected proposal -> read-only OTIO review
-             -> M3-02 operation journal -> M3-03 FilmCraft apply + readback
-M2-03 + M3-03 -> M4 -> M5 -> v1.0
-```
+工作項目與狀態見[敘事任務](TASKS.md#cross-media-narrative-backlog)及[多模態任務](TASKS.md#multimodal-rust-backlog)。[架構](docs/ARCHITECTURE.md)定義資料、驗證與輸出入的分工。作者決定稿件是否符合創作意圖。
 
-Requirement drafting and fixtures can overlap; host execution cannot skip the
-finite interchange proof. No deadlines or aggregate product completion percentage
-are inferred from code or test counts.
+<a id="milestones"></a>
 
-M3-01/P2 is merged as the bounded bridge, with its [bounded contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md).
-M3-02's bounded SQLite journal is accepted through [PR #56](https://github.com/bynanci/storytelling/pull/56)
-with exact-head and post-merge hosted checks passed. M3-03 now has a test-only
-isolated FilmCraft apply/readback proof for a lost reply after successful host
-exit; its [record](docs/validation/m3-03-filmcraft-execution.md) keeps production
-execution open. A timeout has unknown outcome: recovery must read back the
-project before retry. If the same operation may still be in flight or readback
-is ambiguous, stop instead of resending the cut. M4 remains queued after an
-accepted production executor and readback gate.
+## 影片 SDK 里程碑
 
-## Investment decisions
+影片工作另有一項目標。作者從 30 至 50 張照片、短片及旁白中，整理出 60 至 90 秒的可編輯粗剪。敘事稿要交給影片規劃器時，需提供素材 ID 與來源區間。
 
-At M1: if source ranges/basic clips cannot survive handoff, narrow the compatibility
-profile before adding hosts or a general SDK.
-At M2: if Rust cannot match the selected invariants, retain the TS planner and
-use Rust only for validation/compilation until the discrepancy is understood.
-At M4: compare the same task with direct FilmCraft + Agent use. Continue investment
-only when story decisions reduce effort without losing quality/control.
-At M5: seek repeated usage and an independent integrator; stars or passing tests
-are not demand evidence. A suggested early target is 3 of 5 testers completing a
-rough cut and two returning to another project; these are goals, not results.
+| 里程碑 | 交付狀態 | 驗收範圍 |
+| --- | --- | --- |
+| M0 基礎 | 已採納。Rust CLI 可驗證 StoryPlan。 | 嚴格資料契約、來源邊界、輸入唯讀與三種作業系統的 CI。 |
+| M1 影片交接 | 限定格式的匯入與 OTIO 匯出已採納。M1-03 已在 Linux 驗證 25 fps 純畫面專案。 | FilmCraft 已實測匯入、CPU 預覽、讀回、存檔與重開。音訊、其他設定與人工驗收仍待測。 |
+| M2 鏡頭規劃 | 限定範圍的條件稽核、固定區間規劃與執行結果比對已採納。完整求解器仍待開發。 | 相同輸入須能重現結果。硬性條件無法滿足時，應指出衝突。 |
+| M3 審閱與執行 | P1 審閱、P2 唯讀交接與 M3-02 操作日誌已採納。M3-03 已有隔離測試。正式執行器仍待驗收。 | 核對授權、提案、成品與操作擁有者。部分完成或結果不明時，需從日誌和實際專案復原。 |
+| M4 用戶端 | 規劃中。參考應用與獨立 TypeScript 用戶端共用 SDK。 | 同一服務只有一個寫入者。使用者能審閱、核准及檢查結果。MCP 介面為選用項目。 |
+| M5 測試版 | 規劃中。驗證第二個編輯器及獨立使用者的完整流程。 | 使用結果、實測平台組合與安裝證據。 |
+| v1.0 穩定版 | 尚未排定。 | 採納公開契約、遷移方式、安全、復原及相容性驗收結果。 |
 
-## Release and operation
+<a id="dependency-path"></a>
 
-Each candidate names a full source SHA, locked dependencies, schema/compiler/adapter
-versions, host version and test artifacts. Publish is an explicit maintainer action.
-Backward-incompatible schema changes need a migration and refusal behavior for newer
-schemas. Future executor failures preserve partial/unknown receipts instead of
-claiming rollback. Real-media listening, native trust/signing and target editor
-acceptance remain separate from synthetic CI.
+## 實作依賴
 
-## Native migration strategy
+| 工作 | 開始條件 |
+| --- | --- |
+| M1-01 → M1-02 → M1-03 | 接續 M0。驗證限定格式的交接後，才執行編輯器測試。 |
+| M2-01 → M2-02 → M2-03 | M2-01 接續 M1-01。需求與測試素材可先準備。 |
+| M3-01/P1 → P2 → M3-02 → M3-03 | P1 需要 M1-03 與 M2-02。P2 將選定提案交給唯讀 OTIO 審閱流程。 |
+| M4 → M5 → v1.0 | M4 需要 M2-03，以及可用於正式環境的 M3-03 執行與讀回流程。 |
 
-Use the [OpenFilm transfer map](docs/migration/OPENFILM_RUST_PORT_MAP.md) and
-[gap gates](docs/migration/NATIVE_BOUNDARIES_AND_GAPS.md) as the detailed task inventory.
-The original planning inventory itself changed no runtime behavior. The accepted
-runtime scope includes M0, finite importer/OTIO, explicit supplied-byte verification
-and the bounded brief audit. The actual synthetic25fps host proof is recorded in
-[TASKS](TASKS.md#accepted-lifecycle); broader M1 acceptance and M2–M5 remain open.
+[P2 契約](docs/migration/PLANNER_OTIO_REVIEW_V1.md)及 [M3-02 日誌](https://github.com/bynanci/storytelling/pull/56)已納入主分支。[M3-03 隔離測試](docs/validation/m3-03-filmcraft-execution.md)重現了編輯器執行成功、呼叫端卻未收到回覆的情況。逾時後須先讀回專案。若操作仍可能執行，或讀回結果不明，應停止重送。
 
-- First native boundary: strict models, precise clocks, read-only snapshot mapping,
-  capability/loss compilation and finite OTIO. Prove one host handoff before a full planner.
-- Then port selected duplicate/event/scoring/graph/constraint/planner algorithms using
-  frozen synthetic fixtures and source-aware differential tests. Optional features remain optional.
-- Move stateful reviews, jobs and recovery only behind an admitted execution contract.
-  An external editor is not part of a local SQLite transaction; partial/unknown receipts matter.
-- Preserve OpenFilm as a consumer/reference renderer. Retain Vue, codecs, GPU/finishing
-  and full NLE features outside the SDK. Rust adapters disclose actual tool/model dependencies.
-- Extract appropriate native Rust manifest/path helpers only after provenance and race review;
-  do not import Tauri/GTK/Node launching into the portable SDK.
-- Freeze -> Shadow -> Feature flag -> Retire, one authority per service. Never rewrite
-  a user's live OpenFilm Catalog as part of read-only import.
+<a id="investment-decisions"></a>
 
-A per-task native implementation is complete only when its source-to-target behavior,
-production dependency boundary, regressions and actual declared acceptance gates are proven.
-A native binary, an external FFmpeg wrapper and a pure Rust algorithm are different scopes.
+## 如何決定是否繼續
+
+- **M1**　若交接遺失來源區間或基本片段，先縮小支援格式。
+- **M2**　若 Rust 與參考規劃器結果不同，先查明原因。期間保留原規劃器，由 Rust 檢查與編譯。
+- **M4**　比較透過 SDK 與直接使用 FilmCraft 搭配代理工具的同一項任務。記錄作者投入的時間、成品品質與可控制的選項。
+- **M5**　初步目標為五位測試者中有三位完成粗剪，其中兩位再次使用。另需一位獨立整合者。這些數字是驗收目標。
+
+<a id="release-and-operation"></a>
+
+## 發布與維運
+
+每個候選版本須記錄來源提交碼、鎖定的依賴、資料格式版本及測試產物。使用外部工具時，也須記錄工具版本。維護者核准後才能發布。
+
+破壞相容性的格式變更須提供遷移方式。舊工具收到較新的格式時，應明確拒絕。執行器遇到部分完成或結果不明時，須保留狀態紀錄。實際媒體試聽、原生簽章與目標編輯器驗收各自留存證據。
+
+<a id="native-migration-strategy"></a>
+
+## 將既有功能移至 Rust
+
+1. 固定資料模型、精確時間、唯讀匯入與 OTIO 格式。先證明一個編輯器可接手作品。
+2. 依使用情境選取演算法。以固定素材比對新舊結果。旅遊、節奏和轉錄功能依需求選用。
+3. 在執行契約獲採納後，才移轉審閱、操作日誌和復原流程。外部編輯器的動作無法由 SQLite 交易回滾。
+4. 參考應用可繼續使用 SDK。介面、編解碼器、GPU 特效與完整剪輯功能由宿主負責。轉接器須列出依賴的工具或模型。
+5. 移轉路徑與檔案清單工具前，先檢查來源及並行存取。可攜 SDK 無須載入 Tauri、GTK 或 Node 啟動程式。
+6. 固定契約後，先並行比對新舊結果。再以功能開關切換。確認新實作接手後，才停用舊實作。唯讀匯入全程保留來源資料。
+
+[移轉指南](docs/MIGRATION.md)列出來源、工作清單與驗收紀錄。判定一項移轉完成時，須核對新舊行為、執行依賴及回歸結果。Rust 二進位檔、呼叫 FFmpeg 的轉接器與純 Rust 演算法各有不同的依賴。

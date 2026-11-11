@@ -1,30 +1,30 @@
-name: SDLC task
-description: Propose one verifiable story workflow increment
+name: 開發任務
+description: 提出一項可驗收的敘事功能或改進。
 title: '[task] '
 body:
   - type: textarea
     id: outcome
     attributes:
-      label: User outcome and non-goals
-      description: Describe the problem, current behavior and smallest useful result.
+      label: 使用者成果與範圍
+      description: 描述問題與目前行為。指出這次要交付的最小成果及範圍外項目。
     validations:
       required: true
   - type: textarea
     id: traceability
     attributes:
-      label: Task / Requirement IDs and dependencies
-      description: Include base revision, existing PR overlap and SDLC gate.
+      label: 任務編號、需求編號與前置工作
+      description: 列出基準提交碼、可能重疊的 PR 與開發階段。
     validations:
       required: true
   - type: textarea
     id: acceptance
     attributes:
-      label: Acceptance and evidence
-      description: Name tests, failure cases, real-host/manual gates and blocked prerequisites.
+      label: 驗收條件與證據
+      description: 列出測試、失敗案例及待完成的前置工作。標明哪些項目需要實機或真人驗收。
     validations:
       required: true
   - type: textarea
     id: risk
     attributes:
-      label: Risks and compatibility
-      description: Schema, source identity, privacy, authorization, migration and rollback.
+      label: 風險與相容性
+      description: 說明資料格式、來源識別、隱私與授權的影響。列出遷移與回退方式。

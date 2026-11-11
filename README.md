@@ -1,136 +1,191 @@
 # Storytelling
 
-[繁體中文](README.zh-TW.md) · [Try the workshop](#try-one-source-set-in-two-media) · [Install](#start-with-the-skill) · [Templates](skills/storytelling/references/multimodal-templates.md) · [Contributing](CONTRIBUTING.md) · [CI](https://github.com/bynanci/storytelling/actions/workflows/ci.yml)
+[English](README.en.md) · [試用範例](#把同一份素材做成廣播與海報) · [安裝](#從-skill-開始) · [貢獻指南](https://github.com/bynanci/storytelling/blob/main/CONTRIBUTING.md) · [持續整合](https://github.com/bynanci/storytelling/actions/workflows/ci.yml)
 
-Storytelling is an open-source [Agent Skill](skills/storytelling/SKILL.md) for turning source material into a story for a particular audience. Bring notes, images or recordings your agent can read, or work from a description or transcript. Ask for a spoken account, scene, illustration brief, audio script or another form you can use.
+Storytelling 是一套開源敘事工具。作者可以用同一份素材起草口述、劇本、插畫構圖或文案。每份草稿都可以標出素材來源與創作提議。
 
-## Why Storytelling?
+專案的入口是 **Agent Skill**，也就是 AI 助理可載入的一組指引。你可以在 Codex 或 Claude Code 使用這組指引。你也可以直接閱讀 Markdown，依步驟整理素材。[開啟敘事指引](skills/storytelling/SKILL.md)
 
-Two neighbors repair a gate. Open with “One held the gate while the other tightened the hinge,” and a newsletter reader sees the cooperation. Open with “This time the gate cleared the ground,” and a listener has a reason to stay for the next line. The event is the same. Choosing what the audience learns first changes how they understand it. Storytelling helps you draft both openings and decide which one serves your purpose.
+<a name="why-storytelling"></a>
 
-For a quick anecdote, a paragraph may be all you need. When you adapt it into a spoken piece and two illustrations, more decisions carry over. If your notes change who tightened the screw, ask which lines and drawings need reviewing. If you approved an imaginary red umbrella for one drawing, it belongs to that version alone. You choose the interpretation and what goes into each draft. [Author exercise](https://github.com/bynanci/storytelling/blob/main/docs/narrative/N-01-AUTHOR-STUDY.zh-TW.md) · [Research and product decisions](https://github.com/bynanci/storytelling/blob/main/docs/WHY_STORYTELLING.md)
+## 為什麼需要 Storytelling？
 
-## Try one source set in two media
+兩位鄰居一起修門。社區電子報這樣開場，讀者先看見兩人的合作。
 
-Try the fictional workshop with its [event notice and transcript](skills/storytelling/references/workshop-demo.md), [workbench diagram (SVG)](skills/storytelling/assets/umbrella-workshop/bench.svg) and [two-tap sound cue (WAV)](skills/storytelling/assets/umbrella-workshop/taps.wav). Open the files in a host that reads them, or paste the descriptions below.
+> 一個人扶著門，另一個人把鉸鏈上的螺絲鎖緊。
 
-<img src="skills/storytelling/assets/umbrella-workshop/bench.svg" width="360" alt="Workshop source diagram showing a folded umbrella on the left and a spool of thread on the right.">
+口述從修門的結果開始，聽者會想知道先前發生了什麼。
+
+> 這一次，門關上時沒有再磨到地面。
+
+同一項事實可以有不同的開場。作者決定讀者先知道什麼，也決定哪些細節只屬於某一版。若作者只同意在一幅插畫中加入紅傘，其他草稿仍依原始筆記撰寫。[作者練習](https://github.com/bynanci/storytelling/blob/main/docs/narrative/N-01-AUTHOR-STUDY.zh-TW.md) · [設計依據](https://github.com/bynanci/storytelling/blob/main/docs/WHY_STORYTELLING.md)
+
+<a name="try-one-source-set-in-two-media"></a>
+
+## 把同一份素材做成廣播與海報
+
+範例包含三份素材。公告提供活動事實。示意圖提供物件位置。音檔提供可播放的音效。[活動公告與素材說明](skills/storytelling/references/workshop-demo.md) · [工作桌示意圖（SVG）](skills/storytelling/assets/umbrella-workshop/bench.svg) · [兩聲敲擊（WAV）](skills/storytelling/assets/umbrella-workshop/taps.wav)
+
+![工作桌左側是收起的傘，右側是線軸。](skills/storytelling/assets/umbrella-workshop/bench.svg)
+
+把下列請求貼給 AI 助理。若工具無法讀取附件，請使用文字描述。
 
 ```text
-Make an invitation for residents visiting our umbrella workshop for the first time.
-Notice: the session is on Saturday. Bring one umbrella.
-Diagram: a folded umbrella on the left, a spool of thread on the right.
-Audio: two synthesized taps, no speech.
-Write a radio cue and two poster briefs, one Swiss-style grid and one cut-paper
-collage. Show which details come from the sources and which are design choices.
+請邀請沒來過的居民參加修傘工作坊。素材有三份。
+公告寫著週六舉辦，請每人帶一把傘。
+工作桌示意圖左邊是一把收好的傘，右邊是一捲線。
+音檔是合成的兩聲敲擊，沒有人聲。
+請寫一段廣播開場，再給兩款海報構圖，一款用瑞士網格，一款用剪紙拼貼。
+標出哪些細節來自素材，哪些是你的創作提議。
 ```
 
-| Deliverable | Example of a usable draft |
-| --- | --- |
-| Radio cue | **SOUND** Play the two taps, then leave a beat. **VOICE** “One umbrella. Bring yours to Saturday’s repair workshop.” The invitation comes from the notice. The taps are a production cue. |
-| Poster A · Swiss-style grid | Keep the diagram’s umbrella and spool in their original order. Set “Saturday” and “Bring one umbrella” on the same left edge below them. Alignment directs the eye to the invitation. |
-| Poster B · cut-paper collage | Cut a yellow paper arc and pull a loose thread across it toward the word “Saturday.” Label the open shape and yellow paper as choices for this illustration. |
-
-A narrator can record the cue and an illustrator can sketch either brief. The Skill supplies scripts and directions. Finished images and audio require a capable host or a separate production tool. [Full mixed-media template](skills/storytelling/references/multimodal-templates.md#mixed)
-
-## Choose a template and an approach
-
-Each template includes a brief you can copy, two ways to treat the material and a check for the result.
-
-| Situation | Two approaches to try | What you take away |
+| 草稿 | 作者可以取得的內容 | 來源與創作提議 |
 | --- | --- | --- |
-| [Screenplay](skills/storytelling/references/multimodal-templates.md#screenplay) · A character returns a borrowed object | Social realism follows the exchange in real time. A flashback reveals why returning it matters. | A scene with playable action, dialogue and a reveal. |
-| [Illustration](skills/storytelling/references/multimodal-templates.md#illustration) · Turn an event notice into a poster | Swiss-style typography gives the facts a reading order. Cut-paper collage uses shape to draw the eye. | A composition brief with subject, focal point, layout and text placement. |
-| [Business copy](skills/storytelling/references/multimodal-templates.md#copy) · Invite someone to try a service | AIDA leads from attention to action. Problem–solution copy opens with the reader’s difficulty. | A headline, body, call to action and claims to verify. |
-| [Brainstorm](skills/storytelling/references/multimodal-templates.md#brainstorm) · A team needs three event concepts | SCAMPER varies an existing idea. Reverse brainstorming asks how to make the experience worse, then reverses the answer. | Distinct options, a selection criterion and a small test. |
-| [Everyday story](skills/storytelling/references/multimodal-templates.md#everyday) · Tell a friend what happened | Open inside the scene to build curiosity, or give the outcome first when the listener needs context. | A tellable account that keeps observed events separate from interpretation. |
-| [Audio](skills/storytelling/references/multimodal-templates.md#audio) · Open a podcast with a field recording | A sound diary lets the listener hear the space first. A narrated essay opens with a point of view. | A script with voice, sound cues, pauses and source notes. |
-| [Video](skills/storytelling/references/multimodal-templates.md#video) · Cut a short sequence from supplied clips | Continuity editing follows the action. Associative montage connects images by shape or idea. | A shot plan that maps beats to clips and identifies missing coverage. |
+| 廣播開場 | **音效**　播出兩聲敲擊，停一拍。**口白**　「帶一把傘。這個週六，我們在修傘工作坊見。」 | 日期與攜帶物取自公告。敲擊音效取自提供的音檔。停頓是製作提議。 |
+| 海報 A · 瑞士網格 | 保留左傘、右線軸。在圖下方靠左對齊「週六」和「帶一把傘」。 | 物件位置取自示意圖。文字對齊方式屬於這份草稿。 |
+| 海報 B · 剪紙拼貼 | 用黃紙剪出張開的傘面弧形。讓一段線頭穿過弧形，指向「週六」兩字。 | 張開的傘與黃紙都是這一版的創作提議。 |
 
-## Cross-media Rust support
+配音員可以依腳本試錄。插畫師可以依構圖起稿。完成圖檔或音檔需要能輸出該格式的工具。[跨媒體樣板](skills/storytelling/references/multimodal-templates.md#mixed)
 
-Use the templates now with an agent or as Markdown. The Rust CLI validates structured video plans and proposes an order for supplied shot windows. The additive `render-narrative` command prints a media-independent oral outline and two illustration briefs from one `NarrativeDocumentV1`, preserving declared source IDs and origins. The N-04 revision-tracking PR adds append-only history and exact affected-variant queries. Runnable examples and evidence are in the [CLI guide](docs/CLI_GUIDE.md), [N-03 validation record](docs/validation/n03-narrative-cli.md) and [N-04 validation record](docs/validation/n04-narrative-revisions.md). The commands do not read or create media. [Oral and visual workflow](https://github.com/bynanci/storytelling/issues/50) · [Revision tracking](https://github.com/bynanci/storytelling/issues/51) · [Rust backlog](TASKS.md#multimodal-rust-backlog) · [Roadmap](ROADMAP.md)
+<a name="choose-a-template-and-an-approach"></a>
 
-## Start with the skill
+## 依情境選樣板與流派
 
-### Install for an agent
+每個樣板提供一項請求、兩種處理方式與檢查方法。
 
-From the project where you want to use Storytelling, run the following with Node.js 22.20 or later. Keep just the agent name you use, or omit `-a codex claude-code` to choose interactively.
+| 情境 | 可以改變的敘事選擇 | 交付物 |
+| --- | --- | --- |
+| [日常敘事](skills/storytelling/references/multimodal-templates.md#everyday) | 從現場動作開始，或先說明結果。 | 一段可直接口述的故事，區分所見與感受。 |
+| [編劇](skills/storytelling/references/multimodal-templates.md#screenplay) | 依事件順序寫實呈現，或用倒敘揭露物件的重要性。 | 場景、動作、對白與揭露時機。 |
+| [插畫構思](skills/storytelling/references/multimodal-templates.md#illustration) | 用瑞士網格安排閱讀順序，或用剪紙形狀引導視線。 | 主體、視覺焦點、構圖與文字位置。 |
+| [商業文案](skills/storytelling/references/multimodal-templates.md#copy) | 從引起注意寫到行動，或從讀者的問題寫到解法。 | 標題、內文、行動呼籲與待查證的主張。 |
+| [腦力激盪](skills/storytelling/references/multimodal-templates.md#brainstorm) | 用替換或合併改造舊點子，或從失敗情境反推解法。 | 可比較的方案、篩選條件與試驗方法。 |
+| [聲音敘事](skills/storytelling/references/multimodal-templates.md#audio) | 聲音日記先播放環境音。口述隨筆先交代敘事觀點。 | 旁白、音效、停頓與聲音來源。 |
+| [影片規劃](skills/storytelling/references/multimodal-templates.md#video) | 用動作接續鏡頭，或用形狀與概念連接畫面。 | 鏡頭順序、對應素材與缺少的畫面。 |
+
+<a name="start-with-the-skill"></a>
+
+## 從 Skill 開始
+
+<a name="install-for-an-agent"></a>
+
+### 安裝到 AI 助理
+
+1. 準備 Node.js 22.20 或更新版本。
+2. 開啟要使用 Skill 的專案目錄。
+3. 執行安裝與查詢命令。
 
 ```sh
 npx skills add bynanci/storytelling --skill storytelling -a codex claude-code
 npx skills list
 ```
 
-### Install as an npm dependency
+若只使用一個平台，請在 `-a` 後保留該平台名稱。省略 `-a codex claude-code` 可在安裝時選擇平台。
 
-Use this route when you want your project’s npm lockfile to record the skill revision. In a project with a `package.json`, install the package from GitHub, then copy the bundled skill into the agent directories.
+<a name="install-as-an-npm-dependency"></a>
+
+### 使用 npm 鎖定版本
+
+1. 開啟含有 `package.json` 的專案。
+2. 從 GitHub 安裝套件。
+3. 把 Skill 複製到 AI 助理的目錄。
 
 ```sh
 npm install -D github:bynanci/storytelling
 npx skills add ./node_modules/@bynanci/storytelling/skills/storytelling --skill storytelling -a codex claude-code --copy -y
 ```
 
-Commit `package.json` and `package-lock.json`. Rerun the second command after changing the dependency revision. The npm package contains the skill instructions, references and Python helpers. Build the optional Rust CLI separately using the source quick start below.
+將 `package.json` 與 `package-lock.json` 提交至版本庫。更新依賴版本後，請再執行複製命令。npm 套件內含指引、樣板、範例素材與 Python 腳本。Rust 命令列工具另從原始碼建置。
 
-### Use the installed skill
+<a name="use-the-installed-skill"></a>
 
-The table gives the project locations and invocation syntax. For a manual install, copy the complete [skill folder](skills/storytelling), including its license, to the listed destination.
+### 開始使用
 
-| Where you work | How to start |
+| 環境 | 如何開始 |
 | --- | --- |
-| Codex in a project | Place the folder at `.agents/skills/storytelling/` in the project. Invoke `$storytelling`. |
-| Claude Code in a local project | Place the same folder at `.claude/skills/storytelling/` in the project. Invoke `/storytelling`. |
-| Another Agent Skills client | Use the client's documented skill loader. Discovery paths, invocation syntax and available tools belong to the client. |
-| Plain Markdown | Open [SKILL.md](skills/storytelling/SKILL.md) and the references it links. A writer or team can follow the workflow by hand. |
-| A script, CI job or application | Use the [standalone CLI](#quick-start) with structured input, JSON output and exit codes. |
+| Codex | 專案目錄為 `.agents/skills/storytelling/`。輸入 `$storytelling`。 |
+| Claude Code | 專案目錄為 `.claude/skills/storytelling/`。輸入 `/storytelling`。 |
+| 其他支援 Agent Skills 的工具 | 依該工具的說明載入 Skill。可用工具與呼叫方式由平台決定。 |
+| 直接使用 Markdown | 開啟[敘事指引](skills/storytelling/SKILL.md)。依工作情境選擇樣板。 |
+| 應用程式或自動化工作 | 呼叫[本機命令列工具](#快速開始)。依命令讀取文字或 JSON 輸出與結束碼。 |
 
-For personal installs, other clients and verification status, see the [platform guide](https://github.com/bynanci/storytelling/blob/main/docs/PLATFORMS.md).
+手動安裝時，請複製含授權檔的完整 Skill 目錄。[Skill 目錄](skills/storytelling) · [跨平台安裝與驗證](https://github.com/bynanci/storytelling/blob/main/docs/PLATFORMS.md)
 
-## Working with sources and revisions
+<a name="working-with-sources-and-revisions"></a>
 
-- **Review a draft.** Compare the author’s notes with a draft, mark what was inferred or invented, and ask for revisions to the affected versions. [Worked examples](skills/storytelling/references/examples.md)
-- **Coordinate complex work.** Use the graph-loop playbook for dependencies, independent branches, review and bounded retries. The skill includes optional Python helpers for planning a dependency graph and checking a recorded execution order. [Playbook](skills/storytelling/references/graph-loops.md)
-- **Find supporting material.** When a question spans documents and a suitable Graphify index is available, locate candidate passages and check them against the originals. [Graphify guide](skills/storytelling/references/graphify-tools.md)
+## 核對素材與修改草稿
 
-## Quick start
+- **核對來源。** 對照原始筆記與草稿。分別標示作者提供的事實、推論與創作提議。[修訂範例](skills/storytelling/references/examples.md)
+- **安排工作順序。** 先完成後續步驟需要的工作。Python 腳本可規劃相依步驟，也可檢查執行紀錄。[流程與重試規則](skills/storytelling/references/graph-loops.md)
+- **查找佐證。** 若多份文件已有 Graphify 索引，可用索引定位段落。請回到原文核對主張。[索引查詢指引](skills/storytelling/references/graphify-tools.md)
 
-### Optional Rust CLI
+<a name="quick-start"></a>
+<a name="optional-rust-cli"></a>
+<a name="cross-media-rust-support"></a>
 
-The development version is `0.1.0-dev.0`, available from source with Rust 1.89.0. No AI subscription, model API key or video editor is required for these examples. With [rustup](https://rustup.rs/) installed, run these commands from your terminal.
+## 快速開始
+
+命令列工具（CLI）可獨立在本機執行。以下範例使用 Rust 1.89.0 與開發版 `0.1.0-dev.0`。執行範例不需要 AI 訂閱、模型金鑰或剪輯器。[Rust 工具鏈安裝程式](https://rustup.rs/)
 
 ```sh
 git clone https://github.com/bynanci/storytelling.git
 cd storytelling
+cargo run --quiet --locked -p storytelling-cli -- render-narrative tests/fixtures/narrative-v1/n03-authoring-v1.json
+```
+
+這份「鄰居修門」範例會輸出一份口述大綱與兩份插畫構圖。每份草稿保留來源識別碼、修訂版號與來源類別。紅傘只出現在寬景構圖。工具依輸入中宣告的文字輸出草稿，無須讀取媒體檔案。[敘事文件格式](https://github.com/bynanci/storytelling/blob/main/docs/narrative/NARRATIVE_DOCUMENT_V1.md) · [完整輸出與測試紀錄](https://github.com/bynanci/storytelling/blob/main/docs/validation/n03-narrative-cli.md)
+
+### 查出修改影響哪些草稿
+
+修訂紀錄採用獨立格式 `NarrativeRevisionLedgerV1`。紀錄從一份敘事文件開始，依序追加事件。用第一個命令查閱來源舊版、草稿與作者決定。後兩個命令查詢指定的來源修訂事件。
+
+```sh
+cargo run --quiet --locked -p storytelling-cli -- track-narrative-revisions tests/fixtures/narrative-v1/n04-revision-history-v1.json
+cargo run --quiet --locked -p storytelling-cli -- query-narrative-impact tests/fixtures/narrative-v1/n04-revision-history-v1.json shared-observation-change
+cargo run --quiet --locked -p storytelling-cli -- query-narrative-impact tests/fixtures/narrative-v1/n04-revision-history-v1.json b-only-detail-change
+```
+
+更正共用觀察後，口述與兩份插畫都要複查。只改構圖 B 的細節時，僅 `illustration-close` 需要複查。工具依每版草稿直接引用的來源計算影響。經其他來源間接引用時，由作者另行核對。紀錄可保存作者決定，無法驗證輸入者身分。[修訂紀錄格式](https://github.com/bynanci/storytelling/blob/main/docs/narrative/NARRATIVE_REVISION_LEDGER_V1.md) · [預期輸出與驗證紀錄](https://github.com/bynanci/storytelling/blob/main/docs/validation/n04-narrative-revisions.md)
+
+<a name="video-integrations"></a>
+
+### 影片整合
+
+```sh
 cargo run --locked -p storytelling-cli -- validate examples/minimal-plan.json
 cargo run --locked -p storytelling-cli -- plan-story tests/fixtures/planner-v1/valid.json
 ```
 
-`validate` reports `ok: true` for one asset and two shots. `plan-story` prints JSON with `detail` before `opening`, preserving the author's explicit order even though `opening` has a higher score. To integrate your own application, start with these input shapes and the [CLI contracts](docs/CONTRACTS.md). [Planner input](tests/fixtures/planner-v1/valid.json) · [CLI guide](docs/CLI_GUIDE.md)
+第一個範例回傳 `ok: true`，列出一份素材與兩個鏡頭。第二個範例依作者指定的順序，把 `detail` 排在 `opening` 前方。輸出為 JSON。[規劃輸入範例](https://github.com/bynanci/storytelling/blob/main/tests/fixtures/planner-v1/valid.json) · [CLI 契約](https://github.com/bynanci/storytelling/blob/main/docs/CONTRACTS.md)
 
-### Video integrations
+| 工作 | 工具支援範圍 |
+| --- | --- |
+| 檢查鏡頭計畫 | 檢查素材引用、剪輯限制與鏡頭順序。 |
+| 比對檔案內容 | 對指定檔案或標準輸入計算 SHA-256。輸入上限為 16 MiB。 |
+| 交換剪輯資料 | 接受指定格式的單一連續畫面軌。支援靜態圖片與影片硬切。影片匯出須明確選擇只保留畫面。可交付 OpenTimelineIO（OTIO）檔案。 |
+| 審閱剪輯提案 | 儲存審閱紀錄。以目前輸入比對該紀錄。可將選定剪點匯出為 OTIO。 |
 
-<details>
-<summary>Video commands, input limits and editor compatibility</summary>
+剪輯器整合測試涵蓋 Linux 上的 25 fps 專案。驗證項目包括儲存後重開、重新匯入與 45 格 CPU 預覽。另一項測試在匯入回應遺失後讀回專案狀態。正式環境的寫入仍在規劃中。音訊交接與全解析度輸出仍待驗證。[CLI 指南與輸入格式](https://github.com/bynanci/storytelling/blob/main/docs/CLI_GUIDE.md) · [剪輯器與版本紀錄](https://github.com/bynanci/storytelling/blob/main/docs/migration/records/M1-03.md) · [復原測試](https://github.com/bynanci/storytelling/blob/main/docs/validation/m3-03-filmcraft-execution.md)
 
-| Input | Commands | Result |
-| --- | --- | --- |
-| A plan, brief or fixed-window planning request | `validate`, `audit-brief`, `plan-story` | Check declared references and constraints, or propose a shot order. |
-| Local bytes and an expected SHA-256 digest | `verify-source` | Verify up to 16 MiB from an explicit file or stdin. |
-| A supported OpenFilm composition snapshot | `import-openfilm`, `export-otio` | Convert a single contiguous picture track into a plan or OpenTimelineIO (OTIO). |
-| A snapshot and its review context | `prepare-review`, `check-review` | Save a review record, then compare that record with current inputs. |
-| A saved proposal, matching snapshot and review context | `prepare-story-review`, `export-story-otio`, `check-story-review` | Export selected cuts as OTIO. Compare a saved review bundle with the current inputs to detect changes. |
+<a name="architecture-and-contributions"></a>
 
-The snapshot adapter reads OpenFilm composition exports. It accepts stills and video cuts on the supported picture track. Video export requires an explicit picture-only choice. A FilmCraft v0.18.0 test on Linux at 25 fps covered save/reopen, OTIO reimport and a 45-frame CPU preview. A separate isolated test recovered from a lost import reply by reading the resulting project state. Production editor writes are planned. Audio handoff and full-resolution output await verification. [FilmCraft test record](docs/migration/records/M1-03.md) · [Recovery test](docs/validation/m3-03-filmcraft-execution.md) · [Review contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md)
+## 架構與參與開發
 
-</details>
+Skill 位於 `skills/storytelling/`。Rust 工作區分為四個套件。
 
-## Architecture and contributions
+| 套件 | 職責 |
+| --- | --- |
+| `storytelling-core` | 定義資料交換型別與精確時間。 |
+| `storytelling-engine` | 在記憶體內驗證輸入與規劃順序。 |
+| `storytelling-cli` | 讀取輸入，執行命令，寫出結果。 |
+| `storytelling-journal` | 使用 SQLite 保存操作紀錄。 |
 
-The portable skill lives in `skills/storytelling/`. The Rust workspace contains four crates. `storytelling-core` owns wire types and exact time, `storytelling-engine` owns in-memory planning and validation, `storytelling-cli` handles process I/O, and `storytelling-journal` provides a durable SQLite operation log. [Architecture](docs/ARCHITECTURE.md)
+提交新樣板時，請附上合成素材、預期輸出與檢查方式。回報平台相容性時，請列出平台版本、安裝位置與實際結果。[貢獻指南](https://github.com/bynanci/storytelling/blob/main/CONTRIBUTING.md) · [架構](https://github.com/bynanci/storytelling/blob/main/docs/ARCHITECTURE.md) · [工作清單](https://github.com/bynanci/storytelling/blob/main/TASKS.md) · [開發路線圖](https://github.com/bynanci/storytelling/blob/main/ROADMAP.md) · [需求追溯](https://github.com/bynanci/storytelling/blob/main/docs/REQUIREMENTS.md) · [開發流程](https://github.com/bynanci/storytelling/blob/main/docs/SDLC.md)
 
-Contributions from other domains and agent clients are welcome. For a new workflow, include a small synthetic request, the expected output and how a contributor can check it. For a compatibility report, include the client, version, installation location and what you observed. Consult the [contribution guide](CONTRIBUTING.md), [open tasks](TASKS.md), [requirements](docs/REQUIREMENTS.md) and [development process](docs/SDLC.md). [Report an issue](https://github.com/bynanci/storytelling/issues/new/choose) · [Security policy](SECURITY.md)
+[回報問題](https://github.com/bynanci/storytelling/issues/new/choose) · [安全政策](https://github.com/bynanci/storytelling/blob/main/SECURITY.md)
 
-## License
+<a name="license"></a>
 
-The portable skill includes its [MIT license](skills/storytelling/LICENSE). Original project code and documentation use the [MIT License](LICENSE). Identified OpenFilm-informed components use [Apache-2.0](LICENSES/Apache-2.0.txt) with a retained [upstream notice](NOTICE.openfilm). [Per-file provenance](PROVENANCE.md)
+## 授權
+
+專案的原創程式碼、文件及 Skill 採用 MIT 授權。逐檔清單另列採用 Apache-2.0 的元件。清單保留各元件的來源與上游聲明。[MIT 授權](LICENSE) · [Skill 授權](skills/storytelling/LICENSE) · [Apache-2.0 授權](https://github.com/bynanci/storytelling/blob/main/LICENSES/Apache-2.0.txt) · [逐檔來源與聲明](https://github.com/bynanci/storytelling/blob/main/PROVENANCE.md)

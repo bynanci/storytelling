@@ -48,7 +48,7 @@ class DistributionTest(unittest.TestCase):
             expected = file_names(source)
             self.assertFalse(REQUIRED_SKILL_FILES - expected, REQUIRED_SKILL_FILES - expected)
             package_paths = {item["path"] for item in packed["files"]}
-            metadata = {"package.json", "README.md", "README.zh-TW.md", "LICENSE"}
+            metadata = {"package.json", "README.md", "README.zh-TW.md", "README.en.md", "LICENSE"}
             self.assertEqual(package_paths, metadata | {f"{SKILL.as_posix()}/{p}" for p in expected})
 
             consumer = work / "consumer"

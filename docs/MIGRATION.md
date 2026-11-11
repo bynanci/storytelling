@@ -1,84 +1,82 @@
-# OpenFilm extraction and migration
+# 外部元件移植指南
 
-This guide is for contributors maintaining the OpenFilm integration or tracing code
-origins. To use the standalone Storytelling skill in another project or agent,
-start with the [platform guide](PLATFORMS.md). For local JSON processing from your
-own application, see the [CLI guide](CLI_GUIDE.md).
+本指南供維護轉接器或追查程式來源的貢獻者使用。
+在其他專案使用 Storytelling Skill 時，請參閱[平台安裝指南](PLATFORMS.md)。
+若要由應用程式處理本機 JSON，請參閱[命令列指南](CLI_GUIDE.md)。
 
-M0 imported design intent only. M1-01 now adds a source-informed, separately licensed
-finite visual importer; see its [contract](migration/FINITE_V1.md),
-[comparison record](migration/records/M1-01.md) and [provenance](migration/provenance-m1-01.json).
-No project database or media is copied. Original MIT LICENSE is preserved, with
-Apache-2.0 component attribution and applicable notices retained.
+M0 僅採用上游的設計概念。M1-01 參考上游實作，新增有限畫面快照匯入功能。
+該元件另有授權。移植未複製專案資料庫或媒體。
+原創部分保留 MIT 授權。適用的外部元件保留 Apache-2.0 歸屬與上游聲明。
+[快照契約](migration/FINITE_V1.md) · [實作比對](migration/records/M1-01.md) · [逐檔來源](migration/provenance-m1-01.json)
 
-## Extraction map
+<a id="extraction-map"></a>
 
-| Capability | Accepted current scope | Later migration condition |
+## 能力與資料責任
+
+| 能力 | 已有範圍 | 後續工作或限制 |
 | --- | --- | --- |
-| Evidence/source identity concepts | Declared references plus explicit bounded supplied-buffer SHA-256 verification | Filesystem identity/TOCTOU and stronger adapter provenance remain future work |
-| StoryPlan/constraints/planner | Accepted M2-01 audit and M2-02 fixed-window declared plans; full solver remains open | Extend only through frozen source-aware profiles and classified differential evidence |
-| OpenFilm Catalog/Composition/history | Stay owned by OpenFilm | Read-only snapshot importer; never write its SQLite directly |
-| Review/Jobs/owner recovery | Accepted bounded owner-fenced SQLite journal via PR #56; test-only M3-03 Linux lost-reply/readback proof completed | Production FilmCraft executor, trusted approval, hung-process recovery and safe retry gates remain open |
-| FFmpeg/render/GUI/media analysis | Remain outside pure core | Consumer or adapter supplies results |
-| FilmCraft | No crate dependency or fork | Public protocol/file handoff with a pinned tested host |
+| 證據與來源身分 | 記錄宣告的參照。可對明確提供且符合大小上限的位元組驗證 SHA-256。 | 待確認檔案系統身分、檢查與使用之間的變動（TOCTOU），以及更完整的轉接器來源證據。 |
+| 故事計畫、限制與規劃器 | M2-01 驗收需求檢查。M2-02 驗收宣告的固定時間窗計畫。 | 擴充前須固定規格，記錄來源並分類差異。完整求解器仍待開發。 |
+| 素材目錄、剪輯組合、歷史 | 來源專案持有資料。匯入器唯讀處理快照。 | 禁止直接寫入來源專案的 SQLite 資料庫。 |
+| 審閱、工作與復原 | PR #56 驗收限定範圍的 SQLite 操作日誌。它限制寫入者。M3-03 在 Linux 隔離測試中完成回應遺失後的讀回。 | 正式宿主執行器、可信核准、程序停滯時的復原與安全重試均待驗證。 |
+| FFmpeg、渲染、圖形介面、媒體分析 | 這些功能位於純核心之外。 | 由使用端或轉接器提供結果。 |
+| 剪輯宿主 | 核心沒有剪輯器套件依賴，也不維護剪輯器的分支版本。 | 透過公開協定或檔案交接。固定並測試宿主版本。既有實測使用 FilmCraft。 |
 
-## Four stages
+<a id="four-stages"></a>
 
-1. **Freeze**: record upstream SHA, per-file origin/license, exact inputs, expected
-   invariants, valid/invalid fixtures and supported scope. No private footage.
-2. **Shadow**: TS and Rust consume the same frozen snapshot. Compare references,
-   ranges, hard constraints and errors. Classify differences as port bug, prior bug,
-   unsupported case or deliberate contract change; do not copy bugs as truth.
-3. **Feature flag**: switch one OpenFilm service to the Rust boundary. Keep one
-   authoritative writer. Version the protocol and reject unsupported newer schemas.
-4. **Retire**: deprecate the corresponding TS implementation only after consumer,
-   compatibility and real-host gates. Keep rollback until the replacement is proven.
+## 移植步驟
 
-## Compatibility policy
+1. **固定基準。** 記錄上游 SHA、逐檔來源及授權。保存輸入、預期不變的行為、正反案例與支援範圍。請勿使用私人影片。
+2. **比較結果。** 讓 TypeScript 與 Rust 讀取同一份固定快照。比對參照、區間、強制限制與錯誤。將差異分類為移植缺陷、上游既有缺陷、未支援案例或刻意變更的契約。記錄既有缺陷，避免當作正確規格複製。
+3. **啟用功能開關。** 先將來源專案的一項服務切換到 Rust 介面。僅保留一個具寫入權的元件。標明協定版本。拒絕不支援的新版結構。
+4. **淘汰舊實作。** 使用端、相容性及實際宿主都通過驗收後，才能淘汰對應的 TypeScript 實作。替代方案確認可用前，保留回退方式。
 
-Do not translate legacy floats by guessing a frame rate. Record conversion rules
-and loss. Do not migrate projects implicitly on read. Never relabel imported
-metadata as verified byte identity. New-plan schema, Rust API, planner/compiler and
-adapter compatibility versions are separate. The first host execution creates a
-new project; bidirectional synchronization is not a v0.x promise.
+<a id="compatibility-policy"></a>
 
-## Licensing checkpoint
+## 相容性
 
-Before a port, inspect the actual source license and contributor provenance, retain
-required notices and document modifications. Do not relicense Apache-origin code
-as MIT by translation. A separate component or an approved repository policy
-change may be necessary; obtain maintainer/legal review rather than assuming.
+轉換舊版浮點時間時，須記錄轉換規則與損失。不得猜測幀率。
+讀取專案時不得隱含遷移。匯入的中繼資料只能作為宣告。
+驗證位元組身分需要實際讀取提供的位元組。
 
-## Source-mapped execution inventory
+計畫資料結構、Rust API、規劃器與編譯器、轉接器相容性各自使用版本。
+首次操作宿主時應建立新專案。v0.x 沒有雙向同步承諾。
 
-The [48-entry Rust transfer map](migration/OPENFILM_RUST_PORT_MAP.md) records native
-candidates, external adapters and host exclusions against OpenFilm
-`7add4762fe8174d76f43b863375ea39b73121e76`. The [16 gap tasks](migration/NATIVE_BOUNDARIES_AND_GAPS.md)
-cover cross-language evidence, approval, host side effects, distribution and real-user gates.
-Use the [machine ledger](migration/openfilm-port-index.json),
-[Codex runbook](migration/CODEX_PORTING_RUNBOOK.md), and
-[M1-01 implementation plan](superpowers/plans/2026-11-07-openfilm-port-bootstrap.md).
+<a id="licensing-checkpoint"></a>
 
-The original 48+16 inventory added planning artifacts, not implementation or a release. Source modules were
-located through pinned entrypoints/tree and selected code inspection; a per-task
-implementation review must still read exact symbols and tests. Preserve the original
-M0 declared-metadata-only scope: later M1-03 separately verifies explicit supplied
-buffers and proves one synthetic FilmCraft Linux 25 fps CPU profile. See its
-[record](migration/records/M1-03.md); filesystem identity, general execution and
-human acceptance remain future adapter/workflow gates.
+## 檢查授權
 
-## Merged PR #28 approval-identity candidate
+1. 查閱實際來源的授權與貢獻者紀錄。
+2. 保留必要的上游聲明。記錄移植過程中的修改。
+3. 源自 Apache 授權的程式碼，改用另一種語言仍須遵守授權。不得直接改標 MIT。
+4. 如需拆分元件或變更儲存庫政策，請交由維護者及法務審查。政策變更須取得核准。
 
-This unaccepted candidate adds only bounded exact-plan identity and
-Ed25519 verification in pure core. It consumes the existing supplied-buffer
-verification token and binds explicit Host claims and accepted losses. It does
-not sign, store keys, establish human authorization, persist/replay approvals,
-or execute a host. It is distinct from the canonical proposed M3-01/P1
-finite-OTIO review-binding scope in
-[M3-01-NEXT](migration/M3-01-NEXT.md) and does not satisfy that task. See
-[Approval Identity v1](migration/APPROVAL_IDENTITY_V1.md), the
-[PR #28 candidate record](migration/records/M3-01-approval-candidate.md) and its
-[dependency review](migration/dependency-review-pr28-approval-candidate.md). Independent G2 review
-is pending. M3-02 delivers bounded durable journal recovery. M3-03 has a separate
-test-only Linux host proof; the production Host executor and full timeout/readback
-gates remain open.
+<a id="source-mapped-execution-inventory"></a>
+
+## 對照來源與工作項目
+
+[48 項移植對照](migration/OPENFILM_RUST_PORT_MAP.md)區分原生功能候選、外部轉接器及由宿主保留的工作。
+該對照固定在上游提交 `7add4762fe8174d76f43b863375ea39b73121e76`。
+[16 項待補能力](migration/NATIVE_BOUNDARIES_AND_GAPS.md)追蹤跨語言比對、核准、宿主副作用、散布及真人驗收。
+
+這兩份清單記錄規劃範圍。當時依固定的入口、目錄及部分程式碼定位來源。
+執行各任務前，仍須閱讀對應的符號與測試。
+[機器可讀清單](migration/openfilm-port-index.json) · [Codex 移植手冊](migration/CODEX_PORTING_RUNBOOK.md) · [M1-01 實作計畫](superpowers/plans/2026-11-07-openfilm-port-bootstrap.md)
+
+M0 僅處理宣告的中繼資料。M1-03 另行驗證指定緩衝區。
+既有宿主測試只涵蓋 FilmCraft、Linux、25 fps 與合成 CPU 案例。
+檔案系統身分、一般化的執行流程及真人驗收仍待完成。[M1-03 測試紀錄](migration/records/M1-03.md)
+
+<a id="merged-pr-28-approval-identity-candidate"></a>
+
+## PR #28 的核准契約
+
+PR #28 已合併，獨立 G2 審查仍待完成。該候選方案在純核心中綁定指定計畫的身分。
+它使用既有的緩衝區驗證憑證，綁定宣告的宿主資料與接受的損失，再驗證 Ed25519 簽章。
+
+此候選方案未提供簽署、金鑰儲存、真人授權、核准的持久儲存與重播或宿主執行。
+既有 M3-01/P1 使用另一套有限 OTIO 審閱綁定。PR #28 無法代替 P1 驗收。
+[P1 範圍](migration/M3-01-NEXT.md) · [核准身分規格](migration/APPROVAL_IDENTITY_V1.md) · [PR #28 候選紀錄](migration/records/M3-01-approval-candidate.md) · [相依套件審查](migration/dependency-review-pr28-approval-candidate.md)
+
+M3-02 已提供有限範圍的持久化日誌復原。M3-03 另有 Linux 宿主的隔離測試紀錄。
+正式宿主執行器與完整的逾時讀回仍待驗收。

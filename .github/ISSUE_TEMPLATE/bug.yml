@@ -1,22 +1,22 @@
-name: Bug report
-description: Reproducible failure without private media or secrets
+name: 回報錯誤
+description: 提供可重現的錯誤與合成素材。
 title: '[bug] '
 body:
   - type: textarea
     id: context
     attributes:
-      label: Exact candidate and environment
-      description: Commit, OS, toolchain and host versions; avoid private absolute paths.
+      label: 提交碼與執行環境
+      description: 請列出提交碼、作業系統、工具鏈與執行平台版本。省略私人絕對路徑。
     validations:
       required: true
   - type: textarea
     id: repro
     attributes:
-      label: Minimal synthetic reproduction
-      description: Steps, expected and actual result. Never attach personal footage, tokens or GPS.
+      label: 最小重現步驟
+      description: 請列出步驟、預期結果與實際結果。請勿附上私人影像、存取權杖或 GPS 資料。
     validations:
       required: true
   - type: textarea
     id: evidence
     attributes:
-      label: Sanitized evidence and affected requirement
+      label: 去識別的驗證紀錄與需求編號
