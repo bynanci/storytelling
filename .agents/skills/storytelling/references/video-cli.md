@@ -2,6 +2,8 @@
 
 只有文字、照片描述或剪輯靈感時，直接交付分鏡／旁白草案，並列出尚待對應的素材。作者要可重現的選鏡或 OTIO，且提供相應的結構化輸入時，才使用下列指令。這些指令只讀明確提供的輸入，結果寫到 stdout。
 
+其他應用也可以產生符合公開契約的輸入。例如素材整理工具可以提供候選片段給 `plan-story`，或用 `validate` 檢查一份已宣告的計畫。這兩條路徑只需要本機 CLI 與 JSON。影片審閱與 OTIO 交接則另外需要支援格式的剪輯快照，詳見下表。一般文字起草、插畫構思與劇本工作可直接使用 Skill。
+
 ## 選擇已具備的執行方式
 
 - **已從原始碼建置**：在 Storytelling 原始碼根目錄，執行 `./target/release/storytelling --help`；Windows 的執行檔是 `target/release/storytelling.exe`。

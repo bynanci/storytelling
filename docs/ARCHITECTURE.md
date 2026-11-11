@@ -1,5 +1,16 @@
 # Architecture
 
+## How projects use Storytelling
+
+Storytelling has two entry points that can be adopted separately.
+
+- **Authoring in an agent.** A host reads the portable [Skill package](../.agents/skills/storytelling/SKILL.md) and uses the author's notes to draft a talk, a scene, an illustration brief, copy or a video outline. The package carries its own examples and workflow rules. The host provides language generation and any enabled tools. See [installation by platform](PLATFORMS.md) for project and personal use.
+- **Local automation.** An application or script can invoke the Rust CLI directly, pass a supported JSON document or source bytes and inspect stdout and the exit code. Any producer can supply the declared plan to `validate`, the brief to `audit-brief` or the candidate windows and constraints to `plan-story`. These operations run independently of an AI service and editor. See the [CLI guide](CLI_GUIDE.md) and [contracts](CONTRACTS.md).
+
+OpenFilm is one producer of video composition snapshots. Import, OTIO export and the associated review commands consume its finite snapshot format. Another project can construct the same format when it has those source facts. FilmCraft is the editor used in the bounded interoperability tests. Each additional editing host needs its own compatibility evidence.
+
+## Video implementation status
+
 Status: accepted M0, finite M1-01/M1-02, M2-01 bounded audit, M2-02 fixed-window
 planner, M1-03 supplied-byte verification/isolated host proof, M3-01/P2
 read-only OTIO bridge and the accepted bounded M3-02 SQLite journal (PR #56).
@@ -63,8 +74,9 @@ optional provider implementations. `cli -> workflow + adapters` composes them.
 The SQLite journal now has an executable adapter slice; the broader workflow,
 FilmCraft executor and OpenFilm adapter remain future work. Add other crates only
 with executable slices, not for speculative architecture.
-TypeScript initially wraps the CLI/JSON protocol. MCP, WASM and HTTP are transports;
-no transport owns planning or approval policy.
+A TypeScript consumer can invoke the current CLI/JSON protocol as a child process.
+A packaged SDK and additional transports belong to future milestones. Planning
+and approval policy stay in the application and engine layers.
 
 ## Authority
 
@@ -72,7 +84,7 @@ no transport owns planning or approval policy.
 | --- | --- |
 | Story intent, constraints, curated membership, proposals and decisions | storytelling |
 | Source bytes, actual filesystem access and media analysis | authorized producer/adapter |
-| OpenFilm Composition, Catalog and history | OpenFilm application services |
+| A project’s source material and history | The originating project. In the OpenFilm integration, its application services own the Composition, Catalog and history. |
 | Host timeline after handoff and user finishing | target editor |
 | Mapping/approval/execution/verification records | storytelling workflow |
 

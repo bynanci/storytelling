@@ -1,10 +1,9 @@
 <!-- SPDX-License-Identifier: MIT -->
 # CLI 使用指南
 
-本指南從 repository 根目錄執行，使用已接受契約與 M3-01/P2 有界 planner-to-OTIO 契約。
-新路徑可直接讀取 `plan-story` stdout；原本 composition 指令則維持自己的輸入契約。
-格式與穩定錯誤碼見
-[契約索引](CONTRACTS.md)，實作進度見 [TASKS](../TASKS.md)。
+Storytelling CLI 是可獨立執行的本機命令列工具。腳本、應用程式或 Agent 都能提供符合契約的輸入，從標準輸出讀取結果，再依退出碼決定下一步。有素材清單和剪輯限制時，可以直接驗證或規劃；需要互動構思、寫旁白或發展插畫概念時，可從 [Agent Skill](../.agents/skills/storytelling/SKILL.md) 開始。各平台的安裝與使用方法見[平台指南](PLATFORMS.md)。
+
+下方的 Cargo 範例從 Storytelling 原始碼根目錄執行。格式與錯誤碼見[契約索引](CONTRACTS.md)。
 
 ## 建置與依賴
 
@@ -16,10 +15,15 @@ cargo build --release --locked -p storytelling-cli
 cargo run --release --quiet --locked -p storytelling-cli -- --help
 ```
 
-產物在 `target/release/storytelling`；Windows 為 `storytelling.exe`。
-下方使用 `cargo run`，免去 shell 與執行檔副檔名差異。一般 production 指令
-不需要 Node、Python、FFmpeg 或 FilmCraft。來源比對、官方 OTIO oracle 與真實
-宿主測試另有 test-only 工具需求，見後段。
+執行檔位於 `target/release/storytelling`，Windows 為 `target/release/storytelling.exe`。從其他專案使用時，可以用本機執行檔的完整路徑呼叫它，也可以將執行檔加到 `PATH`。素材檔與 JSON 路徑由呼叫端指定。建置完成後，日常 CLI 工作流程可在本機執行，無須啟動 AI 服務或剪輯器。
+
+例如，將隨附的 [plan 範例](../examples/minimal-plan.json) 複製到自己的工作目錄並命名為 `plan.json`。若執行檔已在 `PATH` 上，可直接執行：
+
+```sh
+storytelling validate plan.json
+```
+
+預期退出碼為 0，回應中的 `validation.plan_id` 為 `travel-recap`。應用程式也可以把相同的 JSON 寫入 `storytelling validate -` 的 stdin。只有使用快照匯入、OTIO 或對應審閱命令時，才需準備符合 OpenFilm finite-v1 的 composition 資料；`validate`、`audit-brief` 與 `plan-story` 各有獨立的輸入契約。
 
 ## 選擇入口
 
