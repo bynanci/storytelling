@@ -3,15 +3,17 @@
 
 [繁體中文](n07-pilot.zh-TW.md) · Issue [#54](https://github.com/bynanci/storytelling/issues/54) · SDLC G4–G6.
 
-**Product decision: 待真人證據 (awaiting human evidence).** Available participant records: 0; analyzable paired records: 0. Human completion, revision time, attribution, repeated input, rework and feedback remain unobserved. The [header-only forms and status](../../examples/evaluation/n07-pilot/observations.json) do not encode blank fields as zero success or zero errors. No release candidate is recommended.
+**Native CLI study.** The maintainer [accepted the native protocol](https://github.com/bynanci/storytelling/issues/54#issuecomment-6796082010) for the repair task `n07-door-repair@1` with ReportV1. Five authors supplied paired notes/CLI records for a separate account-review task. The [intake review](https://github.com/bynanci/storytelling/issues/54#issuecomment-6798143556) found no pairs for the repair task in that submission. The decision for the native repair workflow remains pending.
+
+Submit the five repair-task pairs privately in their existing format. Include the actual order, source and CLI versions, times, completion, attribution errors and repeated entries. The [original forms](../../examples/evaluation/n07-pilot/forms/) also cover rework and feedback. Keep unknown values blank. The [N-01 Continue decision](https://github.com/bynanci/storytelling/issues/48#issuecomment-6798756961) applies to the Skill trial.
 
 ## Baseline and version audit
 
-The engineering baseline is main `ce73836caa86502933f538821fdbf5dac92c1224`. It contains merged N-05 PR #83 / ReportV1 and the separately recorded requester gate-sample assessment. Those untimed judgments are not participants or a paired trial. PR #87 ReportV2 is a verified but unmerged candidate at preparation time; it is excluded from the primary pilot. N-06 is optional and its defer-all decision does not block N-07.
+The engineering baseline is main `ce73836caa86502933f538821fdbf5dac92c1224`. It contains merged N-05 PR #83 / ReportV1 and the separately recorded requester gate-sample assessment. Those untimed judgments are not participants or a paired trial. PR #87 subsequently merged the opt-in ReportV2. This pilot uses ReportV1. N-06 is optional and its defer-all decision does not block N-07.
 
-The [N-01 protocol at this baseline](https://github.com/bynanci/storytelling/blob/ce73836caa86502933f538821fdbf5dac92c1224/docs/narrative/N-01-AUTHOR-STUDY.md) proposed five new authors, randomized three AB/two BA, eight minutes per arm and the continue/narrow/stop rules before parser work. Agreement and the original Skill pilot are still unrecorded. This is a separately labeled **notes versus native CLI** extension; do not pool Skill, notes/mapped exercises, requester sample reviews or process benchmarks.
+The [N-01 protocol at this baseline](https://github.com/bynanci/storytelling/blob/ce73836caa86502933f538821fdbf5dac92c1224/docs/narrative/N-01-AUTHOR-STUDY.md) proposed five new authors, randomized three AB/two BA, eight minutes per arm and the continue/narrow/stop rules before parser work. This is a separately labeled **notes versus native CLI** extension; do not pool Skill, notes/mapped exercises, requester sample reviews or process benchmarks.
 
-The [matched participant snapshot](../../examples/evaluation/n07-pilot/participant-kit/cli/base-document.json) uses a new `n07-door-repair` namespace and exactly the original source-unit objects. Its brief wording is adapted to N-01 without the old N-03 unsupported indoor setting or new C02. Both arms see identical rendered starting words. The correction changes S01/S02 names to Ju/Zhe; C01 stays A-only. The existing N-04 final ledger changes roles and umbrella scope, so it is an engineering control rather than the participant baseline. This native adaptation and threshold transfer need pre-trial agreement.
+The [matched participant snapshot](../../examples/evaluation/n07-pilot/participant-kit/cli/base-document.json) uses a new `n07-door-repair` namespace and exactly the original source-unit objects. Its brief wording is adapted to N-01 without the old N-03 unsupported indoor setting or new C02. Both arms see identical rendered starting words. The correction changes S01/S02 names to Ju/Zhe; C01 stays A-only. The existing N-04 final ledger changes roles and umbrella scope, so it is an engineering control rather than the participant baseline. The maintainer accepted this adaptation and the threshold transfer in the linked native protocol decision.
 
 ## Deliverable the facilitator can use
 
@@ -21,7 +23,7 @@ The notes arm edits source cards, three text drafts and copy by hand. The native
 
 Start the continuous author timer after reading the change card; stop on saved submission or at 480 seconds. Include JSON/metadata work, tool waiting and recovery in author time. Record process wall time separately, without subtracting it. Full commercial claim/proposal subcounts and metadata/rework are secondary diagnostics; do not silently tighten the original N-01 packet-completion rubric. The forms record version, source/material hashes, anonymous ID/order/period, actual denominators, timeout/withdrawal, coded clauses, repetitions, rework and verbatim feedback. Filled records stay private.
 
-The shortest remaining requester/facilitator actions are in the [script](../../examples/evaluation/n07-pilot/protocol.zh-TW.md#你需要做的最短步驟): record agreement and definitions; recruit five new authors and prepare fresh copies; collect both arms and actual artifacts; then apply the frozen rules and record a maintainer decision.
+Use the [facilitator script](../../examples/evaluation/n07-pilot/protocol.zh-TW.md#你需要做的最短步驟) for data collection and scoring. When the five comparable pairs are available, apply the frozen rules and record the maintainer’s decision.
 
 ## Original decision rules and current application
 
@@ -32,7 +34,7 @@ The shortest remaining requester/facilitator actions are in the [script](../../e
 | Narrow/repeat | Neither condition applies; preserve a demonstrated benefit and preregister the next scope. A small improvement below 20% is not automatically “no improvement.” |
 | Missing records or agreement | **待真人證據**. A valid pair of records may contain incomplete/timeout attempts; it does not require both tasks to succeed. A timeout is incomplete and contributes 480 seconds to the original median. Do not discard it or use finished-only medians. |
 
-“No worse attribution,” withdrawal handling and transfer from Skill to native require agreement before recruitment; proposed operational definitions are explicit in the script. CLI success and n=5 process repetitions cannot satisfy n=5 authors.
+The accepted native protocol defines the attribution comparison and withdrawal handling. Five CLI process repetitions measure engineering performance.
 
 ## Executed engineering evidence, separate from people
 
@@ -68,7 +70,7 @@ The participant workflow now uses supported snapshot editing/rendering; it does 
 | Need | Artifact / evidence |
 | --- | --- |
 | Ordinary-notes/native matched materials, timing and outcome rules | Participant kit, original source protocol, native facilitator script and header-only forms |
-| Explicit zero human evidence and pending product decision | observations.json, this report; no filled participant rows |
+| Baseline at packet preparation: no participant submissions | [Preparation snapshot](../../examples/evaluation/n07-pilot/observations.json) and blank participant forms |
 | Separate actual CLI timing and input identity | run_cli.py, cases.json, per-case stdout/stderr and all timings/hashes |
 | Protect observations, output directories and timing interpretation | helper unit tests: existing directory refusal, malformed manifest, unexpected exits, source/manifest mutation, timeout/replay behavior and warmup exclusion |
 | Protect matched sources, after-snapshot revisions, blank forms and guard semantics | test_packet.py |
@@ -79,4 +81,4 @@ The [technical review](n07-pilot/technical-review.md) separates independent prot
 
 ## Release disposition
 
-No RC is recommended with missing paired evidence and agreement. SDK/CLI/wire/digest/OTIO contracts and locked dependencies are unchanged. This PR adds evaluation materials and a bounded Python measurement helper only; it writes a fresh engineering output directory and does not edit media, catalogs or projects. Roll back by ceasing to use the helper/packet; there is no user-data migration. Remaining risks include same-case learning, metadata overhead, semantic/source attribution judgments, absence of participant observations and the accepted multi-source pending-review boundary. G5 compatibility/SBOM/migration/readback and explicit maintainer publication approval remain separate if an RC is later proposed.
+The outstanding repair-task pairs are necessary for a release recommendation. SDK/CLI/wire/digest/OTIO contracts and locked dependencies are unchanged. This PR adds evaluation materials and a bounded Python measurement helper only; it writes a fresh engineering output directory and does not edit media, catalogs or projects. Roll back by ceasing to use the helper/packet; there is no user-data migration. Remaining risks include same-case learning, metadata overhead, semantic/source attribution judgments, lack of verified repair-task observations and the accepted multi-source pending-review boundary. G5 compatibility/SBOM/migration/readback and explicit maintainer publication approval remain separate if an RC is later proposed.
