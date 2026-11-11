@@ -165,7 +165,7 @@ For a separate mapped-bounds trial, give editors the same three map rows and the
 
 - **B**　Replace the final question and invitation with a single invitation to ask for the next date.
 
-**Protect**　Do not announce a date that was never supplied. Do not reintroduce any withdrawn testimony.
+**Protect**　R2 starts from the original drafts. Keep the anonymous quotation the participant approved for the donor update. Invite readers to ask for the date without announcing one.
 
 <a name="branching-game"></a>
 

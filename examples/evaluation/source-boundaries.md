@@ -30,7 +30,7 @@ For the `mapped-bounds` condition, give the next editor the ordinary three-row s
 
 | Source | Supported use | Evidence limit or permitted scope |
 | --- | --- | --- |
-| S1 | U4 approved one interview excerpt. Attribute the current wording to U4. | The statement describes one person's expectation. Wider publication requires checking permission for that audience. |
+| S1 | U4 approved one interview excerpt. Attribute the current wording to U4. | The quote describes U4's expectation at the time. If the current quote does not mention a button, it cannot support a claim in the surrounding text about what U4 thought the button did. Check permission before quoting U4 for another audience. |
 | S2 | One session log records Preview, Save and then a closed tab. It has no Share event. | The log describes the actions it recorded. It cannot establish U4's belief or a pattern across users. |
 | P1 | An editor requested space for one follow-up question on the private review note. | The field is an editing aid. Any question written there remains a question until U4 answers it. |
 
@@ -40,7 +40,7 @@ For the `mapped-bounds` condition, give the next editor the ordinary three-row s
 
 | Source | Supported use | Evidence limit or permitted scope |
 | --- | --- | --- |
-| S1 | The release ledger identifies the platforms on which the named sample import passed. | The result covers that operation on the listed platforms. It gives no result for unlisted platforms or other operations. |
+| S1 | The release ledger identifies the platforms on which the named sample import passed. | Report only the steps verified on each platform. A build-only record leaves the sample import result unknown. It cannot establish an import failure or lack of import support. |
 | S2 | In the supplied project, M opens the sample folder map and selecting an entry shows its original path. | The demonstration establishes this behavior for the supplied project. It provides no platform test results. |
 | P1 | The speaker proposes holding the pointer on the path during the demo. | The duration is a presentation choice for the speaker's card. It says nothing about program response time. |
 
@@ -51,7 +51,7 @@ For the `mapped-bounds` condition, give the next editor the ordinary three-row s
 | Source | Supported use | Evidence limit or permitted scope |
 | --- | --- | --- |
 | S1 | The sheet counts check-ins across two sessions. Each attendance counts once. | Unique people, return attendance and changes in confidence were not measured. |
-| S2 | One participant permitted an anonymous quotation in the donor update about two visits. | Use within that audience and permission. The testimony cannot establish an outcome for the whole group. |
+| S2 | One participant permitted an anonymous quotation in the donor update about two visits. | Use the account only as permitted. If the participant withdraws permission, do not retell the experience anonymously, paraphrase it or attribute it to another speaker. The account cannot establish an outcome for the whole group. |
 | P1 | The editor proposes inviting a question in the designated update. | The invitation is editorial wording. It records no responses from readers. |
 
 <a name="branching-game"></a>
@@ -92,7 +92,7 @@ For the `mapped-bounds` condition, give the next editor the ordinary three-row s
 | --- | --- | --- |
 | S1 | The stage notes give the chair's position from the audience, the red glove on its seat and the empty palm turned at 00:08. | Describe visible actions from the stated viewpoint. The performer's intentions are unspecified. |
 | S2 | The script has description windows at 00:00–00:06 and 00:08–00:14. Dialogue occupies the interval between them. | Keep the dialogue audible. The windows alone cannot establish that a spoken take fits. |
-| P1 | The proposed half-second pause counts toward the first description window in the designated opening. | Its actual duration and fit require a timed read-through. The pause applies only where proposed. |
+| P1 | The proposed half-second pause counts toward the first description window in the designated opening. | The pause applies only to the designated opening. Time a read-through to check that the description fits. Any time freed by a shorter or removed pause can stay empty. A timing change supplies no evidence about the performer's feelings or motives. |
 
 <a name="family-reunion"></a>
 
@@ -130,7 +130,7 @@ For the `mapped-bounds` condition, give the next editor the ordinary three-row s
 
 | Source | Supported use | Evidence limit or permitted scope |
 | --- | --- | --- |
-| S1 | The trial timed four volunteers importing the same six-row sheet with each version. Use the reported medians for that trial. | The results do not establish individual time savings, performance on other sheets or an outcome for all customers. |
+| S1 | The trial timed four volunteers importing the same six-row sheet with each version. Use the reported medians for that trial. | The trial used a six-row sheet. Its size does not establish the product's import limit. The results do not establish individual time savings, performance on other sheets or an outcome for all customers. |
 | S2 | The preview highlights unmatched headers before import. Review mapping lets the user inspect them. | Inspecting a highlighted header does not establish that the software fixes it automatically. |
 | P1 | The salesperson may invite the customer to bring a sample sheet to a future call. | An invitation records neither agreement nor a test of the customer's file. |
 
