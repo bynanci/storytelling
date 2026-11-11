@@ -35,7 +35,7 @@
 
 | 任務與需求 | 狀態與依賴 | 交付物與驗收方式 |
 | --- | --- | --- |
-| [N-01／#48](https://github.com/bynanci/storytelling/issues/48) · N-R01 作者試用 | G0–G1。試用包已備妥，可與 N-03 並行。 | 比較一般筆記與 Skill 的完成率、修改時間、歸因錯誤與重複輸入。真人試用及維護者決定仍待完成。 |
+| [N-01／#48](https://github.com/bynanci/storytelling/issues/48) · N-R01 作者試用 | G0–G1。維護者決定繼續使用 Skill 處理本次跨媒體修訂任務。 | 五位作者各試兩種條件。普通筆記組完成 3/5，Skill 組完成 5/5。耗時、歸因錯誤與重複輸入詳見[維護者決定](https://github.com/bynanci/storytelling/issues/48#issuecomment-6798756961)。 |
 | [N-02／#49](https://github.com/bynanci/storytelling/issues/49) · N-R02 共用契約 | G2 已採納。參考 N-01 試用包。 | [ADR 0005](docs/adr/0005-independent-narrative-document-v1.md) 與 [V1 規格](docs/narrative/NARRATIVE_DOCUMENT_V1.md)定義口述、構圖、來源和變體。維護者已同意開發 N-03。[PR #71](https://github.com/bynanci/storytelling/pull/71) |
 | [N-03／#50](https://github.com/bynanci/storytelling/issues/50) · N-R03 口述與插畫 | 已記錄 CLI 與請求者檢視；revision 2 回應近景取景建議，原始 fixture 不變。 | `render-narrative` 輸出口述與兩種構圖，保留來源 ID。C01 僅屬寬景，C02 僅為近景構圖提案。[驗證紀錄](docs/validation/n03-narrative-cli.md)附逐位元重播與來源未變證據。N-01／N-07 真人試用另列。 |
 | [N-04／#51](https://github.com/bynanci/storytelling/issues/51) · N-R04 修訂與作者決定 | 接續 N-03。主分支已有修訂查詢。真人檢視另列。 | 先改共同事實，再改單一構圖。工具依直接引用列出受影響的版本。歷史保留舊稿、提案及宣告的作者決定。[修訂驗證紀錄](docs/validation/n04-narrative-revisions.md) |
