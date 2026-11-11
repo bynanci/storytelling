@@ -1,0 +1,29 @@
+{
+  "name": "@bynanci/storytelling",
+  "version": "0.1.0-dev.0",
+  "description": "A portable Agent Skill for writing, illustration briefs, brainstorming, business copy and story planning.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bynanci/storytelling.git"
+  },
+  "homepage": "https://github.com/bynanci/storytelling#readme",
+  "bugs": "https://github.com/bynanci/storytelling/issues",
+  "keywords": [
+    "agent-skills",
+    "storytelling",
+    "creative-writing",
+    "story-planning"
+  ],
+  "files": [
+    "README.zh-TW.md",
+    "skills/storytelling/SKILL.md",
+    "skills/storytelling/LICENSE",
+    "skills/storytelling/agents/*.yaml",
+    "skills/storytelling/references/*.md",
+    "skills/storytelling/scripts/*.py"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

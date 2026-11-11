@@ -6,13 +6,16 @@ Use a branch and PR; do not push feature work directly to main.
 
 ### Contributing a skill example or host guide
 
-The portable package lives in [.agents/skills/storytelling](.agents/skills/storytelling).
+The portable package lives in [skills/storytelling](skills/storytelling).
 A useful contribution can be a small example from an unrelated project: include the
 author's request, the supplied material and the output you expect. For host
 instructions, record the client and scope (project, user or hosted account) and
 what you verified: package discovery, actual invocation or only the vendor's documented
 installation procedure. Link the relevant [platform guide](docs/PLATFORMS.md) entry.
 Keep helper and reference links relative to the skill so copying the whole directory works.
+Edit the source under `skills/storytelling/`. The repository's Codex discovery
+path is a relative symlink to that source. When adding a new asset type, update
+the npm file allowlist in [package.json](package.json) and verify the packed files.
 
 ### Checking the project
 
@@ -25,6 +28,7 @@ cargo test --workspace --locked
 cargo test --workspace --release --locked
 cargo doc --workspace --no-deps --locked
 python3 scripts/check_repo.py
+python3 scripts/test_skill_distribution.py
 ```
 
 Python 3.11+ is needed for the repository metadata/link guard, not for the SDK/CLI.

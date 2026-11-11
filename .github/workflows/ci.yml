@@ -65,6 +65,11 @@ jobs:
           mkdir "$RUNNER_TEMP/planner-shadow-npm"
           cp tests/oracles/openfilm-finite-v1/package.json tests/oracles/openfilm-finite-v1/package-lock.json "$RUNNER_TEMP/planner-shadow-npm/"
           env PATH="$RUNNER_TEMP/planner-shadow-tools/node-v24.22.1-linux-x64/bin:$PATH" "$RUNNER_TEMP/planner-shadow-tools/node-v24.22.1-linux-x64/bin/npm" ci --ignore-scripts --no-audit --no-fund --prefix "$RUNNER_TEMP/planner-shadow-npm" --cache "$RUNNER_TEMP/planner-shadow-npm-cache"
+      - name: Skill package, clean npm install and agent discovery
+        run: |
+          export PATH="$RUNNER_TEMP/planner-shadow-tools/node-v24.22.1-linux-x64/bin:$PATH"
+          python3 scripts/test_skill_distribution.py
+          bash scripts/test_skills_cli.sh
       - name: Exact public source for live planner shadow
         run: |
           mkdir "$RUNNER_TEMP/planner-shadow-source"

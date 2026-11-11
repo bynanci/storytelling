@@ -8,7 +8,7 @@ See [TASKS](TASKS.md), [SDLC](docs/SDLC.md) and [architecture](docs/ARCHITECTURE
 
 Give authors and integrators a portable way to turn source material into a
 structure they can explain, revise and hand off. A writing team can add the
-[Agent Skill](.agents/skills/storytelling/SKILL.md) to its own workspace for
+[Agent Skill](skills/storytelling/SKILL.md) to its own workspace for
 day-to-day drafting. A project with structured video data can use the local
 [CLI](docs/CLI_GUIDE.md) in a script or automation. These entry points serve
 different tasks and can be adopted independently. See the [platform guide](docs/PLATFORMS.md).
@@ -29,7 +29,7 @@ different tasks and can be adopted independently. See the [platform guide](docs/
 
 ## Cross-media narrative roadmap
 
-The [Storytelling skill](.agents/skills/storytelling/SKILL.md) is the author-facing
+The [Storytelling skill](skills/storytelling/SKILL.md) is the author-facing
 entry point. Today it drafts multiple forms from prose with the host agent.
 The N milestones below add the separately testable contracts, local tool
 integration, revision tracking and measured author outcomes. Keep a natural-language

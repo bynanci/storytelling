@@ -4,7 +4,7 @@
 
 Storytelling has two entry points that can be adopted separately.
 
-- **Authoring in an agent.** A host reads the portable [Skill package](../.agents/skills/storytelling/SKILL.md) and uses the author's notes to draft a talk, a scene, an illustration brief, copy or a video outline. The package carries its own examples and workflow rules. The host provides language generation and any enabled tools. See [installation by platform](PLATFORMS.md) for project and personal use.
+- **Authoring in an agent.** A host reads the portable [Skill package](../skills/storytelling/SKILL.md) and uses the author's notes to draft a talk, a scene, an illustration brief, copy or a video outline. The package carries its own examples and workflow rules. The host provides language generation and any enabled tools. See [installation by platform](PLATFORMS.md) for project and personal use.
 - **Local automation.** An application or script can invoke the Rust CLI directly, pass a supported JSON document or source bytes and inspect stdout and the exit code. Any producer can supply the declared plan to `validate`, the brief to `audit-brief` or the candidate windows and constraints to `plan-story`. These operations run independently of an AI service and editor. See the [CLI guide](CLI_GUIDE.md) and [contracts](CONTRACTS.md).
 
 OpenFilm is one producer of video composition snapshots. Import, OTIO export and the associated review commands consume its finite snapshot format. Another project can construct the same format when it has those source facts. FilmCraft is the editor used in the bounded interoperability tests. Each additional editing host needs its own compatibility evidence.

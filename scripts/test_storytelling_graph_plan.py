@@ -7,7 +7,7 @@ import subprocess
 import sys
 import unittest
 
-HELPER = (Path(__file__).resolve().parents[1] / ".agents" / "skills" /
+HELPER = (Path(__file__).resolve().parents[1] / "skills" /
           "storytelling" / "scripts" / "graph_plan.py")
 
 
