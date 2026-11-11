@@ -247,6 +247,8 @@ Each implementation PR must identify its fixtures, tests and evidence.
 
 These evidence requests retain the accepted N-R02 wire contract and the N-01 comparison protocol.
 
+The [research design map](research/README.md) traces P01–P11/S01 to ST-R01–ST-R14, W1–W6 and the existing N requirements. These are editorial guidance and evaluation questions, not new V1 fields or additional accepted requirements.
+
 <a name="skill-散布"></a>
 
 ## Skill distribution

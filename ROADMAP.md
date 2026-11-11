@@ -23,6 +23,8 @@ The skill installs independently from Rust. The package version is `0.1.0-dev.0`
 
 ## Cross-media narrative roadmap
 
+The [research design map](docs/research/README.md) links evidence, rules and workflow priorities. Claims of benefit still require human observations.
+
 | Outcome | Order of work | Acceptance question |
 | --- | --- | --- |
 | 1. Revise a story | N-02 defines the contract. N-03 renders drafts. N-04 records revisions and declared author decisions. Run N-01 author trials separately. | Does each direct reference appear in the impact report? Does an edit to one illustration leave the other intact? Use the [study packet](docs/narrative/N-01-AUTHOR-STUDY.md). |

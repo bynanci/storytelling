@@ -317,6 +317,8 @@ see the [validation record](validation/m3-03-filmcraft-execution.md).
 
 N-R02 的資料契約與 N-01 的試用條件已固定。新增觀察可以補充證據。變更契約或試用條件時，須另行記錄決定。
 
+研究、規則與技能流程的對照請見[研究設計](research/README.zh-TW.md)。P01–P11/S01、ST-R01–ST-R14、W1–W6 連結到既有 N 需求；這些是編輯指引與評估問題，不增加 V1 欄位或已驗收需求。
+
 <a id="skill-distribution"></a>
 
 ## Skill 散布
