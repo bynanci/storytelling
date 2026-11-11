@@ -1,0 +1,36 @@
+Handoff: umbrella-after-draft-update (schema v1)
+Narrative: umbrella-workshop-handoff
+Change: date-to-sunday · S1@1 -> S1@2
+Source S1@2 [file] "text · tests/fixtures/narrative-handoff-v1/notice-after.txt · SHA-256 5caa7157d447c04095747a6d17168436ee892c644aae2cc874f5dcf8874a1034 (declared, not verified)"
+   Source text: "週日舉辦修傘工作坊，請帶一把傘。"
+Source S2@1 [file] "image · skills/storytelling/assets/umbrella-workshop/bench.svg · SHA-256 87687584b8f4d01360feea9fbf84e510560f44c745a5973e001e55c01a35d1c9 (declared, not verified)"
+   Source text: "作者提供的工作檯示意圖說：左側折起的藍傘，右側赭黃色線軸。"
+Source S3@1 [file] "audio · skills/storytelling/assets/umbrella-workshop/taps.wav · SHA-256 4008e27e4c94376747a887df8d873820e4ab88e668816f79ddca5c9d69bb202b (declared, not verified)"
+   Source text: "作者提供的聲音描述：兩聲合成敲擊，中間停頓，沒有語音。"
+Source C1@1 [creative_proposal] "variant-only poster: 海報專用提案：把活動文字放在兩個物件中間的留白。"
+   Source text: "海報專用提案：把活動文字放在兩個物件中間的留白。"
+
+Artifact invite · variant=invite@2 · status=current
+   "邀請文字" [text]: "週日修傘，請帶一把傘來。"
+UPDATE invite/text · draft -> current source: S1@2 -> S1@2
+
+Artifact poster · variant=poster@2 · status=current
+   "海報日期與構圖" [image]: "週日修傘工作坊，請帶一把傘。左側保留折起的藍傘，右側保留赭黃色線軸；C1 僅為本海報的排字提案，文字置於中間留白。"
+UPDATE poster/date · draft -> current source: S1@2 -> S1@2
+REUSE poster/layout · draft -> current source: S2@1 -> S2@1, C1@1 -> C1@1
+
+Artifact oral-info · variant=oral-info@2 · status=current
+   "直接告知口述" [text]: "週日是修傘工作坊，請帶一把傘。"
+UPDATE oral-info/date · draft -> current source: S1@2 -> S1@2
+
+Artifact oral-poetic · variant=oral-poetic@2 · status=current
+   "意象口述" [text]: "先播放兩聲合成敲擊，停一拍。\n週日，把一把傘帶來修傘工作坊。"
+REUSE oral-poetic/taps · draft -> current source: S3@1 -> S3@1
+UPDATE oral-poetic/date · draft -> current source: S1@2 -> S1@2
+
+Artifact original-wav · variant=sound-source@1 · status=current
+   "原始合成敲擊 WAV" [audio]: "[S3] 原始 WAV 是兩聲合成敲擊，沒有語音。"
+REUSE original-wav/audio · draft -> current source: S3@1 -> S3@1
+
+Impact is historical direct-reference impact; status shows whether the draft still needs review.
+Scope: declarations only; no source files are opened or rewritten.

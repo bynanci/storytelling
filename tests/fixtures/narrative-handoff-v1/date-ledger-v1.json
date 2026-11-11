@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "base_document": {
+    "schema_version": 1,
+    "document_id": "umbrella-workshop-handoff",
+    "document_revision": 1,
+    "purpose": "把改期後的修傘邀請、海報與兩版口述交給接手者，保留原始構圖與合成音效。",
+    "audience": "鄰里活動的文案、設計與錄音接手者",
+    "units": [
+      {
+        "id": "S1",
+        "revision": 1,
+        "origin": "supplied_observation",
+        "text": "週六舉辦修傘工作坊，請帶一把傘。",
+        "based_on": []
+      },
+      {
+        "id": "S2",
+        "revision": 1,
+        "origin": "supplied_observation",
+        "text": "作者提供的工作檯示意圖說：左側折起的藍傘，右側赭黃色線軸。",
+        "based_on": []
+      },
+      {
+        "id": "S3",
+        "revision": 1,
+        "origin": "supplied_observation",
+        "text": "作者提供的聲音描述：兩聲合成敲擊，中間停頓，沒有語音。",
+        "based_on": []
+      },
+      {
+        "id": "C1",
+        "revision": 1,
+        "origin": "creative_proposal",
+        "text": "海報專用提案：把活動文字放在兩個物件中間的留白。",
+        "based_on": [
+          {
+            "unit_id": "S2",
+            "revision": 1
+          }
+        ]
+      }
+    ],
+    "relations": [],
+    "variants": [
+      {
+        "id": "invite",
+        "name": "活動邀請文",
+        "kind": "spoken_outline",
+        "beats": [
+          {
+            "id": "invite-line",
+            "unit_ref": {
+              "unit_id": "S1",
+              "revision": 1
+            },
+            "text": "週六修傘，請帶一把傘來。"
+          }
+        ]
+      },
+      {
+        "id": "poster",
+        "name": "工作檯海報構圖",
+        "kind": "single_illustration",
+        "unit_refs": [
+          {
+            "unit_id": "S1",
+            "revision": 1
+          },
+          {
+            "unit_id": "S2",
+            "revision": 1
+          },
+          {
+            "unit_id": "C1",
+            "revision": 1
+          }
+        ],
+        "brief": "週六修傘工作坊，請帶一把傘。左側保留折起的藍傘，右側保留赭黃色線軸；C1 僅為本海報的排字提案，文字置於中間留白。"
+      },
+      {
+        "id": "oral-info",
+        "name": "直接告知口述",
+        "kind": "spoken_outline",
+        "beats": [
+          {
+            "id": "date",
+            "unit_ref": {
+              "unit_id": "S1",
+              "revision": 1
+            },
+            "text": "週六是修傘工作坊，請帶一把傘。"
+          }
+        ]
+      },
+      {
+        "id": "oral-poetic",
+        "name": "意象口述",
+        "kind": "spoken_outline",
+        "beats": [
+          {
+            "id": "taps",
+            "unit_ref": {
+              "unit_id": "S3",
+              "revision": 1
+            },
+            "text": "先播放兩聲合成敲擊，停一拍。"
+          },
+          {
+            "id": "date",
+            "unit_ref": {
+              "unit_id": "S1",
+              "revision": 1
+            },
+            "text": "週六，把一把傘帶來修傘工作坊。"
+          }
+        ]
+      },
+      {
+        "id": "sound-source",
+        "name": "原始音效交接",
+        "kind": "spoken_outline",
+        "beats": [
+          {
+            "id": "audio",
+            "unit_ref": {
+              "unit_id": "S3",
+              "revision": 1
+            },
+            "text": "原始 WAV 是兩聲合成敲擊，沒有語音。"
+          }
+        ]
+      }
+    ]
+  },
+  "events": [
+    {
+      "id": "date-to-sunday",
+      "kind": "source_revision",
+      "unit_id": "S1",
+      "expected_revision": 1,
+      "text": "週日舉辦修傘工作坊，請帶一把傘。"
+    }
+  ]
+}

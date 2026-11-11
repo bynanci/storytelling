@@ -1,0 +1,111 @@
+{
+  "before": {
+    "skills/storytelling/assets/umbrella-workshop/bench.svg": {
+      "sha256": "87687584b8f4d01360feea9fbf84e510560f44c745a5973e001e55c01a35d1c9",
+      "bytes": 2414
+    },
+    "skills/storytelling/assets/umbrella-workshop/taps.wav": {
+      "sha256": "4008e27e4c94376747a887df8d873820e4ab88e668816f79ddca5c9d69bb202b",
+      "bytes": 34604
+    },
+    "tests/fixtures/narrative-handoff-v1/after-v1.json": {
+      "sha256": "9a597804c2580839d42c72ee7e05d98285792335979d568c6b47c178181e81b8",
+      "bytes": 8553
+    },
+    "tests/fixtures/narrative-handoff-v1/before-v1.json": {
+      "sha256": "f9371702dffa059fa0c912f724b39e6ca945e0fda21d47e1cc5f2b8193fdffe2",
+      "bytes": 6959
+    },
+    "tests/fixtures/narrative-handoff-v1/date-ledger-v1.json": {
+      "sha256": "cfd65fee13f7bef56991c4fdf478d7ab345fae0906c078f6c1196ef50d6e5874",
+      "bytes": 3819
+    },
+    "tests/fixtures/narrative-handoff-v1/descriptions-only-v1.json": {
+      "sha256": "548da8671ccdcf48747610c2b24865383282bed6318145a11a6d8b7e8d577ec7",
+      "bytes": 6921
+    },
+    "tests/fixtures/narrative-handoff-v1/expected-impact.json": {
+      "sha256": "6fd6f41807dd5ac5f335d01b02e674773be2aaf4ab3306c51177c704284b6b30",
+      "bytes": 392
+    },
+    "tests/fixtures/narrative-handoff-v1/missing-source-v1.json": {
+      "sha256": "053ca27be7afdbcffa7376dff10e52333d3e1b3f63dbd0a5e9c180d1f293e7b8",
+      "bytes": 6971
+    },
+    "tests/fixtures/narrative-handoff-v1/proposal-leak-v1.json": {
+      "sha256": "a172f8fca9ff6efd9e7b866401c441cf2c3964893be7fbffc7ec0792735a1a4d",
+      "bytes": 7308
+    },
+    "tests/fixtures/narrative-handoff-v1/stale-revision-v1.json": {
+      "sha256": "4b7e874f57b2ebaf72a4beae4a355e4b7a01458e2c95849311ac78cf770e3781",
+      "bytes": 6959
+    },
+    "tests/fixtures/narrative-handoff-v1/transcript-missing-v1.json": {
+      "sha256": "f528d0cbedae6d64e7c6dee19cae4c62d1c8d780916d12509fc1aab16efced99",
+      "bytes": 6743
+    },
+    "tests/fixtures/narrative-handoff-v1/notice-after.txt": {
+      "sha256": "5caa7157d447c04095747a6d17168436ee892c644aae2cc874f5dcf8874a1034",
+      "bytes": 49
+    },
+    "tests/fixtures/narrative-handoff-v1/notice-before.txt": {
+      "sha256": "57a3890cceca69e7238076d3fe8ebb0649360ce5eaa7ee46ff1282a006c04b7a",
+      "bytes": 49
+    }
+  },
+  "after": {
+    "skills/storytelling/assets/umbrella-workshop/bench.svg": {
+      "sha256": "87687584b8f4d01360feea9fbf84e510560f44c745a5973e001e55c01a35d1c9",
+      "bytes": 2414
+    },
+    "skills/storytelling/assets/umbrella-workshop/taps.wav": {
+      "sha256": "4008e27e4c94376747a887df8d873820e4ab88e668816f79ddca5c9d69bb202b",
+      "bytes": 34604
+    },
+    "tests/fixtures/narrative-handoff-v1/after-v1.json": {
+      "sha256": "9a597804c2580839d42c72ee7e05d98285792335979d568c6b47c178181e81b8",
+      "bytes": 8553
+    },
+    "tests/fixtures/narrative-handoff-v1/before-v1.json": {
+      "sha256": "f9371702dffa059fa0c912f724b39e6ca945e0fda21d47e1cc5f2b8193fdffe2",
+      "bytes": 6959
+    },
+    "tests/fixtures/narrative-handoff-v1/date-ledger-v1.json": {
+      "sha256": "cfd65fee13f7bef56991c4fdf478d7ab345fae0906c078f6c1196ef50d6e5874",
+      "bytes": 3819
+    },
+    "tests/fixtures/narrative-handoff-v1/descriptions-only-v1.json": {
+      "sha256": "548da8671ccdcf48747610c2b24865383282bed6318145a11a6d8b7e8d577ec7",
+      "bytes": 6921
+    },
+    "tests/fixtures/narrative-handoff-v1/expected-impact.json": {
+      "sha256": "6fd6f41807dd5ac5f335d01b02e674773be2aaf4ab3306c51177c704284b6b30",
+      "bytes": 392
+    },
+    "tests/fixtures/narrative-handoff-v1/missing-source-v1.json": {
+      "sha256": "053ca27be7afdbcffa7376dff10e52333d3e1b3f63dbd0a5e9c180d1f293e7b8",
+      "bytes": 6971
+    },
+    "tests/fixtures/narrative-handoff-v1/proposal-leak-v1.json": {
+      "sha256": "a172f8fca9ff6efd9e7b866401c441cf2c3964893be7fbffc7ec0792735a1a4d",
+      "bytes": 7308
+    },
+    "tests/fixtures/narrative-handoff-v1/stale-revision-v1.json": {
+      "sha256": "4b7e874f57b2ebaf72a4beae4a355e4b7a01458e2c95849311ac78cf770e3781",
+      "bytes": 6959
+    },
+    "tests/fixtures/narrative-handoff-v1/transcript-missing-v1.json": {
+      "sha256": "f528d0cbedae6d64e7c6dee19cae4c62d1c8d780916d12509fc1aab16efced99",
+      "bytes": 6743
+    },
+    "tests/fixtures/narrative-handoff-v1/notice-after.txt": {
+      "sha256": "5caa7157d447c04095747a6d17168436ee892c644aae2cc874f5dcf8874a1034",
+      "bytes": 49
+    },
+    "tests/fixtures/narrative-handoff-v1/notice-before.txt": {
+      "sha256": "57a3890cceca69e7238076d3fe8ebb0649360ce5eaa7ee46ff1282a006c04b7a",
+      "bytes": 49
+    }
+  },
+  "unchanged": true
+}

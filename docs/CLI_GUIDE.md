@@ -40,6 +40,7 @@ A **snapshot** is a composition export that follows the `finite-v1` contract. Op
 | Command | Input | Result |
 | --- | --- | --- |
 | `render-narrative` | `NarrativeDocumentV1` | A spoken outline and illustration briefs with source labels. No media or duration required. |
+| `render-handoff` | `NarrativeHandoffManifestV1` | Source representations, exact component impact and draft review status, using the N-04 ledger. |
 | `track-narrative-revisions` | `NarrativeRevisionLedgerV1` | Source and variant history, author decisions and review status. |
 | `query-narrative-impact` | Ledger and source change event ID | Variants that directly reference this source revision. The engine computes the list. |
 | `check-narrative-style` | Narrative document and revision-bound style profile | JSON result for declared spoken-beat order only. |
@@ -74,6 +75,27 @@ cat tests/fixtures/narrative-v1/n03-authoring-v1.json | cargo run --release --qu
 ```
 
 Success produces multiline UTF-8 text. File and standard input produce identical bytes. Invalid data produces one JSON line on standard output and exit 1. Usage errors return 2. I/O errors return 3. The command only reads input. See the [narrative contract](narrative/NARRATIVE_DOCUMENT_V1.md) and [N-03 evidence](validation/n03-narrative-cli.md).
+
+## Check a mixed-media handoff (N-11)
+
+```sh
+cargo run --release --quiet --locked -p storytelling-cli -- render-handoff tests/fixtures/narrative-handoff-v1/before-v1.json
+cargo run --release --quiet --locked -p storytelling-cli -- render-handoff tests/fixtures/narrative-handoff-v1/after-v1.json
+```
+
+The Saturday-to-Sunday change marks invitation, poster date and both spoken
+dates as `UPDATE`. Poster layout and the original WAV are `REUSE`.
+`UPDATE` records historical impact; `status=needs_review` or `status=current`
+shows whether the draft has a matching review. Current source descriptors
+must use the latest revision; old draft references remain visible as history.
+
+The command checks references, proposal scope and complete component coverage.
+It does not inspect file contents. For a text-only handoff, use
+`descriptions-only-v1.json`; the report retains usable briefs and marks the
+absence of original files. Success is reproducible UTF-8 text (exit 0);
+invalid data is one JSON line (exit 1), usage errors use 2 and I/O errors use 3.
+See the [profile](narrative/NARRATIVE_HANDOFF_MANIFEST_V1.md) and
+[actual evidence](validation/n11-handoff.md).
 
 <a id="來源修訂與變體影響n-04"></a>
 

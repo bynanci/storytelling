@@ -1,0 +1,105 @@
+   Compiling storytelling-cli v0.1.0-dev.0 (/workspace/storytelling-n11/crates/storytelling-cli)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.81s
+     Running tests/handoff.rs (target/debug/deps/handoff-941af0a00c047a8e)
+
+running 10 tests
+test computes_the_predeclared_exact_date_impact_without_false_results ... FAILED
+test descriptions_only_keep_usable_briefs_without_claiming_original_files ... FAILED
+test rejects_a_component_source_that_does_not_exist ... FAILED
+test rejects_a_current_descriptor_with_an_old_revision ... FAILED
+test rejects_poster_scoped_creative_material_in_another_variant ... FAILED
+test rejects_unknown_versions_before_parsing_the_shape ... FAILED
+test rejects_unknown_fields_and_duplicate_raw_keys ... FAILED
+test supplied_transcript_and_missing_material_remain_separate_from_files ... FAILED
+test reviewed_sunday_drafts_retain_the_same_change_impact_and_become_current ... FAILED
+test replays_file_and_stdin_byte_identically_and_preserves_inputs_and_sources ... FAILED
+
+failures:
+
+---- computes_the_predeclared_exact_date_impact_without_false_results stdout ----
+
+thread 'computes_the_predeclared_exact_date_impact_without_false_results' panicked at crates/storytelling-cli/tests/handoff.rs:112:5:
+assertion `left == right` failed
+  left: Some(2)
+ right: Some(0)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- descriptions_only_keep_usable_briefs_without_claiming_original_files stdout ----
+
+thread 'descriptions_only_keep_usable_briefs_without_claiming_original_files' panicked at crates/storytelling-cli/tests/handoff.rs:190:5:
+assertion `left == right` failed
+  left: Some(2)
+ right: Some(0)
+
+---- rejects_a_component_source_that_does_not_exist stdout ----
+
+thread 'rejects_a_component_source_that_does_not_exist' panicked at crates/storytelling-cli/tests/handoff.rs:70:5:
+assertion `left == right` failed
+  left: Some(2)
+ right: Some(1)
+
+---- rejects_a_current_descriptor_with_an_old_revision stdout ----
+
+thread 'rejects_a_current_descriptor_with_an_old_revision' panicked at crates/storytelling-cli/tests/handoff.rs:70:5:
+assertion `left == right` failed
+  left: Some(2)
+ right: Some(1)
+
+---- rejects_poster_scoped_creative_material_in_another_variant stdout ----
+
+thread 'rejects_poster_scoped_creative_material_in_another_variant' panicked at crates/storytelling-cli/tests/handoff.rs:70:5:
+assertion `left == right` failed
+  left: Some(2)
+ right: Some(1)
+
+---- rejects_unknown_versions_before_parsing_the_shape stdout ----
+
+thread 'rejects_unknown_versions_before_parsing_the_shape' panicked at crates/storytelling-cli/tests/handoff.rs:70:5:
+assertion `left == right` failed
+  left: Some(2)
+ right: Some(1)
+
+---- rejects_unknown_fields_and_duplicate_raw_keys stdout ----
+
+thread 'rejects_unknown_fields_and_duplicate_raw_keys' panicked at crates/storytelling-cli/tests/handoff.rs:70:5:
+assertion `left == right` failed
+  left: Some(2)
+ right: Some(1)
+
+---- supplied_transcript_and_missing_material_remain_separate_from_files stdout ----
+
+thread 'supplied_transcript_and_missing_material_remain_separate_from_files' panicked at crates/storytelling-cli/tests/handoff.rs:212:5:
+assertion `left == right` failed
+  left: Some(2)
+ right: Some(0)
+
+---- reviewed_sunday_drafts_retain_the_same_change_impact_and_become_current stdout ----
+
+thread 'reviewed_sunday_drafts_retain_the_same_change_impact_and_become_current' panicked at crates/storytelling-cli/tests/handoff.rs:173:5:
+assertion `left == right` failed
+  left: Some(2)
+ right: Some(0)
+
+---- replays_file_and_stdin_byte_identically_and_preserves_inputs_and_sources stdout ----
+
+thread 'replays_file_and_stdin_byte_identically_and_preserves_inputs_and_sources' panicked at crates/storytelling-cli/tests/handoff.rs:155:9:
+assertion `left == right` failed
+  left: Some(2)
+ right: Some(0)
+
+
+failures:
+    computes_the_predeclared_exact_date_impact_without_false_results
+    descriptions_only_keep_usable_briefs_without_claiming_original_files
+    rejects_a_component_source_that_does_not_exist
+    rejects_a_current_descriptor_with_an_old_revision
+    rejects_poster_scoped_creative_material_in_another_variant
+    rejects_unknown_fields_and_duplicate_raw_keys
+    rejects_unknown_versions_before_parsing_the_shape
+    replays_file_and_stdin_byte_identically_and_preserves_inputs_and_sources
+    reviewed_sunday_drafts_retain_the_same_change_impact_and_become_current
+    supplied_transcript_and_missing_material_remain_separate_from_files
+
+test result: FAILED. 0 passed; 10 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `-p storytelling-cli --test handoff`

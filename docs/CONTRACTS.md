@@ -14,6 +14,7 @@ Choose the command for your task. Supply the document that its profile accepts. 
 | `audit-brief` | StoryBrief v1 JSON, 1,048,576 | `{"ok":true,"audit":...}` | [Brief audit](migration/STORY_BRIEF_V1.md) |
 | `plan-story` | Fixed-window planning document, 1,048,576 | `{"ok":true,"planning":...}` | [Fixed-window planner](migration/FIXED_WINDOW_PLANNER_V1.md) |
 | `render-narrative` | NarrativeDocumentV1 JSON, 1,048,576 | Reproducible UTF-8 text. Errors use one JSON line. | [Narrative document](narrative/NARRATIVE_DOCUMENT_V1.md) |
+| `render-handoff` | NarrativeHandoffManifestV1 JSON, 1,048,576 | Reproducible source inventory, component impact and review status; errors use one JSON line. | [Handoff manifest](narrative/NARRATIVE_HANDOFF_MANIFEST_V1.md) |
 | `track-narrative-revisions` | NarrativeRevisionLedgerV1 JSON, 1,048,576 | Source and variant history, suggestions, author choices and current review status. | [Revision ledger](narrative/NARRATIVE_REVISION_LEDGER_V1.md) |
 | `query-narrative-impact` | The same ledger and one source change event ID | Variants that directly reference the changed source revision. | [Revision ledger](narrative/NARRATIVE_REVISION_LEDGER_V1.md) |
 | `check-narrative-style` | NarrativeDocumentV1 JSON and NarrativeStyleProfileV1 JSON, each 1,048,576 | `{"ok":true,"style_check":...}`; errors exit 1. | [Editorial style profile V1](narrative/EDITORIAL_STYLE_PROFILE_V1.md) |

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "change_id": "date-to-sunday",
+  "update": [
+    "invite/text",
+    "poster/date",
+    "oral-info/date",
+    "oral-poetic/date"
+  ],
+  "reuse": [
+    "poster/layout",
+    "oral-poetic/taps",
+    "original-wav/audio"
+  ],
+  "affected_variants": [
+    "invite",
+    "poster",
+    "oral-info",
+    "oral-poetic"
+  ],
+  "false_negatives": [],
+  "false_positives": []
+}

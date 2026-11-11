@@ -39,6 +39,7 @@ storytelling validate plan.json
 | 指令 | 輸入 | 結果 |
 | --- | --- | --- |
 | `render-narrative` | `NarrativeDocumentV1`，無須媒體或片長 | 依宣告順序輸出口述大綱與插畫構圖，附來源標籤。 |
+| `render-handoff` | `NarrativeHandoffManifestV1` | 來源表示法、精確的部分影響與草稿審閱狀態，沿用 N-04 修訂簿。 |
 | `track-narrative-revisions` | `NarrativeRevisionLedgerV1` 修訂簿 | 列出來源與變體的修訂歷史、作者決定和待審狀態。 |
 | `query-narrative-impact` | 修訂簿與來源變更事件 ID | 列出直接引用該來源版本的變體。由引擎計算影響範圍。 |
 | `check-narrative-style` | 敘事文件與綁定 revision 的風格 profile | 以 JSON 回報宣告的口述 beat 順序。 |
@@ -78,6 +79,23 @@ cat tests/fixtures/narrative-v1/n03-authoring-v1.json | cargo run --release --qu
 ```
 
 成功時，標準輸出為多行 UTF-8 文字。用檔案或標準輸入重跑，輸出位元組相同。資料錯誤時，標準輸出為單行 JSON，退出碼為 1。用法錯誤為 2，輸入輸出錯誤為 3。指令只讀資料，不呼叫模型或剪輯器。[敘事契約](narrative/NARRATIVE_DOCUMENT_V1.md) · [N-03 命令列實測與待驗項目](validation/n03-narrative-cli.md)
+
+## 查核跨媒體交接（N-11）
+
+```sh
+cargo run --release --quiet --locked -p storytelling-cli -- render-handoff tests/fixtures/narrative-handoff-v1/before-v1.json
+cargo run --release --quiet --locked -p storytelling-cli -- render-handoff tests/fixtures/narrative-handoff-v1/after-v1.json
+```
+
+週六改週日後，邀請文、海報日期與兩版口述日期列為 `UPDATE`，
+海報構圖與原始 WAV 列為 `REUSE`。`UPDATE` 表示歷史影響；
+`status=needs_review` 或 `status=current` 表示草稿是否有相符審閱。
+目前來源描述必須使用最新 revision；舊稿引用保留為歷史。
+
+命令檢查引用、提案範圍與完整部分對照，不檢視原檔內容。
+只有文字時可用 `descriptions-only-v1.json`，保留可用構圖並明列原檔未交付。
+成功輸出可重播的 UTF-8 文字，退出碼 0；資料錯誤輸出一行 JSON，退出碼 1。
+用法錯誤為 2，I/O 錯誤為 3。[規格](narrative/NARRATIVE_HANDOFF_MANIFEST_V1.zh-TW.md) · [實際證據](validation/n11-handoff.md)
 
 <a id="track-revisions-and-query-their-impact"></a>
 
@@ -313,7 +331,7 @@ cargo run --release --quiet --locked -p storytelling-cli -- check-review review-
 | 2 | 檢查子命令及參數。 |
 | 3 | 檢查輸入來源及標準輸出是否可用。 |
 
-一般成功與錯誤回應均為單行 JSON。三個敘事指令成功時輸出可讀文字：`render-narrative`、`track-narrative-revisions`、`query-narrative-impact`。說明與版本指令也使用純文字。若標準輸出失敗，呼叫端可能只收到部分回應。
+一般成功與錯誤回應均為單行 JSON。敘事指令成功時輸出可讀文字：`render-narrative`、`render-handoff`、`track-narrative-revisions`、`query-narrative-impact`。說明與版本指令也使用純文字。若標準輸出失敗，呼叫端可能只收到部分回應。
 
 CLI 可讀取指定的本機檔案，也可解析指向一般檔案的符號連結。它不提供伺服器路徑管制或作業系統沙箱。路徑、檔名與內容都無法授予新權限。
 

@@ -1,0 +1,32 @@
+{
+  "update": {
+    "expected": [
+      "invite/text",
+      "oral-info/date",
+      "oral-poetic/date",
+      "poster/date"
+    ],
+    "actual": [
+      "invite/text",
+      "oral-info/date",
+      "oral-poetic/date",
+      "poster/date"
+    ],
+    "false_negatives": [],
+    "false_positives": []
+  },
+  "reuse": {
+    "expected": [
+      "oral-poetic/taps",
+      "original-wav/audio",
+      "poster/layout"
+    ],
+    "actual": [
+      "oral-poetic/taps",
+      "original-wav/audio",
+      "poster/layout"
+    ],
+    "false_negatives": [],
+    "false_positives": []
+  }
+}
