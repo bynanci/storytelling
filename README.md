@@ -49,7 +49,7 @@ Each template includes a brief you can copy, two ways to treat the material and 
 
 ## Cross-media Rust support
 
-Use the templates now with an agent or as Markdown. The Rust CLI validates structured video plans and proposes an order for supplied shot windows. For cross-media work, the project has accepted a [narrative document contract](https://github.com/bynanci/storytelling/blob/main/docs/narrative/NARRATIVE_DOCUMENT_V1.md). A local workflow for one spoken outline and two illustration briefs is the next implementation task. Native revision tracking follows it. [Oral and visual workflow](https://github.com/bynanci/storytelling/issues/50) · [Revision tracking](https://github.com/bynanci/storytelling/issues/51) · [Rust backlog](TASKS.md#multimodal-rust-backlog) · [Roadmap](ROADMAP.md)
+Use the templates now with an agent or as Markdown. The Rust CLI validates structured video plans and proposes an order for supplied shot windows. The additive `render-narrative` command also validates and prints a media-independent oral outline and two illustration briefs from one `NarrativeDocumentV1`, preserving declared source IDs and origins. Its runnable example and exact output are in the [CLI guide](docs/CLI_GUIDE.md) and [N-03 validation record](docs/validation/n03-narrative-cli.md). It does not read or create media. Native revision tracking follows it. [Oral and visual workflow](https://github.com/bynanci/storytelling/issues/50) · [Revision tracking](https://github.com/bynanci/storytelling/issues/51) · [Rust backlog](TASKS.md#multimodal-rust-backlog) · [Roadmap](ROADMAP.md)
 
 ## Start with the skill
 

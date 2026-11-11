@@ -10,6 +10,13 @@ use storytelling_core::wire::{PlanDocumentV1, TimeValue};
 mod brief;
 pub use brief::audit_story_brief;
 
+mod narrative;
+pub use narrative::render_narrative;
+pub use storytelling_core::narrative::{
+    NarrativeProjectedBeatV1, NarrativeProjectedVariantV1, NarrativeProjectionV1,
+    NarrativeSourceTagV1,
+};
+
 mod openfilm_snapshot;
 pub use openfilm_snapshot::{ImportedPlanV1, import_openfilm_snapshot};
 pub use storytelling_core::source_evidence::{

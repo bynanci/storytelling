@@ -8,7 +8,7 @@ use storytelling_engine::{
     MAX_STORY_REVIEW_BYTES, MAX_VERIFIED_BUFFER_BYTES, OtioLossChoicesV1, audit_story_brief,
     check_review, check_story_review, export_openfilm_otio, export_story_otio,
     import_openfilm_snapshot, parse_review_context, plan_story, prepare_review,
-    prepare_story_review, validate_plan_json, verify_supplied_sha256,
+    prepare_story_review, render_narrative, validate_plan_json, verify_supplied_sha256,
 };
 
 fn emit(value: Value, code: u8) -> ExitCode {
@@ -38,6 +38,88 @@ fn text(message: &str) -> ExitCode {
         return ExitCode::from(3);
     }
     ExitCode::SUCCESS
+}
+
+fn render_narrative_text(projection: &storytelling_engine::NarrativeProjectionV1) -> String {
+    use std::fmt::Write as _;
+
+    fn quoted(value: &str) -> String {
+        serde_json::to_string(value).unwrap_or_else(|_| "\"\"".to_owned())
+    }
+    fn source_tag(source: &storytelling_engine::NarrativeSourceTagV1) -> String {
+        format!(
+            "[{}@{} | {}]",
+            source.unit_id,
+            source.revision,
+            source.origin.as_str()
+        )
+    }
+
+    let mut output = String::new();
+    let _ = writeln!(
+        output,
+        "Narrative: {}@{} (schema v{})",
+        projection.document_id, projection.document_revision, projection.schema_version
+    );
+    let _ = writeln!(output, "Purpose: {}", quoted(&projection.purpose));
+    let _ = writeln!(output, "Audience: {}\n", quoted(&projection.audience));
+
+    for variant in &projection.variants {
+        match variant {
+            storytelling_engine::NarrativeProjectedVariantV1::SpokenOutline { id, name, beats } => {
+                let _ = writeln!(
+                    output,
+                    "## Variant {id} — {} [spoken_outline]",
+                    quoted(name)
+                );
+                for (index, beat) in beats.iter().enumerate() {
+                    let _ = writeln!(
+                        output,
+                        "{}. [{}] {} {}",
+                        index + 1,
+                        beat.id,
+                        source_tag(&beat.source),
+                        quoted(&beat.text)
+                    );
+                }
+            }
+            storytelling_engine::NarrativeProjectedVariantV1::SingleIllustration {
+                id,
+                name,
+                sources,
+                brief,
+            } => {
+                let _ = writeln!(
+                    output,
+                    "## Variant {id} — {} [single_illustration]",
+                    quoted(name)
+                );
+                let tags = sources
+                    .iter()
+                    .map(source_tag)
+                    .collect::<Vec<_>>()
+                    .join(", ");
+                let _ = writeln!(output, "Sources: {tags}");
+                let _ = writeln!(output, "Brief: {}", quoted(brief));
+            }
+        }
+        output.push('\n');
+    }
+    output
+}
+
+fn render_narrative_command(args: &[OsString]) -> ExitCode {
+    if args.len() != 2 || args[1].as_encoded_bytes().starts_with(b"--") {
+        return failure("cli.usage", 2);
+    }
+    let bytes = match read_argument(&args[1], MAX_INPUT_BYTES) {
+        Ok(bytes) => bytes,
+        Err(_) => return failure("input.io", 3),
+    };
+    match render_narrative(&bytes) {
+        Ok(projection) => text(&render_narrative_text(&projection)),
+        Err(error) => emit(json!({"ok": false, "error": error}), 1),
+    }
 }
 
 fn read_bounded(reader: impl Read) -> io::Result<Vec<u8>> {
@@ -124,6 +206,12 @@ fn story_review_command(args: &[OsString]) -> ExitCode {
 
 fn main() -> ExitCode {
     let args: Vec<_> = std::env::args_os().skip(1).collect();
+    if args
+        .first()
+        .is_some_and(|arg| arg == OsStr::new("render-narrative"))
+    {
+        return render_narrative_command(&args);
+    }
     if args.first().is_some_and(|arg| {
         [
             "prepare-story-review",
@@ -242,7 +330,7 @@ fn main() -> ExitCode {
     match command {
         Some(value) if value == OsStr::new("--help") && args.len() == 1 => {
             return text(
-                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\n       storytelling plan-story <FILE|->\n       storytelling prepare-story-review <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling export-story-otio <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling check-story-review <REVIEW_BUNDLE> <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling prepare-review <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling check-review <REVIEW_RECORD> <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling verify-source <FILE|-> <SHA256>\nRead-only metadata, interchange and declared review identity; no editor execution.\n",
+                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\n       storytelling plan-story <FILE|->\n       storytelling render-narrative <FILE|->\n       storytelling prepare-story-review <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling export-story-otio <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling check-story-review <REVIEW_BUNDLE> <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling prepare-review <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling check-review <REVIEW_RECORD> <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling verify-source <FILE|-> <SHA256>\nRead-only metadata, interchange and declared review identity; no editor execution.\n",
             );
         }
         Some(value) if value == OsStr::new("--version") && args.len() == 1 => {

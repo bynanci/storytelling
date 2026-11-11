@@ -85,5 +85,8 @@ fn reports_help_and_version_without_loading_a_project() {
             .unwrap();
         assert!(output.status.success());
         assert!(!output.stdout.is_empty());
+        if arg == "--help" {
+            assert!(String::from_utf8_lossy(&output.stdout).contains("render-narrative <FILE|->"));
+        }
     }
 }

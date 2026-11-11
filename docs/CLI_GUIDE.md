@@ -32,6 +32,7 @@ storytelling validate plan.json
 | `validate` | M0 `PlanDocumentV1` JSON | 宣告 ID、hash 形狀、reference 與 exact source ranges 合法 |
 | `audit-brief` | `StoryBriefV1` JSON | 硬限制的參照、包含／排除與順序衝突；手動選擇保留 |
 | `plan-story` | Brief＋候選固定視窗／宣告分數＋hard bounds | 保留必要選擇的 deterministic fixed-window proposal 與決策原因 |
+| `render-narrative` | `NarrativeDocumentV1` JSON；不需媒體、片長或剪點 | 有來源標籤的口述大綱與單幅插畫 brief；確定性純文字 |
 | `import-openfilm` | 有限 OpenFilm composition export JSON | declared visual plan 與原始事實／限制報告 |
 | `export-otio` | 同一個有限 composition export JSON | 可儲存的原生 OTIO Timeline JSON，附明確 loss 選擇 |
 | `verify-source` | 明確提供的 FILE／stdin bytes 與預期 SHA-256 | 該次提供的實際 bytes 符合預期 digest |
@@ -46,6 +47,29 @@ metadata、diagnostic 和 output 預算由各自的 frozen contract 管理。
 新 story-review 路徑的 proposal 上限 4,194,336 bytes，bundle 上限 4,292,672 bytes。
 新命令只有 proposal 可用 `-`；snapshot/context/bundle 是明確 regular file。
 輸入結束時須送 EOF。
+
+## 素材無關的口述與插畫提綱
+
+從合成的 #48 修門案例讀取一份 `NarrativeDocumentV1`，列印依宣告順序
+排列的口述段落和兩種構圖。每個輸出都帶來源 ID、revision 和 origin；紅傘
+C01 只被寬景插畫引用。這個輸入沒有媒體檔、素材路徑、片長或剪點。
+
+```sh
+cargo run --release --quiet --locked -p storytelling-cli -- render-narrative tests/fixtures/narrative-v1/n03-authoring-v1.json
+```
+
+也可從 stdin 執行：
+
+```sh
+cat tests/fixtures/narrative-v1/n03-authoring-v1.json | cargo run --release --quiet --locked -p storytelling-cli -- render-narrative -
+```
+
+成功時 stdout 是穩定順序的多行 UTF-8 文字；同一輸入重跑或改用 stdin
+會得到相同 bytes。失敗時 stdout 是一行 JSON error，exit 1；usage 為 2、I/O
+為 3。命令不寫檔、不改輸入、不呼叫模型或剪輯器。來源和 variant 語意的
+完整規則見 [NarrativeDocumentV1 profile](narrative/NARRATIVE_DOCUMENT_V1.md)。
+可重播結果和真人作者觀察分開記錄於
+[N-03 validation record](validation/n03-narrative-cli.md)。
 
 ## 選定提案 A → 可審核 OTIO（已合併唯讀切片）
 
@@ -277,8 +301,9 @@ proposal 的編譯橋接，也沒有授權、抗重放或執行保證。此有�
 | 2 | 指令或參數用法錯誤 |
 | 3 | input／stdout 等 I/O 失敗 |
 
-成功與一般錯誤均為一行 JSON；help/version 是純文字。stdout 本身失敗時無法保證
-完整 JSON。CLI 可讀取明確本機檔案並解析指向 regular file 的 symlink，
+除 `render-narrative` 的成功人讀輸出外，成功與一般錯誤均為一行 JSON；
+help/version 也是純文字。stdout 本身失敗時無法保證完整回應。
+CLI 可讀取明確本機檔案並解析指向 regular file 的 symlink，
 不是 server path broker 或 OS sandbox。路徑、檔名與檔內文字都不授予新權限。
 
 這些入口沒有通用的 approve／apply／render 指令。即使 Brief 沒有衝突、
