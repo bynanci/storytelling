@@ -5,7 +5,7 @@ import subprocess
 import sys
 import unittest
 
-SCRIPT = Path(__file__).resolve().parents[1] / ".agents/skills/storytelling/scripts/check_trace.py"
+SCRIPT = Path(__file__).resolve().parents[1] / "skills/storytelling/scripts/check_trace.py"
 
 
 def invoke(payload, *args):

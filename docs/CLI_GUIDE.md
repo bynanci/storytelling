@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: MIT -->
 # CLI 使用指南
 
-Storytelling CLI 是可獨立執行的本機命令列工具。腳本、應用程式或 Agent 都能提供符合契約的輸入，從標準輸出讀取結果，再依退出碼決定下一步。有素材清單和剪輯限制時，可以直接驗證或規劃；需要互動構思、寫旁白或發展插畫概念時，可從 [Agent Skill](../.agents/skills/storytelling/SKILL.md) 開始。各平台的安裝與使用方法見[平台指南](PLATFORMS.md)。
+Storytelling CLI 是可獨立執行的本機命令列工具。腳本、應用程式或 Agent 都能提供符合契約的輸入，從標準輸出讀取結果，再依退出碼決定下一步。有素材清單和剪輯限制時，可以直接驗證或規劃；需要互動構思、寫旁白或發展插畫概念時，可從 [Agent Skill](../skills/storytelling/SKILL.md) 開始。各平台的安裝與使用方法見[平台指南](PLATFORMS.md)。
 
 下方的 Cargo 範例從 Storytelling 原始碼根目錄執行。格式與錯誤碼見[契約索引](CONTRACTS.md)。
 

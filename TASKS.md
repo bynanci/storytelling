@@ -15,6 +15,13 @@ production FilmCraft execution and release remain separate decisions.
 implementation exists, not that a release or real-host gate has passed.
 Exact-head test results belong in the PR and [validation record](docs/validation/m0-foundation.md).
 
+## Skill distribution
+
+- [x] SK-D01 · Install the same Storytelling assets from GitHub or as an npm
+  development dependency in a new project. See [installation and verification](docs/PLATFORMS.md)
+  and [requirement SK-R01](docs/REQUIREMENTS.md#skill-distribution). Public registry
+  publishing is a separate release decision.
+
 ## Cross-media narrative backlog
 
 The [cross-media roadmap](ROADMAP.md#cross-media-narrative-roadmap) proposes
@@ -34,7 +41,7 @@ queue](#next-actionable-work) continues independently.
 | [N-07](https://github.com/bynanci/storytelling/issues/54) / N-R07 · Pilot and release decision | Proposed · G4–G6 | N-05 | Run the N-01 comparison on the oral/visual and copy workflows. Report observed times, attribution errors and completion counts with denominators. Record a continue, narrow or stop decision and convert reproducible failures into synthetic regression cases. Document compatibility and rollback for any proposed release. |
 
 **Author-facing entry point.** Start each cross-media acceptance case with a
-natural-language request to the [Storytelling skill](.agents/skills/storytelling/SKILL.md).
+natural-language request to the [Storytelling skill](skills/storytelling/SKILL.md).
 Keep the request, the output shown to the author, and any separately observed
 engine checks. Discovery and draft examples can run with the skill alone. For
 N-03 onward, the CLI provides repeatable checks where a contract has shipped.

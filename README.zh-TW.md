@@ -1,21 +1,43 @@
 # Storytelling
 
-[English](README.md) · [跨平台使用指南](docs/PLATFORMS.md) · [範例](.agents/skills/storytelling/references/examples.md) · [貢獻指南](CONTRIBUTING.md) · [CI](https://github.com/bynanci/storytelling/actions/workflows/ci.yml)
+[English](README.md) · [跨平台使用指南](https://github.com/bynanci/storytelling/blob/main/docs/PLATFORMS.md) · [範例](skills/storytelling/references/examples.md) · [貢獻指南](CONTRIBUTING.md) · [CI](https://github.com/bynanci/storytelling/actions/workflows/ci.yml)
 
-Storytelling 是一套開源 [Agent Skill](.agents/skills/storytelling/SKILL.md)，可將手邊的材料整理成故事、劇本場景、插畫構圖、商業文案、腦力激盪提案或分鏡。例如，把一頁訪談筆記交給它，請它寫一段口述開場，再提出兩款海報構圖。三份作品可以各有觀點，同時讓人看得出哪些話出自受訪者、哪些是為了畫面而加的創作。
+Storytelling 是一套開源 [Agent Skill](skills/storytelling/SKILL.md)，可將手邊的材料整理成故事、劇本場景、插畫構圖、商業文案、腦力激盪提案或分鏡。例如，把一頁訪談筆記交給它，請它寫一段口述開場，再提出兩款海報構圖。三份作品可以各有觀點，同時讓人看得出哪些話出自受訪者、哪些是為了畫面而加的創作。
 
 整個 Skill 裝在一個資料夾裡。可以放進寫作專案、客戶工作區或軟體儲存庫，使用你選擇的 Agent 和素材起草。影片工作另有可獨立執行的 Rust CLI，能在本機對結構化提案做可重現的檢查。
 
 ## 從 Skill 開始
 
-將完整的 [`storytelling` 資料夾](.agents/skills/storytelling) 複製到下表對應位置，保留其中的 `SKILL.md`、範例、工具指引、選用腳本及授權檔。
+### 安裝到 Agent
+
+在要使用 Storytelling 的專案根目錄，以 Node.js 22.20 或更新版本執行下列命令。只用一個 Agent 時，保留對應的名稱即可。省略 `-a codex claude-code` 可在安裝時選擇。
+
+```sh
+npx skills add bynanci/storytelling --skill storytelling -a codex claude-code
+npx skills list
+```
+
+### 作為 npm 開發依賴安裝
+
+想用 npm 鎖定團隊使用的 Skill 版本，可在有 `package.json` 的專案中選擇這條路徑。第一行從 GitHub 安裝套件，第二行將套件內的 Skill 複製到 Agent 可讀取的位置。
+
+```sh
+npm install -D github:bynanci/storytelling
+npx skills add ./node_modules/@bynanci/storytelling/skills/storytelling --skill storytelling -a codex claude-code --copy -y
+```
+
+將 `package.json` 和 `package-lock.json` 一併提交。日後變更依賴版本，請重跑第二行以更新 Agent 使用的副本。npm 套件內含操作指引、參考文件與 Python 輔助腳本。選用的 Rust CLI 可依本文的原始碼快速開始步驟另行建置。
+
+### 叫用已安裝的 Skill
+
+下表列出各專案的安裝位置與叫用方式。手動安裝時，請將含授權檔的完整 [Skill 資料夾](skills/storytelling) 複製到對應位置。
 
 | 使用環境 | 開始方式 |
 | --- | --- |
-| 專案中的 Codex | 放入專案的 `.agents/skills/storytelling/`，輸入 `$storytelling`。本儲存庫已放在此位置。 |
+| 專案中的 Codex | 放入專案的 `.agents/skills/storytelling/`，輸入 `$storytelling`。 |
 | 本機專案中的 Claude Code | 將同一份資料夾放入專案的 `.claude/skills/storytelling/`，輸入 `/storytelling`。 |
 | 其他支援 Agent Skills 的工具 | 依該工具的文件載入 Skill。安裝位置、叫用方式與可用工具由各平台決定。 |
-| 直接閱讀 Markdown | 開啟 [SKILL.md](.agents/skills/storytelling/SKILL.md) 和它連到的參考文件。作者或團隊可手動依步驟整理材料。 |
+| 直接閱讀 Markdown | 開啟 [SKILL.md](skills/storytelling/SKILL.md) 和它連到的參考文件。作者或團隊可手動依步驟整理材料。 |
 | 腳本、CI 或自有應用程式 | 使用[獨立 CLI](#快速開始)，傳入結構化資料，讀取 JSON 輸出與退出碼。 |
 
 在 Codex 或 Claude Code 叫用 Skill 後，可用這段素材試做。
@@ -25,13 +47,13 @@ Storytelling 是一套開源 [Agent Skill](.agents/skills/storytelling/SKILL.md)
 只有第二款海報可以加一把想像的紅傘。
 ```
 
-檢查電子報是否忠於原始觀察，並確認兩款海報採用不同的視覺選擇，紅傘只出現在第二款。個人安裝、其他平台與各項驗證狀態，見[跨平台使用指南](docs/PLATFORMS.md)。
+檢查電子報是否忠於原始觀察，並確認兩款海報採用不同的視覺選擇，紅傘只出現在第二款。個人安裝、其他平台與各項驗證狀態，見[跨平台使用指南](https://github.com/bynanci/storytelling/blob/main/docs/PLATFORMS.md)。
 
 ## 目前可用功能
 
-- **創作與改寫。** 把筆記整理成作品、比較不同表達方向並保留來源。某個細節改動時，找出哪些版本用到了它。[使用範例](.agents/skills/storytelling/references/examples.md)
-- **安排複雜工作。** 流程手冊涵蓋相依步驟、獨立分支、審閱與有限次重試。隨附的 Python 腳本可選用來排列工作依賴或檢查已記錄的執行順序。[情境與迴圈手冊](.agents/skills/storytelling/references/graph-loops.md)
-- **追查佐證。** 若問題橫跨多份文件，且已有適用的 Graphify 索引，可以先定位候選段落，再讀原文核對。[Graphify 工具指引](.agents/skills/storytelling/references/graphify-tools.md)
+- **創作與改寫。** 把筆記整理成作品、比較不同表達方向並保留來源。某個細節改動時，找出哪些版本用到了它。[使用範例](skills/storytelling/references/examples.md)
+- **安排複雜工作。** 流程手冊涵蓋相依步驟、獨立分支、審閱與有限次重試。隨附的 Python 腳本可選用來排列工作依賴或檢查已記錄的執行順序。[情境與迴圈手冊](skills/storytelling/references/graph-loops.md)
+- **追查佐證。** 若問題橫跨多份文件，且已有適用的 Graphify 索引，可以先定位候選段落，再讀原文核對。[Graphify 工具指引](skills/storytelling/references/graphify-tools.md)
 
 ## 快速開始
 
@@ -66,10 +88,10 @@ cargo run --locked -p storytelling-cli -- plan-story tests/fixtures/planner-v1/v
 
 ## 架構與參與開發
 
-可攜式 Skill 位於 `.agents/skills/storytelling/`。Rust workspace 包含四個 crate。`storytelling-core` 定義資料交換型別與精確時間，`storytelling-engine` 在記憶體內規劃與驗證，`storytelling-cli` 負責程序輸入輸出，`storytelling-journal` 以 SQLite 保存操作紀錄。[架構說明](docs/ARCHITECTURE.md)
+可攜式 Skill 位於 `skills/storytelling/`。Rust workspace 包含四個 crate。`storytelling-core` 定義資料交換型別與精確時間，`storytelling-engine` 在記憶體內規劃與驗證，`storytelling-cli` 負責程序輸入輸出，`storytelling-journal` 以 SQLite 保存操作紀錄。[架構說明](docs/ARCHITECTURE.md)
 
 歡迎其他領域和 Agent 平台的使用者參與。提交新工作流時，請附最小合成案例、預期輸出與檢查方式。回報相容性時，請附用戶端、版本、安裝位置和實際觀察。可參閱[貢獻指南](CONTRIBUTING.md)、[工作清單](TASKS.md)、[需求追溯](docs/REQUIREMENTS.md)與[開發流程](docs/SDLC.md)。[回報問題](https://github.com/bynanci/storytelling/issues/new/choose) · [安全政策](SECURITY.md)
 
 ## 授權
 
-可攜 Skill 內附 [MIT 授權](.agents/skills/storytelling/LICENSE)。專案的原創程式碼及文件採 [MIT 授權](LICENSE)。參考 OpenFilm 實作的元件依逐檔清單採 [Apache-2.0](LICENSES/Apache-2.0.txt)，保留[上游聲明](NOTICE.openfilm)。[逐檔來源清單](PROVENANCE.md)
+可攜 Skill 內附 [MIT 授權](skills/storytelling/LICENSE)。專案的原創程式碼及文件採 [MIT 授權](LICENSE)。參考 OpenFilm 實作的元件依逐檔清單採 [Apache-2.0](LICENSES/Apache-2.0.txt)，保留[上游聲明](NOTICE.openfilm)。[逐檔來源清單](PROVENANCE.md)

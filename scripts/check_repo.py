@@ -55,7 +55,7 @@ license_bytes = (ROOT / "LICENSE").read_bytes()
 blob = hashlib.sha1(f"blob {len(license_bytes)}\0".encode() + license_bytes).hexdigest()
 if blob != "f317799529d13f4d9301daa2dba63dfea559ff69":
     errors.append("Original MIT LICENSE changed without updating the approved provenance contract")
-skill_dir = ROOT / ".agents/skills/storytelling"
+skill_dir = ROOT / "skills/storytelling"
 entry = skill_dir / "SKILL.md"
 if not entry.is_file():
     errors.append("Missing storytelling skill entry point")
