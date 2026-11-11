@@ -1,12 +1,12 @@
 //! Pure, portable story contracts. No filesystem, runtime, or host access.
 pub mod approval;
 pub mod brief;
+pub mod commercial_copy;
 pub mod compatibility;
 pub mod compiled_plan;
 pub mod narrative;
 pub mod narrative_cue;
-pub mod narrative_handoff;
-pub mod narrative_revision;
+pub mod narrative_handoff;pub mod narrative_revision;
 pub mod review;
 pub mod source_evidence;
 pub mod time;
@@ -39,3 +39,4 @@ impl std::fmt::Display for ValidationError {
 impl std::error::Error for ValidationError {}
 
 pub mod planner;
+

@@ -27,14 +27,20 @@ pub use storytelling_core::narrative::{
     NarrativeUnitReferenceV1,
 };
 
-mod narrative_handoff;
 mod narrative_revision;
-pub use narrative_handoff::{NarrativeHandoffProjectionV1, render_narrative_handoff};
 pub use narrative_revision::{query_narrative_impact, track_narrative_revisions};
 pub use storytelling_core::narrative_revision::{
     NarrativeAuthorDecisionV1, NarrativeCurrentVariantV1, NarrativeRevisionEventResultV1,
     NarrativeRevisionReportV1, NarrativeSourceRevisionV1, NarrativeSuggestionRecordV1,
     NarrativeVariantSnapshotV1,
+};
+
+mod commercial_copy;
+pub use commercial_copy::audit_commercial_copy;
+pub use storytelling_core::commercial_copy::{
+    CommercialCopyClaimReportV1, CommercialCopyClaimV1, CommercialCopyDocumentV1,
+    CommercialCopyEvidenceReferenceV1, CommercialCopyKindV1, CommercialCopyReferenceReportV1,
+    CommercialCopyReportV1,
 };
 
 mod openfilm_snapshot;
@@ -184,3 +190,4 @@ pub use story_review::{
     BoundStoryReviewV1, MAX_STORY_PROPOSAL_BYTES, MAX_STORY_REVIEW_BYTES, check_story_review,
     export_story_otio, prepare_story_review,
 };
+

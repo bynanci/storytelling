@@ -68,11 +68,16 @@ N-04 starts with a `NarrativeDocumentV1` snapshot. A separate `NarrativeRevision
 
 N-09 keeps `NarrativeDocumentV1` closed and adds a separate `NarrativeCueSheetV1` for a recording-ready sequence. It binds narration to a spoken beat and source revision, labels production directions, distinguishes known, estimated and unknown time, and checks resolved intervals on exclusive tracks. `render-cue-sheet` emits deterministic text; it does not record or mix audio. See [ADR 0007](adr/0007-versioned-narrative-cue-sheet.md), the [profile](narrative/NARRATIVE_CUE_SHEET_V1.md) and [N-09 evidence](validation/n09-cue-sheet.md).
 
-N-11 adds a separate `NarrativeHandoffManifestV1` around the unchanged ledger. Core owns its wire types; the pure engine binds current source descriptors and complete artifact-component maps to actual variant snapshots. It reuses N-04 direct-reference impact, checks proposal scope across the whole bound snapshot, and keeps historical impact separate from current review status. The CLI reads one explicit manifest and writes reproducible text. File paths and hashes are declarations; no media is opened. See [ADR 0009](adr/0009-read-only-mixed-media-handoff.md), the [profile](narrative/NARRATIVE_HANDOFF_MANIFEST_V1.md) and [evidence](validation/n11-handoff.md).
-
-Narrative inputs need no asset hashes, source ranges or frame rates. A future video adapter could bind selected units to explicit assets and call the planner through its public contract. Keep video V1 inputs, CLI behavior, digest vectors and OTIO fixtures as regression checks.
+N-11 adds a separate `NarrativeHandoffManifestV1` around the unchanged ledger. Core owns its wire types; the pure engine binds current source descriptors and complete artifact-component maps to actual variant snapshots. It reuses N-04 direct-reference impact, checks proposal scope across the whole bound snapshot, and keeps historical impact separate from current review status. The CLI reads one explicit manifest and writes reproducible text. File paths and hashes are declarations; no media is opened. See [ADR 0009](adr/0009-read-only-mixed-media-handoff.md), the [profile](narrative/NARRATIVE_HANDOFF_MANIFEST_V1.md) and [evidence](validation/n11-handoff.md).Narrative inputs need no asset hashes, source ranges or frame rates. A future video adapter could bind selected units to explicit assets and call the planner through its public contract. Keep video V1 inputs, CLI behavior, digest vectors and OTIO fixtures as regression checks.
 
 For origin and derivation, consult [W3C PROV-DM](https://www.w3.org/TR/prov-dm/). For spatial grouping, consult [JSON Canvas 1.0](https://jsoncanvas.org/spec/1.0/). Use synthetic cases to assess implementation cost. Record the decision in the ADR specified by the [narrative backlog](../TASKS.md#cross-media-narrative-backlog).
+
+The N-05 `audit-copy-claims` slice follows the same boundary: core carries the
+versioned copy/report DTOs, engine checks bounded references against the supplied
+narrative ledger, and CLI reads two local inputs and emits one JSON report. The
+report includes the cited revision's supplied text for human comparison. A
+current reference is not proof of semantic support, source authenticity or
+publishability.
 
 <a id="工作流程與宿主轉接器"></a>
 
@@ -141,7 +146,6 @@ M3-03 must establish that the prior request stopped before readback can support 
 - [ADR 0007](adr/0007-versioned-narrative-cue-sheet.md) records the separate closed audio cue-sheet contract.
 - [ADR 0008](adr/0008-local-png-host-feasibility.md) proposes the N-12 local PNG delivery boundary with separate host and readback evidence.
 - [ADR 0009](adr/0009-read-only-mixed-media-handoff.md) proposes a read-only handoff manifest using the existing revision ledger.
-
 <a id="固定時間窗規劃器"></a>
 
 ## Accepted fixed-window planner
@@ -160,3 +164,4 @@ PR #28 merged and still needs independent G2 review. The accepted M3-01/P1 profi
 The external signer and trusted key registry belong outside core. The caller supplies the public key binding. Strict Ed25519 verification establishes control of that key over the exact domain-separated payload. Human identity and authorization require separate evidence. `HostBindingV1.observation` binds a caller's claim. It cannot establish an independent host observation. The opaque `VerifiedApprovalV1` cannot become a serialized bearer token.
 
 The candidate excludes key storage, replay journals, expiry, revocation, an approval database, CLI signing and host execution. Future execution needs durable replay protection, owner fencing and actual host evidence. See the [approval identity contract](migration/APPROVAL_IDENTITY_V1.md) for field order, canonical encoding and size limits.
+
