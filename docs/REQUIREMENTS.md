@@ -237,9 +237,9 @@ feature flag follows accepted journal/executor readback, with one writer.
 
 ## SQLite operation journal
 
-The [M3-02 contract](migration/M3-02-OPERATION-JOURNAL.md) defines a bounded,
-non-executable storage adapter. The implementation is under review; it does not
-complete FilmCraft execution/readback or PR #28 G2 acceptance.
+The [M3-02 contract](migration/M3-02-OPERATION-JOURNAL.md) defines the accepted,
+bounded non-executable storage adapter delivered in PR #56. It does not complete
+FilmCraft execution/readback or PR #28 G2 acceptance.
 
 | ID | Acceptance | Implementation | Regression evidence |
 | --- | --- | --- | --- |
@@ -254,8 +254,8 @@ The observed initial RED was three executed tests panicking at the unimplemented
 journal operation; after the storage implementation they passed. A later
 late-readback, ambiguous-readback-bound, conflicting-readback and unrelated-db
 regressions each failed before their respective safety checks were added, then
-passed. The local validation record is updated; hosted exact-head evidence will
-be attached to the PR after publication. No host/editor was invoked.
+passed. PR #56 exact-head CI and post-merge main CI passed all six jobs; see the
+[validation record](validation/m3-02-operation-journal.md). No host/editor was invoked.
 
 Known limits: executor IDs and timestamps are caller supplied; journal fencing
 cannot stop a previously dispatched host call; a `NotApplied` observation is

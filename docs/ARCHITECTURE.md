@@ -1,9 +1,9 @@
 # Architecture
 
 Status: accepted M0, finite M1-01/M1-02, M2-01 bounded audit, M2-02 fixed-window
-planner, M1-03 supplied-byte verification/isolated host proof and M3-01/P2
-read-only OTIO bridge. The M3-02 SQLite journal is a bounded adapter candidate
-under review; it has no host execution path. PR #28 is merged but not accepted;
+planner, M1-03 supplied-byte verification/isolated host proof, M3-01/P2
+read-only OTIO bridge and the accepted bounded M3-02 SQLite journal (PR #56).
+The journal has no host execution path. PR #28 is merged but not accepted;
 independent G2 review remains pending.
 See [M0 contract](CONTRACTS.md) and [finite-v1 contract](migration/FINITE_V1.md).
 

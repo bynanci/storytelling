@@ -1,6 +1,7 @@
 # M3-02 SQLite operation journal v1
 
-Status: bounded adapter implementation is in review. The crate persists
+Status: accepted bounded adapter, merged by [PR #56](https://github.com/bynanci/storytelling/pull/56).
+The crate persists
 operations and recovery state; it does not call a host, execute an edit, grant an
 approval, or verify a readback. See the requirement/test map in
 [REQUIREMENTS](../REQUIREMENTS.md#sqlite-operation-journal).
