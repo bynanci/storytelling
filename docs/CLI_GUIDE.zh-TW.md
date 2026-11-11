@@ -69,14 +69,16 @@ storytelling validate plan.json
 
 下列修門案例含一份口述與兩種構圖。每份輸出都帶來源 ID、修訂版號（revision）及來源類別（origin）。創作道具紅傘 `C01` 只出現在寬景插畫。輸入無須媒體、素材路徑、片長或剪點。
 
+目前範例為文件 revision 2，保留原有口述與寬景，將修正後的近景取景標為創作提案 `C02`。[請求者檢視及前後對照](validation/n03-narrative-cli.md#requester-inspection-and-corrective-draft--2026-11-11)記錄修改理由；原始 fixture 仍保留供回歸。
+
 ```sh
-cargo run --release --quiet --locked -p storytelling-cli -- render-narrative tests/fixtures/narrative-v1/n03-authoring-v1.json
+cargo run --release --quiet --locked -p storytelling-cli -- render-narrative tests/fixtures/narrative-v1/n03-author-reviewed-v1.json
 ```
 
 也可從標準輸入讀取同一份內容。
 
 ```sh
-cat tests/fixtures/narrative-v1/n03-authoring-v1.json | cargo run --release --quiet --locked -p storytelling-cli -- render-narrative -
+cat tests/fixtures/narrative-v1/n03-author-reviewed-v1.json | cargo run --release --quiet --locked -p storytelling-cli -- render-narrative -
 ```
 
 成功時，標準輸出為多行 UTF-8 文字。用檔案或標準輸入重跑，輸出位元組相同。資料錯誤時，標準輸出為單行 JSON，退出碼為 1。用法錯誤為 2，輸入輸出錯誤為 3。指令只讀資料，不呼叫模型或剪輯器。[敘事契約](narrative/NARRATIVE_DOCUMENT_V1.md) · [N-03 命令列實測與待驗項目](validation/n03-narrative-cli.md)

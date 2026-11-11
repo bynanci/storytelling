@@ -65,14 +65,19 @@ Most JSON inputs have a 1 MiB limit. The source verification limit is 16 MiB. Pr
 
 The example about two neighbors and a gate contains a spoken outline, a wide composition and a close composition. Each output identifies its source, revision and origin. Only the wide composition contains the proposed red umbrella, `C01`. The input needs no media, path, duration or cut.
 
+The current example is document revision 2. It keeps the original spoken and wide
+drafts and marks the corrected close framing as creative proposal `C02`. The
+[requester review and before/after record](validation/n03-narrative-cli.md#requester-inspection-and-corrective-draft--2026-11-11)
+explain the change; the original fixture remains available for regression.
+
 ```sh
-cargo run --release --quiet --locked -p storytelling-cli -- render-narrative tests/fixtures/narrative-v1/n03-authoring-v1.json
+cargo run --release --quiet --locked -p storytelling-cli -- render-narrative tests/fixtures/narrative-v1/n03-author-reviewed-v1.json
 ```
 
 To use standard input, run the following command.
 
 ```sh
-cat tests/fixtures/narrative-v1/n03-authoring-v1.json | cargo run --release --quiet --locked -p storytelling-cli -- render-narrative -
+cat tests/fixtures/narrative-v1/n03-author-reviewed-v1.json | cargo run --release --quiet --locked -p storytelling-cli -- render-narrative -
 ```
 
 Success produces multiline UTF-8 text. File and standard input produce identical bytes. Invalid data produces one JSON line on standard output and exit 1. Usage errors return 2. I/O errors return 3. The command only reads input. See the [narrative contract](narrative/NARRATIVE_DOCUMENT_V1.md) and [N-03 evidence](validation/n03-narrative-cli.md).

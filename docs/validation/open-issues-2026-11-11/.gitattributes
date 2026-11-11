@@ -1,0 +1,2 @@
+# Preserve captured CLI bytes, including the narrative renderer's final blank line.
+*.stdout -text whitespace=-blank-at-eof

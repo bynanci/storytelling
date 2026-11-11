@@ -1,0 +1,1 @@
+{"error":{"code":"narrative.style.order_conflict","path":"$.rules","rule_ids":["imagery-taps-before-event","imagery-event-before-taps"]},"ok":false}
