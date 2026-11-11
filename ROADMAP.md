@@ -11,7 +11,7 @@ and the cases where ordinary notes may already be sufficient.
 | Where the work stands | What an author or integrator can do |
 | --- | --- |
 | Available · portable authoring skill | Bring an audience, purpose and material to the [Agent Skill](skills/storytelling/SKILL.md). Draft in a host agent, compare treatments or follow the [eight templates](skills/storytelling/references/multimodal-templates.md) by hand. The [workshop](skills/storytelling/references/workshop-demo.md) includes text, a diagram and a sound file. |
-| Implementation proposed · cross-media Rust CLI | The additive `render-narrative` command organizes one declared source into an ordered oral outline and two illustration briefs. The [N-03 validation record](docs/validation/n03-narrative-cli.md) separates reproducible CLI evidence from the author's still-pending output inspection. |
+| Available · cross-media Rust CLI | `render-narrative` organizes one declared source into an ordered oral outline and two illustration briefs. `track-narrative-revisions` and `query-narrative-impact` are in the N-04 implementation PR. The [N-03](docs/validation/n03-narrative-cli.md) and [N-04](docs/validation/n04-narrative-revisions.md) records separate executable evidence from hosted CI and human inspection. |
 | Available · bounded video CLI | Supply structured clips and planning constraints to the [CLI](docs/CLI_GUIDE.md). It can select fixed windows and export a picture-only timeline under its documented limits. See [video milestones](#milestones) for the OpenFilm snapshot adapter and FilmCraft evidence. |
 
 The skill can be installed independently from the Rust workspace. The package
@@ -20,17 +20,19 @@ available. Public registry publication remains a separate release decision.
 
 ## Cross-media narrative roadmap
 
-**N-03 implementation is ready for review.** [N-02](https://github.com/bynanci/storytelling/issues/49) is
+**N-03 is merged; N-04 source revision tracking is in review.** [N-02](https://github.com/bynanci/storytelling/issues/49) is
 accepted at the design gate. The local CLI produces one ordered oral outline
-and two distinct illustration briefs from the same declared source. Its
-automated evidence is recorded in the [N-03 validation record](docs/validation/n03-narrative-cli.md);
-author inspection remains pending. **Evaluate in parallel.** The
+and two distinct illustration briefs from the same declared source. N-04 adds
+append-only revisions, choice records and variant impact queries. Automated
+evidence is recorded in the [N-03](docs/validation/n03-narrative-cli.md) and
+[N-04 validation records](docs/validation/n04-narrative-revisions.md); author
+inspection remains pending. **Evaluate in parallel.** The
 [N-01 study packet](docs/narrative/N-01-AUTHOR-STUDY.zh-TW.md) is ready, with
 the separate human trial and study decision still outstanding.
 
 | Priority and outcome | Work in order | Evidence for the next decision |
 | --- | --- | --- |
-| 1 · Review the first reusable authoring workflow | Inspect the N-03 outputs with an author, then implement N-04 revision tracking. Run N-01 separately. | Check the oral sequence, two distinct compositions, source tags and variant-local proposal. Record the author's actual corrections and decision separately from CLI/CI results. |
+| 1 · Review and revise the first authoring workflow | Inspect the N-03 outputs and N-04 revision history with an author. Run N-01 separately. | Check the oral sequence, two distinct compositions, source tags, both impact queries and variant-local choice. Record actual author corrections separately from CLI/CI results. |
 | 2 · Measure value and try a different type of writing | N-05 adds claims and their evidence after N-04. N-07 compares the shipped workflow against the ordinary-notes baseline after N-05. | A reviewer traces a claim as a reference changes. The maintainer uses completion, correction effort and attribution errors to decide whether to continue, narrow or stop. Report the host-assisted skill trial separately from a future trial using the native tool. |
 | 3 · Select additional profiles by demonstrated need | N-06 compares brainstorm branches, screenplay reveals and video mapping after N-04. N-10 implements one profile only if N-06 selects it. N-08 style rules and N-09 audio cues can be explored after N-02. | Use one author brief in two treatments. Have a reader or listener identify the intended change in attention or reveal. If the template already serves the author, retain it and defer native implementation. |
 | 4 · Hand work to another tool | N-11 builds on N-04 source revisions. N-12 can evaluate one external host independently. | A second person can locate the right sources and identify missing or superseded material. For a real media artifact, open or play the result. If a host is unavailable, show which part of the brief remains usable. |

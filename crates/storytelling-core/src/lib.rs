@@ -4,6 +4,7 @@ pub mod brief;
 pub mod compatibility;
 pub mod compiled_plan;
 pub mod narrative;
+pub mod narrative_revision;
 pub mod review;
 pub mod source_evidence;
 pub mod time;

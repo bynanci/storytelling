@@ -1,9 +1,10 @@
 # Development tasks
 
-The next authoring implementation is [N-03 / #50](https://github.com/bynanci/storytelling/issues/50):
-render one author’s declared material as a spoken outline and two illustration
-briefs. The [N-02 contract](docs/narrative/NARRATIVE_DOCUMENT_V1.md) is accepted.
-The [N-01 author study](#starting-n-01) can run alongside implementation.
+The next authoring implementation is [N-04 / #51](https://github.com/bynanci/storytelling/issues/51):
+retain source revisions and author choices, then report exactly which variants
+need another review. The [N-02 contract](docs/narrative/NARRATIVE_DOCUMENT_V1.md)
+and the N-03 read-only CLI are available on main. The [N-01 author study](#starting-n-01)
+can run alongside implementation.
 
 | If you are working on… | Start here |
 | --- | --- |
@@ -37,8 +38,8 @@ The [SDLC](docs/SDLC.md) defines the gates. The video work has its own queue.
 | --- | --- | --- | --- |
 | [N-01](https://github.com/bynanci/storytelling/issues/48) / N-R01 · Author study | Packet prepared · G0–G1 | Ready in parallel with N-03 | A facilitator runs the [matched revision task](docs/narrative/N-01-AUTHOR-STUDY.zh-TW.md). Report completion, revision time, attribution errors and repeated input against ordinary notes. The pilot and maintainer decision are pending. |
 | [N-02](https://github.com/bynanci/storytelling/issues/49) / N-R02 · Shared contract | Accepted · G2, [PR #71](https://github.com/bynanci/storytelling/pull/71) | N-01 packet available | [ADR 0005](docs/adr/0005-independent-narrative-document-v1.md), the [V1 profile](docs/narrative/NARRATIVE_DOCUMENT_V1.md), schema and fixtures define the frozen oral/illustration boundary. Maintainer direction authorized N-03. |
-| [N-03](https://github.com/bynanci/storytelling/issues/50) / N-R03 · Oral and visual workflows | Implementation PR · G3–G4 automated evidence recorded; author inspection pending | Accepted N-02 | `storytelling render-narrative <FILE\|->` emits the ordered outline and two visibly distinct briefs from the same #48 source set. The [validation record](docs/validation/n03-narrative-cli.md) maps the Skill request, structured input, actual output, RED/GREEN, media-free success, repeatability, unchanged bytes, malformed reference and legacy video/OTIO regressions. Same-head hosted CI and author feedback are tracked separately; no human outcome is claimed. |
-| [N-04](https://github.com/bynanci/storytelling/issues/51) / N-R04 · Author decisions and revisions | Proposed · G3–G4 | N-03 | Change a shared fact, then a single-variant detail. Compare the reported affected variants with the fixture’s expected set; keep the earlier revisions and author’s choice inspectable. Keep an author’s declined or edited suggestion visible in the test record; an accepted prop stays local to its illustration. |
+| [N-03](https://github.com/bynanci/storytelling/issues/50) / N-R03 · Oral and visual workflows | Merged in PR #74; author inspection pending | Accepted N-02 | `storytelling render-narrative <FILE\|->` emits the ordered outline and two visibly distinct briefs from the same #48 source set. The [validation record](docs/validation/n03-narrative-cli.md) maps the Skill request, structured input, actual output, RED/GREEN, media-free success, repeatability, unchanged bytes, malformed reference and legacy video/OTIO regressions. Same-head hosted CI passed on PR #74; author feedback remains separate and no human outcome is claimed. |
+| [N-04](https://github.com/bynanci/storytelling/issues/51) / N-R04 · Author decisions and revisions | Implementation PR · G3–G4 automated evidence recorded | N-03 | [`NarrativeRevisionLedgerV1`](docs/narrative/NARRATIVE_REVISION_LEDGER_V1.md) appends source revisions, author decisions, suggestions and variant snapshots. The [validation record](docs/validation/n04-narrative-revisions.md) compares expected/actual impact for shared S02 and B-only C01, keeps old IDs/choices, rejects self-confirming suggestion fields, and separates local evidence from same-head CI and unauthenticated author declarations. |
 | [N-05](https://github.com/bynanci/storytelling/issues/52) / N-R05 · Evidence in commercial copy | Proposed · G3–G4 | N-04 | Show an audience, claim, reference, wording and next action. Remove or revise one reference and flag its claim. A reviewer checks whether the source supports the wording; keep an unsupported slogan separate. |
 | [N-06](https://github.com/bynanci/storytelling/issues/53) / N-R06 · Choose an additional profile | Proposed · G0–G2 | N-04 | Compare an unresolved brainstorm branch, screenplay reveal order and a story-to-video mapping with a missing asset. Record what an author could do, cost and compatibility. Recommend at most one profile for N-10, or defer all three. |
 | [N-07](https://github.com/bynanci/storytelling/issues/54) / N-R07 · Product decision | Proposed · G4–G6 | N-05 | Repeat the baseline with the implemented oral/visual and copy workflows. Report each condition separately, including n/N, revision time and attribution errors. Link reproducible failures to fixtures. The maintainer records continue, narrow or stop and separately considers release readiness. |
@@ -513,8 +514,8 @@ authoring tasks to the CLI capabilities on main and the work needed for repeatab
 | Podcast, silence and sound cues | A supplied WAV file can be hashed. A sound cue sheet, independent sound tracks and a rendered mix have distinct requirements. | [N-09 cue sheets](https://github.com/bynanci/storytelling/issues/66) |
 | Mixed handoff or actual media artifact | The CLI can verify supplied bytes and export a finite picture-only timeline. A declared hash does not describe image or audio content. | [N-11 manifest](https://github.com/bynanci/storytelling/issues/68) and [N-12 host feasibility](https://github.com/bynanci/storytelling/issues/69) |
 
-**Priorities after contract acceptance.** Start N-03 now and use its fixture and
-output to build N-04. N-08 and N-09 can explore style rules and cue sheets
+**Priorities after contract acceptance.** N-03 is on main; use its fixture and
+output to complete N-04. N-08 and N-09 can explore style rules and cue sheets
 against the accepted contract. Choose one treatment rule or cue-sheet conflict
 per first implementation. N-11 uses N-04 revision identities. Start N-10 only
 for a profile selected in N-06. For N-12, an adapter contributor can try one host

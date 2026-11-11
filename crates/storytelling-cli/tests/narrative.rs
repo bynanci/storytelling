@@ -210,3 +210,99 @@ fn dangling_reference_returns_the_contract_diagnostic() {
     assert_eq!(std::fs::read(&input_path).unwrap(), bytes);
     assert_eq!(directory_snapshot(&directory.0), before);
 }
+
+#[test]
+fn revision_tracking_queries_shared_and_variant_local_impacts() {
+    let directory = TestDirectory::new();
+    let input_path = directory.join("revision-history.json");
+    let original = std::fs::read(
+        Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("../../tests/fixtures/narrative-v1/n04-revision-history-v1.json"),
+    )
+    .unwrap();
+    std::fs::write(&input_path, &original).unwrap();
+    let before = directory_snapshot(&directory.0);
+
+    let shared = cli()
+        .args(["query-narrative-impact"])
+        .arg(&input_path)
+        .arg("shared-observation-change")
+        .current_dir(&directory.0)
+        .output()
+        .unwrap();
+    assert_eq!(shared.status.code(), Some(0));
+    let shared = String::from_utf8(shared.stdout).unwrap();
+    assert!(shared.contains("S02@1 -> S02@2"));
+    assert!(shared.contains("Affected variants: oral, illustration-wide, illustration-close"));
+
+    let local = cli()
+        .args(["query-narrative-impact"])
+        .arg(&input_path)
+        .arg("b-only-detail-change")
+        .current_dir(&directory.0)
+        .output()
+        .unwrap();
+    assert_eq!(local.status.code(), Some(0));
+    let local = String::from_utf8(local.stdout).unwrap();
+    assert!(local.contains("C01@1 -> C01@2"));
+    assert!(local.contains("Affected variants: illustration-close"));
+    assert!(!local.contains("Affected variants: oral"));
+
+    let history = cli()
+        .arg("track-narrative-revisions")
+        .arg(&input_path)
+        .current_dir(&directory.0)
+        .output()
+        .unwrap();
+    assert_eq!(history.status.code(), Some(0));
+    let history = String::from_utf8(history.stdout).unwrap();
+    assert!(history.contains("Choice decline-red-umbrella-in-a: illustration-wide C01@1 declined"));
+    assert!(history.contains("Choice accept-red-umbrella-in-b: illustration-close C01@1 accepted"));
+    assert!(
+        history.contains("Suggestion suggest-red-umbrella-for-b: illustration-close C01@1 pending")
+    );
+    assert!(history.contains("Source S02@1"));
+    assert!(history.contains("Source S02@2"));
+    assert!(history.contains("Source C01@1"));
+    assert!(history.contains("Source C01@2"));
+    assert!(history.contains("Current illustration-close@3: needs_review"));
+    assert!(history.contains("Current oral@2: current"));
+    assert!(history.contains("Current illustration-wide@3: current"));
+    let oral = history.split("Current oral@2:").nth(1).unwrap();
+    let oral = oral.split("Current illustration-wide@").next().unwrap();
+    assert!(!oral.contains("紅傘") && !oral.contains("C01"));
+    assert_eq!(std::fs::read(&input_path).unwrap(), original);
+    assert_eq!(directory_snapshot(&directory.0), before);
+}
+
+#[test]
+fn untrusted_suggestion_cannot_claim_author_acceptance_from_the_cli() {
+    let directory = TestDirectory::new();
+    let input_path = directory.join("self-confirmed-suggestion.json");
+    let original = std::fs::read(
+        Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("../../tests/fixtures/narrative-v1/n04-invalid-self-confirm-v1.json"),
+    )
+    .unwrap();
+    std::fs::write(&input_path, &original).unwrap();
+    let before = directory_snapshot(&directory.0);
+
+    let output = cli()
+        .arg("track-narrative-revisions")
+        .arg(&input_path)
+        .current_dir(&directory.0)
+        .output()
+        .unwrap();
+    assert_eq!(
+        json_error(&output, 1),
+        json!({
+            "ok": false,
+            "error": {
+                "code": "revision.untrusted_decision",
+                "path": "$.events[0].decision"
+            }
+        })
+    );
+    assert_eq!(std::fs::read(&input_path).unwrap(), original);
+    assert_eq!(directory_snapshot(&directory.0), before);
+}

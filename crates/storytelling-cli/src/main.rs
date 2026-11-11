@@ -5,10 +5,11 @@ use std::io::{self, Read, Write};
 use std::process::ExitCode;
 use storytelling_engine::{
     MAX_INPUT_BYTES, MAX_REVIEW_CONTEXT_BYTES, MAX_REVIEW_RECORD_BYTES, MAX_STORY_PROPOSAL_BYTES,
-    MAX_STORY_REVIEW_BYTES, MAX_VERIFIED_BUFFER_BYTES, OtioLossChoicesV1, audit_story_brief,
-    check_review, check_story_review, export_openfilm_otio, export_story_otio,
-    import_openfilm_snapshot, parse_review_context, plan_story, prepare_review,
-    prepare_story_review, render_narrative, validate_plan_json, verify_supplied_sha256,
+    MAX_STORY_REVIEW_BYTES, MAX_VERIFIED_BUFFER_BYTES, NarrativeRevisionReportV1,
+    OtioLossChoicesV1, audit_story_brief, check_review, check_story_review, export_openfilm_otio,
+    export_story_otio, import_openfilm_snapshot, parse_review_context, plan_story, prepare_review,
+    prepare_story_review, query_narrative_impact, render_narrative, track_narrative_revisions,
+    validate_plan_json, verify_supplied_sha256,
 };
 
 fn emit(value: Value, code: u8) -> ExitCode {
@@ -122,6 +123,161 @@ fn render_narrative_command(args: &[OsString]) -> ExitCode {
     }
 }
 
+fn source_refs_text(refs: &[storytelling_engine::NarrativeUnitReferenceV1]) -> String {
+    refs.iter()
+        .map(|reference| format!("{}@{}", reference.unit_id, reference.revision))
+        .collect::<Vec<_>>()
+        .join(", ")
+}
+
+fn render_revision_report(report: &NarrativeRevisionReportV1) -> String {
+    use std::fmt::Write as _;
+
+    fn quoted(value: &str) -> String {
+        serde_json::to_string(value).unwrap_or_else(|_| "\"\"".to_owned())
+    }
+
+    let mut output = String::new();
+    let _ = writeln!(output, "Narrative revision history: {}", report.document_id);
+    let _ = writeln!(output, "\nSource changes:");
+    for event in report
+        .events
+        .iter()
+        .filter(|event| event.kind == "source_revision")
+    {
+        let unit = event.unit_id.as_deref().unwrap_or("unknown");
+        let from = event.from_revision.unwrap_or_default();
+        let to = event.to_revision.unwrap_or_default();
+        let _ = writeln!(output, "- {}: {unit}@{from} -> {unit}@{to}", event.id);
+        let impacted = if event.affected_variants.is_empty() {
+            "none".to_owned()
+        } else {
+            event.affected_variants.join(", ")
+        };
+        let _ = writeln!(output, "  Affected variants: {impacted}");
+    }
+
+    let _ = writeln!(output, "\nAuthor choices:");
+    for choice in &report.author_decisions {
+        let _ = writeln!(
+            output,
+            "- Choice {}: {} {}@{} {} (variant revision {})",
+            choice.id,
+            choice.variant_id,
+            choice.proposal_ref.unit_id,
+            choice.proposal_ref.revision,
+            choice.decision.as_str(),
+            choice.variant_revision
+        );
+    }
+    let _ = writeln!(output, "\nAssistant suggestions:");
+    for suggestion in &report.suggestions {
+        let _ = writeln!(
+            output,
+            "- Suggestion {}: {} {}@{} pending at suggestion time; it records no author decision",
+            suggestion.id,
+            suggestion.variant_id,
+            suggestion.proposal_ref.unit_id,
+            suggestion.proposal_ref.revision
+        );
+    }
+
+    let _ = writeln!(output, "\nSource history:");
+    for source in &report.source_history {
+        let bases = if source.based_on.is_empty() {
+            String::new()
+        } else {
+            format!("; based on {}", source_refs_text(&source.based_on))
+        };
+        let _ = writeln!(
+            output,
+            "- Source {}@{} [{}]{}: {}",
+            source.unit_id,
+            source.revision,
+            source.origin.as_str(),
+            bases,
+            quoted(&source.text)
+        );
+    }
+
+    let _ = writeln!(output, "\nVariant history:");
+    for variant in &report.variant_history {
+        let _ = writeln!(
+            output,
+            "- Snapshot {}@{} [{}] sources [{}]: {}",
+            variant.variant_id,
+            variant.revision,
+            variant.kind,
+            source_refs_text(&variant.source_refs),
+            quoted(&variant.content)
+        );
+    }
+
+    let _ = writeln!(output, "\nCurrent variants:");
+    for variant in &report.current_variants {
+        let stale = if variant.stale_source_refs.is_empty() {
+            String::new()
+        } else {
+            format!("; stale [{}]", source_refs_text(&variant.stale_source_refs))
+        };
+        let _ = writeln!(
+            output,
+            "- Current {}@{}: {}{}; sources [{}]; {}",
+            variant.variant_id,
+            variant.revision,
+            variant.status,
+            stale,
+            source_refs_text(&variant.source_refs),
+            quoted(&variant.content)
+        );
+    }
+    output
+}
+
+fn narrative_revision_command(args: &[OsString]) -> ExitCode {
+    let querying = args
+        .first()
+        .is_some_and(|arg| arg == OsStr::new("query-narrative-impact"));
+    let expected_args = if querying { 3 } else { 2 };
+    if args.len() != expected_args || args[1].as_encoded_bytes().starts_with(b"--") {
+        return failure("cli.usage", 2);
+    }
+    if querying && args[2].as_encoded_bytes().starts_with(b"--") {
+        return failure("cli.usage", 2);
+    }
+    let bytes = match read_argument(&args[1], MAX_INPUT_BYTES) {
+        Ok(bytes) => bytes,
+        Err(_) => return failure("input.io", 3),
+    };
+    if querying {
+        let Some(change_id) = args[2].to_str() else {
+            return failure("cli.usage", 2);
+        };
+        return match query_narrative_impact(&bytes, change_id) {
+            Ok(event) => {
+                let unit = event.unit_id.as_deref().unwrap_or("unknown");
+                let from = event.from_revision.unwrap_or_default();
+                let to = event.to_revision.unwrap_or_default();
+                let impacted = if event.affected_variants.is_empty() {
+                    "none".to_owned()
+                } else {
+                    event.affected_variants.join(", ")
+                };
+                let mut result = String::new();
+                use std::fmt::Write as _;
+                let _ = writeln!(result, "Change {}: {unit}@{from} -> {unit}@{to}", event.id);
+                let _ = writeln!(result, "Affected variants: {impacted}");
+                text(&result)
+            }
+            Err(error) => emit(json!({"ok": false, "error": error}), 1),
+        };
+    }
+    match track_narrative_revisions(&bytes) {
+        Ok(report) => text(&render_revision_report(&report)),
+        Err(error) => emit(json!({"ok": false, "error": error}), 1),
+    }
+}
+
 fn read_bounded(reader: impl Read) -> io::Result<Vec<u8>> {
     read_with_limit(reader, MAX_INPUT_BYTES)
 }
@@ -211,6 +367,12 @@ fn main() -> ExitCode {
         .is_some_and(|arg| arg == OsStr::new("render-narrative"))
     {
         return render_narrative_command(&args);
+    }
+    if args.first().is_some_and(|arg| {
+        arg == OsStr::new("track-narrative-revisions")
+            || arg == OsStr::new("query-narrative-impact")
+    }) {
+        return narrative_revision_command(&args);
     }
     if args.first().is_some_and(|arg| {
         [
@@ -330,7 +492,7 @@ fn main() -> ExitCode {
     match command {
         Some(value) if value == OsStr::new("--help") && args.len() == 1 => {
             return text(
-                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\n       storytelling plan-story <FILE|->\n       storytelling render-narrative <FILE|->\n       storytelling prepare-story-review <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling export-story-otio <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling check-story-review <REVIEW_BUNDLE> <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling prepare-review <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling check-review <REVIEW_RECORD> <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling verify-source <FILE|-> <SHA256>\nRead-only metadata, interchange and declared review identity; no editor execution.\n",
+                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\n       storytelling plan-story <FILE|->\n       storytelling render-narrative <FILE|->\n       storytelling track-narrative-revisions <FILE|->\n       storytelling query-narrative-impact <FILE|-> <CHANGE_ID>\n       storytelling prepare-story-review <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling export-story-otio <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling check-story-review <REVIEW_BUNDLE> <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling prepare-review <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling check-review <REVIEW_RECORD> <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling verify-source <FILE|-> <SHA256>\nRead-only metadata, interchange and declared review identity; no editor execution.\n",
             );
         }
         Some(value) if value == OsStr::new("--version") && args.len() == 1 => {
