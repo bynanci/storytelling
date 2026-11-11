@@ -1,26 +1,43 @@
 # Storytelling
 
-[English](README.md) · [CLI 指南](docs/CLI_GUIDE.md) · [開發路線圖](ROADMAP.md) · [貢獻指南](CONTRIBUTING.md) · [CI 執行紀錄](https://github.com/bynanci/storytelling/actions/workflows/ci.yml)
+[English](README.md) · [跨平台使用指南](docs/PLATFORMS.md) · [範例](.agents/skills/storytelling/references/examples.md) · [貢獻指南](CONTRIBUTING.md) · [CI](https://github.com/bynanci/storytelling/actions/workflows/ci.yml)
 
-Storytelling 幫你把手上的材料整理成故事、劇本場景、單幅插畫構圖、商業文案或影片提案。日常使用從 **Storytelling Skill** 開始。影片工作另有本機 Rust CLI，可驗證結構化輸入、匯出能審閱的 OpenTimelineIO（OTIO）時間軸。
+Storytelling 是一套開源 [Agent Skill](.agents/skills/storytelling/SKILL.md)，可將手邊的材料整理成故事、劇本場景、插畫構圖、商業文案、腦力激盪提案或分鏡。例如，把一頁訪談筆記交給它，請它寫一段口述開場，再提出兩款海報構圖。三份作品可以各有觀點，同時讓人看得出哪些話出自受訪者、哪些是為了畫面而加的創作。
+
+整個 Skill 裝在一個資料夾裡。可以放進寫作專案、客戶工作區或軟體儲存庫，使用你選擇的 Agent 和素材起草。影片工作另有可獨立執行的 Rust CLI，能在本機對結構化提案做可重現的檢查。
 
 ## 從 Skill 開始
 
-在 Codex 開啟這個專案，直接輸入想完成的工作：
+將完整的 [`storytelling` 資料夾](.agents/skills/storytelling) 複製到下表對應位置，保留其中的 `SKILL.md`、範例、工具指引、選用腳本及授權檔。
+
+| 使用環境 | 開始方式 |
+| --- | --- |
+| 專案中的 Codex | 放入專案的 `.agents/skills/storytelling/`，輸入 `$storytelling`。本儲存庫已放在此位置。 |
+| 本機專案中的 Claude Code | 將同一份資料夾放入專案的 `.claude/skills/storytelling/`，輸入 `/storytelling`。 |
+| 其他支援 Agent Skills 的工具 | 依該工具的文件載入 Skill。安裝位置、叫用方式與可用工具由各平台決定。 |
+| 直接閱讀 Markdown | 開啟 [SKILL.md](.agents/skills/storytelling/SKILL.md) 和它連到的參考文件。作者或團隊可手動依步驟整理材料。 |
+| 腳本、CI 或自有應用程式 | 使用[獨立 CLI](#快速開始)，傳入結構化資料，讀取 JSON 輸出與退出碼。 |
+
+在 Codex 或 Claude Code 叫用 Skill 後，可用這段素材試做。
 
 ```text
-$storytelling 兩位鄰居一起修好了一扇門。請寫一段口述故事，再給我兩個單幅插畫構圖。為了畫面而增加的細節只放在插畫裡。
+兩位鄰居一起修好了一扇門。請寫兩句話給社區電子報，再想兩款海報構圖。
+只有第二款海報可以加一把想像的紅傘。
 ```
 
-想在其他專案用，將整個 [storytelling 資料夾](.agents/skills/storytelling) 複製到該專案的 `.agents/skills/`。想在個人的所有本機 Codex 專案使用，放入 `~/.agents/skills/`。其他支援 Agent Skills 的工具則使用各自的安裝位置。資料夾內已附範例與使用指引。口述、編劇、插畫構思、商業文案、腦力激盪及文字分鏡可由 Agent 直接起草；本機有對應 CLI 且輸入符合影片契約時，還能執行機器驗證。[使用範例](.agents/skills/storytelling/references/examples.md) · [Codex Skills](https://developers.openai.com/codex/skills/) · [Agent Skills 格式](https://agentskills.io/specification)
+檢查電子報是否忠於原始觀察，並確認兩款海報採用不同的視覺選擇，紅傘只出現在第二款。個人安裝、其他平台與各項驗證狀態，見[跨平台使用指南](docs/PLATFORMS.md)。
 
-要了解何時直接起草、何時查 Graphify、如何局部重算與停止重試，見[情境與迴圈手冊](.agents/skills/storytelling/references/graph-loops.md)。[Graphify 工具指引](.agents/skills/storytelling/references/graphify-tools.md) 負責索引查詢；[本機 DAG 排程器](.agents/skills/storytelling/scripts/graph_plan.py) 可驗證複雜工作的先後順序。單純起草可直接使用 Skill。
+## 目前可用功能
+
+- **創作與改寫。** 把筆記整理成作品、比較不同表達方向並保留來源。某個細節改動時，找出哪些版本用到了它。[使用範例](.agents/skills/storytelling/references/examples.md)
+- **安排複雜工作。** 流程手冊涵蓋相依步驟、獨立分支、審閱與有限次重試。隨附的 Python 腳本可選用來排列工作依賴或檢查已記錄的執行順序。[情境與迴圈手冊](.agents/skills/storytelling/references/graph-loops.md)
+- **追查佐證。** 若問題橫跨多份文件，且已有適用的 Graphify 索引，可以先定位候選段落，再讀原文核對。[Graphify 工具指引](.agents/skills/storytelling/references/graphify-tools.md)
 
 ## 快速開始
 
 ### 選用 Rust CLI
 
-原始碼版本為 `0.1.0-dev.0`，目前尚未發布套件。透過 [rustup](https://rustup.rs/) 安裝 Rust，再下載專案、執行內附的合成範例。專案會選用固定的 Rust 1.89.0 工具鏈。
+目前可從原始碼建置 `0.1.0-dev.0`，專案指定 Rust 1.89.0。下列範例無須 AI 訂閱、模型 API 金鑰或影片編輯器。以 [rustup](https://rustup.rs/) 準備工具鏈後，即可執行下列命令。
 
 ```sh
 git clone https://github.com/bynanci/storytelling.git
@@ -29,33 +46,30 @@ cargo run --locked -p storytelling-cli -- validate examples/minimal-plan.json
 cargo run --locked -p storytelling-cli -- plan-story tests/fixtures/planner-v1/valid.json
 ```
 
-1. `validate` 會回傳 `ok: true`，並列出 `travel-recap` 的 1 份素材與 2 個鏡頭。這項檢查驗證資料中宣告的 ID 和時間範圍。若要以摘要比對實際檔案內容，可使用 `verify-source`。
-2. `plan-story` 會將 JSON 寫至標準輸出。[範例規劃需求](tests/fixtures/planner-v1/valid.json) 指定先用 `detail`、再用 `opening`。即使 `opening` 的分數較高，`planning.plan` 的兩個鏡頭仍保留作者指定的順序。
+`validate` 會回傳 `ok: true`，列出 1 份素材、2 個鏡頭。`plan-story` 會輸出 JSON。範例中的 `opening` 分數較高，但作者已指定順序，所以 `detail` 排在它之前。要從自己的應用程式呼叫，可從這兩種輸入格式及 [CLI 契約](docs/CONTRACTS.md)開始整合。[規劃輸入範例](tests/fixtures/planner-v1/valid.json) · [CLI 指南](docs/CLI_GUIDE.md)
 
-要試跑交接流程，可依 [CLI 指南](docs/CLI_GUIDE.md) 將儲存的規劃提案、對應的快照與審閱條件轉成審閱檔及 `.otio` 時間軸。
+### 影片整合
 
-## 目前可用功能
-
-| 使用目的 | 指令 | 支援範圍 |
+| 輸入 | 指令 | 產出 |
 | --- | --- | --- |
-| 檢查規則並規劃剪輯 | `validate`、`audit-brief`、`plan-story` | 檢查參照、必選／排除素材與先後順序，再從給定區間選取符合鏡頭數與時長限制的片段。 |
-| 交換粗剪時間軸 | `import-openfilm`、`export-otio` | 讀取單一連續影像軌上的照片與影片硬切。匯出影片時須明確選擇僅保留畫面。獨立音軌、特效和動畫尚未支援。 |
-| 審閱選定的提案 | `prepare-story-review`、`export-story-otio`、`check-story-review` | 將提案和快照綁定到實際產出的 OTIO，再檢查輸入、格式轉換選項或時間軸是否已變更。 |
-| 審閱既有剪輯 | `prepare-review`、`check-review` | 將支援範圍內的剪輯資料及其 OTIO 對應到指定的審閱條件。比對結果用來確認一致性。人工核准與寫入剪輯器屬於後續工作。 |
-| 核對素材內容 | `verify-source` | 以 SHA-256 比對明確提供的檔案或標準輸入，最多 16 MiB。 |
+| 影片計畫、故事需求或固定區間的選鏡請求 | `validate`、`audit-brief`、`plan-story` | 檢查宣告的參照與限制，或產生鏡頭順序提案。 |
+| 本機資料與預期 SHA-256 摘要 | `verify-source` | 比對來自指定檔案或標準輸入的資料，最多 16 MiB。 |
+| 符合支援規格的 OpenFilm 剪輯快照 | `import-openfilm`、`export-otio` | 將單一連續畫面軌轉成計畫或 OpenTimelineIO（OTIO）。 |
+| 剪輯快照與審閱條件 | `prepare-review`、`check-review` | 先儲存審閱紀錄，後續再用這份紀錄比對目前輸入。 |
+| 已儲存的提案、對應快照和審閱條件 | `prepare-story-review`、`export-story-otio`、`check-story-review` | 將選定剪點匯出為 OTIO。使用先前儲存的審閱資料與目前輸入比對，確認是否有變更。 |
 
-OpenFilm 提供剪輯快照，工作中的時間軸由目標剪輯器管理。專案曾以 FilmCraft v0.18.0 在 Linux、25 fps 的單一條件下測試儲存、重開、重新匯入 OTIO，以及輸出 45 格 CPU 預覽。另有一項 M3-03 測試專用證明：先記錄新隔離專案與提案匯入，再以 native readback 解決遺失回應；尚未加入產品寫入指令，可信核准與正式 executor 仍待完成。音訊交接和全解析度輸出也有待實測。[FilmCraft 測試紀錄](docs/migration/records/M1-03.md) · [M3-03 證明](docs/validation/m3-03-filmcraft-execution.md) · [審閱契約](docs/migration/PLANNER_OTIO_REVIEW_V1.md)
+剪輯快照轉接器可讀取 OpenFilm 匯出的剪輯快照，接受支援畫面軌上的照片與影片硬切，影片匯出須明確選擇僅保留畫面。專案曾以 FilmCraft v0.18.0 在 Linux、25 fps 下驗證儲存與重開、OTIO 重新匯入，以及輸出 45 格 CPU 預覽。另一次隔離測試在匯入回應遺失時讀回專案狀態，確認實際結果。正式寫入剪輯器仍在規劃中。音訊交接與全解析度輸出有待實測。[FilmCraft 測試紀錄](docs/migration/records/M1-03.md) · [復原測試](docs/validation/m3-03-filmcraft-execution.md) · [審閱契約](docs/migration/PLANNER_OTIO_REVIEW_V1.md)
 
 ## 跨媒介發展方向
 
-第一個規劃中的案例，是將同一段生活記憶整理成口述提綱與單幅插畫的不同構圖。為插畫增加的想像細節可以只留在該構圖，口述仍能追溯原始敘述。第二個案例則用商業文案驗證每項主張能否追溯到提供的佐證。Skill 現在能起草這兩種內容。可重跑的 Rust 契約、版本比對與真人試用仍在規劃中，依賴與驗收條件列於[跨媒介任務清單](TASKS.md#cross-media-narrative-backlog)。
+目前已可用 Agent 起草多種形式的作品。具版本的跨媒介資料格式、可重跑的來源修訂檢查、商業主張追溯及作者試用則列入後續開發。[開發路線圖](ROADMAP.md) · [跨媒介任務清單](TASKS.md#cross-media-narrative-backlog)
 
 ## 架構與參與開發
 
-Workspace 由四個 crate 組成。`storytelling-core` 定義資料交換型別與精確的有理數時間。`storytelling-engine` 在記憶體中執行驗證、規劃與匯出。`storytelling-cli` 負責檔案與標準輸入、標準輸出及退出碼。`storytelling-journal` 以 SQLite 持久化操作紀錄並隔離舊執行者；M3-02 有限日誌已由 PR #56 合併，但它不會呼叫剪輯器，也不授予執行權限。[架構說明](docs/ARCHITECTURE.md) · [資料與 CLI 契約](docs/CONTRACTS.md)
+可攜式 Skill 位於 `.agents/skills/storytelling/`。Rust workspace 包含四個 crate。`storytelling-core` 定義資料交換型別與精確時間，`storytelling-engine` 在記憶體內規劃與驗證，`storytelling-cli` 負責程序輸入輸出，`storytelling-journal` 以 SQLite 保存操作紀錄。[架構說明](docs/ARCHITECTURE.md)
 
-從[任務清單](TASKS.md)挑一個範圍明確的工作，查看[進行中的 PR](https://github.com/bynanci/storytelling/pulls)，並對應到[需求與驗收紀錄](docs/REQUIREMENTS.md)。本機檢查命令列於[貢獻指南](CONTRIBUTING.md)，開發、審查與發布條件見 [SDLC](docs/SDLC.md)。[回報問題](https://github.com/bynanci/storytelling/issues/new/choose)時可附上能重現問題的合成範例。涉及敏感內容請依[安全政策](SECURITY.md)處理。
+歡迎其他領域和 Agent 平台的使用者參與。提交新工作流時，請附最小合成案例、預期輸出與檢查方式。回報相容性時，請附用戶端、版本、安裝位置和實際觀察。可參閱[貢獻指南](CONTRIBUTING.md)、[工作清單](TASKS.md)、[需求追溯](docs/REQUIREMENTS.md)與[開發流程](docs/SDLC.md)。[回報問題](https://github.com/bynanci/storytelling/issues/new/choose) · [安全政策](SECURITY.md)
 
 ## 授權
 
-本專案原創程式碼及文件採 [MIT 授權](LICENSE)。參考 OpenFilm 實作的部分元件採 [Apache-2.0](LICENSES/Apache-2.0.txt)，保留[上游聲明](NOTICE.openfilm)。檔案對應的授權記錄於[逐檔來源清單](PROVENANCE.md)。
+可攜 Skill 內附 [MIT 授權](.agents/skills/storytelling/LICENSE)。專案的原創程式碼及文件採 [MIT 授權](LICENSE)。參考 OpenFilm 實作的元件依逐檔清單採 [Apache-2.0](LICENSES/Apache-2.0.txt)，保留[上游聲明](NOTICE.openfilm)。[逐檔來源清單](PROVENANCE.md)

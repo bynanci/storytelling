@@ -1,5 +1,10 @@
 # OpenFilm extraction and migration
 
+This guide is for contributors maintaining the OpenFilm integration or tracing code
+origins. To use the standalone Storytelling skill in another project or agent,
+start with the [platform guide](PLATFORMS.md). For local JSON processing from your
+own application, see the [CLI guide](CLI_GUIDE.md).
+
 M0 imported design intent only. M1-01 now adds a source-informed, separately licensed
 finite visual importer; see its [contract](migration/FINITE_V1.md),
 [comparison record](migration/records/M1-01.md) and [provenance](migration/provenance-m1-01.json).

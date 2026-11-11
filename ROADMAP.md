@@ -6,20 +6,26 @@ See [TASKS](TASKS.md), [SDLC](docs/SDLC.md) and [architecture](docs/ARCHITECTURE
 
 ## Product objective
 
-Help authors turn source material into a structure they can explain, revise and
-hand off. Two tracks test that aim against different authoring tasks.
+Give authors and integrators a portable way to turn source material into a
+structure they can explain, revise and hand off. A writing team can add the
+[Agent Skill](.agents/skills/storytelling/SKILL.md) to its own workspace for
+day-to-day drafting. A project with structured video data can use the local
+[CLI](docs/CLI_GUIDE.md) in a script or automation. These entry points serve
+different tasks and can be adopted independently. See the [platform guide](docs/PLATFORMS.md).
 
 - **Video planning and handoff (M).** The working Rust CLI selects fixed source
   windows and exports a bounded picture timeline for review. The reference
   workflow targets an editable 60–90 second rough cut from 30–50 selected
-  photos, clips and narration. OpenFilm provides analysis and input. FilmCraft
-  is the first tested host and owns its edited timeline. See [milestones](#milestones)
+  photos, clips and narration. Any project can supply the CLI's declared planning
+  inputs. The current video interchange profile uses OpenFilm's finite snapshot
+  format, and FilmCraft is its first tested editor. See [milestones](#milestones)
   for the scope of current evidence.
 - **Cross-media narrative planning (N, proposed).** Test whether authors can
   turn the same observations into a spoken outline, an illustration brief or
   a supported commercial claim while retaining where each detail came from.
-  This track starts with writing and comparing examples. Its outcomes below
-  have no released package or implemented CLI commands.
+  The skill already guides a host agent through these drafting tasks. This
+  track starts by comparing authoring examples and then tests the proposed
+  deterministic cross-media workflows and their CLI contracts.
 
 ## Cross-media narrative roadmap
 

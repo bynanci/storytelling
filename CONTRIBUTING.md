@@ -4,7 +4,19 @@ Start with [TASKS](TASKS.md), [SDLC](docs/SDLC.md), [requirements](docs/REQUIREM
 and [AGENTS](AGENTS.md). Choose one scope, inspect existing PRs, and record the base.
 Use a branch and PR; do not push feature work directly to main.
 
-Install the pinned toolchain and run:
+### Contributing a skill example or host guide
+
+The portable package lives in [.agents/skills/storytelling](.agents/skills/storytelling).
+A useful contribution can be a small example from an unrelated project: include the
+author's request, the supplied material and the output you expect. For host
+instructions, record the client and scope (project, user or hosted account) and
+what you verified: package discovery, actual invocation or only the vendor's documented
+installation procedure. Link the relevant [platform guide](docs/PLATFORMS.md) entry.
+Keep helper and reference links relative to the skill so copying the whole directory works.
+
+### Checking the project
+
+Install the pinned Rust toolchain for the workspace checks and run:
 
 ```sh
 cargo fmt --all -- --check

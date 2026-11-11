@@ -5,7 +5,9 @@ description: Turn notes, memories, ideas, claims or selected clips into a spoken
 
 # Storytelling
 
-Give the author a usable first draft in the requested language, length and format. Draft directly from the conversation. A host that reads this file can use the authoring workflow without installing Rust or connecting an editor.
+Use this workflow wherever the author keeps their notes: a writing project, a design brief, a team workspace or a conversation. Start from the material provided and give the author a usable first draft in the requested language, length and format.
+
+The portable unit is this folder. An Agent Skills host loads these instructions and reads the bundled references as needed. When following the guide manually, use the same steps and examples directly. Read, run or cite a tool only when that capability is available in the current environment. Ordinary drafting needs no editor, project database or Rust installation.
 
 ## Work from the material
 

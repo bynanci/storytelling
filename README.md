@@ -1,26 +1,44 @@
 # Storytelling
 
-[繁體中文](README.zh-TW.md) · [CLI guide](docs/CLI_GUIDE.md) · [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md) · [CI runs](https://github.com/bynanci/storytelling/actions/workflows/ci.yml)
+[繁體中文](README.zh-TW.md) · [Platform guide](docs/PLATFORMS.md) · [Examples](.agents/skills/storytelling/references/examples.md) · [Contributing](CONTRIBUTING.md) · [CI](https://github.com/bynanci/storytelling/actions/workflows/ci.yml)
 
-Storytelling helps you shape material into a story, a scene, a single-image composition, commercial copy or a video plan. Start in your agent with the **Storytelling skill**. For video work, the optional local Rust CLI validates structured inputs and exports a reviewable OpenTimelineIO (OTIO) timeline.
+Storytelling is an open-source [Agent Skill](.agents/skills/storytelling/SKILL.md) for turning source material into stories, screenplay scenes, illustration briefs, business copy, brainstorms and shot plans. Give it a page of interview notes, for example, and ask for a spoken introduction and two poster concepts. Each version can use a different angle while keeping the speaker's account and the artist's additions distinguishable.
+
+The skill travels as one folder. Add it to a writing project, a client workspace or a software repository. Drafting uses the agent and material you choose. A separate Rust CLI offers local, repeatable checks for structured video plans.
 
 ## Start with the skill
 
-Open this checkout in Codex and enter a request:
+Copy the complete [`storytelling` folder](.agents/skills/storytelling) to the destination below. It includes `SKILL.md`, examples, tool instructions, optional helpers and its license.
+
+| Where you work | How to start |
+| --- | --- |
+| Codex in a project | Place the folder at `.agents/skills/storytelling/` in the project. Invoke `$storytelling`. This checkout already includes it there. |
+| Claude Code in a local project | Place the same folder at `.claude/skills/storytelling/` in the project. Invoke `/storytelling`. |
+| Another Agent Skills client | Use the client's documented skill loader. Discovery paths, invocation syntax and available tools belong to the client. |
+| Plain Markdown | Open [SKILL.md](.agents/skills/storytelling/SKILL.md) and the references it links. A writer or team can follow the workflow by hand. |
+| A script, CI job or application | Use the [standalone CLI](#quick-start) with structured input, JSON output and exit codes. |
+
+After invoking the skill, try this request in either agent:
 
 ```text
-$storytelling Two neighbors fixed a gate together. Draft a short spoken story and two illustration concepts. Keep anything invented for the image out of the spoken account.
+Two neighbors fixed a gate together. Write a two-sentence account for the
+neighborhood newsletter and two poster concepts. Add an imaginary red umbrella
+to the second poster only.
 ```
 
-For another project, copy the entire [storytelling skill folder](.agents/skills/storytelling) into that project's `.agents/skills/`. For all your local Codex projects, copy the folder into `~/.agents/skills/`. In another Agent Skills client, use its skill installation location. The skill includes its references. Spoken drafts, screenwriting, illustration briefs, copy and brainstorming work with the agent alone. The agent can also draft a shot list from ordinary notes. With an appropriate local CLI and structured video inputs, it can additionally run the supported machine checks. [Examples](.agents/skills/storytelling/references/examples.md) · [Codex skills](https://developers.openai.com/codex/skills/) · [Agent Skills format](https://agentskills.io/specification)
+The newsletter should preserve the observation. The two posters should make different visual choices, and only the second should introduce the umbrella. This gives you a small, checkable first use in your own project. For personal installs, other clients and verification status, see the [platform guide](docs/PLATFORMS.md).
 
-For tool routing, branch/review loops and revision handling, see the [workflow playbook](.agents/skills/storytelling/references/graph-loops.md). Its [Graphify guide](.agents/skills/storytelling/references/graphify-tools.md) covers optional lookups on an existing index, and the [local DAG planner](.agents/skills/storytelling/scripts/graph_plan.py) can validate complex execution orders. Short drafting requests can use the skill alone.
+## What works today
+
+- **Draft and adapt.** Organize notes, explore alternatives, preserve source attribution and revise the versions that use a changed detail. [Worked examples](.agents/skills/storytelling/references/examples.md)
+- **Coordinate complex work.** Use the graph-loop playbook for dependencies, independent branches, review and bounded retries. The skill includes optional Python helpers for planning a dependency graph and checking a recorded execution order. [Playbook](.agents/skills/storytelling/references/graph-loops.md)
+- **Find supporting material.** When a question spans documents and a suitable Graphify index is available, locate candidate passages and check them against the originals. [Graphify guide](.agents/skills/storytelling/references/graphify-tools.md)
 
 ## Quick start
 
 ### Optional Rust CLI
 
-The source build is `0.1.0-dev.0`. A packaged release is pending. Install Rust with [rustup](https://rustup.rs/). Clone the repository and run the bundled synthetic examples. The repository selects Rust 1.89.0.
+The development version is `0.1.0-dev.0`, available from source with Rust 1.89.0. No AI subscription, model API key or video editor is required for these examples. With [rustup](https://rustup.rs/) installed, run these commands from your terminal.
 
 ```sh
 git clone https://github.com/bynanci/storytelling.git
@@ -29,33 +47,30 @@ cargo run --locked -p storytelling-cli -- validate examples/minimal-plan.json
 cargo run --locked -p storytelling-cli -- plan-story tests/fixtures/planner-v1/valid.json
 ```
 
-1. `validate` reports `ok: true` for `travel-recap` with one asset and two shots. The result covers the declared IDs and source ranges. To check actual file contents against a digest, use `verify-source`.
-2. `plan-story` returns JSON on stdout. In the [example brief](tests/fixtures/planner-v1/valid.json), the author explicitly places `detail` before `opening`. The two shots in `planning.plan` preserve that order, even though `opening` has the higher score.
+`validate` reports `ok: true` for one asset and two shots. `plan-story` prints JSON with `detail` before `opening`, preserving the author's explicit order even though `opening` has a higher score. To integrate your own application, start with these input shapes and the [CLI contracts](docs/CONTRACTS.md). [Planner input](tests/fixtures/planner-v1/valid.json) · [CLI guide](docs/CLI_GUIDE.md)
 
-To try the handoff, follow the [CLI guide](docs/CLI_GUIDE.md) from a saved planner proposal to a review bundle and an `.otio` file. The guide includes the matching snapshot and review context.
+### Video integrations
 
-## What works today
-
-| Goal | Commands | Scope |
+| Input | Commands | Result |
 | --- | --- | --- |
-| Check and plan | `validate`, `audit-brief`, `plan-story` | Check references, required and excluded assets, and ordering constraints. Select from supplied time ranges within shot and duration limits. |
-| Exchange a visual cut | `import-openfilm`, `export-otio` | Read an OpenFilm snapshot with one contiguous picture track of stills or video cuts. Exporting video requires an explicit picture-only choice. Separate audio, effects and animation are unsupported. |
-| Review a proposal | `prepare-story-review`, `export-story-otio`, `check-story-review` | Bind the selected proposal and snapshot to the actual OTIO. Check whether the declared inputs, conversion choices or artifact have changed. |
-| Review an existing composition | `prepare-review`, `check-review` | Bind a finite composition and its OTIO to a declared review context. A match establishes consistency. Human approval and editor execution remain separate steps. |
-| Check supplied bytes | `verify-source` | Compare an explicit file or stdin against a SHA-256 digest, up to 16 MiB. |
+| A plan, brief or fixed-window planning request | `validate`, `audit-brief`, `plan-story` | Check declared references and constraints, or propose a shot order. |
+| Local bytes and an expected SHA-256 digest | `verify-source` | Verify up to 16 MiB from an explicit file or stdin. |
+| A supported OpenFilm composition snapshot | `import-openfilm`, `export-otio` | Convert a single contiguous picture track into a plan or OpenTimelineIO (OTIO). |
+| A snapshot and its review context | `prepare-review`, `check-review` | Save a review record, then compare that record with current inputs. |
+| A saved proposal, matching snapshot and review context | `prepare-story-review`, `export-story-otio`, `check-story-review` | Export selected cuts as OTIO. Compare a saved review bundle with the current inputs to detect changes. |
 
-OpenFilm supplies the composition snapshot. The target editor owns the working timeline. An isolated test exercised FilmCraft v0.18.0 on Linux at 25 fps, including save/reopen, OTIO reimport and a 45-frame CPU preview. A separate test-only M3-03 proof journals a new isolated project and one proposal import, then resolves a lost reply from exact native readback; it adds no product editor-writing command. Trusted approval and a production executor remain open. Audio handoff and full-resolution output are outside the tested profile. [FilmCraft test record](docs/migration/records/M1-03.md) · [M3-03 proof](docs/validation/m3-03-filmcraft-execution.md) · [Review contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md)
+The snapshot adapter reads OpenFilm composition exports. It accepts stills and video cuts on the supported picture track. Video export requires an explicit picture-only choice. A FilmCraft v0.18.0 test on Linux at 25 fps covered save/reopen, OTIO reimport and a 45-frame CPU preview. A separate isolated test recovered from a lost import reply by reading the resulting project state. Production editor writes are planned. Audio handoff and full-resolution output await verification. [FilmCraft test record](docs/migration/records/M1-03.md) · [Recovery test](docs/validation/m3-03-filmcraft-execution.md) · [Review contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md)
 
 ## Cross-media direction
 
-The proposed first use case starts with one account of an event and produces a spoken outline and alternative compositions for a single illustration. An invented visual detail can stay with the illustration while the spoken account keeps its link to the source. A second use case tests commercial copy by tracing each claim to supplied evidence. The agent can draft these forms today. The deterministic cross-media contract, revision checks and pilot are proposed Rust work. The [narrative backlog](TASKS.md#cross-media-narrative-backlog) lists their dependencies and acceptance criteria.
+Agent-assisted drafting is available today. The roadmap covers a versioned cross-media document format, repeatable source-revision checks, commercial claim tracing and author trials. [Roadmap](ROADMAP.md) · [Narrative backlog](TASKS.md#cross-media-narrative-backlog)
 
 ## Architecture and contributions
 
-The workspace contains four crates. `storytelling-core` defines wire types and exact rational time. `storytelling-engine` validates, plans and exports in memory. `storytelling-cli` owns file and stdin access, stdout and exit codes. `storytelling-journal` provides a durable SQLite operation log and owner fencing; its bounded M3-02 storage slice is merged in PR #56. A test-only integration harness exercises FilmCraft against a fresh project, but the journal crate and product CLI still grant no editor execution authority. [Architecture](docs/ARCHITECTURE.md) · [Wire and CLI contracts](docs/CONTRACTS.md)
+The portable skill lives in `.agents/skills/storytelling/`. The Rust workspace contains four crates. `storytelling-core` owns wire types and exact time, `storytelling-engine` owns in-memory planning and validation, `storytelling-cli` handles process I/O, and `storytelling-journal` provides a durable SQLite operation log. [Architecture](docs/ARCHITECTURE.md)
 
-Pick a [task](TASKS.md), check [open pull requests](https://github.com/bynanci/storytelling/pulls) and connect the change to its [requirements](docs/REQUIREMENTS.md). The [contribution guide](CONTRIBUTING.md) lists the local checks, and the [SDLC](docs/SDLC.md) explains when a change is ready for implementation, review or release. Use a synthetic example when reporting a [bug](https://github.com/bynanci/storytelling/issues/new/choose). For sensitive reports, follow the [security policy](SECURITY.md).
+Contributions from other domains and agent clients are welcome. For a new workflow, include a small synthetic request, the expected output and how a contributor can check it. For a compatibility report, include the client, version, installation location and what you observed. Consult the [contribution guide](CONTRIBUTING.md), [open tasks](TASKS.md), [requirements](docs/REQUIREMENTS.md) and [development process](docs/SDLC.md). [Report an issue](https://github.com/bynanci/storytelling/issues/new/choose) · [Security policy](SECURITY.md)
 
 ## License
 
-Original project code and documentation use the [MIT License](LICENSE). OpenFilm-informed components identified in the [per-file provenance records](PROVENANCE.md) use [Apache-2.0](LICENSES/Apache-2.0.txt) with the retained [upstream notice](NOTICE.openfilm).
+The portable skill includes its [MIT license](.agents/skills/storytelling/LICENSE). Original project code and documentation use the [MIT License](LICENSE). Identified OpenFilm-informed components use [Apache-2.0](LICENSES/Apache-2.0.txt) with a retained [upstream notice](NOTICE.openfilm). [Per-file provenance](PROVENANCE.md)
