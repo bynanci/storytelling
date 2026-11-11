@@ -1,9 +1,9 @@
 <!-- SPDX-License-Identifier: MIT -->
 # N-06 / N-R06 · Format discovery
 
-**Issue:** [#53](https://github.com/bynanci/storytelling/issues/53)  
+**Issue:** [#53](https://github.com/bynanci/storytelling/issues/53)
 **Stage:** SDLC G0–G2 comparison complete; requester decision is to defer all three native profiles.
-**Shared case:** the synthetic two-neighbor shared-door repair in [N-01](../narrative/N-01-AUTHOR-STUDY.md) and the N-04 revision ledger.  
+**Shared case:** the synthetic two-neighbor shared-door repair in [N-01](../narrative/N-01-AUTHOR-STUDY.md) and the N-04 revision ledger.
 **Evidence boundary:** this packet is a design comparison with a recorded requester deferral. No task session or timed trial has been run; the task-observation fields below remain blank.
 
 ## Shared material and comparison prompts
