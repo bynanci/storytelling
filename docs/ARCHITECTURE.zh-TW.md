@@ -79,6 +79,8 @@ N-04 以 `NarrativeDocumentV1` 為初始快照。另以 `NarrativeRevisionLedger
 `based_on` 記錄衍生關係。間接影響仍須由作者檢查。
 [修訂紀錄契約](narrative/NARRATIVE_REVISION_LEDGER_V1.md) · [N-04 驗證](validation/n04-narrative-revisions.md)
 
+N-11 在原有修訂簿外新增獨立的 `NarrativeHandoffManifestV1`。Core 定義 wire 型別；純引擎將目前來源描述與完整產物部分對照綁定實際變體快照，沿用 N-04 的直接引用影響，對整個綁定快照檢查提案範圍，並分列歷史影響與目前審閱狀態。CLI 讀取明確指定的清單並輸出可重播文字。路徑與摘要只是宣告，不開啟媒體。[ADR 0009](adr/0009-read-only-mixed-media-handoff.md) · [規格](narrative/NARRATIVE_HANDOFF_MANIFEST_V1.zh-TW.md) · [證據](validation/n11-handoff.md)
+
 敘事輸入獨立於媒體雜湊、來源區間及幀率。
 後續影片轉接器可將所選單元連到明確素材，再經公開契約呼叫規劃器。
 保留影片 V1 輸入、CLI 行為、摘要向量與 OTIO 測試資料作回歸檢查。
@@ -178,6 +180,7 @@ M3-03 須證明舊請求已停止，才能將宿主讀回用作重試依據。
 - [ADR 0002](adr/0002-exact-time-and-wire.md) 記錄時間與傳輸限制。
 - [ADR 0003](adr/0003-license-and-provenance.md) 記錄儲存庫授權與來源。
 - [ADR 0008](adr/0008-local-png-host-feasibility.md) 提議 N-12 本機 PNG 交付邊界，保留獨立宿主與讀回證據。
+- [ADR 0009](adr/0009-read-only-mixed-media-handoff.md) 提議沿用修訂簿的唯讀交接清單。
 
 <a id="accepted-fixed-window-planner"></a>
 

@@ -1,0 +1,152 @@
+[
+  {
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "exit": 0
+  },
+  {
+    "command": [
+      "cargo",
+      "clippy",
+      "--workspace",
+      "--all-targets",
+      "--locked",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit": 0
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "--workspace",
+      "--locked"
+    ],
+    "exit": 0
+  },
+  {
+    "command": [
+      "cargo",
+      "test",
+      "--workspace",
+      "--release",
+      "--locked"
+    ],
+    "exit": 0
+  },
+  {
+    "command": [
+      "cargo",
+      "doc",
+      "--workspace",
+      "--no-deps",
+      "--locked"
+    ],
+    "exit": 0
+  },
+  {
+    "command": [
+      "python3",
+      "scripts/check_repo.py"
+    ],
+    "exit": 0
+  },
+  {
+    "command": [
+      "python3",
+      "scripts/test_storytelling_graph_plan.py"
+    ],
+    "exit": 0
+  },
+  {
+    "command": [
+      "python3",
+      "scripts/test_storytelling_graph_trace.py"
+    ],
+    "exit": 0
+  },
+  {
+    "command": [
+      "python3",
+      "tests/oracles/filmcraft-25-v1/test_checks.py"
+    ],
+    "exit": 0
+  },
+  {
+    "command": [
+      "python3",
+      "scripts/test_skill_distribution.py"
+    ],
+    "exit": 0
+  },
+  {
+    "command": [
+      "bash",
+      "scripts/test_skills_cli.sh"
+    ],
+    "exit": 0
+  },
+  {
+    "command": [
+      "python3",
+      "tests/oracles/openfilm-finite-v1/compare.py",
+      "target/release/storytelling",
+      "--output",
+      "/tmp/n11-openfilm.json"
+    ],
+    "exit": 0
+  },
+  {
+    "command": [
+      "/workspace/.storytelling-env/otio/bin/python",
+      "tests/oracles/otio-finite-v1/verify.py",
+      "target/release/storytelling",
+      "--output",
+      "/tmp/n11-otio.json"
+    ],
+    "exit": 0
+  },
+  {
+    "command": [
+      "/workspace/.storytelling-env/otio/bin/python",
+      "tests/oracles/story-review-v1/verify.py",
+      "target/release/storytelling"
+    ],
+    "exit": 0
+  },
+  {
+    "command": [
+      "python3",
+      "tests/oracles/story-brief-v1/compare.py",
+      "target/release/storytelling",
+      "--output",
+      "/tmp/n11-brief.json"
+    ],
+    "exit": 0
+  },
+  {
+    "command": [
+      "python3",
+      "tests/oracles/fixed-window-planner-v1/compare.py",
+      "target/release/storytelling",
+      "--output",
+      "/tmp/n11-planner.json"
+    ],
+    "exit": 0
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit": 0
+  }
+]

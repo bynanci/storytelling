@@ -9,7 +9,8 @@ use storytelling_engine::{
     OtioLossChoicesV1, audit_story_brief, check_narrative_style_profile, check_review,
     check_story_review, export_openfilm_otio, export_story_otio, import_openfilm_snapshot,
     parse_review_context, plan_story, prepare_review, prepare_story_review, query_narrative_impact,
-    render_narrative, track_narrative_revisions, validate_plan_json, verify_supplied_sha256,
+    render_narrative, render_narrative_handoff, track_narrative_revisions, validate_plan_json,
+    verify_supplied_sha256,
 };
 
 fn emit(value: Value, code: u8) -> ExitCode {
@@ -128,6 +129,76 @@ fn source_refs_text(refs: &[storytelling_engine::NarrativeUnitReferenceV1]) -> S
         .map(|reference| format!("{}@{}", reference.unit_id, reference.revision))
         .collect::<Vec<_>>()
         .join(", ")
+}
+
+fn render_handoff_command(args: &[OsString]) -> ExitCode {
+    if args.len() != 2 || args[1].as_encoded_bytes().starts_with(b"--") {
+        return failure("cli.usage", 2);
+    }
+    let bytes = match read_argument(&args[1], MAX_INPUT_BYTES) {
+        Ok(bytes) => bytes,
+        Err(_) => return failure("input.io", 3),
+    };
+    let projection = match render_narrative_handoff(&bytes) {
+        Ok(projection) => projection,
+        Err(error) => return emit(json!({"ok": false, "error": error}), 1),
+    };
+    use std::fmt::Write as _;
+    let mut output = String::new();
+    let quoted = |value: &str| serde_json::to_string(value).expect("strings serialize");
+    let _ = writeln!(output, "Handoff: {} (schema v1)", projection.manifest_id);
+    let _ = writeln!(output, "Narrative: {}", projection.document_id);
+    let change = &projection.change;
+    let _ = writeln!(
+        output,
+        "Change: {} · {}@{} -> {}@{}",
+        change.id,
+        change.unit_id.as_deref().unwrap_or("unknown"),
+        change.from_revision.unwrap_or_default(),
+        change.unit_id.as_deref().unwrap_or("unknown"),
+        change.to_revision.unwrap_or_default()
+    );
+    for source in projection.sources {
+        let _ = writeln!(
+            output,
+            "Source {}@{} [{}] {}",
+            source.unit_id,
+            source.revision,
+            source.representation,
+            quoted(&source.detail)
+        );
+        let _ = writeln!(output, "   Source text: {}", quoted(&source.source_text));
+    }
+    for artifact in projection.artifacts {
+        let _ = writeln!(
+            output,
+            "\nArtifact {} · variant={}@{} · status={}",
+            artifact.id, artifact.variant_id, artifact.variant_revision, artifact.status
+        );
+        let _ = writeln!(
+            output,
+            "   {} [{}]: {}",
+            quoted(&artifact.name),
+            artifact.medium,
+            quoted(&artifact.content)
+        );
+        for component in artifact.components {
+            let action = if component.affected {
+                "UPDATE"
+            } else {
+                "REUSE"
+            };
+            let _ = writeln!(
+                output,
+                "{action} {}/{} · draft -> current source: {}",
+                artifact.id,
+                component.id,
+                component.references.join(", ")
+            );
+        }
+    }
+    output.push_str("\nImpact is historical direct-reference impact; status shows whether the draft still needs review.\nScope: declarations only; no source files are opened or rewritten.\n");
+    text(&output)
 }
 
 fn render_revision_report(report: &NarrativeRevisionReportV1) -> String {
@@ -387,6 +458,12 @@ fn main() -> ExitCode {
     let args: Vec<_> = std::env::args_os().skip(1).collect();
     if args
         .first()
+        .is_some_and(|arg| arg == OsStr::new("render-handoff"))
+    {
+        return render_handoff_command(&args);
+    }
+    if args
+        .first()
         .is_some_and(|arg| arg == OsStr::new("render-narrative"))
     {
         return render_narrative_command(&args);
@@ -521,7 +598,7 @@ fn main() -> ExitCode {
     match command {
         Some(value) if value == OsStr::new("--help") && args.len() == 1 => {
             return text(
-                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\n       storytelling plan-story <FILE|->\n       storytelling render-narrative <FILE|->\n       storytelling track-narrative-revisions <FILE|->\n       storytelling query-narrative-impact <FILE|-> <CHANGE_ID>\n       storytelling check-narrative-style <DOCUMENT_FILE|-> <PROFILE_FILE|->\n       storytelling prepare-story-review <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling export-story-otio <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling check-story-review <REVIEW_BUNDLE> <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling prepare-review <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling check-review <REVIEW_RECORD> <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling verify-source <FILE|-> <SHA256>\nRead-only metadata, interchange and declared review identity; no editor execution.\n",
+                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\n       storytelling plan-story <FILE|->\n       storytelling render-narrative <FILE|->\n       storytelling render-handoff <FILE|->\n       storytelling track-narrative-revisions <FILE|->\n       storytelling query-narrative-impact <FILE|-> <CHANGE_ID>\n       storytelling check-narrative-style <DOCUMENT_FILE|-> <PROFILE_FILE|->\n       storytelling prepare-story-review <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling export-story-otio <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling check-story-review <REVIEW_BUNDLE> <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling prepare-review <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling check-review <REVIEW_RECORD> <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling verify-source <FILE|-> <SHA256>\nRead-only metadata, interchange and declared review identity; no editor execution.\n",
             );
         }
         Some(value) if value == OsStr::new("--version") && args.len() == 1 => {

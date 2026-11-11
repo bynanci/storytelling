@@ -1,0 +1,36 @@
+Handoff: umbrella-descriptions-only (schema v1)
+Narrative: umbrella-workshop-handoff
+Change: date-to-sunday · S1@1 -> S1@2
+Source S1@2 [description] "text · supplied description: 週日舉辦修傘工作坊，請帶一把傘。（僅提供文字描述；原始素材檔未交付。）"
+   Source text: "週日舉辦修傘工作坊，請帶一把傘。"
+Source S2@1 [missing] "image pending: 原始圖檔待補；仍有作者圖說可供構圖。"
+   Source text: "作者提供的工作檯示意圖說：左側折起的藍傘，右側赭黃色線軸。"
+Source S3@1 [transcript] "supplied transcript; underlying recording not inspected: 作者提供的非語音標註：敲擊、停頓、敲擊。原始錄音未提供。"
+   Source text: "作者提供的聲音描述：兩聲合成敲擊，中間停頓，沒有語音。"
+Source C1@1 [creative_proposal] "variant-only poster: 海報專用提案：把活動文字放在兩個物件中間的留白。"
+   Source text: "海報專用提案：把活動文字放在兩個物件中間的留白。"
+
+Artifact invite · variant=invite@1 · status=needs_review
+   "邀請文字" [text]: "[S1] 週六修傘，請帶一把傘來。"
+UPDATE invite/text · draft -> current source: S1@1 -> S1@2
+
+Artifact poster · variant=poster@1 · status=needs_review
+   "海報日期與構圖" [image]: "週六修傘工作坊，請帶一把傘。左側保留折起的藍傘，右側保留赭黃色線軸；C1 僅為本海報的排字提案，文字置於中間留白。"
+UPDATE poster/date · draft -> current source: S1@1 -> S1@2
+REUSE poster/layout · draft -> current source: S2@1 -> S2@1, C1@1 -> C1@1
+
+Artifact oral-info · variant=oral-info@1 · status=needs_review
+   "直接告知口述" [text]: "[S1] 週六是修傘工作坊，請帶一把傘。"
+UPDATE oral-info/date · draft -> current source: S1@1 -> S1@2
+
+Artifact oral-poetic · variant=oral-poetic@1 · status=needs_review
+   "意象口述" [text]: "[S3] 先播放兩聲合成敲擊，停一拍。\n[S1] 週六，把一把傘帶來修傘工作坊。"
+REUSE oral-poetic/taps · draft -> current source: S3@1 -> S3@1
+UPDATE oral-poetic/date · draft -> current source: S1@1 -> S1@2
+
+Artifact original-wav · variant=sound-source@1 · status=current
+   "原始合成敲擊 WAV" [audio]: "[S3] 原始 WAV 是兩聲合成敲擊，沒有語音。"
+REUSE original-wav/audio · draft -> current source: S3@1 -> S3@1
+
+Impact is historical direct-reference impact; status shows whether the draft still needs review.
+Scope: declarations only; no source files are opened or rewritten.

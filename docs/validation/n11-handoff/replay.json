@@ -1,0 +1,6 @@
+{
+  "repeat_exit": 0,
+  "stdin_exit": 0,
+  "repeat_byte_equal": true,
+  "stdin_byte_equal": true
+}

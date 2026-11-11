@@ -1,0 +1,143 @@
+{
+  "before": {
+    "command": [
+      "target/release/storytelling",
+      "render-handoff",
+      "tests/fixtures/narrative-handoff-v1/before-v1.json"
+    ],
+    "exit": 0,
+    "stderr_bytes": 0
+  },
+  "after": {
+    "command": [
+      "target/release/storytelling",
+      "render-handoff",
+      "tests/fixtures/narrative-handoff-v1/after-v1.json"
+    ],
+    "exit": 0,
+    "stderr_bytes": 0
+  },
+  "descriptions-only": {
+    "command": [
+      "target/release/storytelling",
+      "render-handoff",
+      "tests/fixtures/narrative-handoff-v1/descriptions-only-v1.json"
+    ],
+    "exit": 0,
+    "stderr_bytes": 0
+  },
+  "transcript-missing": {
+    "command": [
+      "target/release/storytelling",
+      "render-handoff",
+      "tests/fixtures/narrative-handoff-v1/transcript-missing-v1.json"
+    ],
+    "exit": 0,
+    "stderr_bytes": 0
+  },
+  "missing-source": {
+    "command": [
+      "target/release/storytelling",
+      "render-handoff",
+      "tests/fixtures/narrative-handoff-v1/missing-source-v1.json"
+    ],
+    "exit": 1,
+    "stderr_bytes": 0
+  },
+  "stale-revision": {
+    "command": [
+      "target/release/storytelling",
+      "render-handoff",
+      "tests/fixtures/narrative-handoff-v1/stale-revision-v1.json"
+    ],
+    "exit": 1,
+    "stderr_bytes": 0
+  },
+  "proposal-leak": {
+    "command": [
+      "target/release/storytelling",
+      "render-handoff",
+      "tests/fixtures/narrative-handoff-v1/proposal-leak-v1.json"
+    ],
+    "exit": 1,
+    "stderr_bytes": 0
+  },
+  "n04-shared": {
+    "command": [
+      "target/release/storytelling",
+      "query-narrative-impact",
+      "tests/fixtures/narrative-v1/n04-revision-history-v1.json",
+      "shared-observation-change"
+    ],
+    "exit": 0,
+    "stderr_bytes": 0
+  },
+  "n04-local": {
+    "command": [
+      "target/release/storytelling",
+      "query-narrative-impact",
+      "tests/fixtures/narrative-v1/n04-revision-history-v1.json",
+      "b-only-detail-change"
+    ],
+    "exit": 0,
+    "stderr_bytes": 0
+  },
+  "date-impact": {
+    "command": [
+      "target/release/storytelling",
+      "query-narrative-impact",
+      "tests/fixtures/narrative-handoff-v1/date-ledger-v1.json",
+      "date-to-sunday"
+    ],
+    "exit": 0,
+    "stderr_bytes": 0
+  },
+  "verify-S1": {
+    "command": [
+      "target/release/storytelling",
+      "verify-source",
+      "tests/fixtures/narrative-handoff-v1/notice-after.txt",
+      "5caa7157d447c04095747a6d17168436ee892c644aae2cc874f5dcf8874a1034"
+    ],
+    "exit": 0,
+    "stderr_bytes": 0
+  },
+  "verify-S2": {
+    "command": [
+      "target/release/storytelling",
+      "verify-source",
+      "skills/storytelling/assets/umbrella-workshop/bench.svg",
+      "87687584b8f4d01360feea9fbf84e510560f44c745a5973e001e55c01a35d1c9"
+    ],
+    "exit": 0,
+    "stderr_bytes": 0
+  },
+  "verify-S3": {
+    "command": [
+      "target/release/storytelling",
+      "verify-source",
+      "skills/storytelling/assets/umbrella-workshop/taps.wav",
+      "4008e27e4c94376747a887df8d873820e4ab88e668816f79ddca5c9d69bb202b"
+    ],
+    "exit": 0,
+    "stderr_bytes": 0
+  },
+  "repeat": {
+    "command": [
+      "target/release/storytelling",
+      "render-handoff",
+      "tests/fixtures/narrative-handoff-v1/before-v1.json"
+    ],
+    "exit": 0,
+    "stderr_bytes": 0
+  },
+  "stdin": {
+    "command": [
+      "target/release/storytelling",
+      "render-handoff",
+      "-"
+    ],
+    "exit": 0,
+    "stderr_bytes": 0
+  }
+}

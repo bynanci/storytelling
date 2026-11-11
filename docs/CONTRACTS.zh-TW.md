@@ -15,6 +15,7 @@
 | `audit-brief` | StoryBrief v1 JSON，1,048,576 | `{"ok":true,"audit":...}` | [創作需求檢查](migration/STORY_BRIEF_V1.md) |
 | `plan-story` | 含固定時間窗的規劃輸入 JSON，1,048,576 | `{"ok":true,"planning":...}` | [固定時間窗規劃器](migration/FIXED_WINDOW_PLANNER_V1.md) |
 | `render-narrative` | NarrativeDocumentV1 JSON，1,048,576 | 內容固定、可直接閱讀的 UTF-8 文字。錯誤時輸出一行 JSON。 | [敘事文件](narrative/NARRATIVE_DOCUMENT_V1.md) |
+| `render-handoff` | NarrativeHandoffManifestV1 JSON，1,048,576 | 可重播的來源清單、部分影響與審閱狀態；錯誤為一行 JSON。 | [交接清單](narrative/NARRATIVE_HANDOFF_MANIFEST_V1.zh-TW.md) |
 | `track-narrative-revisions` | NarrativeRevisionLedgerV1 修訂紀錄 JSON，1,048,576 | 可重跑的來源與變體歷史、建議、作者選擇及目前的審閱狀態 | [敘事修訂紀錄](narrative/NARRATIVE_REVISION_LEDGER_V1.md) |
 | `query-narrative-impact` | 相同的修訂紀錄，另附一個來源修訂事件 ID | 依直接參照計算該次修訂所影響的變體 | [敘事修訂紀錄](narrative/NARRATIVE_REVISION_LEDGER_V1.md) |
 | `check-narrative-style` | NarrativeDocumentV1 與 NarrativeStyleProfileV1 JSON，各 1,048,576 位元組 | `{"ok":true,"style_check":...}`；錯誤時退出 1。 | [風格 profile V1（英文）](narrative/EDITORIAL_STYLE_PROFILE_V1.md) |
@@ -63,6 +64,7 @@ JSON 回應只佔一行。說明與版本資訊使用純文字。
 下列敘事命令成功時輸出可重跑的 UTF-8 純文字：
 
 - `render-narrative`
+- `render-handoff`
 - `track-narrative-revisions`
 - `query-narrative-impact`
 
