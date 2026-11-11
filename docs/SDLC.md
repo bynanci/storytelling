@@ -1,84 +1,101 @@
-# 從需求到維運的開發流程
+# Software development lifecycle
 
-本專案以軟體開發生命週期（SDLC）管理變更。每次交付一項能獨立使用、審閱與驗證的成果。路線圖安排交付順序。工作清單定義範圍。需求表將需求連到測試與證據。[路線圖](../ROADMAP.md) · [工作清單](../TASKS.md) · [需求表](REQUIREMENTS.md)
+<a name="sdlc-從需求到維運的交付規則"></a>
+<a id="從需求到維運的開發流程"></a>
 
-## 階段與放行門檻
+English · [繁體中文](SDLC.zh-TW.md)
 
-| 階段 | 必要產物 | 通過條件 | 負責角色 |
+Each change must deliver a result someone can use, review and test independently. The [roadmap](../ROADMAP.md) sets the delivery order. The [task list](../TASKS.md) defines the scope. The [requirements](REQUIREMENTS.md) connect each requirement to its tests and evidence.
+
+<a id="階段與放行門檻"></a>
+
+## Development gates
+
+| Gate | Required evidence | Exit condition | Owner |
 | --- | --- | --- | --- |
-| G0 · 界定問題 | 使用情境、成功指標與範圍外項目 | 寫出使用者可取得的結果。檢查現有功能是否已涵蓋需求。 | 產品負責人、維護者 |
-| G1 · 分析需求 | 需求編號、驗收案例、風險與相依條件 | 區分必要條件與偏好。缺少資料時，標示受阻的項目。 | 維護者、工程師 |
-| G2 · 設計架構 | 架構決策紀錄、資料格式或 API、權威資料來源與故障情境 | 邊界可以測試。設計須涵蓋遷移、核准及安全條件。 | 工程師、審閱者 |
-| G3 · 實作 | 範圍明確的分支、合併請求與測試紀錄 | 先觀察測試失敗，再執行修改後的測試。交付一項可用成果。保留既有來源資料與權限。 | 實作者 |
-| G4 · 驗證 | 同一提交的單元、契約、整合測試及持續整合結果。另附差異審查。 | 解決阻礙正確性的問題。另記人工驗收結果。 | 審閱者、維護者 |
-| G5 · 發布 | 相容性矩陣、版本、依賴、軟體物料清單（SBOM）、遷移與回退說明 | 驗證全部發布範圍。取得維護者對本次發布的明確核准。 | 維護者 |
-| G6 · 維運 | 缺陷與重現資料、使用結果、安全通報與平台版本差異 | 遇到重大缺陷時，先限制影響。將回饋納入下一輪 G0 或 G1。 | 維護者、使用者 |
+| G0 · Define the problem | Use case, success measure and exclusions. | State the result the user needs. Check existing features for overlap. | Product owner and maintainer |
+| G1 · Define the requirement | Requirement ID, acceptance examples, risks and dependencies. | Separate mandatory conditions from preferences. Identify blocked work and missing data. | Maintainer and engineer |
+| G2 · Design the change | Architecture decision, schema or API, data owner and failure cases. | Define testable boundaries. Address migration, approval and security. | Engineer and reviewer |
+| G3 · Implement | A focused branch, pull request (PR) and test record. | Observe a failing test before the change. Run it after the change. Preserve existing source data and permissions. | Implementer |
+| G4 · Check the result | Unit, contract and integration tests, CI and a review of the changes. | Run all checks on the same commit. Resolve correctness blockers. Record manual acceptance separately. | Reviewer and maintainer |
+| G5 · Release | Compatibility matrix, versions, dependencies, software bill of materials (SBOM), migration and rollback instructions. | Test the complete release scope. Obtain explicit maintainer approval for this release. | Maintainer |
+| G6 · Maintain | Defects, reproductions, usage results, security advisories and host changes. | Limit the impact of serious defects. Add findings to the next G0 or G1. | Maintainer and users |
 
-同一人可兼任多個角色。自行審閱與獨立審閱分別記錄。AI 助理只記錄實際的人工核准。開發者來源證明（DCO）由簽署者本人提供。
+One person can hold several roles. Identify self-review and independent review separately. An AI assistant can record human approval only when a person gives it. Only the signer can provide a Developer Certificate of Origin (DCO).
 
-合併須有使用者明確授權，並通過同一提交的必要檢查。既有授權允許合併完成且驗證通過的變更，再勾選對應任務。人工剪輯驗收仍需另外記錄。發布、建立標籤、變更儲存庫政策或分支規則各需明確授權。[授權與交付紀錄](../TASKS.md#accepted-lifecycle)
+A merge requires explicit user authorization and passing checks for the exact PR head. The existing authorization covers merging completed, verified work and marking its task complete. Human editorial acceptance requires its own record. Releases, tags, repository policies and branch rules each need explicit authorization. See the [delivery and authorization record](../TASKS.md#accepted-lifecycle).
 
-## 工作狀態
+<a id="工作狀態"></a>
+
+## Work states
 
 `proposed → ready → in-progress → review → verified → accepted`
 
-工作受阻時標記 `blocked`。列出原因、負責人、解除條件與證據。分別記錄實作、自動驗證、待人工驗收與發布狀態。
+Mark blocked work as `blocked`. Record its cause, owner, evidence and condition for resuming. Track implementation, automated verification, pending manual acceptance and release separately.
 
-<a name="definition-of-ready"></a>
+<a id="開始工作的條件"></a>
 
-## 開始工作的條件
+## Definition of ready
 
-建立合併請求（PR）前，先確認工作範圍。
+Before the PR, record the following information.
 
-1. 選定工作編號。寫出使用者可取得的結果。
-2. 列出範圍內與範圍外的項目。
-3. 記錄基準提交識別碼（base SHA）。列出相依條件與資料契約。
-4. 訂定驗收測試與可獨立審閱的 PR 範圍。
-5. 說明相容性、隱私與安全影響。
+1. Select a task ID. Describe the result for the user.
+2. Define the scope and exclusions.
+3. Record the base commit SHA, dependencies and data contract.
+4. Define the acceptance tests. Limit the PR to work that reviewers can assess independently.
+5. Describe compatibility, privacy and security effects.
 
-若缺少素材、執行平台或簽署者身分，請標示受阻的門檻。列出所需證據。
+If media, a host or a signer identity is missing, mark the affected gate as blocked. Identify the missing evidence.
 
-<a name="definition-of-done"></a>
+<a id="完成工作的條件"></a>
 
-## 完成工作的條件
+## Definition of done
 
-1. 連結每項需求、實作與對應測試。
-2. 記錄測試實際失敗的結果（RED）。修改後執行測試，記錄通過的結果（GREEN）。
-3. 檢查 PR 目前提交的持續整合（CI）結果。所有必要檢查都須完成並通過。
-4. 核對檔案、來源、計畫與修訂版的識別資訊。驗證失敗路徑符合契約。
-5. 更新文件與風險。處理審閱發現的問題。
+1. Link each requirement to its implementation and tests.
+2. Record the observed failure before implementation (RED). Record the passing result after the change (GREEN).
+3. Read all required continuous integration (CI) results for the current PR head. Each required check must finish and pass.
+4. Check file, source, plan and revision identities. Exercise the failure paths in the contract.
+5. Update the documentation and risk record. Resolve review findings.
 
-需要實際平台、聽感或乾淨機器的項目，應保存實測觀察。若缺少這些觀察，只能驗收已驗證的範圍。發布另依 G5 辦理。
+Save observations for checks that need a real host, listening session or clean machine. Accept only the tested scope when observations are missing. G5 governs publication.
 
-<a name="pr-規則"></a>
+<a id="提交合併請求"></a>
+<a id="pr-規則"></a>
 
-## 提交合併請求
+## Submit a pull request
 
-每個 PR 交付一項成果。資料格式或時間規則變更時，先確定契約，再同步開發。請在 PR 列出以下內容。
+Deliver one coherent result per PR. Freeze schema or time contracts before parallel implementation. Include the following details.
 
-- 工作編號與需求編號。
-- 基準提交（base）與送審提交（head）的識別碼。
-- 變更理由、相容性、限制與回退方式。
-- 測試命令、結果與目前提交通過的證據。
+- Task and requirement IDs.
+- Base and head commit SHAs.
+- Reason for the change, compatibility, limits and rollback steps.
+- Test commands, results and evidence for the head commit.
 
-送審提交變更後，須重新檢查該提交。測試先行的失敗提交可作為 RED 證據。發布仍以通過 G5 的版本為準。
+Run new checks after any change to the head commit. A failing test-first commit can serve as RED evidence. Only candidates that meet G5 qualify for publication.
 
-初期準備工作只取得建立分支與 PR 的授權。後續的合併授權與實際交付另載於工作清單。請依目前任務適用的授權執行。[歷次授權與交付](../TASKS.md#accepted-lifecycle)
+The initial preparation authorization covered branches and PRs. The task history records later merge authority and deliveries. Apply the authorization for the current task. See the [authorization history](../TASKS.md#accepted-lifecycle).
 
-<a name="ci-與真正的治理"></a>
+<a id="持續整合與儲存庫政策"></a>
+<a id="ci-與真正的治理"></a>
 
-## 持續整合與儲存庫政策
+## CI and repository policy
 
-CI 的 `Required gates` 彙總品質檢查、依賴稽核與三個平台的 Rust 測試。平台包括 Linux、Windows 與 macOS。工作流程使用唯讀權限。checkout 步驟固定使用指定提交。格式化若改動程式碼，檢查即失敗。[CI 工作流程](../.github/workflows/ci.yml)
+The `Required gates` job combines quality checks, dependency audit and Rust tests on Linux, Windows and macOS. The workflow uses read-only permissions and a pinned checkout commit. Formatting changes cause the check to fail. See the [CI workflow](../.github/workflows/ci.yml).
 
-分支保護由管理者核准與設定。請記錄儲存庫實際採用的審閱政策。只有一位維護者時，以可執行的方式安排審閱。敏感變更保留人工決策。自動核准不能代替真人審閱。
+An administrator must authorize and configure branch protection. Document the review policy that the repository actually uses. A sole maintainer needs a review process they can carry out. Sensitive changes need a human decision. Automatic approval cannot establish human review.
 
-## 變更管理與相容性
+<a id="變更管理與相容性"></a>
 
-公開 Rust API、交換格式、規劃與編譯規則各自管理版本。轉接器與執行平台的支援規格也各自管理版本。變更交換格式時，測試舊版資料與遷移。確認工具拒絕未支援的新版格式。公開檔案不得包含私人路徑、私人媒體、定位資料或憑證。變更授權條款與正式發布都需要維護者明確授權。
+## Compatibility and change control
 
-## 維運
+Version the public Rust API, wire formats, planner and compiler rules separately. Maintain versions for adapters and host profiles. For wire format changes, test old input and migration. Check rejection of unsupported newer versions.
 
-公開問題須附最小合成案例。安全問題依安全政策私下回報。[安全政策](../SECURITY.md)
+Keep private paths, media, location data and credentials out of public files. Obtain explicit maintainer authorization before changing license terms or publishing a release.
 
-新增依賴或執行平台改版時，請重新評估相容性與安全通報。撤回有缺陷的版本時，請保留失敗證據與修復說明。目前尚無正式發布版本。開發期間以事故處理與回退文件作為發布前的檢查項目。安裝測試的結果以實際套件、平台與版本為限。
+<a id="維運"></a>
+
+## Maintenance
+
+Use a minimal synthetic case for public defect reports. Report security issues privately under the [security policy](../SECURITY.md).
+
+When dependencies or hosts change, reassess compatibility and security advisories. Retain the failure evidence and corrective steps when withdrawing a defective release. The project has no formal release. Incident and rollback procedures are release criteria during development. Installation evidence covers only the tested package, platform and version.

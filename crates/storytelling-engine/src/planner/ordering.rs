@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Source-informed ordering policy; provenance-m2-order-opt.json and NOTICE.openfilm.
+// Source-informed ordering policy; provenance-m2-order-opt.json and LICENSES/third-party/NOTICE.txt.
 //! Stable topological ordering by candidate admission position.
 
 use super::error;

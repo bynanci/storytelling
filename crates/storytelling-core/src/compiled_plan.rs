@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Origin/modifications: docs/migration/provenance-m1-02.json; see NOTICE.openfilm.
+// Origin/modifications: docs/migration/provenance-m1-02.json; see LICENSES/third-party/NOTICE.txt.
 //! Explicit finite interchange choices and reports. These do not grant execution authority.
 use crate::compatibility::{ClockFacts, ImportError, ImportLoss};
 use crate::wire::TimeValue;

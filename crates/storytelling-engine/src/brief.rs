@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Source-informed behavior: docs/migration/provenance-m2-01.json; NOTICE.openfilm.
+// Source-informed behavior: docs/migration/provenance-m2-01.json; LICENSES/third-party/NOTICE.txt.
 //! Pure bounded audit of declared brief constraints; no selection or feasibility proof.
 mod cycle;
 

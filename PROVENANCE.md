@@ -1,185 +1,167 @@
-# Provenance
+# Licenses and source records
+
+<a name="provenance"></a>
+
+## Which license applies?
+
+- The portable Skill and the npm package use the MIT license. The package includes the [project license](LICENSE) and the [Skill license](skills/storytelling/LICENSE).
+- Original project code and documentation use MIT, except for files that specify a different license.
+- Some Rust components and tests use [Apache-2.0](LICENSES/Apache-2.0.txt). The file inventories below identify those files and their sources.
+- The [third-party notice](LICENSES/third-party/NOTICE.txt) contains the original attribution for those components. Names in that notice identify the upstream project and its contributors.
+
+The copyright line in both MIT files reads `Copyright (c) 2026 bynanci`. The inventories record the upstream notice with its original Git object ID.
+
+## Repository origin
+
+The repository started at commit `551ff38920e2085e1d53a7ba777c9680678e9725`.
+The original MIT LICENSE has Git object ID `f317799529d13f4d9301daa2dba63dfea559ff69`. The file retains its original bytes.
+
+On 2026-11-07, the OpenAI assistant wrote the initial code, tests and SDLC documents at the maintainer's explicit request.
+GitHub API commits may identify the connected account as the author. The commit messages disclose how the implementation originated.
+These records claim no maintainer Developer Certificate of Origin (DCO) or cryptographic signature.
+
+The Rust architecture proposal from the user informed the scope. It supplied no implementation code.
+The initial work copied no upstream implementation, tests, fonts, private media or model weights.
+M0 and M1-01 use synthetic source declarations and hashes. M1-03 generates synthetic files and records the SHA-256 of their actual bytes.
+
+Cargo 1.85.0 generated `Cargo.lock` in hosted run 42314783329, the initial failing test run (RED).
+The repository retains this lockfile for locked builds and checks. M0 directly depends on `serde` and `serde_json`.
+M1-03 adds the SHA2 dependency described below. The lockfile lists transitive packages.
+Each dependency retains its own license. Review those licenses before distributing binaries.
+
+For each future import, record the origin repository, exact source commit, source path, license, notice, modifications and test evidence.
+Retain attribution when rewriting code in Rust. Assess license compatibility separately for each future port.
 
 ## M3-01/P2 selected proposal / read-only OTIO delivery
 
-The approved Apache component policy covers the bridge, strict planner/audit DTO
-extensions and synthetic regressions/fixtures/official-parser oracle. Its
-[per-file inventory](docs/migration/provenance-m3-planner-review.json) records
-pinned source SHA/path/blob identities and modifications. Original MIT and upstream
-notices stay unchanged; CLI/CI/module wiring and independently authored design/docs
-remain MIT. No upstream code/tests/media or new production dependency is copied.
-The same hash-pinned official OTIO 0.18.1 wheel remains test-only. Source policies
-were inspected statically; the new oracle executes actual native CLI and official
-OTIO, not OpenFilm runtime. Source files selected for this task are unchanged in
-observed upstream main `08e38b6a63a0b0fbcfd3a073c8bfa5dcc8c08224`.
+The approved Apache component policy covers the bridge, strict planner and audit DTO extensions, synthetic regressions and fixtures, and the official-parser test oracle.
+The [per-file inventory](docs/migration/provenance-m3-planner-review.json) records each pinned source commit, path, Git object ID and modification.
+The project retains the original MIT and upstream notices. The CLI, CI and module integration code retain MIT.
+Independently written design documents and other documentation also use MIT.
+The bridge adds no production dependency and copies no upstream code, tests or media.
 
-Implementation and review documentation are AI-authored at the user's request.
-No independent review, maintainer signature, approval grant or release is asserted.
+The test uses the same official OTIO 0.18.1 wheel and checks its pinned hash.
+The source-policy review examined the upstream code without running it. The new oracle runs the native CLI and official OTIO.
+The selected source files matched the pinned versions on upstream main at commit `08e38b6a63a0b0fbcfd3a073c8bfa5dcc8c08224`.
 
-Initial repository base: `551ff38920e2085e1d53a7ba777c9680678e9725`.
-Original LICENSE blob: `f317799529d13f4d9301daa2dba63dfea559ff69` (MIT); unchanged.
-
-The 2026-11-07 bootstrap code, tests and SDLC documents were authored with the OpenAI
-assistant at the maintainer's explicit request. GitHub API commit attribution may
-use the connected account; commit messages disclose the implementation provenance.
-No maintainer DCO or cryptographic signature is asserted on their behalf.
-
-No OpenFilm implementation, tests, fonts, private media or model weights were copied.
-The prior user-provided Rust architecture proposal informed scope, not code lineage.
-M0/M1-01 sample sources/hashes are synthetic declarations. M1-03 separately
-generates real synthetic file bytes and records actual native SHA-256 evidence.
-
-Cargo.lock was generated by Cargo 1.85.0 in the hosted RED baseline run
-42314783329, then retained for locked verification. Direct dependencies are serde
-and serde_json at M0; M1-03 adds the separately reviewed SHA2 dependency below.
-Transitive packages are inventoried by that lockfile. Third-party
-licenses remain their own and require review before binary distribution.
-
-Future imports must add a per-file inventory: origin repository, exact source SHA,
-path, license/notice, modification and test evidence. A Rust rewrite is not a reason
-to erase attribution. No license compatibility conclusion for future ports is made.
+At the user's request, an AI assistant wrote the implementation and review documentation.
+This delivery records no independent review, maintainer signature, approval grant or release.
 
 ## M1-01 finite import component
 
-The maintainer explicitly approved the source-derived component/SPDX/NOTICE policy
-in the 2026-11-07 task conversation. Original MIT LICENSE bytes remain unchanged.
-New source-informed importer contracts, Rust mapper, regression tests and synthetic
-fixtures are marked Apache-2.0; core/engine package metadata records
-`MIT AND Apache-2.0`. Existing integration files remain MIT. No maintainer DCO or
-cryptographic signature is asserted.
+On 2026-11-07, the maintainer approved the policy for source-derived components, SPDX identifiers and notices in the task conversation.
+The project retains the original MIT LICENSE bytes. The new importer contracts, Rust mapper, regression tests and synthetic fixtures use Apache-2.0.
+The core and engine packages declare `MIT AND Apache-2.0`. Existing integration files retain MIT.
+The record claims no maintainer DCO or cryptographic signature.
 
-The [per-file inventory](docs/migration/provenance-m1-01.json) records pinned
-OpenFilm repository/SHA/path/blob, target files, relationship and modifications.
-The original upstream [LICENSE](LICENSES/Apache-2.0.txt) and
-[NOTICE](NOTICE.openfilm) are retained verbatim, including historical and third-party
-attribution. Production mapping was newly written from inspected source contracts;
-no upstream implementation or test fixture was mechanically copied. Test-only
-oracle outputs use independently authored synthetic inputs. Their dependencies
-retain their own licenses; the lockfile is not a relicense of third-party packages.
+The [per-file inventory](docs/migration/provenance-m1-01.json) identifies the upstream repository, commit, path and Git object for each source.
+It identifies the target files, their relationship to the upstream files and the modifications.
+The project retains the original upstream [LICENSE](LICENSES/Apache-2.0.txt) and [NOTICE](LICENSES/third-party/NOTICE.txt) verbatim, including historical and third-party attribution.
 
-No private media, fonts, model weights or user project files were imported.
-M1-01 source hashes inside fixtures are fabricated declarations. Real media/host
-verification, binary distribution and downstream notice review remain separate gates.
+The authors wrote the production mapper after inspecting the source contracts. They did not mechanically copy any upstream implementation or test fixture.
+The test oracle uses independently written synthetic inputs. Its dependencies retain their own licenses. The lockfile records those dependencies without changing their licenses.
+
+This work imported no private media, fonts, model weights or user project files.
+M1-01 fixtures declare synthetic source hashes. Real media and host checks, binary distribution and downstream notice review have separate acceptance gates.
 
 ## M1-02 finite interchange component
 
-The inherited approved Apache component policy also covers newly authored OTIO
-contracts, pure serializer/content-clock helper and synthetic regressions/oracles.
-See [per-file inventory](docs/migration/provenance-m1-02.json). Original MIT and
-retained OpenFilm license/notice blobs remain unchanged. No production dependency
-is added and Cargo.lock is unchanged.
+The approved Apache component policy covers the new OTIO contracts, pure serializer, content-clock helper, synthetic regressions and oracles.
+The [per-file inventory](docs/migration/provenance-m1-02.json) identifies the files. The MIT license and the upstream license and notice retain their original bytes.
+This work added no production dependency and made no change to `Cargo.lock`.
 
-Official OpenTimelineIO 0.18.1 (including its native extensions) is a test-only
-oracle, pinned by the CPython 3.12 Linux wheel SHA. The official setup-python CI
-action is pinned to full commit; interpreter ABI is 3.12 and actual versions are
-recorded in evidence. Downloaded dependency licenses remain their own, outside
-the first-party Apache inventory; no wheel, node_modules or host binary is vendored.
+The tests use official OpenTimelineIO 0.18.1 and its native extensions as an oracle.
+The tests pin the SHA of the Linux wheel for CPython 3.12. CI pins the official setup-python action to a full commit.
+The interpreter ABI is 3.12. The evidence records the actual versions.
+Downloaded dependencies retain their own licenses outside the first-party Apache inventory. The repository bundles no wheel, node_modules directory or host executable.
 
 ## M2-01 source-informed brief audit
 
-The same approved component policy covers the independently authored StoryBrief
-DTOs, pure audit, regressions and synthetic source-policy oracle. The
-[M2-01 inventory](docs/migration/provenance-m2-01.json) records each Apache-2.0
-file and pinned source paths/blobs. Original MIT integration wiring remains
-separately listed. No implementation, upstream tests or media were copied.
-Typed brief conflicts and soft preferences are downstream design; the actual
-source comparison covers ten selected hard-constraint policies only. See the
-[comparison record](docs/migration/records/M2-01.md).
+The approved component policy covers the independently written StoryBrief DTOs, pure audit, regression tests and synthetic source-policy oracle.
+The [M2-01 inventory](docs/migration/provenance-m2-01.json) identifies each Apache-2.0 file and the pinned source paths and Git objects.
+It lists the original MIT integration code separately.
+The authors copied no upstream implementation, tests or media. This project defines the typed brief conflicts and soft preferences.
+The [comparison record](docs/migration/records/M2-01.md) covers ten selected upstream policies for hard constraints.
 
 ## M1-03 bounded verification and real host test
 
-The pure supplied-buffer component and test-only host harness are separately
-Apache-2.0/SPDX with [per-file origin](docs/migration/provenance-m1-03.json).
-The original MIT LICENSE and retained OpenFilm notices remain byte-identical.
-No upstream tests, media, FilmCraft source, SDK or executable is vendored.
-FilmCraft is an external official test-only MIT OR Apache-2.0 executable.
-Exact SHA2 0.10.9 and its actual locked archive/license closure are reviewed in
-[dependency decision](docs/migration/DEPENDENCY_REVIEW_M1_03.md).
-Actual generated synthetic media and native/host/output identities belong in
-[the proof record](docs/migration/records/M1-03.md), not the earlier declared-only
-fixtures. Native receipts prove supplied immutable bytes, not future files or
-host/approval authority.
+The pure component that checks supplied buffers and the test-only host harness carry Apache-2.0 SPDX identifiers.
+The [per-file inventory](docs/migration/provenance-m1-03.json) records their origins. The original MIT LICENSE and the upstream notices retain their original bytes.
+The repository bundles no upstream tests or media. It also excludes the FilmCraft source, SDK and executable.
+The tests use the official FilmCraft executable as an external tool. Its license is `MIT OR Apache-2.0`.
 
+The [dependency decision](docs/migration/DEPENDENCY_REVIEW_M1_03.md) covers SHA2 version 0.10.9 and the complete set of locked dependency archives and licenses.
+The [proof record](docs/migration/records/M1-03.md) identifies the generated synthetic media and the native, host and output identities.
+Earlier fixtures contain declarations only. Native receipts establish the identity of the immutable bytes supplied to the component.
+They make no claim about future files, host authority or approval authority.
 
 ## M2-02/O2 private exact-time construction optimisation
 
-The 2026-11-08 follow-up retains the accepted component policy and fixed source
-baseline. The new exact-clock regression/benchmark module, including the prior
-downstream Rust factory as a test-only baseline, is covered by
-[its inventory](docs/migration/provenance-m2-clock-opt.json). Modified existing
-planner/clock/integration files remain in the M2-02 inventory. No upstream code,
-tests or media, dependency or notice change is introduced. Task/requirements and
-benchmark evidence documentation is independently authored MIT. Self-review
-does not assert independent M3 G2 approval or a maintainer signature.
+The 2026-11-08 change retained the accepted component policy and the fixed source baseline.
+The [inventory](docs/migration/provenance-m2-clock-opt.json) covers the new exact-clock regression and benchmark module.
+The tests use the previous downstream Rust factory as a baseline.
+The M2-02 inventory covers the modified planner, clock and integration files.
+The change introduced no upstream code, tests or media. It changed no dependency or notice.
+The independently written task, requirements and benchmark evidence documents use MIT.
+Self-review provides no independent M3 G2 approval or maintainer signature.
 
 ## M2-02/O1 private ordering optimisation
 
-The 2026-11-08 performance refactor retains the existing approved Apache component
-policy and fixed source baseline. New private ordering/test modules are listed in
-[per-file inventory](docs/migration/provenance-m2-order-opt.json); existing planner
-and integration tests remain in the M2-02 inventory. Independently authored task,
-requirements and benchmark documentation retain MIT. No upstream implementation,
-tests, media, new dependency or notice change is introduced. The record discloses
-AI implementation and self-review without a maintainer signature or G2 approval.
+The 2026-11-08 change retained the approved Apache component policy and the fixed source baseline.
+The [per-file inventory](docs/migration/provenance-m2-order-opt.json) lists the new private ordering and test modules.
+The M2-02 inventory covers the existing planner and integration tests.
+The independently written task, requirements and benchmark documents retain MIT.
+The change introduced no upstream implementation, tests, media or new dependency. It changed no notice.
+The record discloses AI implementation and self-review. It claims no maintainer signature or G2 approval.
 
 ## M2-02 fixed-window planner
 
-Source-informed core/engine planner modules, synthetic regressions and pinned source
-oracle are Apache-2.0 with [per-file inventory](docs/migration/provenance-m2-02.json).
-The original MIT and retained upstream notices are unchanged. Existing CLI/module
-exports and independently authored design/status/usage documentation (including
-[CLI guide](docs/CLI_GUIDE.md)) retain MIT; no source implementation/test was copied.
-No production package or crate is added. Exact source fields/windows and caller
-scores remain declarations; selected-policy comparison is not full solver parity.
-
+The source-informed core and engine planner modules, synthetic regressions and pinned source oracle use Apache-2.0.
+The [per-file inventory](docs/migration/provenance-m2-02.json) identifies them. The original MIT and upstream notices retain their original bytes.
+The existing CLI and module exports retain MIT. Independently written design, status and usage documents, including the [CLI guide](docs/CLI_GUIDE.md), also retain MIT.
+The authors copied no source implementation or tests. This work added no production package or crate.
+The exact source fields, windows and caller scores are declarations. The comparison covers selected policies. It makes no claim of full solver parity.
 
 ## M2-03 live planner shadow
 
-The independently authored selected-domain source producer, exact classifier,
-case generator, bounded process/runner and synthetic regression baselines are
-Apache-2.0 with [per-file origins](docs/migration/provenance-m2-03.json). Original
-MIT and applicable source notices are unchanged. Independent CI/status/delivery
-documentation retains MIT. No upstream tests/code/media or new production package
-is copied or installed; [actual test-only Node/npm closure](docs/migration/dependency-evidence-m2-03.json)
-records external tools and the reused integrity lock.
+The [per-file inventory](docs/migration/provenance-m2-03.json) lists the independently written Apache-2.0 components for the selected domain.
+These include the source producer, exact classifier, case generator, bounded process and runner, and synthetic regression baselines.
+The original MIT and applicable upstream notices retain their original bytes. Independently written CI, status and delivery documents retain MIT.
+This work copied no upstream tests, code or media. It neither copied nor installed a new production package.
+The [test-only Node/npm dependency record](docs/migration/dependency-evidence-m2-03.json) lists the external tools and the existing integrity lock.
 
 ## M3-01/P1 accepted bounded finite-OTIO review binding
 
-The [per-file inventory](docs/migration/provenance-m3-01-p1.json) records source repository SHA,
-source path/blob identities, modifications and component license for every new or extended Apache
-module/test. The original MIT LICENSE and retained OpenFilm license/NOTICE remain unchanged. The
-new review DTOs, binding engine and synthetic regressions are independently authored under the
-previously approved Apache-2.0 component policy; no upstream implementation, test, fixture or media
-was copied. CLI/module wiring and independent usage/contract/status documentation are classified
-MIT. The test-only `scripts/oracles/m3-01-openfilm-runtime.mjs` harness is also independently
-authored MIT; it dynamically imports the pinned source runtime without copying code or fixtures.
-Its Node/tsx runner is external to the Rust workspace. The existing `sha2` dependency is reused
-and no production dependency is added.
+The [per-file inventory](docs/migration/provenance-m3-01-p1.json) covers every new or extended Apache module and test.
+It records the source repository commit, source path and Git object, modifications and component license.
+The original MIT LICENSE and upstream license and notice retain their original bytes.
+The authors independently wrote the review DTOs, binding engine and synthetic regressions under the approved Apache-2.0 component policy.
+They copied no upstream implementation, test, fixture or media.
+The CLI and module integration code use MIT. The independent usage, contract and status documents also use MIT.
 
-This provisional component makes no signer trust, grant issuance, host observation, replay safety,
-source verification or execution claim. It reuses the existing synthetic finite-v1 composition
-fixture. Exact-head hosted Linux, Windows, macOS, Required, Quality and Dependency Audit checks
-passed for PR #32 head `2e7662405a49698be1ebee2136f54ab539ef7c2e` in run
-[42425697537](https://github.com/bynanci/storytelling/actions/runs/42425697537). The bounded paired
-source-runtime outcomes and fixed digest/error-order vectors are recorded in
-[M3-01 runtime evidence](docs/migration/records/M3-01-RUNTIME-ORACLE-2026-11-08.md). The bounded
-profile now has signed human G2 acceptance in
-[the acceptance record](docs/migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md). Its sign-off is
-textual per the user's direct instruction, not a GPG/SSH signature or project-wide DCO policy.
-This acceptance does not authorize signer trust, grant issuance, host observation, replay safety,
-source verification or execution. The historical functional RED is unproven and waived as a
-completion blocker; the original evidence is preserved without rewriting its outcome.
+The authors wrote the test-only harness `scripts/oracles/m3-01-openfilm-runtime.mjs` independently under MIT.
+It imports the pinned upstream runtime dynamically without copying code or fixtures.
+The Node/tsx runner operates outside the Rust workspace. The implementation reuses `sha2` and adds no production dependency.
 
-PR #39's evidence correction and PR #40's runtime/test follow-up are merged on
-main. PR #40 final head `a9b80723e0171497d9b1cc63bc30c6fac88e0ecc` passed both
-six-job head runs 42477209609/42477206413 and main run 42477392236; its merge
-tree matches the accepted head. The follow-up harness is independently authored
-MIT and imports only the pinned upstream service at runtime. The paired synthetic
-outcomes do not authorize a signer or establish full source, host or digest parity.
-See the [delivery register](docs/delivery/PR_REGISTER.md) for PR #39 and #40 receipts.
+The component reuses the synthetic finite-v1 composition fixture.
+Its scope excludes signer trust, grant issuance, host observation, replay safety, source verification and execution.
+PR #32 checks passed on commit `2e7662405a49698be1ebee2136f54ab539ef7c2e` in hosted run [42425697537](https://github.com/bynanci/storytelling/actions/runs/42425697537).
+The six jobs covered Linux, Windows, macOS, Required, Quality and Dependency Audit.
+The [M3-01 runtime evidence](docs/migration/records/M3-01-RUNTIME-ORACLE-2026-11-08.md) records the paired source-runtime results, fixed digest vectors and error-order vectors.
 
-The signed acceptance was published in PR #42, head
-`65914146227faac62c4c045f3548786067376925`, merged as
-`92f7f20b63656ec3e676309310f8a5350d6d0662`. Its head run 42484654708 and
-post-merge main run 42484845782 passed all six jobs. Issue #27 is closed
-completed for the accepted bounded profile; see the appended delivery receipt.
+The [G2 acceptance record](docs/migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md) records human acceptance of the bounded profile.
+The user explicitly requested a textual sign-off. The record contains no GPG or SSH signature and establishes no project-wide DCO policy.
+Acceptance grants no authority beyond the scope above.
+The original evidence does not establish that a functional test failed before implementation.
+The sign-off waived that historical RED result as a completion requirement and retained the original evidence.
+
+PR #39 fixed the evidence. PR #40 added runtime and test coverage. Both merged into main.
+For PR #40, both six-job runs (42477209609 and 42477206413) passed on commit `a9b80723e0171497d9b1cc63bc30c6fac88e0ecc`.
+All six jobs also passed on main in run 42477392236. The merge tree matches the accepted commit.
+The authors independently wrote the follow-up harness under MIT. At runtime it imports only the pinned upstream service.
+The paired synthetic results confer no signer authority. They establish no full source, host or digest parity.
+The [delivery register](docs/delivery/PR_REGISTER.md) contains the receipts for PR #39 and PR #40.
+
+PR #42 published the signed acceptance at commit `65914146227faac62c4c045f3548786067376925` and merged at `92f7f20b63656ec3e676309310f8a5350d6d0662`.
+All six jobs passed in PR run 42484654708 and post-merge main run 42484845782.
+The appended delivery receipt records completion of issue #27 for the accepted bounded profile.

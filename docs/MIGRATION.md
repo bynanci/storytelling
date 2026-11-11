@@ -1,82 +1,65 @@
-# 外部元件移植指南
+# Port an external component
 
-本指南供維護轉接器或追查程式來源的貢獻者使用。
-在其他專案使用 Storytelling Skill 時，請參閱[平台安裝指南](PLATFORMS.md)。
-若要由應用程式處理本機 JSON，請參閱[命令列指南](CLI_GUIDE.md)。
+<a name="外部元件移植指南"></a>
 
-M0 僅採用上游的設計概念。M1-01 參考上游實作，新增有限畫面快照匯入功能。
-該元件另有授權。移植未複製專案資料庫或媒體。
-原創部分保留 MIT 授權。適用的外部元件保留 Apache-2.0 歸屬與上游聲明。
-[快照契約](migration/FINITE_V1.md) · [實作比對](migration/records/M1-01.md) · [逐檔來源](migration/provenance-m1-01.json)
+English · [繁體中文](MIGRATION.zh-TW.md)
 
-<a id="extraction-map"></a>
+Use this guide to integrate a component or trace its origin. To install the writing skill, see [platforms](PLATFORMS.md). To process a local JSON document, see the [CLI guide](CLI_GUIDE.md).
 
-## 能力與資料責任
+M0 used upstream design concepts. M1-01 introduced a source-informed importer for a limited visual snapshot. The port does not copy a user's database or media. Original work uses MIT. The applicable external components keep their Apache-2.0 license and attribution. See the [snapshot contract](migration/FINITE_V1.md), [comparison](migration/records/M1-01.md) and [file inventory](migration/provenance-m1-01.json).
 
-| 能力 | 已有範圍 | 後續工作或限制 |
+<a name="能力與資料責任"></a>
+
+## Extraction map
+
+| Capability | Current boundary | Remaining work |
 | --- | --- | --- |
-| 證據與來源身分 | 記錄宣告的參照。可對明確提供且符合大小上限的位元組驗證 SHA-256。 | 待確認檔案系統身分、檢查與使用之間的變動（TOCTOU），以及更完整的轉接器來源證據。 |
-| 故事計畫、限制與規劃器 | M2-01 驗收需求檢查。M2-02 驗收宣告的固定時間窗計畫。 | 擴充前須固定規格，記錄來源並分類差異。完整求解器仍待開發。 |
-| 素材目錄、剪輯組合、歷史 | 來源專案持有資料。匯入器唯讀處理快照。 | 禁止直接寫入來源專案的 SQLite 資料庫。 |
-| 審閱、工作與復原 | PR #56 驗收限定範圍的 SQLite 操作日誌。它限制寫入者。M3-03 在 Linux 隔離測試中完成回應遺失後的讀回。 | 正式宿主執行器、可信核准、程序停滯時的復原與安全重試均待驗證。 |
-| FFmpeg、渲染、圖形介面、媒體分析 | 這些功能位於純核心之外。 | 由使用端或轉接器提供結果。 |
-| 剪輯宿主 | 核心沒有剪輯器套件依賴，也不維護剪輯器的分支版本。 | 透過公開協定或檔案交接。固定並測試宿主版本。既有實測使用 FilmCraft。 |
+| Evidence and identity | Record declared references. Check the SHA-256 digest of supplied bytes within the documented limit. | File identity, changes between checks and use, and broader adapter evidence. |
+| Plans and constraints | M2-01 audits a declared brief. M2-02 plans fixed windows. | Freeze a profile before extending it. Classify differences from the source. The full solver remains open. |
+| Catalog and history | The source application owns its data. The importer reads a snapshot. | Keep direct writes to its SQLite database outside the adapter. |
+| Review and recovery | PR #56 delivered the journal and its single-owner constraints. M3-03 tested readback after a lost reply on Linux. | Trusted authority, production execution, requests still in flight and wider host coverage. |
+| Interchange and host work | The limited writer produces a picture-only OTIO document. One isolated host test used 25 fps and CPU rendering. | Real-media listening and other hosts need separate evidence. Use public protocols or files. Pin and test the editor version. The core has no editor dependency or fork. |
+| Interfaces and presentation | Consumers and adapters provide FFmpeg, rendering, media analysis and user interfaces. | Use adapters for external tools. Assess each extraction separately. |
 
-<a id="four-stages"></a>
+<a name="four-stages"></a>
+<a name="移植步驟"></a>
 
-## 移植步驟
+## Migration sequence
 
-1. **固定基準。** 記錄上游 SHA、逐檔來源及授權。保存輸入、預期不變的行為、正反案例與支援範圍。請勿使用私人影片。
-2. **比較結果。** 讓 TypeScript 與 Rust 讀取同一份固定快照。比對參照、區間、強制限制與錯誤。將差異分類為移植缺陷、上游既有缺陷、未支援案例或刻意變更的契約。記錄既有缺陷，避免當作正確規格複製。
-3. **啟用功能開關。** 先將來源專案的一項服務切換到 Rust 介面。僅保留一個具寫入權的元件。標明協定版本。拒絕不支援的新版結構。
-4. **淘汰舊實作。** 使用端、相容性及實際宿主都通過驗收後，才能淘汰對應的 TypeScript 實作。替代方案確認可用前，保留回退方式。
+1. **Freeze the baseline.** Record the upstream SHA, file origins and licenses. Save synthetic inputs, expected behavior, failure cases and limits.
+2. **Compare implementations.** Give TypeScript and Rust the same snapshot. Compare references, ranges, hard constraints and errors. Classify each difference as a port defect, upstream defect, unsupported case or intentional contract change.
+3. **Switch one service.** Use a feature flag. Give write authority to one component. Record the protocol version. Reject unsupported versions.
+4. **Retire the old implementation.** Test the consumer, interchange and actual host. Keep a rollback path until the replacement passes acceptance.
 
-<a id="compatibility-policy"></a>
+<a name="相容性"></a>
 
-## 相容性
+## Compatibility policy
 
-轉換舊版浮點時間時，須記錄轉換規則與損失。不得猜測幀率。
-讀取專案時不得隱含遷移。匯入的中繼資料只能作為宣告。
-驗證位元組身分需要實際讀取提供的位元組。
+Document the conversion and any loss when importing legacy floating-point time. Do not infer a frame rate. Import never silently migrates a live project. Metadata remains a declaration until verification checks actual bytes.
 
-計畫資料結構、Rust API、規劃器與編譯器、轉接器相容性各自使用版本。
-首次操作宿主時應建立新專案。v0.x 沒有雙向同步承諾。
+Version the wire schema, Rust API, planner, compiler and adapter profiles separately. Use a new project for the first host operation. Version 0.x makes no promise of general two-way sync.
 
-<a id="licensing-checkpoint"></a>
+<a name="檢查授權"></a>
 
-## 檢查授權
+## Licensing checkpoint
 
-1. 查閱實際來源的授權與貢獻者紀錄。
-2. 保留必要的上游聲明。記錄移植過程中的修改。
-3. 源自 Apache 授權的程式碼，改用另一種語言仍須遵守授權。不得直接改標 MIT。
-4. 如需拆分元件或變更儲存庫政策，請交由維護者及法務審查。政策變更須取得核准。
+1. Identify the source license and contributors.
+2. Preserve applicable notices and document your changes.
+3. Retain the component license for source-derived Apache-2.0 work, including a port into another language.
+4. Refer changes to the licensing policy to the maintainer and legal reviewer.
 
-<a id="source-mapped-execution-inventory"></a>
+<a name="對照來源與工作項目"></a>
 
-## 對照來源與工作項目
+## Source-mapped execution inventory
 
-[48 項移植對照](migration/OPENFILM_RUST_PORT_MAP.md)區分原生功能候選、外部轉接器及由宿主保留的工作。
-該對照固定在上游提交 `7add4762fe8174d76f43b863375ea39b73121e76`。
-[16 項待補能力](migration/NATIVE_BOUNDARIES_AND_GAPS.md)追蹤跨語言比對、核准、宿主副作用、散布及真人驗收。
+The [48-item map](migration/OPENFILM_RUST_PORT_MAP.md) groups work by runtime responsibility. Its upstream baseline is `7add4762fe8174d76f43b863375ea39b73121e76`. The [16 gaps](migration/NATIVE_BOUNDARIES_AND_GAPS.md) cover comparison, authority, host effects, distribution and human acceptance. Read the relevant source symbols and tests before each port. See the [machine ledger](migration/openfilm-port-index.json), [porting procedure](migration/CODEX_PORTING_RUNBOOK.md) and [original plan](superpowers/plans/2026-11-07-openfilm-port-bootstrap.md).
 
-這兩份清單記錄規劃範圍。當時依固定的入口、目錄及部分程式碼定位來源。
-執行各任務前，仍須閱讀對應的符號與測試。
-[機器可讀清單](migration/openfilm-port-index.json) · [Codex 移植手冊](migration/CODEX_PORTING_RUNBOOK.md) · [M1-01 實作計畫](superpowers/plans/2026-11-07-openfilm-port-bootstrap.md)
+M0 checks declarations. M1-03 verifies a supplied buffer. The [host record](migration/records/M1-03.md) covers a synthetic Linux 25 fps FilmCraft CPU test. Filesystem identity, general execution and editorial acceptance remain separate.
 
-M0 僅處理宣告的中繼資料。M1-03 另行驗證指定緩衝區。
-既有宿主測試只涵蓋 FilmCraft、Linux、25 fps 與合成 CPU 案例。
-檔案系統身分、一般化的執行流程及真人驗收仍待完成。[M1-03 測試紀錄](migration/records/M1-03.md)
+<a name="pr-28-的核准契約"></a>
 
-<a id="merged-pr-28-approval-identity-candidate"></a>
+## Merged PR #28 approval identity candidate
 
-## PR #28 的核准契約
+PR #28 merged. Independent G2 acceptance remains open. The candidate binds supplied identities, host declarations, selected losses and existing buffer evidence. It verifies an Ed25519 signature. It does not sign, store keys, grant human authority, persist approvals or execute a host operation.
 
-PR #28 已合併，獨立 G2 審查仍待完成。該候選方案在純核心中綁定指定計畫的身分。
-它使用既有的緩衝區驗證憑證，綁定宣告的宿主資料與接受的損失，再驗證 Ed25519 簽章。
-
-此候選方案未提供簽署、金鑰儲存、真人授權、核准的持久儲存與重播或宿主執行。
-既有 M3-01/P1 使用另一套有限 OTIO 審閱綁定。PR #28 無法代替 P1 驗收。
-[P1 範圍](migration/M3-01-NEXT.md) · [核准身分規格](migration/APPROVAL_IDENTITY_V1.md) · [PR #28 候選紀錄](migration/records/M3-01-approval-candidate.md) · [相依套件審查](migration/dependency-review-pr28-approval-candidate.md)
-
-M3-02 已提供有限範圍的持久化日誌復原。M3-03 另有 Linux 宿主的隔離測試紀錄。
-正式宿主執行器與完整的逾時讀回仍待驗收。
+P1 has a separate, limited OTIO review contract. M3-02 supplies bounded journal recovery. M3-03 adds an isolated Linux proof. Production execution and full timeout recovery remain open. See [P1 scope](migration/M3-01-NEXT.md), [approval contract](migration/APPROVAL_IDENTITY_V1.md), [candidate record](migration/records/M3-01-approval-candidate.md) and [dependency review](migration/dependency-review-pr28-approval-candidate.md).

@@ -1,6 +1,8 @@
-# 影片工程任務與驗收紀錄
+# Video engineering tasks and acceptance records
 
-本頁保存文件重整前的影片工程紀錄。原文所指的「目前」以[當時的提交](https://github.com/bynanci/storytelling/blob/27d6985d569c0e8882c4218b19115afc382e5aad/TASKS.md)為準。查看目前的開發順序，請讀[開發任務](../../TASKS.md)。
+<a name="影片工程任務與驗收紀錄"></a>
+
+This page preserves the engineering record from the [original task list](https://github.com/bynanci/storytelling/blob/27d6985d569c0e8882c4218b19115afc382e5aad/TASKS.md). For current priorities, see [development tasks](../../TASKS.md).
 
 ## Accepted lifecycle
 
@@ -225,8 +227,6 @@ This is synthetic selected-domain differential evidence. Fractional optional
 budgets, full solver behavior, live Catalog authority, host execution and human
 editorial acceptance remain separate. The runner opens no user project.
 
-<a id="m2-02o1-stable-ordering-optimisation--accepted"></a>
-
 ## M2-02/O1 stable ordering optimisation — accepted
 
 2026-11-08 follow-up under the user's optimise/upgrade instruction; tracked in
@@ -246,8 +246,6 @@ complete the broader OpenFilm map or M3-01. PRs #31/#32 were subsequently merged
 the bounded M3-01/P1 profile now has its own signed acceptance. PR #28 remains a
 separate unaccepted candidate.
 
-<a id="m2-02o2-cached-exact-time-construction--accepted"></a>
-
 ## M2-02/O2 cached exact-time construction — accepted
 
 Follow-up [issue #35](https://github.com/bynanci/storytelling/issues/35) preserves
@@ -266,8 +264,6 @@ the local and accepted delivery evidence. Head `bdd502a8f8cd36c7b822c91fba4ff872
 passed runs 42446786881/42446759799; merge `00ef8de` passed main run 42446933790.
 Delivery was accepted under standing user authority and explicit self-review of
 the unchanged planner profile; M3 G2 and release remain separate.
-
-<a id="m3-01p1-finite-otio-review-binding--accepted-bounded-profile"></a>
 
 ## M3-01/P1 finite-OTIO review binding — accepted bounded profile
 
@@ -317,8 +313,6 @@ persist `unknown`, read back the project, and only retry when non-application is
 proven. Ambiguous/missing readback must never trigger a second apply. PR #28's
 independent G2 security review/explicit candidate acceptance stays separate.
 
-<a id="m3-02-sqlite-operation-journal--accepted-bounded-storage-slice"></a>
-
 ## M3-02 SQLite operation journal — accepted bounded storage slice
 
 The [v1 contract](../../docs/migration/M3-02-OPERATION-JOURNAL.md) and
@@ -343,8 +337,6 @@ exactly-once effects. Validation evidence is maintained in
 [the M3-02 record](../../docs/validation/m3-02-operation-journal.md). PR #28's
 independent G2 review and explicit candidate acceptance remain pending and do
 not block this journal slice.
-
-<a id="m3-03-filmcraft-executionreadback--bounded-proof-only"></a>
 
 ## M3-03 FilmCraft execution/readback — bounded proof only
 
@@ -381,8 +373,6 @@ One PR owns a public schema/time-contract change at a time. Adapter and UI work
 may proceed against a frozen version. Documentation reconciliation must not mark
 an open PR implemented. Security work can run independently; no task may silently
 relax source, approval, license or host-compatibility gates.
-
-<a id="openfilm-to-rust-transfer-ledger--2026-11-07"></a>
 
 ## OpenFilm to Rust transfer ledger — 2026-11-07
 

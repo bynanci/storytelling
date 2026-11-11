@@ -1,61 +1,63 @@
-# 開發代理工作規則
+# Agent instructions
 
-## 開始任務
+<a name="agent-execution-rules"></a>
+<a name="開發代理工作規則"></a>
 
-1. 閱讀 [README](README.md)、[任務](TASKS.md)、[路線圖](ROADMAP.md) 與 [SDLC](docs/SDLC.md)。找出任務對應的需求。
-2. 取得最新的 `main`。檢查進行中的 PR。每個獨立分支只處理一項工作。
-3. 先核對操作授權。覆寫他人分支、合併或發布都需要明確授權。建立標籤、變更權限及維護者簽署也需明確授權。
-4. 交付一項可用的功能。避免建立空的 crate 或另一套非線性剪輯器。範圍排除編解碼器堆疊、外掛市集與分散式工作系統。
+English · [繁體中文](AGENTS.zh-TW.md)
 
-## 實作與驗證
+<a name="開始任務"></a>
 
-1. 保持核心與引擎純粹。兩者均不得存取檔案、資料庫、網路、模型或宿主，也不得使用 Tokio。CLI 負責組裝元件。轉接器實作介面。宿主負責管理實際時間軸。
-2. 功能變更先寫失敗測試。記錄實際的 RED 與 GREEN。缺少工具鏈時，標記「驗證受阻」。保留原始斷言的強度。
-3. 在介面邊界嚴格解析 JSON。把傳入的資料物件視為未受信任的輸入。保留有理數時間、來源時鐘及取樣時鐘。保留來源身分、鎖定狀態、使用者選擇與審閱版本。
-4. 驗證器只檢查宣告內容。實際 SHA 驗證、真人核准、宿主相容性與成品畫質各需獨立證據。
-5. 禁止隱含的來源寫入、遠端模型呼叫與剪輯器命令。執行前須取得指定計畫的核准。隔離宿主。保存執行憑據。支援結果未知時的復原。
-6. 保留現有的 [MIT 授權](LICENSE)。移入外部程式或測試前，記錄來源、修訂與授權。保留適用的上游聲明。改用另一種程式語言仍須遵守原授權。
-7. 測試資料只使用合成或獲准公開的素材。測試、紀錄及 PR 均不得含個人路徑、GPS 或私人影片。權杖與簽署網址也須排除。
-8. 執行格式檢查與 Clippy。執行工作區與發布模式測試。檢查文件與儲存庫。核對同一個提交的遠端 CI。分開回報受阻、取消與失敗的檢查。
-9. 更新任務 ID、需求對照、架構決策紀錄及驗證證據。分列已實作、自動驗證與待人工確認的結果。勾選數量無法表示產品完成率。
+## Start a task
 
-## 既有功能與驗收範圍
+1. Read the [project overview](README.md), [tasks](TASKS.md), [roadmap](ROADMAP.md) and [development process](docs/SDLC.md).
+2. Identify the requirement, base commit and any open PR for the same work.
+3. Use an isolated branch for one coherent change. Respect the scope of the user's authorization.
+4. Deliver one usable result. Keep codecs, a second editor, plug-in markets and distributed workers outside the current scope.
 
-| 工作項目 | 開發前應核對的紀錄 |
+<a name="實作與驗證"></a>
+
+## Implement and test
+
+- Keep core and engine pure. Do not add filesystem, Tokio, database, network, model or host calls to either crate. The CLI connects the components. Hosts manage their timelines.
+- Write a failing test before you change behavior. Record the observed failure and the passing result. Report a missing toolchain as blocked verification. Preserve the assertions.
+- Parse untrusted JSON strictly at each boundary. Preserve rational times, source and sample clocks, source identity, locks, user choices and review versions.
+- A validator checks declarations. Actual byte verification, human approval, host compatibility and output quality require separate evidence.
+- Never write source media, call a remote model or command an editor implicitly. Execution requires approval for the exact plan, host isolation, receipts and recovery from unknown results.
+- Keep the MIT license and applicable third-party notices. Record origin, revision and license before you import code or tests. A language change does not remove license obligations.
+- Use synthetic inputs or materials with public authorization. Keep private paths, media, GPS, tokens and signed URLs out of fixtures, logs and pull requests.
+- Run formatting, Clippy, workspace tests, release tests, documentation and repository checks. Read the hosted results for the submitted commit. Distinguish failed, blocked and cancelled checks.
+- Update task IDs, requirements, architecture decisions and verification records. Separate implementation, automated verification and manual acceptance. Never derive a product completion percentage from checkboxes.
+
+<a name="既有功能與驗收範圍"></a>
+
+## Accepted scope
+
+| Work | Evidence to read |
 | --- | --- |
-| M0、M1-01、M1-02 | M0 與兩個有限格式已通過驗收。修改格式前，核對允許的輸入與轉換損失。見[快照規格](docs/migration/FINITE_V1.md)、[快照比對](docs/migration/records/M1-01.md)、[OTIO 規格](docs/migration/FINITE_OTIO_V1.md)與 [OTIO 比對](docs/migration/records/M1-02.md)。 |
-| M1-03 | 可驗證呼叫端提供的位元組。一次隔離測試驗證 FilmCraft 的 25 fps CPU 流程。[宿主實測紀錄](docs/migration/records/M1-03.md) |
-| M2-01 ～ M2-03 | M2-01 限於既定的稽核。PR #22 驗收固定時間窗規劃器。PR #26 驗收指定範圍的上游執行比對。[規劃規格](docs/migration/FIXED_WINDOW_PLANNER_V1.md) · [比對規格](docs/migration/PLANNER_SHADOW_V1.md) · [比對紀錄](docs/migration/records/M2-03.md) |
-| M3-01/P1 | 使用者於 2026-11-08 指示審閱後合併。PR #32 已整合限定範圍的審閱綁定程式與 CLI。此範圍含執行比對、固定摘要向量及錯誤順序測試。[範圍與證據](docs/migration/M3-01-NEXT.md) |
-| M3-01/P2 | PR #44 已整合所選提案的唯讀 OTIO 審閱。維持已驗收的 P1 摘要。[規格](docs/migration/PLANNER_OTIO_REVIEW_V1.md) · [驗收紀錄](docs/migration/records/M3-01-P2.md) |
+| M0, M1-01, M1-02 | Preserve the [snapshot profile](docs/migration/FINITE_V1.md) and [OTIO profile](docs/migration/FINITE_OTIO_V1.md). Read the corresponding [snapshot](docs/migration/records/M1-01.md) and [OTIO](docs/migration/records/M1-02.md) comparisons before format changes. |
+| M1-03 | The accepted test covers supplied bytes and one isolated 25 fps FilmCraft CPU case. See the [host record](docs/migration/records/M1-03.md). |
+| M2-01 to M2-03 | The brief audit, [fixed-window planner](docs/migration/FIXED_WINDOW_PLANNER_V1.md) and [selected-domain comparison](docs/migration/PLANNER_SHADOW_V1.md) each have a defined scope. See PRs #22 and #26 and the [comparison record](docs/migration/records/M2-03.md). |
+| M3-01/P1 | The user authorized the reviewed merge on 2026-11-08. PR #32 integrated the CLI and review binding. Read the [scope](docs/migration/M3-01-NEXT.md) and [signed acceptance](docs/migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md). |
+| M3-01/P2 | PR #44 integrated read-only OTIO review for the selected proposal. Preserve the accepted P1 digest. See the [profile](docs/migration/PLANNER_OTIO_REVIEW_V1.md) and [record](docs/migration/records/M3-01-P2.md). |
 
-P1 的[驗收紀錄](docs/migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md)包含 G2 簽署與歷史 RED 豁免。
-PR #42 合併後的檢查通過，#27 已按該範圍結案。
-先於實作的功能 RED 仍缺乏證據。沿用已交付的成果。只引用實際存在的審閱紀錄。
+P1 includes the runtime comparison, fixed digest and error-order tests. Issue #27 closed after the post-merge checks for PR #42. The acceptance record documents the waiver for the missing historical test failure. Do not invent evidence for that test.
 
-PR #28 使用另一套核准契約。該候選方案尚未取得獨立驗收。
-完整求解器與可信核准各有獨立範圍。宿主執行與真人剪輯驗收也須分別查核。
+PR #28 uses a separate approval contract. Independent G2 acceptance remains pending. The full solver, trusted approval, host execution and human editorial acceptance each require separate evidence.
 
-審閱橋接驗收後，依下列順序處理工作。
+The execution sequence is M3-02 journal, M3-03 apply and readback, then M4 feature flag. An apply timeout leaves the result unknown. Read back the host state before retry. The historical test-first scaffold does not represent a release.
 
-1. M3-02 操作日誌
-2. M3-03 宿主套用與讀回
-3. M4 功能開關
+<a name="合併授權"></a>
 
-套用命令逾時時，結果為未知。再次嘗試前，先讀回宿主狀態。
-歷史上有意保留先寫測試的骨架提交。該提交沒有發布版本。
+## Merge authority
 
-## 合併授權
+For the continuation on 2026-11-07, the user authorized merging completed, verified PRs after all required checks pass on the exact head. Check completed tasks and post-merge results. Overwriting another branch, publishing, tagging, changing repository policies or permissions, and signing for a maintainer require separate authority. Real-media and host claims still need direct evidence.
 
-使用者已就 2026-11-07 的接續工作授權合併完成且已驗證的 PR。
-等同一個提交的必要檢查通過後，再合併並勾選完成的任務。
-發布與標籤另需授權。儲存庫政策、權限變更及維護者簽署也另需授權。
-實際媒體與宿主能力的聲明仍須個別證據。
+<a name="移植外部元件"></a>
 
-## 移植外部元件
+## Port an external component
 
-1. 閱讀[移植清單](docs/migration/OPENFILM_RUST_PORT_MAP.md)、[待補能力](docs/migration/NATIVE_BOUNDARIES_AND_GAPS.md)、[機器可讀清單](docs/migration/openfilm-port-index.json)及[移植手冊](docs/migration/CODEX_PORTING_RUNBOOK.md)。
-2. 選一個既有 M 里程碑下的 OF 或 GAP 子任務。記錄實際來源 SHA、檔案、符號與測試。
-3. 註明目標狀態及授權決定。記錄需保留的行為與刻意修改的差異。
-4. 區分原生核心、原生執行環境、外部轉接器、宿主保留功能。規劃中的 Rust 路徑與測試名稱需要實作及執行證據。
-5. 維持移植範圍。勿重寫完整剪輯器。基準須使用已合併的來源提交，不能採用上游的草稿 PR。
+1. Read the [transfer map](docs/migration/OPENFILM_RUST_PORT_MAP.md), [gaps](docs/migration/NATIVE_BOUNDARIES_AND_GAPS.md), [ledger](docs/migration/openfilm-port-index.json) and [porting guide](docs/migration/CODEX_PORTING_RUNBOOK.md).
+2. Select one transfer or gap within an existing milestone.
+3. Record the upstream SHA, files, symbols, tests, target state, license decision and intentional differences.
+4. Distinguish pure Rust, native runtime, external adapters and host-owned features. Treat proposed paths and tests as planning information until evidence exists.
+5. Keep upstream draft PRs separate from merged source. Preserve the existing editor boundary.

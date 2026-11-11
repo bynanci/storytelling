@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Source-informed finite planner contract; see provenance-m2-02.json and NOTICE.openfilm.
+// Source-informed finite planner contract; see provenance-m2-02.json and LICENSES/third-party/NOTICE.txt.
 //! Strict declared candidates and finite planning reports; no execution authority.
 use crate::brief::{BriefAuditV1, BriefConflictV1};
 use crate::wire::{PlanDocumentV1, SourceRange, TimeValue};

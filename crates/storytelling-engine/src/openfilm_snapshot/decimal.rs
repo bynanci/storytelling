@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Source semantics and attribution: docs/migration/provenance-m1-01.json, NOTICE.openfilm.
+// Source semantics and attribution: docs/migration/provenance-m1-01.json, LICENSES/third-party/NOTICE.txt.
 
 use std::cmp::Ordering;
 

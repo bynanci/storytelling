@@ -1,43 +1,34 @@
-# 安全政策
+# Security policy
 
-目前尚未發布穩定版。M0 在本機以唯讀方式檢查宣告的中繼資料。
-M0 未提供沙箱或來源檔驗證。它也未提供網路服務或經授權的剪輯器執行。
+<a name="安全政策"></a>
 
-## 回報安全問題
+English · [繁體中文](SECURITY.zh-TW.md)
 
-1. 若維護者已啟用 GitHub 私密漏洞通報，請透過該功能回報。
-2. 若該功能未啟用，請先索取私密通報管道。
-3. 請勿在公開議題揭露漏洞細節、私人媒體、路徑或憑證。
+The project has no stable release. The local plan validator checks the metadata you supply. Its scope excludes sandboxing, network services and editor execution.
 
-儲存庫擁有者管理私密通報與分支保護設定。本文件不會啟用這些設定。
+<a name="回報安全問題"></a>
 
-<a id="current-boundaries"></a>
+## Report a security problem
 
-## 目前的安全邊界
+Use GitHub private vulnerability reporting if the repository owner enabled it. Otherwise, ask the maintainer for a private channel. Keep vulnerability details, private media, local paths and credentials out of public issues. The owner controls private reporting and branch protection.
 
-M0 的輸入上限為 1 MiB、1,024 份素材及 4,096 個鏡頭。
-驗證器拒絕未知欄位與錯誤的數字格式。它也拒絕重複 ID 與缺少目標的參照。
-這項命令只讀取明確指定的本機檔案或標準輸入。
-CLI 將回應寫入標準輸出。它不接受來源網址、模型呼叫、資料庫寫入或宿主命令。
-本專案禁止在自有 Rust 程式碼中使用 `unsafe`。相依套件與編譯器公告仍須審查。
+<a name="目前的安全邊界"></a>
 
-M1-03 的 `verify-source` 使用指定的檔案或標準輸入。
-呼叫端須提供預期的 SHA-256。此命令的位元組輸入上限另訂為 16 MiB。
-核心只驗證呼叫端提供的不可變位元組。驗證憑據不能證明日後讀取的檔案內容。
-CLI 不解析專案 URI、不驗證路徑身分，也不呼叫宿主。
-檢查與使用之間的檔案變更風險（TOCTOU）仍然存在。
+## Current boundaries
 
-宿主測試工具建立專屬的新目錄。它只在該目錄產生已授權的合成媒體。
-該紀錄只涵蓋測試環境。產品的核准與執行另有條件。
+The plan validator accepts up to 1 MiB, 1,024 assets and 4,096 shots. It rejects unknown fields, malformed numbers, duplicate IDs and missing references. It reads an explicit local file or standard input. It writes its response to standard output. This command cannot fetch source URLs, call a model, change a database or execute a host operation.
 
-<a id="before-adding-execution"></a>
+Repository rules prohibit `unsafe` in first-party Rust code. Review dependencies and compiler advisories separately.
 
-## 新增執行功能前
+The `verify-source` command compares up to 16 MiB of supplied bytes with an expected SHA-256 digest. A receipt describes only the bytes the caller supplied. A later read of the same path can return different content. The CLI does not resolve project URIs or establish the identity of a path. The isolated host tests generate authorized synthetic media in a fresh test directory. Each record documents its tested environment.
 
-- 取得可信來源的明確核准。僅授予必要權限。模型內容或 MCP 註記不能授權執行。
-- 驗證來源與宿主。建立請求隔離機制，阻止過期的執行者更新狀態。
-- 儲存可持久保留的執行憑據。支援取消請求。結果未知時，先讀回實際狀態。
-- 隔離宿主專案。從可攜紀錄遮蔽路徑與機密。禁止執行任意命令或外掛程式碼。
+<a name="新增執行功能前"></a>
 
-記錄安全問題的嚴重度、受影響的候選版本與重現條件。列出修正、回歸測試與殘餘風險。
-即使工具沒有發現已知漏洞，仍須審查其他安全或維護公告。
+## Before adding execution
+
+- Require explicit approval from a trusted source. Give each component only the permissions it needs. Model output and MCP annotations cannot grant authority.
+- Check the source and the host. Prevent a stale owner from updating a later request.
+- Keep durable receipts. Support cancellation. Read the actual host state when an operation has an unknown result.
+- Isolate the host project. Remove paths and secrets from portable records. Exclude arbitrary shell commands and plug-ins.
+
+For each finding, record the severity, affected version and reproduction conditions. Document the fix, regression test and remaining risk. Review relevant security and maintenance advisories even if an automated check reports no findings.

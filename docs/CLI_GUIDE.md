@@ -1,76 +1,84 @@
 <!-- SPDX-License-Identifier: MIT -->
-# 命令列使用指南
+# Command-line guide
 
-Storytelling 命令列工具（CLI）可獨立執行。它從檔案或標準輸入讀取資料，將結果寫至標準輸出。腳本、應用程式或代理程式可依退出碼處理結果。各指令接受的格式見[資料契約](CONTRACTS.md)。
+<a name="cli-使用指南"></a>
+<a id="命令列使用指南"></a>
 
-若只有筆記、旁白構想或插畫主題，可用 Skill 起草。已經有結構化敘事、素材清單或剪輯需求時，可直接使用 CLI。[Storytelling Skill](../skills/storytelling/SKILL.md) · [平台指南](PLATFORMS.md)
+English · [繁體中文](CLI_GUIDE.zh-TW.md)
 
-## 建置與依賴
+Use the Storytelling command-line interface (CLI) to process structured input locally. It reads files or standard input. A script can read the result from standard output and inspect the exit code. Each command has its own [input contract](CONTRACTS.md).
 
-安裝 Rust 工具鏈。在原始碼根目錄執行下列指令。`rust-toolchain.toml` 指定 Rust 1.89.0。`--locked` 使用已提交的依賴鎖定檔。
+Start with the [Skill](../skills/storytelling/SKILL.md) for notes, narration or a drawing idea. Use the CLI when you have a narrative document, a list of assets or an editing brief. See the [platform guide](PLATFORMS.md) for installation.
+
+<a id="建置與依賴"></a>
+
+## Build the executable
+
+Install the Rust toolchain. The repository pins Rust 1.89.0 in `rust-toolchain.toml`. Run the following command from the repository root. The `--locked` option uses the committed dependency lockfile.
 
 ```sh
 cargo build --release --locked -p storytelling-cli
 cargo run --release --quiet --locked -p storytelling-cli -- --help
 ```
 
-執行檔位於 `target/release/storytelling`。Windows 使用 `target/release/storytelling.exe`。其他專案可用絕對路徑呼叫執行檔，也可將其目錄加入 `PATH`。建置後可在本機使用，無須啟動 AI 服務或剪輯器。
+The executable is `target/release/storytelling` or `target/release/storytelling.exe` on Windows. Call it by its absolute path or add its directory to `PATH`. The executable needs no AI service or editor.
 
-將[計畫範例](../examples/minimal-plan.json)複製為 `plan.json`。若執行檔已在 `PATH`，執行下列指令。
+Copy the [sample plan](../examples/minimal-plan.json) to `plan.json`. With the executable on `PATH`, run this command.
 
 ```sh
 storytelling validate plan.json
 ```
 
-預期退出碼為 0，`validation.plan_id` 為 `travel-recap`。也可以將同一份 JSON 送入 `storytelling validate -` 的標準輸入。
+Expect exit 0 and `validation.plan_id` equal to `travel-recap`. To read the same JSON from standard input, use `storytelling validate -`.
 
-## 選擇入口
+<a id="選擇入口"></a>
 
-「快照」指符合 `finite-v1` 契約的剪輯組合匯出檔。OpenTimelineIO（OTIO）是時間軸交換格式。一般敘事或計畫驗證可使用各自的原生契約。
+## Choose a command
 
-| 指令 | 輸入 | 結果 |
+A **snapshot** is a composition export that follows the `finite-v1` contract. OpenTimelineIO (OTIO) is a timeline interchange format. Narrative documents and plans each have a separate native format.
+
+| Command | Input | Result |
 | --- | --- | --- |
-| `render-narrative` | `NarrativeDocumentV1`，無須媒體或片長 | 依宣告順序輸出口述大綱與插畫構圖，附來源標籤。 |
-| `track-narrative-revisions` | `NarrativeRevisionLedgerV1` 修訂簿 | 列出來源與變體的修訂歷史、作者決定和待審狀態。 |
-| `query-narrative-impact` | 修訂簿與來源變更事件 ID | 列出直接引用該來源版本的變體。由引擎計算影響範圍。 |
-| `validate` | `PlanDocumentV1` 計畫 | 檢查宣告的 ID、雜湊格式、引用與精確來源區間。 |
-| `audit-brief` | `StoryBriefV1` 剪輯需求 | 檢查必選、排除、順序及引用衝突。保留作者的手動選擇。 |
-| `plan-story` | 剪輯需求、候選固定區間、宣告分數與硬性上限 | 提出可重現的固定區間提案，列出選擇原因。 |
-| `import-openfilm` | 剪輯快照 | 輸出已宣告的畫面計畫、來源資料與限制報告。 |
-| `export-otio` | 剪輯快照與必要的格式轉換選項 | 輸出原生 OTIO 時間軸。 |
-| `verify-source` | 檔案或標準輸入的位元組、預期 SHA-256 | 核對本次提供的資料與預期雜湊值。 |
-| `prepare-review` | 剪輯快照與審閱設定 | 建立同一輸入的匯入結果與 OTIO 識別紀錄。 |
-| `check-review` | 審閱紀錄、目前快照與設定 | 核對目前宣告與紀錄，列出過期欄位。 |
-| `prepare-story-review` | 完整規劃結果、相符的快照與設定 | 輸出含所選提案 OTIO 與審閱紀錄的 JSON。 |
-| `export-story-otio` | 同上三項輸入 | 輸出同一份原生 OTIO。報告與提案存於中繼資料。 |
-| `check-story-review` | 上次的完整審閱結果與目前三項輸入 | 檢查 OTIO，並重新編譯比對。結果過期時退出 1。 |
+| `render-narrative` | `NarrativeDocumentV1` | A spoken outline and illustration briefs with source labels. No media or duration required. |
+| `track-narrative-revisions` | `NarrativeRevisionLedgerV1` | Source and variant history, author decisions and review status. |
+| `query-narrative-impact` | Ledger and source change event ID | Variants that directly reference this source revision. The engine computes the list. |
+| `validate` | `PlanDocumentV1` | Checks declared IDs, hash format, references and exact source ranges. |
+| `audit-brief` | `StoryBriefV1` | Checks required and excluded items, order and references. Preserves manual choices. |
+| `plan-story` | Brief, fixed candidate windows, scores and limits | A reproducible proposal with reasons for each choice. |
+| `import-openfilm` | Snapshot | A declared visual plan, source facts and limitations. |
+| `export-otio` | Snapshot and required conversion options | A native OTIO timeline. |
+| `verify-source` | File or standard input and expected SHA-256 | Compares the supplied bytes with the expected hash. |
+| `prepare-review` | Snapshot and review context | A record that identifies the import and its compiled OTIO. |
+| `check-review` | Record, current snapshot and context | Lists stale fields when the declarations differ. |
+| `prepare-story-review` | Full planning response, matching snapshot and context | JSON with the selected cuts in OTIO and their review record. |
+| `export-story-otio` | The same three inputs | The same OTIO. Its metadata contains the report and proposal. |
+| `check-story-review` | Previous review bundle and current inputs | Checks the supplied OTIO. Recompiles the proposal. Returns exit 1 for a stale result. |
 
-一般 JSON 輸入上限為 1 MiB。`verify-source` 資料上限為 16 MiB。提案審閱流程另有兩項上限。
+Most JSON inputs have a 1 MiB limit. The source verification limit is 16 MiB. Proposal review accepts up to 4,194,336 bytes for a proposal and 4,292,672 bytes for a review bundle. Only the proposal can use `-` for standard input in this workflow. Supply regular files for the snapshot, context and bundle. Close standard input to send end-of-file (EOF). Each contract sets limits for collections, metadata, diagnostics and output.
 
-- 提案最多 4,194,336 位元組。
-- 完整審閱結果最多 4,292,672 位元組。
+<a id="素材無關的口述與插畫提綱"></a>
 
-提案審閱流程只允許用 `-` 傳入提案。快照、設定與審閱結果須為一般檔案。使用標準輸入時，請傳送檔案結尾（EOF）。各契約另有限制集合、中繼資料、診斷及輸出大小。
+## Render a spoken outline and two illustration briefs
 
-## 素材無關的口述與插畫提綱
-
-下列修門案例含一份口述與兩種構圖。每份輸出都帶來源 ID、修訂版號（revision）及來源類別（origin）。創作道具紅傘 `C01` 只出現在寬景插畫。輸入無須媒體、素材路徑、片長或剪點。
+The example about two neighbors and a gate contains a spoken outline, a wide composition and a close composition. Each output identifies its source, revision and origin. Only the wide composition contains the proposed red umbrella, `C01`. The input needs no media, path, duration or cut.
 
 ```sh
 cargo run --release --quiet --locked -p storytelling-cli -- render-narrative tests/fixtures/narrative-v1/n03-authoring-v1.json
 ```
 
-也可從標準輸入讀取同一份內容。
+To use standard input, run the following command.
 
 ```sh
 cat tests/fixtures/narrative-v1/n03-authoring-v1.json | cargo run --release --quiet --locked -p storytelling-cli -- render-narrative -
 ```
 
-成功時，標準輸出為多行 UTF-8 文字。用檔案或標準輸入重跑，輸出位元組相同。資料錯誤時，標準輸出為單行 JSON，退出碼為 1。用法錯誤為 2，輸入輸出錯誤為 3。指令只讀資料，不呼叫模型或剪輯器。[敘事契約](narrative/NARRATIVE_DOCUMENT_V1.md) · [N-03 命令列實測與待驗項目](validation/n03-narrative-cli.md)
+Success produces multiline UTF-8 text. File and standard input produce identical bytes. Invalid data produces one JSON line on standard output and exit 1. Usage errors return 2. I/O errors return 3. The command only reads input. See the [narrative contract](narrative/NARRATIVE_DOCUMENT_V1.md) and [N-03 evidence](validation/n03-narrative-cli.md).
 
-## 來源修訂與變體影響（N-04）
+<a id="來源修訂與變體影響n-04"></a>
 
-修訂簿記錄同一份敘事的版本變化。起始快照使用 `NarrativeDocumentV1`。獨立的 `NarrativeRevisionLedgerV1` 記錄來源修訂、建議、作者決定與各版輸出的引用。[修訂簿契約](narrative/NARRATIVE_REVISION_LEDGER_V1.md)
+## Track revisions and query their impact
+
+The ledger starts with one `NarrativeDocumentV1` snapshot. A separate `NarrativeRevisionLedgerV1` records source revisions, suggestions, author decisions and references for each variant. See the [revision ledger contract](narrative/NARRATIVE_REVISION_LEDGER_V1.md).
 
 ```sh
 cargo run --release --quiet --locked -p storytelling-cli -- track-narrative-revisions tests/fixtures/narrative-v1/n04-revision-history-v1.json
@@ -78,18 +86,21 @@ cargo run --release --quiet --locked -p storytelling-cli -- query-narrative-impa
 cargo run --release --quiet --locked -p storytelling-cli -- query-narrative-impact tests/fixtures/narrative-v1/n04-revision-history-v1.json b-only-detail-change
 ```
 
-| 查詢的來源變更 | 預期列出的變體 |
+| Source change | Expected variants |
 | --- | --- |
-| `shared-observation-change` 修正兩位鄰居的分工 | `oral`、`illustration-wide`、`illustration-close` |
-| `b-only-detail-change` 更正只用在近景構圖的細節 | `illustration-close` |
+| `shared-observation-change` changes the neighbors' roles | `oral`, `illustration-wide`, `illustration-close` |
+| `b-only-detail-change` changes a close composition detail | `illustration-close` |
 
-第二次更改後，口述與寬景構圖仍為 `current`。近景構圖為 `needs_review`，保留先前的 `C01@1` 引用。用歷史指令可取得先前的來源與變體快照。任一變體仍待審時，修訂簿會拒絕下一筆來源修訂。即使要修訂另一個來源，也須先處理待審變體。
+After the second change, the oral and wide variants remain `current`. The close variant becomes `needs_review` and retains its prior reference to `C01@1`. The history includes earlier source and variant snapshots. Resolve all pending reviews before the next source revision, even when it changes a different source.
 
-助手的建議與作者的決定必須是不同事件。如果 `assistant_suggestion` 含 `decision`、`accepted` 或 `author_confirmed`，錯誤碼為 `revision.untrusted_decision`。工具只查核記錄的宣告，無法驗明作者身分。影響範圍依輸出的直接引用計算。`based_on` 的間接關係不會自動造成下游失效。[N-04 實測與待驗項目](validation/n04-narrative-revisions.md)
+Keep author decisions in separate events. An `assistant_suggestion` with `decision`, `accepted` or `author_confirmed` produces `revision.untrusted_decision`. The tool checks declarations. It cannot authenticate the author. The engine follows direct references only. Authors must check indirect effects through `based_on`. See the [N-04 evidence](validation/n04-narrative-revisions.md).
 
-## 將所選提案交付為 OTIO
+<a id="將所選提案交付為-otio"></a>
+<a name="選定提案-a--可審核-otio已合併唯讀切片"></a>
 
-從原始碼根目錄執行下列合成案例。`>` 指示執行環境將標準輸出存至檔案。請在可寫入的目錄使用不會覆蓋既有成果的檔名。
+## Export a selected proposal as OTIO
+
+Run the synthetic example from the repository root. The shell operator `>` writes standard output to a file. Choose unused output names in a writable directory.
 
 ```sh
 cargo run --release --quiet --locked -p storytelling-cli -- plan-story tests/fixtures/story-review-v1/planner-request.json > proposal-A.json
@@ -98,112 +109,126 @@ cargo run --release --quiet --locked -p storytelling-cli -- export-story-otio pr
 cargo run --release --quiet --locked -p storytelling-cli -- check-story-review review-A.json proposal-A.json tests/fixtures/openfilm/finite-v1/video-trim.json tests/fixtures/story-review-v1/context.json
 ```
 
-`review-A.json` 包含審閱紀錄與實際 OTIO。`proposal-A.otio` 與其中的 `otio` 欄位內容相同。標準輸出末尾的換行不計入產物雜湊。請保留時間軸的原始位元組。重新排版會改變比對結果。
+`review-A.json` contains the review record and the actual OTIO. The content of `proposal-A.otio` matches the `otio` field. The artifact hash excludes the final stdout newline. Preserve the original timeline bytes. Reformatting changes the comparison.
 
-提案剪點從 1/3 秒到 4/3 秒。原始快照的剪點從 0.1 秒到 2.6 秒。素材 ID、雜湊值與可用長度須與快照相符。工具只將素材 URI 當作字串。
+The selected cut spans 1/3 to 4/3 seconds. The snapshot cut spans 0.1 to 2.6 seconds. The asset ID, hash and available duration must match. The tool treats the asset URI as text.
 
-若改動快照、提案剪點、順序或轉換選項，檢查會回報過期或拒絕輸入。退出碼為 1。OTIO 保留剪點、順序、精確時間與素材引用。專案幀率、來源宣告及已接受的鎖定設定只保存在中繼資料。影片須明確接受 `picture_only`。獨立音軌、效果及其他不支援的語意會遭拒。
+A changed snapshot, cut, order or conversion choice can make the result stale or invalid. Either outcome returns exit 1. OTIO preserves cuts, order, exact time and asset references. Metadata holds the project frame rate, source declarations and accepted lock choices. For video, explicitly accept `picture_only`. The tool rejects separate audio tracks, effects and other unsupported features.
 
-這些操作只讀輸入。寫入剪輯器或取得作者批准需另行處理。[提案審閱契約](migration/PLANNER_OTIO_REVIEW_V1.md)
+This workflow reads its inputs. Editor writes and author approval require separate steps. See the [proposal review contract](migration/PLANNER_OTIO_REVIEW_V1.md).
 
-## 1. 驗證已宣告的 plan
+<a id="1-驗證已宣告的-plan"></a>
+
+## 1. Check a plan
 
 ```sh
 cargo run --release --quiet --locked -p storytelling-cli -- validate examples/minimal-plan.json
 ```
 
-預期退出碼為 0，回應為 `{"ok":true,"validation":...}`。`validation.scope` 為 `declared-metadata-only`。輸入的 64 字元雜湊值屬於宣告。這項檢查不會開啟素材或計算內容雜湊。
+Expect exit 0 and `{"ok":true,"validation":...}`. The value of `validation.scope` is `declared-metadata-only`. The 64-character hash is a declaration. This command does not open the media or calculate its hash.
 
-另執行下列反例。預期退出碼為 1，錯誤碼為 `plan.source_out_of_bounds`。
+Run the invalid example. Expect exit 1 and `plan.source_out_of_bounds`.
 
 ```sh
 cargo run --release --quiet --locked -p storytelling-cli -- validate tests/fixtures/invalid-source-range.json
 ```
 
-## 2. 稽核 Brief 的硬限制
+<a id="2-稽核-brief-的硬限制"></a>
+
+## 2. Check the hard constraints in a brief
 
 ```sh
 cargo run --release --quiet --locked -p storytelling-cli -- audit-brief tests/fixtures/brief-v1/valid.json
 ```
 
-預期退出碼為 0，回應為 `{"ok":true,"audit":...}`。工具保留手動必選項、順序、硬限制的來源位置與偏好。結果含 `selection_planned:false` 與 `duration_analysis:"not-performed"`。此步驟只檢查宣告，尚未規劃鏡頭。
+Expect exit 0 and `{"ok":true,"audit":...}`. The audit preserves required items, order, constraint locations and preferences. Its report includes `selection_planned:false` and `duration_analysis:"not-performed"`. This command checks declarations without planning shots.
 
-下例的格式有效，但需求互相衝突。預期退出碼為 1，回應含完整的 `audit`。
+The next brief has valid syntax and conflicting requirements. Expect exit 1 and the full `audit` report.
 
 ```sh
 cargo run --release --quiet --locked -p storytelling-cli -- audit-brief tests/fixtures/brief-v1/conflicting.json
 ```
 
-請讀取 `audit.conflicts`，再修正需求。工具會保留手動選擇。若 JSON 格式無效、有未知欄位或輸入超限，回應為 `{"ok":false,"error":...}`。[剪輯需求契約](migration/STORY_BRIEF_V1.md)
+Read `audit.conflicts` before you revise the brief. The tool preserves manual choices. Invalid JSON, unknown fields or oversized input produce `{"ok":false,"error":...}`. See the [brief contract](migration/STORY_BRIEF_V1.md).
 
-## 3. 從 Brief 提出固定視窗 plan
+<a id="3-從-brief-提出固定視窗-plan"></a>
+
+## 3. Plan fixed shot windows
 
 ```sh
 cargo run --release --quiet --locked -p storytelling-cli -- plan-story tests/fixtures/planner-v1/valid.json
 ```
 
-預期退出碼為 0，回應為 `{"ok":true,"planning":...}`。`planning.scope` 為 `declared-fixed-window-plan-only`。結果含 `selection_planned:true` 與 `duration_analysis:"exact-fixed-windows"`。
+Expect exit 0 and `{"ok":true,"planning":...}`. The value of `planning.scope` is `declared-fixed-window-plan-only`. The response includes `selection_planned:true` and `duration_analysis:"exact-fixed-windows"`.
 
-提供原始剪輯需求與候選片段。每個候選項均須宣告雜湊值、來源時長、固定來源區間與整數分數。另提供時長上限 `max_duration` 與鏡頭數上限 `max_shots`。工具依宣告的資料規劃。來源媒體與評分品質需另行驗證。
+Supply the original brief and candidate clips. Each candidate needs a hash, duration, fixed source range and integer score. Supply limits for duration (`max_duration`) and shot count (`max_shots`). Planning uses these declarations. Media and score quality require separate verification.
 
-範例要求 `detail` 排在 `opening` 之前。即使後者的分數與偏好較高，結果仍保留指定順序。預期時間精度為每秒 10 個刻度。總長為 `3/10` 秒，`target_status` 為 `met`。
+The example requires `detail` before `opening`, even though `opening` has a higher score and preference. Expect 10 ticks per second, a total of `3/10` seconds and `target_status` equal to `met`.
 
-| 鏡頭 | 素材 | 來源區間（秒） | 時間軸區間（秒） |
+| Shot | Asset | Source range in seconds | Timeline range in seconds |
 | --- | --- | --- | --- |
 | `shot-000001` | `detail` | `[1/10,3/10)` | `[0,1/5)` |
 | `shot-000002` | `opening` | `[0,1/10)` | `[1/5,3/10)` |
 
-工具先保留必要項目，再依偏好、分數與 ASCII ID 排序。最後套用需求中的先後關係。工具會保留固定的來源區間。必選項超過時長或數量上限，或缺少候選時，工具會拒絕輸入。若未達軟性目標，結果會附上提案與目標狀態。這個狀態只適用於目前的固定區間規劃。各選擇的 `reason_paths` 指向原始宣告。
+The planner reserves required items first. It ranks candidates by preference, score and ASCII ID. It then applies the declared precedence constraints. Source windows remain fixed. A missing required candidate or an exceeded hard limit produces a rejection. An unmet soft target produces a proposal and a target status for these windows. Each `reason_paths` entry points to an input declaration.
 
-下例同時必選與排除 `opening`。預期退出碼為 1，錯誤碼為 `planner.brief_conflict`。衝突指向 `$.brief.manual_selected_asset_ids[1]`。結果不含計畫。
+The next example both requires and excludes `opening`. Expect exit 1 and `planner.brief_conflict`. The conflict points to `$.brief.manual_selected_asset_ids[1]`. The response contains no plan.
 
 ```sh
 cargo run --release --quiet --locked -p storytelling-cli -- plan-story tests/fixtures/planner-v1/conflicting.json
 ```
 
-`planning.plan` 可直接傳給 `validate`。完整的規劃回應另有格式。`export-otio` 只接受剪輯快照。`plan-story` 的 `brief` 欄位只接受原始需求，不接受稽核結果。
+Pass `planning.plan` to `validate`. The full planning response uses a different format. `export-otio` accepts a snapshot. The planner's `brief` field accepts the original brief.
 
-目前範圍涵蓋固定區間與排序。多段敘事的配置、覆蓋率、鎖定及完整求解器仍在範圍外。`executable`、`source_verified` 與 `host_verified` 均為 `false`。[固定區間契約](migration/FIXED_WINDOW_PLANNER_V1.md)
+The planner selects and orders fixed windows. Multi-beat allocation, coverage, locks and general constraint solving remain outside this profile. The flags `executable`, `source_verified` and `host_verified` remain `false`. See the [fixed-window contract](migration/FIXED_WINDOW_PLANNER_V1.md).
 
-## 4. 唯讀匯入剪輯快照
+<a id="4-唯讀匯入剪輯快照"></a>
+
+## 4. Import a composition snapshot
 
 ```sh
 cargo run --release --quiet --locked -p storytelling-cli -- import-openfilm tests/fixtures/openfilm/finite-v1/still.json
 ```
 
-預期退出碼為 0，回應為 `{"ok":true,"import":...}`。`import.plan` 符合 M0 計畫契約。呼叫端需要計畫時，請取出此欄位。`import.source_snapshot` 保留來源宣告與原始數字字串。[快照匯入格式與欄位](migration/FINITE_V1.md)
+Expect exit 0 and `{"ok":true,"import":...}`. Extract `import.plan` for an M0 plan. The `import.source_snapshot` field retains source declarations and the original numeric strings. See the [snapshot format](migration/FINITE_V1.md).
 
-請提供符合契約的剪輯組合匯出檔。專案資料庫或需求文件各有其他格式。支援範圍是單一連續畫面軌的靜態圖片與影片硬切。未知效果、動畫與明確宣告的音軌均會遭拒。成功結果標為 `declared-visual-mapping-only` 與 `executable:false`。素材是否可用與音訊是否保留，需要對應證據。
+Supply a composition export that follows this contract. The profile supports a single continuous picture track with still images and hard video cuts. It rejects unknown effects, animation and explicit audio tracks. A success reports `declared-visual-mapping-only` and `executable:false`. Media availability and audio preservation require separate evidence.
 
-## 5. 輸出有限 OTIO
+<a id="5-輸出有限-otio"></a>
+
+## 5. Export a timeline
 
 ```sh
 cargo run --release --quiet --locked -p storytelling-cli -- export-otio tests/fixtures/openfilm/finite-v1/still.json --metadata-only-locks
 ```
 
-範例宣告了鎖定，因此明確使用 `--metadata-only-locks`。預期退出碼為 0，標準輸出為 `Timeline.1` 原生 OTIO JSON。若要存檔，請指定新檔名。指令不會開啟素材 URI。
+The sample declares locks, so it needs `--metadata-only-locks`. Expect exit 0 and native OTIO `Timeline.1` JSON. Choose a new output filename. The tool does not open the asset URI.
 
-影片需使用 `--picture-only`。鎖定值為 true 時需使用 `--metadata-only-locks`。將選項放在輸入路徑後。缺少必要選項時，錯誤碼為 `otio.loss_choice_required`。這些選項指定可接受的格式轉換損失。指令只接受原始剪輯快照，不能直接讀取匯入或稽核結果。內容時間刻度與專案幀率分開記錄。[OTIO 契約](migration/FINITE_OTIO_V1.md)
+Video requires `--picture-only`. A true lock requires `--metadata-only-locks`. Place these options after the input path. A missing choice produces `otio.loss_choice_required`. These options describe accepted conversion losses. Supply the original snapshot. The exporter records content ticks separately from the project frame rate. See the [OTIO contract](migration/FINITE_OTIO_V1.md).
 
-## 6. 比對明確提供的 bytes
+<a id="6-比對明確提供的-bytes"></a>
 
-下例使用原始碼庫的範例 JSON。預期雜湊值對應使用 LF 換行的原始檔。
+## 6. Compare supplied bytes
+
+This example uses the repository's sample JSON. The expected hash corresponds to the original file with LF line endings.
 
 ```sh
 cargo run --release --quiet --locked -p storytelling-cli -- verify-source examples/minimal-plan.json 54e254ed9d62c604306305f95fc844d635f43bfc89cf835e05d4d74318cb6408
 ```
 
-預期退出碼為 0，回應為 `{"ok":true,"verification":...}`。`scope` 為 `provided-buffer-bytes`。換行或內容有變動，雜湊值就可能不同。檔案內引用的媒體、使用權與來源身分須另行確認。
+Expect exit 0 and `{"ok":true,"verification":...}`. The scope is `provided-buffer-bytes`. A change in content or line endings can change the hash. Media references, rights and source identity require separate checks.
 
-請從可信任的來源取得預期雜湊值。值的格式正確但內容不符時，退出碼為 1。錯誤碼為 `source.hash_mismatch`。CLI 不會輸出素材內容或不符的實際雜湊值。
+Obtain the expected hash from a trusted source. A valid hash with a different value produces exit 1 and `source.hash_mismatch`. The CLI omits the input content and the actual mismatched hash.
 
-Rust API 的成功結果會私下持有本次驗證的位元組。CLI 紀錄則只有中繼資料。紀錄無法還原成可信任的資料緩衝區。後續重新開檔時，仍需檢查檔案身分與驗證後遭替換的風險。[位元組驗證契約](migration/FILMCRAFT_25_V1.md#native-supplied-buffer-contract)
+On success, the Rust API privately owns the verified bytes. The CLI returns only metadata. Its record cannot reconstruct a trusted buffer. A later file read requires its own identity and replacement checks. See the [buffer contract](migration/FILMCRAFT_25_V1.md#native-supplied-buffer-contract).
 
-## 7. 建立與檢查有限審核識別
+<a id="7-建立與檢查有限審核識別"></a>
 
-M3-01/P1 已接受同一輸入的審閱識別。此範圍涵蓋快照、審閱設定與編譯結果之間的關係。匯入的剪輯快照可用 `-` 從標準輸入讀取。審閱設定與紀錄須為具名檔案。
+## 7. Prepare and check a review record
 
-將下列內容存為 `review-context.json`。設定的結構版本為 1。請提供所有欄位，並保留指定欄位名稱。
+The accepted M3-01/P1 profile binds one snapshot, review context and compiled artifact. The snapshot can use standard input. Supply named files for the context and record.
+
+Save the following complete version 1 context in `review-context.json`. Keep the field names exactly as shown.
 
 ```json
 {
@@ -226,7 +251,7 @@ M3-01/P1 已接受同一輸入的審閱識別。此範圍涵蓋快照、審閱�
 }
 ```
 
-用下列步驟建立紀錄。Python 指令會擷取 `review` 欄位，供下一行核對。請使用新的輸出檔名。
+Choose new output filenames. The Python command extracts the `review` field before the check.
 
 ```sh
 cargo run --release --quiet --locked -p storytelling-cli -- prepare-review tests/fixtures/openfilm/finite-v1/repeat-source.json review-context.json > prepared.json
@@ -234,95 +259,105 @@ python3 -c 'import json; print(json.dumps(json.load(open("prepared.json"))["revi
 cargo run --release --quiet --locked -p storytelling-cli -- check-review review-record.json tests/fixtures/openfilm/finite-v1/repeat-source.json review-context.json
 ```
 
-`project_id`、`target_revision` 與宿主的 ID、版本、設定檔名稱均須使用 ASCII 識別字元。宿主是提供剪輯功能的外部應用程式。宿主 SHA-256 必須為 64 個小寫十六進位字元。能力名稱依 ASCII 升冪排列，最多 64 項。格式轉換選項也須依列舉名稱排序。兩份清單都須排除重複項目。
+Use ASCII identifiers for `project_id`, `target_revision` and the host ID, version and profile name. The host is the external editor application. The host SHA-256 needs 64 lowercase hexadecimal characters. Sort capability names in ascending ASCII order. Include at most 64. Sort conversion choices by enum name. Remove duplicates from both lists.
 
-`prepare-review` 依快照位元組與審閱設定重新編譯。結果包含計畫、OTIO 及完整報告的識別雜湊。`scope` 為 `declared-review-binding-only`。權限與證據旗標均為 `false`。紀錄不含設定的明文，也不構成可還原的授權物件。
+`prepare-review` compiles the snapshot bytes under the supplied context. It returns identifying hashes for the plan, OTIO and complete report. Its scope is `declared-review-binding-only`. Permission and evidence flags remain `false`. The portable record omits the context plaintext. It cannot grant authority.
 
-`check-review` 將紀錄視為未受信任的 JSON。它檢查結構、旗標、雜湊格式與紀錄綁定值，再用目前的輸入重新編譯。一致時回傳 `current:true`。有效但過期的紀錄回傳 `current:false` 與排序後的 `stale_fields`，退出碼仍為 0。過期欄位可包含 `composition`、`plan`、`artifact`、`report` 或 `context.project_id`。
+`check-review` treats the record as untrusted JSON. It checks the shape, flags, hash format and binding digest. It recompiles the current input. A match returns `current:true`. A valid stale record returns exit 0 with `current:false` and sorted `stale_fields`. Stale fields can include `composition`, `plan`, `artifact`, `report` and `context.project_id`.
 
-| 輸入或輸出 | 上限 |
+| Input or output | Limit |
 | --- | --- |
-| 剪輯快照 | 1 MiB |
-| 審閱設定 | 65,536 位元組 |
-| 審閱紀錄 | 98,304 位元組 |
-| OTIO 產物 | 4 MiB |
-| 審閱 JSON 巢狀深度 | 64 層 |
-| 識別字元 | 128 位元組 |
+| Composition snapshot | 1 MiB |
+| Review context | 65,536 bytes |
+| Review record | 98,304 bytes |
+| OTIO artifact | 4 MiB |
+| Review JSON nesting | 64 levels |
+| Identifier | 128 bytes |
 
-超限輸入會在解析或編譯前遭拒。錯誤使用一般 JSON 的 `error` 欄位。診斷不含本機路徑或輸入內容。
+The tool rejects oversized input before parsing or compilation. The JSON `error` field contains the diagnostic. Diagnostics omit local paths and input content.
 
-| 原因 | 可能的錯誤碼 |
+| Cause | Possible code |
 | --- | --- |
-| JSON 無效或版本不支援 | `review.invalid_context_json`、`review.invalid_record_json`、`review.unsupported_version` |
-| 內容宣告或雜湊無效 | `review.invalid_claims`、`review.invalid_digest`、`review.record_digest_mismatch` |
-| 結構、排序、能力或大小不符 | `review.json_too_deep`、`review.too_many`、`review.noncanonical_order`、`review.context_missing_capability`、`review.context_too_large`、`review.record_too_large` |
+| Invalid JSON or unsupported version | `review.invalid_context_json`, `review.invalid_record_json`, `review.unsupported_version` |
+| Invalid claims or digest | `review.invalid_claims`, `review.invalid_digest`, `review.record_digest_mismatch` |
+| Invalid structure, order, capability or size | `review.json_too_deep`, `review.too_many`, `review.noncanonical_order`, `review.context_missing_capability`, `review.context_too_large`, `review.record_too_large` |
 
-本次核對只驗證提供的剪輯快照與據此編譯的時間軸。宿主識別、執行檔雜湊、修訂版號與能力均由呼叫端宣告。任何人都可建立紀錄。SHA-256 無法證明紀錄的簽署者或授權狀態。此流程不會檢查宿主執行檔、呼叫剪輯器或驗證媒體。
+The check covers the supplied snapshot and its compiled timeline. The caller declares host identity, binary hash, revision and capabilities. Anyone can construct a record. SHA-256 cannot identify a signer or grant permission. This process does not inspect host binaries, invoke an editor or check media.
 
-若需核對不同規劃提案，請使用提案審閱指令。執行授權、金鑰信任、撤銷與防重播另有驗收要求。此處的有限範圍已有簽署驗收紀錄。[M3-01 審閱契約](CONTRACTS.md#m3-01-p1-accepted-bounded-review-binding) · [簽署驗收紀錄](migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md)
+For planner proposals, use the proposal review commands above. Execution authority, key trust, revocation and replay protection require separate verification. See the [review contract](CONTRACTS.md#m3-01-p1-accepted-bounded-review-binding) and [signed acceptance record](migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md).
 
-## 回應、退出碼與檔案處理
+<a id="回應退出碼與檔案處理"></a>
 
-| 退出碼 | 呼叫端應採取的動作 |
+## Interpret exit codes and file behavior
+
+| Exit | Caller action |
 | --- | --- |
-| 0 | 讀取該指令的結果與 `scope`。若使用 `check-review`，另查 `current`。 |
-| 1 | 查閱 `error` 或 `audit`。格式、輸入限制或規則衝突皆可能觸發此代碼。 |
-| 2 | 檢查子命令及參數。 |
-| 3 | 檢查輸入來源及標準輸出是否可用。 |
+| 0 | Read the result and `scope`. For `check-review`, inspect `current`. |
+| 1 | Inspect the diagnostic, audit, or freshness result. The reason may be invalid input, a conflict or a stale proposal review. |
+| 2 | Check the command and arguments. |
+| 3 | Check the input source and standard output. |
 
-一般成功與錯誤回應均為單行 JSON。三個敘事指令成功時輸出可讀文字：`render-narrative`、`track-narrative-revisions`、`query-narrative-impact`。說明與版本指令也使用純文字。若標準輸出失敗，呼叫端可能只收到部分回應。
+JSON responses use one line. The three narrative commands produce readable text on success. Help and version also produce plain text. A failed write to standard output can leave an incomplete response.
 
-CLI 可讀取指定的本機檔案，也可解析指向一般檔案的符號連結。它不提供伺服器路徑管制或作業系統沙箱。路徑、檔名與內容都無法授予新權限。
+The CLI reads named local files. It can resolve a symbolic link to a regular file. It provides no server path policy or operating system sandbox. A path, name or file content cannot grant permission.
 
-目前沒有通用的批准、套用或媒體轉譯指令。需求檢查、位元組比對與 OTIO 解析各有驗證範圍。正式執行、復原及作者驗收仍需獨立證據。
+No general approval, apply or media render command exists. A brief audit, byte comparison and OTIO parse each check different properties. Production execution, recovery and editorial acceptance require separate evidence.
 
-## 重播來源與官方格式驗證
+<a id="重播來源與官方格式驗證"></a>
 
-執行 Rust 測試。
+## Replay the reference and format tests
+
+Run the Rust tests.
 
 ```sh
 cargo test --workspace --locked
 cargo test --workspace --release --locked
 ```
 
-| 測試 | 重播條件 |
+| Test | Replay requirements |
 | --- | --- |
-| 六個快照匯入案例 | 使用 Python 標準函式庫。[匯入測試](../tests/oracles/openfilm-finite-v1/README.md) |
-| 八個來源與 OTIO 案例 | 使用指定的 Linux、CPython 3.12 與雜湊值固定的 OTIO 0.18.1 套件。[OTIO 測試](../tests/oracles/otio-finite-v1/README.md) |
-| 十個硬限制案例 | 使用 Python 標準函式庫重播既存的基準輸出。[剪輯需求測試](../tests/oracles/story-brief-v1/README.md) |
-| 十二個固定區間規劃案例 | 使用 Python 標準函式庫。測試保留視窗與排名政策的已知差異。[規劃測試](../tests/oracles/fixed-window-planner-v1/README.md) |
+| Six snapshot imports | Python standard library. [Importer tests](../tests/oracles/openfilm-finite-v1/README.md) |
+| Eight source and OTIO cases | Pinned Linux, CPython 3.12 and hash-pinned OTIO 0.18.1. [OTIO tests](../tests/oracles/otio-finite-v1/README.md) |
+| Ten hard-constraint cases | Python standard library and frozen reference outputs. [Brief tests](../tests/oracles/story-brief-v1/README.md) |
+| Twelve fixed-window plans | Python standard library. Tests retain known window and ranking policy differences. [Planner tests](../tests/oracles/fixed-window-planner-v1/README.md) |
 
-若要重新產生來源基準，才需要固定版本的 Node、tsx 與來源原始碼。請將輸出寫入獨立目錄。審查差異後，再更新測試資料。重播既存輸出只會比對保存的基準。正式 Rust 執行環境不依賴這些測試工具。
+To regenerate the source baseline, supply the pinned Node, tsx and source checkout. Write to a separate directory. Inspect differences before changing fixtures. Routine replay compares the frozen results. Production Rust code does not depend on these test tools.
 
-## 執行 M2-03 即時規劃比對
+<a id="執行-m2-03-即時規劃比對"></a>
 
-工具使用固定版本的參考實作與 Rust CLI。兩者處理相同的合成案例。指定 Linux x86_64 的 Node、tsx 與來源原始碼路徑。選用尚不存在的外部輸出目錄。
+## Compare two planners on identical input
+
+The M2-03 checker runs the pinned reference planner and Rust CLI on the same synthetic cases. Specify Linux x86_64 Node, tsx and source paths. Select an external output directory that does not yet exist.
 
 ```sh
 python3 tests/oracles/planner-shadow-v1/run.py --source /absolute/reference-checkout --node /absolute/node --tsx /absolute/oracle-tools/node_modules/tsx/dist/loader.mjs --rust-cli /absolute/storytelling/target/release/storytelling --run-root /absolute/new-shadow-run
 ```
 
-測試工具不會下載或安裝程式。預設執行 64 組案例，涵蓋已選定的一致範圍、四種已知差異與四個不支援案例。未分類的差異會導致測試失敗。這項測試會實際執行兩套規劃器。完整求解器、宿主整合與人工驗收各有獨立範圍。[工具版本、亂數種子、40 項回歸測試與證據格式](../tests/oracles/planner-shadow-v1/README.md)
+The checker installs and downloads nothing. Its default 64 pairs cover the selected agreement domain, four known differences and four unsupported cases. An unclassified difference fails the run. This exercise checks both running planners. A full solver, host integration and human acceptance need separate evidence. See [tool versions, seeds, 40 regression checks and evidence format](../tests/oracles/planner-shadow-v1/README.md).
 
-## 重現有界 FilmCraft 實跑
+<a id="重現有界-filmcraft-實跑"></a>
 
-這個案例使用 FilmCraft v0.18.0 的 Linux x86_64 命令列工具。請先核對發行版本、壓縮檔與執行檔識別。測試工具會在執行前再次核對宿主的執行檔雜湊值。它不會自行安裝工具。[官方發行檔](https://github.com/storytold/filmcraft/releases/tag/v0.18.0) · [固定值與實測紀錄](migration/records/M1-03.md)
+## Reproduce the Linux editor test
 
-使用工具的實際絕對路徑。先建立父目錄。請選擇尚不存在的輸出目錄。
+The M1-03 test uses FilmCraft v0.18.0 for Linux x86_64. Check the release, archive and executable identities. The runner checks the host executable hash before the test. It installs no tools. See the [official release](https://github.com/storytold/filmcraft/releases/tag/v0.18.0) and [pinned values and evidence](migration/records/M1-03.md).
+
+Use absolute tool paths. Create the parent directory first. Choose an output directory that does not exist.
 
 ```sh
 python3 tests/oracles/filmcraft-25-v1/run.py --storytelling /absolute/storytelling --filmcraft /absolute/filmcraft-cli --ffmpeg /absolute/ffmpeg --ffprobe /absolute/ffprobe --run-root /absolute/new-filmcraft-proof
 ```
 
-測試將合成素材、原生專案、影片、日誌與 `evidence.json` 存入新目錄。這個目錄不提供作業系統層級的隔離。既有紀錄只代表當時執行的結果。
+The runner saves synthetic media, a native project, video, logs and `evidence.json` in the new directory. The directory provides no operating system isolation. A saved record describes its own run.
 
-此案例限 Linux、無圖形介面、純畫面、每秒 25 格。原生序列為 1920×1080。CPU 輸出的 H.264 預覽為 192×108，共 45 格、1.8 秒。測試涵蓋實際匯入、原生區間、存檔重開、OTIO 再匯入、來源雜湊及逐格順序。
+This headless test covers picture only at 25 fps. The native sequence is 1920×1080. CPU encoding produces a 192×108 H.264 preview with 45 frames over 1.8 seconds. The test checks import, native ranges, save and reopen, OTIO reimport, source hashes and frame order.
 
-其他時鐘、媒體、音訊、GUI、GPU 與全解析度需另行實測。人工剪輯驗收與正式宿主執行器仍待驗證。[宿主測試說明](../tests/oracles/filmcraft-25-v1/README.md)
+Other clocks, media, audio, GUI, GPU and full-resolution output need independent tests. Human editorial acceptance and the production executor remain pending. See the [host test guide](../tests/oracles/filmcraft-25-v1/README.md).
 
-## 重現 M3-03 遺失回應／回讀證明
+<a id="重現-m3-03-遺失回應回讀證明"></a>
 
-這個測試只操作合成案例。請準備指定版本的 FilmCraft、FFmpeg 與 Cargo。請選擇新的絕對輸出路徑。先建置 CLI，再執行測試。
+## Reproduce recovery after a lost reply
+
+The M3-03 test uses synthetic material. Supply the specified FilmCraft, FFmpeg and Cargo versions. Choose a new absolute output path. Build the CLI before running the proof.
 
 ```sh
 cargo build --release --locked -p storytelling-cli
@@ -334,10 +369,10 @@ python3 tests/oracles/m3-03-filmcraft-v1/run.py \
   --run-root /absolute/new-m3-03-run
 ```
 
-1. 工具建立合成來源與通過目前版本核對的提案。
-2. 工具將建立空專案與一次匯入分別寫入 SQLite 日誌。
-3. 宿主成功退出後，工具刻意保留回應。
-4. 呼叫端先記為 `unknown`，再讀回原生專案與序列。
-5. 剪點相符時，結果記為 `applied-observed`。過程不會重送或復原操作。
+1. The runner creates synthetic sources and a current proposal.
+2. It records the empty project creation and one import in SQLite.
+3. It withholds the reply after the host exits successfully.
+4. The caller records `unknown` and reads back the native project and sequence.
+5. Matching cuts yield `applied-observed`. The runner does not resend or undo the operation.
 
-所有產物都存於新的輸出目錄。此案例限於每秒 25 格與單一畫面剪點。它不涵蓋人工批准、可信任的簽章授權或正式執行器。[測試說明](../tests/oracles/m3-03-filmcraft-v1/README.md) · [驗證紀錄](validation/m3-03-filmcraft-execution.md)
+All artifacts stay in the new directory. The proof covers 25 fps and one picture cut. Human approval, trusted signer authorization and the production executor remain separate. See the [test guide](../tests/oracles/m3-03-filmcraft-v1/README.md) and [validation record](validation/m3-03-filmcraft-execution.md).

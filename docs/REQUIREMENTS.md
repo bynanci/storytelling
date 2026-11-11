@@ -1,25 +1,26 @@
-# 需求與驗收對照
+# Requirements and acceptance criteria
 
-作者工作流程請查[跨媒體敘事](#proposed-cross-media-narrative-requirements)或[多模態需求](#multimodal-authoring-and-follow-up-requirements)。下列影片工程紀錄保留各項需求的測試名稱、驗證工具與版本。
+<a name="requirements-and-verification-traceability"></a>
+<a name="需求與驗收對照"></a>
 
-M0, finite M1-01/M1-02, bounded M2-01 audit, M2-02 fixed-window planning and
-M1-H01–H04's M1-03 source/host proof are accepted on main. Broader host, full-planner and human acceptance remain
-separate. Tests are checked by the repository guard.
+English · [繁體中文](REQUIREMENTS.zh-TW.md)
+
+See the [narrative requirements](#proposed-cross-media-narrative-requirements) and [multimodal requirements](#multimodal-authoring-and-follow-up-requirements) for authoring workflows. The video tables identify test names, tools and their versions.
+
+Main includes M0, finite M1-01/M1-02, the bounded M2-01 audit and M2-02 fixed-window planning. It also includes the M1-03 source and host evidence for M1-H01–H04. Broader host tests, full-planner tests and human acceptance have separate requirements. The repository guard checks the test names.
 
 | ID | Requirement | Implementation owner | Acceptance test |
 | --- | --- | --- | --- |
 | M0-R01 | Accept valid declared metadata and reused source occurrences | engine/lib.rs | `accepts_declared_plan_and_reused_source` |
 | M0-R02 | Refuse unsupported version, unknown and duplicate fields | core/wire.rs + engine | `rejects_unsupported_version`, `rejects_unknown_and_duplicate_json_fields` |
-| M0-R03 | Validate IDs, declared hash shape, uniqueness and source references | engine | `rejects_duplicate_identities`, `rejects_missing_source_reference`, `rejects_invalid_identity_and_hash` |
+| M0-R03 | Check IDs, declared hash format, uniqueness and source references | engine | `rejects_duplicate_identities`, `rejects_missing_source_reference`, `rejects_invalid_identity_and_hash` |
 | M0-R04 | Canonical bounded exact rational source time, no float rounding | core/time.rs | `rejects_noncanonical_and_zero_denominator_time`, `compares_large_rationals_without_float_rounding` |
 | M0-R05 | Nonempty source ranges within positive declared duration | engine | `rejects_empty_or_reversed_ranges`, `rejects_source_range_outside_declared_duration`, `rejects_zero_duration_and_preserves_input_bytes` |
 | M0-R06 | Bound input and collections | CLI + engine | `rejects_malformed_or_oversized_input`, `rejects_empty_and_over_budget_collections` |
-| M0-R07 | Deterministic read-only behavior; do not claim media verification | engine + CLI | `accepts_exact_rational_intervals_and_is_deterministic`, `accepts_valid_file_with_machine_readable_output` |
+| M0-R07 | Return deterministic, read-only results for declared metadata. Media verification requires separate evidence. | engine + CLI | `accepts_exact_rational_intervals_and_is_deterministic`, `accepts_valid_file_with_machine_readable_output` |
 | M0-R08 | Machine JSON and distinct validation/usage/I/O outcomes | CLI | `rejects_bad_source_range_with_exit_one`, `accepts_stdin`, `distinguishes_usage_and_io_failures`, `reports_help_and_version_without_loading_a_project` |
 
-Rust integration tests are under `crates/*/tests`; source-level API compile-fail
-doctests also pin the M1-03 private/no-deserialize trust boundary. The source test fixtures are synthetic,
-with placeholder hashes; success is strictly declared-metadata validation.
+Rust integration tests are under `crates/*/tests`. The compile-fail doctests cover private construction and deserialization restrictions in the M1-03 API. The synthetic fixtures use placeholder hashes. A passing test establishes consistency of the declared metadata.
 
 ## M1-01 finite importer requirements
 
@@ -32,21 +33,16 @@ See the frozen [contract](migration/FINITE_V1.md),
 | --- | --- | --- | --- |
 | M1-I01 | Preserve source and occurrence identity, order and user facts / OF-01/04 | engine mapper + retained source snapshot | `repeat_source_preserves_occurrence_order_and_uses_maximum_still_hold`, `locks_selection_story_and_beats_remain_original_declarations` |
 | M1-I02 | Exact decimal/source clocks, independent explicit timebase / OF-02 + GAP-03 | decimal.rs + clocks | `exact_decimal_and_exponent_continuity_does_not_infer_ntsc`, `seconds_above_f64_integer_precision_remain_exact_and_u64_max_is_allowed`, `explicit_timebase_is_separate_from_its_agreeing_decimal_declaration` |
-| M1-I03 | Strict immutable bounded input/output; OF-03 identity subset, GAP-10 | DTO + budget + mapped-plan cap | `rejects_oversized_input_and_bounded_metadata_depth_strings_keys_and_values`, `compact_source_whose_mapped_plan_exceeds_m0_input_limit_rejects`, `optional_fields_reject_explicit_null_instead_of_erasing_declarations` |
+| M1-I03 | Limit input and output sizes and preserve input bytes / OF-03 identity subset and GAP-10 | DTO + budget + mapped-plan cap | `rejects_oversized_input_and_bounded_metadata_depth_strings_keys_and_values`, `compact_source_whose_mapped_plan_exceeds_m0_input_limit_rejects`, `optional_fields_reject_explicit_null_instead_of_erasing_declarations` |
 | M1-I04 | Unsupported features explicit, no executable/verified claim / OF-04 | structured errors/losses | `unknown_effect_and_current_animation_reject_with_one_explicit_loss`, `embedded_audio_rejects_and_missing_or_empty_probe_still_blocks_audio_handoff` |
-| M1-I05 | Original snapshot and number lexemes unchanged; declarations only / GAP-03/10 | raw snapshot + pure engine | `source_snapshot_preserves_large_numbers_lexemes_and_input_bytes`, `source_snapshot_minification_preserves_escaped_strings_whitespace_and_unicode` |
+| M1-I05 | Preserve the original snapshot and number lexemes as declarations / GAP-03/10 | raw snapshot + pure engine | `source_snapshot_preserves_large_numbers_lexemes_and_input_bytes`, `source_snapshot_minification_preserves_escaped_strings_whitespace_and_unicode` |
 | M1-I06 | Usable file/stdin CLI, JSON/exit consistency / OF-04 + GAP-16 | CLI composition root | `imports_file_without_modifying_input_or_directory_and_returns_an_m0_plan`, `imports_stdin_with_the_same_result_as_file_input`, `treats_missing_video_media_and_instruction_text_as_opaque_declarations` |
 
-GAP-01 is checked by `provenance_manifest_covers_every_imported_file` in the
-repository guard. GAP-02/16 use the pinned six-case source oracle and differential
-comparator under `tests/oracles/openfilm-finite-v1`; same-head CI replays frozen
-oracle outputs. Synthetic validation does not close real-media/host gates.
+The repository guard checks GAP-01 with `provenance_manifest_covers_every_imported_file`. GAP-02/16 use six pinned source cases and a differential comparator under `tests/oracles/openfilm-finite-v1`. CI replays frozen oracle outputs on the same commit. Real media and host behavior require separate evidence.
 
 ## M1-02 finite OTIO requirements
 
-These are format-only requirements. They do not close M1-R01–R03 host/source
-gates. See [contract](migration/FINITE_OTIO_V1.md),
-[comparison](migration/records/M1-02.md) and [work index](migration/m1-02-work-index.json).
+M1-02 covers format behavior. Source and host acceptance have separate requirements under M1-R01–R03. See the [contract](migration/FINITE_OTIO_V1.md), [comparison](migration/records/M1-02.md) and [work index](migration/m1-02-work-index.json).
 
 | ID | Requirement / OF-GAP scope | Actual acceptance |
 | --- | --- | --- |
@@ -55,35 +51,23 @@ gates. See [contract](migration/FINITE_OTIO_V1.md),
 | M1-O03 | Explicit audio/lock choices, honest format capability/loss / OF-36 + GAP-05 subset | `audio_and_lock_losses_are_ordered_and_each_choice_only_accepts_its_own_loss`, `report_retains_import_limitations_and_never_claims_source_host_or_execution_verification`, `unsupported_source_features_keep_import_codes_paths_and_unaccepted_rows` |
 | M1-O04 | Original snapshot lexemes and bounded amplified output / GAP-03/10 | `owner_snapshot_is_a_string_preserving_large_integer_decimal_and_opaque_exponent_lexemes`, `bounded_source_with_amplified_repeated_names_rejects_the_final_otio_budget` |
 | M1-O05 | Usable direct OTIO stdout, strict loss flags, immutable file/stdin / GAP-14 subset | `exports_a_real_timeline_identically_from_file_and_stdin_without_writing`, `rejects_missing_extra_unknown_duplicate_and_misplaced_arguments_with_usage_two`, `preserves_numeric_lexemes_inside_the_source_snapshot_json_string` |
-| M1-O06 | Actual source and official parser semantic conformance / GAP-02/16 | `tests/oracles/otio-finite-v1/verify.py`: six pinned TS cases plus two direct Rust fixtures, official 0.18.1 parse/write/read; no media URI dereference |
+| M1-O06 | Actual source and official parser semantic conformance / GAP-02/16 | `tests/oracles/otio-finite-v1/verify.py`: six pinned TS cases plus two direct Rust fixtures, official 0.18.1 parser, writer and reader without opening media URIs |
 
 ## M2-01 bounded brief audit requirements
 
-M2-Bxx identifies this declared-constraint audit subset separately from the
-M2-R01 full-planner goal. The bounded M2-B01–B06 scope is accepted through
-merged PR #17; no release, host or full-planner status follows from this audit. See the frozen
-[contract](migration/STORY_BRIEF_V1.md),
-[source comparison record](migration/records/M2-01.md),
-[per-file provenance](migration/provenance-m2-01.json) and
-[complete requirement/test mapping](migration/m2-01-work-index.json).
-[Tracking issue #14](https://github.com/bynanci/storytelling/issues/14) owns this
-bounded slice; verification and acceptance completed in merged PR #17; issue #14 is checked and closed.
+M2-Bxx covers the audit of declared constraints. M2-R01 covers the full planner. Merged PR #17 accepted M2-B01–B06. Release, host and full-planner acceptance have separate requirements. See the [contract](migration/STORY_BRIEF_V1.md), [source comparison record](migration/records/M2-01.md), [per-file provenance](migration/provenance-m2-01.json) and [complete requirement/test mapping](migration/m2-01-work-index.json).
+[Tracking issue #14](https://github.com/bynanci/storytelling/issues/14) covers this scope. Verification and acceptance in merged PR #17 closed the issue.
 
 | ID | Implemented bounded requirement | Implementation | Representative actual tests |
 | --- | --- | --- | --- |
-| M2-B01 | Manual choices stay hard required membership/order; include/order members are required; keep declaration order and every edge origin | core/brief.rs + engine/brief.rs | `missing_manual_choices_remain_required_and_ordered_instead_of_being_filtered`, `include_and_order_members_promote_required_assets_with_all_ordered_origins`, `duplicate_edges_retain_each_declaration_origin_without_reordering` |
+| M2-B01 | Require manual membership and order. Require all members of include and order declarations. Preserve declaration order and every edge origin. | core/brief.rs + engine/brief.rs | `missing_manual_choices_remain_required_and_ordered_instead_of_being_filtered`, `include_and_order_members_promote_required_assets_with_all_ordered_origins`, `duplicate_edges_retain_each_declaration_origin_without_reordering` |
 | M2-B02 | Typed missing-reference, required/excluded and actual-cycle conflicts retain stable paths/order and conflicting choices | engine audit + brief/cycle.rs | `unknown_exclusions_and_repeated_reference_declarations_get_typed_conflicts`, `conflicting_fixture_has_stable_hard_diagnostic_order_and_required_origin_paths`, `cycle_witness_is_actual_and_excludes_acyclic_prefix_and_downstream_nodes` |
-| M2-B03 | Preferences stay soft; exact positive rational target and Unicode intent remain declarations, with no duration analysis or text execution | core preferences + engine audit | `preference_warnings_preserve_values_and_never_relax_hard_requirements`, `positive_canonical_target_duration_is_preserved_without_feasibility_analysis`, `unicode_and_instruction_shaped_intent_remain_verbatim_inert_text` |
-| M2-B04 | Strict supported version/shape/ID boundary; refuse unknown, duplicate, null or unsupported declarations | core DTOs + engine validation | `unknown_fields_and_unsupported_constraint_families_reject_strictly`, `duplicate_json_fields_reject_at_root_and_each_nested_object`, `future_version_is_probed_before_domain_validation_and_required_fields_are_strict` |
-| M2-B05 | Bounded input, intent, collections, aggregate references, diagnostics and output; iterative traversal, deterministic results and immutable bytes | engine validation/audit + iterative cycle helper | `aggregate_reference_budget_accepts_8192_and_refuses_8193`, `combined_diagnostic_budget_accepts_256_and_errors_instead_of_truncating_at_257`, `full_depth_acyclic_order_and_large_origin_report_stay_within_output_budget`, `input_bytes_and_semantic_array_order_are_unchanged_and_reports_are_deterministic` |
-| M2-B06 | Read-only explicit file/stdin CLI, one-line typed JSON and stable exits; scope is audit only; selected source policies have a finite differential comparator | CLI composition root + policy oracle | `fixture_reports_only_declared_consistency_without_a_planned_selection`, `audits_file_and_stdin_identically_without_changing_the_input_or_directory`, `reports_typed_hard_conflicts_with_exit_one_and_keeps_manual_choices`, `redacts_missing_input_file_with_io_exit_three` |
+| M2-B03 | Keep preferences optional. Preserve the exact positive rational target and Unicode intent as declarations. Skip duration analysis and never execute the text. | core preferences + engine audit | `preference_warnings_preserve_values_and_never_relax_hard_requirements`, `positive_canonical_target_duration_is_preserved_without_feasibility_analysis`, `unicode_and_instruction_shaped_intent_remain_verbatim_inert_text` |
+| M2-B04 | Enforce the supported version, shape and ID rules. Reject unknown, duplicate, null or unsupported declarations. | core DTOs + engine validation | `unknown_fields_and_unsupported_constraint_families_reject_strictly`, `duplicate_json_fields_reject_at_root_and_each_nested_object`, `future_version_is_probed_before_domain_validation_and_required_fields_are_strict` |
+| M2-B05 | Limit input, intent, collections, total references, diagnostics and output. Use iterative traversal. Return deterministic results and preserve input bytes. | engine validation/audit + iterative cycle helper | `aggregate_reference_budget_accepts_8192_and_refuses_8193`, `combined_diagnostic_budget_accepts_256_and_errors_instead_of_truncating_at_257`, `full_depth_acyclic_order_and_large_origin_report_stay_within_output_budget`, `input_bytes_and_semantic_array_order_are_unchanged_and_reports_are_deterministic` |
+| M2-B06 | Audit explicit file or stdin input without writes. Return one line of typed JSON and stable exit codes. Compare selected source policies with the finite oracle. | CLI composition root + policy oracle | `fixture_reports_only_declared_consistency_without_a_planned_selection`, `audits_file_and_stdin_identically_without_changing_the_input_or_directory`, `reports_typed_hard_conflicts_with_exit_one_and_keeps_manual_choices`, `redacts_missing_input_file_with_io_exit_three` |
 
-The machine index maps all 22 engine and 7 CLI tests. Actual pinned source
-outcomes and the differential comparator live under
-[the ten-case policy oracle](../tests/oracles/story-brief-v1/README.md). Only hard
-membership/order/reference/conflict policy is compared. The brief schema,
-preferences and typed diagnostics are downstream design. A consistent audit
-checks declared rules; it does not prove composition feasibility or choose shots.
+The machine index maps all 22 engine tests and 7 CLI tests. The [ten-case policy oracle](../tests/oracles/story-brief-v1/README.md) contains the pinned source results and the differential comparator. It compares hard requirements for membership, order, references and conflicts. This project defines the brief schema, preferences and typed diagnostics. The audit checks declared rules. Shot selection and composition feasibility require a planner.
 
 
 ## M1-03 bounded source and FilmCraft proof
@@ -95,27 +79,24 @@ See [25 fps contract](migration/FILMCRAFT_25_V1.md),
 | ID | Requirement / boundary | Actual acceptance |
 | --- | --- | --- |
 | M1-H01 | Native SHA-256 of ≤16 MiB explicit bytes / GAP-04 and OF-29 subset | `accepts_independent_sha256_vectors_and_owns_verified_bytes`, `rejects_mismatched_and_noncanonical_expected_hashes`, `accepts_exact_buffer_budget_and_rejects_larger_before_hash_syntax` |
-| M1-H02 | Explicit file/stdin verification; metadata-only receipts; no project URI access | `accepts_explicit_source_bytes_with_metadata_only_receipt`, `rejects_bad_source_evidence_without_leaking_input`, `distinguishes_source_usage_and_io_errors`; compile-fail private/no-deserialize API examples |
+| M1-H02 | Check an explicit file or stdin. Return a metadata-only receipt without opening project URIs. | `accepts_explicit_source_bytes_with_metadata_only_receipt`, `rejects_bad_source_evidence_without_leaking_input`, `distinguishes_source_usage_and_io_errors`, and compile-fail examples for private construction and deserialization restrictions |
 | M1-H03 | Actual pinned host 25 fps import, exact native ranges, default intrinsic effects and external ID mapping / M1-R01 subset | `tests/oracles/filmcraft-25-v1/run.py`, complete checked native baselines, `test_checks.py` semantic rejection tests |
-| M1-H04 | Actual CPU H.264 192×108 preview, 45 exact PTS, 20/5/20 colors, save/reopen/OTIO reimport and unchanged inputs | Same harness and committed `tests/oracles/filmcraft-25-v1/evidence.json`; source/hash/host identities are observed evidence, not approval |
+| M1-H04 | Actual CPU H.264 192×108 preview, 45 exact PTS, 20/5/20 colors, save/reopen/OTIO reimport and unchanged inputs | Same harness and committed `tests/oracles/filmcraft-25-v1/evidence.json`. The evidence records source, hash and host identities. Approval requires separate evidence. |
 
 ## M2-02 fixed-window planning requirements
 
-The bounded M2-P01–P06 scope is accepted via merged PR #22 after all 10 same-head
-checks; issue #20 is fully checked and closed completed. See [profile](migration/FIXED_WINDOW_PLANNER_V1.md),
-[record](migration/records/M2-02.md), [work index](migration/m2-02-work-index.json)
-and [component inventory](migration/provenance-m2-02.json).
+Merged PR #22 accepted M2-P01–P06 after all ten checks passed on the same commit. Issue #20 closed as complete. See the [profile](migration/FIXED_WINDOW_PLANNER_V1.md), [record](migration/records/M2-02.md), [work index](migration/m2-02-work-index.json) and [component inventory](migration/provenance-m2-02.json).
 
 | ID | Requirement | Actual verification |
 | --- | --- | --- |
-| M2-P01 | Required/manual membership and precedence are never relaxed; typed conflicts/missing candidates and hard budgets remain explicit | `emits_an_actual_m0_plan_with_deterministic_ids_and_immutable_source_facts`, `preserves_manual_and_explicit_order_with_global_reason_paths_and_catalog_order`, `rejects_hard_brief_conflicts_without_filtering_unknown_or_excluded_choices` |
+| M2-P01 | Keep all required and manual membership and precedence constraints. Report typed conflicts, missing candidates and hard limits. | `emits_an_actual_m0_plan_with_deterministic_ids_and_immutable_source_facts`, `preserves_manual_and_explicit_order_with_global_reason_paths_and_catalog_order`, `rejects_hard_brief_conflicts_without_filtering_unknown_or_excluded_choices` |
 | M2-P02 | Optional preference/score/ASCII selection is deterministic, skips actual capacity failures and keeps target soft | `optional_ranking_uses_preference_then_signed_score_then_ascii_id`, `too_long_optional_is_skipped_while_a_later_fitting_asset_is_selected`, `skipped_reasons_prioritize_exclusion_then_met_target_over_other_limits` |
 | M2-P03 | Exact common integer clock, immutable windows/placements and bounded u64 arithmetic without rounding | `fractional_windows_preserve_source_offsets_and_exact_accumulated_placements`, `exact_u64_maximum_total_is_admitted_without_float_conversion`, `required_overflowing_total_rejects_and_oversized_optional_skips_without_addition` |
 | M2-P04 | Strict schemas/declarations/input/candidate/output budgets and nonempty real M0 plan | `future_schema_is_probed_and_nested_unknown_missing_null_fields_reject`, `duplicate_json_fields_are_rejected_at_root_candidate_and_time_boundaries`, `invalid_hash_times_ranges_and_hard_bounds_keep_precise_domain_errors` |
 | M2-P05 | Read-only real file/stdin CLI, typed JSON/exits, existing validator consumer, option-input grammar and no runtime tools | `plans_file_and_stdin_identically_without_mutating_input_or_directory`, `emitted_nested_plan_is_accepted_by_the_actual_m0_cli`, `hard_conflicts_emit_typed_global_paths_without_a_partial_plan` |
-| M2-P06 | Actual selected source invariants, hash-pinned synthetic oracle, explicit differences and complete declaration evidence | `tests/oracles/fixed-window-planner-v1/compare.py`:12 actual pinned cases, exact timings and classified policy deltas |
+| M2-P06 | Actual selected source invariants, hash-pinned synthetic oracle, explicit differences and complete declaration evidence | `tests/oracles/fixed-window-planner-v1/compare.py` covers 12 actual pinned cases, exact timings and classified policy deltas |
 
-Complete test mapping is in the work index; M2-R01 full solver feasibility remains broader.
+The work index maps every test. M2-R01 also requires evidence of full solver feasibility.
 
 ## M2-02/O1 ordering optimisation
 
@@ -130,31 +111,25 @@ See [record](migration/records/M2-ORDER-OPT.md),
 | --- | --- | --- |
 | M2-O01 | Preserve minimum-ready admission priority and no-partial-plan errors | `compares_every_four_vertex_graph_with_brute_force_priority_order`, `newly_ready_earlier_admission_precedes_already_queued_vertex`, `rejects_unselected_endpoints_self_edges_and_cycles_without_partial_order`, `newly_unblocked_required_asset_keeps_admission_priority_in_the_full_report` |
 | M2-O02 | Heap-based scheduling within existing graph limits, with descriptive performance evidence | `maximum_candidate_graphs_keep_every_vertex_and_precedence`, `benchmark_ordering` (manual, informational, no timing assertion) |
-| M2-O03 | Keep frozen/live source conformance, pure dependency boundary and cross-platform checks | Existing planner comparison, live shadow, per-file provenance and CI; full mapping in the work index |
+| M2-O03 | Keep frozen/live source conformance, pure dependency boundary and cross-platform checks | The work index maps the planner comparison, live shadow, per-file provenance and CI |
 
 ## M2-02/O2 exact-clock construction optimisation
 
 The private constructor preserves the existing exact-time and failure contract.
 See [record](migration/records/M2-CLOCK-OPT.md),
 [work index](migration/m2-clock-opt-work-index.json) and
-[provenance](migration/provenance-m2-clock-opt.json). Final delivery is tracked by
-[issue #35](https://github.com/bynanci/storytelling/issues/35).
+[provenance](migration/provenance-m2-clock-opt.json). [Issue #35](https://github.com/bynanci/storytelling/issues/35) tracks delivery.
 
 | ID | Requirement | Actual test / evidence |
 | --- | --- | --- |
 | M2-CT01 | Error-only diagnostic formatting, exact reduced times and unchanged LCM/field error precedence | `successful_cached_scaling_never_formats_an_error_path`, `cached_scaling_formats_the_precise_failure_path_once`, `fractional_clock_preserves_exact_windows_and_reduced_placements`, `clock_error_priority_keeps_the_full_lcm_pass_before_scaling` |
 | M2-CT02 | Generated/supported-size compatibility with the previous factory and descriptive performance measurements | `generated_canonical_clock_inputs_match_the_accepted_implementation`, `full_candidate_budget_cache_and_empty_private_clock_keep_exact_results`, `benchmark_clock_cache` (manual, no timing assertion) |
-| M2-CT03 | Retain frozen/live source conformance, provenance and cross-platform gates | Existing fixed-window comparison/live shadow; complete mappings in the work index |
+| M2-CT03 | Retain frozen/live source conformance, provenance and cross-platform gates | The work index maps the fixed-window comparison and live shadow |
 
 ## M2-03 selected-domain live shadow requirements
 
-The scoped live shadow is accepted via merged PR #26. It invokes
-actual pinned source and native binaries; it does not add a product runtime.
-See [profile](migration/PLANNER_SHADOW_V1.md), [record](migration/records/M2-03.md),
-[work index](migration/m2-03-work-index.json) and [per-file inventory](migration/provenance-m2-03.json).
-Python test symbols are individually recorded and AST-checked; the repository guard
-checks their requirement IDs and verification artifact paths. All ten same-head
-hosted checks passed; the comparison record preserves the accepted identities.
+Merged PR #26 accepted the live comparison for the selected domain. The test invokes pinned source and native binaries. The product has no dependency on this test runtime. See the [profile](migration/PLANNER_SHADOW_V1.md), [record](migration/records/M2-03.md), [work index](migration/m2-03-work-index.json) and [per-file inventory](migration/provenance-m2-03.json).
+The work index lists each Python test symbol. The repository guard checks these symbols against the syntax tree and checks requirement IDs and evidence paths. All ten hosted checks passed on the same commit. The comparison record identifies the accepted versions and files.
 
 | ID | Requirement | Actual verification artifact |
 | --- | --- | --- |
@@ -167,184 +142,147 @@ hosted checks passed; the comparison record preserves the accepted identities.
 
 ## Merged PR #28 approval-identity candidate (not accepted)
 
-The following M3-A requirements describe a separate merged candidate, not the
-canonical proposed M3-01/P1 finite-OTIO review-binding task tracked in
-[`M3-01-NEXT`](migration/M3-01-NEXT.md). They do not establish G2 acceptance,
-trusted human authorization, replay protection or host execution. Independent
-G2 review is pending. Implementation and verification evidence are in the
-[candidate work index](migration/m3-01-approval-candidate-work-index.json),
-[record](migration/records/M3-01-approval-candidate.md) and
-[validation](validation/m3-01-approval-candidate.md).
+Merged PR #28 contains the M3-A candidate. The [M3-01/P1 task](migration/M3-01-NEXT.md) covers a separate finite-OTIO review binding. PR #28 still requires independent G2 review. Its evidence does not establish trusted human authorization, replay protection or host execution. See the [candidate work index](migration/m3-01-approval-candidate-work-index.json), [record](migration/records/M3-01-approval-candidate.md) and [validation](validation/m3-01-approval-candidate.md).
 
 | ID | Candidate requirement | Verification | State |
 | --- | --- | --- | --- |
-| M3-A01 | Bind exact proposal/artifact bytes, verified source identities, project, declared host claims/capabilities and accepted losses | Candidate work index and approval integration tests | Implemented on PR #28; not accepted |
-| M3-A02 | Strict bounded Ed25519 verification returns an opaque result and rejects tampering, malformed data and untrusted signer bindings | Candidate work index and approval integration tests | Implemented on PR #28; independent G2 pending |
-| M3-A03 | A valid signature does not establish human authorization, durable replay safety or host execution | Candidate API-boundary review, compile-fail examples and work index | Candidate scope; broader requirements remain open |
+| M3-A01 | Bind exact proposal/artifact bytes, verified source identities, project, declared host claims/capabilities and accepted losses | Candidate work index and approval integration tests | PR #28 implementation. Acceptance pending. |
+| M3-A02 | Strict bounded Ed25519 verification returns an opaque result and rejects tampering, malformed data and untrusted signer bindings | Candidate work index and approval integration tests | PR #28 implementation. Independent G2 review pending. |
+| M3-A03 | A valid signature does not establish human authorization, durable replay safety or host execution | Candidate API-boundary review, compile-fail examples and work index | Candidate scope only. Broader requirements remain open. |
 
 ## M3-01/P1 accepted bounded finite-OTIO review binding
 
-The bounded first profile follows the [M3-01 contract and source map](migration/M3-01-NEXT.md)
-and [issue #27](https://github.com/bynanci/storytelling/issues/27). M3-RB01–RB07 are accepted
-for this scope by the signed [G2 acceptance record](migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md).
-This does not accept broader M3-01 or PR #28. The implementation binds a caller-provided
-composition byte slice to an importer plan, its OTIO serialization, the complete OTIO report
-and declared context; it does not implement trusted approval.
+The first profile follows the [M3-01 contract and source map](migration/M3-01-NEXT.md) and [issue #27](https://github.com/bynanci/storytelling/issues/27). The signed [G2 acceptance record](migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md) covers M3-RB01–RB07 for this profile. Broader M3-01 requirements and PR #28 have separate acceptance gates. The implementation binds one caller-supplied composition to its importer plan, OTIO serialization, complete OTIO report and declared context. Trusted approval remains outside this profile.
 
 | ID | Accepted bounded requirement | Implementation | Actual tests / evidence |
 | --- | --- | --- | --- |
-| M3-RB01 | Deterministic versioned SHA-256 identity commits to typed plan, OTIO artifact, full loss report, profile/compiler and context | `core/source_evidence.rs`, `engine/review_binding.rs` | `same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact` asserts the fixed cross-platform golden vector; `semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding` |
-| M3-RB02 | Import and compile from one exact composition input; artifact is regenerated during freshness checks, never accepted as caller-supplied digest evidence | `engine/review_binding.rs` | `changed_composition_and_each_declared_context_field_are_reported_stale`, `semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding` |
+| M3-RB01 | Deterministic versioned SHA-256 identity commits to typed plan, OTIO artifact, full loss report, profile/compiler and context | `core/source_evidence.rs`, `engine/review_binding.rs` | `same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact` checks the cross-platform golden vector. Also see `semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding` |
+| M3-RB02 | Import and compile one exact composition input. Regenerate the artifact for every freshness check. Reject caller-supplied digests as artifact evidence. | `engine/review_binding.rs` | `changed_composition_and_each_declared_context_field_are_reported_stale`, `semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding` |
 | M3-RB03 | Strict bounded context/record schemas, exact identifiers/digests, sorted unique choices/capabilities and required compiler capabilities | `core/review.rs`, `engine/review_binding.rs` | `context_parser_rejects_unknown_duplicate_unsorted_and_over_budget_values`, `json_depth_scanner_accepts_exact_limit_and_ignores_string_contents`, `json_depth_and_record_byte_budgets_are_enforced_before_deserialization`, `exact_context_and_record_byte_limits_are_accepted`, `capability_collection_accepts_exact_limit_and_rejects_limit_plus_one`, `context_must_declare_compiler_required_capabilities_and_record_digest_is_checked` |
-| M3-RB04 | In-process result has private fields and cannot be constructed, mutated or deserialized through public API | `engine/review_binding.rs` | Four compile-fail examples on `BoundReviewV1`; `same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact` |
-| M3-RB05 | No self-approval: portable records are untrusted and authority/evidence flags stay false; forged true claims reject | `core/review.rs`, `engine/review_binding.rs` | `review_record_rejects_unknown_duplicate_forged_claims_and_invalid_digests`, `same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact` |
-| M3-RB06 | Compare a supplied current composition/context and identify changed fields; do not claim authoritative time, revocation, replay or request consumption | `engine/review_binding.rs` | `changed_composition_and_each_declared_context_field_are_reported_stale`, `every_declared_context_field_has_a_stable_stale_identifier`, `semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding` |
+| M3-RB04 | In-process result has private fields and cannot be constructed, mutated or deserialized through public API | `engine/review_binding.rs` | Four compile-fail examples on `BoundReviewV1` and `same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact` |
+| M3-RB05 | Treat portable records as untrusted. Keep authority and evidence flags false. Reject forged claims of authority or evidence. | `core/review.rs`, `engine/review_binding.rs` | `review_record_rejects_unknown_duplicate_forged_claims_and_invalid_digests`, `same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact` |
+| M3-RB06 | Compare the supplied current composition and context. Identify changed fields. Make no claim of authoritative time, revocation, replay protection or request consumption. | `engine/review_binding.rs` | `changed_composition_and_each_declared_context_field_are_reported_stale`, `every_declared_context_field_has_a_stable_stale_identifier`, `semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding` |
 | M3-RB07 | Read-only file/stdin CLI with path-free errors, stable usage/I/O/domain exits and unchanged explicit inputs | CLI composition root | `prepare_and_check_are_read_only_and_stale_is_a_successful_report`, `prepare_review_reads_composition_from_stdin_but_context_remains_an_explicit_file`, `review_commands_keep_usage_and_io_errors_distinct_and_path_free`, `review_cli_reads_arguments_before_domain_validation_and_keeps_error_order`, `direct_review_api_error_precedence_is_size_record_context_then_compile` |
 
-The portable record digest detects accidental/tampered field changes but is not a MAC or signature;
-the current caller can create a self-consistent record. A supplied context's host fingerprint and
-capabilities are declarations, not observations. Exact artifact linkage applies only to the one
-composition slice passed to importer+compiler and does not establish verified source provenance or
-connect the fixed-window planner to OTIO. Hosted dependency audit, three-platform same-head CI,
-all existing repository regression/oracle lanes and the six exact-head hosted gates passed for
-PR #32 head `2e7662405a49698be1ebee2136f54ab539ef7c2e` (run 42425697537). A bounded paired
-OpenFilm `NleHandoffService.review/publish` and Rust CLI runtime oracle now runs on the pinned
-synthetic finite composition; its outcomes and limits are in the [runtime record](migration/records/M3-01-RUNTIME-ORACLE-2026-11-08.md).
-The encoding intentionally differs and no full source parity is claimed. The historical
-functional RED was unproven and is explicitly waived as a blocker in the signed acceptance
-record; it is not represented as a test that passed. See the [M3-01 work index](migration/m3-01-p1-work-index.json).
+The portable digest detects changes to record fields. A caller can recalculate it after tampering. Authentication requires a MAC or signature. The caller declares the host fingerprint and capabilities. The binding covers one composition input to the importer and compiler. Source provenance and the fixed-window planner connection to OTIO require separate evidence.
+
+For PR #32, all six hosted gates passed on commit `2e7662405a49698be1ebee2136f54ab539ef7c2e` (run 42425697537). Checks included the dependency audit, three-platform CI, repository regressions and oracles. A runtime oracle compares upstream `NleHandoffService.review/publish` with the Rust CLI on the pinned synthetic finite composition. The implementations use different encodings. The [runtime record](migration/records/M3-01-RUNTIME-ORACLE-2026-11-08.md) documents the results and limits of this comparison. The signed acceptance record waived the missing historical failing test as a blocker. It did not record a passing result for that test. See the [M3-01 work index](migration/m3-01-p1-work-index.json).
 
 ## M3-01/P2 selected proposal to actual read-only OTIO (merged bounded delivery)
 
-The [contract](migration/PLANNER_OTIO_REVIEW_V1.md) and
-[work index](migration/m3-planner-review-work-index.json) implement the requested
-planner bridge independently of PR #28 acceptance. All guarantees refer to supplied
-declarations and the exact generated artifact, not source media or human approval.
+The [contract](migration/PLANNER_OTIO_REVIEW_V1.md) and [work index](migration/m3-planner-review-work-index.json) document the planner bridge. Its implementation proceeds independently of PR #28 acceptance. The guarantees cover supplied declarations and the exact generated artifact. Source media and human approval require separate evidence.
 
 | ID | Acceptance | Automated evidence |
 | --- | --- | --- |
-| M3-PB01 | Same snapshot and chosen fixed-window proposal produce reproducible actual OTIO; native/metadata-only/rejected semantics are explicit | `story_review_connects_actual_planner_output_to_exact_otio_without_source_or_host_writes`, `story_review_compiles_selected_subset_and_order_and_binds_the_exact_owned_artifact`; official oracle |
-| M3-PB02 | Any supplied asset/URI/hash, selected cut/order, proposal byte or accepted-loss/context change makes the old bundle stale or rejects it; displayed-artifact tampering rejects | `story_review_invalidates_asset_cut_loss_and_detects_displayed_artifact_tampering`, `story_review_is_stale_when_proposal_bytes_change_even_if_the_selected_plan_does_not` |
-| M3-PB03 | Unsupported audio/effects reject even with picture-only choice; stills retain zero-origin bounded holds | `story_review_rejects_unsupported_audio_effects_missing_loss_choices_and_bad_cli_usage`, `story_review_preserves_still_hold_and_rejects_still_source_offsets` |
-| M3-PB04 | Strict whole planner output and nested DTOs; matched asset declarations; opaque immutable result; forged authority and composition-only record reject | `story_review_rejects_unknown_duplicate_forged_or_inconsistent_proposals`, `story_review_requires_snapshot_asset_identity_duration_and_declared_capabilities`, `story_review_rejects_forged_bundle_claims_and_never_accepts_a_composition_only_record`; compile-fail doctests |
-| M3-PB05 | Bound all input/output sizes/depth; refuse malformed/unknown/duplicate data with stable field-only diagnostics | `story_review_preflights_every_size_and_accepts_exact_snapshot_and_bundle_limits`; existing OTIO expansion tests |
-| M3-PB06 | Actual CLI file/stdin flow works with empty external-tool PATH and unchanged Catalog/project/input sentinels; no host calls | `story_review_connects_actual_planner_output_to_exact_otio_without_source_or_host_writes`; official oracle |
-| M3-PB07 | Export and freshness paths share compile/bind semantics while avoiding unused portable-bundle serialization; artifact bytes and freshness identity remain unchanged | `story_review_compiles_selected_subset_and_order_and_binds_the_exact_owned_artifact`, `story_review_invalidates_asset_cut_loss_and_detects_displayed_artifact_tampering`; same-head CI |
+| M3-PB01 | Generate reproducible OTIO from the same snapshot and selected fixed-window proposal. Report native, metadata-only and rejected behavior. | `story_review_connects_actual_planner_output_to_exact_otio_without_source_or_host_writes`, `story_review_compiles_selected_subset_and_order_and_binds_the_exact_owned_artifact`, plus the official oracle |
+| M3-PB02 | Detect any change to the supplied asset, URI, hash, selected cut or order, proposal bytes, accepted losses or context. Mark the bundle stale or reject it. Reject changes to the displayed artifact. | `story_review_invalidates_asset_cut_loss_and_detects_displayed_artifact_tampering`, `story_review_is_stale_when_proposal_bytes_change_even_if_the_selected_plan_does_not` |
+| M3-PB03 | Reject unsupported audio and effects even with the picture-only choice. Preserve bounded still-image holds that start at zero. | `story_review_rejects_unsupported_audio_effects_missing_loss_choices_and_bad_cli_usage`, `story_review_preserves_still_hold_and_rejects_still_source_offsets` |
+| M3-PB04 | Check the whole planner output and nested DTOs. Require matching asset declarations. Return an opaque, immutable result. Reject forged authority and composition-only records. | `story_review_rejects_unknown_duplicate_forged_or_inconsistent_proposals`, `story_review_requires_snapshot_asset_identity_duration_and_declared_capabilities`, `story_review_rejects_forged_bundle_claims_and_never_accepts_a_composition_only_record`, plus compile-fail doctests |
+| M3-PB05 | Limit all input and output sizes and depth. Reject malformed, unknown or duplicate data. Return stable diagnostics that identify fields only. | `story_review_preflights_every_size_and_accepts_exact_snapshot_and_bundle_limits`, plus existing OTIO expansion tests |
+| M3-PB06 | Run the file and stdin CLI with an empty external-tool PATH. Preserve Catalog, project and input sentinels. Make no host calls. | `story_review_connects_actual_planner_output_to_exact_otio_without_source_or_host_writes`, plus the official oracle |
+| M3-PB07 | Use the same compilation and binding rules for export and freshness checks. Skip unused portable-bundle serialization. Preserve artifact bytes and freshness identity. | `story_review_compiles_selected_subset_and_order_and_binds_the_exact_owned_artifact`, `story_review_invalidates_asset_cut_loss_and_detects_displayed_artifact_tampering`, plus CI for the same commit |
 
-The bounded M3-02 journal implementation is traced separately below. It does not
-call a host or make a `NotApplied` observation true. The M3-03 proof covers an
-already-applied import whose response is lost after the host exits. The production
-executor still must handle requests that remain in flight, establish process
-quiescence before any retry, and stop on unresolved or ambiguous readback. M4's
-reference application feature flag follows accepted journal/executor readback, with one writer.
+The M3-02 journal records caller observations, including `NotApplied`. It makes no host calls. The M3-03 proof covers a successful import with a lost response after the host exits. A production executor must handle requests still in flight. Before retrying, it must check that the previous request is no longer in flight. It must stop on unresolved or ambiguous readback. The M4 reference application feature flag requires an accepted journal and executor readback with one writer.
 
 ## SQLite operation journal
 
-The [M3-02 contract](migration/M3-02-OPERATION-JOURNAL.md) defines the accepted,
-bounded non-executable storage adapter delivered in PR #56. It does not complete
-FilmCraft execution/readback or PR #28 G2 acceptance.
+The [M3-02 contract](migration/M3-02-OPERATION-JOURNAL.md) defines the storage adapter accepted in PR #56. This profile records operations without executing them. FilmCraft execution and readback require separate evidence. The PR #28 G2 review remains open.
 
 | ID | Acceptance | Implementation | Regression evidence |
 | --- | --- | --- | --- |
-| M3-JL01 | Persist exact operation, request key, project, review-binding digest and artifact digest; exact replay is idempotent and changed identity rejects | `crates/storytelling-journal/src/lib.rs` | `exact_review_and_artifact_identity_survive_restart_and_idempotent_prepare`, `reused_idempotency_key_with_changed_review_or_artifact_is_rejected` |
-| M3-JL02 | Persist attempt identity and dispatching state before any host call; restart after a committed marker recovers as unknown | `crates/storytelling-journal/src/lib.rs` | `crash_after_dispatch_marker_recovers_unknown_and_never_retries_without_readback` |
+| M3-JL01 | Store the exact operation, request key, project, review-binding digest and artifact digest. An exact replay has no additional effect. Reject changes to identity. | `crates/storytelling-journal/src/lib.rs` | `exact_review_and_artifact_identity_survive_restart_and_idempotent_prepare`, `reused_idempotency_key_with_changed_review_or_artifact_is_rejected` |
+| M3-JL02 | Store attempt identity and dispatching state before any host call. On restart, recover a committed dispatch marker as unknown. | `crates/storytelling-journal/src/lib.rs` | `crash_after_dispatch_marker_recovers_unknown_and_never_retries_without_readback` |
 | M3-JL03 | Monotonic fence epochs and attempt numbers reject stale owners and late old responses/readbacks | `crates/storytelling-journal/src/lib.rs` | `crash_after_dispatch_marker_recovers_unknown_and_never_retries_without_readback`, `stale_owner_and_late_attempt_response_cannot_overwrite_newer_state` |
-| M3-JL04 | Unknown/reported/partial outcomes do not authorize another attempt; only explicit current-attempt NotApplied readback permits retry, and newer conflicting readback can block it before retry | `crates/storytelling-journal/src/lib.rs` | `unknown_response_and_applied_response_never_enable_a_retry`, `crash_after_dispatch_marker_recovers_unknown_and_never_retries_without_readback`, `a_fresh_conflicting_readback_before_retry_keeps_the_attempt_blocked` |
-| M3-JL05 | Busy write is atomic/retryable after lock release; unrelated SQLite schemas reject before journal-mode/schema mutation | `crates/storytelling-journal/src/lib.rs` | `busy_write_leaves_no_partial_record_and_succeeds_after_lock_release`, `foreign_database_is_rejected_without_changing_its_schema_or_journal_mode` |
-| M3-JL06 | Validate identifiers, lowercase digests, timestamps and lease duration; enforce per-operation attempt/readback/event bounds while leaving other operations available | `crates/storytelling-journal/src/lib.rs` | `invalid_identity_hash_and_time_limits_are_rejected_at_the_boundary`, `attempt_count_limit_is_per_operation_and_does_not_block_other_operations`, `repeated_ambiguous_readbacks_have_a_per_attempt_bound` |
+| M3-JL04 | Block retry for unknown, reported or partial outcomes. Require explicit NotApplied readback for the current attempt. Block retry if newer readback conflicts. | `crates/storytelling-journal/src/lib.rs` | `unknown_response_and_applied_response_never_enable_a_retry`, `crash_after_dispatch_marker_recovers_unknown_and_never_retries_without_readback`, `a_fresh_conflicting_readback_before_retry_keeps_the_attempt_blocked` |
+| M3-JL05 | Keep a busy write atomic. Permit retry after lock release. Reject unrelated SQLite schemas before changing the schema or journal mode. | `crates/storytelling-journal/src/lib.rs` | `busy_write_leaves_no_partial_record_and_succeeds_after_lock_release`, `foreign_database_is_rejected_without_changing_its_schema_or_journal_mode` |
+| M3-JL06 | Check identifiers, lowercase digests, timestamps and lease duration. Limit attempts, readbacks and events per operation. Keep other operations available. | `crates/storytelling-journal/src/lib.rs` | `invalid_identity_hash_and_time_limits_are_rejected_at_the_boundary`, `attempt_count_limit_is_per_operation_and_does_not_block_other_operations`, `repeated_ambiguous_readbacks_have_a_per_attempt_bound` |
 
-The observed initial RED was three executed tests panicking at the unimplemented
-journal operation; after the storage implementation they passed. A later
-late-readback, ambiguous-readback-bound, conflicting-readback and unrelated-db
-regressions each failed before their respective safety checks were added, then
-passed. PR #56 exact-head CI and post-merge main CI passed all six jobs; see the
-[validation record](validation/m3-02-operation-journal.md). No host/editor was invoked.
+Before implementation, three tests panicked at the missing journal operation. They passed after implementation. Later regressions covered late readback, bounds on ambiguous readback, conflicting readback and unrelated databases. Each test failed before its specific safety check and passed afterward. All six jobs passed on PR #56 and on main after merge. The tests invoked no host or editor. See the [validation record](validation/m3-02-operation-journal.md).
 
-Known limits: executor IDs and timestamps are caller supplied; journal fencing
-cannot stop a previously dispatched host call; a `NotApplied` observation is
-trusted input and is safe for retry only after a production host adapter proves
-the old request is no longer in flight. That quiescence gate remains open after
-the bounded M3-03 proof. No exactly-once effect, trusted approval or key
-authorization is claimed.
+The caller supplies executor IDs and timestamps. Journal fencing cannot stop a host call that has already started. The journal trusts a `NotApplied` observation. Before retry, a production host adapter must check that the previous request is no longer in flight. This requirement remains open after M3-03. The journal makes no guarantee of exactly-once effects, trusted approval or key authorization.
 
 <a id="m3-03-isolated-filmcraft-execution"></a>
 
 ## M3-03 isolated FilmCraft execution proof
 
-The [M3-03 profile](migration/M3-03-ISOLATED-FILMCRAFT.md) and
-[work index](migration/m3-03-filmcraft-work-index.json) track an initial
-test-only execution/readback slice. It does not add a product executor command,
-trusted approval, retry policy or cross-platform FilmCraft support.
+The [M3-03 profile](migration/M3-03-ISOLATED-FILMCRAFT.md) and [work index](migration/m3-03-filmcraft-work-index.json) cover a test of host execution and readback. The product executor command, trusted approval, retry policy and cross-platform FilmCraft support remain separate requirements.
 
 | ID | Acceptance | Implementation | Regression evidence |
 | --- | --- | --- | --- |
-| M3-XE01 | Regenerate and freshness-check the selected proposal, snapshot, context and exact OTIO bytes before a synthetic host operation | Pinned integration oracle | `isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback`; machine evidence |
-| M3-XE02 | Persist project-creation and import identity, owner/fence and attempt marker before each host mutation; recover the final states after reopening SQLite | Test-only adapter calls M3-02 journal API | `isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback`, `exact_review_and_artifact_identity_survive_restart_and_idempotent_prepare` |
-| M3-XE03 | Lost successful import response becomes durable unknown; native readback matches exact 25 fps clip/source ranges before recording applied-observed | FilmCraft v0.18.0 Linux oracle | `isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback`; [evidence](../tests/oracles/m3-03-filmcraft-v1/evidence.json) |
-| M3-XE04 | No duplicate apply or Undo; terminal readback cannot be overwritten by a late response | Journal fence plus host proof | `isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback`, `stale_owner_and_late_attempt_response_cannot_overwrite_newer_state` |
-| M3-XE05 | All write paths are new files under a fresh run root; no existing project or source catalog is opened | Oracle preflight and isolated FilmCraft data directory | [oracle README](../tests/oracles/m3-03-filmcraft-v1/README.md), machine evidence |
-| M3-XE06 | Ambiguous outcome cannot begin another attempt; existing journal failure regressions remain portable across workspace CI | Accepted M3-02 state machine | `unknown_response_and_applied_response_never_enable_a_retry`, `repeated_ambiguous_readbacks_have_a_per_attempt_bound` |
+| M3-XE01 | Regenerate and freshness-check the selected proposal, snapshot, context and exact OTIO bytes before a synthetic host operation | Pinned integration oracle | `isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback`, plus machine evidence |
+| M3-XE02 | Store project-creation and import identity, owner, fence and attempt marker before each host mutation. Recover the final states after reopening SQLite. | Test-only adapter calls M3-02 journal API | `isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback`, `exact_review_and_artifact_identity_survive_restart_and_idempotent_prepare` |
+| M3-XE03 | Persist an unknown state after losing a successful import response. Match native clip and source ranges at exactly 25 fps before recording applied-observed. | FilmCraft v0.18.0 Linux oracle | `isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback`, plus [evidence](../tests/oracles/m3-03-filmcraft-v1/evidence.json) |
+| M3-XE04 | Prevent duplicate apply or Undo operations. Reject a late response that would overwrite terminal readback. | Journal fence plus host proof | `isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback`, `stale_owner_and_late_attempt_response_cannot_overwrite_newer_state` |
+| M3-XE05 | Write new files under a fresh run root. Open no existing project or source catalog. | Oracle preflight and isolated FilmCraft data directory | [oracle README](../tests/oracles/m3-03-filmcraft-v1/README.md), machine evidence |
+| M3-XE06 | Block another attempt after an ambiguous outcome. Run existing journal failure regressions across the workspace CI platforms. | Accepted M3-02 state machine | `unknown_response_and_applied_response_never_enable_a_retry`, `repeated_ambiguous_readbacks_have_a_per_attempt_bound` |
 
-The lost-response fault is injected only after the FilmCraft subprocess has
-exited successfully. It does not demonstrate a hung host or safe retry following
-NotApplied. The actual host proof is Linux-only; Windows/macOS run the journal
-regressions and compile the ignored integration test. Review freshness remains
-distinct from human approval: the proof explicitly records approval_granted=false
-and executable=false. The production executor and PR #28 G2 gate remain open;
-see the [validation record](validation/m3-03-filmcraft-execution.md).
+The test injects a lost response only after the FilmCraft subprocess exits successfully. A hung host and safe retry after NotApplied require separate tests. The actual host test runs on Linux. Windows and macOS run journal regressions and compile the ignored integration test. The test records approval_granted=false and executable=false. Review freshness does not grant human approval. The production executor and the PR #28 G2 gate remain open. See the [validation record](validation/m3-03-filmcraft-execution.md).
 
-<a id="remaining-breadth-and-future-requirements"></a>
+<a name="敘事功能與後續需求"></a>
 
-## 敘事功能與後續需求
+## Remaining breadth and future requirements
 
-<a id="proposed-cross-media-narrative-requirements"></a>
+<a name="跨媒體敘事需求"></a>
 
-### 跨媒體敘事需求
+### Proposed cross-media narrative requirements
 
-[設計依據](WHY_STORYTELLING.md)說明作者要做哪些決定。[敘事任務](../TASKS.md#cross-media-narrative-backlog)列出實作順序。每項 PR 須附使用者給 [Skill](../skills/storytelling/SKILL.md) 的請求及實際產物。驗證自動化行為時，請附輸入、命令、輸出及退出碼。評估作者的使用結果時，請附真人觀察。
+The [product rationale and author scenarios](WHY_STORYTELLING.md) identify the decisions that authors make and the people who can assess the results.
+Use the [N-track tasks](../TASKS.md#cross-media-narrative-backlog) for the implementation scope and the SDLC gate for each requirement.
 
-| 需求／任務 | 使用者要完成的事 | 驗收依據 |
+Record the original [skill](../skills/storytelling/SKILL.md) request and the output that the author received.
+For a deterministic result, record the local command, fixture, output and exit status.
+For an author or recipient outcome, record what the person did.
+Keep packaging results, example outputs and pilot observations in separate evidence records.
+Each implementation PR must identify its fixtures, tests and evidence.
+
+| ID / task | Author or maintainer requirement | Evidence at the applicable SDLC gate |
 | --- | --- | --- |
-| N-R01／N-01 | 說出對象、目的與自己提供的細節。 | [作者試用包](narrative/N-01-AUTHOR-STUDY.zh-TW.md)以提交 `260485b2ff5b8d7b46215004e21a5bb1a37e6dfb` 為基準。使用 S01 至 S04 製作口述及兩款構圖。C01 只屬於 A。U01 是尚無佐證的商業主張。試用包提供相同的身分修訂題、四項指標與決策門檻。真人觀察與維護者的 G0–G1 決定待補。 |
-| N-R02／N-02 | 用獨立版本的敘事文件描述素材與關係。作者無須提供媒體檔或時間資訊。 | [ADR 0005](adr/0005-independent-narrative-document-v1.md)、[V1 規格](narrative/NARRATIVE_DOCUMENT_V1.md)、[JSON Schema](../contracts/narrative-document-v1.schema.json)與[成對測試案例](../tests/fixtures/narrative-v1/README.md)定義支援範圍。口述與構圖可共用來源。允許雙向聯想。強制順序成環、引用遺失或過期、重複欄位、未知版本或超量都要回報。相容性清單涵蓋影片 JSON、CLI、既有匯入格式、OTIO 與雜湊。PR #71 的送審版本通過 CI。修正 P2 循環診斷後，自動複查沒有待處理項目。維護者在 #50 採用此契約。 |
-| N-R03／N-03 | 用同一來源產出一份口述與兩款構圖。 | `render-narrative` 讀取 [V1 範例](../tests/fixtures/narrative-v1/n03-authoring-v1.json)。[驗證紀錄](validation/n03-narrative-cli.md)列出三份輸出。全景與近景各自保留來源 ID，C01 只出現在全景。測試涵蓋無媒體輸入、檔案與標準輸入重播、原檔與暫存目錄不變。引用不存在時回傳 JSON 錯誤及退出碼 1。引擎測試涵蓋 N-02、順序、來源、位元組數與深度限制。開發者在實作前記錄失敗測試。影片 V1 與官方 OTIO 回歸另有紀錄。自動化結果與作者試讀分開記錄。 |
-| N-R04／N-04 | 保留多款草稿，找出一項修訂影響的版本。 | [修訂契約](narrative/NARRATIVE_REVISION_LEDGER_V1.md)、[格式](../contracts/narrative-revision-ledger-v1.schema.json)、[案例](../tests/fixtures/narrative-v1/n04-revision-history-v1.json)與[驗證紀錄](validation/n04-narrative-revisions.md)可供重播。修訂 S02 影響口述與兩款構圖。審閱後再修訂 C01，只影響構圖 B。歷史保留來源、變體及宣告的作者選擇。提案事件不可夾帶決定。CLI 只計算直接引用，無法驗證決定者身分。人工驗收另列。 |
-| N-R05／N-05 | 寫出文案大綱，辨識還缺依據的主張。 | 測試有效引用、無引用、引用不存在與來源已修訂。工具回報引用狀態。審閱者判斷來源能否支持措辭，以及文案是否可發布。 |
-| N-R06／N-06 | 選出值得開發的新模式。 | 比較未決的構思分支、事件與揭露順序不同的劇本，以及缺素材的影片交接。記錄各案的最小範圍、成本與採用或暫緩的理由。 |
-| N-R07／N-07 | 決定繼續開發、縮小範圍或停止。 | 在 G4–G6 重做 N-01 的合成任務。記錄作者的選擇、接手方能否使用產物、量測值與回歸問題。提出發布候選版時，須附相容性、遷移與回退證據。 |
+| N-R01 / N-01 | The author identifies the audience, the message and the details they supplied. | Use the [N-01 author study packet](narrative/N-01-AUTHOR-STUDY.md) from main commit `260485b2ff5b8d7b46215004e21a5bb1a37e6dfb`. It contains synthetic notes S01–S04, an oral outline and two contrasting compositions. Only composition A uses C01. The packet includes unsupported commercial claim U01, a matched identity revision, four measures and decision thresholds set before the study. Human results and the G0–G1 maintainer decision remain pending. |
+| N-R02 / N-02 | The author can describe material and its relationships without media files or clocks. The narrative document has its own version. | See [accepted ADR 0005](adr/0005-independent-narrative-document-v1.md), the [NarrativeDocumentV1 profile](narrative/NARRATIVE_DOCUMENT_V1.md), the [Draft 2020-12 schema](../contracts/narrative-document-v1.schema.json) and the [paired synthetic fixtures](../tests/fixtures/narrative-v1/README.md). The valid case shares source units between an oral outline and an illustration. The profile permits two-way associations. It defines how to handle precedence cycles, missing or stale references, duplicate keys, unknown fields or versions, and size limits. The compatibility inventory covers existing video JSON, the CLI, finite snapshot import, OTIO and digest regressions. CI passed on the reviewed commit for PR #71. The team resolved a P2 cycle-witness finding. The latest automated review had no open findings. The maintainer authorized N-03 in issue #50. |
+| N-R03 / N-03 | The author can use one source for a spoken outline and two distinct spatial compositions. | Run `storytelling render-narrative <FILE\|->` with [n03-authoring-v1.json](../tests/fixtures/narrative-v1/n03-authoring-v1.json) under the accepted `NarrativeDocumentV1` profile. The [validation record](validation/n03-narrative-cli.md) contains the skill request and three outputs. The ordered oral beats, wide illustration brief and close illustration brief preserve source IDs and origins. Only the wide brief uses C01. CLI tests cover execution without media, identical bytes across repeated file and stdin runs, and unchanged input and temporary files. A dangling reference produces a JSON diagnostic and exit code 1. Engine tests cover the paired N-02 fixtures, references, order, provenance, and byte and depth limits. The record documents the failing test before implementation, local video V1 debug and release tests, and official OTIO tests. Hosted CI for the same commit and author inspection have separate evidence records. The tests supply no human outcome. |
+| N-R04 / N-04 | The author can keep alternative variants and see which ones a revision affects. | See [NarrativeRevisionLedgerV1](narrative/NARRATIVE_REVISION_LEDGER_V1.md), its [schema](../contracts/narrative-revision-ledger-v1.schema.json), [fixture](../tests/fixtures/narrative-v1/n04-revision-history-v1.json) and [G3–G4 validation](validation/n04-narrative-revisions.md). The CLI reports that S02@1→@2 affects the oral outline and both illustrations. After author review, C01@1→@2 affects only illustration B. The ledger retains earlier source and variant snapshots and declared choices. A suggestion event cannot carry decision fields. The CLI cannot authenticate who supplied an `author_decision`. Impact follows direct references only. Compare the expected and actual affected IDs. Record omissions and unrelated rewrites. Keep hosted CI for the same commit and human inspection in separate records. |
+| N-R05 / N-05 | The author can assemble a commercial outline and see which factual claims still need support. | At G3–G4, trace a claim to its explicit reference. Flag a claim without a reference and a claim with a missing or changed reference. Record reference validity separately from editorial support. The reviewer judges factual support and suitability for publication. |
+| N-R06 / N-06 | The contributor can identify which additional profile warrants development. | At G0–G2, compare an unresolved brainstorm branch, a screenplay reveal that differs from event order and a proposed video handoff with a missing asset. Record the smallest viable scope and cost for each. Record the decision to proceed or defer. |
+| N-R07 / N-07 | The maintainer can decide whether to continue, narrow or stop development, or prepare a release candidate. | At G4–G6, compare the same synthetic authoring task with the N-01 baseline. Record observations, regressions, manual feedback and the decision. Include the author's choice and whether the recipient could use the handoff. For a release candidate, attach compatibility, migration and rollback evidence. Follow the release process. |
 
-N-R02 的資料契約與 N-01 的試用條件已固定。新增觀察可以補充證據。變更契約或試用條件時，須另行記錄決定。
+These evidence requests retain the accepted N-R02 wire contract and the N-01 comparison protocol.
 
-<a id="skill-distribution"></a>
+<a name="skill-散布"></a>
 
-## Skill 散布
+## Skill distribution
 
-**SK-R01／SK-D01**　使用者可從 GitHub 安裝 Skill，也可用 npm 安裝後啟用。兩種方式須提供相同的指引、參考文件、輔助程式與授權。[散布測試](../scripts/test_skill_distribution.py)會打包實際檔案，在全新專案安裝後逐檔比對。[安裝與更新](PLATFORMS.md)
+**SK-R01 / SK-D01.** A consumer can install Storytelling from GitHub with the Skills CLI.
+A consumer can also install the npm dependency and activate the bundled skill.
+Both routes must deliver the same instructions, references, helpers and license.
+The [distribution test](../scripts/test_skill_distribution.py) creates an npm tarball and installs it in a clean consumer project.
+It compares the installed files with the source.
+See the [platform guide](PLATFORMS.md) for activation, checks and updates.
 
-<a id="evidence-levels"></a>
+<a name="驗證能證明什麼"></a>
 
-## 驗證能證明什麼
+## Evidence levels
 
-| 驗證方式 | 可支持的結論 |
+Use the level that the evidence supports. M0, M1-01 and the bounded M2-01 audit cover only levels 1 and 2.
+
+| Level | Evidence | Question it answers |
+| --- | --- | --- |
+| 1 | Structural parsing | Can the parser read the document? |
+| 2 | Declared semantic validation | Do the supplied values and relationships satisfy the contract? |
+| 3 | Source verification | Do the actual source bytes match the expected identity? |
+| 4 | Host readback or render verification | What did the host import or render? |
+| 5 | Human editorial acceptance | Did the author or reviewer accept the result? |
+
+<a name="多模態需求"></a>
+
+## Multimodal authoring and follow-up requirements
+
+Use the bundled [templates](../skills/storytelling/references/multimodal-templates.md) and [hands-on demo](../skills/storytelling/references/workshop-demo.md) with the current skill.
+Each proposed Rust or adapter feature requires its own acceptance evidence.
+
+| Requirement / task | Observable result and evidence |
 | --- | --- |
-| 解析資料 | 工具能讀取輸入結構。 |
-| 驗證宣告 | 資料內的引用、順序或限制符合契約。 |
-| 驗證來源 | 實際提供的位元組符合預期值。 |
-| 讀回或播放 | 指定平台確實產出可讀或可播放的檔案。 |
-| 作者驗收 | 實際參與的作者確認作品符合其用途。 |
-
-M0、M1-01 與限定範圍的 M2-01 稽核只支援前兩項。
-
-<a id="multimodal-authoring-and-follow-up-requirements"></a>
-
-## 多模態需求
-
-[樣板](../skills/storytelling/references/multimodal-templates.md)與[工作坊範例](../skills/storytelling/references/workshop-demo.md)可直接試用。下列工作各有獨立的驗收結果。
-
-| 需求／任務 | 可觀察的結果 |
-| --- | --- |
-| N-R08／[N-08](https://github.com/bynanci/storytelling/issues/65) | 用同一素材比較兩種手法。驗證一項可判定的規則。規則衝突或範本版本不支援時，應指出原因。另行記錄作者回饋。 |
-| N-R09／[N-09](https://github.com/bynanci/storytelling/issues/66) | 依序重播旁白、停頓及音效提示。時間未知時保留未定。允許宣告的跨軌疊音。拒絕反向區間或互斥軌上的衝突。 |
-| N-R10／[N-10](https://github.com/bynanci/storytelling/issues/67) | N-06 明選一案後才開發。從本機入口執行一個正例及一個反例。既有影片回歸須通過。 |
-| N-R11／[N-11](https://github.com/bynanci/storytelling/issues/68) | 以文字、影像與聲音的版本追溯交接。指出遺失或過期的引用，列出受影響的產物。 |
-| N-R12／[N-12](https://github.com/bynanci/storytelling/issues/69) | 用授權素材測一項宿主能力。讀回實際輸出。再用同一請求測試缺少該能力時可交付哪些內容。 |
+| N-R08 / [N-08](https://github.com/bynanci/storytelling/issues/65) | Compare two treatments of the same source. Record one structure rule that passes. Return a diagnostic for conflicting rules or an unsupported version. Record author feedback separately. |
+| N-R09 / [N-09](https://github.com/bynanci/storytelling/issues/66) | Replay an ordered sheet of voice, silence and effect cues. Preserve unknown timing and permit declared overlap across tracks. Reject reversed intervals and conflicting exclusive cues. |
+| N-R10 / [N-10](https://github.com/bynanci/storytelling/issues/67) | Start after N-06 selects a candidate. Run one valid and one invalid case through the local entry point. Keep the existing video fixtures passing. |
+| N-R11 / [N-11](https://github.com/bynanci/storytelling/issues/68) | Trace a handoff through declared text, image and audio revisions. Identify missing or stale targets. List the exact outputs that each change affects. |
+| N-R12 / [N-12](https://github.com/bynanci/storytelling/issues/69) | Test one host capability with authorized inputs. Read the output back from the host. When the capability is unavailable, use the same request to demonstrate a fallback. |

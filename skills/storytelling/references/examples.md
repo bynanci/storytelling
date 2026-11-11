@@ -1,42 +1,58 @@
-# 五種可以直接交付的敘事草案
+# Worked examples
 
-以下人物與資料皆為虛構。例子裡的 S1、S2 只是方便核對來源的標記，日常對話可以直接沿用作者的原句。
+<a name="五種可以直接交付的敘事草案"></a>
 
-## 同一段經歷，講給朋友聽，也交給插畫師
+[繁體中文](examples.zh-TW.md)
 
-> $storytelling 鄰居阿禾扶住院門（S1），小松鎖緊鬆掉的螺絲（S2），門終於能關了（S3）。給我一句可以講給朋友聽的話，再給兩種單幅構圖。第二張可以多一把想像的紅傘。
+The people and figures below are fictional. Source labels such as S1 let an author check a particular detail. An informal draft can use the author's original words.
 
-**口述**　「那扇院門終於關得起來了。阿禾把門扶住，小松鎖緊那顆鬆掉的螺絲，兩個人一起修好了它。」（S1–S3）
+<a name="同一段經歷講給朋友聽也交給插畫師"></a>
 
-**構圖 A｜特寫**　焦點放在螺絲頭。前景是小松握工具的手，畫面另一側留著阿禾扶住門板的手。兩雙手共同出力，取自 S1、S2。
+## One account, three versions
 
-**構圖 B｜遠景**　焦點放在關好的門（S3）。院牆與門形成橫向構圖；把紅傘靠在前景一角，打破水平線。「紅傘」是僅供 B 使用的創作提議。
+> $storytelling He held the garden gate (S1). Song tightened its loose screw (S2). The gate finally closed (S3). Give me a line for a friend and two illustration briefs. Only the second illustration can add an imaginary red umbrella.
 
-如果作者把 S2 修正為「小松換上一顆新螺絲」，更新口述與構圖 A。構圖 B 所用的 S3 仍然成立。
+**Spoken line.** “The gate finally closes. He held it steady while Song tightened the screw. They repaired it together.” The account uses S1 to S3.
 
-## 商業文案：把可引用的數字寫到恰當範圍
+**A. Close view.** Put the screw head in focus. Show Song's hand on the tool in the foreground. Across the frame, He holds the gate steady. The two actions come from S1 and S2.
 
-> $storytelling 幫我寫給團隊主管。這是試行組的觀察 S1：同一項整理工作，平均耗時由 10 分鐘降到 8 分鐘。我想用「所有團隊都能快 20%」當主標。
+**B. Wide view.** Frame the closed gate against the horizontal wall. Lean the red umbrella in a foreground corner to break the horizontal line. S3 supports the closed gate. The umbrella is a proposal for B only.
 
-**主標草案**　「在這次試行裡，每次整理平均少花 2 分鐘。」可追溯到 S1。依起始時間換算，平均耗時減少 20%。「所有團隊」超出試行紀錄能涵蓋的範圍。
+The author changes S2 to “Song fitted a new screw.” Update the spoken line and A. B still uses the unchanged result in S3.
 
-**下一步**　「拿你團隊的一份資料試做，記下前後耗時。」標語提議「把整理的時間還給下一件事」單列為創作文字。若要公開主張效果，請作者核對試行樣本、量測方式及適用條件。
+<a name="商業文案把可引用的數字寫到恰當範圍"></a>
 
-## Brainstorming：保留兩條值得走的路
+## A claim with a defined scope
 
-> $storytelling 要替街坊辦一場分享會。有人喜歡現場示範，有人希望匿名分享。先讓我看兩條方向。
+> $storytelling Write for team leads. In one pilot group, the average time for one sorting task fell from ten minutes to eight (S1). I want the headline “Every team works 20% faster.”
 
-| 方向 | 可以怎麼做 | 還要知道什麼 |
+**Headline.** “In this pilot, the task took two fewer minutes on average.” The recorded reduction was 20% of the initial time. S1 covers the pilot group.
+
+**Action.** “Try it with one set of your team's material. Record the time before and after.”
+
+One proposed slogan is “Give those minutes to your next task.” Label it as copy. Before publishing an outcome claim, check the sample, measurement method and conditions with the author.
+
+<a name="brainstorming保留兩條值得走的路"></a>
+
+## Two possible workshops
+
+> $storytelling Our neighborhood wants a sharing session. Some people like demonstrations. Others want to share anonymously. Give me two directions.
+
+| Idea | How to try it | Open question |
 | --- | --- | --- |
-| 示範修門 | 由一人示範，再讓兩人合作一次 | 場地能否操作？誰願意示範？ |
-| 匿名物件故事 | 每人帶一張物件照片，主持人代讀一段話 | 參與者願意提供哪些細節？ |
+| Gate repair demonstration | One volunteer demonstrates. Two people then try the repair together. | Can the venue accommodate the work? Who can demonstrate it? |
+| Anonymous object stories | Each participant brings a photo. A host reads the owner's note aloud. | Which details are participants willing to share? |
 
-若目的是讓大家學會一項技術，先試第一條；若目的是讓平常較少開口的人參與，試第二條。兩個目標都還在討論時，保留兩個分支。
+Try the demonstration if learning a skill is the priority. Try the photo exchange if participation by quieter neighbors matters more. Keep both branches while the goal remains open.
 
-## 編劇：把事件順序和觀眾得知的順序分開
+<a name="編劇把事件順序和觀眾得知的順序分開"></a>
 
-> $storytelling 幫我把「失物被放在窗台，主人回來找到它」改成先讓觀眾好奇的兩場戲。
+## Event order and reveal order
 
-**場一**　主人在窗台找到鑰匙。鏡頭停在他的手上，暫時保留「誰把它放回來」這個問題。
+> $storytelling Someone puts a lost object on a windowsill. Its owner returns and finds it. Write two scenes that raise a question first.
 
-**場二**　回到稍早。鄰居撿起鑰匙，放在窗台上。事件的先後是「放回 → 發現」，觀眾的得知順序是「發現 → 看見誰放回」。「鑰匙」與「鄰居」都是可替換的劇本提議。
+**Scene one.** The owner finds the keys on the sill. Stay on the owner's hand. Who put them there?
+
+**Scene two.** Earlier that day, a neighbor finds the keys and places them on the sill.
+
+The neighbor places the keys before the owner finds them. The audience sees the discovery first. The keys and the neighbor are replaceable screenplay proposals.

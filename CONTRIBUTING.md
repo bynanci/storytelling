@@ -1,37 +1,40 @@
-# 貢獻指南
+# Contribute to Storytelling
 
-1. 閱讀[任務清單](TASKS.md)、[開發流程](docs/SDLC.md)、[需求](docs/REQUIREMENTS.md)及[開發代理規則](AGENTS.md)。
-2. 選定一項工作。檢查進行中的 PR。記錄起始提交。
-3. 在獨立分支上開發。透過拉取請求（PR）提交功能變更。
+<a name="contributing"></a>
+<a name="貢獻指南"></a>
 
-<a id="contributing-a-skill-example-or-host-guide"></a>
+English · [繁體中文](CONTRIBUTING.zh-TW.md)
 
-## 提交 Skill 範例或平台指南
+Start with the [task list](TASKS.md). Find the requirement and its acceptance criteria in the [requirements register](docs/REQUIREMENTS.md). Check open pull requests for work on the same task. Record the base commit. Use a separate branch. Submit a pull request (PR) for review.
 
-範例可以取自任何專案。請附上作者的需求、提供的素材及預期產物。
+<a name="提交-skill-範例或平台指南"></a>
 
-平台指南請寫明用戶端名稱與適用範圍。範圍可為單一專案、個人帳號或代管帳號。
-註明你實際驗證的項目，例如找到套件或成功叫用功能。
-若僅查閱廠商的安裝文件，請註明依據。
-連到對應的[平台指南](docs/PLATFORMS.md)。
+## Contributing a skill example or host guide
 
-請編輯 [skills/storytelling](skills/storytelling) 內的原始檔。
-儲存庫供 Codex 探索 Skill 的路徑是相對符號連結。
-工具與參考文件均使用相對連結。複製整個目錄後，請檢查連結。
-新增素材類型時，更新 [package.json](package.json) 的 npm 打包清單。
-檢查實際封裝的檔案。
+Start with a real authoring question. Include the request, the supplied material and the output you expect. Use synthetic material or material you can share publicly.
 
-## 撰寫繁體中文文件
+For a host guide, identify the application and installation scope. Specify whether the installation applies to one project, a user account or a hosted account. Distinguish installation instructions from a test in the application. Report what you observed. Link to the [platform guide](docs/PLATFORMS.md).
 
-先寫讀者要完成的工作，再列出輸入與預期結果。操作步驟每句寫一個動作。同一個概念使用相同術語。[中文技術寫作規則](https://github.com/lemonhall/asd-ste100-skill-zh/blob/01345c50d240ab5f5ee34c95702adb6078a70f1b/SKILL.md)
+Edit the source in [skills/storytelling](skills/storytelling). Codex discovers this directory through a relative symbolic link. Use relative links inside the skill. If you introduce an asset type, update the file list in [package.json](package.json). Check the contents of the npm package.
 
-一般範例使用作者提供的筆記、文字或素材。說明特定整合時，列出實測產品、版本與限制。指令與路徑照實列出。授權與來源紀錄保留原名。創作示例可保留作者的語氣。
+<a name="撰寫繁體中文文件"></a>
 
-<a id="checking-the-project"></a>
+## Write documentation
 
-## 執行檢查
+English is the default for public documentation, package instructions and contribution forms. Use the unsuffixed filename for English. Add a link to the full Traditional Chinese edition when one exists. Keep translated pages beside the English page with the suffix `.zh-TW.md`.
 
-安裝專案指定版本的 Rust 工具鏈。執行下列指令。
+1. Start with the reader's task.
+2. Give the exact command or input.
+3. Show the expected result.
+4. Identify conditions that limit the result.
+
+Use one term for each technical concept. Keep instructions short. Preserve commands, version numbers, permissions and source credits. Give an editor name only when the name identifies an integration or test. Preserve the author's voice in creative examples. See the [English writing guide](https://github.com/danyuchn/asd-ste100-skill/blob/a4905d922500dd7530ca8a0eb9e4940494255709/SKILL.md) and the [Traditional Chinese writing guide](https://github.com/lemonhall/asd-ste100-skill-zh/blob/01345c50d240ab5f5ee34c95702adb6078a70f1b/SKILL.md).
+
+<a name="執行檢查"></a>
+
+## Checking the project
+
+Install the Rust toolchain that the repository specifies. Run these commands from the repository root.
 
 ```sh
 cargo fmt --all -- --check
@@ -43,17 +46,15 @@ python3 scripts/check_repo.py
 python3 scripts/test_skill_distribution.py
 ```
 
-儲存庫的中繼資料及連結檢查需要 Python 3.11 以上版本。
-獨立使用 SDK 或 CLI 時免裝 Python。
-請避免意外更動 `Cargo.lock`。更新相依套件或工具鏈時，另開小型 PR。
-說明安全、授權與相容性影響。
+The repository checks require Python 3.11 or later. The Rust CLI can run without Python. Submit dependency and toolchain updates separately. Explain any change to security, licenses or compatibility. Check unexpected changes to `Cargo.lock`.
 
-## 提交拉取請求
+<a name="提交拉取請求"></a>
 
-- 每項行為變更須有回歸測試與執行證據。請使用合成測試資料。
-- 請勿上傳私人來源檔、本機路徑、GPS 資料、機密或使用者專案。
-- 列出尚未執行的測試。分開回報解析器測試與實際宿主驗收。
-- 在 PR 範本填入任務及需求 ID。記錄先失敗再通過的測試（RED／GREEN）。附上同一提交的 CI、風險及遷移說明。
-- 發布套件或建立標籤前，須取得擁有者明確授權。變更分支規則也需明確授權。程式檢查通過後仍須另行核准發布。
-- 遵守現有 MIT 授權與逐檔來源規範。請勿代他人簽署開發者來源聲明（DCO）。目前專案未強制執行 DCO。若採用 DCO，須先建立政策與有效的貢獻者簽署流程。
-- 揭露 AI 協作。自行審閱時，請標明為自行審閱。
+## Submit a pull request
+
+- Link the task and requirement IDs. Include a failing test and the result after the fix for behavior changes.
+- Record the CI results for the exact commit. List any checks that you could not run. Separate parser tests from checks in a real host.
+- State the risks, migration steps and rollback method. Keep private projects, paths, credentials, GPS data and private media out of the repository.
+- Preserve [licenses and attribution](PROVENANCE.md). Sign only for yourself. The project does not currently require a Developer Certificate of Origin.
+- Disclose AI assistance. Identify a review that you performed yourself.
+- Obtain explicit owner approval for publication, tags or branch rule changes. Follow the [development process](docs/SDLC.md) and [agent instructions](AGENTS.md).

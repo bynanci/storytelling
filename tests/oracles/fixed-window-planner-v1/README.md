@@ -5,7 +5,7 @@ Independently authored synthetic M2-02 cases informed by OpenFilm
 `7add4762fe8174d76f43b863375ea39b73121e76`. All new files in this directory,
 including JSON inputs/evidence, belong to the source-informed Apache-2.0 component.
 No upstream implementation, tests, media or runtime is copied. Test dependencies
-retain their own licenses; see root LICENSES/Apache-2.0.txt, NOTICE.openfilm and
+retain their own licenses; see root LICENSES/Apache-2.0.txt, LICENSES/third-party/NOTICE.txt and
 the task provenance inventory.
 
 The runner executes the actual pinned `compose` implementation. Ten of twelve
