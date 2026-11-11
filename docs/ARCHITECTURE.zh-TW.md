@@ -79,8 +79,6 @@ N-04 以 `NarrativeDocumentV1` 為初始快照。另以 `NarrativeRevisionLedger
 `based_on` 記錄衍生關係。間接影響仍須由作者檢查。
 [修訂紀錄契約](narrative/NARRATIVE_REVISION_LEDGER_V1.md) · [N-04 驗證](validation/n04-narrative-revisions.md)
 
-N-11 在原有修訂簿外新增獨立的 `NarrativeHandoffManifestV1`。Core 定義 wire 型別；純引擎將目前來源描述與完整產物部分對照綁定實際變體快照，沿用 N-04 的直接引用影響，對整個綁定快照檢查提案範圍，並分列歷史影響與目前審閱狀態。CLI 讀取明確指定的清單並輸出可重播文字。路徑與摘要只是宣告，不開啟媒體。[ADR 0009](adr/0009-read-only-mixed-media-handoff.md) · [規格](narrative/NARRATIVE_HANDOFF_MANIFEST_V1.zh-TW.md) · [證據](validation/n11-handoff.md)
-
 敘事輸入獨立於媒體雜湊、來源區間及幀率。
 後續影片轉接器可將所選單元連到明確素材，再經公開契約呼叫規劃器。
 保留影片 V1 輸入、CLI 行為、摘要向量與 OTIO 測試資料作回歸檢查。
@@ -88,6 +86,8 @@ N-11 在原有修訂簿外新增獨立的 `NarrativeHandoffManifestV1`。Core �
 N-02 的來源與衍生關係可參考 [W3C PROV-DM](https://www.w3.org/TR/prov-dm/)。
 空間分組可參考 [JSON Canvas 1.0](https://jsoncanvas.org/spec/1.0/)。
 用合成案例評估實作成本。將決定記在[敘事任務](../TASKS.zh-TW.md#cross-media-narrative-backlog)指定的架構決策紀錄。
+
+N-05 的 `audit-copy-claims` 沿用相同邊界：core 保存版本化文案與報告型別，engine 對照呼叫端提供的敘事修訂簿驗證有上限的引用，CLI 讀取兩份本機輸入並輸出一行 JSON。報告附上所引用 revision 的原始文字供人比對。引用目前有效不代表語意上獲得佐證、來源真實或文案可發布。
 
 <a id="workflow-and-editor-adapters"></a>
 
@@ -179,8 +179,6 @@ M3-03 須證明舊請求已停止，才能將宿主讀回用作重試依據。
 - [ADR 0001](adr/0001-scope-and-boundaries.md) 記錄 Rust 移植策略。
 - [ADR 0002](adr/0002-exact-time-and-wire.md) 記錄時間與傳輸限制。
 - [ADR 0003](adr/0003-license-and-provenance.md) 記錄儲存庫授權與來源。
-- [ADR 0008](adr/0008-local-png-host-feasibility.md) 提議 N-12 本機 PNG 交付邊界，保留獨立宿主與讀回證據。
-- [ADR 0009](adr/0009-read-only-mixed-media-handoff.md) 提議沿用修訂簿的唯讀交接清單。
 
 <a id="accepted-fixed-window-planner"></a>
 

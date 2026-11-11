@@ -15,10 +15,10 @@
 | `audit-brief` | StoryBrief v1 JSON，1,048,576 | `{"ok":true,"audit":...}` | [創作需求檢查](migration/STORY_BRIEF_V1.md) |
 | `plan-story` | 含固定時間窗的規劃輸入 JSON，1,048,576 | `{"ok":true,"planning":...}` | [固定時間窗規劃器](migration/FIXED_WINDOW_PLANNER_V1.md) |
 | `render-narrative` | NarrativeDocumentV1 JSON，1,048,576 | 內容固定、可直接閱讀的 UTF-8 文字。錯誤時輸出一行 JSON。 | [敘事文件](narrative/NARRATIVE_DOCUMENT_V1.md) |
-| `render-handoff` | NarrativeHandoffManifestV1 JSON，1,048,576 | 可重播的來源清單、部分影響與審閱狀態；錯誤為一行 JSON。 | [交接清單](narrative/NARRATIVE_HANDOFF_MANIFEST_V1.zh-TW.md) |
 | `track-narrative-revisions` | NarrativeRevisionLedgerV1 修訂紀錄 JSON，1,048,576 | 可重跑的來源與變體歷史、建議、作者選擇及目前的審閱狀態 | [敘事修訂紀錄](narrative/NARRATIVE_REVISION_LEDGER_V1.md) |
 | `query-narrative-impact` | 相同的修訂紀錄，另附一個來源修訂事件 ID | 依直接參照計算該次修訂所影響的變體 | [敘事修訂紀錄](narrative/NARRATIVE_REVISION_LEDGER_V1.md) |
 | `check-narrative-style` | NarrativeDocumentV1 與 NarrativeStyleProfileV1 JSON，各 1,048,576 位元組 | `{"ok":true,"style_check":...}`；錯誤時退出 1。 | [風格 profile V1（英文）](narrative/EDITORIAL_STYLE_PROFILE_V1.md) |
+| `audit-copy-claims` | CommercialCopyDocumentV1 與 NarrativeRevisionLedgerV1 JSON，各 1,048,576 位元組 | `{"ok":true,"commercial_copy":...}`；錯誤時退出 1。 | [文案引用契約](narrative/COMMERCIAL_COPY_V1.md) |
 | `verify-source` | 提供的位元組，16,777,216。另須指定預期的 SHA-256。 | `{"ok":true,"verification":...}` | [緩衝區驗證](migration/FILMCRAFT_25_V1.md#native-supplied-buffer-contract) |
 | `prepare-story-review` | 規劃器輸出 4,194,336、剪輯快照檔 1,048,576、情境檔 65,536 | `{ok:true,review:...,otio:Timeline}`，含實際 OTIO 產物 | [所選提案的審閱](migration/PLANNER_OTIO_REVIEW_V1.md) |
 | `export-story-otio` | 與上一列相同的三項輸入 | 直接輸出相同的原生 OTIO | [所選提案的審閱](migration/PLANNER_OTIO_REVIEW_V1.md) |
@@ -52,6 +52,7 @@
 作者決定與代理建議各用獨立事件。命令記錄所宣告的選擇，不驗證作者身分。
 
 \`check-narrative-style <DOCUMENT_FILE|-> <PROFILE_FILE|->\` 依綁定的文件 revision 檢查口述變體中宣告的 beat 順序。成功時輸出單行 JSON；錯誤時回報診斷並退出 1。此指令不判斷創作品質或作者核准。
+`audit-copy-claims` 成功時輸出一行 JSON。`reference_status` 只說明來源 ID/revision 狀態，不判斷語意佐證。
 
 | 通用結束碼 | 意義 |
 | --- | --- |
@@ -64,7 +65,6 @@ JSON 回應只佔一行。說明與版本資訊使用純文字。
 下列敘事命令成功時輸出可重跑的 UTF-8 純文字：
 
 - `render-narrative`
-- `render-handoff`
 - `track-narrative-revisions`
 - `query-narrative-impact`
 

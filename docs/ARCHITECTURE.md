@@ -66,11 +66,16 @@ The maintainer accepted the independently versioned narrative contract for N-03 
 
 N-04 starts with a `NarrativeDocumentV1` snapshot. A separate `NarrativeRevisionLedgerV1` stores append-only events. `track-narrative-revisions` replays source and variant history, declared author choices and pending reviews. `query-narrative-impact` accepts a source revision event ID. The engine reports variants with direct references. An author must inspect indirect effects through `based_on`. See the [ledger contract](narrative/NARRATIVE_REVISION_LEDGER_V1.md) and [N-04 evidence](validation/n04-narrative-revisions.md).
 
-N-11 adds a separate `NarrativeHandoffManifestV1` around the unchanged ledger. Core owns its wire types; the pure engine binds current source descriptors and complete artifact-component maps to actual variant snapshots. It reuses N-04 direct-reference impact, checks proposal scope across the whole bound snapshot, and keeps historical impact separate from current review status. The CLI reads one explicit manifest and writes reproducible text. File paths and hashes are declarations; no media is opened. See [ADR 0009](adr/0009-read-only-mixed-media-handoff.md), the [profile](narrative/NARRATIVE_HANDOFF_MANIFEST_V1.md) and [evidence](validation/n11-handoff.md).
-
 Narrative inputs need no asset hashes, source ranges or frame rates. A future video adapter could bind selected units to explicit assets and call the planner through its public contract. Keep video V1 inputs, CLI behavior, digest vectors and OTIO fixtures as regression checks.
 
 For origin and derivation, consult [W3C PROV-DM](https://www.w3.org/TR/prov-dm/). For spatial grouping, consult [JSON Canvas 1.0](https://jsoncanvas.org/spec/1.0/). Use synthetic cases to assess implementation cost. Record the decision in the ADR specified by the [narrative backlog](../TASKS.md#cross-media-narrative-backlog).
+
+The N-05 `audit-copy-claims` slice follows the same boundary: core carries the
+versioned copy/report DTOs, engine checks bounded references against the supplied
+narrative ledger, and CLI reads two local inputs and emits one JSON report. The
+report includes the cited revision's supplied text for human comparison. A
+current reference is not proof of semantic support, source authenticity or
+publishability.
 
 <a id="工作流程與宿主轉接器"></a>
 
@@ -136,8 +141,6 @@ M3-03 must establish that the prior request stopped before readback can support 
 - [ADR 0001](adr/0001-scope-and-boundaries.md) defines the Rust extraction strategy.
 - [ADR 0002](adr/0002-exact-time-and-wire.md) defines time and wire constraints.
 - [ADR 0003](adr/0003-license-and-provenance.md) records repository licensing and source attribution.
-- [ADR 0008](adr/0008-local-png-host-feasibility.md) proposes the N-12 local PNG delivery boundary with separate host and readback evidence.
-- [ADR 0009](adr/0009-read-only-mixed-media-handoff.md) proposes a read-only handoff manifest using the existing revision ledger.
 
 <a id="固定時間窗規劃器"></a>
 
