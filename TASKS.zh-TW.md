@@ -17,6 +17,8 @@
 
 依序使用 `proposed → ready → in-progress → review → verified → accepted`。工作受阻時標記 `blocked`。寫明原因、負責人與恢復條件。勾選實作項目代表程式已存在。請分別記錄自動測試、真人評估及正式發布的結果。PR 須標明受測提交碼。[開發流程](docs/SDLC.zh-TW.md) · [驗證紀錄範例](docs/validation/m0-foundation.md)
 
+[2026-11-11 open issues 查核](docs/validation/open-issues-2026-11-11.zh-TW.md)整理請求者回饋、修訂稿、CLI 收據及仍需人工或相依決策的條件。
+
 <a id="skill-distribution"></a>
 
 ## 安裝與散布
@@ -35,11 +37,11 @@
 | --- | --- | --- |
 | [N-01／#48](https://github.com/bynanci/storytelling/issues/48) · N-R01 作者試用 | G0–G1。試用包已備妥，可與 N-03 並行。 | 比較一般筆記與 Skill 的完成率、修改時間、歸因錯誤與重複輸入。真人試用及維護者決定仍待完成。 |
 | [N-02／#49](https://github.com/bynanci/storytelling/issues/49) · N-R02 共用契約 | G2 已採納。參考 N-01 試用包。 | [ADR 0005](docs/adr/0005-independent-narrative-document-v1.md) 與 [V1 規格](docs/narrative/NARRATIVE_DOCUMENT_V1.md)定義口述、構圖、來源和變體。維護者已同意開發 N-03。[PR #71](https://github.com/bynanci/storytelling/pull/71) |
-| [N-03／#50](https://github.com/bynanci/storytelling/issues/50) · N-R03 口述與插畫 | 接續 N-02。主分支已有本機指令，作者試讀待完成。 | `render-narrative` 依同一份來源輸出口述與兩種構圖。檢查來源、故障案例、輸入唯讀與重播一致性。另跑既有影片與 OTIO 回歸。[命令與輸出](docs/validation/n03-narrative-cli.md) |
+| [N-03／#50](https://github.com/bynanci/storytelling/issues/50) · N-R03 口述與插畫 | 已記錄 CLI 與請求者檢視；revision 2 回應近景取景建議，原始 fixture 不變。 | `render-narrative` 輸出口述與兩種構圖，保留來源 ID。C01 僅屬寬景，C02 僅為近景構圖提案。[驗證紀錄](docs/validation/n03-narrative-cli.md)附逐位元重播與來源未變證據。N-01／N-07 真人試用另列。 |
 | [N-04／#51](https://github.com/bynanci/storytelling/issues/51) · N-R04 修訂與作者決定 | 接續 N-03。主分支已有修訂查詢。真人檢視另列。 | 先改共同事實，再改單一構圖。工具依直接引用列出受影響的版本。歷史保留舊稿、提案及宣告的作者決定。[修訂驗證紀錄](docs/validation/n04-narrative-revisions.md) |
-| [N-05／#52](https://github.com/bynanci/storytelling/issues/52) · N-R05 文案與證據 | G3–G4。接續 N-04。 | 交付受眾、主張、引用、文案與下一步。標出過期或已移除的引用。由審閱者判斷來源是否支持主張。 |
-| [N-06／#53](https://github.com/bynanci/storytelling/issues/53) · N-R06 選擇新模式 | G0–G2。接續 N-04。 | 比較未決的構思分支、劇本揭露順序與缺素材的影片對照。記錄作者需求、成本與相容範圍。最多採用一種，也可全部暫緩。 |
-| [N-07／#54](https://github.com/bynanci/storytelling/issues/54) · N-R07 產品決定 | G4–G6。接續 N-05。 | 重做基準任務。分組報告完成數與總數、耗時及歸因錯誤。將可重現的失敗連到測試案例。維護者決定繼續、縮小或停止。另行評估發布。 |
+| [N-05／#52](https://github.com/bynanci/storytelling/issues/52) · N-R05 文案與證據 | PR #83 交付唯讀 CLI；已記錄請求者對範例的語意審查與修訂稿。 | `audit-copy-claims` 顯示受眾、主張、CTA、被引用的歷史文字與 revision 狀態。修訂稿刪除無來源的計畫成效句，並明示文案提案。N-01／N-07 真人量測另行追蹤。[契約](docs/narrative/COMMERCIAL_COPY_V1.md) · [驗證紀錄](docs/validation/n05-commercial-copy.md) |
+| [N-06／#53](https://github.com/bynanci/storytelling/issues/53) · N-R06 選擇新模式 | G0–G2 比較完成；請求者明確暫緩三種原生模式。 | [格式探索紀錄](docs/validation/n06-format-discovery.md)列出相容性、最小變更與[暫緩決策](https://github.com/bynanci/storytelling/issues/53#issuecomment-6792555714)。未宣稱任務耗時或試用結果；實際需求與單一採用決策出現前，N-10 維持暫緩。 |
+| [N-07／#54](https://github.com/bynanci/storytelling/issues/54) · N-R07 產品決定 | G4–G6；N-05 V1 已合併，native 對照包已備，真人配對證據待補。 | [N-07 試用包與報告](docs/validation/n07-pilot.zh-TW.md)提供普通筆記／實際 CLI、原判準、私人紀錄表及獨立程序時間。工程通過不推論使用效益或發布決定。 |
 
 將[前七段 Codex 指令](docs/CODEX_NARRATIVE_PROMPTS.zh-TW.md)派給對應任務。後續五票與既有任務的追加指令收在[多模態派工指南](docs/CODEX_MULTIMODAL_PROMPTS.zh-TW.md)。
 
@@ -68,7 +70,7 @@
 | 商業文案 | Skill 可整理主張及依據。影片條件檢查器無法判定文案是否獲得佐證。 | [N-05 查核主張](https://github.com/bynanci/storytelling/issues/52) |
 | 流派與手法 | `check-narrative-style` 以獨立且綁定 revision 的 profile 檢查口述 beat 順序，不判斷美感。真人盲讀仍待執行。 | [N-08／#65 驗證紀錄](docs/validation/n08-style-profile.md)。 |
 | 聲音與 Podcast | `render-cue-sheet` 依 N-02 綁定旁白、停頓與已提供的音效，保留未知時間並檢查互斥聲軌衝突。錄音與混音仍由宿主處理。 | [N-09／#66](https://github.com/bynanci/storytelling/issues/66)：[規格](docs/narrative/NARRATIVE_CUE_SHEET_V1.zh-TW.md)與[重播證據](docs/validation/n09-cue-sheet.zh-TW.md)。 |
-| 編劇、分支構思與影片對照 | 文字樣板可用。影片規劃器支援鏡頭順序。 | [N-06](https://github.com/bynanci/storytelling/issues/53) 明確選案後，[N-10／#67](https://github.com/bynanci/storytelling/issues/67) 才實作該模式。 |
+| 編劇、分支構思與影片對照 | 文字樣板可用。請求者在 [N-06](docs/validation/n06-format-discovery.md) 暫緩三種新原生模式。 | [N-10／#67](https://github.com/bynanci/storytelling/issues/67) 保持開啟／暫緩；待實際作者需求與明確單一採用決策才啟動。 |
 | 跨媒體交接 | `render-handoff` 將檔案、描述、文字標註、提案及缺件宣告綁定 N-04 修訂，區分須改日期與可沿用的構圖、聲音。 | [N-11／#68](https://github.com/bynanci/storytelling/issues/68)：[規格](docs/narrative/NARRATIVE_HANDOFF_MANIFEST_V1.zh-TW.md)與[重播證據](docs/validation/n11-handoff.md)。語意仍由作者檢視。 |
 | 實際產出圖檔或音檔 | N-12 在 Linux 用 Inkscape 1.4 將合成 SVG 匯出 PNG 並讀回；入口不可用時交付構圖說明。[可行性紀錄與真實產物](docs/validation/n12-inkscape-png.zh-TW.md) | [N-12／#69](https://github.com/bynanci/storytelling/issues/69) 的縮小採用建議待維護者決定；正式 adapter 另行排程。 |
 
@@ -120,3 +122,4 @@
 - <a id="openfilm-to-rust-transfer-ledger--2026-11-07"></a>[歷史來源移轉清單](docs/delivery/VIDEO_TASK_HISTORY.md#openfilm-to-rust-transfer-ledger--2026-11-07)
 
 </details>
+

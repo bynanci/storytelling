@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "document_id": "door-repair",
+  "document_revision": 2,
+  "purpose": "呈現兩位鄰居一起處理共用木門的小事。",
+  "audience": "社區電子報讀者",
+  "units": [
+    {
+      "id": "S01",
+      "revision": 1,
+      "origin": "supplied_observation",
+      "text": "星期六上午，共用木門旁放著一個工具箱；阿梅和阿安站在門邊。",
+      "based_on": []
+    },
+    {
+      "id": "S02",
+      "revision": 1,
+      "origin": "supplied_observation",
+      "text": "阿梅扶住門；阿安收緊上方鉸鏈的一顆螺絲。",
+      "based_on": []
+    },
+    {
+      "id": "S03",
+      "revision": 1,
+      "origin": "supplied_observation",
+      "text": "兩人試關一次；這一次門沒有磨到地面。",
+      "based_on": []
+    },
+    {
+      "id": "S04",
+      "revision": 1,
+      "origin": "supplied_observation",
+      "text": "兩人把工具收回工具箱。",
+      "based_on": []
+    },
+    {
+      "id": "I01",
+      "revision": 1,
+      "origin": "author_interpretation",
+      "text": "一起處理一件小事，可以呈現鄰里互助。",
+      "based_on": [
+        {
+          "unit_id": "S02",
+          "revision": 1
+        },
+        {
+          "unit_id": "S03",
+          "revision": 1
+        }
+      ]
+    },
+    {
+      "id": "C01",
+      "revision": 1,
+      "origin": "creative_proposal",
+      "text": "一把想像的紅傘靠在木門旁的圍欄上。",
+      "based_on": [
+        {
+          "unit_id": "S01",
+          "revision": 1
+        }
+      ]
+    },
+    {
+      "id": "C02",
+      "revision": 1,
+      "origin": "creative_proposal",
+      "text": "以較寬近景同時容納上方鉸鏈、螺絲與兩人手部；收緊工具只在工作者手邊，不指定種類，工具箱留在畫外。門框作局部背景，不指定室內空間。手部位置、裁切與景深是本版構圖提案，不是現場觀察。",
+      "based_on": [
+        {
+          "unit_id": "S02",
+          "revision": 1
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "id": "R01",
+      "kind": "association",
+      "from": {
+        "unit_id": "S01",
+        "revision": 1
+      },
+      "to": {
+        "unit_id": "S02",
+        "revision": 1
+      }
+    },
+    {
+      "id": "R02",
+      "kind": "association",
+      "from": {
+        "unit_id": "S02",
+        "revision": 1
+      },
+      "to": {
+        "unit_id": "S01",
+        "revision": 1
+      }
+    },
+    {
+      "id": "R03",
+      "kind": "must_precede",
+      "variant_id": "oral",
+      "before": {
+        "unit_id": "S01",
+        "revision": 1
+      },
+      "after": {
+        "unit_id": "S02",
+        "revision": 1
+      }
+    },
+    {
+      "id": "R04",
+      "kind": "must_precede",
+      "variant_id": "oral",
+      "before": {
+        "unit_id": "S02",
+        "revision": 1
+      },
+      "after": {
+        "unit_id": "S03",
+        "revision": 1
+      }
+    }
+  ],
+  "variants": [
+    {
+      "id": "oral",
+      "name": "口述大綱",
+      "kind": "spoken_outline",
+      "beats": [
+        {
+          "id": "beat-01",
+          "unit_ref": {
+            "unit_id": "S01",
+            "revision": 1
+          },
+          "text": "星期六上午，兩位鄰居在共用木門旁準備工具。"
+        },
+        {
+          "id": "beat-02",
+          "unit_ref": {
+            "unit_id": "S02",
+            "revision": 1
+          },
+          "text": "阿梅扶住門，阿安收緊上方鉸鏈的一顆螺絲。"
+        },
+        {
+          "id": "beat-03",
+          "unit_ref": {
+            "unit_id": "S03",
+            "revision": 1
+          },
+          "text": "兩人試關一次；這一次門沒有磨到地面。"
+        },
+        {
+          "id": "beat-04",
+          "unit_ref": {
+            "unit_id": "I01",
+            "revision": 1
+          },
+          "text": "一起處理一件日常小事，可以成為鄰里互助的畫面。"
+        }
+      ]
+    },
+    {
+      "id": "illustration-wide",
+      "name": "插畫 A｜兩人與共用門（寬景）",
+      "kind": "single_illustration",
+      "unit_refs": [
+        {
+          "unit_id": "S01",
+          "revision": 1
+        },
+        {
+          "unit_id": "S02",
+          "revision": 1
+        },
+        {
+          "unit_id": "S04",
+          "revision": 1
+        },
+        {
+          "unit_id": "I01",
+          "revision": 1
+        },
+        {
+          "unit_id": "C01",
+          "revision": 1
+        }
+      ],
+      "brief": "平視寬景：兩位鄰居與木門同框，阿梅扶門、阿安在上方鉸鏈工作；工具箱放在門邊。把 C01 的想像紅傘放在畫面後方的圍欄旁。紅傘只屬這幅插畫，不是原始觀察。"
+    },
+    {
+      "id": "illustration-close",
+      "name": "插畫 B｜鉸鏈與雙手（近景）",
+      "kind": "single_illustration",
+      "unit_refs": [
+        {
+          "unit_id": "S02",
+          "revision": 1
+        },
+        {
+          "unit_id": "S03",
+          "revision": 1
+        },
+        {
+          "unit_id": "I01",
+          "revision": 1
+        },
+        {
+          "unit_id": "C02",
+          "revision": 1
+        }
+      ],
+      "brief": "較寬的近景：焦點是上方鉸鏈、螺絲及兩人的手，不要求極近特寫。依 C02 安排工作者手邊的收緊工具與門邊扶門的手；工具不指定種類，地面工具箱留在畫外。門框作局部背景，不另指定室內場景。手部位置、裁切與景深是本版構圖選擇，不是原始觀察；不放 C01 紅傘。"
+    }
+  ]
+}

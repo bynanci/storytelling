@@ -128,7 +128,7 @@ The development version is `0.1.0-dev.0`. Build it from source with Rust 1.89.0.
 ```sh
 git clone https://github.com/bynanci/storytelling.git
 cd storytelling
-cargo run --quiet --locked -p storytelling-cli -- render-narrative tests/fixtures/narrative-v1/n03-authoring-v1.json
+cargo run --quiet --locked -p storytelling-cli -- render-narrative tests/fixtures/narrative-v1/n03-author-reviewed-v1.json
 cargo run --locked -p storytelling-cli -- validate examples/minimal-plan.json
 cargo run --locked -p storytelling-cli -- plan-story tests/fixtures/planner-v1/valid.json
 ```

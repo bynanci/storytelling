@@ -1,0 +1,33 @@
+{
+  "protocol_version": "n07-native-notes-v2-proposed",
+  "evidence_status": "prepared-awaiting-human-evidence",
+  "protocol_agreement": null,
+  "planned_paired_authors": 5,
+  "available_human_participants": 0,
+  "human_completion": {
+    "notes": null,
+    "native_cli": null
+  },
+  "human_revision_seconds": {
+    "notes": null,
+    "native_cli": null
+  },
+  "human_attribution_errors": {
+    "notes": null,
+    "native_cli": null
+  },
+  "human_repeated_input": {
+    "notes": null,
+    "native_cli": null
+  },
+  "human_rework": {
+    "notes": null,
+    "native_cli": null
+  },
+  "anonymous_feedback": [],
+  "participant_failures": [],
+  "decision": "待真人證據",
+  "release_candidate_recommended": false,
+  "reason": "No paired observations or recorded agreement to native threshold transfer are supplied.",
+  "available_paired_records": 0
+}

@@ -3,7 +3,7 @@
 
 **Issue:** [#65](https://github.com/bynanci/storytelling/issues/65)
 
-**Base:** main at `27d6985d569c0e8882c4218b19115afc382e5aad` (after #74 merged)
+**Initial implementation base:** main at `27d6985d569c0e8882c4218b19115afc382e5aad` (after #74 merged)
 
 **Inputs:** [NarrativeDocument fixture](../../tests/fixtures/narrative-v1/n08-umbrella-openings-v1.json) and [StyleProfileV1 fixture](../../tests/fixtures/narrative-v1/n08-style-profile-v1.json)
 **Contract:** [NarrativeDocumentV1](../narrative/NARRATIVE_DOCUMENT_V1.md) remains closed and unchanged. The independent [NarrativeStyleProfileV1](../narrative/EDITORIAL_STYLE_PROFILE_V1.md) names order rules by variant and beat ID.
@@ -96,6 +96,12 @@ binary and compares stdout bytes.
 
 ## Blind reader prompt
 
+The [standalone Traditional Chinese reader sheet](open-issues-2026-11-11/reader-sheet.zh-TW.md)
+can be handed to a reader without the surrounding treatment labels or source
+IDs in this validation record. It is still blank; preparing it is not a reader
+trial. Record assignment order and prior exposure as described in the
+[open-issue audit](open-issues-2026-11-11.md#human-work-still-required).
+
 For a reader trial, show the two passages below as A and B, randomly swap their
 order per reader, and hide the treatment names and source IDs. Do not explain
 the intended difference before the reader responds.
@@ -125,6 +131,17 @@ Ask:
 there are no participant quotes or usability claims to report. Record actual
 answers only after a person completes the blind read.
 
+## Merge reconciliation and remaining N-08 gate
+
+PR #75 was reconciled with the intervening main changes from #76, #77 and #79.
+The English-first and Traditional Chinese documentation updates were retained
+alongside the profile contract. The final PR head was
+`99765e0eae28e0338d78fa465bf4c44edaf792d1`; exact-head CI run #265 passed all
+configured jobs, and PR #75 was squash-merged as
+`003191c834bfc46903f1a436fd73c5df6edd9a77`. Issue #65 remains open because the
+blind reader trial is a human acceptance criterion. Deterministic replay is
+covered by the CLI integration test; it does not substitute for that trial.
+
 ## Automated evidence
 
 Local targeted result: cargo test --locked -p storytelling-cli --test style_profile — 7 passed.
@@ -133,6 +150,7 @@ rustdoc with warnings denied, repository traceability checks, skill distribution
 and the OpenFilm, official OTIO, StoryReview, StoryBrief and fixed-window planner
 differentials passed locally.
 
-Hosted CI must pass on this change's PR head; earlier checks on #74 do not verify
-this commit. The GitHub PR checks provide the exact head and current results.
-Human editorial acceptance remains a separate manual gate.
+PR #75 exact-head CI run #265 on `99765e0eae28e0338d78fa465bf4c44edaf792d1`
+passed all configured jobs. PR #75 was subsequently squash-merged as
+`003191c834bfc46903f1a436fd73c5df6edd9a77`. Human editorial acceptance remains
+a separate manual gate.

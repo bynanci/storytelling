@@ -144,7 +144,7 @@ npx skills add ./node_modules/@bynanci/storytelling/skills/storytelling --skill 
 ```sh
 git clone https://github.com/bynanci/storytelling.git
 cd storytelling
-cargo run --quiet --locked -p storytelling-cli -- render-narrative tests/fixtures/narrative-v1/n03-authoring-v1.json
+cargo run --quiet --locked -p storytelling-cli -- render-narrative tests/fixtures/narrative-v1/n03-author-reviewed-v1.json
 ```
 
 這份「鄰居修門」範例會輸出一份口述大綱與兩份插畫構圖。每份草稿保留來源識別碼、修訂版號與來源類別。紅傘只出現在寬景構圖。工具依輸入中宣告的文字輸出草稿，無須讀取媒體檔案。[敘事文件格式（英文）](https://github.com/bynanci/storytelling/blob/main/docs/narrative/NARRATIVE_DOCUMENT_V1.md) · [完整輸出與測試紀錄（英文）](https://github.com/bynanci/storytelling/blob/main/docs/validation/n03-narrative-cli.md)

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "copy_id": "n07-community-outline",
+  "copy_revision": 1,
+  "evidence_document_id": "n07-door-repair",
+  "purpose": "以虛構案例介紹鄰里小修繕，供作者查核文案依據。",
+  "audience": "社區電子報讀者",
+  "claims": [
+    {
+      "id": "gate-test-result",
+      "kind": "factual_claim",
+      "wording": "兩人試關一次；這一次門沒有磨到地面。",
+      "evidence_refs": [
+        {
+          "unit_id": "S03",
+          "revision": 1
+        }
+      ]
+    },
+    {
+      "id": "unsupported-program-claim",
+      "kind": "factual_claim",
+      "wording": "本公司的社區維修方案平均十分鐘修好每扇門，並讓維修費下降百分之三十。",
+      "evidence_refs": []
+    },
+    {
+      "id": "neighbor-slogan",
+      "kind": "creative_proposal",
+      "wording": "一顆鉸鏈，一雙援手，一份鄰里心意。",
+      "evidence_refs": []
+    }
+  ],
+  "call_to_action": {
+    "id": "cta-repair-day",
+    "kind": "creative_proposal",
+    "wording": "與鄰居討論一次共用門的小修繕。",
+    "evidence_refs": []
+  }
+}

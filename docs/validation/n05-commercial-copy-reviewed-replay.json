@@ -1,0 +1,26 @@
+{
+  "command": [
+    "storytelling",
+    "audit-copy-claims",
+    "tests/fixtures/commercial-copy-v1/n05-copy-reviewed-v1.json",
+    "tests/fixtures/narrative-v1/n04-revision-history-v1.json"
+  ],
+  "exits": [
+    0,
+    0
+  ],
+  "stderr_empty": true,
+  "repeat_stdout_identical": true,
+  "input_sha256_before": {
+    "tests/fixtures/commercial-copy-v1/n05-copy-reviewed-v1.json": "d82a942aa46148bec6a35b5705cdbc5eb0fb9631f73c6d4c29d5e0e20294c8cf",
+    "tests/fixtures/commercial-copy-v1/n05-copy-v1.json": "c4759c7ee0cf31a051f5d17918649734dfd4a5ccbfef2efdd06f5a24f0baafba",
+    "tests/fixtures/narrative-v1/n04-revision-history-v1.json": "29d51fa72c3ad872d442c45d03ec2458bf948fb7bb4b804b46247de6c4714f6c"
+  },
+  "input_sha256_after": {
+    "tests/fixtures/commercial-copy-v1/n05-copy-reviewed-v1.json": "d82a942aa46148bec6a35b5705cdbc5eb0fb9631f73c6d4c29d5e0e20294c8cf",
+    "tests/fixtures/commercial-copy-v1/n05-copy-v1.json": "c4759c7ee0cf31a051f5d17918649734dfd4a5ccbfef2efdd06f5a24f0baafba",
+    "tests/fixtures/narrative-v1/n04-revision-history-v1.json": "29d51fa72c3ad872d442c45d03ec2458bf948fb7bb4b804b46247de6c4714f6c"
+  },
+  "all_inputs_unchanged": true,
+  "review_source": "https://github.com/bynanci/storytelling/issues/52#issuecomment-6792555292"
+}

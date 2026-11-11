@@ -44,6 +44,7 @@ A **snapshot** is a composition export that follows the `finite-v1` contract. Op
 | `track-narrative-revisions` | `NarrativeRevisionLedgerV1` | Source and variant history, author decisions and review status. |
 | `query-narrative-impact` | Ledger and source change event ID | Variants that directly reference this source revision. The engine computes the list. |
 | `check-narrative-style` | Narrative document and revision-bound style profile | JSON result for declared spoken-beat order only. |
+| `audit-copy-claims` | CommercialCopyDocumentV1 and NarrativeRevisionLedgerV1, each up to 1 MiB | JSON with proposed wording, cited source text and reference revision status; it does not judge semantic support. |
 | `validate` | `PlanDocumentV1` | Checks declared IDs, hash format, references and exact source ranges. |
 | `audit-brief` | `StoryBriefV1` | Checks required and excluded items, order and references. Preserves manual choices. |
 | `plan-story` | Brief, fixed candidate windows, scores and limits | A reproducible proposal with reasons for each choice. |
@@ -64,14 +65,19 @@ Most JSON inputs have a 1 MiB limit. The source verification limit is 16 MiB. Pr
 
 The example about two neighbors and a gate contains a spoken outline, a wide composition and a close composition. Each output identifies its source, revision and origin. Only the wide composition contains the proposed red umbrella, `C01`. The input needs no media, path, duration or cut.
 
+The current example is document revision 2. It keeps the original spoken and wide
+drafts and marks the corrected close framing as creative proposal `C02`. The
+[requester review and before/after record](validation/n03-narrative-cli.md#requester-inspection-and-corrective-draft--2026-11-11)
+explain the change; the original fixture remains available for regression.
+
 ```sh
-cargo run --release --quiet --locked -p storytelling-cli -- render-narrative tests/fixtures/narrative-v1/n03-authoring-v1.json
+cargo run --release --quiet --locked -p storytelling-cli -- render-narrative tests/fixtures/narrative-v1/n03-author-reviewed-v1.json
 ```
 
 To use standard input, run the following command.
 
 ```sh
-cat tests/fixtures/narrative-v1/n03-authoring-v1.json | cargo run --release --quiet --locked -p storytelling-cli -- render-narrative -
+cat tests/fixtures/narrative-v1/n03-author-reviewed-v1.json | cargo run --release --quiet --locked -p storytelling-cli -- render-narrative -
 ```
 
 Success produces multiline UTF-8 text. File and standard input produce identical bytes. Invalid data produces one JSON line on standard output and exit 1. Usage errors return 2. I/O errors return 3. The command only reads input. See the [narrative contract](narrative/NARRATIVE_DOCUMENT_V1.md) and [N-03 evidence](validation/n03-narrative-cli.md).
@@ -130,6 +136,18 @@ cargo run --release --quiet --locked -p storytelling-cli -- check-narrative-styl
 
 Success is one JSON line. The command validates only the declared order. A contradictory rule returns `narrative.style.order_conflict` and its rule IDs. An unsupported profile version returns `narrative.style.unsupported_version`. The profile does not assess aesthetics or establish human approval. P1 is an imagery proposal derived from S3, not an observed explanation of its cause. Reader feedback remains `manual-pending`. See the [profile contract](narrative/EDITORIAL_STYLE_PROFILE_V1.md) and [N-08 validation record](validation/n08-style-profile.md).
 
+## Audit copy claims against a narrative ledger (N-05)
+
+`audit-copy-claims` reads a commercial copy outline and a supplied revision ledger. `current` means only that the source ID and revision match. The report includes cited historical text to support human comparison. It does not claim that the source supports the wording, verify a fact or clear copy for publication.
+
+```sh
+cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-copy-v1.json tests/fixtures/narrative-v1/n04-revision-history-v1.json
+cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-copy-revised-ref-v1.json tests/fixtures/narrative-v1/n04-revision-history-v1.json
+cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-copy-dangling-ref-v1.json tests/fixtures/narrative-v1/n04-revision-history-v1.json
+```
+
+The first example includes a traceable gate test, an unsupported ten-minute average and 30% cost-reduction claim, a proposed slogan and a CTA. The other examples cite old S02@1 and absent S99@1. Output status covers references only. See the [contract](narrative/COMMERCIAL_COPY_V1.md) and [N-05 validation record](validation/n05-commercial-copy.md); human semantic assessment remains pending.
+
 ## Render a recording cue sheet (N-09)
 
 ```sh
@@ -139,6 +157,7 @@ cargo run --release --quiet --locked -p storytelling-cli -- render-cue-sheet \
 ```
 
 The command reads a separate closed cue sheet bound to the supplied `NarrativeDocumentV1` and spoken variant. It renders a narration cue from its referenced beat, followed by the estimated pause and the declared `taps.wav` effect. Unknown narration length remains unresolved; the pause estimate and known WAV duration stay distinct. Resolved overlapping intervals on one exclusive track return `narrative.cue.track_conflict`; overlaps across tracks and touching half-open intervals are allowed. Output is deterministic, human-readable text. It does not record, play, or mix audio. See the [cue-sheet profile](narrative/NARRATIVE_CUE_SHEET_V1.md) and [N-09 replay evidence](validation/n09-cue-sheet.md).
+
 
 <a id="將所選提案交付為-otio"></a>
 <a name="選定提案-a--可審核-otio已合併唯讀切片"></a>
@@ -421,3 +440,4 @@ python3 tests/oracles/m3-03-filmcraft-v1/run.py \
 5. Matching cuts yield `applied-observed`. The runner does not resend or undo the operation.
 
 All artifacts stay in the new directory. The proof covers 25 fps and one picture cut. Human approval, trusted signer authorization and the production executor remain separate. See the [test guide](../tests/oracles/m3-03-filmcraft-v1/README.md) and [validation record](validation/m3-03-filmcraft-execution.md).
+
