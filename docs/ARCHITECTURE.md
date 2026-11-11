@@ -21,6 +21,35 @@ and behavior. First-party unsafe is forbidden, not a claim about every dependenc
 
 ## Future boundaries, not empty crates
 
+### Proposed cross-media authoring model
+
+An oral outline has a speaking order. A single illustration has a focal point,
+background and foreground. Both can refer to the same observation. The proposed
+N track separates source material from the way an author chooses to present it.
+G2 will decide the wire format after contributors try these cases on paper.
+
+| Design question | Proposed responsibility |
+| --- | --- |
+| What did the author supply? | A brief describes audience and purpose. Each content unit has an ID, origin and revision. A recollection, an interpretation and a suggested detail remain distinguishable. |
+| What connects the units? | Relations express declared support, association or required order. A pair of ideas can refer back to each other. Cycle checks apply to hard precedence within an ordered output. |
+| How could this be expressed? | A named variant references the units it uses. Spoken beats have an order, drawings have spatial roles, and brainstorms can retain alternative groups. Authors choose the variant and can trace later edits to its referenced revisions. |
+| What can software establish? | The engine can validate references, constraints and revision matches. A citation records the supplied basis for a claim. Its accuracy and suitability for publication require human judgment. Optional AI proposals enter through the same untrusted input boundary. |
+
+Start inside the existing crates. Core would carry the separately versioned
+narrative types, engine would validate and project them, and CLI would read and
+write local documents. Keep narrative inputs independent of asset hashes, source
+ranges and frame rates. A later video adapter could bind selected units to
+explicit assets and call the existing planner through its public contract.
+Keep the V1 video input shapes, CLI behavior, digest vectors and OTIO fixtures as
+regressions. The N track starts with discovery and contract design.
+
+For N-02, compare origin and derivation with [W3C PROV-DM](https://www.w3.org/TR/prov-dm/)
+and spatial grouping with [JSON Canvas 1.0](https://jsoncanvas.org/spec/1.0/).
+Use the synthetic cases to decide which distinctions earn their implementation cost.
+Record the decision in the ADR specified by the [narrative backlog](../TASKS.md#cross-media-narrative-backlog).
+
+### Workflow and editor adapters
+
 `workflow -> engine + core`: application use cases and ports.
 `adapters -> workflow ports + core`: SQLite, OpenFilm reader, OTIO, FilmCraft and
 optional provider implementations. `cli -> workflow + adapters` composes them.

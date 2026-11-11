@@ -13,6 +13,50 @@ supplied-byte/host proof and selected-domain M2-03 live shadow are accepted on m
 implementation exists, not that a release or real-host gate has passed.
 Exact-head test results belong in the PR and [validation record](docs/validation/m0-foundation.md).
 
+## Cross-media narrative backlog
+
+The [cross-media roadmap](ROADMAP.md#cross-media-narrative-roadmap) proposes
+using one collection of sources and ideas for different forms of expression.
+These N tasks are planned work. Each maps to the identically numbered N-R
+requirement in the [traceability table](docs/REQUIREMENTS.md#proposed-cross-media-narrative-requirements). The [video delivery
+queue](#next-actionable-work) continues independently.
+
+| Task / requirement | Status and SDLC gate | Depends on | Deliverable and acceptance example |
+| --- | --- | --- | --- |
+| [N-01](https://github.com/bynanci/storytelling/issues/48) / N-R01 · Authoring examples | Proposed · G0–G1 | Can start from current main | Produce a synthetic source note, one spoken outline, two sketches described in words and a plain-notes comparison. Annotate supplied details, interpretations and invented details. Include a second example of a commercial claim with missing evidence. Record a measurable revision task and pilot decision criteria. |
+| [N-02](https://github.com/bynanci/storytelling/issues/49) / N-R02 · Additive contract | Proposed · G2 | N-01 | Review an ADR and versioned contract for source units, relations, constraints and named variants. Show strict parsing/size limits, version refusal and a compatible path alongside video V1. A free association cycle is valid. A cycle of mandatory precedence edges is a conflict. A dangling unit reference has a diagnostic. |
+| [N-03](https://github.com/bynanci/storytelling/issues/50) / N-R03 · Oral and visual planning | Proposed · G3–G4 | N-02 | Deliver one local CLI workflow with structured input and human-readable outlines. One source yields ordered speaking points and two illustration briefs with focal subject, foreground and background. Re-running the same input and options reproduces the result. A fixture with no media path, duration or cut points must succeed. |
+| [N-04](https://github.com/bynanci/storytelling/issues/51) / N-R04 · Source and variant revisions | Proposed · G3–G4 | N-03 | Preserve source and revision IDs and author selections. Accept an invented visual detail in only one variant, revise a source, then report which variants cite the superseded revision. Show an unrelated variant stays current and prior revisions remain inspectable. A supplied model suggestion cannot confirm itself as fact. |
+| [N-05](https://github.com/bynanci/storytelling/issues/52) / N-R05 · Evidence in commercial copy | Proposed · G3–G4 | N-04 | From a synthetic product note, build a copy outline pairing audience, claim, evidence and next action. A cited claim points back to its source. Removing the citation flags that claim for substantiation. The output labels a proposed slogan separately. Record an author's assessment of the claim and evidence. |
+| [N-06](https://github.com/bynanci/storytelling/issues/53) / N-R06 · Evaluate additional profiles | Proposed · G0–G2 | N-04 | Compare three small examples: a brainstorm with two alternative branches, a script whose reveal order differs from event order, and an optional mapping from selected units to real video references. Record author feedback and recommend at most one follow-up slice. Missing video references must remain unresolved. |
+| [N-07](https://github.com/bynanci/storytelling/issues/54) / N-R07 · Pilot and release decision | Proposed · G4–G6 | N-05 | Run the N-01 comparison on the oral/visual and copy workflows. Report observed times, attribution errors and completion counts with denominators. Record a continue, narrow or stop decision and convert reproducible failures into synthetic regression cases. Document compatibility and rollback for any proposed release. |
+
+### Starting N-01
+
+1. Start with [issue #48](https://github.com/bynanci/storytelling/issues/48). Record N-01 /
+   N-R01, the current main SHA and any overlapping PR. The outcome is an author
+   revising one source in two presentations and identifying what changed.
+2. Write a fictional observation, for example two neighbors fixing a gate. Give
+   every detail a stable label. Introduce an imagined red umbrella in one
+   illustration only. Ask a reader to reconstruct the original observations
+   from the spoken outline and explain where the umbrella came from.
+3. Record the same revision using plain notes, including time, errors and any
+   need to re-enter the source. Include the claim scenario, planned measures
+   and criteria for continuing in the pilot. Publish synthetic examples and
+   anonymized findings. Record outstanding research questions and evidence gaps.
+4. Submit the examples and results in one documentation PR. The maintainer
+   records whether there is a shared authoring problem worth taking to G2.
+   If the examples work as separate templates and revision tracking offers no
+   observed benefit, narrow or stop the shared-contract work.
+
+The maintainer owns scope and the pilot decision. An implementer owns each
+contract or runnable slice, a reviewer checks its evidence, and authors assess
+the usefulness of the outputs. At G3–G4 use the existing core/engine/CLI
+boundary, synthetic fixtures, RED/GREEN evidence, same-head CI and existing
+video V1 regressions. Keep any optional model suggestions outside the pure
+engine. At G6 feed author findings back into a named task and requirement.
+Record blocked work with its owner and the observation needed to resume.
+
 ## Accepted lifecycle
 
 The user explicitly authorized merging completed, verified PRs and checking the

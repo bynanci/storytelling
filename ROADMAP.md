@@ -6,13 +6,39 @@ See [TASKS](TASKS.md), [SDLC](docs/SDLC.md) and [architecture](docs/ARCHITECTURE
 
 ## Product objective
 
-Turn 30–50 selected photos, clips and narration into a reviewed, editable
-60–90 second story rough cut, using a host editor for finishing. These are
-reference-workflow targets, not current supported media claims.
+Help authors turn source material into a structure they can explain, revise and
+hand off. Two tracks test that aim against different authoring tasks.
 
-Storytelling owns story intent, evidence references, proposals and receipts.
-OpenFilm provides a first consumer and existing analysis. FilmCraft is the first
-planned host, followed by a real second-editor compatibility trial.
+- **Video planning and handoff (M).** The working Rust CLI selects fixed source
+  windows and exports a bounded picture timeline for review. The reference
+  workflow targets an editable 60–90 second rough cut from 30–50 selected
+  photos, clips and narration. OpenFilm provides analysis and input. FilmCraft
+  is the first tested host and owns its edited timeline. See [milestones](#milestones)
+  for the scope of current evidence.
+- **Cross-media narrative planning (N, proposed).** Test whether authors can
+  turn the same observations into a spoken outline, an illustration brief or
+  a supported commercial claim while retaining where each detail came from.
+  This track starts with writing and comparing examples. Its outcomes below
+  have no released package or implemented CLI commands.
+
+## Cross-media narrative roadmap
+
+| Outcome | Tasks and dependency | Decision and evidence |
+| --- | --- | --- |
+| Establish what authors need to reuse | N-01 discovery, then N-02 contract design | Compare manually prepared outputs for a synthetic everyday event. Keep source units, their relationships and proposed presentations distinct. Review an additive contract against existing video V1 fixtures. Narrow the design if a second output requires invented media fields. |
+| Reuse a source in two media and revise it | N-03 follows N-02. N-04 adds revision tracking to N-03. | Produce one ordered oral outline and two spatial composition briefs from the same input. The author can keep an imagined detail in one visual variant, change a cited observation and identify the affected outputs. Compare repeat runs and inspect the briefs with an author. |
+| Test the model on commercial copy | N-05 follows N-04 | Trace each factual claim to declared evidence or flag it for substantiation. Try removing the evidence and revising a claim. A human judges whether the evidence actually supports the wording. |
+| Choose the next use case | N-06 follows N-04 and draws on N-05 when available | Compare grouped and branching ideas for brainstorming, scene and reveal order for screenwriting, and a mapping from selected units to video assets. Advance one profile only if its fixture and author feedback identify a benefit the existing profiles cannot deliver. |
+| Decide whether to distribute a pilot | N-07 follows N-05. N-06 is optional for the first pilot. | Compare the core workflows against plain notes using the measures recorded in N-01. Report task completion, time to revise, attribution mistakes and aggregate author feedback. Record a continue, narrow or stop decision. A release has its own G5 decision. |
+
+The N track can start alongside the video operation journal (M3-02). Shared
+ideas include explicit constraints, deterministic output and traceable review
+records. The existing time, shot, OTIO and FilmCraft contracts remain owned by
+the M track. A future video mapping needs real asset identifiers and source
+ranges before it can call the existing planner.
+
+Pick up a [cross-media task](TASKS.md#cross-media-narrative-backlog) for its
+SDLC gate, dependencies, counterexamples and acceptance evidence.
 
 ## Milestones
 
