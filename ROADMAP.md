@@ -53,7 +53,7 @@ SDLC gate, dependencies, counterexamples and acceptance evidence.
 | M0 foundation | Accepted and merged on main | Validate a declared StoryPlan through a usable Rust CLI | Strict contract, source bounds, immutable input, same-head 3-OS CI, maintainer acceptance |
 | M1 / v0.1 handoff | Finite M1-01/M1-02 and bounded M1-03 Linux 25 fps proof accepted; broader acceptance open | Existing story choices become an editable FilmCraft rough cut | Tested picture-only profile passed import/CPU preview/readback/save/reopen; audio, other profiles and human acceptance remain open |
 | M2 / v0.2 planning | M2-01 audit accepted; M2-02 fixed-window planner accepted; M2-03 selected-domain live shadow accepted; full solver open | Constraints and evidence produce an explainable shot proposal | Hard constraints satisfied or explicit conflicts; frozen-input reproducibility |
-| M3 / v0.3 reviewed execution | Bounded P1 composition review accepted; P2 read-only planner bridge is merged/verified; trusted execution planned | Accepted plans execute without silently damaging prior work | Selected proposal/artifact binding, owner fencing, durable journal, partial/unknown recovery |
+| M3 / v0.3 reviewed execution | Bounded P1 composition review and P2 read-only planner bridge accepted; M3-02 journal accepted; M3-03 has a local test-only host proof, production executor open | Accepted plans execute without silently damaging prior work | Trusted approval, single writer, selected proposal/artifact binding, owner fencing, durable journal, safe in-flight/partial/unknown recovery |
 | M4 / v0.4 consumers | Planned | OpenFilm and an external TypeScript consumer use one SDK | Single authority, full Review/Accept workflow, optional thin MCP |
 | M5 / beta | Planned | Independent users and a second host finish a real story | Measured user outcomes, target-host matrix, distribution evidence |
 | v1.0 | Not scheduled | Stable public contract with a supported upgrade path | Schema/SDK migrations, security/recovery and compatibility gates accepted |
@@ -75,11 +75,13 @@ are inferred from code or test counts.
 
 M3-01/P2 is merged as the bounded bridge, with its [bounded contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md).
 M3-02's bounded SQLite journal is accepted through [PR #56](https://github.com/bynanci/storytelling/pull/56)
-with exact-head and post-merge hosted checks passed. M3-03 now adds isolated
-FilmCraft apply/readback, followed by the M4 OpenFilm flag. A FilmCraft apply timeout has
-unknown outcome: durable recovery must read back the project before retry. If the
-same operation may still be in flight or readback is ambiguous, stop instead of
-resending the cut.
+with exact-head and post-merge hosted checks passed. M3-03 now has a test-only
+isolated FilmCraft apply/readback proof for a lost reply after successful host
+exit; its [record](docs/validation/m3-03-filmcraft-execution.md) keeps production
+execution open. A timeout has unknown outcome: recovery must read back the
+project before retry. If the same operation may still be in flight or readback
+is ambiguous, stop instead of resending the cut. M4 remains queued after an
+accepted production executor and readback gate.
 
 ## Investment decisions
 

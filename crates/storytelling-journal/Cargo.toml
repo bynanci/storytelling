@@ -12,5 +12,8 @@ description = "Durable owner-fenced operation journal for Storytelling adapters"
 rusqlite.workspace = true
 sha2.workspace = true
 
+[dev-dependencies]
+serde_json.workspace = true
+
 [lints]
 workspace = true

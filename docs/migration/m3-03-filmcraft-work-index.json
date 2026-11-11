@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "task": "M3-03",
+  "state": "bounded-test-proof-passed; production-executor-open",
+  "base": "d259196c0a356b547e86e4648e270af7bd2453b3",
+  "scope": "one synthetic 25fps video cut into a new isolated FilmCraft v0.18.0 Linux project; durable journal and lost-ack native readback",
+  "tasks": [
+    {
+      "id": "M3-03-contract",
+      "state": "bounded-profile-and-fault-model-documented",
+      "depends_on": []
+    },
+    {
+      "id": "M3-03-journaled-host-proof",
+      "state": "pinned-linux-host-proof-passed",
+      "depends_on": [
+        "M3-03-contract"
+      ]
+    },
+    {
+      "id": "M3-03-production-executor",
+      "state": "open",
+      "depends_on": [
+        "M3-03-journaled-host-proof"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "M3-XE01",
+      "tests": [
+        "isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback"
+      ],
+      "verification_paths": [
+        "tests/oracles/m3-03-filmcraft-v1/run.py",
+        "tests/oracles/m3-03-filmcraft-v1/evidence.json",
+        "docs/validation/m3-03-filmcraft-execution.md"
+      ]
+    },
+    {
+      "id": "M3-XE02",
+      "tests": [
+        "isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback",
+        "exact_review_and_artifact_identity_survive_restart_and_idempotent_prepare"
+      ],
+      "verification_paths": [
+        "crates/storytelling-journal/tests/filmcraft_execution.rs",
+        "crates/storytelling-journal/tests/journal.rs"
+      ]
+    },
+    {
+      "id": "M3-XE03",
+      "tests": [
+        "isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback",
+        "unknown_response_and_applied_response_never_enable_a_retry"
+      ],
+      "verification_paths": [
+        "tests/oracles/m3-03-filmcraft-v1/evidence.json",
+        "crates/storytelling-journal/tests/journal.rs"
+      ]
+    },
+    {
+      "id": "M3-XE04",
+      "tests": [
+        "isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback",
+        "stale_owner_and_late_attempt_response_cannot_overwrite_newer_state"
+      ],
+      "verification_paths": [
+        "crates/storytelling-journal/tests/filmcraft_execution.rs",
+        "crates/storytelling-journal/tests/journal.rs"
+      ]
+    },
+    {
+      "id": "M3-XE05",
+      "tests": [
+        "isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback"
+      ],
+      "verification_paths": [
+        "tests/oracles/m3-03-filmcraft-v1/run.py",
+        "tests/oracles/m3-03-filmcraft-v1/README.md",
+        "tests/oracles/m3-03-filmcraft-v1/evidence.json"
+      ]
+    },
+    {
+      "id": "M3-XE06",
+      "tests": [
+        "repeated_ambiguous_readbacks_have_a_per_attempt_bound",
+        "unknown_response_and_applied_response_never_enable_a_retry",
+        "isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback"
+      ],
+      "verification_paths": [
+        "crates/storytelling-journal/tests/journal.rs",
+        "docs/migration/M3-03-ISOLATED-FILMCRAFT.md"
+      ]
+    }
+  ],
+  "limits": [
+    "This is a test-only integration harness, not a production editor executor.",
+    "The lost acknowledgement follows a successful host exit; a hanging FilmCraft process and process-group quiescence are not proven.",
+    "The accepted journal adapter does not authenticate executor IDs or caller-supplied readback facts.",
+    "No NotApplied retry, trusted approval, PR #28 G2 acceptance, Windows/macOS host run, or exactly-once effect is claimed."
+  ]
+}
