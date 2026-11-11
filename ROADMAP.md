@@ -30,7 +30,9 @@ different tasks and can be adopted independently. See the [platform guide](docs/
 ## Cross-media narrative roadmap
 
 The [Storytelling skill](skills/storytelling/SKILL.md) is the author-facing
-entry point. Today it drafts multiple forms from prose with the host agent.
+entry point. Authors can start with [eight templates](skills/storytelling/references/multimodal-templates.md)
+or a [small image, sound and text workshop](skills/storytelling/references/workshop-demo.md).
+A host can use the available media or the supplied descriptions to draft in each form.
 The N milestones below add the separately testable contracts, local tool
 integration, revision tracking and measured author outcomes. Keep a natural-language
 example beside each runnable technical slice so authors can use it from the skill.
@@ -42,6 +44,11 @@ example beside each runnable technical slice so authors can use it from the skil
 | Test the model on commercial copy | N-05 follows N-04 | Trace each factual claim to declared evidence or flag it for substantiation. Try removing the evidence and revising a claim. A human judges whether the evidence actually supports the wording. |
 | Choose the next use case | N-06 follows N-04 and draws on N-05 when available | Compare grouped and branching ideas for brainstorming, scene and reveal order for screenwriting, and a mapping from selected units to video assets. Advance one profile only if its fixture and author feedback identify a benefit the existing profiles cannot deliver. |
 | Decide whether to distribute a pilot | N-07 follows N-05. N-06 is optional for the first pilot. | Compare the core workflows against plain notes using the measures recorded in N-01. Report task completion, time to revise, attribution mistakes and aggregate author feedback. Record a continue, narrow or stop decision. A release has its own G5 decision. |
+
+The [multimodal Rust backlog](TASKS.md#multimodal-rust-backlog) adds style profiles (N-08),
+audio cue sheets (N-09), the profile selected by N-06 (N-10), a mixed-media handoff
+manifest (N-11) and a host feasibility study (N-12). The proposed backend work has
+its own evidence and can be prioritized after the shared N-02 contract.
 
 The N track can start alongside the video operation journal (M3-02). Shared
 ideas include explicit constraints, deterministic output and traceable review

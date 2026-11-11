@@ -479,3 +479,21 @@ retain-host entries remain exclusions, not rewrite tasks.
 
 Every transfer PR records OF/GAP IDs together with original M task and new requirement IDs.
 The full task index is a coverage inventory, not a demand to build 64 items before M1.
+
+## Multimodal Rust backlog
+
+The [eight authoring templates](skills/storytelling/references/multimodal-templates.md)
+run in a host agent or can be followed by hand. The [workshop demo](skills/storytelling/references/workshop-demo.md)
+includes a written notice, a real SVG and a synthetic WAV. The table maps those
+authoring tasks to the CLI capabilities on main and the work needed for repeatable validation.
+
+| Deliverable | Current Rust boundary | Next task |
+| --- | --- | --- |
+| Everyday account or illustration brief | The video plan expects timed shots and assets. There is no media-free oral or spatial document entry point. | [N-02 contract](https://github.com/bynanci/storytelling/issues/49) → [N-03 oral/visual workflow](https://github.com/bynanci/storytelling/issues/50) |
+| Commercial copy | The brief auditor checks asset constraints. It cannot establish whether a written claim has evidence. | [N-04 version tracking](https://github.com/bynanci/storytelling/issues/51) → [N-05 claims and evidence](https://github.com/bynanci/storytelling/issues/52) |
+| Screenplay, branching brainstorm or story-to-video mapping | Shot order is supported. Audience reveal order, open idea branches and links from narrative units are separate contracts. | [N-06 compare profiles](https://github.com/bynanci/storytelling/issues/53), then [N-10 selected profile](https://github.com/bynanci/storytelling/issues/67) only if the comparison selects one |
+| Style variants on the same facts | The CLI has no editorial style profile. Rule checks could cover declared structure. The author judges the result. | [N-08 style profiles](https://github.com/bynanci/storytelling/issues/65) |
+| Podcast, silence and sound cues | A supplied WAV file can be hashed. A sound cue sheet, independent sound tracks and a rendered mix have distinct requirements. | [N-09 cue sheets](https://github.com/bynanci/storytelling/issues/66) |
+| Mixed handoff or actual media artifact | The CLI can verify supplied bytes and export a finite picture-only timeline. A declared hash does not describe image or audio content. | [N-11 manifest](https://github.com/bynanci/storytelling/issues/68) and [N-12 host feasibility](https://github.com/bynanci/storytelling/issues/69) |
+
+**Implementation order.** Finish the [author problem](https://github.com/bynanci/storytelling/issues/48) and the shared contract (#49); ship the existing oral/illustration and revision slices (#50–51) before building on their wire types. N-08 and N-09 can be designed independently after #49. N-11 consumes #51. N-10 depends on a positive N-06 decision. N-12 can evaluate one real host independently and reuses [OF-37–39](docs/migration/OPENFILM_RUST_PORT_MAP.md) where applicable. Each new issue is open and proposed, with positive and negative cases. The [pilot](https://github.com/bynanci/storytelling/issues/54) remains a separate author decision.

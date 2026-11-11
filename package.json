@@ -20,6 +20,8 @@
     "skills/storytelling/SKILL.md",
     "skills/storytelling/LICENSE",
     "skills/storytelling/agents/*.yaml",
+    "skills/storytelling/assets/umbrella-workshop/bench.svg",
+    "skills/storytelling/assets/umbrella-workshop/taps.wav",
     "skills/storytelling/references/*.md",
     "skills/storytelling/scripts/*.py"
   ],
