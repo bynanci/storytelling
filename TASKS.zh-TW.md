@@ -36,7 +36,7 @@
 | [N-03／#50](https://github.com/bynanci/storytelling/issues/50) · N-R03 口述與插畫 | 接續 N-02。主分支已有本機指令，作者試讀待完成。 | `render-narrative` 依同一份來源輸出口述與兩種構圖。檢查來源、故障案例、輸入唯讀與重播一致性。另跑既有影片與 OTIO 回歸。[命令與輸出](docs/validation/n03-narrative-cli.md) |
 | [N-04／#51](https://github.com/bynanci/storytelling/issues/51) · N-R04 修訂與作者決定 | 接續 N-03。主分支已有修訂查詢。真人檢視另列。 | 先改共同事實，再改單一構圖。工具依直接引用列出受影響的版本。歷史保留舊稿、提案及宣告的作者決定。[修訂驗證紀錄](docs/validation/n04-narrative-revisions.md) |
 | [N-05／#52](https://github.com/bynanci/storytelling/issues/52) · N-R05 文案與證據 | G3–G4。接續 N-04。 | 交付受眾、主張、引用、文案與下一步。標出過期或已移除的引用。由審閱者判斷來源是否支持主張。 |
-| [N-06／#53](https://github.com/bynanci/storytelling/issues/53) · N-R06 選擇新模式 | G0–G2。接續 N-04。 | 比較未決的構思分支、劇本揭露順序與缺素材的影片對照。記錄作者需求、成本與相容範圍。最多採用一種，也可全部暫緩。 |
+| [N-06／#53](https://github.com/bynanci/storytelling/issues/53) · N-R06 選擇新模式 | G0–G2。接續 N-04。 | [格式探索紀錄](docs/validation/n06-format-discovery.md)比較未決構思分支、劇本揭露順序與缺素材的影片交接，列出相容性與最小變更；作者回饋與選案待補。 |
 | [N-07／#54](https://github.com/bynanci/storytelling/issues/54) · N-R07 產品決定 | G4–G6。接續 N-05。 | 重做基準任務。分組報告完成數與總數、耗時及歸因錯誤。將可重現的失敗連到測試案例。維護者決定繼續、縮小或停止。另行評估發布。 |
 
 將[前七段 Codex 指令](docs/CODEX_NARRATIVE_PROMPTS.zh-TW.md)派給對應任務。後續五票與既有任務的追加指令收在[多模態派工指南](docs/CODEX_MULTIMODAL_PROMPTS.zh-TW.md)。
