@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "document_id": "n08-umbrella-openings",
+  "document_revision": 1,
+  "purpose": "讓鄰居知道週六的修傘活動與帶傘條件，比較兩種口述開場。",
+  "audience": "附近居民；第一次聽到修傘工作坊邀請的人。",
+  "units": [
+    {
+      "id": "S1",
+      "revision": 1,
+      "origin": "supplied_observation",
+      "text": "活動公告：週六舉辦修傘活動。請帶一把傘。",
+      "based_on": []
+    },
+    {
+      "id": "S3",
+      "revision": 1,
+      "origin": "supplied_observation",
+      "text": "合成音效：短促敲擊、停頓、再敲一下；沒有說話聲。",
+      "based_on": []
+    },
+    {
+      "id": "P1",
+      "revision": 1,
+      "origin": "creative_proposal",
+      "text": "一下敲門，一下回應。",
+      "based_on": [{ "unit_id": "S3", "revision": 1 }]
+    }
+  ],
+  "relations": [],
+  "variants": [
+    {
+      "id": "documentary-opening",
+      "name": "直接告知開場",
+      "kind": "spoken_outline",
+      "beats": [
+        {
+          "id": "D01_EVENT",
+          "unit_ref": { "unit_id": "S1", "revision": 1 },
+          "text": "週六有修傘工作坊，請帶一把傘。"
+        },
+        {
+          "id": "D02_TAPS",
+          "unit_ref": { "unit_id": "S3", "revision": 1 },
+          "text": "（收尾播放 S3 的兩聲敲擊音效。）"
+        }
+      ]
+    },
+    {
+      "id": "imagery-opening",
+      "name": "意象開場",
+      "kind": "spoken_outline",
+      "beats": [
+        {
+          "id": "I01_TAPS",
+          "unit_ref": { "unit_id": "S3", "revision": 1 },
+          "text": "（先播放 S3 的兩聲敲擊；合成音效，沒有說話聲。）"
+        },
+        {
+          "id": "I02_METAPHOR",
+          "unit_ref": { "unit_id": "P1", "revision": 1 },
+          "text": "一下敲門，一下回應。"
+        },
+        {
+          "id": "I03_EVENT",
+          "unit_ref": { "unit_id": "S1", "revision": 1 },
+          "text": "週六有修傘工作坊，請帶一把傘。"
+        }
+      ]
+    }
+  ]
+}

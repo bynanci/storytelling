@@ -265,13 +265,13 @@ fn detect_derivation_cycle(edges: &[Vec<(usize, String)>]) -> Option<String> {
 }
 
 #[derive(Clone, Copy)]
-struct OrderEdge {
-    before: usize,
-    after: usize,
-    relation_index: usize,
+pub(super) struct OrderEdge {
+    pub(super) before: usize,
+    pub(super) after: usize,
+    pub(super) relation_index: usize,
 }
 
-fn first_order_cycle(beat_count: usize, edges: &[OrderEdge]) -> Option<Vec<usize>> {
+pub(super) fn first_order_cycle(beat_count: usize, edges: &[OrderEdge]) -> Option<Vec<usize>> {
     fn visit(
         node: usize,
         outgoing: &[Vec<usize>],

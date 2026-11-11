@@ -41,6 +41,7 @@ storytelling validate plan.json
 | `render-narrative` | `NarrativeDocumentV1`，無須媒體或片長 | 依宣告順序輸出口述大綱與插畫構圖，附來源標籤。 |
 | `track-narrative-revisions` | `NarrativeRevisionLedgerV1` 修訂簿 | 列出來源與變體的修訂歷史、作者決定和待審狀態。 |
 | `query-narrative-impact` | 修訂簿與來源變更事件 ID | 列出直接引用該來源版本的變體。由引擎計算影響範圍。 |
+| `check-narrative-style` | 敘事文件與綁定 revision 的風格 profile | 以 JSON 回報宣告的口述 beat 順序。 |
 | `validate` | `PlanDocumentV1` 計畫 | 檢查宣告的 ID、雜湊格式、引用與精確來源區間。 |
 | `audit-brief` | `StoryBriefV1` 剪輯需求 | 檢查必選、排除、順序及引用衝突。保留作者的手動選擇。 |
 | `plan-story` | 剪輯需求、候選固定區間、宣告分數與硬性上限 | 提出可重現的固定區間提案，列出選擇原因。 |
@@ -98,6 +99,18 @@ cargo run --release --quiet --locked -p storytelling-cli -- query-narrative-impa
 第二次更改後，口述與寬景構圖仍為 `current`。近景構圖為 `needs_review`，保留先前的 `C01@1` 引用。用歷史指令可取得先前的來源與變體快照。任一變體仍待審時，修訂簿會拒絕下一筆來源修訂。即使要修訂另一個來源，也須先處理待審變體。
 
 助手的建議與作者的決定必須是不同事件。如果 `assistant_suggestion` 含 `decision`、`accepted` 或 `author_confirmed`，錯誤碼為 `revision.untrusted_decision`。工具只查核記錄的宣告，無法驗明作者身分。影響範圍依輸出的直接引用計算。`based_on` 的間接關係不會自動造成下游失效。[N-04 實測與待驗項目](validation/n04-narrative-revisions.md)
+
+<a id="check-a-narrative-order-rule-n-08"></a>
+
+## 檢查敘事順序規則（N-08）
+
+工作坊範例固定活動資訊與攜帶雨傘的要求。直接版先說活動，再播敲擊；意象版先安排兩聲合成敲擊。獨立的 `NarrativeStyleProfileV1` 以文件 ID／revision 及口述變體／beat ID 綁定 `must_precede` 規則。
+
+```sh
+cargo run --release --quiet --locked -p storytelling-cli -- check-narrative-style tests/fixtures/narrative-v1/n08-umbrella-openings-v1.json tests/fixtures/narrative-v1/n08-style-profile-v1.json
+```
+
+成功時輸出一行 JSON，只驗證宣告的順序。規則互相矛盾時回報 `narrative.style.order_conflict` 和規則 ID；profile 版本不支援時回報 `narrative.style.unsupported_version`。它不評價美感，也不代表真人核准。P1 是由 S3 延伸的意象提議，並非對敲擊來源的實際說明。盲讀回饋仍為 `manual-pending`。[Profile 契約（英文）](narrative/EDITORIAL_STYLE_PROFILE_V1.md) · [N-08 驗證紀錄（英文）](validation/n08-style-profile.md)
 
 <a id="export-a-selected-proposal-as-otio"></a>
 

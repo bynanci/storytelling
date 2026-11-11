@@ -12,7 +12,7 @@ Storytelling 的第一個跨媒體目標是讓作者能改稿。試想一張活�
 | --- | --- | --- |
 | Storytelling Skill | 依受眾、目的與素材起草。可交給支援 Agent Skills 的工具，也可照 Markdown 手動操作。 | [八種敘事樣板](skills/storytelling/references/multimodal-templates.zh-TW.md)與[修傘工作坊](skills/storytelling/references/workshop-demo.zh-TW.md) |
 | 本機敘事指令 | `render-narrative` 將已宣告的內容輸出成口述大綱與插畫構圖。範例含兩款構圖。 | [CLI 指南](docs/CLI_GUIDE.zh-TW.md)與 [N-03 驗證紀錄](docs/validation/n03-narrative-cli.md)。作者試讀仍待完成。 |
-| 本機修訂查詢 | `track-narrative-revisions` 列出修訂歷史。`query-narrative-impact` 找出直接引用變更來源的版本。 | [修訂契約](docs/narrative/NARRATIVE_REVISION_LEDGER_V1.md)與 [N-04 驗證紀錄](docs/validation/n04-narrative-revisions.md)。 |
+| 本機修訂與順序檢查 | `track-narrative-revisions` 和 `query-narrative-impact` 保留歷史並列出直接受影響版本；`check-narrative-style` 以綁定 revision 的獨立 profile 驗證口述順序，不判斷美感。 | [N-04 修訂契約](docs/narrative/NARRATIVE_REVISION_LEDGER_V1.md)、[N-04 紀錄](docs/validation/n04-narrative-revisions.md)與[N-08 紀錄](docs/validation/n08-style-profile.md)。N-08 盲讀待完成。 |
 | 本機影片指令 | 以明確的素材區間和條件規劃鏡頭。可在支援範圍內匯出純畫面的剪輯時間軸。 | [影片里程碑](#milestones)列出已測的格式、編輯器與限制。 |
 
 Skill 可以獨立安裝。目前套件版本為 `0.1.0-dev.0`。使用者可從 GitHub 安裝。維護者另行決定何時發布至公開套件登錄站。[安裝方式](docs/PLATFORMS.zh-TW.md)
@@ -25,7 +25,7 @@ Skill 可以獨立安裝。目前套件版本為 `0.1.0-dev.0`。使用者可從
 | --- | --- | --- |
 | 1．改稿與修訂 | N-02 契約已採納。N-03 已提供本機輸出。作者可檢視口述順序、來源標記及兩款構圖。N-04 已可呈現來源修訂與作者決定。N-01 可獨立收集真人基準。 | 同一項修訂應找出所有直接引用該來源的版本。只改一款構圖時，另一款應保留原稿。[真人試用包](docs/narrative/N-01-AUTHOR-STUDY.zh-TW.md) |
 | 2．文案與依據 | N-04 之後，N-05 將文案主張連到來源。N-07 接續 N-05，比較一般筆記與本工具。 | 記錄完成數、修改耗時與歸因錯誤。分開回報 Skill 與本機工具的結果。維護者決定繼續、縮小或停止。 |
-| 3．選擇其他模式 | N-06 在 N-04 後比較分支構思、劇本揭露與影片對照。N-10 僅實作 N-06 明選的模式。N-08 流派規則與 N-09 聲音提示表可接續 N-02。 | 用同一份素材製作兩款作品。由讀者指出視線或揭露時機的差異。樣板已足以完成工作時，可暫緩原生實作。 |
+| 3．選擇其他模式 | N-06 在 N-04 後比較分支構思、劇本揭露與影片對照。N-10 僅實作 N-06 明選的模式。N-08 已能檢查宣告的開場順序；N-09 聲音提示表可接續 N-02。 | N-08 CLI 測試涵蓋有效順序、矛盾、過期 revision 與未知版本。讀者對兩種開場的回饋仍待完成。樣板已足以完成工作時，可暫緩更多原生實作。 |
 | 4．交接來源與產物 | N-11 使用 N-04 的來源修訂。N-12 可獨立測試一項宿主能力。 | 接手者能辨識缺件與過期來源。產出圖檔或音檔後，必須重新開啟或播放。缺少工具時交付可用的構圖或提示表。 |
 
 工作項目與狀態見[敘事任務](TASKS.zh-TW.md#cross-media-narrative-backlog)及[多模態任務](TASKS.zh-TW.md#multimodal-rust-backlog)。[架構](docs/ARCHITECTURE.zh-TW.md)定義資料、驗證與輸出入的分工。作者決定稿件是否符合創作意圖。

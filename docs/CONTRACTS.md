@@ -16,6 +16,7 @@ Choose the command for your task. Supply the document that its profile accepts. 
 | `render-narrative` | NarrativeDocumentV1 JSON, 1,048,576 | Reproducible UTF-8 text. Errors use one JSON line. | [Narrative document](narrative/NARRATIVE_DOCUMENT_V1.md) |
 | `track-narrative-revisions` | NarrativeRevisionLedgerV1 JSON, 1,048,576 | Source and variant history, suggestions, author choices and current review status. | [Revision ledger](narrative/NARRATIVE_REVISION_LEDGER_V1.md) |
 | `query-narrative-impact` | The same ledger and one source change event ID | Variants that directly reference the changed source revision. | [Revision ledger](narrative/NARRATIVE_REVISION_LEDGER_V1.md) |
+| `check-narrative-style` | NarrativeDocumentV1 JSON and NarrativeStyleProfileV1 JSON, each 1,048,576 | `{"ok":true,"style_check":...}`; errors exit 1. | [Editorial style profile V1](narrative/EDITORIAL_STYLE_PROFILE_V1.md) |
 | `verify-source` | Supplied bytes, 16,777,216, and expected SHA-256 | `{"ok":true,"verification":...}` | [Supplied buffer](migration/FILMCRAFT_25_V1.md#native-supplied-buffer-contract) |
 | `prepare-story-review` | Planner response, 4,194,336. Snapshot, 1,048,576. Context, 65,536. | `{ok:true,review:...,otio:Timeline}` with the actual OTIO artifact. | [Selected proposal](migration/PLANNER_OTIO_REVIEW_V1.md) |
 | `export-story-otio` | Same three inputs | The same native OTIO directly. | [Selected proposal](migration/PLANNER_OTIO_REVIEW_V1.md) |
@@ -34,6 +35,8 @@ The input for `plan-story` includes a strict brief, candidate windows, scores an
 Extract `planning.plan` for the M0 validator. It rejects a full `planning` response. `export-otio` accepts a composition snapshot.
 
 Supply an append-only ledger as a file or on standard input. Use `track-narrative-revisions <FILE|->` to replay history and review state. Use `query-narrative-impact <FILE|-> <CHANGE_ID>` with a source revision event ID. The engine computes impact from direct `source_refs`. The caller cannot supply the result list. The engine does not propagate impact through indirect `based_on` links. Any pending variant review blocks the next source revision. Author decisions and assistant suggestions require separate events. The CLI cannot authenticate who submitted an author decision.
+
+The `check-narrative-style` command takes a document and its revision-bound profile. It checks declared spoken beat order and does not evaluate style or author approval.
 
 | Common exit code | Meaning |
 | --- | --- |
