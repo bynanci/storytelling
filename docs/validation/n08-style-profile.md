@@ -127,9 +127,7 @@ Ask:
 3. What do you think the two sounds are? Which details came from the supplied material, and which might be an author's choice?
 4. Was anything confusing or unsupported?
 
-**Human feedback: manual-pending.** No reader trial was run for this change, so
-there are no participant quotes or usability claims to report. Record actual
-answers only after a person completes the blind read.
+**Official reader trial pending.** The facilitator supplied five human workshop responses from a separate questionnaire. Its fourth question asked for a retelling. The official sheet asks what confused the reader or lacked support. The [intake review](https://github.com/bynanci/storytelling/issues/65#issuecomment-6798144382) retains the workshop responses as supplementary observations. To complete #65, collect one eligible reader’s four original answers to the official sheet. Record exposure and actual order. Save the answers before revealing the source key.
 
 ## Merge reconciliation and remaining N-08 gate
 

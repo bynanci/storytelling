@@ -3,9 +3,11 @@
 
 [English](n07-pilot.md) · [#54](https://github.com/bynanci/storytelling/issues/54) · G4–G6。
 
-**目前產品決策：待真人證據。** 本次可用真人資料為 0 位、有效配對紀錄 0 份。完成數／分母、作者修改秒數、歸因錯誤、重複輸入、重工和匿名回饋都未觀察。CSV 只有標頭，不把空白補成成功或零錯誤。不推薦 release candidate。
+**原生 CLI 試用。** 維護者已[採納正式協議](https://github.com/bynanci/storytelling/issues/54#issuecomment-6796082010)，使用 ReportV1 與修門題包 `n07-door-repair@1`。已收到的五組「普通筆記／CLI」配對來自客戶用量修訂題。[收件核對](https://github.com/bynanci/storytelling/issues/54#issuecomment-6798143556)確認這次提交中可納入正式修門題的配對為 0 組。這輪原生 CLI 的產品決定仍待修門紀錄。
 
-已核對 main `ce73836caa86502933f538821fdbf5dac92c1224`、已合併的 #52／PR #83 V1 及 #48 原判準。PR #87 的 V2 候選在準備時尚未合併，不是本輪主試用依賴。#53 為可選資料；其三者暫緩決定不阻擋 N-07。修門案例的單次請求者判讀沒有計時，不算作者對照樣本。
+可用現有格式私下交付五組配對。請附實際順序、題包及 CLI 版本、時間、完成情形、歸因錯誤與重複輸入。[原始表單](../../examples/evaluation/n07-pilot/forms/)另有重工與回饋欄位。缺漏欄位留白。[N-01 的繼續決定](https://github.com/bynanci/storytelling/issues/48#issuecomment-6798756961)適用於 Skill 試用。
+
+已核對 main `ce73836caa86502933f538821fdbf5dac92c1224`、已合併的 #52／PR #83 V1 及 #48 原判準。PR #87 後來已合併可選用的 V2。本輪仍採 V1。#53 為可選資料；其三者暫緩決定不阻擋 N-07。修門案例的單次請求者判讀沒有計時，不算作者對照樣本。
 
 ## 可直接使用的材料
 
@@ -14,7 +16,7 @@
 - [參與者資料](../../examples/evaluation/n07-pilot/participant-kit/)與[主持人專用 key](../../examples/evaluation/n07-pilot/facilitator/key.md)，請分開發放。
 - [私人紀錄表標頭](../../examples/evaluation/n07-pilot/forms/)：版本／環境、樣本與完成、作者時間、錯誤原句、重複輸入／重工、匿名回饋、獨立 CLI 時間及事前同意。
 
-這是另列的普通筆記／native CLI 配對輪，不合併原 Skill 代理輪或工程執行時間。預定五位新作者，隨機三 AB／兩 BA，每臂八分鐘；仍需在收案前記錄 native 門檻轉用及操作定義的同意。
+這是另列的普通筆記／native CLI 配對輪，不合併原 Skill 代理輪或工程執行時間。預定五位新作者，隨機三 AB／兩 BA，每臂八分鐘；維護者已同意此輪沿用門檻，並採納歸因比較與退出規則。
 
 兩臂使用同詞的衍生基準 `n07-door-repair@1`：來源單元與原 N-01／N-03 相同，構圖用語對齊 N-01，不帶原 N-03 未佐證的室內設定或 PR #88 的 C02。紅傘只在 A。這是明示的 native 格式調整，不假稱與原試用文字逐位元相同。不能把改角色／移傘的 N-04 示範當成原改名題。
 
@@ -38,4 +40,4 @@ native 作者自己建立文件 revision 2、更新 S01／S02 和精確引用、
 
 量測 helper 已先觀察 RED；獨立審查另發現並修正過深 JSON 的錯誤處理，補上 RED/GREEN。最終 8 項 helper 與 4 項材料測試全部通過。[技術審查](n07-pilot/technical-review.md)與[本機完整檢查](n07-pilot/local-checks.json)均保留。N-R07 對照、原始工程時程與所有驗證連結見 [English 報告](n07-pilot.md)。交付 head 的 CI 記於 PR。
 
-沒有正式發布建議或授權。SDK／JSON／CLI 舊預設、digest、OTIO 與依賴不變；本次只有試用材料、寫入新資料夾的量測 helper 及其 CI。回退只需停止使用；無資料遷移。真人協議、學習效應、source 語意、metadata 負擔與多來源護欄仍待評估；正式 RC／發布由維護者依 G5 另行決定。
+沒有正式發布建議或授權。SDK／JSON／CLI 舊預設、digest、OTIO 與依賴不變；本次只有試用材料、寫入新資料夾的量測 helper 及其 CI。回退只需停止使用；無資料遷移。原生 CLI 的修門配對資料仍待核對，亦須評估學習效應、來源語意、版本欄位負擔與多來源護欄；正式 RC／發布由維護者依 G5 另行決定。
