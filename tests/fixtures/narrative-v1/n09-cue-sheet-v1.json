@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "cue_sheet_id": "n09-umbrella-invitation",
+  "cue_sheet_revision": 1,
+  "document_id": "umbrella-workshop",
+  "document_revision": 1,
+  "variant_id": "oral",
+  "time_unit": "milliseconds",
+  "tracks": [
+    { "id": "voice", "channel": "voice", "policy": "exclusive" },
+    { "id": "effects", "channel": "sound_effect", "policy": "exclusive" },
+    { "id": "directions", "channel": "marker", "policy": "marker" }
+  ],
+  "assets": [
+    {
+      "id": "S3",
+      "revision": 1,
+      "media_kind": "audio",
+      "relative_path": "skills/storytelling/assets/umbrella-workshop/taps.wav",
+      "sha256": "4008e27e4c94376747a887df8d873820e4ab88e668816f79ddca5c9d69bb202b",
+      "provenance": "synthetic",
+      "duration_ms": 1080
+    }
+  ],
+  "cues": [
+    {
+      "id": "voice-01",
+      "order": 1,
+      "kind": "narration",
+      "role": "旁白（待錄）",
+      "track_id": "voice",
+      "instruction": "待錄台詞；依來源短讀，錄音後再定長度。",
+      "source": {
+        "kind": "narrative_beat",
+        "variant_id": "oral",
+        "beat_id": "invite",
+        "unit_id": "S1",
+        "revision": 1
+      },
+      "timing": {
+        "kind": "unknown",
+        "reason": "待錄台詞；完成錄音後再確認旁白長度。"
+      }
+    },
+    {
+      "id": "pause-01",
+      "order": 2,
+      "kind": "silence",
+      "role": "錄製者",
+      "track_id": "directions",
+      "source": {
+        "kind": "editorial_choice",
+        "description": "依作者要求停一拍；本提示暫估 500 ms。"
+      },
+      "instruction": "停一拍",
+      "timing": {
+        "kind": "after",
+        "cue_id": "voice-01",
+        "duration": { "status": "estimated", "value_ms": 500 }
+      }
+    },
+    {
+      "id": "taps-01",
+      "order": 3,
+      "kind": "sound_effect",
+      "role": "音效操作員",
+      "track_id": "effects",
+      "source": { "kind": "audio_asset", "asset_id": "S3", "revision": 1 },
+      "instruction": "播放整段兩聲合成敲擊。",
+      "timing": {
+        "kind": "after",
+        "cue_id": "pause-01",
+        "duration": { "status": "known", "value_ms": 1080 }
+      }
+    }
+  ]
+}

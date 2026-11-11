@@ -9,8 +9,8 @@ use storytelling_engine::{
     OtioLossChoicesV1, audit_story_brief, check_narrative_style_profile, check_review,
     check_story_review, export_openfilm_otio, export_story_otio, import_openfilm_snapshot,
     parse_review_context, plan_story, prepare_review, prepare_story_review, query_narrative_impact,
-    render_narrative, render_narrative_handoff, track_narrative_revisions, validate_plan_json,
-    verify_supplied_sha256,
+    render_narrative, render_narrative_cue_sheet, render_narrative_handoff,
+    track_narrative_revisions, validate_plan_json, verify_supplied_sha256,
 };
 
 fn emit(value: Value, code: u8) -> ExitCode {
@@ -120,6 +120,90 @@ fn render_narrative_command(args: &[OsString]) -> ExitCode {
     };
     match render_narrative(&bytes) {
         Ok(projection) => text(&render_narrative_text(&projection)),
+        Err(error) => emit(json!({"ok": false, "error": error}), 1),
+    }
+}
+
+fn render_cue_sheet_text(
+    projection: &storytelling_engine::NarrativeCueSheetProjectionV1,
+) -> String {
+    use std::fmt::Write as _;
+
+    fn quoted(value: &str) -> String {
+        serde_json::to_string(value).unwrap_or_else(|_| "\"\"".to_owned())
+    }
+
+    let mut output = String::new();
+    let _ = writeln!(
+        output,
+        "Cue sheet: {}@{} (schema v1)",
+        projection.cue_sheet_id, projection.cue_sheet_revision
+    );
+    let _ = writeln!(
+        output,
+        "Narrative: {}@{} · variant {}",
+        projection.document_id, projection.document_revision, projection.variant_id
+    );
+    let _ = writeln!(output, "Time unit: {}", projection.time_unit);
+    output.push_str("Tracks:\n");
+    for track in &projection.tracks {
+        let _ = writeln!(
+            output,
+            "- {} · channel={} · policy={}",
+            track.id, track.channel, track.policy
+        );
+    }
+    output.push_str("\nCues:\n");
+    for cue in &projection.cues {
+        let _ = writeln!(
+            output,
+            "{}. {} · {} · role={} · track={}",
+            cue.order,
+            cue.id,
+            cue.kind,
+            quoted(&cue.role),
+            cue.track_id
+        );
+        let _ = writeln!(output, "   Source: {}", quoted(&cue.source));
+        if let Some(spoken_text) = &cue.spoken_text {
+            let _ = writeln!(output, "   Voice: {}", quoted(spoken_text));
+        }
+        let _ = writeln!(output, "   Direction: {}", quoted(&cue.instruction));
+        let _ = writeln!(output, "   Time: {}", quoted(&cue.timing));
+    }
+    let _ = writeln!(
+        output,
+        "\nValidation: resolved intervals: {}; unresolved intervals: {}",
+        projection.resolved_intervals, projection.unresolved_intervals
+    );
+    output.push_str(
+        "Policy: [start, end) ranges; cross-track overlap allowed; overlapping resolved cues on an exclusive track are rejected.\n",
+    );
+    output.push_str(
+        "Scope: declarations only; unresolved intervals are not conflict-checked, and no audio is read or mixed.\n",
+    );
+    output
+}
+
+fn render_cue_sheet_command(args: &[OsString]) -> ExitCode {
+    if args.len() != 3
+        || args[1..]
+            .iter()
+            .any(|arg| arg.as_encoded_bytes().starts_with(b"--"))
+        || (args[1] == OsStr::new("-") && args[2] == OsStr::new("-"))
+    {
+        return failure("cli.usage", 2);
+    }
+    let document = match read_argument(&args[1], MAX_INPUT_BYTES) {
+        Ok(bytes) => bytes,
+        Err(_) => return failure("input.io", 3),
+    };
+    let cue_sheet = match read_argument(&args[2], MAX_INPUT_BYTES) {
+        Ok(bytes) => bytes,
+        Err(_) => return failure("input.io", 3),
+    };
+    match render_narrative_cue_sheet(&document, &cue_sheet) {
+        Ok(projection) => text(&render_cue_sheet_text(&projection)),
         Err(error) => emit(json!({"ok": false, "error": error}), 1),
     }
 }
@@ -468,6 +552,12 @@ fn main() -> ExitCode {
     {
         return render_narrative_command(&args);
     }
+    if args
+        .first()
+        .is_some_and(|arg| arg == OsStr::new("render-cue-sheet"))
+    {
+        return render_cue_sheet_command(&args);
+    }
     if args.first().is_some_and(|arg| {
         arg == OsStr::new("track-narrative-revisions")
             || arg == OsStr::new("query-narrative-impact")
@@ -598,7 +688,7 @@ fn main() -> ExitCode {
     match command {
         Some(value) if value == OsStr::new("--help") && args.len() == 1 => {
             return text(
-                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\n       storytelling plan-story <FILE|->\n       storytelling render-narrative <FILE|->\n       storytelling render-handoff <FILE|->\n       storytelling track-narrative-revisions <FILE|->\n       storytelling query-narrative-impact <FILE|-> <CHANGE_ID>\n       storytelling check-narrative-style <DOCUMENT_FILE|-> <PROFILE_FILE|->\n       storytelling prepare-story-review <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling export-story-otio <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling check-story-review <REVIEW_BUNDLE> <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling prepare-review <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling check-review <REVIEW_RECORD> <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling verify-source <FILE|-> <SHA256>\nRead-only metadata, interchange and declared review identity; no editor execution.\n",
+                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\n       storytelling plan-story <FILE|->\n       storytelling render-narrative <FILE|->\n       storytelling render-cue-sheet <DOCUMENT_FILE|-> <CUE_SHEET_FILE|->\n       storytelling render-handoff <FILE|->\n       storytelling track-narrative-revisions <FILE|->\n       storytelling query-narrative-impact <FILE|-> <CHANGE_ID>\n       storytelling check-narrative-style <DOCUMENT_FILE|-> <PROFILE_FILE|->\n       storytelling prepare-story-review <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling export-story-otio <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling check-story-review <REVIEW_BUNDLE> <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling prepare-review <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling check-review <REVIEW_RECORD> <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling verify-source <FILE|-> <SHA256>\nRead-only metadata, interchange and declared review identity; no editor execution.\n",
             );
         }
         Some(value) if value == OsStr::new("--version") && args.len() == 1 => {

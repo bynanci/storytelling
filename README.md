@@ -159,6 +159,16 @@ cargo run --quiet --locked -p storytelling-cli -- check-narrative-style tests/fi
 
 The command checks declared beat order and returns JSON. It does not judge aesthetics or establish author approval. The imagery metaphor is a creative proposal based on S3, not a claim about the sound's cause. The label-free reader trial remains pending. [N-08 profile and validation record](https://github.com/bynanci/storytelling/blob/main/docs/validation/n08-style-profile.md)
 
+### Build a recording cue sheet (N-09)
+
+The cue sheet binds a spoken line, a pause and the supplied two-tap WAV to the umbrella invitation. It keeps the spoken line's length unknown until recording, labels the pause estimate, and reports the WAV's declared duration. It checks exclusive-track overlaps without reading or mixing audio.
+
+```sh
+cargo run --quiet --locked -p storytelling-cli -- render-cue-sheet tests/fixtures/narrative-v1/n09-umbrella-source-v1.json tests/fixtures/narrative-v1/n09-cue-sheet-v1.json
+```
+
+The CLI reads a separate closed `NarrativeCueSheetV1`; `NarrativeDocumentV1` remains unchanged. The rendered cue sheet is a production aid, not a recording. [Profile](docs/narrative/NARRATIVE_CUE_SHEET_V1.md) · [N-09 replay evidence](docs/validation/n09-cue-sheet.md)
+
 <a name="影片整合"></a>
 
 ### Video integrations

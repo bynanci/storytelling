@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "cue_sheet_id": "n09-duplicate-cue-id",
+  "cue_sheet_revision": 1,
+  "document_id": "umbrella-workshop",
+  "document_revision": 1,
+  "variant_id": "oral",
+  "time_unit": "milliseconds",
+  "tracks": [
+    { "id": "voice", "channel": "voice", "policy": "exclusive" },
+    { "id": "directions", "channel": "marker", "policy": "marker" }
+  ],
+  "assets": [],
+  "cues": [
+    {
+      "id": "same-id",
+      "order": 1,
+      "kind": "narration",
+      "role": "旁白",
+      "track_id": "voice",
+      "instruction": "測試重複 ID。",
+      "source": {
+        "kind": "narrative_beat",
+        "variant_id": "oral",
+        "beat_id": "invite",
+        "unit_id": "S1",
+        "revision": 1
+      },
+      "timing": { "kind": "unknown", "reason": "待錄。" }
+    },
+    {
+      "id": "same-id",
+      "order": 2,
+      "kind": "silence",
+      "role": "錄製者",
+      "track_id": "directions",
+      "source": { "kind": "editorial_choice", "description": "停頓。" },
+      "instruction": "停一拍",
+      "timing": { "kind": "after", "cue_id": "same-id", "duration": { "status": "estimated", "value_ms": 500 } }
+    }
+  ]
+}

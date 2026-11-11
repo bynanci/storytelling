@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "cue_sheet_id": "n09-reversed-range",
+  "cue_sheet_revision": 1,
+  "document_id": "umbrella-workshop",
+  "document_revision": 1,
+  "variant_id": "oral",
+  "time_unit": "milliseconds",
+  "tracks": [
+    { "id": "voice", "channel": "voice", "policy": "exclusive" }
+  ],
+  "assets": [],
+  "cues": [
+    {
+      "id": "voice-01",
+      "order": 1,
+      "kind": "narration",
+      "role": "旁白",
+      "track_id": "voice",
+      "instruction": "測試反向區間。",
+      "source": {
+        "kind": "narrative_beat",
+        "variant_id": "oral",
+        "beat_id": "invite",
+        "unit_id": "S1",
+        "revision": 1
+      },
+      "timing": { "kind": "absolute", "start_ms": 1500, "end_ms": 1000, "status": "known" }
+    }
+  ]
+}

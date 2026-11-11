@@ -1,0 +1,26 @@
+Cue sheet: n09-umbrella-invitation@1 (schema v1)
+Narrative: umbrella-workshop@1 · variant oral
+Time unit: milliseconds
+Tracks:
+- voice · channel=voice · policy=exclusive
+- effects · channel=sound_effect · policy=exclusive
+- directions · channel=marker · policy=marker
+
+Cues:
+1. voice-01 · narration · role="旁白（待錄）" · track=voice
+   Source: "NarrativeDocument umbrella-workshop@1 · S1@1 (supplied_observation) · beat invite"
+   Voice: "週六修傘工作坊，請帶一把傘。"
+   Direction: "待錄台詞；依來源短讀，錄音後再定長度。"
+   Time: "UNKNOWN — 待錄台詞；完成錄音後再確認旁白長度。"
+2. pause-01 · silence · role="錄製者" · track=directions
+   Source: "Editorial choice · 依作者要求停一拍；本提示暫估 500 ms。"
+   Direction: "停一拍"
+   Time: "after voice-01; ESTIMATED duration 500 ms"
+3. taps-01 · sound_effect · role="音效操作員" · track=effects
+   Source: "S3@1 · skills/storytelling/assets/umbrella-workshop/taps.wav · synthetic · SHA-256 4008e27e4c94376747a887df8d873820e4ab88e668816f79ddca5c9d69bb202b · declared duration 1080 ms"
+   Direction: "播放整段兩聲合成敲擊。"
+   Time: "after pause-01; KNOWN duration 1080 ms"
+
+Validation: resolved intervals: 0; unresolved intervals: 3
+Policy: [start, end) ranges; cross-track overlap allowed; overlapping resolved cues on an exclusive track are rejected.
+Scope: declarations only; unresolved intervals are not conflict-checked, and no audio is read or mixed.
