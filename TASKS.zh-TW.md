@@ -62,7 +62,7 @@
 | --- | --- | --- |
 | 日常口述與插畫 | 本機指令能輸出口述與構圖。修訂查詢可列出直接引用該來源的版本。輸入不需媒體檔或片長。 | [N-04 核對修訂結果](https://github.com/bynanci/storytelling/issues/51) |
 | 商業文案 | Skill 可整理主張及依據。影片條件檢查器無法判定文案是否獲得佐證。 | [N-05 查核主張](https://github.com/bynanci/storytelling/issues/52) |
-| 流派與手法 | Skill 可依同一份素材產生兩案。作者判斷風格與感染力。 | [N-08／#65](https://github.com/bynanci/storytelling/issues/65) 依 N-02 驗證一項宣告規則。 |
+| 流派與手法 | `check-narrative-style` 以獨立且綁定 revision 的 profile 檢查口述 beat 順序，不判斷美感。真人盲讀仍待執行。 | [N-08／#65 驗證紀錄](docs/validation/n08-style-profile.md)。 |
 | 聲音與 Podcast | 可起草旁白、停頓及音效。檔案雜湊可核對已提供的位元組。 | [N-09／#66](https://github.com/bynanci/storytelling/issues/66) 依 N-02 驗證提示表及聲軌衝突。 |
 | 編劇、分支構思與影片對照 | 文字樣板可用。影片規劃器支援鏡頭順序。 | [N-06](https://github.com/bynanci/storytelling/issues/53) 明確選案後，[N-10／#67](https://github.com/bynanci/storytelling/issues/67) 才實作該模式。 |
 | 跨媒體交接 | 可附來源說明。純畫面剪輯時間軸已有匯出工具。 | [N-11／#68](https://github.com/bynanci/storytelling/issues/68) 使用 N-04 的修訂識別碼列出受影響產物。 |
