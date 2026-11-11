@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Pinned source contracts: docs/migration/provenance-m1-01.json; see NOTICE.openfilm.
+// Pinned source contracts: docs/migration/provenance-m1-01.json; see LICENSES/third-party/NOTICE.txt.
 //! Strict input DTOs. Preserved editing facts are retained in the raw source snapshot.
 use serde::Deserialize;
 use serde_json::value::RawValue;

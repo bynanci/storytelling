@@ -59,5 +59,5 @@ in this directory are Apache-2.0. This directory notice covers JSON/OTIO data an
 requirements that cannot carry embedded SPDX text without changing their format.
 The source subdirectory has its own provenance notice and exact frozen artifacts;
 no upstream implementation is copied here. Test dependencies retain their own
-licenses. See the migration provenance inventory and `NOTICE.openfilm` for source
+licenses. See the migration provenance inventory and `LICENSES/third-party/NOTICE.txt` for source
 attribution and applicable upstream notices.

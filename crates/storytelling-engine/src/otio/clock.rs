@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Origin/modifications: docs/migration/provenance-m1-02.json; see NOTICE.openfilm.
+// Origin/modifications: docs/migration/provenance-m1-02.json; see LICENSES/third-party/NOTICE.txt.
 //! Exact bounded content ticks, independent of the declared project frame rate.
 
 use storytelling_core::compiled_plan::{FeatureDisposition, OtioCompileError, OtioFeatureV1};

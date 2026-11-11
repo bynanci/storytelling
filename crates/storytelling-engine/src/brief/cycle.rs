@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 // M2-01 source-informed ordering policy: docs/migration/provenance-m2-01.json;
-// NOTICE.openfilm. Iterative cycle-witness traversal is downstream implementation.
+// LICENSES/third-party/NOTICE.txt. Iterative cycle-witness traversal is downstream implementation.
 //! Find one actual declared-order cycle without choosing or filtering assets.
 
 use std::collections::BTreeMap;

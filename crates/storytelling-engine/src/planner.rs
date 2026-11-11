@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Source-informed fixed-window planner; see provenance-m2-02.json and NOTICE.openfilm.
+// Source-informed fixed-window planner; see provenance-m2-02.json and LICENSES/third-party/NOTICE.txt.
 //! Pure deterministic selection of declared fixed windows; no execution authority.
 mod clock;
 mod ordering;

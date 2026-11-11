@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Source-informed contracts: docs/migration/provenance-m2-01.json; NOTICE.openfilm.
+// Source-informed contracts: docs/migration/provenance-m2-01.json; LICENSES/third-party/NOTICE.txt.
 //! Bounded declared StoryBrief inputs and typed audit diagnostics, never a plan.
 use crate::wire::TimeValue;
 use serde::{Deserialize, Serialize};

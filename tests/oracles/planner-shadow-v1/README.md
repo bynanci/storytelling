@@ -7,7 +7,7 @@ seeded paired execution, targeted error pairs and literal difference probes.
 All files here, including synthetic JSON mutation baselines, are independently
 authored source-informed Apache-2.0 test components; no upstream implementation,
 SDK, tests or media are copied. Dependencies retain their own licenses. See
-`NOTICE.openfilm`, `LICENSES/Apache-2.0.txt` and the M2-03 provenance inventory.
+`LICENSES/third-party/NOTICE.txt`, `LICENSES/Apache-2.0.txt` and the M2-03 provenance inventory.
 
 ## Scope
 

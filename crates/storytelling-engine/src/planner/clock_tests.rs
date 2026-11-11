@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Downstream exact-clock regressions; provenance-m2-clock-opt.json and NOTICE.openfilm.
+// Downstream exact-clock regressions; provenance-m2-clock-opt.json and LICENSES/third-party/NOTICE.txt.
 use super::clock::{Clock, scale_cached};
 use super::error;
 use std::cell::Cell;

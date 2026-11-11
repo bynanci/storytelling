@@ -447,7 +447,7 @@
       "relationship": "verbatim upstream license"
     },
     {
-      "path": "NOTICE.openfilm",
+      "path": "LICENSES/third-party/NOTICE.txt",
       "source_path": "NOTICE",
       "blob": "cfb73de041af0e9e3e73bd8eb5cfb6135b676095",
       "relationship": "verbatim upstream notice; historical/third-party attribution retained"

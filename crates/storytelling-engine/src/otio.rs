@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Origin/modifications: docs/migration/provenance-m1-02.json; see NOTICE.openfilm.
+// Origin/modifications: docs/migration/provenance-m1-02.json; see LICENSES/third-party/NOTICE.txt.
 //! Bounded finite OTIO serialization; no media, parser-runtime or host calls.
 pub(crate) mod clock;
 

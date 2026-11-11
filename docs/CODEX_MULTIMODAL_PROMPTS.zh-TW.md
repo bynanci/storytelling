@@ -1,5 +1,7 @@
 # Storytelling 多模態開發：給 Codex 的五段接續指令
 
+[English](CODEX_MULTIMODAL_PROMPTS.md) · 繁體中文
+
 已交付[前七段 prompts](CODEX_NARRATIVE_PROMPTS.zh-TW.md) 的團隊，可以從這裡繼續。每次複製一個文字框到有權讀取 `bynanci/storytelling` 的 Codex 工作階段。五段各自包含工作範圍、驗收案例和回報要求，可以單獨使用。
 
 | 建議提交順序 | 這次要拿到什麼 | 何時能開始 |
@@ -14,11 +16,11 @@
 
 **原本七段如何銜接。** [#49 的契約已採納](https://github.com/bynanci/storytelling/pull/71)。主分支的 [#50](https://github.com/bynanci/storytelling/issues/50) 已提供 `storytelling render-narrative <FILE|->`，從已宣告內容渲染口述與構圖。[#51](https://github.com/bynanci/storytelling/issues/51) 已提供修訂查詢，可依[實測紀錄](validation/n04-narrative-revisions.md)重播。若這兩票已有工作分支，在原任務補充規格即可。[#48 的試用包](narrative/N-01-AUTHOR-STUDY.zh-TW.md) 可同步收集真人基準。[#52](https://github.com/bynanci/storytelling/issues/52) 與 [#53](https://github.com/bynanci/storytelling/issues/53) 在 #51 後可分頭進行；[#54](https://github.com/bynanci/storytelling/issues/54) 在 #52 後沿用同一試用包。
 
-工程範圍可對照[多模態 backlog](../TASKS.md#multimodal-rust-backlog)、[需求與驗收](REQUIREMENTS.md#multimodal-authoring-and-follow-up-requirements)、[SDLC](SDLC.md) 和[已採納的 V1 規格](narrative/NARRATIVE_DOCUMENT_V1.md)。以下範例共用[修傘工作坊素材](../skills/storytelling/references/workshop-demo.md)，方便對照不同任務產出的證據。
+工程範圍可對照[多模態 backlog](../TASKS.zh-TW.md#multimodal-rust-backlog)、[需求與驗收](REQUIREMENTS.zh-TW.md#multimodal-authoring-and-follow-up-requirements)、[SDLC](SDLC.zh-TW.md) 和[已採納的 V1 規格](narrative/NARRATIVE_DOCUMENT_V1.md)。以下範例共用[修傘工作坊素材](../skills/storytelling/references/workshop-demo.zh-TW.md)，方便對照不同任務產出的證據。
 
 ### 已派工的任務，貼回原本的 Codex 對話
 
-若原任務尚在進行，可直接貼上對應列的追加指令。多步工具的執行與重驗沿用[既有流程](../skills/storytelling/references/graph-loops.md)。同一份素材已有可靠來源時，直接按 ID 與 revision 使用。
+若原任務尚在進行，可直接貼上對應列的追加指令。多步工具的執行與重驗沿用[既有流程](../skills/storytelling/references/graph-loops.zh-TW.md)。同一份素材已有可靠來源時，直接按 ID 與 revision 使用。
 
 | 原任務 | 可直接貼上的追加指令 |
 | --- | --- |

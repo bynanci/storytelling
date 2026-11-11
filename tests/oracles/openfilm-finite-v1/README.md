@@ -23,7 +23,7 @@ All newly authored files in this directory, including the JSON producer inputs,
 source-produced JSON fixture data, generated evidence and lockfile, are licensed
 under Apache-2.0. Source files carry SPDX comments; JSON data is covered by this
 directory notice because adding a license property would alter the exact exporter
-envelope. See repository `LICENSES/Apache-2.0.txt`, `NOTICE.openfilm` and
+envelope. See repository `LICENSES/Apache-2.0.txt`, `LICENSES/third-party/NOTICE.txt` and
 `docs/migration/provenance-m1-01.json`. Root Storytelling MIT licensing is unchanged.
 Downloaded dependencies retain their own licenses, recorded in the lockfile.
 No upstream implementation/test file is vendored in this package.

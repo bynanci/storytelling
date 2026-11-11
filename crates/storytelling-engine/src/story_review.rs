@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Source-informed bridge; see provenance-m3-planner-review.json and NOTICE.openfilm.
+// Source-informed bridge; see provenance-m3-planner-review.json and LICENSES/third-party/NOTICE.txt.
 //! Bind a selected fixed-window proposal to an actual read-only OTIO artifact.
 //! All source/host/context facts remain caller declarations.
 

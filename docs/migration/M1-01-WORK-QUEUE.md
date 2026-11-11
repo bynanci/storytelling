@@ -1,68 +1,59 @@
-# M1-01 工作與任務
+# M1-01 snapshot import
 
-本切片將既有 OpenFilm composition JSON export 唯讀轉成有限、可由 M0 驗證的
-visual plan。實際來源、差異與驗證見 [comparison record](records/M1-01.md)，
-精確輸入／輸出／錯誤契約見 [finite-v1](FINITE_V1.md)，任務連結見
-[工作索引](m1-01-work-index.json)。
+<a name="m1-01-工作與任務"></a>
 
-## 實作階段核實基線（歷史，2026-11-07 UTC）
+[繁體中文](M1-01-WORK-QUEUE.zh-TW.md) · [Input contract](FINITE_V1.md) · [Comparison record](records/M1-01.md) · [Task index](m1-01-work-index.json)
 
-| 項目 | 完整 SHA / 狀態 |
+M1-01 reads a composition export and produces a visual plan that M0 can check. It does not write to the source catalog, the user project or an editor.
+
+<a name="實作階段核實基線歷史2026-11-07-utc"></a>
+
+## Historical implementation baseline
+
+The following observations refer to November 7, 2026 UTC.
+
+| Item | Observed commit and state |
 | --- | --- |
-| Storytelling main | `551ff38920e2085e1d53a7ba777c9680678e9725`；尚無 workspace |
-| M0 / PR #1 | `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`；open Draft、未合併 |
-| 本 PR 的 base / 規劃 PR #2 | `95291d31c47601181070bf89a28b1a182ddf6ed8`；open Draft、stack 在 #1 |
-| 固定 OpenFilm 來源 | `7add4762fe8174d76f43b863375ea39b73121e76` |
-| 查詢時 OpenFilm main | `5f737a6c8f35dce48e213370ff27900962c9304c`；PR #126 已合併 |
+| Storytelling main | `551ff38920e2085e1d53a7ba777c9680678e9725`. The workspace did not yet exist. |
+| M0, PR #1 | `4c5682c221b8d602ad7bbebe7a4c400c3e1ff95b`. Open draft. |
+| Planning PR #2 and work base | `95291d31c47601181070bf89a28b1a182ddf6ed8`. Open draft based on PR #1. |
+| Pinned upstream | `7add4762fe8174d76f43b863375ea39b73121e76`. |
+| Observed upstream main | `5f737a6c8f35dce48e213370ff27900962c9304c`. Includes PR #126. |
 
-附件與原 ledger 的 Draft/watch-only 是固定來源快照時的歷史狀態。本次未默默改用新
-main；新增 animation 以 unsupported regression 防止無聲遺失。PR #1/#2 各自 head
-查詢到的 Quality、三 OS、Required gates 均成功，但不代替本 PR 的同 head CI。
+The importer keeps the pinned comparison baseline. A regression rejects unsupported animation from the later main. Quality checks, three-platform CI and the required gate passed for the observed heads of #1 and #2. Their results cover those heads only.
 
-## 已接受與合併的生命週期
+<a name="已接受與合併的生命週期"></a>
+<a name="工作分解"></a>
 
-上述表格保留當時 source/base/head 與 Draft 狀態，不能當作目前 PR 狀態。
-使用者後續明確授權合併已完成且驗證通過的 PR，並勾選已完成任務：
+## Acceptance and merge history
 
-| PR | main merge commit | 合併時間（UTC） |
+The maintainer later authorized merging completed, verified PRs and marking their tasks complete.
+
+| PR | Merge commit | UTC time on 2026-11-07 |
 | --- | --- | --- |
-| #1 M0 | `22279814ff6b147c386186569d7f77f3a803cf8b` | 2026-11-07 02:17:16 |
-| #2 planning | `9fb403be811643baf948acdb6d72232d4a6207bb` | 2026-11-07 02:17:48 |
-| #7 M1-01 | `610ed49673d6f554e539008b34f5fc5479b9dbc1` | 2026-11-07 02:18:09 |
+| #1 M0 | `22279814ff6b147c386186569d7f77f3a803cf8b` | 02:17:16 |
+| #2 planning | `9fb403be811643baf948acdb6d72232d4a6207bb` | 02:17:48 |
+| #7 M1-01 | `610ed49673d6f554e539008b34f5fc5479b9dbc1` | 02:18:09 |
 
-M1-01/P1、P2、P3 皆 accepted，issues #3–#6 已勾選並關閉。這只接受已驗證的 finite
-visual mapping；不代表 OTIO、實際來源／audio／FilmCraft、發布或人類剪輯驗收完成。
+Issues #3 to #6 closed after acceptance of P1, P2 and P3. The acceptance covers the specified visual mapping only. OTIO export, source bytes, audio, editor execution, release and human review have separate evidence.
 
-## 工作分解
+| Task | Accepted scope | Prerequisite or evidence |
+| --- | --- | --- |
+| P1 | Source revision, rights, producer and finite-v1 contract | GAP-01, GAP-02, GAP-03 and GAP-16. Independent design review, upstream comparison and per-file provenance. |
+| P2 | Pure Rust mapper, exact clocks, immutable input and loss report | P1. Observed failure and success. Preserve each source occurrence and produce a valid M0 plan. |
+| P3 | File or standard input and a JSON response with exit status | P2. CLI process regressions, empty tool path, debug and release tests, quality and CI. |
+| M0-G01 and PORT-G01 | Foundation, planning and source policy | Maintainer authorization for #1 and #2. |
 
-| ID | 狀態 | 交付 | 依賴／驗收 |
-| --- | --- | --- | --- |
-| M1-01/P1 | accepted | 固定來源、權利、原 producer 與 finite-v1 契約 | GAP-01/02/03/16；獨立 G2 review，source oracle，逐檔 provenance |
-| M1-01/P2 | accepted | 純 Rust mapper、精確 clocks、immutable snapshot、loss | P1；實際 RED→GREEN；每個來源 occurrence 保留，回傳 M0 plan 可驗證 |
-| M1-01/P3 | accepted | 可用 file/stdin CLI 與 JSON/exit 契約 | P2；CLI process regressions、乾淨 PATH smoke、debug/release/quality/CI |
-| M0-G01 / PORT-G01 | accepted | 維護者接受 foundation、規劃與 provenance policy | 使用者明確授權後合併 #1/#2；並非以實作或 CI 自行代替批准 |
+On November 7 the maintainer accepted the component policy. Original code uses MIT. Specified source-derived modules, tests and fixtures use Apache License 2.0. Record each component and retain applicable notices. Approval of this policy is separate from product acceptance. [Component manifest](provenance-m1-01.json) · [Sources and licenses](../../PROVENANCE.md)
 
-2026-11-07 使用者已批准來源衍生 component 政策：原 MIT LICENSE 不變，來源衍生
-modules/tests/fixtures 採 Apache-2.0、逐檔 provenance、適用 LICENSE/NOTICE；其餘整合
-逐檔分類。見 [清單](provenance-m1-01.json) 與 [PROVENANCE](../../PROVENANCE.md)。
-政策批准與 PR 接受是不同 gate；本次後續接受／合併的實際紀錄列於上方，
-不能進一步推定發布或未驗證宿主的能力。
+<a name="本次邊界與後續"></a>
 
-## 本次邊界與後續
+## Input, output and limits
 
-core/engine 仍無 I/O/runtime/media/host dependencies。DTO／loss 契約放現有 core，
-mapper 放 engine，CLI 僅負責顯式 JSON input 與 stdout。OF-04 ledger 的 adapter 路徑
-是未來設計入口，本次不建空 adapter crate。
+Core and engine have no file, runtime, media or host dependencies. Core owns data and loss types. The engine maps the snapshot. The CLI reads explicit JSON and writes the result. The proposed OF-04 adapter path does not require a separate crate.
 
-所有成功結果仍為 `declared-visual-mapping-only`、`executable:false`。video 帶
-`audio.not_mapped / blocks-host-handoff`；明確 audio/effects/animation 拒絕且沒有 plan。
-stills 的 mapped duration 是合成 hold window，原始宣告完整保留。29.97 的精確 decimal
-解讀相對 upstream NTSC 推導列為 intentional delta。來源 bytes／SHA 不升級 verified。
+Successful results use `declared-visual-mapping-only` and `executable:false`. A video record carries `audio.not_mapped` and `blocks-host-handoff`. The importer rejects explicit audio, effects and animation without producing a plan. A still receives a synthetic hold window. Its original declarations remain available. The mapper treats 29.97 as an exact decimal. This differs deliberately from upstream NTSC inference. The command does not authenticate source bytes or a declared hash.
 
-OF-03 只完成不可變輸入、順序與 number identity 子集；canonical digest 留待後續，
-沒有使用一般 JSON serialization 冒充 canonicalization。48 OF /16 GAP 仍是覆蓋索引；
-六個 retain-host 項目不變成重寫任務，M2–M5 沿用原 TASKS。
+OF-03 covers immutable input, order and numeric identity in this slice. Cross-language canonical digests require further work. The six host-owned capabilities remain outside the Rust port. Later M1-02 and M1-03 deliveries have separate [OTIO](records/M1-02.md) and [editor test](records/M1-03.md) records.
 
-下一步是 M1-02 有限 OTIO＋loss profile／官方 oracle，接著 M1-03 真實授權來源與
-隔離 FilmCraft import/render/readback/save/reopen。這兩項不由合成 CI 關閉。
-回退可停用新 CLI command 或 revert 本切片；不寫入來源 Catalog、使用者專案或宿主。
+To roll back this slice, disable its CLI command or revert its implementation. The source catalog and editor project remain unchanged.

@@ -12,12 +12,16 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILL = Path("skills/storytelling")
 PACKAGE_NAME = "@bynanci/storytelling"
 REQUIRED_SKILL_FILES = {
-    "SKILL.md", "LICENSE", "agents/openai.yaml",
+    "SKILL.md", "SKILL.zh-TW.md", "LICENSE", "agents/openai.yaml",
     "assets/umbrella-workshop/bench.svg", "assets/umbrella-workshop/taps.wav",
     "references/multimodal-templates.md", "references/workshop-demo.md",
     "references/examples.md", "references/graph-loops.md",
     "references/graphify-tools.md", "references/video-cli.md",
     "scripts/check_trace.py", "scripts/graph_plan.py",
+}
+REQUIRED_SKILL_FILES |= {
+    name.removesuffix(".md") + ".zh-TW.md"
+    for name in REQUIRED_SKILL_FILES if name.startswith("references/")
 }
 
 

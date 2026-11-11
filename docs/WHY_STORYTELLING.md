@@ -1,72 +1,89 @@
-# 為什麼需要 Storytelling？
+# Why Storytelling?
 
-兩位鄰居合力修門。社區報導可以從「誰扶住門、誰調鉸鏈」寫起。插畫可以只畫兩雙手。口述可以從結果開始：「這次，門關起來沒有磨到地面。」
+<a name="why-storytelling-為什麼需要這個專案"></a>
+<a name="為什麼需要-storytelling"></a>
 
-這三種敘事共用同一個事件，各有不同的焦點。假如鄰居的姓名寫反，口述與有署名的構圖都要更正。只畫鉸鏈的線稿可以沿用。Storytelling 協助作者保留這些選擇，並追蹤素材與版本的關係。
+[繁體中文](WHY_STORYTELLING.zh-TW.md) · [Project guide](../README.md)
 
-**產品假說。** 多人交接或同時改寫多個版本時，保留來源與作者決定，可能減少漏改和誤改。一次性邀請若只需更正日期，直接改稿可能更省事。專案以普通筆記作為對照，觀察哪些情境值得整理來源。[作者試用規程](narrative/N-01-AUTHOR-STUDY.zh-TW.md)
+Two neighbors repair a gate. A community report can open with who held the gate and who adjusted the hinge. An illustration can show only their hands. A spoken account can open with the result: “This time the gate cleared the ground.”
 
-## 作者應該拿到什麼
+Each version directs attention to a different detail. Suppose the notes name the wrong neighbor. The speaker must revise the account, and the illustrator must change any captions that name the neighbors. A drawing of the hinge alone can stay. Storytelling helps the author keep these choices and trace them to the source.
 
-| 作者的問題 | 可用的交付內容 | 檢查方式 |
+**Product hypothesis.** When authors revise several versions or share work, a record of their sources and choices may reduce missed or unnecessary changes. A single invitation with a new date may be easier to edit directly. The project compares the two approaches in an [author study](narrative/N-01-AUTHOR-STUDY.md).
+
+<a name="作者應該拿到什麼"></a>
+
+## What an author should receive
+
+| Author's question | Useful output | How to check it |
 | --- | --- | --- |
-| 想讓誰了解什麼？ | 指出讀者、已知背景及讀後應理解的變化。也可以留下問題或提出行動。 | 請一位目標讀者重述重點。由作者判斷是否接近原意。 |
-| 哪些片段值得保留？ | 交代作品所需的人物、意圖與後果。分開記錄事件順序與讀者得知的順序。原因不明時保留未知。 | 刪去或調換一個片段，觀察讀者能否找到必要線索。拼貼可保留聯想，公告可直接給結論。 |
-| 同一份素材能怎麼說？ | 提供兩個不同的開場，或兩張焦點不同的構圖。說明各自適用的情境。 | 拿掉流派名稱，請作者指出先看到或聽到什麼。作者可以採用、混合或拒絕提案。 |
-| 一個細節從哪裡來？ | 區分素材、作者詮釋與創作提案。引語保留出處。新增道具只用於指定版本。 | 各抽查一項事實與創作細節。確認引用存在，再判斷來源能否支持主張。 |
-| 改稿後要重看什麼？ | 列出受影響的版本與可沿用的部分。標出交付的是口播稿、構圖或實際檔案。 | 請接手者找出應採用的稿件。對實際圖檔、聲音或剪輯結果，開檔、回聽或讀回。 |
+| Who needs to understand what? | Identify the audience, its background, and what it should understand afterward. The story can leave an open question or invite action. | Ask a reader to summarize the point. The author judges whether the summary reflects the intent. |
+| Which events matter? | Identify the people, intentions, and consequences that the work needs. Distinguish event order from the order in which the audience learns what happened. Leave unknown causes open. | Move or remove a beat. Does the reader still find the necessary clue? A collage can preserve an association. A notice can start with the result. |
+| What can I change while keeping the same material? | Compare two openings or two compositions with different focal points. Identify where each works. | Hide the style labels. Ask the author what they saw or heard first. The author can accept, combine, or decline the options. |
+| Where did a detail come from? | Distinguish source material, the author's interpretation, and a creative proposal. Attribute quotations. Keep an invented prop in the version that calls for it. | Trace one fact and one creative detail. Check that the reference exists. Then decide whether the source supports the claim. |
+| What needs review after a change? | List the affected drafts and the parts that can stay. Identify the result as a script, composition brief, or actual file. | Ask the recipient which draft to use. Open an image file, listen to an audio file, or read the result from the editor. |
 
-## 六個使用情境
+<a name="六個使用情境"></a>
 
-這些案例可供團隊試用。驗收欄說明可觀察的結果。實際成效仍需作者與讀者測試。[八種敘事樣板](../skills/storytelling/references/multimodal-templates.md)
+## Six situations to try
 
-| 情境 | 素材與交付內容 | 驗收例 |
+These examples describe outcomes a team can observe. Authors and readers must try them before the team can assess their value. [Eight authoring templates](../skills/storytelling/references/multimodal-templates.md)
+
+| Situation | Materials and output | Observation |
 | --- | --- | --- |
-| 講述一次家庭重聚 | 用回憶與舊照寫 45 秒口述。從一個可觀察的動作開始。缺少原話時，用轉述。 | 家人能區分照片顯示的動作與講述者的感受。更正日期後能找到該改的句子。 |
-| 向學生解釋一次變化 | 用過程圖與前後兩筆觀察寫一段講解。另做兩張可單讀的說明卡。兩版保留同一個問題。 | 學生能用圖說明變化，也能指出推測。每張卡都交代讀者需要的前提。 |
-| 編排紀實節目或 Podcast | 用訪談與時間標記比較兩種開場。一版先播原聲，一版先說背景。交付引語、旁白與錄音提示。 | 編輯能在來源中找到引語。缺少現場聲時，將擬音標為提案。依已確認的授權使用素材。 |
-| 用客戶回饋說明產品改版 | 用試用紀錄與使用者回饋寫公告及業務口述。將觀察結果與宣傳主張分列。 | 編輯可回查「這次試行從 10 分鐘降到 8 分鐘」。若寫成「所有人效率提升 20%」，標明缺少依據。 |
-| 構思兩種劇本開場 | 用兩個事件、一項角色目標與一個兩難寫兩版。一版依事件順序，一版延後揭露。列出其餘分支與後果。 | 讀者能指出何時得知線索。作者可回看未選分支，並區分虛構內容與來源素材。 |
-| 把同一則活動做成海報與廣播 | 用公告、示意圖與兩聲合成敲擊製作兩版。海報用構圖帶出日期。廣播用停頓分隔音效與邀請。 | 將週六改為週日，核對每份含日期的稿件。原圖與音效應可沿用。[修傘工作坊](../skills/storytelling/references/workshop-demo.md) |
+| Tell a family reunion story | Use memories and a photo for a 45-second spoken account. Start with an action. Paraphrase if you lack the original words. | A relative can distinguish the action in the photo from the teller's feelings. A date correction identifies a specific sentence to revise. |
+| Explain a change to students | Use a process diagram and two observations from different times. Write an explanation and two cards, each with the same question. | A student can explain the change with the diagram and identify an inference. Each card supplies its own context. |
+| Edit a documentary or podcast | Use an interview with source times. Compare an opening with the original voice and one with background information. Supply quotations, narration, and recording cues. | The editor can locate each quotation. If location sound is missing, label proposed effects. Use material within the permissions available. |
+| Explain a product change | Draft an announcement and a spoken account from trial records and feedback. Distinguish what participants observed from promotional claims. | Trace “The trial went from ten minutes to eight.” Flag “Everyone works 20% faster” when the sources do not support it. |
+| Develop two screenplay openings | Use two events, a character goal, and a dilemma. Follow event order in one opening. Delay the reveal in the other. Keep the remaining branches and their consequences. | A reader can identify when the clue appears. The author can revisit the other branches and distinguish fiction from the source. |
+| Adapt one event for a poster and radio | Use a notice, a diagram, and two synthetic taps. The poster directs attention to the date. A pause separates the sound from the invitation. | Change Saturday to Sunday. Check each draft that names the date. The source drawing and sound should remain usable. [Workshop](../skills/storytelling/references/workshop-demo.md) |
 
-## 研究如何影響設計
+<a name="研究如何影響設計"></a>
 
-| 一手研究與研究範圍 | 設計推論 |
+## How research informs the design
+
+| Research and scope | Design inference |
 | --- | --- |
-| Zwaan、Langston 與 Graesser（1995）研究短篇文字敘事。實驗探討讀者如何透過時間、空間、人物、因果及意圖連結事件。[論文](https://doi.org/10.1111/j.1467-9280.1995.tb00513.x) | 對有事件脈絡的作品，請讀者重述「誰做了什麼，帶來什麼變化」。作者仍可保留跳接、含混或開放結尾。 |
-| Segel 與 Heer（2010）分析敘事視覺化案例。研究描述作者安排的閱讀路徑與讀者自行探索之間的取捨。[論文與案例](https://idl.uw.edu/papers/narrative) | 每種媒介選一個可觀察的決定，例如海報的第一個焦點或聽眾先聽到的線索。這是跨媒介的設計假說。 |
-| Lee、Liang 與 Yang（2022）建立 CoAuthor 資料集。資料涵蓋 63 位作者、1,445 場英文寫作。作者能要求、採用、略過或修改模型建議。[資料與設計](https://coauthor.stanford.edu/) | 分開記錄作者原意、模型建議與作者採用的內容。改稿後檢查已拒絕的細節是否再度出現。採用次數無法代表滿意度。 |
-| Masson、Zhao 與 Chevalier（2025）進行兩次創意寫作原型研究。研究探討以圖像呈現故事元素如何協助作者修訂與嘗試變體。[原始論文](https://damienmasson.com/pdfs/visualstorywriting.pdf) | 用已知答案的小案例檢查漏改與誤改。再觀察作者實際如何規劃修訂。 |
+| Zwaan, Langston, and Graesser (1995) studied short written narratives. They examined how readers connect events through time, space, characters, causes, and intentions. [Paper](https://doi.org/10.1111/j.1467-9280.1995.tb00513.x) | Ask readers to describe who acted and what changed. Authors can retain gaps, ambiguity, or an open ending. |
+| Segel and Heer (2010) studied narrative visualizations. They describe trade-offs between a reading path the author sets and exploration the reader controls. [Paper and examples](https://idl.uw.edu/papers/narrative) | Choose an observable result for each medium, such as the first object a reader sees or the first clue a listener hears. Its use across media is a design hypothesis. |
+| Lee, Liang, and Yang (2022) created CoAuthor. Their data cover 63 writers and 1,445 English writing sessions. Writers could request, accept, ignore, or edit model suggestions. [Study and data](https://coauthor.stanford.edu/) | Keep the author's intent, each suggestion, and the adopted wording separate. Check whether a rejected detail returns after a revision. Acceptance counts alone cannot establish satisfaction. |
+| Masson, Zhao, and Chevalier (2025) ran two creative writing studies with prototypes. They examined how visual representations of story elements help authors revise text and explore variants. [Paper](https://damienmasson.com/pdfs/visualstorywriting.pdf) | Use a small case with known answers to identify missed or unnecessary edits. Then observe how authors actually plan revisions. |
 
-這些研究的對象、任務與媒介各異。研究結果可用來設計測試。Storytelling 對創作品質、時間與不同語言的影響，仍需另行驗證。
+These studies cover different people, tasks, and media. They help define tests. The effects of Storytelling on quality, effort, and writing in different languages still need direct evidence.
 
-## 與現有工具怎麼搭配
+<a name="與現有工具怎麼搭配"></a>
 
-| 任務 | 可用工具 | Storytelling 的交付 |
+## How it works with other tools
+
+| Task | Tool | Storytelling's role |
 | --- | --- | --- |
-| 整理訪談或起草文字 | 一般對話工具或團隊文件環境。[Notion 寫作流程](https://www.notion.com/help/guides/notion-ai-for-docs) | 同一引語用於多個版本時，可保留來源與作者採用的措辭。 |
-| 產生設計候選或排版 | 插畫或排版工具。[Canva Visual Suite](https://www.canva.com/visual-suite/) | 構圖說明交代讀者應先看到什麼。另列素材提供的細節與設計師可調整的部分。 |
-| 剪輯、混音、調色或輸出母帶 | 剪輯或聲音製作環境。[DaVinci Resolve](https://www.blackmagicdesign.com/products/davinciresolve) | 用故事節拍整理素材。符合已支援的時間軸格式時，可匯出剪輯提案。[剪輯器交接實測](migration/records/M1-03.md) |
+| Organize an interview or draft text | A chat tool or shared document. [Notion writing guide](https://www.notion.com/help/guides/notion-ai-for-docs) | Keep the source of each quotation and the wording the author selected across drafts. |
+| Explore designs or create a layout | An illustration or layout tool. [Canva Visual Suite](https://www.canva.com/visual-suite/) | Write a composition brief that identifies the first focal point. Separate source details from choices the designer can change. |
+| Edit, mix, grade, or master media | An editor or audio production tool. [DaVinci Resolve](https://www.blackmagicdesign.com/products/davinciresolve) | Organize material by story beat. Export a proposal when the input meets the documented timeline format. [Editor handoff test](migration/records/M1-03.md) |
 
-## 哪些能力可以用，哪些需要開發
+<a name="哪些能力可以用哪些需要開發"></a>
 
-| 能力 | 狀態 | 驗收方式 |
+## Current capabilities and proposed work
+
+| Capability | Current scope | Evidence to collect |
 | --- | --- | --- |
-| 起草與比較方案 | Skill 可依素材起草。八種樣板也可手動使用。影片工具支援有明確限制的規劃、檢查與時間軸交換。 | 用同一份素材產出可區分的兩個處理方式，再追查素材細節與創作提案。 |
-| 口述與插畫共用來源 | N-02 的 V1 契約已採納。N-03 的 `render-narrative` 可從宣告的內容輸出口述與構圖。作者實際使用的觀察仍待記錄。 | 用相同輸入重播並比對輸出。N-04 可重播來源修訂歷史，並列出直接引用該來源的變體。[契約](adr/0005-independent-narrative-document-v1.md) · [N-03 實測](validation/n03-narrative-cli.md) · [N-04 修訂實測](validation/n04-narrative-revisions.md) |
-| 商業主張與新增用途 | N-05 規劃主張的來源引用。N-06 比較劇本、分支構思與影片交接。N-07 依作者試用決定方向。 | 查出遺漏或過期的引用，由編輯判斷來源是否支持措辭。各候選用途須舉出樣板無法處理的案例。[任務清單](../TASKS.md#cross-media-narrative-backlog) |
-| 流派、聲音與跨媒介交接 | N-08 至 N-12 涵蓋風格規則、聲音提示表、獲選模式、跨媒介清單與宿主試驗。各項進度以工作清單為準。 | 依任務前置條件驗收。實際交付檔案時，需有可用素材、支援功能的宿主與合適的讀回檢查。[多模態工作清單](../TASKS.md#multimodal-rust-backlog) |
+| Draft and compare treatments | The skill can draft from supplied material. Authors can follow eight templates manually. The video tools support specific planning, inspection, and timeline exchange tasks. | Use the same material in two distinct treatments. Trace each source detail and creative choice. |
+| Use one source for speech and illustration | N-02 defines the narrative document. N-03 prints declared content with `render-narrative`. N-04 replays revisions and lists variants with direct source references. Author observations remain pending. | Compare output across repeated runs with the same input. [Contract decision](adr/0005-independent-narrative-document-v1.md) · [N-03 test record](validation/n03-narrative-cli.md) · [N-04 test record](validation/n04-narrative-revisions.md) |
+| Support claims and other writing tasks | N-05 covers references for claims. N-06 compares screenplay, brainstorming, and video handoffs. N-07 uses author trials to decide whether to continue. | Identify missing or stale references. An editor judges whether the source supports the wording. Each proposed use needs a case that a template cannot handle. [Tasks](../TASKS.md#cross-media-narrative-backlog) |
+| Add style rules, audio cues, and media handoffs | N-08 through N-12 cover style rules, cue sheets, a selected mode, a source manifest, and a host trial. The task list gives current status. | Check each task against its prerequisites. To deliver a file, use the required materials and host capability. Open the resulting file. [Multimodal tasks](../TASKS.md#multimodal-rust-backlog) |
 
-宿主是載入 Skill 或執行媒體操作的應用程式。作者決定內容、觀點與是否發表。Skill 協助作者起草。`core` 表達資料型別與來源。`engine` 檢查宣告的引用、版本及順序。命令列工具處理本機輸入與輸出。
+A host is the application that loads the skill or performs a media operation. The author decides what to say and whether to publish it. The skill helps draft the material. The core defines data types. The engine checks declared references, revisions, and order. The CLI handles local input and output.
 
-V1 的來源關係記錄作者的宣告。歷史保存、內容可信度、授權與作品的情感效果各需對應證據。[軟體架構](ARCHITECTURE.md) · [敘事資料契約](narrative/NARRATIVE_DOCUMENT_V1.md)
+Source links in the V1 format record the author's declarations. Revision history, factual support, permissions, and emotional impact each need their own evidence. [Architecture](ARCHITECTURE.md) · [Narrative document format](narrative/NARRATIVE_DOCUMENT_V1.md)
 
-## 怎麼知道值得繼續做
+<a name="怎麼知道值得繼續做"></a>
 
-N-01 的試用規程規劃五位作者參與。每位作者用普通筆記與 Skill 各做一次相同的限時修訂題。記錄每組的完成數、總數、修改秒數、來源判斷錯誤及重複輸入次數。Rust 工具另開一輪試用。真人觀察欄尚待填寫。[試用與決策門檻](narrative/N-01-AUTHOR-STUDY.zh-TW.md)
+## How to decide whether to continue
 
-- **N-04 修訂。** 先列出應更新的版本，再比對實際輸出。列出漏改與誤改的 ID。保留作者拒絕提案的紀錄。
-- **N-05 主張。** 移除關鍵來源，檢查引用該來源的措辭是否標為待查。保留其他有依據的內容。編輯核閱來源與主張。
-- **N-06 與 N-07 創作交接。** 請讀者說出兩版各自先傳達什麼。請作者說明取捨。請接手的製作者指出缺項。將真人觀察與軟體結果分開記錄。若普通筆記已足夠，或分類增加誤置與重工，縮小適用範圍。
+The N-01 study calls for five authors. Each author completes the same timed revision task once with ordinary notes and once with the skill. Record completions, total attempts, revision time in seconds, errors in attribution, and repeated input. Evaluate the Rust tool in a separate trial. The study has no recorded human observations yet. [Study protocol and decision thresholds](narrative/N-01-AUTHOR-STUDY.md)
 
-[專案首頁](../README.md) · [英文首頁](../README.en.md) · [開發路線圖](../ROADMAP.md) · [需求與驗證](REQUIREMENTS.md)
+- **N-04 revisions.** List the expected drafts first. Compare the result with that list. Record missed and unnecessary changes by ID. Keep a record of suggestions the author declines.
+- **N-05 claims.** Remove a source. Check that statements using it need review and other supported statements remain. The editor checks the claim against the source.
+- **N-06 and N-07 handoffs.** Ask readers what each version communicates first. Ask the author to explain the choice. Ask the recipient to identify missing material. Record human observations separately from software results. Narrow the scope if ordinary notes suffice or the extra classification causes errors and rework.
+
+[Project guide](../README.md) · [Roadmap](../ROADMAP.md) · [Requirements and tests](REQUIREMENTS.md)

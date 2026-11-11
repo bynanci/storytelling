@@ -5,7 +5,7 @@ Test-only, independently authored synthetic cases informed by pinned OpenFilm
 `7add4762fe8174d76f43b863375ea39b73121e76`. No upstream test, media, provider or
 host is copied/invoked. All new files here, including generated JSON inputs and
 evidence, are part of the source-informed Apache-2.0 component; dependency licenses
-remain their own. See root LICENSES/Apache-2.0.txt and NOTICE.openfilm.
+remain their own. See root LICENSES/Apache-2.0.txt and LICENSES/third-party/NOTICE.txt.
 
 This executes actual source `compose` only for selected hard membership/order,
 missing references and contradictions. New StoryBrief wire/preferences/typed
