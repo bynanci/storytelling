@@ -42,25 +42,24 @@ fn parse_ledger(bytes: &[u8]) -> Result<NarrativeRevisionLedgerV1, NarrativeVali
         serde_json::from_slice(bytes).map_err(|_| error("input.invalid_json", "$"))?;
     if let Some(events) = root.get("events").and_then(Value::as_array) {
         for (index, event) in events.iter().enumerate() {
-            if event.get("kind").and_then(Value::as_str) == Some("assistant_suggestion") {
-                if let Some(fields) = event.as_object() {
-                    if fields.keys().any(|field| {
-                        matches!(
-                            field.as_str(),
-                            "decision"
-                                | "author_decision"
-                                | "accepted"
-                                | "author_confirmed"
-                                | "confirmed_by_author"
-                                | "accepted_by_author"
-                        )
-                    }) {
-                        return Err(error(
-                            "revision.untrusted_decision",
-                            format!("$.events[{index}].decision"),
-                        ));
-                    }
-                }
+            if event.get("kind").and_then(Value::as_str) == Some("assistant_suggestion")
+                && let Some(fields) = event.as_object()
+                && fields.keys().any(|field| {
+                    matches!(
+                        field.as_str(),
+                        "decision"
+                            | "author_decision"
+                            | "accepted"
+                            | "author_confirmed"
+                            | "confirmed_by_author"
+                            | "accepted_by_author"
+                    )
+                })
+            {
+                return Err(error(
+                    "revision.untrusted_decision",
+                    format!("$.events[{index}].decision"),
+                ));
             }
         }
     }
@@ -242,7 +241,6 @@ fn review_variant(
     event_index: usize,
     states: &mut [ActiveVariant],
     sources: &BTreeMap<String, NarrativeSourceRevisionV1>,
-    history: &mut Vec<NarrativeVariantSnapshotV1>,
 ) -> Result<NarrativeRevisionEventResultV1, NarrativeValidationErrorV1> {
     let path = format!("$.events[{event_index}]");
     let index = variant_index(states, variant_id, &format!("{path}.variant_id"))?;
@@ -275,7 +273,6 @@ fn review_variant(
     state.source_refs = refs.to_vec();
     state.content = content.to_owned();
     state.stale_source_refs.clear();
-    push_snapshot(history, state);
     Ok(event_result(
         id,
         "variant_review",
@@ -527,16 +524,20 @@ pub fn track_narrative_revisions(
                 variant_id,
                 source_refs,
                 content,
-            } => review_variant(
-                id,
-                variant_id,
-                source_refs,
-                content,
-                event_index,
-                &mut states,
-                &sources,
-                &mut variant_history,
-            )?,
+            } => {
+                let result = review_variant(
+                    id,
+                    variant_id,
+                    source_refs,
+                    content,
+                    event_index,
+                    &mut states,
+                    &sources,
+                )?;
+                let index = variant_index(&states, variant_id, &format!("{path}.variant_id"))?;
+                push_snapshot(&mut variant_history, &states[index]);
+                result
+            }
         };
         event_results.push(result);
     }
