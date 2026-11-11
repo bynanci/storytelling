@@ -14,7 +14,15 @@ mod narrative;
 pub use narrative::render_narrative;
 pub use storytelling_core::narrative::{
     NarrativeProjectedBeatV1, NarrativeProjectedVariantV1, NarrativeProjectionV1,
-    NarrativeSourceTagV1,
+    NarrativeSourceTagV1, NarrativeUnitReferenceV1,
+};
+
+mod narrative_revision;
+pub use narrative_revision::{query_narrative_impact, track_narrative_revisions};
+pub use storytelling_core::narrative_revision::{
+    NarrativeAuthorDecisionV1, NarrativeCurrentVariantV1, NarrativeRevisionEventResultV1,
+    NarrativeRevisionReportV1, NarrativeSourceRevisionV1, NarrativeSuggestionRecordV1,
+    NarrativeVariantSnapshotV1,
 };
 
 mod openfilm_snapshot;

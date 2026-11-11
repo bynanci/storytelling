@@ -22,7 +22,7 @@ const MAX_ILLUSTRATION_REFS: usize = 64;
 const MAX_ID_BYTES: usize = 128;
 const MAX_PURPOSE_AUDIENCE_CHARS: usize = 512;
 const MAX_NAME_CHARS: usize = 128;
-const MAX_TEXT_CHARS: usize = 8192;
+pub(crate) const MAX_TEXT_CHARS: usize = 8192;
 
 #[derive(Clone, Copy)]
 enum PreflightFailure {
@@ -73,7 +73,7 @@ impl JsonPreflight {
     }
 }
 
-fn preflight_json(bytes: &[u8]) -> Result<(), NarrativeValidationErrorV1> {
+pub(crate) fn preflight_json(bytes: &[u8]) -> Result<(), NarrativeValidationErrorV1> {
     let raw: &RawValue =
         serde_json::from_slice(bytes).map_err(|_| error("input.invalid_json", "$"))?;
     let mut preflight = JsonPreflight::default();
@@ -137,11 +137,11 @@ impl<'de> Visitor<'de> for ArrayVisitor<'_> {
     }
 }
 
-fn error(code: &str, path: impl Into<String>) -> NarrativeValidationErrorV1 {
+pub(crate) fn error(code: &str, path: impl Into<String>) -> NarrativeValidationErrorV1 {
     NarrativeValidationErrorV1::new(code, path)
 }
 
-fn version(bytes: &[u8]) -> Result<(), NarrativeValidationErrorV1> {
+pub(crate) fn version(bytes: &[u8]) -> Result<(), NarrativeValidationErrorV1> {
     let root: Value =
         serde_json::from_slice(bytes).map_err(|_| error("input.invalid_json", "$"))?;
     let Some(value) = root.get("schema_version") else {
@@ -180,7 +180,7 @@ fn parse(bytes: &[u8]) -> Result<NarrativeDocumentV1, NarrativeValidationErrorV1
     }
 }
 
-fn check_id(value: &str, path: &str) -> Result<(), NarrativeValidationErrorV1> {
+pub(crate) fn check_id(value: &str, path: &str) -> Result<(), NarrativeValidationErrorV1> {
     let bytes = value.as_bytes();
     if bytes.len() > MAX_ID_BYTES {
         return Err(error("narrative.too_many_items", path));
@@ -196,7 +196,11 @@ fn check_id(value: &str, path: &str) -> Result<(), NarrativeValidationErrorV1> {
     Ok(())
 }
 
-fn check_text(value: &str, max_chars: usize, path: &str) -> Result<(), NarrativeValidationErrorV1> {
+pub(crate) fn check_text(
+    value: &str,
+    max_chars: usize,
+    path: &str,
+) -> Result<(), NarrativeValidationErrorV1> {
     if value.is_empty() {
         return Err(error("narrative.invalid_shape", path));
     }

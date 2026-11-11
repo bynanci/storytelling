@@ -33,6 +33,8 @@ storytelling validate plan.json
 | `audit-brief` | `StoryBriefV1` JSON | 硬限制的參照、包含／排除與順序衝突；手動選擇保留 |
 | `plan-story` | Brief＋候選固定視窗／宣告分數＋hard bounds | 保留必要選擇的 deterministic fixed-window proposal 與決策原因 |
 | `render-narrative` | `NarrativeDocumentV1` JSON；不需媒體、片長或剪點 | 有來源標籤的口述大綱與單幅插畫 brief；確定性純文字 |
+| `track-narrative-revisions` | `NarrativeRevisionLedgerV1` JSON；不需媒體或資料庫 | 完整來源/變體歷史、作者選擇、建議及目前待審狀態 |
+| `query-narrative-impact` | 同一份 revision ledger 與 source change event ID | 由引擎計算精確受影響變體；呼叫者不能提供結果清單 |
 | `import-openfilm` | 有限 OpenFilm composition export JSON | declared visual plan 與原始事實／限制報告 |
 | `export-otio` | 同一個有限 composition export JSON | 可儲存的原生 OTIO Timeline JSON，附明確 loss 選擇 |
 | `verify-source` | 明確提供的 FILE／stdin bytes 與預期 SHA-256 | 該次提供的實際 bytes 符合預期 digest |
@@ -70,6 +72,29 @@ cat tests/fixtures/narrative-v1/n03-authoring-v1.json | cargo run --release --qu
 完整規則見 [NarrativeDocumentV1 profile](narrative/NARRATIVE_DOCUMENT_V1.md)。
 可重播結果和真人作者觀察分開記錄於
 [N-03 validation record](validation/n03-narrative-cli.md)。
+
+## 來源修訂與變體影響（N-04）
+
+N-04 沿用凍結的 `NarrativeDocumentV1` 作為起始快照，並以獨立、版本化的
+`NarrativeRevisionLedgerV1` 保留來源修訂、建議、作者決定和每版輸出的來源引用。
+每個物件需符合 [revision ledger 契約](narrative/NARRATIVE_REVISION_LEDGER_V1.md)。
+
+```sh
+cargo run --release --quiet --locked -p storytelling-cli -- track-narrative-revisions tests/fixtures/narrative-v1/n04-revision-history-v1.json
+cargo run --release --quiet --locked -p storytelling-cli -- query-narrative-impact tests/fixtures/narrative-v1/n04-revision-history-v1.json shared-observation-change
+cargo run --release --quiet --locked -p storytelling-cli -- query-narrative-impact tests/fixtures/narrative-v1/n04-revision-history-v1.json b-only-detail-change
+```
+
+兩個查詢預期分別列出 `oral, illustration-wide, illustration-close`，以及只列出
+`illustration-close`。完整來源舊版與 variant 快照可由 `track` 查回；第二次更改後，
+口述和構圖 A 仍為 `current`，構圖 B 為 `needs_review` 並保留它先前引用的 C01@1。
+同一來源還有任何 variant 待審時，輸入不得再加另一筆來源修訂。
+
+`assistant_suggestion` 事件是封閉物件，若加入 `decision`、`accepted` 或
+`author_confirmed` 會回傳 `revision.untrusted_decision`。作者決定需是另一個事件；
+CLI 不驗證該事件是否由真人輸入。狀態影響按輸出的直接來源引用計算，沒有沿
+`based_on` 做傳遞式失效。這些界線與作者試用分別記在
+[N-04 validation record](validation/n04-narrative-revisions.md)。
 
 ## 選定提案 A → 可審核 OTIO（已合併唯讀切片）
 

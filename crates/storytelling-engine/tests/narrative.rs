@@ -1,11 +1,15 @@
 // SPDX-License-Identifier: MIT
 
 use serde_json::{Value, json};
-use storytelling_core::narrative::NarrativeProjectedVariantV1;
-use storytelling_engine::{MAX_INPUT_BYTES, render_narrative};
+use storytelling_core::narrative::{NarrativeOriginV1, NarrativeProjectedVariantV1};
+use storytelling_engine::{
+    MAX_INPUT_BYTES, NarrativeAuthorDecisionV1, render_narrative, track_narrative_revisions,
+};
 
 const VALID: &[u8] = include_bytes!("../../../tests/fixtures/narrative-v1/valid-v1.json");
 const N03: &[u8] = include_bytes!("../../../tests/fixtures/narrative-v1/n03-authoring-v1.json");
+const N04: &[u8] =
+    include_bytes!("../../../tests/fixtures/narrative-v1/n04-revision-history-v1.json");
 
 fn fixture(name: &str) -> Vec<u8> {
     std::fs::read(
@@ -188,5 +192,134 @@ fn raw_byte_and_container_depth_boundaries_are_inclusive() {
     assert_eq!(
         render_narrative(over_limit.as_bytes()).unwrap_err().code,
         "narrative.depth_exceeded"
+    );
+}
+
+#[test]
+fn revision_ledger_reports_exact_impacts_and_preserves_snapshots_and_choices() {
+    let report = track_narrative_revisions(N04).unwrap();
+    assert_eq!(report.document_id, "door-repair");
+
+    let shared = report
+        .events
+        .iter()
+        .find(|event| event.id == "shared-observation-change")
+        .unwrap();
+    assert_eq!(shared.from_revision, Some(1));
+    assert_eq!(shared.to_revision, Some(2));
+    assert_eq!(
+        shared.affected_variants,
+        ["oral", "illustration-wide", "illustration-close"]
+    );
+
+    let local = report
+        .events
+        .iter()
+        .find(|event| event.id == "b-only-detail-change")
+        .unwrap();
+    assert_eq!(local.unit_id.as_deref(), Some("C01"));
+    assert_eq!(local.from_revision, Some(1));
+    assert_eq!(local.to_revision, Some(2));
+    assert_eq!(local.affected_variants, ["illustration-close"]);
+
+    let prior_shared = report
+        .source_history
+        .iter()
+        .find(|source| source.unit_id == "S02" && source.revision == 1)
+        .unwrap();
+    let revised_shared = report
+        .source_history
+        .iter()
+        .find(|source| source.unit_id == "S02" && source.revision == 2)
+        .unwrap();
+    assert!(prior_shared.text.contains("阿梅扶住門"));
+    assert!(revised_shared.text.contains("阿安扶住門"));
+
+    let choices = &report.author_decisions;
+    assert_eq!(choices.len(), 2);
+    assert_eq!(choices[0].decision, NarrativeAuthorDecisionV1::Declined);
+    assert_eq!(choices[0].variant_id, "illustration-wide");
+    assert_eq!(choices[1].decision, NarrativeAuthorDecisionV1::Accepted);
+    assert_eq!(choices[1].variant_id, "illustration-close");
+    assert_eq!(choices[1].proposal_ref.unit_id, "C01");
+    assert_eq!(choices[1].proposal_ref.revision, 1);
+    assert_eq!(report.suggestions.len(), 1);
+    assert_eq!(report.suggestions[0].variant_id, "illustration-close");
+
+    let oral = report
+        .current_variants
+        .iter()
+        .find(|variant| variant.variant_id == "oral")
+        .unwrap();
+    let wide = report
+        .current_variants
+        .iter()
+        .find(|variant| variant.variant_id == "illustration-wide")
+        .unwrap();
+    let close = report
+        .current_variants
+        .iter()
+        .find(|variant| variant.variant_id == "illustration-close")
+        .unwrap();
+    assert_eq!(oral.status, "current");
+    assert_eq!(wide.status, "current");
+    assert_eq!(close.status, "needs_review");
+    assert!(!oral.content.contains("紅傘") && !oral.content.contains("C01"));
+    assert!(!wide.content.contains("紅傘") && !wide.content.contains("C01"));
+    assert!(close.content.contains("紅傘") && close.content.contains("C01"));
+    assert!(report
+        .variant_history
+        .iter()
+        .any(|variant| variant.variant_id == "illustration-wide"
+            && variant.revision == 1
+            && variant.source_refs.iter().any(|reference| reference.unit_id == "C01")));
+
+    let prior_proposal = report
+        .source_history
+        .iter()
+        .find(|source| source.unit_id == "C01" && source.revision == 1)
+        .unwrap();
+    let revised_proposal = report
+        .source_history
+        .iter()
+        .find(|source| source.unit_id == "C01" && source.revision == 2)
+        .unwrap();
+    assert_eq!(prior_proposal.origin, NarrativeOriginV1::CreativeProposal);
+    assert_eq!(revised_proposal.origin, NarrativeOriginV1::CreativeProposal);
+    assert!(prior_proposal.text.contains("紅傘"));
+    assert!(revised_proposal.text.contains("左後方"));
+}
+
+#[test]
+fn assistant_suggestion_cannot_self_record_author_confirmation() {
+    let mut ledger: Value = serde_json::from_slice(N04).unwrap();
+    ledger["events"][0]["decision"] = json!("accepted");
+    let bytes = serde_json::to_vec(&ledger).unwrap();
+    let error = track_narrative_revisions(&bytes).unwrap_err();
+    assert_eq!(error.code, "revision.untrusted_decision");
+    assert_eq!(error.path, "$.events[0].decision");
+}
+
+#[test]
+fn revision_ledger_requires_current_revisions_and_review_before_next_source_change() {
+    let mut stale: Value = serde_json::from_slice(N04).unwrap();
+    stale["events"][3]["expected_revision"] = json!(8);
+    assert_eq!(
+        track_narrative_revisions(&serde_json::to_vec(&stale).unwrap())
+            .unwrap_err()
+            .code,
+        "narrative.stale_revision"
+    );
+
+    let mut skipped_review: Value = serde_json::from_slice(N04).unwrap();
+    skipped_review["events"] = json!([
+        skipped_review["events"][3].clone(),
+        skipped_review["events"][7].clone()
+    ]);
+    assert_eq!(
+        track_narrative_revisions(&serde_json::to_vec(&skipped_review).unwrap())
+            .unwrap_err()
+            .code,
+        "revision.pending_review"
     );
 }

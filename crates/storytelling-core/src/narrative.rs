@@ -43,7 +43,7 @@ impl NarrativeOriginV1 {
     }
 }
 
-#[derive(Debug, Clone, Deserialize, Serialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct NarrativeUnitReferenceV1 {
     pub unit_id: String,
