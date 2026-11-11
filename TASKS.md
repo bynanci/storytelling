@@ -62,8 +62,9 @@ work, keep the evidence with its existing ticket:
   a person completing the task.
 
 Use the [Storytelling skill](skills/storytelling/SKILL.md) for the author-facing
-request and the [seven Codex handoffs](docs/CODEX_NARRATIVE_PROMPTS.zh-TW.md)
-for the engineering tasks. [Why Storytelling?](docs/WHY_STORYTELLING.md)
+request. For engineering, use the [first seven Codex handoffs](docs/CODEX_NARRATIVE_PROMPTS.zh-TW.md)
+and the [five follow-up prompts for N-08 through N-12](docs/CODEX_MULTIMODAL_PROMPTS.zh-TW.md).
+[Why Storytelling?](docs/WHY_STORYTELLING.md)
 explains how the research informs these choices.
 
 ### Starting N-01
