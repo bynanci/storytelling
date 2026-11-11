@@ -159,6 +159,16 @@ cargo run --quiet --locked -p storytelling-cli -- query-narrative-impact tests/f
 
 更正共用觀察後，口述與兩份插畫都要複查。只改構圖 B 的細節時，僅 `illustration-close` 需要複查。工具依每版草稿直接引用的來源計算影響。經其他來源間接引用時，由作者另行核對。紀錄可保存作者決定，無法驗證輸入者身分。[修訂紀錄格式（英文）](https://github.com/bynanci/storytelling/blob/main/docs/narrative/NARRATIVE_REVISION_LEDGER_V1.md) · [預期輸出與驗證紀錄（英文）](https://github.com/bynanci/storytelling/blob/main/docs/validation/n04-narrative-revisions.md)
 
+### 檢查敘事順序規則（N-08）
+
+同一份工作坊素材可先說活動，再播敲擊；意象版則先安排兩聲合成敲擊。獨立的 `NarrativeStyleProfileV1` 以敘事文件 revision 和口述 beat ID 綁定先後規則。
+
+```sh
+cargo run --quiet --locked -p storytelling-cli -- check-narrative-style tests/fixtures/narrative-v1/n08-umbrella-openings-v1.json tests/fixtures/narrative-v1/n08-style-profile-v1.json
+```
+
+指令以 JSON 回報宣告順序的檢查結果，不判斷美感，也不代表作者已核准。意象版的比喻是根據 S3 提出的創作內容，不是對敲擊來源的事實主張。真人盲讀仍待執行。[N-08 profile 與驗證紀錄（英文）](https://github.com/bynanci/storytelling/blob/main/docs/validation/n08-style-profile.md)
+
 <a name="video-integrations"></a>
 
 ### 影片整合
