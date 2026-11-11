@@ -188,9 +188,11 @@ profile remains authoritative for those checks.
 - **`storytelling-cli` in Issue #50:** the explicit
   `storytelling render-narrative <FILE|->` command reads at most 1 MiB from a
   regular file or stdin, calls the engine, and writes deterministic
-  human-readable text. It prints oral beats in declared order and illustration
-  variants in declaration order, preserving each source ID/revision and origin.
-  Domain rejection exits 1, usage 2, I/O 3. It never auto-detects JSON.
+  human-readable UTF-8 text to stdout on success. It prints oral beats in
+  declared order and illustration variants in declaration order, preserving
+  each source ID/revision and origin. On domain/usage/I/O failure, stdout is
+  one JSON error line with a stable code and safe path; exits are 1/2/3. No logs
+  are interleaved. It never auto-detects JSON.
 
 The command is opt-in. Omitting or not invoking it disables the narrative path;
 existing projects need no migration. It does not write a file, Catalog, project,

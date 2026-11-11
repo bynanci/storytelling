@@ -106,16 +106,21 @@ profile. No error echoes source text, arbitrary keys or local file paths.
 - **engine:** bounded strict decode, cross-reference/revision checks, graph and
   order validation, stable diagnostics; pure and deterministic, with no file,
   media, model, network, database, clock or host access.
-- **CLI (#50 only):** explicit local file/stdin entry, bounded read, one JSON
-  response and documented exit codes. No auto-detection, mutation, media read,
-  model call, editor write, or new command in this design PR.
+- **CLI (#50):** `storytelling render-narrative <FILE|->` reads at most
+  1 MiB from an explicit regular file or stdin and writes deterministic
+  human-readable UTF-8 text to stdout on success. Oral beats remain in declared
+  order; variants remain in declaration order; every presented unit keeps its
+  ID, revision and origin. On domain/usage/I/O failure, stdout is one JSON error
+  line with a stable code and safe path; exits are 1/2/3 respectively. No logs
+  are interleaved with output. The command does not auto-detect, mutate, read
+  media, call a model, or write to an editor.
 
-The additive profile does not change M0 plan JSON, StoryBrief or planner JSON,
+This is additive and does not change M0 plan JSON, StoryBrief or planner JSON,
 OpenFilm finite-v1 import/export, OTIO output, existing command arguments,
 review identities or digest domains. The compatibility inventory and named
-regressions are in the profile. Disable the future path by not invoking (or
-omitting from a distribution) the explicit N-02 validation command; existing
-projects need no migration and no implicit conversion exists.
+regressions are in the profile. Disable the narrative path by not invoking (or
+omitting from a distribution) the explicit renderer; existing projects need no
+migration and no implicit conversion exists.
 
 ## Review log
 
@@ -124,8 +129,8 @@ raised one P2 finding: ordering IDs inside a chosen cycle did not define which
 cycle to report when several cycles shared the first traversal path. This
 revision specifies beat-order DFS, relation-array edge order, the first gray
 back-edge witness, and a multiple-cycle fixture expecting R03/R04/R05. The
-finding is addressed in the current proposal. This automated review is useful
-feedback, not the independent human G2 review required by SDLC.
+finding is addressed in the current proposal. This automated review is reviewer feedback; it does not replace the maintainer
+acceptance recorded below or produce N-01 human author-study evidence.
 
 ## Acceptance and deferred work
 
