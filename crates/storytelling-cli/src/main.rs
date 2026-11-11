@@ -572,7 +572,7 @@ fn main() -> ExitCode {
     }
     if args
         .first()
-.is_some_and(|arg| arg == OsStr::new("render-handoff"))
+        .is_some_and(|arg| arg == OsStr::new("render-handoff"))
     {
         return render_handoff_command(&args);
     }
@@ -816,4 +816,3 @@ fn main() -> ExitCode {
         Err(error) => emit(json!({"ok": false, "error": error}), 1),
     }
 }
-
