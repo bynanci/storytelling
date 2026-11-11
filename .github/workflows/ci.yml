@@ -18,7 +18,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Install pinned toolchain
-        run: rustup toolchain install 1.85.0 --profile minimal --component rustfmt,clippy
+        run: rustup toolchain install 1.89.0 --profile minimal --component rustfmt,clippy
       - name: Format gate
         run: |
           cargo fmt --all
@@ -128,7 +128,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Install pinned toolchain
-        run: rustup toolchain install 1.85.0 --profile minimal
+        run: rustup toolchain install 1.89.0 --profile minimal
       - name: Build
         run: cargo build --workspace --locked
       - name: Unit and real CLI integration tests

@@ -8,7 +8,7 @@ Storytelling is a local-first Rust toolkit for planning a story from material yo
 
 ## Quick start
 
-Install Rust with [rustup](https://rustup.rs/). Clone the repository and run the bundled synthetic examples. The repository selects Rust 1.85.0.
+Install Rust with [rustup](https://rustup.rs/). Clone the repository and run the bundled synthetic examples. The repository selects Rust 1.89.0.
 
 ```sh
 git clone https://github.com/bynanci/storytelling.git
@@ -40,7 +40,7 @@ The proposed first use case starts with one account of an event and produces a s
 
 ## Architecture and contributions
 
-The workspace contains three crates. `storytelling-core` defines wire types and exact rational time. `storytelling-engine` validates, plans and exports in memory. `storytelling-cli` owns file and stdin access, stdout and exit codes. [Architecture](docs/ARCHITECTURE.md) · [Wire and CLI contracts](docs/CONTRACTS.md)
+The workspace contains four crates. `storytelling-core` defines wire types and exact rational time. `storytelling-engine` validates, plans and exports in memory. `storytelling-cli` owns file and stdin access, stdout and exit codes. `storytelling-journal` provides a durable SQLite operation log and owner fencing for future adapters; it does not call an editor or grant execution authority. The bounded M3-02 journal candidate is under review. [Architecture](docs/ARCHITECTURE.md) · [Wire and CLI contracts](docs/CONTRACTS.md)
 
 Pick a [task](TASKS.md), check [open pull requests](https://github.com/bynanci/storytelling/pulls) and connect the change to its [requirements](docs/REQUIREMENTS.md). The [contribution guide](CONTRIBUTING.md) lists the local checks, and the [SDLC](docs/SDLC.md) explains when a change is ready for implementation, review or release. Use a synthetic example when reporting a [bug](https://github.com/bynanci/storytelling/issues/new/choose). For sensitive reports, follow the [security policy](SECURITY.md).
 

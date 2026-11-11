@@ -14,10 +14,11 @@ expected = {
     "storytelling-core": {"serde", "serde_json", "sha2", "ed25519-dalek"},
     "storytelling-engine": {"serde", "serde_json", "storytelling-core"},
     "storytelling-cli": {"serde_json", "storytelling-engine"},
+    "storytelling-journal": {"rusqlite", "sha2"},
 }
 members = manifest["workspace"]["members"]
 if {Path(member).name for member in members} != set(expected):
-    errors.append("M0 workspace must contain exactly the three implemented crates")
+    errors.append("Workspace must contain exactly the four implemented crates")
 for member in members:
     data = tomllib.loads((ROOT / member / "Cargo.toml").read_text())
     name = data["package"]["name"]
@@ -25,14 +26,24 @@ for member in members:
         errors.append(f"Unexpected dependency boundary for {name}")
     if name == "storytelling-core" and data.get("dependencies", {}).get("sha2") != {"workspace": True}:
         errors.append("Core SHA-256 must inherit only the reviewed workspace configuration")
+    if name == "storytelling-journal":
+        if data.get("dependencies", {}).get("rusqlite") != {"workspace": True}:
+            errors.append("SQLite adapter must inherit the pinned bundled rusqlite dependency")
+        if data.get("package", {}).get("license") != {"workspace": True}:
+            errors.append("First-party SQLite journal license must remain MIT")
 if manifest["workspace"]["package"].get("publish") is not False:
     errors.append("Bootstrap packages must not be publishable")
+if manifest["workspace"]["package"].get("rust-version") != "1.89":
+    errors.append("Workspace MSRV must match the reviewed bundled SQLite dependency")
 if manifest["workspace"]["dependencies"].get("sha2") != {
         "version": "=0.10.9", "default-features": False, "features": ["force-soft"]}:
     errors.append("M1-03 SHA-256 dependency differs from reviewed pure-buffer contract")
 if manifest["workspace"]["dependencies"].get("ed25519-dalek") != {
         "version": "=3.0.0", "default-features": False, "features": ["fast"]}:
     errors.append("PR #28 approval-candidate Ed25519 dependency differs from the reviewed verification-only pin")
+if manifest["workspace"]["dependencies"].get("rusqlite") != {
+        "version": "=0.41.1", "default-features": False, "features": ["bundled"]}:
+    errors.append("M3-02 SQLite adapter must use the audited bundled rusqlite pin")
 core_dependencies = tomllib.loads((ROOT / "crates/storytelling-core/Cargo.toml").read_text()).get("dependencies", {})
 for dependency in ("serde_json", "sha2", "ed25519-dalek"):
     if core_dependencies.get(dependency) != {"workspace": True}:

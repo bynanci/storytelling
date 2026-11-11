@@ -104,6 +104,17 @@ Stable codes: `input.invalid_json`, `input.too_large`, `input.io`, `cli.usage`,
 `plan.too_many_items`. Diagnostic paths may be refined; callers should branch on
 codes, not prose or line/column messages.
 
+## M3-02 SQLite operation journal
+
+The Rust storage-adapter API is documented in the
+[M3-02 journal contract](migration/M3-02-OPERATION-JOURNAL.md). It is not exposed
+as a CLI command and has no host client. Callers persist the immutable operation
+identity and numbered `dispatching` attempt before any future host API call.
+Unknown outcomes remain blocked until a current owner records readback; only an
+explicit NotApplied observation permits a later attempt. The journal records the
+caller's observation and evidence digest, but does not verify host truth, signer
+authority, approval, or artifact origin.
+
 ## M3-01/P1 accepted bounded review binding
 
 The bounded first profile for [issue #27](https://github.com/bynanci/storytelling/issues/27)
