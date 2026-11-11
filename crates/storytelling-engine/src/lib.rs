@@ -12,9 +12,13 @@ pub use brief::audit_story_brief;
 
 mod narrative;
 pub use narrative::render_narrative;
+
+mod narrative_style;
+pub use narrative_style::check_narrative_style_profile;
 pub use storytelling_core::narrative::{
     NarrativeProjectedBeatV1, NarrativeProjectedVariantV1, NarrativeProjectionV1,
-    NarrativeSourceTagV1, NarrativeUnitReferenceV1,
+    NarrativeSourceTagV1, NarrativeStyleCheckV1, NarrativeStyleValidationErrorV1,
+    NarrativeUnitReferenceV1,
 };
 
 mod narrative_revision;
