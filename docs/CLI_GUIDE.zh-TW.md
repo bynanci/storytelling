@@ -147,15 +147,18 @@ cargo run --release --quiet --locked -p storytelling-cli -- render-cue-sheet \
 
 ## 以來源修訂簿檢查文案主張（N-05）
 
-`audit-copy-claims` 同時讀取文案大綱與呼叫端提供的修訂簿。`current` 只表示來源 ID 和 revision 相符；報告會附上被引用的歷史文字，供真人比對。它不會宣稱來源支持措辭、不會查證事實，也不會核准發布。
+預設指令保留 ReportV1。加上 `--report-v2` 才輸出下列增強資訊。
+
+`audit-copy-claims` 以虛構產品的結構化輸入整理受眾、原始主張、引用、提議標語與 CTA，沿用 N-04 修訂簿。`current` 只表示來源 ID 與 revision 相符；事實主張一律保留 `support_status: human_review_required`。
 
 ```sh
-cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-copy-v1.json tests/fixtures/narrative-v1/n04-revision-history-v1.json
-cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-copy-revised-ref-v1.json tests/fixtures/narrative-v1/n04-revision-history-v1.json
-cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-copy-dangling-ref-v1.json tests/fixtures/narrative-v1/n04-revision-history-v1.json
+cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-pilot-copy-v1.json tests/fixtures/commercial-copy-v1/n05-pilot-ledger-v1.json --report-v2
+cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-pilot-copy-no-reference-v1.json tests/fixtures/commercial-copy-v1/n05-pilot-ledger-v1.json --report-v2
+cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-pilot-copy-dangling-ref-v1.json tests/fixtures/commercial-copy-v1/n05-pilot-ledger-v1.json --report-v2
+cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-pilot-copy-v1.json tests/fixtures/commercial-copy-v1/n05-pilot-ledger-revised-v1.json --report-v2
 ```
 
-第一份案例含可追溯的關門測試、缺少引用的平均十分鐘／降低三成成本主張、創作標語與 CTA。其他案例分別引用舊版 S02@1 與不存在的 S99@1。輸出狀態只涵蓋引用。見[契約](narrative/COMMERCIAL_COPY_V1.md)與[N-05 驗證紀錄](validation/n05-commercial-copy.md)；真人語意審查仍待完成。
+「試行組平均整理時間由 10 分鐘降到 8 分鐘」與「所有團隊效率都提升 20%」都引用 `PILOT_LOG@1`，所以兩者的引用都為 current。但第二句擴大了受測群體並改稱整體效率，仍需作者判斷措辭依據。其他指令分別示範缺漏引用、不存在來源及試行紀錄修訂。來源修訂後，報告只將兩句列入 `reference_attention_claim_ids`，保留原措辭、歷史來源並附上目前來源文字。產品說明、提議標語與 CTA 不受影響。[契約](narrative/COMMERCIAL_COPY_V1.md) · [預期／實際輸出與空白作者審閱欄](validation/n05-commercial-copy.md)
 
 ## 將所選提案交付為 OTIO
 

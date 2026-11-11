@@ -1,0 +1,95 @@
+{
+  "synthetic": true,
+  "input_sha256_before": {
+    "n05-pilot-copy-dangling-ref-v1.json": "b7c59f0d62e6a6de6be60e3386d40535641d40fff5be563f62b29ccbed272fc4",
+    "n05-pilot-copy-no-reference-v1.json": "189a8e85829268ad8c26f219de90be60163cf061643800f0c6b45d0bb317ddfe",
+    "n05-pilot-copy-v1.json": "5fa2b33f1cdbb8555e6dd6a0227818e31697b6ba78f8d861372eea6384f48e18",
+    "n05-pilot-ledger-revised-v1.json": "ab400bef7e318b15dbcb5e41d64529d09dbed8be66c15a97aab380815b651ac2",
+    "n05-pilot-ledger-v1.json": "da6dc1b91e81a3efcc070d2b51cc8a6a38ccfe55c100fd2de4a5e87df0b73f74"
+  },
+  "input_sha256_after": {
+    "n05-pilot-copy-dangling-ref-v1.json": "b7c59f0d62e6a6de6be60e3386d40535641d40fff5be563f62b29ccbed272fc4",
+    "n05-pilot-copy-no-reference-v1.json": "189a8e85829268ad8c26f219de90be60163cf061643800f0c6b45d0bb317ddfe",
+    "n05-pilot-copy-v1.json": "5fa2b33f1cdbb8555e6dd6a0227818e31697b6ba78f8d861372eea6384f48e18",
+    "n05-pilot-ledger-revised-v1.json": "ab400bef7e318b15dbcb5e41d64529d09dbed8be66c15a97aab380815b651ac2",
+    "n05-pilot-ledger-v1.json": "da6dc1b91e81a3efcc070d2b51cc8a6a38ccfe55c100fd2de4a5e87df0b73f74"
+  },
+  "all_inputs_unchanged": true,
+  "runs": [
+    {
+      "case": "normal",
+      "command": [
+        "./target/release/storytelling",
+        "audit-copy-claims",
+        "tests/fixtures/commercial-copy-v1/n05-pilot-copy-v1.json",
+        "tests/fixtures/commercial-copy-v1/n05-pilot-ledger-v1.json",
+        "--report-v2"
+      ],
+      "exit_code": 0,
+      "stderr_empty": true,
+      "matches_expected_json": true,
+      "report_v2_schema_valid": true,
+      "replay_stdout_identical": true,
+      "stdout_sha256": "411bb42dd8d7458ddedb50380c96e26961cc5c3fb09e96942d6e1dd84cd36051",
+      "attention_claim_ids": []
+    },
+    {
+      "case": "missing",
+      "command": [
+        "./target/release/storytelling",
+        "audit-copy-claims",
+        "tests/fixtures/commercial-copy-v1/n05-pilot-copy-no-reference-v1.json",
+        "tests/fixtures/commercial-copy-v1/n05-pilot-ledger-v1.json",
+        "--report-v2"
+      ],
+      "exit_code": 0,
+      "stderr_empty": true,
+      "matches_expected_json": true,
+      "report_v2_schema_valid": true,
+      "replay_stdout_identical": true,
+      "stdout_sha256": "340698029a179670ee03d810bebf8f9ce143f18b43a207f2b00f67e47e489bf2",
+      "attention_claim_ids": [
+        "pilot-average-time"
+      ]
+    },
+    {
+      "case": "dangling",
+      "command": [
+        "./target/release/storytelling",
+        "audit-copy-claims",
+        "tests/fixtures/commercial-copy-v1/n05-pilot-copy-dangling-ref-v1.json",
+        "tests/fixtures/commercial-copy-v1/n05-pilot-ledger-v1.json",
+        "--report-v2"
+      ],
+      "exit_code": 0,
+      "stderr_empty": true,
+      "matches_expected_json": true,
+      "report_v2_schema_valid": true,
+      "replay_stdout_identical": true,
+      "stdout_sha256": "0ca4ee15d7e55bd34dac4df9650008f114135a5effeff036cee9ec69b79a89e3",
+      "attention_claim_ids": [
+        "pilot-average-time"
+      ]
+    },
+    {
+      "case": "revised",
+      "command": [
+        "./target/release/storytelling",
+        "audit-copy-claims",
+        "tests/fixtures/commercial-copy-v1/n05-pilot-copy-v1.json",
+        "tests/fixtures/commercial-copy-v1/n05-pilot-ledger-revised-v1.json",
+        "--report-v2"
+      ],
+      "exit_code": 0,
+      "stderr_empty": true,
+      "matches_expected_json": true,
+      "report_v2_schema_valid": true,
+      "replay_stdout_identical": true,
+      "stdout_sha256": "fe248c9ef70511ed0bf1743c279266f981ef28237fbad72a2dc979bb15e29805",
+      "attention_claim_ids": [
+        "pilot-average-time",
+        "all-teams-efficiency"
+      ]
+    }
+  ]
+}

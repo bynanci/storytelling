@@ -19,7 +19,7 @@ Choose the command for your task. Supply the document that its profile accepts. 
 | `track-narrative-revisions` | NarrativeRevisionLedgerV1 JSON, 1,048,576 | Source and variant history, suggestions, author choices and current review status. | [Revision ledger](narrative/NARRATIVE_REVISION_LEDGER_V1.md) |
 | `query-narrative-impact` | The same ledger and one source change event ID | Variants that directly reference the changed source revision. | [Revision ledger](narrative/NARRATIVE_REVISION_LEDGER_V1.md) |
 | `check-narrative-style` | NarrativeDocumentV1 JSON and NarrativeStyleProfileV1 JSON, each 1,048,576 | `{"ok":true,"style_check":...}`; errors exit 1. | [Editorial style profile V1](narrative/EDITORIAL_STYLE_PROFILE_V1.md) |
-| `audit-copy-claims` | CommercialCopyDocumentV1 JSON and NarrativeRevisionLedgerV1 JSON, each 1,048,576 | `{"ok":true,"commercial_copy":...}`; errors exit 1. | [Commercial copy](narrative/COMMERCIAL_COPY_V1.md) |
+| `audit-copy-claims` | CommercialCopyDocumentV1 JSON and NarrativeRevisionLedgerV1 JSON, each 1,048,576 | `{"ok":true,"commercial_copy":...}`; default ReportV1, explicit `--report-v2` selects ReportV2; errors exit 1. | [Commercial copy](narrative/COMMERCIAL_COPY_V1.md) |
 | `verify-source` | Supplied bytes, 16,777,216, and expected SHA-256 | `{"ok":true,"verification":...}` | [Supplied buffer](migration/FILMCRAFT_25_V1.md#native-supplied-buffer-contract) |
 | `prepare-story-review` | Planner response, 4,194,336. Snapshot, 1,048,576. Context, 65,536. | `{ok:true,review:...,otio:Timeline}` with the actual OTIO artifact. | [Selected proposal](migration/PLANNER_OTIO_REVIEW_V1.md) |
 | `export-story-otio` | Same three inputs | The same native OTIO directly. | [Selected proposal](migration/PLANNER_OTIO_REVIEW_V1.md) |

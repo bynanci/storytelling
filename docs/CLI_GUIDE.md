@@ -138,15 +138,18 @@ Success is one JSON line. The command validates only the declared order. A contr
 
 ## Audit copy claims against a narrative ledger (N-05)
 
-`audit-copy-claims` reads a commercial copy outline and a supplied revision ledger. `current` means only that the source ID and revision match. The report includes cited historical text to support human comparison. It does not claim that the source supports the wording, verify a fact or clear copy for publication.
+The default command retains ReportV1. Append `--report-v2` for the enhanced report below.
+
+`audit-copy-claims <COPY> <LEDGER> --report-v2` organizes a supplied outline for a fictional product into audience, original factual wording, citations, a proposed slogan and a CTA. It reads the existing N-04 revision ledger. `current` means only that the source ID and revision match; all factual claims remain `support_status: human_review_required`.
 
 ```sh
-cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-copy-v1.json tests/fixtures/narrative-v1/n04-revision-history-v1.json
-cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-copy-revised-ref-v1.json tests/fixtures/narrative-v1/n04-revision-history-v1.json
-cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-copy-dangling-ref-v1.json tests/fixtures/narrative-v1/n04-revision-history-v1.json
+cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-pilot-copy-v1.json tests/fixtures/commercial-copy-v1/n05-pilot-ledger-v1.json --report-v2
+cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-pilot-copy-no-reference-v1.json tests/fixtures/commercial-copy-v1/n05-pilot-ledger-v1.json --report-v2
+cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-pilot-copy-dangling-ref-v1.json tests/fixtures/commercial-copy-v1/n05-pilot-ledger-v1.json --report-v2
+cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-pilot-copy-v1.json tests/fixtures/commercial-copy-v1/n05-pilot-ledger-revised-v1.json --report-v2
 ```
 
-The first example includes a traceable gate test, an unsupported ten-minute average and 30% cost-reduction claim, a proposed slogan and a CTA. The other examples cite old S02@1 and absent S99@1. Output status covers references only. See the [contract](narrative/COMMERCIAL_COPY_V1.md) and [N-05 validation record](validation/n05-commercial-copy.md); human semantic assessment remains pending.
+Both “試行組平均整理時間由 10 分鐘降到 8 分鐘” and “所有團隊效率都提升 20%” cite `PILOT_LOG@1`. The references are both current; the second statement exceeds the trial record's population and measured outcome. The author must judge support. The other runs show a missing citation, nonexistent source and revised trial record. The revised report lists exactly two `reference_attention_claim_ids`, retains old wording and cited text, and displays the current source text alongside them. The product description, proposed slogan and CTA stay unchanged. [Contract](narrative/COMMERCIAL_COPY_V1.md) · [Expected/actual outputs and blank author review](validation/n05-commercial-copy.md)
 
 ## Render a recording cue sheet (N-09)
 

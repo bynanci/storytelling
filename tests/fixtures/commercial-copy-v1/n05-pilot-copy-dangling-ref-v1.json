@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "copy_id": "pilot-product-outreach",
+  "copy_revision": 1,
+  "evidence_document_id": "sortbox-pilot",
+  "purpose": "介紹虛構產品理序盒的有限試行結果，邀請申請試用。",
+  "audience": "需要整理工作紀錄、評估是否參加試行的小型協作團隊。",
+  "claims": [
+    {
+      "id": "pilot-average-time",
+      "kind": "factual_claim",
+      "wording": "試行組平均整理時間由 10 分鐘降到 8 分鐘",
+      "evidence_refs": [
+        {
+          "unit_id": "MISSING_LOG",
+          "revision": 1
+        }
+      ]
+    },
+    {
+      "id": "all-teams-efficiency",
+      "kind": "factual_claim",
+      "wording": "所有團隊效率都提升 20%",
+      "evidence_refs": [
+        {
+          "unit_id": "PILOT_LOG",
+          "revision": 1
+        }
+      ]
+    },
+    {
+      "id": "product-checklist",
+      "kind": "factual_claim",
+      "wording": "理序盒提供工作紀錄分類清單。",
+      "evidence_refs": [
+        {
+          "unit_id": "PRODUCT",
+          "revision": 1
+        }
+      ]
+    },
+    {
+      "id": "proposed-tagline",
+      "kind": "creative_proposal",
+      "wording": "把紀錄理順，讓討論開始。",
+      "evidence_refs": [
+        {
+          "unit_id": "TAGLINE",
+          "revision": 1
+        }
+      ]
+    }
+  ],
+  "call_to_action": {
+    "id": "cta-pilot-signup",
+    "kind": "creative_proposal",
+    "wording": "申請理序盒的小型團隊試行，先看看是否符合你的整理流程。",
+    "evidence_refs": []
+  }
+}

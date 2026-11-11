@@ -20,7 +20,7 @@
 | `track-narrative-revisions` | NarrativeRevisionLedgerV1 修訂紀錄 JSON，1,048,576 | 可重跑的來源與變體歷史、建議、作者選擇及目前的審閱狀態 | [敘事修訂紀錄](narrative/NARRATIVE_REVISION_LEDGER_V1.md) |
 | `query-narrative-impact` | 相同的修訂紀錄，另附一個來源修訂事件 ID | 依直接參照計算該次修訂所影響的變體 | [敘事修訂紀錄](narrative/NARRATIVE_REVISION_LEDGER_V1.md) |
 | `check-narrative-style` | NarrativeDocumentV1 與 NarrativeStyleProfileV1 JSON，各 1,048,576 位元組 | `{"ok":true,"style_check":...}`；錯誤時退出 1。 | [風格 profile V1（英文）](narrative/EDITORIAL_STYLE_PROFILE_V1.md) |
-| `audit-copy-claims` | CommercialCopyDocumentV1 與 NarrativeRevisionLedgerV1 JSON，各 1,048,576 位元組 | `{"ok":true,"commercial_copy":...}`；錯誤時退出 1。 | [文案引用契約](narrative/COMMERCIAL_COPY_V1.md) |
+| `audit-copy-claims` | CommercialCopyDocumentV1 與 NarrativeRevisionLedgerV1 JSON，各 1,048,576 位元組 | `{"ok":true,"commercial_copy":...}`；預設 ReportV1，明選 `--report-v2` 輸出 ReportV2；錯誤時退出 1。 | [文案引用契約](narrative/COMMERCIAL_COPY_V1.md) |
 | `verify-source` | 提供的位元組，16,777,216。另須指定預期的 SHA-256。 | `{"ok":true,"verification":...}` | [緩衝區驗證](migration/FILMCRAFT_25_V1.md#native-supplied-buffer-contract) |
 | `prepare-story-review` | 規劃器輸出 4,194,336、剪輯快照檔 1,048,576、情境檔 65,536 | `{ok:true,review:...,otio:Timeline}`，含實際 OTIO 產物 | [所選提案的審閱](migration/PLANNER_OTIO_REVIEW_V1.md) |
 | `export-story-otio` | 與上一列相同的三項輸入 | 直接輸出相同的原生 OTIO | [所選提案的審閱](migration/PLANNER_OTIO_REVIEW_V1.md) |

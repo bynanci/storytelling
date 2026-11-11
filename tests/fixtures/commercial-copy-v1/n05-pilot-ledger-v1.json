@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "base_document": {
+    "schema_version": 1,
+    "document_id": "sortbox-pilot",
+    "document_revision": 1,
+    "purpose": "保存虛構產品試行資料，供商業文案審閱。",
+    "audience": "評估理序盒試行的小型協作團隊。",
+    "units": [
+      {
+        "id": "PILOT_LOG",
+        "revision": 1,
+        "origin": "supplied_observation",
+        "text": "虛構試行紀錄：理序盒由 3 個自願參與的團隊試用一週；同一份整理任務的試行組平均整理時間由 10 分鐘降到 8 分鐘。樣本不涵蓋所有團隊，也未測量整體工作效率。",
+        "based_on": []
+      },
+      {
+        "id": "PRODUCT",
+        "revision": 1,
+        "origin": "supplied_observation",
+        "text": "虛構產品資料：理序盒提供工作紀錄分類清單。",
+        "based_on": []
+      },
+      {
+        "id": "TAGLINE",
+        "revision": 1,
+        "origin": "creative_proposal",
+        "text": "創作提議：把紀錄理順，讓討論開始。",
+        "based_on": [
+          {
+            "unit_id": "PRODUCT",
+            "revision": 1
+          }
+        ]
+      }
+    ],
+    "relations": [],
+    "variants": [
+      {
+        "id": "pilot-card",
+        "name": "試行摘要卡草稿",
+        "kind": "single_illustration",
+        "unit_refs": [
+          {
+            "unit_id": "PILOT_LOG",
+            "revision": 1
+          },
+          {
+            "unit_id": "PRODUCT",
+            "revision": 1
+          }
+        ],
+        "brief": "並列試行組整理時間與產品功能；提議標語尚未獲作者採用。"
+      }
+    ]
+  },
+  "events": [
+    {
+      "kind": "assistant_suggestion",
+      "id": "suggest-tagline",
+      "variant_id": "pilot-card",
+      "proposal_ref": {
+        "unit_id": "TAGLINE",
+        "revision": 1
+      },
+      "text": "建議在摘要卡考慮這個創作標語；仍待作者選擇。"
+    }
+  ]
+}

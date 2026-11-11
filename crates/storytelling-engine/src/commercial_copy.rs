@@ -3,8 +3,9 @@
 use std::collections::{BTreeMap, BTreeSet};
 
 use storytelling_core::commercial_copy::{
-    CommercialCopyClaimReportV1, CommercialCopyClaimV1, CommercialCopyDocumentV1,
-    CommercialCopyKindV1, CommercialCopyReferenceReportV1, CommercialCopyReportV1,
+    CommercialCopyClaimReportV1, CommercialCopyClaimReportV2, CommercialCopyClaimV1,
+    CommercialCopyDocumentV1, CommercialCopyKindV1, CommercialCopyReferenceReportV1,
+    CommercialCopyReferenceReportV2, CommercialCopyReportV1, CommercialCopyReportV2,
 };
 use storytelling_core::narrative::NarrativeValidationErrorV1;
 use storytelling_core::narrative_revision::NarrativeSourceRevisionV1;
@@ -97,17 +98,18 @@ fn reference_report(
     reference: &storytelling_core::commercial_copy::CommercialCopyEvidenceReferenceV1,
     history: &[NarrativeSourceRevisionV1],
     current_sources: &BTreeMap<&str, &NarrativeSourceRevisionV1>,
-) -> CommercialCopyReferenceReportV1 {
+) -> CommercialCopyReferenceReportV2 {
     let cited = history.iter().find(|source| {
         source.unit_id == reference.unit_id && source.revision == reference.revision
     });
     let Some(current) = current_sources.get(reference.unit_id.as_str()) else {
-        return CommercialCopyReferenceReportV1 {
+        return CommercialCopyReferenceReportV2 {
             unit_id: reference.unit_id.clone(),
             revision: reference.revision,
             current_revision: None,
             cited_source_origin: cited.map(|source| source.origin),
             cited_source_text: cited.map(|source| source.text.clone()),
+            current_source_text: None,
             reference_status: "dangling".to_owned(),
         };
     };
@@ -118,12 +120,13 @@ fn reference_report(
     } else {
         "unknown_revision"
     };
-    CommercialCopyReferenceReportV1 {
+    CommercialCopyReferenceReportV2 {
         unit_id: reference.unit_id.clone(),
         revision: reference.revision,
         current_revision: Some(current.revision),
         cited_source_origin: cited.map(|source| source.origin),
         cited_source_text: cited.map(|source| source.text.clone()),
+        current_source_text: Some(current.text.clone()),
         reference_status: status.to_owned(),
     }
 }
@@ -132,7 +135,7 @@ fn claim_report(
     claim: &CommercialCopyClaimV1,
     history: &[NarrativeSourceRevisionV1],
     current_sources: &BTreeMap<&str, &NarrativeSourceRevisionV1>,
-) -> CommercialCopyClaimReportV1 {
+) -> CommercialCopyClaimReportV2 {
     let evidence_refs: Vec<_> = claim
         .evidence_refs
         .iter()
@@ -161,21 +164,26 @@ fn claim_report(
     } else {
         "current"
     };
-    CommercialCopyClaimReportV1 {
+    CommercialCopyClaimReportV2 {
         id: claim.id.clone(),
         kind: claim.kind.as_str().to_owned(),
         wording: claim.wording.clone(),
         reference_status: reference_status.to_owned(),
+        support_status: match claim.kind {
+            CommercialCopyKindV1::FactualClaim => "human_review_required",
+            CommercialCopyKindV1::CreativeProposal => "not_applicable",
+        }
+        .to_owned(),
         evidence_refs,
     }
 }
 
 /// Produce a copy outline and report only source identity/revision status.
 /// A current reference does not establish that its source supports the wording.
-pub fn audit_commercial_copy(
+fn build_report(
     copy_bytes: &[u8],
     ledger_bytes: &[u8],
-) -> Result<CommercialCopyReportV1, NarrativeValidationErrorV1> {
+) -> Result<CommercialCopyReportV2, NarrativeValidationErrorV1> {
     if ledger_bytes.len() > MAX_INPUT_BYTES {
         return Err(error("input.too_large", "$.evidence_ledger"));
     }
@@ -222,28 +230,98 @@ pub fn audit_commercial_copy(
         ));
     }
     let current_sources = latest_sources(&evidence.source_history);
-    let report = CommercialCopyReportV1 {
-        schema_version: 1,
+    let claims: Vec<_> = copy
+        .claims
+        .iter()
+        .map(|claim| claim_report(claim, &evidence.source_history, &current_sources))
+        .collect();
+    let call_to_action = claim_report(
+        &copy.call_to_action,
+        &evidence.source_history,
+        &current_sources,
+    );
+    let reference_attention_claim_ids = claims
+        .iter()
+        .chain(std::iter::once(&call_to_action))
+        .filter(|claim| {
+            matches!(
+                claim.reference_status.as_str(),
+                "missing" | "dangling" | "unknown_revision" | "revised"
+            )
+        })
+        .map(|claim| claim.id.clone())
+        .collect();
+    let report = CommercialCopyReportV2 {
+        schema_version: 2,
         copy_id: copy.copy_id,
         copy_revision: copy.copy_revision,
         evidence_document_id: evidence.document_id,
         purpose: copy.purpose,
         audience: copy.audience,
-        claims: copy
-            .claims
-            .iter()
-            .map(|claim| claim_report(claim, &evidence.source_history, &current_sources))
-            .collect(),
-        call_to_action: claim_report(
-            &copy.call_to_action,
-            &evidence.source_history,
-            &current_sources,
-        ),
+        claims,
+        call_to_action,
+        reference_attention_claim_ids,
         reference_scope: "reference-identity-and-revision-only",
     };
-    let report_bytes = serde_json::to_vec(&report).map_err(|_| error("copy.invalid_shape", "$"))?;
-    if report_bytes.len() > MAX_COPY_OUTPUT_BYTES {
+    Ok(report)
+}
+
+fn check_output_limit(report: &impl serde::Serialize) -> Result<(), NarrativeValidationErrorV1> {
+    let bytes = serde_json::to_vec(report).map_err(|_| error("copy.invalid_shape", "$"))?;
+    if bytes.len() > MAX_COPY_OUTPUT_BYTES {
         return Err(error("copy.output_too_large", "$"));
     }
+    Ok(())
+}
+
+fn v1_claim(claim: CommercialCopyClaimReportV2) -> CommercialCopyClaimReportV1 {
+    CommercialCopyClaimReportV1 {
+        id: claim.id,
+        kind: claim.kind,
+        wording: claim.wording,
+        reference_status: claim.reference_status,
+        evidence_refs: claim
+            .evidence_refs
+            .into_iter()
+            .map(|reference| CommercialCopyReferenceReportV1 {
+                unit_id: reference.unit_id,
+                revision: reference.revision,
+                current_revision: reference.current_revision,
+                cited_source_origin: reference.cited_source_origin,
+                cited_source_text: reference.cited_source_text,
+                reference_status: reference.reference_status,
+            })
+            .collect(),
+    }
+}
+
+/// Retain the accepted V1 shape and enforce V1's own serialized output limit.
+pub fn audit_commercial_copy(
+    copy_bytes: &[u8],
+    ledger_bytes: &[u8],
+) -> Result<CommercialCopyReportV1, NarrativeValidationErrorV1> {
+    let full = build_report(copy_bytes, ledger_bytes)?;
+    let report = CommercialCopyReportV1 {
+        schema_version: 1,
+        copy_id: full.copy_id,
+        copy_revision: full.copy_revision,
+        evidence_document_id: full.evidence_document_id,
+        purpose: full.purpose,
+        audience: full.audience,
+        claims: full.claims.into_iter().map(v1_claim).collect(),
+        call_to_action: v1_claim(full.call_to_action),
+        reference_scope: full.reference_scope,
+    };
+    check_output_limit(&report)?;
+    Ok(report)
+}
+
+/// Opt-in V2 adds current text and attention IDs; it does not judge support.
+pub fn audit_commercial_copy_v2(
+    copy_bytes: &[u8],
+    ledger_bytes: &[u8],
+) -> Result<CommercialCopyReportV2, NarrativeValidationErrorV1> {
+    let report = build_report(copy_bytes, ledger_bytes)?;
+    check_output_limit(&report)?;
     Ok(report)
 }
