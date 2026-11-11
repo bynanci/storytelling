@@ -36,7 +36,7 @@
 | [N-03／#50](https://github.com/bynanci/storytelling/issues/50) · N-R03 口述與插畫 | 接續 N-02。主分支已有本機指令，作者試讀待完成。 | `render-narrative` 依同一份來源輸出口述與兩種構圖。檢查來源、故障案例、輸入唯讀與重播一致性。另跑既有影片與 OTIO 回歸。[命令與輸出](docs/validation/n03-narrative-cli.md) |
 | [N-04／#51](https://github.com/bynanci/storytelling/issues/51) · N-R04 修訂與作者決定 | 接續 N-03。主分支已有修訂查詢。真人檢視另列。 | 先改共同事實，再改單一構圖。工具依直接引用列出受影響的版本。歷史保留舊稿、提案及宣告的作者決定。[修訂驗證紀錄](docs/validation/n04-narrative-revisions.md) |
 | [N-05／#52](https://github.com/bynanci/storytelling/issues/52) · N-R05 文案與證據 | G3–G4。接續 N-04。 | 交付受眾、主張、引用、文案與下一步。標出過期或已移除的引用。由審閱者判斷來源是否支持主張。 |
-| [N-06／#53](https://github.com/bynanci/storytelling/issues/53) · N-R06 選擇新模式 | G0–G2。接續 N-04。 | [格式探索紀錄](docs/validation/n06-format-discovery.md)比較未決構思分支、劇本揭露順序與缺素材的影片交接，列出相容性與最小變更；作者回饋與選案待補。 |
+| [N-06／#53](https://github.com/bynanci/storytelling/issues/53) · N-R06 選擇新模式 | G0–G2 比較完成；請求者明確暫緩三種原生模式。 | [格式探索紀錄](docs/validation/n06-format-discovery.md)列出相容性、最小變更與[暫緩決策](https://github.com/bynanci/storytelling/issues/53#issuecomment-6792555714)。未宣稱任務耗時或試用結果；實際需求與單一採用決策出現前，N-10 維持暫緩。 |
 | [N-07／#54](https://github.com/bynanci/storytelling/issues/54) · N-R07 產品決定 | G4–G6。接續 N-05。 | 重做基準任務。分組報告完成數與總數、耗時及歸因錯誤。將可重現的失敗連到測試案例。維護者決定繼續、縮小或停止。另行評估發布。 |
 
 將[前七段 Codex 指令](docs/CODEX_NARRATIVE_PROMPTS.zh-TW.md)派給對應任務。後續五票與既有任務的追加指令收在[多模態派工指南](docs/CODEX_MULTIMODAL_PROMPTS.zh-TW.md)。
@@ -66,7 +66,7 @@
 | 商業文案 | Skill 可整理主張及依據。影片條件檢查器無法判定文案是否獲得佐證。 | [N-05 查核主張](https://github.com/bynanci/storytelling/issues/52) |
 | 流派與手法 | `check-narrative-style` 以獨立且綁定 revision 的 profile 檢查口述 beat 順序，不判斷美感。真人盲讀仍待執行。 | [N-08／#65 驗證紀錄](docs/validation/n08-style-profile.md)。 |
 | 聲音與 Podcast | `render-cue-sheet` 依 N-02 綁定旁白、停頓與已提供的音效，保留未知時間並檢查互斥聲軌衝突。錄音與混音仍由宿主處理。 | [N-09／#66](https://github.com/bynanci/storytelling/issues/66)：[規格](docs/narrative/NARRATIVE_CUE_SHEET_V1.zh-TW.md)與[重播證據](docs/validation/n09-cue-sheet.zh-TW.md)。 |
-| 編劇、分支構思與影片對照 | 文字樣板可用。影片規劃器支援鏡頭順序。 | [N-06](https://github.com/bynanci/storytelling/issues/53) 明確選案後，[N-10／#67](https://github.com/bynanci/storytelling/issues/67) 才實作該模式。 |
+| 編劇、分支構思與影片對照 | 文字樣板可用。請求者在 [N-06](docs/validation/n06-format-discovery.md) 暫緩三種新原生模式。 | [N-10／#67](https://github.com/bynanci/storytelling/issues/67) 保持開啟／暫緩；待實際作者需求與明確單一採用決策才啟動。 |
 | 跨媒體交接 | `render-handoff` 將檔案、描述、文字標註、提案及缺件宣告綁定 N-04 修訂，區分須改日期與可沿用的構圖、聲音。 | [N-11／#68](https://github.com/bynanci/storytelling/issues/68)：[規格](docs/narrative/NARRATIVE_HANDOFF_MANIFEST_V1.zh-TW.md)與[重播證據](docs/validation/n11-handoff.md)。語意仍由作者檢視。 |
 | 實際產出圖檔或音檔 | N-12 在 Linux 用 Inkscape 1.4 將合成 SVG 匯出 PNG 並讀回；入口不可用時交付構圖說明。[可行性紀錄與真實產物](docs/validation/n12-inkscape-png.zh-TW.md) | [N-12／#69](https://github.com/bynanci/storytelling/issues/69) 的縮小採用建議待維護者決定；正式 adapter 另行排程。 |
 

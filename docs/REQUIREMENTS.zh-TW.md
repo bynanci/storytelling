@@ -312,7 +312,7 @@ see the [validation record](validation/m3-03-filmcraft-execution.md).
 | N-R03／N-03 | 用同一來源產出一份口述與兩款構圖。 | `render-narrative` 讀取 [V1 範例](../tests/fixtures/narrative-v1/n03-authoring-v1.json)。[驗證紀錄](validation/n03-narrative-cli.md)列出三份輸出。全景與近景各自保留來源 ID，C01 只出現在全景。測試涵蓋無媒體輸入、檔案與標準輸入重播、原檔與暫存目錄不變。引用不存在時回傳 JSON 錯誤及退出碼 1。引擎測試涵蓋 N-02、順序、來源、位元組數與深度限制。開發者在實作前記錄失敗測試。影片 V1 與官方 OTIO 回歸另有紀錄。自動化結果與作者試讀分開記錄。 |
 | N-R04／N-04 | 保留多款草稿，找出一項修訂影響的版本。 | [修訂契約](narrative/NARRATIVE_REVISION_LEDGER_V1.md)、[格式](../contracts/narrative-revision-ledger-v1.schema.json)、[案例](../tests/fixtures/narrative-v1/n04-revision-history-v1.json)與[驗證紀錄](validation/n04-narrative-revisions.md)可供重播。修訂 S02 影響口述與兩款構圖。審閱後再修訂 C01，只影響構圖 B。歷史保留來源、變體及宣告的作者選擇。提案事件不可夾帶決定。CLI 只計算直接引用，無法驗證決定者身分。PR #76 於 `9eb12eefe41ef965acee1f5e78e373e3b782372c` 合併；同一提交與合併後 CI run #218 的已設定檢查均通過。真人檢視仍待完成。 |
 | N-R05／N-05 | 寫出文案大綱，辨識還缺依據的主張。 | 測試有效引用、無引用、引用不存在與來源已修訂。工具回報引用狀態。審閱者判斷來源能否支持措辭，以及文案是否可發布。 |
-| N-R06／N-06 | 選出值得開發的新模式。 | [格式探索紀錄](validation/n06-format-discovery.md)比較三個候選方向、現有契約相容性與最小可行變更；真人回饋與採用／暫緩決定待補。 |
+| N-R06／N-06 | 選出值得開發的新模式。 | [格式探索紀錄](validation/n06-format-discovery.md)比較三個候選方向、現有契約相容性與最小可行變更。請求者已[明確暫緩三者](https://github.com/bynanci/storytelling/issues/53#issuecomment-6792555714)；不宣稱任務試用或耗時結果。 |
 | N-R07／N-07 | 決定繼續開發、縮小範圍或停止。 | 在 G4–G6 重做 N-01 的合成任務。記錄作者的選擇、接手方能否使用產物、量測值與回歸問題。提出發布候選版時，須附相容性、遷移與回退證據。 |
 
 N-R02 的資料契約與 N-01 的試用條件已固定。新增觀察可以補充證據。變更契約或試用條件時，須另行記錄決定。
@@ -347,6 +347,6 @@ M0、M1-01 與限定範圍的 M2-01 稽核只支援前兩項。
 | --- | --- |
 | N-R08／[N-08](https://github.com/bynanci/storytelling/issues/65) | 以同一份合成素材比較兩種開場。綁定敘事文件 revision 的 `NarrativeStyleProfileV1` CLI 檢查口述變體 beat 順序。有效規則可通過；同一變體的循環會列出規則 ID；順序違反、舊 revision 和未知版本均回傳穩定診斷。[N-08 驗證紀錄](validation/n08-style-profile.md)列出重跑測試及成對案例。真人盲讀仍待執行；檢查器不宣稱評價美感或代表作者核准。 |
 | N-R09／[N-09](https://github.com/bynanci/storytelling/issues/66) | `render-cue-sheet` 輸出綁定口述 `NarrativeDocumentV1` revision 的獨立封閉提示表。保留工作坊受眾、週六活動與帶一把傘的素材；旁白標為待錄、停頓標示估時，`taps.wav` 標為已宣告音效。允許跨軌疊音與半開區間首尾相接；拒絕互斥軌衝突、反向區間、重複 ID 與未知版本。保存輸出與結束碼，證明逐位元一致重播，並維持 `NarrativeDocumentV1` 不變。[規格](narrative/NARRATIVE_CUE_SHEET_V1.zh-TW.md) · [N-09 驗證紀錄](validation/n09-cue-sheet.zh-TW.md)。 |
-| N-R10／[N-10](https://github.com/bynanci/storytelling/issues/67) | N-06 明選一案後才開發。從本機入口執行一個正例及一個反例。既有影片回歸須通過。 |
+| N-R10／[N-10](https://github.com/bynanci/storytelling/issues/67) | 依 N-06 請求者決策暫緩。後續決策須明選一案並列作者需求與版本範圍，才啟動正常 CLI 正反例及既有影片回歸。 |
 | N-R11／[N-11](https://github.com/bynanci/storytelling/issues/68) | `render-handoff` 透過原有 N-04 修訂簿對照文字、圖像與聲音部分。[規格](narrative/NARRATIVE_HANDOFF_MANIFEST_V1.zh-TW.md)、[案例](../tests/fixtures/narrative-handoff-v1/README.md)及[證據](validation/n11-handoff.md)涵蓋事先固定的日期影響集合、遺失與過期引用、專屬提案外溢、完整對照、描述來源、來源未變及一致重播。語意另由作者檢視。 |
 | N-R12／[N-12](https://github.com/bynanci/storytelling/issues/69) | [Inkscape 可行性試驗](validation/n12-inkscape-png.zh-TW.md)以同一請求與 S2 交付真正 PNG、完整解碼及視覺讀回，再受控隱藏匯出入口交付構圖說明。保存來源前後身分與命令／退出碼。正式 adapter 的縮小採用建議待維護者決定。 |

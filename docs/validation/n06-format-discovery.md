@@ -2,9 +2,9 @@
 # N-06 / N-R06 · Format discovery
 
 **Issue:** [#53](https://github.com/bynanci/storytelling/issues/53)  
-**Stage:** SDLC G0–G2 discovery; no format has been selected.  
+**Stage:** SDLC G0–G2 comparison complete; requester decision is to defer all three native profiles.
 **Shared case:** the synthetic two-neighbor shared-door repair in [N-01](../narrative/N-01-AUTHOR-STUDY.md) and the N-04 revision ledger.  
-**Evidence boundary:** this packet is a design comparison. No author session has been run; the response fields below remain blank.
+**Evidence boundary:** this packet is a design comparison with a recorded requester deferral. No task session or timed trial has been run; the task-observation fields below remain blank.
 
 ## Shared material and comparison prompts
 
@@ -50,13 +50,34 @@ Ask the author to use the same door-repair material for each prompt, then choose
 |  |  |  |  |  |
 |  |  |  |  |  |
 
-No author answers or time measurements are available yet. Do not infer a preference from the existence of the templates or the N-08 implementation.
+No task-specific answers or time measurements were supplied. The requester
+provided only the adoption decision below; do not infer a measured preference
+from the templates or N-08 implementation.
+
+## Explicit requester decision · 2026-11-11
+
+The requester read the three V1 scopes and the comparison summary, then selected:
+
+> 暫緩三者，等實際需求
+
+The [decision is recorded on Issue #53](https://github.com/bynanci/storytelling/issues/53#issuecomment-6792555714).
+It adopts no additional native profile. This is a requester decision, not an
+independent author trial or a claim that a particular workflow saves time.
+
+| Candidate | Recorded disposition | Current path |
+| --- | --- | --- |
+| Branching brainstorm | Deferred with the other two candidates; no branch task was performed. | Retain named text alternatives; revisit a persistent unresolved/selected lifecycle only for an actual author need. |
+| Screenplay | Deferred with the other two candidates; no scene task was performed. | Reuse N-08 for the bounded reveal-order probe. A separate occurrence/reveal contract is not adopted. |
+| Story-to-video mapping | Deferred with the other two candidates; no source clip was supplied. | Keep missing mappings unresolved and use N-11 for read-only source handoff. No timeline/export authority is added. |
 
 ## Recommendation and gate
 
 **Recommendation: defer all three native profiles until author feedback identifies an actual gap.** The existing text workflow can hold alternative ideas; N-08 covers the narrow reveal-order rule; and N-11 already provides read-only source/artifact handoff but not unit-to-video-asset timeline mapping. That mapping cannot be inferred safely. If the author chooses the screenplay probe, reuse N-08 before adding a schema. If video is selected, preserve unresolved mapping and keep execution disabled until an asset is declared.
 
-The next decision is the author's response to the six prompts above. Keep Issue #53 open and do not start N-10 until the response selects one candidate or explicitly defers the work.
+This explicit deferral completes the N-06 comparison/decision scope. Keep #67
+open and deferred. Resume N-10 only when an actual author request identifies a
+workflow gap and a new linked decision adopts exactly one mode, its author need
+and version scope. A recommendation or this deferral is not a mode adoption.
 
 ## Automated validation
 
