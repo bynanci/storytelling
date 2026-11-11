@@ -23,6 +23,12 @@ hand off. Two tracks test that aim against different authoring tasks.
 
 ## Cross-media narrative roadmap
 
+The [Storytelling skill](.agents/skills/storytelling/SKILL.md) is the author-facing
+entry point. Today it drafts multiple forms from prose with the host agent.
+The N milestones below add the separately testable contracts, local tool
+integration, revision tracking and measured author outcomes. Keep a natural-language
+example beside each runnable technical slice so authors can use it from the skill.
+
 | Outcome | Tasks and dependency | Decision and evidence |
 | --- | --- | --- |
 | Establish what authors need to reuse | N-01 discovery, then N-02 contract design | Compare manually prepared outputs for a synthetic everyday event. Keep source units, their relationships and proposed presentations distinct. Review an additive contract against existing video V1 fixtures. Narrow the design if a second output requires invented media fields. |
