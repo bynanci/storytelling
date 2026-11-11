@@ -1,71 +1,84 @@
-# SDLC: 從需求到維運的交付規則
+# 從需求到維運的開發流程
 
-本專案以可驗收的 vertical slice 迭代，不採先鋪滿所有模組再補整合。
-ROADMAP 決定成果順序，TASKS 決定工作範圍，REQUIREMENTS 連到測試與證據。
+本專案以軟體開發生命週期（SDLC）管理變更。每次交付一項能獨立使用、審閱與驗證的成果。路線圖安排交付順序。工作清單定義範圍。需求表將需求連到測試與證據。[路線圖](../ROADMAP.md) · [工作清單](../TASKS.md) · [需求表](REQUIREMENTS.md)
 
 ## 階段與放行門檻
 
-| Gate | 階段 | 必要產物 | 放行條件 | 負責角色 |
-| --- | --- | --- | --- | --- |
-| G0 | 問題／範圍 | 使用情境、成功指標、non-goals | 有明確使用者結果，未與既有功能重複 | Product owner / maintainer |
-| G1 | 需求分析 | Requirement IDs、驗收例、風險、依賴 | 硬限制與偏好分開；缺資料的項目明示 blocked | Maintainer + engineer |
-| G2 | 架構設計 | ADR、schema/API、資料權威、故障模型 | 邊界可測；migration/approval/security 有處理方式 | Engineer + reviewer |
-| G3 | 實作 | 小範圍 branch/PR、RED->GREEN 測試 | 單一可用切片；不破壞既有來源與權限 | Implementer |
-| G4 | 驗證 | 同一 SHA 的 unit/contract/integration/CI、差異審查 | 無未解 correctness blocker；人工 gate 獨立紀錄 | Reviewer + maintainer |
-| G5 | 發布 | 相容矩陣、版本/依賴/SBOM、遷移與回退說明 | 發布範圍真的被驗證；由 maintainer 明確批准 | Maintainer |
-| G6 | 維運與迭代 | 缺陷、repro fixture、使用結果、advisory/host drift | 重大缺陷先止損；回饋進入下一輪 G0/G1 | Maintainer + users |
+| 階段 | 必要產物 | 通過條件 | 負責角色 |
+| --- | --- | --- | --- |
+| G0 · 界定問題 | 使用情境、成功指標與範圍外項目 | 寫出使用者可取得的結果。檢查現有功能是否已涵蓋需求。 | 產品負責人、維護者 |
+| G1 · 分析需求 | 需求編號、驗收案例、風險與相依條件 | 區分必要條件與偏好。缺少資料時，標示受阻的項目。 | 維護者、工程師 |
+| G2 · 設計架構 | 架構決策紀錄、資料格式或 API、權威資料來源與故障情境 | 邊界可以測試。設計須涵蓋遷移、核准及安全條件。 | 工程師、審閱者 |
+| G3 · 實作 | 範圍明確的分支、合併請求與測試紀錄 | 先觀察測試失敗，再執行修改後的測試。交付一項可用成果。保留既有來源資料與權限。 | 實作者 |
+| G4 · 驗證 | 同一提交的單元、契約、整合測試及持續整合結果。另附差異審查。 | 解決阻礙正確性的問題。另記人工驗收結果。 | 審閱者、維護者 |
+| G5 · 發布 | 相容性矩陣、版本、依賴、軟體物料清單（SBOM）、遷移與回退說明 | 驗證全部發布範圍。取得維護者對本次發布的明確核准。 | 維護者 |
+| G6 · 維運 | 缺陷與重現資料、使用結果、安全通報與平台版本差異 | 遇到重大缺陷時，先限制影響。將回饋納入下一輪 G0 或 G1。 | 維護者、使用者 |
 
-同一個人可以兼多個角色，但 self-review 不能寫成 independent review。
-Agent 不冒充人類批准或代簽 DCO。合併依使用者明確授權與同-head 驗證結果執行；
-發布、tag、repository policy 與 branch rules 仍須各自的明確授權。
-本次延續任務已有「完成且驗證通過後合併並勾選任務」授權，見
-[accepted lifecycle](../TASKS.md#accepted-lifecycle)；這不替代人工剪輯驗收。
+同一人可兼任多個角色。自行審閱與獨立審閱分別記錄。AI 助理只記錄實際的人工核准。開發者來源證明（DCO）由簽署者本人提供。
+
+合併須有使用者明確授權，並通過同一提交的必要檢查。既有授權允許合併完成且驗證通過的變更，再勾選對應任務。人工剪輯驗收仍需另外記錄。發布、建立標籤、變更儲存庫政策或分支規則各需明確授權。[授權與交付紀錄](../TASKS.md#accepted-lifecycle)
 
 ## 工作狀態
 
-`proposed -> ready -> in-progress -> review -> verified -> accepted`。
-被阻擋時附 `blocker / owner / unblock condition / evidence`，不是把待辦直接勾掉。
-Implemented、automated-verified、manual-pending、released 是不同維度。
+`proposed → ready → in-progress → review → verified → accepted`
 
-## Definition of Ready
+工作受阻時標記 `blocked`。列出原因、負責人、解除條件與證據。分別記錄實作、自動驗證、待人工驗收與發布狀態。
 
-選定 Task ID；寫明使用者結果、範圍／不做項目、base SHA、依賴、資料契約、
-驗收測試、相容性／隱私／安全影響，以及可獨立審閱的 PR 範圍。
-素材、宿主或簽章身份缺少時，先定義 blocked gate，不捏造證據。
+<a name="definition-of-ready"></a>
 
-## Definition of Done
+## 開始工作的條件
 
-需求能追到程式與測試；相關 RED 已觀察，GREEN 已實跑；所有必要同-head CI
-完成；檔案、source/plan/revision identity 與故障路徑符合契約；文件和風險更新；
-review finding 收斂。真正需要宿主、聽感或乾淨機器的驗收必須有觀察，否則只接受
-較小的已驗證範圍，不能宣稱全功能發布。
+建立合併請求（PR）前，先確認工作範圍。
 
-## PR 規則
+1. 選定工作編號。寫出使用者可取得的結果。
+2. 列出範圍內與範圍外的項目。
+3. 記錄基準提交識別碼（base SHA）。列出相依條件與資料契約。
+4. 訂定驗收測試與可獨立審閱的 PR 範圍。
+5. 說明相容性、隱私與安全影響。
 
-一個 PR 解決一個一致的結果。Schema/time changes 先凍結契約，不讓平行工作
-各自改格式。PR 包含 Task/Requirement IDs、base/head、變更理由、測試命令、
-結果、限制、相容性與回退方式。不使用舊 head 的綠燈替代新 head。
-原始 bootstrap 準備階段僅授權建立 branch/PR；之後的明確合併授權與實際交付
-保留於 [TASKS](../TASKS.md#accepted-lifecycle)。每次依當前任務授權執行，
-不把歷史準備限制當成仍待使用者重複批准。測試基線 commit 的紅燈是明示的
-TDD evidence，不是可發布版本。
+若缺少素材、執行平台或簽署者身分，請標示受阻的門檻。列出所需證據。
 
-## CI 與真正的治理
+<a name="definition-of-done"></a>
 
-CI 的 `Required gates` 彙總 Quality 和 Linux/Windows/macOS Rust jobs。
-workflow 設定最小 read 權限、固定 checkout SHA、拒絕 commit formatter 的自動修補。
-新增這個檔案不等於 GitHub branch protection 已啟用；管理者必須另行批准設定。
-單一維護者 repo 不應盲目要求無法取得的第二人 approval；記錄可用的 review 政策，
-保留敏感變更人工決策，不能用 auto-approve 假裝有人審查。
+## 完成工作的條件
+
+1. 連結每項需求、實作與對應測試。
+2. 記錄測試實際失敗的結果（RED）。修改後執行測試，記錄通過的結果（GREEN）。
+3. 檢查 PR 目前提交的持續整合（CI）結果。所有必要檢查都須完成並通過。
+4. 核對檔案、來源、計畫與修訂版的識別資訊。驗證失敗路徑符合契約。
+5. 更新文件與風險。處理審閱發現的問題。
+
+需要實際平台、聽感或乾淨機器的項目，應保存實測觀察。若缺少這些觀察，只能驗收已驗證的範圍。發布另依 G5 辦理。
+
+<a name="pr-規則"></a>
+
+## 提交合併請求
+
+每個 PR 交付一項成果。資料格式或時間規則變更時，先確定契約，再同步開發。請在 PR 列出以下內容。
+
+- 工作編號與需求編號。
+- 基準提交（base）與送審提交（head）的識別碼。
+- 變更理由、相容性、限制與回退方式。
+- 測試命令、結果與目前提交通過的證據。
+
+送審提交變更後，須重新檢查該提交。測試先行的失敗提交可作為 RED 證據。發布仍以通過 G5 的版本為準。
+
+初期準備工作只取得建立分支與 PR 的授權。後續的合併授權與實際交付另載於工作清單。請依目前任務適用的授權執行。[歷次授權與交付](../TASKS.md#accepted-lifecycle)
+
+<a name="ci-與真正的治理"></a>
+
+## 持續整合與儲存庫政策
+
+CI 的 `Required gates` 彙總品質檢查、依賴稽核與三個平台的 Rust 測試。平台包括 Linux、Windows 與 macOS。工作流程使用唯讀權限。checkout 步驟固定使用指定提交。格式化若改動程式碼，檢查即失敗。[CI 工作流程](../.github/workflows/ci.yml)
+
+分支保護由管理者核准與設定。請記錄儲存庫實際採用的審閱政策。只有一位維護者時，以可執行的方式安排審閱。敏感變更保留人工決策。自動核准不能代替真人審閱。
 
 ## 變更管理與相容性
 
-公共 Rust API、wire schema、planner/compiler、adapter/host profile 各自版本化。
-改 schema 需舊 fixture、migration 與 newer-version refusal。公開檔案不含私有路徑、
-媒體、GPS 或 token。沒有維護者授權不做 license change 或正式發布。
+公開 Rust API、交換格式、規劃與編譯規則各自管理版本。轉接器與執行平台的支援規格也各自管理版本。變更交換格式時，測試舊版資料與遷移。確認工具拒絕未支援的新版格式。公開檔案不得包含私人路徑、私人媒體、定位資料或憑證。變更授權條款與正式發布都需要維護者明確授權。
 
 ## 維運
 
-公開問題用最小合成 repro；安全問題走私密管道。新依賴或宿主版本改變需重新評估
-相容性與 advisory；撤回有問題的 release 必須保留失敗證據與修復說明。
-目前尚未發布，事故/rollback 流程先以文件為 gate，不能宣稱已有安裝測試。
+公開問題須附最小合成案例。安全問題依安全政策私下回報。[安全政策](../SECURITY.md)
+
+新增依賴或執行平台改版時，請重新評估相容性與安全通報。撤回有缺陷的版本時，請保留失敗證據與修復說明。目前尚無正式發布版本。開發期間以事故處理與回退文件作為發布前的檢查項目。安裝測試的結果以實際套件、平台與版本為限。

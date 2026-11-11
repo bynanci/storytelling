@@ -1,25 +1,29 @@
-## Scope and traceability
-- Task IDs / Requirement IDs:
-- Base / exact head:
-- User-visible result and non-goals:
-- Implemented / automated-verified / manual-pending:
+## 工作範圍
 
-## Design and risks
-- ADR/API/schema changes:
-- Compatibility, migration and rollback:
-- Risk IDs / privacy / source and host safety:
+- 任務編號與需求編號
+- 基準提交碼與送審提交碼
+- 使用者可見的結果與範圍外項目
+- 已實作、已通過自動驗證及待人工驗收的項目
 
-## Evidence
-- RED reproduction:
-- GREEN commands and results:
-- Exact-head CI:
-- Real-host/manual gates (or explicitly not run):
-- Self-review vs independent review:
+## 設計與風險
 
-## Delivery checks
-- [ ] Sources and private data unchanged/not uploaded
-- [ ] Existing license and provenance preserved
-- [ ] No weakened assertions or ignored failures
-- [ ] TASKS/ROADMAP/requirements updated
-- [ ] No unauthorized merge, publication or admin change
-- [ ] AI assistance disclosed; no sign-off on another person's behalf
+- 架構決策、API 或資料格式的變更
+- 相容性、遷移方式與回退方式
+- 風險編號、隱私、來源與執行平台的影響
+
+## 驗證紀錄
+
+- 實作前重現失敗的命令與結果
+- 實作後通過測試的命令與結果
+- 送審提交碼的 CI 結果
+- 實機與人工驗收的結果或待驗項目
+- 作者自行檢查及獨立審閱的結果
+
+## 提交前檢查
+
+- [ ] 保留原始素材。未上傳私人資料。
+- [ ] 保留現有授權與來源聲明。
+- [ ] 保留測試斷言。已記錄測試失敗。
+- [ ] 已核對任務、路線圖與需求文件。
+- [ ] 合併、發布與設定變更符合授權範圍。
+- [ ] 已揭露 AI 協助。未代他人簽署。

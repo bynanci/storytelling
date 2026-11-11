@@ -7,12 +7,12 @@
 | 1 · [N-08／#65](#n-08) | 同一份素材的兩種敘事處理，以及一條可重跑的風格規則 | #49 契約已採納；和 #51 對齊 ID 與 revision 語意 |
 | 2 · [N-09／#66](#n-09) | 錄製者看得懂且能用 CLI 查核的聲音提示表 | #49 已採納；可獨立於 #50 |
 | 3 · [N-12／#69](#n-12) | 一個宿主實際產出的檔案、讀回證據和缺少能力時的交付 | 可用 #49 先做試驗；#68 的 manifest 是另一條可選路徑 |
-| 4 · [N-11／#68](#n-11) | 文字、圖片與音訊的唯讀交接清單，以及改稿時受影響的產物 | 等 #51 可重跑地提供修訂判定 |
+| 4 · [N-11／#68](#n-11) | 文字、圖片與音訊的唯讀交接清單，以及改稿時受影響的產物 | 主分支已有 #51 的修訂查詢；先重播兩個對照案例。 |
 | 5 · [N-10／#67](#n-10) | #53 明選的一種新模式，透過正常本機入口使用 | 等 #53 留下單一採用決定；若暫緩則保留此票 |
 
 前三項可平行。逐票提交時，可先做 #65 和 #66，再用 #69 檢驗一種真實檔案交付。#68 與 #67 之間沒有直接依賴。#51 的修訂判定可重跑便能派 #68；#53 明選一案後便能派 #67。開始前查當下的 main 和進行中的 PR，沿用已完成的工作。
 
-**原本七段如何銜接。** [#49 的契約已採納](https://github.com/bynanci/storytelling/pull/71)。已派出的 [#50](https://github.com/bynanci/storytelling/issues/50) 依該契約實作 `storytelling render-narrative <FILE|->`，從已宣告內容渲染口述與構圖；[#51](https://github.com/bynanci/storytelling/issues/51) 接續做修訂判定。若這兩票已有工作分支，在原任務補充規格即可。[#48 的試用包](narrative/N-01-AUTHOR-STUDY.zh-TW.md) 可同步收集真人基準。[#52](https://github.com/bynanci/storytelling/issues/52) 與 [#53](https://github.com/bynanci/storytelling/issues/53) 在 #51 後可分頭進行；[#54](https://github.com/bynanci/storytelling/issues/54) 在 #52 後沿用同一試用包。
+**原本七段如何銜接。** [#49 的契約已採納](https://github.com/bynanci/storytelling/pull/71)。主分支的 [#50](https://github.com/bynanci/storytelling/issues/50) 已提供 `storytelling render-narrative <FILE|->`，從已宣告內容渲染口述與構圖。[#51](https://github.com/bynanci/storytelling/issues/51) 已提供修訂查詢，可依[實測紀錄](validation/n04-narrative-revisions.md)重播。若這兩票已有工作分支，在原任務補充規格即可。[#48 的試用包](narrative/N-01-AUTHOR-STUDY.zh-TW.md) 可同步收集真人基準。[#52](https://github.com/bynanci/storytelling/issues/52) 與 [#53](https://github.com/bynanci/storytelling/issues/53) 在 #51 後可分頭進行；[#54](https://github.com/bynanci/storytelling/issues/54) 在 #52 後沿用同一試用包。
 
 工程範圍可對照[多模態 backlog](../TASKS.md#multimodal-rust-backlog)、[需求與驗收](REQUIREMENTS.md#multimodal-authoring-and-follow-up-requirements)、[SDLC](SDLC.md) 和[已採納的 V1 規格](narrative/NARRATIVE_DOCUMENT_V1.md)。以下範例共用[修傘工作坊素材](../skills/storytelling/references/workshop-demo.md)，方便對照不同任務產出的證據。
 
@@ -56,7 +56,7 @@
 **實際拿到圖檔的宿主試驗。** [Issue #69 · N-R12](https://github.com/bynanci/storytelling/issues/69)
 
 ```text
-在 bynanci/storytelling 執行 #69（N-12／N-R12，G0–G2 可行性）。先查最新 main、同票 PR、AGENTS.md、TASKS.md、docs/SDLC.md、#49 的資料邊界，以及 docs/migration/OPENFILM_RUST_PORT_MAP.md 中適用的 OF-37～39。若已有獲選的案例，延續原選擇。否則選「根據提供的修傘構圖交付 PNG」：一個已授權的本機宿主、一種輸出能力，可直接依 #49 開始。
+在 bynanci/storytelling 執行 #69（N-12／N-R12，G0–G2 可行性）。先查最新 main、同票 PR、AGENTS.md、TASKS.md、docs/SDLC.md、#49 的資料邊界，以及 docs/MIGRATION.md 連到的 OF-37～39 移轉項目。若已有獲選的案例，延續原選擇。否則選「根據提供的修傘構圖交付 PNG」：一個已授權的本機宿主、一種輸出能力，可直接依 #49 開始。
 
 用 $storytelling 接收「把工作檯示意構圖交成能打開的圖檔，保留左邊藍傘、右邊線軸」。採用 skills/storytelling/assets/umbrella-workshop/bench.svg 與 workshop-demo.md 的構圖要求。記錄宿主版本、權限、輸入、重播命令及產出檔。用解碼器重新開啟輸出的 PNG，核對實際尺寸、傘與線軸位置，記下讀回方法與觀察。若沿用語音轉錄案例，另備獲授權、有語音且有對照文字的合成音檔；套件內 taps.wav 只有敲擊聲。
 

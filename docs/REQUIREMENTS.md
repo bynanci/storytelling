@@ -1,4 +1,6 @@
-# Requirements and verification traceability
+# 需求與驗收對照
+
+作者工作流程請查[跨媒體敘事](#proposed-cross-media-narrative-requirements)或[多模態需求](#multimodal-authoring-and-follow-up-requirements)。下列影片工程紀錄保留各項需求的測試名稱、驗證工具與版本。
 
 M0, finite M1-01/M1-02, bounded M2-01 audit, M2-02 fixed-window planning and
 M1-H01–H04's M1-03 source/host proof are accepted on main. Broader host, full-planner and human acceptance remain
@@ -234,7 +236,7 @@ call a host or make a `NotApplied` observation true. The M3-03 proof covers an
 already-applied import whose response is lost after the host exits. The production
 executor still must handle requests that remain in flight, establish process
 quiescence before any retry, and stop on unresolved or ambiguous readback. M4's
-OpenFilm feature flag follows accepted journal/executor readback, with one writer.
+reference application feature flag follows accepted journal/executor readback, with one writer.
 
 ## SQLite operation journal
 
@@ -265,6 +267,8 @@ the old request is no longer in flight. That quiescence gate remains open after
 the bounded M3-03 proof. No exactly-once effect, trusted approval or key
 authorization is claimed.
 
+<a id="m3-03-isolated-filmcraft-execution"></a>
+
 ## M3-03 isolated FilmCraft execution proof
 
 The [M3-03 profile](migration/M3-03-ISOLATED-FILMCRAFT.md) and
@@ -278,7 +282,7 @@ trusted approval, retry policy or cross-platform FilmCraft support.
 | M3-XE02 | Persist project-creation and import identity, owner/fence and attempt marker before each host mutation; recover the final states after reopening SQLite | Test-only adapter calls M3-02 journal API | `isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback`, `exact_review_and_artifact_identity_survive_restart_and_idempotent_prepare` |
 | M3-XE03 | Lost successful import response becomes durable unknown; native readback matches exact 25 fps clip/source ranges before recording applied-observed | FilmCraft v0.18.0 Linux oracle | `isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback`; [evidence](../tests/oracles/m3-03-filmcraft-v1/evidence.json) |
 | M3-XE04 | No duplicate apply or Undo; terminal readback cannot be overwritten by a late response | Journal fence plus host proof | `isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback`, `stale_owner_and_late_attempt_response_cannot_overwrite_newer_state` |
-| M3-XE05 | All write paths are new files under a fresh run root; no existing project or OpenFilm Catalog is opened | Oracle preflight and isolated FilmCraft data directory | [oracle README](../tests/oracles/m3-03-filmcraft-v1/README.md), machine evidence |
+| M3-XE05 | All write paths are new files under a fresh run root; no existing project or source catalog is opened | Oracle preflight and isolated FilmCraft data directory | [oracle README](../tests/oracles/m3-03-filmcraft-v1/README.md), machine evidence |
 | M3-XE06 | Ambiguous outcome cannot begin another attempt; existing journal failure regressions remain portable across workspace CI | Accepted M3-02 state machine | `unknown_response_and_applied_response_never_enable_a_retry`, `repeated_ambiguous_readbacks_have_a_per_attempt_bound` |
 
 The lost-response fault is injected only after the FilmCraft subprocess has
@@ -289,63 +293,58 @@ distinct from human approval: the proof explicitly records approval_granted=fals
 and executable=false. The production executor and PR #28 G2 gate remain open;
 see the [validation record](validation/m3-03-filmcraft-execution.md).
 
-## Remaining breadth and future requirements
+<a id="remaining-breadth-and-future-requirements"></a>
 
-### Proposed cross-media narrative requirements
+## 敘事功能與後續需求
 
-The [product rationale and author scenarios](WHY_STORYTELLING.md) explain which
-decisions an author makes and who can verify the outcome. In N-R04, compare
-expected and actual affected IDs and record both omissions and unrelated rewrites.
-In N-R05, report reference validity separately from editorial support for a claim.
-For N-R07, record the author's choice and whether the recipient could use the
-handoff alongside the existing pilot measures. These observations do not alter
-the accepted N-R02 wire contract or the N-01 comparison protocol.
+<a id="proposed-cross-media-narrative-requirements"></a>
 
-The following are acceptance targets for the [N-track tasks](../TASKS.md#cross-media-narrative-backlog).
-Implementation PRs record their real fixture paths, test names and evidence here.
-Each example below describes evidence to collect during future development.
-For cross-media delivery, capture the original request to the [skill](../skills/storytelling/SKILL.md)
-and the output the author received. For a deterministic claim, also record the local
-command, fixture, output and exit status. For a human outcome, attach the actual
-observation. Packaging checks, drafted examples and author pilot evidence answer
-different questions.
+### 跨媒體敘事需求
 
-| ID / task | User-visible requirement | Evidence to supply at the applicable SDLC gate |
+[設計依據](WHY_STORYTELLING.md)說明作者要做哪些決定。[敘事任務](../TASKS.md#cross-media-narrative-backlog)列出實作順序。每項 PR 須附使用者給 [Skill](../skills/storytelling/SKILL.md) 的請求及實際產物。驗證自動化行為時，請附輸入、命令、輸出及退出碼。評估作者的使用結果時，請附真人觀察。
+
+| 需求／任務 | 使用者要完成的事 | 驗收依據 |
 | --- | --- | --- |
-| N-R01 / N-01 | An author can describe who the work is for, what they want to communicate and which details they supplied. | [N-01 author study packet](narrative/N-01-AUTHOR-STUDY.zh-TW.md) prepared against main 260485b2ff5b8d7b46215004e21a5bb1a37e6dfb: synthetic notes S01–S04, an oral outline, two contrasting compositions with C01 only in A, unsupported commercial claim U01, the matched identity revision, four measures and predeclared decision thresholds. Actual human results remain blank; the G0–G1 maintainer review and decision remain pending. |
-| N-R02 / N-02 | A separately versioned narrative document can describe material and its relationships without media files or clocks. | [Accepted ADR 0005](adr/0005-independent-narrative-document-v1.md), [NarrativeDocumentV1 profile](narrative/NARRATIVE_DOCUMENT_V1.md), [Draft 2020-12 schema](../contracts/narrative-document-v1.schema.json), and [paired synthetic fixtures](../tests/fixtures/narrative-v1/README.md). The valid case shares source units between an oral outline and one illustration; two-way association is accepted, while precedence cycles, dangling/stale references, duplicate keys, unknown fields/versions and size limits have defined behavior. Compatibility inventory names existing video JSON, CLI, OpenFilm, OTIO and digest regressions. PR #71 CI passed on its reviewed head; a P2 cycle-witness finding was addressed and the latest automated re-review has no unresolved findings. Maintainer acceptance for N-03 is recorded by the current Issue #50 instruction. |
-| N-R03 / N-03 | An author can reuse a single source for a spoken outline and two distinct spatial compositions. | `storytelling render-narrative <FILE|->` processes [`n03-authoring-v1.json`](../tests/fixtures/narrative-v1/n03-authoring-v1.json) under the accepted `NarrativeDocumentV1` profile. The [validation record](validation/n03-narrative-cli.md) gives the Skill request and exact three outputs: ordered oral beats and contrasting wide/close briefs preserve source IDs and origins, with C01 only in the wide brief. CLI tests prove media-free execution, identical bytes across repeated file and stdin runs, unchanged input and temporary files, and the dangling-reference JSON diagnostic/exit 1. Engine tests cover paired N-02 fixtures, reference/order/provenance rules and byte/depth limits. RED was observed before implementation. Local debug/release video V1 and official OTIO regressions are recorded there; exact-head hosted CI and author inspection remain separate review evidence. No human outcome is claimed. |
-| N-R04 / N-04 | Authors can retain alternative variants and see which one is affected by a revision. | [`NarrativeRevisionLedgerV1`](narrative/NARRATIVE_REVISION_LEDGER_V1.md), [schema](../contracts/narrative-revision-ledger-v1.schema.json), [fixture](../tests/fixtures/narrative-v1/n04-revision-history-v1.json), and [G3–G4 validation](validation/n04-narrative-revisions.md). The CLI reports S02@1→@2 affecting oral and both illustrations; after review, C01@1→@2 affects only illustration B. It retains prior source/variant snapshots and declared choices; a suggestion event cannot carry decision fields. CLI input does not authenticate the producer of an `author_decision`, and impact follows direct references only. Hosted same-head CI and human inspection are recorded separately. |
-| N-R05 / N-05 | An author can assemble a commercial outline and see which factual claims still need support. | G3–G4 trace a claim to an explicit reference, flag a claim with none, and flag a dangling or changed reference. The report describes the reference provided and leaves factual and publication judgment with the reviewer. |
-| N-R06 / N-06 | A contributor can determine which additional profile justifies further development. | G0–G2 compare an unresolved brainstorm branch, a screenplay reveal that differs from event order, and a proposed video handoff with a missing asset. Record the smallest viable boundary, cost and a proceed/defer decision for each. |
-| N-R07 / N-07 | A maintainer can decide whether the authoring workflow merits another iteration or a release candidate. | G4–G6 compare the same synthetic authoring task against the N-01 baseline. Record observed results, regressions, manual feedback and a continue/narrow/stop decision. For a release candidate, attach compatibility, migration and rollback evidence and follow the existing release process. |
+| N-R01／N-01 | 說出對象、目的與自己提供的細節。 | [作者試用包](narrative/N-01-AUTHOR-STUDY.zh-TW.md)以提交 `260485b2ff5b8d7b46215004e21a5bb1a37e6dfb` 為基準。使用 S01 至 S04 製作口述及兩款構圖。C01 只屬於 A。U01 是尚無佐證的商業主張。試用包提供相同的身分修訂題、四項指標與決策門檻。真人觀察與維護者的 G0–G1 決定待補。 |
+| N-R02／N-02 | 用獨立版本的敘事文件描述素材與關係。作者無須提供媒體檔或時間資訊。 | [ADR 0005](adr/0005-independent-narrative-document-v1.md)、[V1 規格](narrative/NARRATIVE_DOCUMENT_V1.md)、[JSON Schema](../contracts/narrative-document-v1.schema.json)與[成對測試案例](../tests/fixtures/narrative-v1/README.md)定義支援範圍。口述與構圖可共用來源。允許雙向聯想。強制順序成環、引用遺失或過期、重複欄位、未知版本或超量都要回報。相容性清單涵蓋影片 JSON、CLI、既有匯入格式、OTIO 與雜湊。PR #71 的送審版本通過 CI。修正 P2 循環診斷後，自動複查沒有待處理項目。維護者在 #50 採用此契約。 |
+| N-R03／N-03 | 用同一來源產出一份口述與兩款構圖。 | `render-narrative` 讀取 [V1 範例](../tests/fixtures/narrative-v1/n03-authoring-v1.json)。[驗證紀錄](validation/n03-narrative-cli.md)列出三份輸出。全景與近景各自保留來源 ID，C01 只出現在全景。測試涵蓋無媒體輸入、檔案與標準輸入重播、原檔與暫存目錄不變。引用不存在時回傳 JSON 錯誤及退出碼 1。引擎測試涵蓋 N-02、順序、來源、位元組數與深度限制。開發者在實作前記錄失敗測試。影片 V1 與官方 OTIO 回歸另有紀錄。自動化結果與作者試讀分開記錄。 |
+| N-R04／N-04 | 保留多款草稿，找出一項修訂影響的版本。 | [修訂契約](narrative/NARRATIVE_REVISION_LEDGER_V1.md)、[格式](../contracts/narrative-revision-ledger-v1.schema.json)、[案例](../tests/fixtures/narrative-v1/n04-revision-history-v1.json)與[驗證紀錄](validation/n04-narrative-revisions.md)可供重播。修訂 S02 影響口述與兩款構圖。審閱後再修訂 C01，只影響構圖 B。歷史保留來源、變體及宣告的作者選擇。提案事件不可夾帶決定。CLI 只計算直接引用，無法驗證決定者身分。人工驗收另列。 |
+| N-R05／N-05 | 寫出文案大綱，辨識還缺依據的主張。 | 測試有效引用、無引用、引用不存在與來源已修訂。工具回報引用狀態。審閱者判斷來源能否支持措辭，以及文案是否可發布。 |
+| N-R06／N-06 | 選出值得開發的新模式。 | 比較未決的構思分支、事件與揭露順序不同的劇本，以及缺素材的影片交接。記錄各案的最小範圍、成本與採用或暫緩的理由。 |
+| N-R07／N-07 | 決定繼續開發、縮小範圍或停止。 | 在 G4–G6 重做 N-01 的合成任務。記錄作者的選擇、接手方能否使用產物、量測值與回歸問題。提出發布候選版時，須附相容性、遷移與回退證據。 |
 
-## Skill distribution
+N-R02 的資料契約與 N-01 的試用條件已固定。新增觀察可以補充證據。變更契約或試用條件時，須另行記錄決定。
 
-**SK-R01 / SK-D01.** A project can install Storytelling through the Skills CLI
-from GitHub, or install its npm dependency and activate the bundled skill. Both
-routes must deliver the same instructions, references, helpers and license.
-The [distribution test](../scripts/test_skill_distribution.py) packs and installs
-the actual tarball in a fresh consumer and compares its contents with the source.
-See the [platform guide](PLATFORMS.md) for activation, verification and updates.
+<a id="skill-distribution"></a>
 
-## Evidence levels
+## Skill 散布
 
-Structural parsing < declared semantic validation < actual source verification <
-host readback/render verification < human editorial acceptance. These are distinct
-claims, not interchangeable scores. M0/M1-01 and the bounded M2-01 audit implement
-only the first two levels.
+**SK-R01／SK-D01**　使用者可從 GitHub 安裝 Skill，也可用 npm 安裝後啟用。兩種方式須提供相同的指引、參考文件、輔助程式與授權。[散布測試](../scripts/test_skill_distribution.py)會打包實際檔案，在全新專案安裝後逐檔比對。[安裝與更新](PLATFORMS.md)
 
-## Multimodal authoring and follow-up requirements
+<a id="evidence-levels"></a>
 
-The bundled [templates](../skills/storytelling/references/multimodal-templates.md)
-and [hands-on demo](../skills/storytelling/references/workshop-demo.md) can be tried today.
-Each proposed Rust or adapter slice has its own acceptance evidence.
+## 驗證能證明什麼
 
-| Requirement / task | Observable result and evidence |
+| 驗證方式 | 可支持的結論 |
 | --- | --- |
-| N-R08 / [N-08](https://github.com/bynanci/storytelling/issues/65) | Compare two treatments of the same source. One checkable structure rule passes, a conflicting pair or unsupported version yields a diagnostic. Record author feedback separately. |
-| N-R09 / [N-09](https://github.com/bynanci/storytelling/issues/66) | Replay an ordered voice/silence/effect sheet. Preserve unknown timing, permit declared multitrack overlap and reject a reversed interval or conflicting exclusive cues. |
-| N-R10 / [N-10](https://github.com/bynanci/storytelling/issues/67) | Only after N-06 selects a candidate, exercise one valid and one invalid case for that candidate through the local entry point and keep existing video fixtures passing. |
-| N-R11 / [N-11](https://github.com/bynanci/storytelling/issues/68) | Trace a handoff through declared text, image and audio revisions. Identify missing or stale targets and expose the precise affected outputs. |
-| N-R12 / [N-12](https://github.com/bynanci/storytelling/issues/69) | Evaluate one host capability with actual authorized inputs and output readback. Record a useful fallback with the same request when the capability is missing. |
+| 解析資料 | 工具能讀取輸入結構。 |
+| 驗證宣告 | 資料內的引用、順序或限制符合契約。 |
+| 驗證來源 | 實際提供的位元組符合預期值。 |
+| 讀回或播放 | 指定平台確實產出可讀或可播放的檔案。 |
+| 作者驗收 | 實際參與的作者確認作品符合其用途。 |
+
+M0、M1-01 與限定範圍的 M2-01 稽核只支援前兩項。
+
+<a id="multimodal-authoring-and-follow-up-requirements"></a>
+
+## 多模態需求
+
+[樣板](../skills/storytelling/references/multimodal-templates.md)與[工作坊範例](../skills/storytelling/references/workshop-demo.md)可直接試用。下列工作各有獨立的驗收結果。
+
+| 需求／任務 | 可觀察的結果 |
+| --- | --- |
+| N-R08／[N-08](https://github.com/bynanci/storytelling/issues/65) | 用同一素材比較兩種手法。驗證一項可判定的規則。規則衝突或範本版本不支援時，應指出原因。另行記錄作者回饋。 |
+| N-R09／[N-09](https://github.com/bynanci/storytelling/issues/66) | 依序重播旁白、停頓及音效提示。時間未知時保留未定。允許宣告的跨軌疊音。拒絕反向區間或互斥軌上的衝突。 |
+| N-R10／[N-10](https://github.com/bynanci/storytelling/issues/67) | N-06 明選一案後才開發。從本機入口執行一個正例及一個反例。既有影片回歸須通過。 |
+| N-R11／[N-11](https://github.com/bynanci/storytelling/issues/68) | 以文字、影像與聲音的版本追溯交接。指出遺失或過期的引用，列出受影響的產物。 |
+| N-R12／[N-12](https://github.com/bynanci/storytelling/issues/69) | 用授權素材測一項宿主能力。讀回實際輸出。再用同一請求測試缺少該能力時可交付哪些內容。 |
