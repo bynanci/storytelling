@@ -42,6 +42,7 @@ A **snapshot** is a composition export that follows the `finite-v1` contract. Op
 | `render-narrative` | `NarrativeDocumentV1` | A spoken outline and illustration briefs with source labels. No media or duration required. |
 | `track-narrative-revisions` | `NarrativeRevisionLedgerV1` | Source and variant history, author decisions and review status. |
 | `query-narrative-impact` | Ledger and source change event ID | Variants that directly reference this source revision. The engine computes the list. |
+| `check-narrative-style` | Narrative document and revision-bound style profile | JSON result for declared spoken-beat order only. |
 | `validate` | `PlanDocumentV1` | Checks declared IDs, hash format, references and exact source ranges. |
 | `audit-brief` | `StoryBriefV1` | Checks required and excluded items, order and references. Preserves manual choices. |
 | `plan-story` | Brief, fixed candidate windows, scores and limits | A reproducible proposal with reasons for each choice. |
@@ -94,6 +95,18 @@ cargo run --release --quiet --locked -p storytelling-cli -- query-narrative-impa
 After the second change, the oral and wide variants remain `current`. The close variant becomes `needs_review` and retains its prior reference to `C01@1`. The history includes earlier source and variant snapshots. Resolve all pending reviews before the next source revision, even when it changes a different source.
 
 Keep author decisions in separate events. An `assistant_suggestion` with `decision`, `accepted` or `author_confirmed` produces `revision.untrusted_decision`. The tool checks declarations. It cannot authenticate the author. The engine follows direct references only. Authors must check indirect effects through `based_on`. See the [N-04 evidence](validation/n04-narrative-revisions.md).
+
+<a id="check-a-narrative-order-rule-n-08"></a>
+
+## Check a narrative order rule (N-08)
+
+The workshop fixture keeps the event and requested umbrella fixed. The documentary opening states the event before the taps; the imagery opening puts the synthetic taps first. The separate `NarrativeStyleProfileV1` binds `must_precede` rules to a document ID/revision and spoken variant/beat IDs.
+
+```sh
+cargo run --release --quiet --locked -p storytelling-cli -- check-narrative-style tests/fixtures/narrative-v1/n08-umbrella-openings-v1.json tests/fixtures/narrative-v1/n08-style-profile-v1.json
+```
+
+Success is one JSON line. The command validates only the declared order. A contradictory rule returns `narrative.style.order_conflict` and its rule IDs. An unsupported profile version returns `narrative.style.unsupported_version`. The profile does not assess aesthetics or establish human approval. P1 is an imagery proposal derived from S3, not an observed explanation of its cause. Reader feedback remains `manual-pending`. See the [profile contract](narrative/EDITORIAL_STYLE_PROFILE_V1.md) and [N-08 validation record](validation/n08-style-profile.md).
 
 <a id="將所選提案交付為-otio"></a>
 <a name="選定提案-a--可審核-otio已合併唯讀切片"></a>
