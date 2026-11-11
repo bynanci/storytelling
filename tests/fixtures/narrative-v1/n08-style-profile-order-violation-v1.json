@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "profile_id": "n08-workshop-opening-order-violation",
+  "document_id": "n08-umbrella-openings",
+  "document_revision": 1,
+  "rules": [
+    {
+      "id": "documentary-taps-before-event",
+      "kind": "must_precede",
+      "variant_id": "documentary-opening",
+      "before_beat_id": "D02_TAPS",
+      "after_beat_id": "D01_EVENT"
+    }
+  ]
+}
