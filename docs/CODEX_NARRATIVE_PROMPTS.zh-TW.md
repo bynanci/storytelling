@@ -1,5 +1,7 @@
 # 從 Storytelling Skill 開始的七個 Codex 任務
 
+已派出這七段的團隊請接[多模態續篇：新增五段 prompts 與啟動條件](CODEX_MULTIMODAL_PROMPTS.zh-TW.md)。第 2 段的 [#49 契約已採納](https://github.com/bynanci/storytelling/pull/71)，第 3 段請在既有 #50 任務沿用已定案的 `storytelling render-narrative <FILE|->`。第 1 與第 7 段共用[真人試用包](narrative/N-01-AUTHOR-STUDY.zh-TW.md)。
+
 在 `bynanci/storytelling` 執行，每次貼一段。從最新 main、AGENTS.md、TASKS.md、docs/SDLC.md 與對應 Issue 接續。每個 PR 交付該階段的產物、證據與未完成的人工作業。功能變更依現有 SDLC 先取得 RED，再驗證 GREEN 與同一 head 的 CI。
 
 作者在 [Storytelling Skill](../skills/storytelling/SKILL.md) 用日常語言描述需求。Skill 可直接起草內容；需要可重跑的判定時，再連接已實作且有明確輸入的本機工具。Skill 產出的示例、Rust 的機器驗證、真人使用結果各自記錄。以下任務對應[驗收需求](REQUIREMENTS.md#proposed-cross-media-narrative-requirements)。
