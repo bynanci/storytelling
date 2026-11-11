@@ -35,6 +35,8 @@ run root and was not re-sent or undone.
 - cargo fmt --all -- --check, cargo clippy --workspace --all-targets --locked -- -D warnings, and rustdoc with warnings denied: passed.
 - python3 scripts/check_repo.py and git diff --check: passed.
 - Cross-platform journal regressions are part of the Linux, Windows and macOS workspace jobs. The actual pinned FilmCraft execution is Linux-only and manual.
+- PR #59 exact-head run [42950068731](https://github.com/bynanci/storytelling/actions/runs/42950068731) passed Quality and contracts, Required gates, Linux, Windows, macOS and Dependency Audit.
+- Post-merge main run [42950625212](https://github.com/bynanci/storytelling/actions/runs/42950625212) passed the same six jobs.
 
 ## Remaining gates
 
