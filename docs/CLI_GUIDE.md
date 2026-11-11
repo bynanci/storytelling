@@ -1,9 +1,9 @@
 <!-- SPDX-License-Identifier: MIT -->
 # CLI 使用指南
 
-本指南從 repository 根目錄執行，使用已接受契約及一個明確標為 provisional 的 M3-01/P1
-review-binding 候選契約。各指令是不同的入口，
-不是把前一個 stdout 直接交給下一個指令的通用 pipeline。格式與穩定錯誤碼見
+本指南從 repository 根目錄執行，使用已接受契約與 M3-01/P2 planner-to-OTIO 候選契約。
+新路徑可直接讀取 `plan-story` stdout；原本 composition 指令則維持自己的輸入契約。
+格式與穩定錯誤碼見
 [契約索引](CONTRACTS.md)，實作進度見 [TASKS](../TASKS.md)。
 
 ## 建置與依賴
@@ -17,7 +17,7 @@ cargo run --release --quiet --locked -p storytelling-cli -- --help
 ```
 
 產物在 `target/release/storytelling`；Windows 為 `storytelling.exe`。
-下方使用 `cargo run`，免去 shell 與執行檔副檔名差異。六個已接受的 production 指令
+下方使用 `cargo run`，免去 shell 與執行檔副檔名差異。一般 production 指令
 不需要 Node、Python、FFmpeg 或 FilmCraft。來源比對、官方 OTIO oracle 與真實
 宿主測試另有 test-only 工具需求，見後段。
 
@@ -31,12 +31,41 @@ cargo run --release --quiet --locked -p storytelling-cli -- --help
 | `import-openfilm` | 有限 OpenFilm composition export JSON | declared visual plan 與原始事實／限制報告 |
 | `export-otio` | 同一個有限 composition export JSON | 可儲存的原生 OTIO Timeline JSON，附明確 loss 選擇 |
 | `verify-source` | 明確提供的 FILE／stdin bytes 與預期 SHA-256 | 該次提供的實際 bytes 符合預期 digest |
-| `prepare-review` | 有限 composition＋declared review context | Provisional same-input importer/OTIO identity record；不授予批准 |
-| `check-review` | 不可信 review record＋目前 composition/context | Provisional freshness/stale-field report；matching 僅表示宣告一致 |
+| `prepare-review` | 有限 composition＋declared review context | 已接受的 bounded same-input importer/OTIO identity record；不授予批准 |
+| `check-review` | 不可信 review record＋目前 composition/context | 已接受的 bounded freshness/stale-field report；matching 僅表示宣告一致 |
+| `prepare-story-review` | `plan-story` 完整 stdout＋同一 finite snapshot＋context | 實際 OTIO 與綁定 record 的唯讀 bundle |
+| `export-story-otio` | 同上 | 可直接儲存的相同原生 OTIO；report 與提案保留於 metadata |
+| `check-story-review` | prepare bundle＋目前 proposal/snapshot/context | 驗證眼前 OTIO，再重編譯比對；stale 退出 1 |
 
 JSON 輸入最多 1 MiB；`verify-source` 的 bytes 最多 16 MiB。更細的 collection、
 metadata、diagnostic 和 output 預算由各自的 frozen contract 管理。
-每個指令均可用 `-` 讀取 stdin；輸入結束時須送 EOF。
+新 story-review 路徑的 proposal 上限 4,194,336 bytes，bundle 上限 4,292,672 bytes。
+新命令只有 proposal 可用 `-`；snapshot/context/bundle 是明確 regular file。
+輸入結束時須送 EOF。
+
+## 選定提案 A → 可審核 OTIO（唯讀候選）
+
+以下三份 fixture 均為合成宣告，不需要實際素材或編輯器：
+
+```sh
+cargo run --release --quiet --locked -p storytelling-cli -- plan-story tests/fixtures/story-review-v1/planner-request.json > proposal-A.json
+cargo run --release --quiet --locked -p storytelling-cli -- prepare-story-review proposal-A.json tests/fixtures/openfilm/finite-v1/video-trim.json tests/fixtures/story-review-v1/context.json > review-A.json
+cargo run --release --quiet --locked -p storytelling-cli -- export-story-otio proposal-A.json tests/fixtures/openfilm/finite-v1/video-trim.json tests/fixtures/story-review-v1/context.json > proposal-A.otio
+cargo run --release --quiet --locked -p storytelling-cli -- check-story-review review-A.json proposal-A.json tests/fixtures/openfilm/finite-v1/video-trim.json tests/fixtures/story-review-v1/context.json
+```
+
+`review-A.json` 同時包含 record 和實際 OTIO。`proposal-A.otio` 與其中 `otio`
+member 的 bytes 相同（stdout 額外換行不屬於 artifact digest）；兩者都使用提案的
+1/3..4/3 秒剪點，並非原 snapshot composition 的 0.1..2.6 秒剪點。
+不要重新排版 bundle 裡的 OTIO；檢查使用確切產物 bytes。
+
+素材 ID／hash／available duration 必須與 snapshot 一致；URI 只當字串保留。
+換掉 snapshot、提案剪點／順序或 loss choices，check 會回 stale／拒絕，退出 1。
+原生保留 cuts、順序、精確 clocks、reference；專案 FPS／來源 facts／接受的 locks
+只留 metadata。Video 必須明確接受 `picture_only`；獨立音訊、效果與其他未支援
+語意直接拒絕，不能以 loss choice 偷渡。完整限制見[新契約](migration/PLANNER_OTIO_REVIEW_V1.md)。
+上述命令只讀明確輸入、輸出至 stdout；`>` 是使用者 shell 儲存產物。
+整段流程不修改 OpenFilm Catalog、不呼叫或寫入 FilmCraft，不代表人類已批准。
 
 ## 1. 驗證已宣告的 plan
 

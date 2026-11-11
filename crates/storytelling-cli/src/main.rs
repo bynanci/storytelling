@@ -1,12 +1,13 @@
 use serde_json::{Value, json};
-use std::ffi::OsStr;
+use std::ffi::{OsStr, OsString};
 use std::fs::File;
 use std::io::{self, Read, Write};
 use std::process::ExitCode;
 use storytelling_engine::{
-    MAX_INPUT_BYTES, MAX_REVIEW_CONTEXT_BYTES, MAX_REVIEW_RECORD_BYTES, MAX_VERIFIED_BUFFER_BYTES,
-    OtioLossChoicesV1, audit_story_brief, check_review, export_openfilm_otio,
-    import_openfilm_snapshot, parse_review_context, plan_story, prepare_review, validate_plan_json,
+    MAX_INPUT_BYTES, MAX_REVIEW_CONTEXT_BYTES, MAX_REVIEW_RECORD_BYTES, MAX_STORY_PROPOSAL_BYTES,
+    MAX_STORY_REVIEW_BYTES, MAX_VERIFIED_BUFFER_BYTES, OtioLossChoicesV1, audit_story_brief,
+    check_review, check_story_review, export_openfilm_otio, import_openfilm_snapshot,
+    parse_review_context, plan_story, prepare_review, prepare_story_review, validate_plan_json,
     verify_supplied_sha256,
 };
 
@@ -68,8 +69,73 @@ fn read_argument(path: &OsStr, limit: usize) -> io::Result<Vec<u8>> {
     }
 }
 
+fn story_review_command(args: &[OsString]) -> ExitCode {
+    let checking = args[0] == OsStr::new("check-story-review");
+    let proposal_index = if checking { 2 } else { 1 };
+    let expected = if checking { 5 } else { 4 };
+    if args.len() != expected
+        || args[1..].iter().enumerate().any(|(index, arg)| {
+            arg.as_encoded_bytes().starts_with(b"--")
+                || (arg == OsStr::new("-") && index + 1 != proposal_index)
+        })
+    {
+        return failure("cli.usage", 2);
+    }
+    let mut inputs = Vec::new();
+    for (index, arg) in args.iter().enumerate().skip(1) {
+        let (limit, code) = if checking && index == 1 {
+            (MAX_STORY_REVIEW_BYTES, "story_review.bundle_too_large")
+        } else if index == proposal_index {
+            (MAX_STORY_PROPOSAL_BYTES, "story_review.proposal_too_large")
+        } else if index == proposal_index + 1 {
+            (MAX_INPUT_BYTES, "input.too_large")
+        } else {
+            (MAX_REVIEW_CONTEXT_BYTES, "review.context_too_large")
+        };
+        let bytes = match read_argument(arg, limit) {
+            Ok(bytes) => bytes,
+            Err(_) => return failure("input.io", 3),
+        };
+        if bytes.len() > limit {
+            return failure(code, 1);
+        }
+        inputs.push(bytes);
+    }
+    if checking {
+        return match check_story_review(&inputs[0], &inputs[1], &inputs[2], &inputs[3]) {
+            Ok(freshness) => {
+                let exit = if freshness.current { 0 } else { 1 };
+                emit(json!({"ok":true, "freshness":freshness}), exit)
+            }
+            Err(error) => emit(json!({"ok":false,"error":error}), 1),
+        };
+    }
+    match prepare_story_review(&inputs[0], &inputs[1], &inputs[2]) {
+        Ok(bound) => emit_bytes(
+            if args[0] == OsStr::new("export-story-otio") {
+                bound.compiled_otio().to_vec()
+            } else {
+                bound.bundle_json().to_vec()
+            },
+            0,
+        ),
+        Err(error) => emit(json!({"ok":false,"error":error}), 1),
+    }
+}
+
 fn main() -> ExitCode {
     let args: Vec<_> = std::env::args_os().skip(1).collect();
+    if args.first().is_some_and(|arg| {
+        [
+            "prepare-story-review",
+            "export-story-otio",
+            "check-story-review",
+        ]
+        .iter()
+        .any(|command| arg == OsStr::new(command))
+    }) {
+        return story_review_command(&args);
+    }
     if args
         .first()
         .is_some_and(|v| v == OsStr::new("verify-source"))
@@ -177,7 +243,7 @@ fn main() -> ExitCode {
     match command {
         Some(value) if value == OsStr::new("--help") && args.len() == 1 => {
             return text(
-                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\n       storytelling plan-story <FILE|->\n       storytelling prepare-review <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling check-review <REVIEW_RECORD> <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling verify-source <FILE|-> <SHA256>\nRead-only metadata, interchange and declared review identity; no editor execution.\n",
+                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\n       storytelling plan-story <FILE|->\n       storytelling prepare-story-review <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling export-story-otio <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling check-story-review <REVIEW_BUNDLE> <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling prepare-review <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling check-review <REVIEW_RECORD> <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling verify-source <FILE|-> <SHA256>\nRead-only metadata, interchange and declared review identity; no editor execution.\n",
             );
         }
         Some(value) if value == OsStr::new("--version") && args.len() == 1 => {

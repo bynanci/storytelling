@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "project_id": "synthetic-project",
+  "target_revision": "read-only",
+  "host": {
+    "id": "filmcraft",
+    "version": "0.18.0",
+    "profile_id": "declared-only",
+    "binary_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "declared_capabilities": [
+      "arbitrary-content-tick-rate",
+      "external-reference",
+      "single-video-track",
+      "still-hold"
+    ]
+  },
+  "loss_choices": ["picture_only"]
+}

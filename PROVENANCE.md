@@ -1,5 +1,21 @@
 # Provenance
 
+## M3-01/P2 selected proposal / read-only OTIO candidate
+
+The approved Apache component policy covers the bridge, strict planner/audit DTO
+extensions and synthetic regressions/fixtures/official-parser oracle. Its
+[per-file inventory](docs/migration/provenance-m3-planner-review.json) records
+pinned source SHA/path/blob identities and modifications. Original MIT and upstream
+notices stay unchanged; CLI/CI/module wiring and independently authored design/docs
+remain MIT. No upstream code/tests/media or new production dependency is copied.
+The same hash-pinned official OTIO 0.18.1 wheel remains test-only. Source policies
+were inspected statically; the new oracle executes actual native CLI and official
+OTIO, not OpenFilm runtime. Source files selected for this task are unchanged in
+observed upstream main `08e38b6a63a0b0fbcfd3a073c8bfa5dcc8c08224`.
+
+Implementation and review documentation are AI-authored at the user's request.
+No independent review, maintainer signature, approval grant or release is asserted.
+
 Initial repository base: `551ff38920e2085e1d53a7ba777c9680678e9725`.
 Original LICENSE blob: `f317799529d13f4d9301daa2dba63dfea559ff69` (MIT); unchanged.
 

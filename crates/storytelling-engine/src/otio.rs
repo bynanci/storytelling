@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 // Origin/modifications: docs/migration/provenance-m1-02.json; see NOTICE.openfilm.
 //! Bounded finite OTIO serialization; no media, parser-runtime or host calls.
-mod clock;
+pub(crate) mod clock;
 
 use clock::ContentClock;
 use serde::{Deserialize, Serialize};
@@ -27,6 +27,16 @@ pub fn export_openfilm_otio(
     choices: &OtioLossChoicesV1,
 ) -> Result<CompiledOtioV1, OtioCompileError> {
     let imported = crate::import_openfilm_snapshot(bytes, &Default::default())?;
+    compile_imported_otio(imported, choices, None)
+}
+
+/// Crate-private: the bridge admits and matches the selected plan before replacing
+/// the imported timeline. External callers cannot use this projection as evidence.
+pub(crate) fn compile_imported_otio(
+    imported: crate::ImportedPlanV1,
+    choices: &OtioLossChoicesV1,
+    proposal: Option<&str>,
+) -> Result<CompiledOtioV1, OtioCompileError> {
     // Projection DTOs consume only an already strictly validated snapshot. Opaque
     // metadata is skipped without numeric conversion and retained as source text.
     let facts: SnapshotFacts = serde_json::from_str(imported.source_snapshot.get())
@@ -94,7 +104,11 @@ pub fn export_openfilm_otio(
     }
     let report = OtioCompileReportV1 {
         schema_version: 1,
-        profile: "storytelling.otio-visual-ticks.v1",
+        profile: if proposal.is_some() {
+            "storytelling.planner-otio-visual-ticks.v1"
+        } else {
+            "storytelling.otio-visual-ticks.v1"
+        },
         scope: "declared-otio-visual-interchange",
         executable: false,
         source_verified: false,
@@ -134,6 +148,11 @@ pub fn export_openfilm_otio(
             }]
         }
     });
+    if let Some(proposal) = proposal {
+        document["metadata"]["storytelling"]["selected_proposal_json"] = json!(proposal);
+        document["metadata"]["storytelling"]["proposal_sha256"] =
+            json!(crate::review_binding::sha256_hex(proposal.as_bytes()));
+    }
     let mut output_bytes = serialized_size(&document)?;
     if output_bytes > MAX_OTIO_OUTPUT_BYTES {
         return Err(error("otio.output_too_large", "$"));

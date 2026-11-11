@@ -37,6 +37,11 @@ remains unproven.
 Do not repeat the delivered candidate or invent review artifacts. PR #28 remains
 separate and unaccepted; full solver, trusted approval, host execution and human
 editorial acceptance remain separate.
+M3-01/P2 now has a selected-proposal/read-only OTIO review candidate; read
+[its profile](docs/migration/PLANNER_OTIO_REVIEW_V1.md) and
+[record](docs/migration/records/M3-01-P2.md). Keep the accepted P1 digest stable.
+Queue M3-02 journal -> M3-03 FilmCraft apply/readback -> M4 feature flag after
+bridge acceptance. Apply with response timeout is unknown; read back before retry.
 A test-first scaffold commit exists in history intentionally; it is not a release.
 
 For the 2026-11-07 continuation, the user explicitly authorized merging completed,

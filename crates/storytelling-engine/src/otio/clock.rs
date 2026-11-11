@@ -6,15 +6,15 @@ use storytelling_core::compiled_plan::{FeatureDisposition, OtioCompileError, Oti
 use storytelling_core::time::RationalTime;
 use storytelling_core::wire::{PlanDocumentV1, TimeValue};
 
-pub(super) const MAX_NATIVE_INTEGER: u64 = 9_007_199_254_740_991;
+pub(crate) const MAX_NATIVE_INTEGER: u64 = 9_007_199_254_740_991;
 
 #[derive(Debug, Clone, Copy)]
-pub(super) struct ContentClock {
+pub(crate) struct ContentClock {
     rate: u64,
 }
 
 impl ContentClock {
-    pub(super) fn for_plan(plan: &PlanDocumentV1) -> Result<Self, OtioCompileError> {
+    pub(crate) fn for_plan(plan: &PlanDocumentV1) -> Result<Self, OtioCompileError> {
         let mut rate = 1;
         for (index, asset) in plan.assets.iter().enumerate() {
             rate = include_denominator(
@@ -31,11 +31,11 @@ impl ContentClock {
         Ok(Self { rate })
     }
 
-    pub(super) fn rate(self) -> u64 {
+    pub(crate) fn rate(self) -> u64 {
         self.rate
     }
 
-    pub(super) fn ticks(self, value: &TimeValue, path: &str) -> Result<u64, OtioCompileError> {
+    pub(crate) fn ticks(self, value: &TimeValue, path: &str) -> Result<u64, OtioCompileError> {
         let (numerator, denominator) = parts(value, path)?;
         if self.rate % denominator != 0 {
             return Err(unrepresentable(path));
@@ -46,7 +46,7 @@ impl ContentClock {
         bounded(ticks, path)
     }
 
-    pub(super) fn add_timeline_ticks(
+    pub(crate) fn add_timeline_ticks(
         self,
         total: u64,
         duration: u64,
@@ -57,7 +57,7 @@ impl ContentClock {
         bounded(ticks, "$.timeline_duration")
     }
 
-    pub(super) fn seconds(self, ticks: u64) -> TimeValue {
+    pub(crate) fn seconds(self, ticks: u64) -> TimeValue {
         let common = gcd(ticks, self.rate);
         TimeValue {
             numerator: (ticks / common).to_string(),
