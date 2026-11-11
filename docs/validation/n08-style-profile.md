@@ -3,7 +3,7 @@
 
 **Issue:** [#65](https://github.com/bynanci/storytelling/issues/65)
 
-**Base:** main at `27d6985d569c0e8882c4218b19115afc382e5aad` (after #74 merged)
+**Initial implementation base:** main at `27d6985d569c0e8882c4218b19115afc382e5aad` (after #74 merged)
 
 **Inputs:** [NarrativeDocument fixture](../../tests/fixtures/narrative-v1/n08-umbrella-openings-v1.json) and [StyleProfileV1 fixture](../../tests/fixtures/narrative-v1/n08-style-profile-v1.json)
 **Contract:** [NarrativeDocumentV1](../narrative/NARRATIVE_DOCUMENT_V1.md) remains closed and unchanged. The independent [NarrativeStyleProfileV1](../narrative/EDITORIAL_STYLE_PROFILE_V1.md) names order rules by variant and beat ID.
@@ -144,6 +144,7 @@ rustdoc with warnings denied, repository traceability checks, skill distribution
 and the OpenFilm, official OTIO, StoryReview, StoryBrief and fixed-window planner
 differentials passed locally.
 
-Hosted CI must pass on this change's PR head; earlier checks on #74 do not verify
-this commit. The GitHub PR checks provide the exact head and current results.
-Human editorial acceptance remains a separate manual gate.
+PR #75 exact-head CI run #265 on `99765e0eae28e0338d78fa465bf4c44edaf792d1`
+passed all configured jobs. PR #75 was subsequently squash-merged as
+`003191c834bfc46903f1a436fd73c5df6edd9a77`. Human editorial acceptance remains
+a separate manual gate.

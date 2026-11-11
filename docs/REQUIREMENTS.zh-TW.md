@@ -307,7 +307,7 @@ see the [validation record](validation/m3-03-filmcraft-execution.md).
 
 | 需求／任務 | 使用者要完成的事 | 驗收依據 |
 | --- | --- | --- |
-| N-R01／N-01 | 說出對象、目的與自己提供的細節。 | [作者試用包](narrative/N-01-AUTHOR-STUDY.zh-TW.md)以提交 `260485b2ff5b8d7b46215004e21a5bb1a37e6dfb` 為基準。使用 S01 至 S04 製作口述及兩款構圖。C01 只屬於 A。U01 是尚無佐證的商業主張。試用包提供相同的身分修訂題、四項指標與決策門檻。真人觀察與維護者的 G0–G1 決定待補。 另有[盲讀與改稿流程](../examples/evaluation/README.zh-TW.md)及空白紀錄表。 |
+| N-R01／N-01 | 說出對象、目的與自己提供的細節。 | [作者試用包](narrative/N-01-AUTHOR-STUDY.zh-TW.md)以提交 `260485b2ff5b8d7b46215004e21a5bb1a37e6dfb` 為基準。使用 S01 至 S04 製作口述及兩款構圖。C01 只屬於 A。U01 是尚無佐證的商業主張。試用包提供相同的身分修訂題、四項指標與決策門檻。真人觀察與維護者的 G0–G1 決定待補。 |
 | N-R02／N-02 | 用獨立版本的敘事文件描述素材與關係。作者無須提供媒體檔或時間資訊。 | [ADR 0005](adr/0005-independent-narrative-document-v1.md)、[V1 規格](narrative/NARRATIVE_DOCUMENT_V1.md)、[JSON Schema](../contracts/narrative-document-v1.schema.json)與[成對測試案例](../tests/fixtures/narrative-v1/README.md)定義支援範圍。口述與構圖可共用來源。允許雙向聯想。強制順序成環、引用遺失或過期、重複欄位、未知版本或超量都要回報。相容性清單涵蓋影片 JSON、CLI、既有匯入格式、OTIO 與雜湊。PR #71 的送審版本通過 CI。修正 P2 循環診斷後，自動複查沒有待處理項目。維護者在 #50 採用此契約。 |
 | N-R03／N-03 | 用同一來源產出一份口述與兩款構圖。 | `render-narrative` 讀取 [V1 範例](../tests/fixtures/narrative-v1/n03-authoring-v1.json)。[驗證紀錄](validation/n03-narrative-cli.md)列出三份輸出。全景與近景各自保留來源 ID，C01 只出現在全景。測試涵蓋無媒體輸入、檔案與標準輸入重播、原檔與暫存目錄不變。引用不存在時回傳 JSON 錯誤及退出碼 1。引擎測試涵蓋 N-02、順序、來源、位元組數與深度限制。開發者在實作前記錄失敗測試。影片 V1 與官方 OTIO 回歸另有紀錄。自動化結果與作者試讀分開記錄。 |
 | N-R04／N-04 | 保留多款草稿，找出一項修訂影響的版本。 | [修訂契約](narrative/NARRATIVE_REVISION_LEDGER_V1.md)、[格式](../contracts/narrative-revision-ledger-v1.schema.json)、[案例](../tests/fixtures/narrative-v1/n04-revision-history-v1.json)與[驗證紀錄](validation/n04-narrative-revisions.md)可供重播。修訂 S02 影響口述與兩款構圖。審閱後再修訂 C01，只影響構圖 B。歷史保留來源、變體及宣告的作者選擇。提案事件不可夾帶決定。CLI 只計算直接引用，無法驗證決定者身分。PR #76 於 `9eb12eefe41ef965acee1f5e78e373e3b782372c` 合併；同一提交與合併後 CI run #218 的已設定檢查均通過。真人檢視仍待完成。 |
@@ -349,4 +349,4 @@ M0、M1-01 與限定範圍的 M2-01 稽核只支援前兩項。
 | N-R09／[N-09](https://github.com/bynanci/storytelling/issues/66) | 依序重播旁白、停頓及音效提示。時間未知時保留未定。允許宣告的跨軌疊音。拒絕反向區間或互斥軌上的衝突。 |
 | N-R10／[N-10](https://github.com/bynanci/storytelling/issues/67) | N-06 明選一案後才開發。從本機入口執行一個正例及一個反例。既有影片回歸須通過。 |
 | N-R11／[N-11](https://github.com/bynanci/storytelling/issues/68) | 以文字、影像與聲音的版本追溯交接。指出遺失或過期的引用，列出受影響的產物。 |
-| N-R12／[N-12](https://github.com/bynanci/storytelling/issues/69) | [Inkscape 可行性試驗](validation/n12-inkscape-png.zh-TW.md)以同一請求與 S2 交付真正 PNG、完整解碼及視覺讀回，再受控隱藏匯出入口交付構圖說明。保存來源前後身分與命令／退出碼。正式 adapter 的縮小採用建議待維護者決定。 |
+| N-R12／[N-12](https://github.com/bynanci/storytelling/issues/69) | 用授權素材測一項宿主能力。讀回實際輸出。再用同一請求測試缺少該能力時可交付哪些內容。 |

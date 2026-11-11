@@ -179,7 +179,6 @@ M3-03 須證明舊請求已停止，才能將宿主讀回用作重試依據。
 - [ADR 0001](adr/0001-scope-and-boundaries.md) 記錄 Rust 移植策略。
 - [ADR 0002](adr/0002-exact-time-and-wire.md) 記錄時間與傳輸限制。
 - [ADR 0003](adr/0003-license-and-provenance.md) 記錄儲存庫授權與來源。
-- [ADR 0008](adr/0008-local-png-host-feasibility.md) 提議 N-12 本機 PNG 交付邊界，保留獨立宿主與讀回證據。
 
 <a id="accepted-fixed-window-planner"></a>
 
