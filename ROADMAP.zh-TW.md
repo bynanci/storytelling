@@ -12,7 +12,7 @@ Storytelling 的第一個跨媒體目標是讓作者能改稿。試想一張活�
 | --- | --- | --- |
 | Storytelling Skill | 依受眾、目的與素材起草。可交給支援 Agent Skills 的工具，也可照 Markdown 手動操作。 | [八種敘事樣板](skills/storytelling/references/multimodal-templates.zh-TW.md)與[修傘工作坊](skills/storytelling/references/workshop-demo.zh-TW.md) |
 | 本機敘事指令 | `render-narrative` 將已宣告的內容輸出成口述大綱與插畫構圖。範例含兩款構圖。 | [CLI 指南](docs/CLI_GUIDE.zh-TW.md)與 [N-03 驗證紀錄](docs/validation/n03-narrative-cli.md)已附請求者檢視及近景修訂稿；比較性真人試用仍待執行。 |
-| 本機修訂與順序檢查 | `track-narrative-revisions` 和 `query-narrative-impact` 保留歷史並列出直接受影響版本；`check-narrative-style` 以綁定 revision 的獨立 profile 驗證口述順序，不判斷美感。 | [N-04 修訂契約](docs/narrative/NARRATIVE_REVISION_LEDGER_V1.md)、[N-04 紀錄](docs/validation/n04-narrative-revisions.md)與[N-08 紀錄](docs/validation/n08-style-profile.md)。N-08 盲讀待完成。 |
+| 本機修訂與順序檢查 | `track-narrative-revisions` 和 `query-narrative-impact` 保留歷史並列出直接受影響版本；`check-narrative-style` 以綁定 revision 的獨立 profile 驗證口述順序，不判斷美感。 | [N-04 修訂契約](docs/narrative/NARRATIVE_REVISION_LEDGER_V1.md)、[N-04 紀錄](docs/validation/n04-narrative-revisions.md)與[N-08 紀錄](docs/validation/n08-style-profile.md)。N-08 依維護者證言具限制結案，隨機方法仍未記錄。 |
 | 本機影片指令 | 以明確的素材區間和條件規劃鏡頭。可在支援範圍內匯出純畫面的剪輯時間軸。 | [影片里程碑](#milestones)列出已測的格式、編輯器與限制。 |
 
 Skill 可以獨立安裝。目前套件版本為 `0.1.0-dev.0`。使用者可從 GitHub 安裝。維護者另行決定何時發布至公開套件登錄站。[安裝方式](docs/PLATFORMS.zh-TW.md)
@@ -26,8 +26,8 @@ Skill 可以獨立安裝。目前套件版本為 `0.1.0-dev.0`。使用者可從
 | 順序 | 工作與依賴 | 驗收依據 |
 | --- | --- | --- |
 | 1．改稿與修訂 | N-02 契約已採納。N-03 已提供本機輸出。作者可檢視口述順序、來源標記及兩款構圖。N-04 已可呈現來源修訂與作者決定。五位作者完成 [N-01 Skill 試用](https://github.com/bynanci/storytelling/issues/48#issuecomment-6798756961)，維護者決定繼續。 | 同一項修訂應找出所有直接引用該來源的版本。只改一款構圖時，另一款應保留原稿。[真人試用包](docs/narrative/N-01-AUTHOR-STUDY.zh-TW.md) |
-| 2．文案與依據 | N-05／#52 的 V1 基礎已在 PR #83 合併；[PR #87](https://github.com/bynanci/storytelling/pull/87) 加入明選的產品 ReportV2。保留修門審查，產品案例另留作者欄。CLI 輸出引用 revision 與歷史文字，由請求者判斷佐證。N-07 接續 N-05。 | 保留一次測試的結果，移除無來源的成效主張並標示提案。N-07 仍需以一般筆記為基準，記錄真人完成數、修改耗時與歸因錯誤；維護者決定繼續、縮小或停止。 |
-| 3．選擇其他模式 | N-06 已比較分支構思、劇本揭露與影片對照。請求者明確暫緩三種原生模式，N-10 亦維持暫緩。N-08 檢查宣告順序，N-09 提供獨立聲音提示表。 | 保留 [N-06 決策](docs/validation/n06-format-discovery.md)。後續單一採用仍須實際作者缺口與版本範圍；N-08 讀者回饋待完成。 |
+| 2．文案與依據 | N-05／#52 的 V1 基礎已在 PR #83 合併；[PR #87](https://github.com/bynanci/storytelling/pull/87) 加入明選的產品 ReportV2。保留修門審查，產品案例另留作者欄。CLI 輸出引用 revision 與歷史文字，由請求者判斷佐證。N-07 接續 N-05。 | 保留一次測試的結果，移除無來源的成效主張並標示提案。維護者已 Stop 外部 wrapper 試用（0/5 主要完成、5/5 重大 U01 錯誤）。固定 ce73836 native 驗收未證實；未來評估須另訂版本並事前同意。 |
+| 3．選擇其他模式 | N-06 已比較分支構思、劇本揭露與影片對照。請求者明確暫緩三種原生模式，N-10 亦維持暫緩。N-08 檢查宣告順序，N-09 提供獨立聲音提示表。 | 保留 [N-06 決策](docs/validation/n06-format-discovery.md)。後續單一採用仍須實際作者缺口與版本範圍；N-08 已記錄兩次維護者證言的官方表單閱讀，保留順序與證據限制。 |
 | 4．交接來源與產物 | N-11 使用 N-04 的來源修訂。N-12 可獨立測試一項宿主能力。 | 接手者能辨識缺件與過期來源。產出圖檔或音檔後，必須重新開啟或播放。缺少工具時交付可用的構圖或提示表。 |
 
 工作項目與狀態見[敘事任務](TASKS.zh-TW.md#cross-media-narrative-backlog)及[多模態任務](TASKS.zh-TW.md#multimodal-rust-backlog)。[架構](docs/ARCHITECTURE.zh-TW.md)定義資料、驗證與輸出入的分工。作者決定稿件是否符合創作意圖。

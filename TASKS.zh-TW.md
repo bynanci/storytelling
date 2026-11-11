@@ -41,7 +41,7 @@
 | [N-04／#51](https://github.com/bynanci/storytelling/issues/51) · N-R04 修訂與作者決定 | 接續 N-03。主分支已有修訂查詢。真人檢視另列。 | 先改共同事實，再改單一構圖。工具依直接引用列出受影響的版本。歷史保留舊稿、提案及宣告的作者決定。[修訂驗證紀錄](docs/validation/n04-narrative-revisions.md) |
 | [N-05／#52](https://github.com/bynanci/storytelling/issues/52) · N-R05 文案與證據 | 已合併 PR #83 提供 V1 基礎；[PR #87](https://github.com/bynanci/storytelling/pull/87) 加入產品試行 ReportV2。修門審查已記錄，產品作者審閱另待完成。 | `audit-copy-claims` 顯示受眾、主張、CTA、被引用的歷史文字與 revision 狀態。修訂稿刪除無來源的計畫成效句，並明示文案提案。N-01／N-07 真人量測另行追蹤。[契約](docs/narrative/COMMERCIAL_COPY_V1.md) · [驗證紀錄](docs/validation/n05-commercial-copy.md) |
 | [N-06／#53](https://github.com/bynanci/storytelling/issues/53) · N-R06 選擇新模式 | G0–G2 比較完成；請求者明確暫緩三種原生模式。 | [格式探索紀錄](docs/validation/n06-format-discovery.md)列出相容性、最小變更與[暫緩決策](https://github.com/bynanci/storytelling/issues/53#issuecomment-6792555714)。未宣稱任務耗時或試用結果；實際需求與單一採用決策出現前，N-10 維持暫緩。 |
-| [N-07／#54](https://github.com/bynanci/storytelling/issues/54) · N-R07 產品決定 | G4–G6；N-05 V1 已合併，native 對照包已備，真人配對證據待補。 | [N-07 試用包與報告](docs/validation/n07-pilot.zh-TW.md)提供普通筆記／實際 CLI、原判準、私人紀錄表及獨立程序時間。工程通過不推論使用效益或發布決定。 |
+| [N-07／#54](https://github.com/bynanci/storytelling/issues/54) · N-R07 產品決定 | 維護者已停止提交的外部 wrapper 試用，關閉為 not planned。 | [處置與證據](docs/validation/n07-pilot.zh-TW.md)：0/5 主要完成、5/5 重大 U01 錯誤；固定 ce73836／ReportV1 native 驗收未證實。未來評估須另訂版本並事前同意，不授權發布。 |
 
 將[前七段 Codex 指令](docs/CODEX_NARRATIVE_PROMPTS.zh-TW.md)派給對應任務。後續五票與既有任務的追加指令收在[多模態派工指南](docs/CODEX_MULTIMODAL_PROMPTS.zh-TW.md)。
 
@@ -68,7 +68,7 @@
 | --- | --- | --- |
 | 日常口述與插畫 | 本機指令能輸出口述與構圖。修訂查詢可列出直接引用該來源的版本。輸入不需媒體檔或片長。 | [N-04 核對修訂結果](https://github.com/bynanci/storytelling/issues/51) |
 | 商業文案 | Skill 可整理主張及依據。影片條件檢查器無法判定文案是否獲得佐證。 | [N-05 查核主張](https://github.com/bynanci/storytelling/issues/52) |
-| 流派與手法 | `check-narrative-style` 以獨立且綁定 revision 的 profile 檢查口述 beat 順序，不判斷美感。真人盲讀仍待執行。 | [N-08／#65 驗證紀錄](docs/validation/n08-style-profile.md)。 |
+| 流派與手法 | CLI 檢查宣告順序；兩次官方表單閱讀依維護者證言完成定性門檻。實際皆 A→B，隨機方法未記錄。 | [N-08／#65 紀錄](docs/validation/n08-style-profile.md)保留具限制結案、來源判斷、困惑與原單頁交接，不宣稱審美優越。 |
 | 聲音與 Podcast | `render-cue-sheet` 依 N-02 綁定旁白、停頓與已提供的音效，保留未知時間並檢查互斥聲軌衝突。錄音與混音仍由宿主處理。 | [N-09／#66](https://github.com/bynanci/storytelling/issues/66)：[規格](docs/narrative/NARRATIVE_CUE_SHEET_V1.zh-TW.md)與[重播證據](docs/validation/n09-cue-sheet.zh-TW.md)。 |
 | 編劇、分支構思與影片對照 | 文字樣板可用。請求者在 [N-06](docs/validation/n06-format-discovery.md) 暫緩三種新原生模式。 | [N-10／#67](https://github.com/bynanci/storytelling/issues/67) 保持開啟／暫緩；待實際作者需求與明確單一採用決策才啟動。 |
 | 跨媒體交接 | `render-handoff` 將檔案、描述、文字標註、提案及缺件宣告綁定 N-04 修訂，區分須改日期與可沿用的構圖、聲音。 | [N-11／#68](https://github.com/bynanci/storytelling/issues/68)：[規格](docs/narrative/NARRATIVE_HANDOFF_MANIFEST_V1.zh-TW.md)與[重播證據](docs/validation/n11-handoff.md)。語意仍由作者檢視。 |
