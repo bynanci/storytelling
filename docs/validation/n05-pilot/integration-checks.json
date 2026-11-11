@@ -1,0 +1,101 @@
+{
+  "kind": "engineering-only",
+  "date": "2026-11-11",
+  "integrated_main": "99db0c03e89bec026b7e9ed4f19ffdb924888585",
+  "implementation_matches_pr_head": "e988095a1fc77a4c5b4be286af33dc353e963c46",
+  "rustc": "rustc 1.89.0 (29483883e 2025-08-04)",
+  "cargo": "cargo 1.89.0 (c24e10642 2025-06-23)",
+  "isolated_target": "/tmp/storytelling-pr87-target",
+  "checks": [
+    {
+      "command": "cargo test --locked -p storytelling-cli --test commercial_copy_pilot --target-dir /tmp/storytelling-pr87-target",
+      "exit_code": 0,
+      "seconds": 13.641,
+      "log_sha256": "6a69d240961e165aedb74fe36c52ff5405899247e4d752039c2747d7ac69653b"
+    },
+    {
+      "command": "cargo fmt --all -- --check",
+      "exit_code": 0,
+      "seconds": 0.372,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "cargo clippy --workspace --all-targets --locked --target-dir /tmp/storytelling-pr87-target -- -D warnings",
+      "exit_code": 0,
+      "seconds": 9.44,
+      "log_sha256": "4d0c247f7681aebbfc98b36f67e2fa4b488832af37347fc624ca1f51a0a009b5"
+    },
+    {
+      "command": "cargo test --workspace --locked --target-dir /tmp/storytelling-pr87-target",
+      "exit_code": 0,
+      "seconds": 13.908,
+      "log_sha256": "bf1308d2bcfcb5ecf6e21b4ab57d948079322a01e065bae27e3476295735ae99"
+    },
+    {
+      "command": "cargo test --workspace --release --locked --target-dir /tmp/storytelling-pr87-target",
+      "exit_code": 0,
+      "seconds": 57.041,
+      "log_sha256": "ee96263d761434fbd6b4db201a7fc0c50d60e4d50750aeb9559a5175a8ffc3ba"
+    },
+    {
+      "command": "cargo doc --workspace --no-deps --locked --target-dir /tmp/storytelling-pr87-target",
+      "exit_code": 0,
+      "seconds": 3.515,
+      "log_sha256": "4c76561fce109e10d568e770d74a66b4ea43cd676890926b276729638b88f36a"
+    },
+    {
+      "command": "python3 scripts/check_repo.py",
+      "exit_code": 0,
+      "seconds": 0.144,
+      "log_sha256": "728bbfaf33cce26d9fbaf87b18bd5a323ffebd1fb3d212369faab1c56d548238"
+    },
+    {
+      "command": "python3 scripts/test_skill_distribution.py",
+      "exit_code": 0,
+      "seconds": 0.77,
+      "log_sha256": "9a149cccb535775c7f6d18279caddd60768df8fbb351a2e8d9e0653a9f14b214"
+    },
+    {
+      "command": "python3 -m unittest discover -s examples/evaluation -p test_*.py",
+      "exit_code": 0,
+      "seconds": 0.106,
+      "log_sha256": "395f4ba177429a162b2f04a7e5dd660a39233158ce91c848b5b64fb547fbd0ed"
+    },
+    {
+      "command": "python3 -m unittest discover -s examples/evaluation/n07-pilot -p test_*.py",
+      "exit_code": 0,
+      "seconds": 0.123,
+      "log_sha256": "c3030e758a54e1d8b6d7e2fd5113b0115a5965ed0647060860940b92e97d4709"
+    },
+    {
+      "command": "python3 scripts/test_storytelling_graph_plan.py",
+      "exit_code": 0,
+      "seconds": 0.513,
+      "log_sha256": "641c499917b615023af0e8240732be24f950ec85fbfb61b7af45e914b4d713e2"
+    },
+    {
+      "command": "python3 scripts/test_storytelling_graph_trace.py",
+      "exit_code": 0,
+      "seconds": 0.839,
+      "log_sha256": "6f9db45cc044cb5647e76131b6cee6be8e291f62255354f8702e912b770b8237"
+    },
+    {
+      "command": "python3 tests/oracles/filmcraft-25-v1/test_checks.py",
+      "exit_code": 0,
+      "seconds": 0.079,
+      "log_sha256": "c6b9b1f09add0403cc07e90bfdf272129b1ddfa2f8f7675ea8218862f2516371"
+    },
+    {
+      "command": "bash scripts/test_skills_cli.sh",
+      "exit_code": 0,
+      "seconds": 4.499,
+      "log_sha256": "167d5f82a0acc704c6dd58c6e58d6111f8382b7c09b54f4024d05eb2558c2474"
+    },
+    {
+      "command": "git diff origin/main...HEAD --check",
+      "exit_code": 0,
+      "seconds": 0.007,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

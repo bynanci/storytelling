@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: MIT -->
 # N-05 / N-R05 · Fictional product copy and evidence revisions
 
-Issue [#52](https://github.com/bynanci/storytelling/issues/52), SDLC G3–G4, following merged PR [#83](https://github.com/bynanci/storytelling/pull/83); product continuation: [PR #87](https://github.com/bynanci/storytelling/pull/87). Delivery base main: `ad798e2a888850b4ac15e99ad65633cb67e51fe6`; prior N-05 head: `41d6d4b5a10cbc3ff26678d0e8484f075f65fb4c`. No product-case author session has occurred. The author-review fields below are intentionally blank.
+Issue [#52](https://github.com/bynanci/storytelling/issues/52), SDLC G3–G4, following merged PR [#83](https://github.com/bynanci/storytelling/pull/83); product continuation: [PR #87](https://github.com/bynanci/storytelling/pull/87). Initial implementation base main: `ad798e2a888850b4ac15e99ad65633cb67e51fe6`; prior N-05 head: `41d6d4b5a10cbc3ff26678d0e8484f075f65fb4c`. Final integration includes main `99db0c03e89bec026b7e9ed4f19ffdb924888585`, including the reviewed gate correction, N-06 deferral, N-07 pilot preparation and research guidance. No product-case author session has occurred. The author-review fields below are intentionally blank.
 
 ## Usable outline and source
 
@@ -91,11 +91,15 @@ Shortest author exercise:
 
 Author label: ______  Date: ______  Draft disposition: ______
 
-No product-case author decisions, task times or usability outcome are claimed. Keep the human acceptance item on Issue #52 open until a person records the assessment.
+No product-case author decisions, task times or usability outcome are claimed. The product assessment above remains pending. Issue #52 is closed for its completed gate-repair scope; this additional example neither reopens that acceptance nor supplies the participant evidence required by Issues #48 and #54. The opt-in technical report can be reviewed independently of a publication decision for the product copy.
 
 ## Earlier gate-repair requester review
 
 The concurrent requester assessment for the earlier gate example is preserved in the [original scoped review record](n05-gate-requester-review.md) and [Issue #52 comment](https://github.com/bynanci/storytelling/issues/52#issuecomment-6792555292). The reviewed gate fixture and its original replay receipts remain unchanged. That assessment supports the gate example only; it does not fill the product pilot review table above. The new report fields add reference information without changing the reviewed draft's original wording or source.
+
+### Revised draft and normal CLI replay
+
+This retained heading preserves existing review links. The [original revised draft and replay evidence](n05-gate-requester-review.md#revised-draft-and-normal-cli-replay) remain in the scoped gate record.
 
 The [current default-V1 gate replay](n05-pilot/gate-reviewed-replay.json) confirms exact byte equality with the original reviewed receipt; [current stdout](n05-pilot/gate-reviewed.stdout) retains the accepted V1 shape. The prior receipt remains historical evidence for its original head.
 

@@ -1,9 +1,10 @@
 <!-- SPDX-License-Identifier: MIT -->
 # ADR 0010: Opt-in commercial-copy report V2
 
-- Status: Proposed for N-05 continuation review
+- Status: Accepted technical scope for PR #87; merge requires passing final-head CI
 - Requirement: N-R05 / Issue #52
-- Base: main `ad798e2a888850b4ac15e99ad65633cb67e51fe6`, after PR #83 and the N-06 documentation merge
+- Initial base: main `ad798e2a888850b4ac15e99ad65633cb67e51fe6`, after PR #83 and the N-06 documentation merge
+- Final integration base: main `99db0c03e89bec026b7e9ed4f19ffdb924888585`, retaining completed gate review, N-06 deferral, N-07 pilot preparation and research guidance
 
 The accepted commercial-copy report V1 is closed and its default CLI output has existing replay evidence. The product trial needs historical/current source text side by side, explicit reference-attention IDs and a marker that every factual claim still requires a human support judgment. Adding these fields directly to V1 would break closed-schema consumers.
 
@@ -15,4 +16,4 @@ Each output version checks its own serialized 1 MiB limit. V1 cannot inherit V2'
 
 Alternatives: mutate V1 (breaks its closed schema), change the default to V2 (breaks existing callers), or omit the added information (requires separate ledger inspection). Opt-in V2 preserves existing callers while exposing the comparison requested by the product example. Rollback: stop selecting `--report-v2`; no input migration is needed.
 
-This is a technical versioning decision for review. Product-case author assessment remains blank and independent of reference validation.
+This accepts only the opt-in technical versioning scope requested for PR #87. Product-case author assessment remains blank and independent of reference validation; it does not replace the completed gate-sample review on Issue #52 or the pending human studies on Issues #48 and #54.
