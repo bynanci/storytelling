@@ -2,8 +2,9 @@
 
 Baseline: `551ff38920e2085e1d53a7ba777c9680678e9725` (original README + MIT LICENSE).
 Updated: 2026-11-11. M0, finite M1-01/M1-02, bounded M2-01/M2-02 audit/planning, M1-03
-supplied-byte/host proof, selected-domain M2-03 live shadow and the bounded M3-02
-SQLite journal are accepted on main; FilmCraft execution and release remain separate decisions.
+supplied-byte/host proof, selected-domain M2-03 live shadow, the bounded M3-02
+SQLite journal and the M3-03 test-only lost-reply proof are merged on main;
+production FilmCraft execution and release remain separate decisions.
 [SDLC](docs/SDLC.md) owns the process and
 [requirements](docs/REQUIREMENTS.md) owns acceptance traceability.
 
@@ -82,6 +83,7 @@ completed tasks. The GitHub merge metadata records:
 | [#22 M2-02 fixed-window planner](https://github.com/bynanci/storytelling/pull/22) | `1f4ff082ed27dbc6223af2f0a0b1cfe71a06fe54` | `895257b1bb9993d70cae3f1267f5f6fa3de91905` | 2026-11-07 03:59:29 |
 | [#26 M2-03 selected-domain live shadow](https://github.com/bynanci/storytelling/pull/26) | `4bf888949107a21b560b09222175ff1f25118a3b` | `5533fcb5d0f857ad1066a76505071653b66d1f89` | 2026-11-07 06:27:14 |
 | [#56 M3-02 bounded SQLite operation journal](https://github.com/bynanci/storytelling/pull/56) | `3cd078e56ed4f2d3dd7accf655446851322cd94d` | `73196930e13d8ce53ba792c574ca4de156883a73` | 2026-11-11 02:07:53 |
+| [#59 M3-03 isolated FilmCraft lost-reply proof](https://github.com/bynanci/storytelling/pull/59) | `40748487342b89332088a18a158dbd5f93597abe` | `f653952d05b8259d0a4f5e0be850748e3b2dc180` | 2026-11-11 03:07:21 |
 
 
 Routine dependency upkeep merged on 2026-11-07 (these rows do not claim product
@@ -168,7 +170,7 @@ permission changes, nor replace real-media/host or human editorial acceptance.
 | M3-01 | P1 / bounded subprofile accepted; broader milestone proposed | Approval and compiled-plan identity contracts | M1-03, M2-02 | Accepted subprofile binds same-input finite OTIO and declared context; planner bridge is delivered in P2; trusted approval and execution remain open |
 | M3-01/P2 | P1 / accepted bounded technical delivery | Selected fixed-window proposal → actual read-only OTIO review bundle | Accepted M2-02 and M3-01/P1 | M3-PB01–PB07; reproducible chosen cuts/loss report; changed asset/cut/loss invalidates review; non-bundle paths skip bundle serialization; no Catalog/host writes |
 | M3-02 | P1 / accepted bounded journal slice | SQLite operation journal and owner-fenced recovery | Accepted M3-01/P2; journal does not itself grant execution authority | PR #56 merged; exact-head Quality, Required, Linux, Windows, macOS and Dependency Audit all pass; post-merge main run passes; host execution remains M3-03 |
-| M3-03 | P1 / in progress; test-only isolated proof passed, production executor open | FilmCraft executor with unknown-result reconciliation | Accepted M3-02 | Pinned Linux proof journals a new isolated project and cut import, resolves a lost reply from exact native readback without retry/Undo; product executor, in-flight host timeout, safe NotApplied retry and broader host matrix remain open |
+| M3-03 | P1 / in progress; bounded test-only proof merged, production executor open | FilmCraft executor with unknown-result reconciliation | Accepted M3-02 | PR #59 exact-head and post-merge main CI pass; pinned Linux proof journals a new isolated project and cut import, resolves a lost reply from exact native readback without retry/Undo; product executor, in-flight host timeout, safe NotApplied retry and broader host matrix remain open |
 | M4-01 | P2 / proposed | Thin TypeScript client and one OpenFilm feature flag | M2-03, M3-03 | One writer/authority; external sample consumes stable CLI protocol |
 | M4-02 | P2 / proposed | Story Companion review-to-host user journey | M4-01 | Propose/compare/approve/execute/verify visible and accessible |
 | M4-03 | P2 / proposed | Optional MCP transport over the same services | M4-01 | Agent cannot self-approve; capability/token separation; no new scheduler |
@@ -414,6 +416,8 @@ production editor-writing command.
 - [x] Synthetic source, proposal/snapshot/context/bundle/OTIO inputs and pre-import empty project remained byte-identical.
 - [x] Lost acknowledgement after successful host exit was recorded as unknown; native readback resolved applied-observed; late response rejected; one attempt, zero retry, zero Undo.
 - [x] Existing ambiguous-readback, crash-recovery and stale-owner journal regressions remain in the three-OS workspace suite.
+- [x] PR #59 exact-head run [42950068731](https://github.com/bynanci/storytelling/actions/runs/42950068731) and post-merge main run [42950625212](https://github.com/bynanci/storytelling/actions/runs/42950625212) passed Quality and contracts, Required gates, Linux, Windows, macOS and Dependency Audit.
+- [x] PR #59 merged as `f653952d05b8259d0a4f5e0be850748e3b2dc180`; this accepts only the test-only proof, not the M3-03 production executor.
 - [ ] Production executor with bounded host-process supervision and a trusted, accepted authorization gate.
 - [ ] Demonstrate safe stop when FilmCraft hangs or readback is ambiguous/partial; establish host-request quiescence before any NotApplied retry.
 - [ ] Actual FilmCraft runs on Windows/macOS and human editor review.
