@@ -33,6 +33,8 @@ The maintainer decides whether to publish to a public registry.
 
 ## Cross-media narrative backlog
 
+Use the [research-to-rule/workflow map](docs/research/README.md) to select relevant evidence and checks for these existing tasks. It adds no acceptance or runtime status.
+
 | Task and requirement | Status and prerequisites | What to deliver |
 | --- | --- | --- |
 | [N-01 / #48](https://github.com/bynanci/storytelling/issues/48) · N-R01 | G0–G1. Packet ready. Can run alongside N-03. | Compare ordinary notes with the skill. Record completion, revision time, attribution errors and repeated input. Human trials and the maintainer's decision remain open. |

@@ -111,6 +111,8 @@ For personal installs, other clients and verification status, see the [platform 
 
 ## Working with sources and revisions
 
+Research-backed guidance is available as [14 editorial rules and six workflows](docs/research/README.md), with primary sources, limits and links to existing tasks. Use the relevant workflow without adding a new installation.
+
 - **Review a draft.** Compare the draft with the author’s notes. Mark details the author or assistant inferred or invented. Ask for changes to the affected drafts. [Worked examples](skills/storytelling/references/examples.md)
 - **Coordinate complex work.** Use the graph-loop playbook for dependencies, independent branches, review and bounded retries. The skill includes optional Python helpers for planning a dependency graph and checking a recorded execution order. [Playbook](skills/storytelling/references/graph-loops.md)
 - **Find supporting material.** For a question about several documents, look for an existing Graphify index. Use it to locate relevant passages. Check each passage against its source. [Graphify guide](skills/storytelling/references/graphify-tools.md)
