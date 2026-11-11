@@ -104,6 +104,20 @@
         "tests/oracles/story-review-v1/verify.py",
         "docs/migration/records/M3-01-P2.md"
       ]
+    },
+    {
+      "id": "M3-PB07",
+      "tests": [
+        "story_review_compiles_selected_subset_and_order_and_binds_the_exact_owned_artifact",
+        "story_review_invalidates_asset_cut_loss_and_detects_displayed_artifact_tampering"
+      ],
+      "verification_paths": [
+        "crates/storytelling-engine/src/story_review.rs",
+        "crates/storytelling-engine/tests/story_review.rs",
+        "crates/storytelling-cli/src/main.rs",
+        "docs/migration/records/M3-01-P2.md"
+      ],
+      "acceptance": "Export and freshness share compile/bind semantics without constructing an unused portable review bundle; artifact bytes and freshness identity stay unchanged."
     }
   ],
   "future_dependency_order": [

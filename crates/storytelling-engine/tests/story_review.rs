@@ -79,6 +79,9 @@ fn story_review_compiles_selected_subset_and_order_and_binds_the_exact_owned_art
             maximum,
         );
         let review = prepare_story_review(&prop, &snapshot_bytes, &context()).unwrap();
+        let exported =
+            storytelling_engine::export_story_otio(&prop, &snapshot_bytes, &context()).unwrap();
+        assert_eq!(exported.as_slice(), review.compiled_otio());
         let otio: Value = serde_json::from_slice(review.compiled_otio()).unwrap();
         let clips = otio["tracks"]["children"][0]["children"]
             .as_array()

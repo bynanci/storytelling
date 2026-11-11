@@ -227,6 +227,7 @@ declarations and the exact generated artifact, not source media or human approva
 | M3-PB04 | Strict whole planner output and nested DTOs; matched asset declarations; opaque immutable result; forged authority and composition-only record reject | `story_review_rejects_unknown_duplicate_forged_or_inconsistent_proposals`, `story_review_requires_snapshot_asset_identity_duration_and_declared_capabilities`, `story_review_rejects_forged_bundle_claims_and_never_accepts_a_composition_only_record`; compile-fail doctests |
 | M3-PB05 | Bound all input/output sizes/depth; refuse malformed/unknown/duplicate data with stable field-only diagnostics | `story_review_preflights_every_size_and_accepts_exact_snapshot_and_bundle_limits`; existing OTIO expansion tests |
 | M3-PB06 | Actual CLI file/stdin flow works with empty external-tool PATH and unchanged Catalog/project/input sentinels; no host calls | `story_review_connects_actual_planner_output_to_exact_otio_without_source_or_host_writes`; official oracle |
+| M3-PB07 | Export and freshness paths share compile/bind semantics while avoiding unused portable-bundle serialization; artifact bytes and freshness identity remain unchanged | `story_review_compiles_selected_subset_and_order_and_binds_the_exact_owned_artifact`, `story_review_invalidates_asset_cut_loss_and_detects_displayed_artifact_tampering`; same-head CI |
 
 M3-02 follows acceptance of this bridge. Its separate fault matrix must persist
 operation/owner/request identity before host apply and survive crash/ack failure.

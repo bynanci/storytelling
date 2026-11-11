@@ -6,9 +6,9 @@ use std::process::ExitCode;
 use storytelling_engine::{
     MAX_INPUT_BYTES, MAX_REVIEW_CONTEXT_BYTES, MAX_REVIEW_RECORD_BYTES, MAX_STORY_PROPOSAL_BYTES,
     MAX_STORY_REVIEW_BYTES, MAX_VERIFIED_BUFFER_BYTES, OtioLossChoicesV1, audit_story_brief,
-    check_review, check_story_review, export_openfilm_otio, import_openfilm_snapshot,
-    parse_review_context, plan_story, prepare_review, prepare_story_review, validate_plan_json,
-    verify_supplied_sha256,
+    check_review, check_story_review, export_openfilm_otio, export_story_otio,
+    import_openfilm_snapshot, parse_review_context, plan_story, prepare_review,
+    prepare_story_review, validate_plan_json, verify_supplied_sha256,
 };
 
 fn emit(value: Value, code: u8) -> ExitCode {
@@ -110,15 +110,14 @@ fn story_review_command(args: &[OsString]) -> ExitCode {
             Err(error) => emit(json!({"ok":false,"error":error}), 1),
         };
     }
+    if args[0] == OsStr::new("export-story-otio") {
+        return match export_story_otio(&inputs[0], &inputs[1], &inputs[2]) {
+            Ok(otio) => emit_bytes(otio, 0),
+            Err(error) => emit(json!({"ok":false,"error":error}), 1),
+        };
+    }
     match prepare_story_review(&inputs[0], &inputs[1], &inputs[2]) {
-        Ok(bound) => emit_bytes(
-            if args[0] == OsStr::new("export-story-otio") {
-                bound.compiled_otio().to_vec()
-            } else {
-                bound.bundle_json().to_vec()
-            },
-            0,
-        ),
+        Ok(bound) => emit_bytes(bound.bundle_json().to_vec(), 0),
         Err(error) => emit(json!({"ok":false,"error":error}), 1),
     }
 }
