@@ -2842,6 +2842,30 @@
         "M4 OpenFilm feature flag"
       ],
       "host_timeout_rule": "Persist unknown, read back before retry; ambiguous readback blocks duplicate apply."
+    },
+    {
+      "observed_at": "2026-11-11T01:00:25Z",
+      "kind": "M3-01-P2-allocation-path-optimization",
+      "main": "d9778ebdd4b7666cff0c47889c81f6c91079acce",
+      "pr": 46,
+      "head": "1a77e4fd0c942ece58223135013d83a744d96921",
+      "head_tree": "28aa466ed03737ccb13e364296dfe7fc9b9025ea",
+      "merge": "d9778ebdd4b7666cff0c47889c81f6c91079acce",
+      "merge_tree": "28aa466ed03737ccb13e364296dfe7fc9b9025ea",
+      "merged_at": "2026-11-11T00:58:14Z",
+      "head_runs": [
+        42935098963,
+        42935144867
+      ],
+      "main_run": 42935450529,
+      "all_three_runs": {
+        "jobs_per_run": 6,
+        "conclusion": "success"
+      },
+      "scope": "M3-PB07: direct export and freshness reuse compile/bind results without serializing an unused portable review bundle",
+      "acceptance": "verified bounded technical optimization under standing user merge authority; artifact/freshness identity regression coverage passed; no quantified memory or latency claim",
+      "read_only": true,
+      "pr28_independent_g2_acceptance": "pending"
     }
   ]
 }
