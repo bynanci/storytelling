@@ -13,6 +13,12 @@ pub use brief::audit_story_brief;
 mod narrative;
 pub use narrative::render_narrative;
 
+mod narrative_cue_sheet;
+pub use narrative_cue_sheet::{
+    CueSheetTrackProjectionV1, NarrativeCueProjectionV1, NarrativeCueSheetProjectionV1,
+    render_narrative_cue_sheet,
+};
+
 mod narrative_style;
 pub use narrative_style::check_narrative_style_profile;
 pub use storytelling_core::narrative::{

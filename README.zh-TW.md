@@ -169,6 +169,16 @@ cargo run --quiet --locked -p storytelling-cli -- check-narrative-style tests/fi
 
 指令以 JSON 回報宣告順序的檢查結果，不判斷美感，也不代表作者已核准。意象版的比喻是根據 S3 提出的創作內容，不是對敲擊來源的事實主張。真人盲讀仍待執行。[N-08 profile 與驗證紀錄（英文）](https://github.com/bynanci/storytelling/blob/main/docs/validation/n08-style-profile.md)
 
+### 製作錄音提示表（N-09）
+
+提示表將口述台詞、停頓及現有兩聲敲擊 WAV 綁定到修傘邀請。旁白長度保持未知直到完成錄音，停頓標示為估時，WAV 則列出宣告片長。工具檢查互斥聲軌疊音，不讀取或混音。
+
+```sh
+cargo run --quiet --locked -p storytelling-cli -- render-cue-sheet tests/fixtures/narrative-v1/n09-umbrella-source-v1.json tests/fixtures/narrative-v1/n09-cue-sheet-v1.json
+```
+
+CLI 讀取獨立且封閉的 `NarrativeCueSheetV1`；`NarrativeDocumentV1` 保持不變。輸出的提示表供製作人員參考，不會錄音。[規格](docs/narrative/NARRATIVE_CUE_SHEET_V1.zh-TW.md) · [N-09 重播證據](docs/validation/n09-cue-sheet.zh-TW.md)
+
 <a name="video-integrations"></a>
 
 ### 影片整合

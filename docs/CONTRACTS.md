@@ -14,6 +14,7 @@ Choose the command for your task. Supply the document that its profile accepts. 
 | `audit-brief` | StoryBrief v1 JSON, 1,048,576 | `{"ok":true,"audit":...}` | [Brief audit](migration/STORY_BRIEF_V1.md) |
 | `plan-story` | Fixed-window planning document, 1,048,576 | `{"ok":true,"planning":...}` | [Fixed-window planner](migration/FIXED_WINDOW_PLANNER_V1.md) |
 | `render-narrative` | NarrativeDocumentV1 JSON, 1,048,576 | Reproducible UTF-8 text. Errors use one JSON line. | [Narrative document](narrative/NARRATIVE_DOCUMENT_V1.md) |
+| `render-cue-sheet` | NarrativeDocumentV1 JSON and NarrativeCueSheetV1 JSON, each 1,048,576 | Deterministic cue-sheet text. Errors use one JSON line. | [Cue-sheet profile](narrative/NARRATIVE_CUE_SHEET_V1.md) |
 | `render-handoff` | NarrativeHandoffManifestV1 JSON, 1,048,576 | Reproducible source inventory, component impact and review status; errors use one JSON line. | [Handoff manifest](narrative/NARRATIVE_HANDOFF_MANIFEST_V1.md) |
 | `track-narrative-revisions` | NarrativeRevisionLedgerV1 JSON, 1,048,576 | Source and variant history, suggestions, author choices and current review status. | [Revision ledger](narrative/NARRATIVE_REVISION_LEDGER_V1.md) |
 | `query-narrative-impact` | The same ledger and one source change event ID | Variants that directly reference the changed source revision. | [Revision ledger](narrative/NARRATIVE_REVISION_LEDGER_V1.md) |
@@ -38,6 +39,8 @@ Extract `planning.plan` for the M0 validator. It rejects a full `planning` respo
 Supply an append-only ledger as a file or on standard input. Use `track-narrative-revisions <FILE|->` to replay history and review state. Use `query-narrative-impact <FILE|-> <CHANGE_ID>` with a source revision event ID. The engine computes impact from direct `source_refs`. The caller cannot supply the result list. The engine does not propagate impact through indirect `based_on` links. Any pending variant review blocks the next source revision. Author decisions and assistant suggestions require separate events. The CLI cannot authenticate who submitted an author decision.
 
 The `check-narrative-style` command takes a document and its revision-bound profile. It checks declared spoken beat order and does not evaluate style or author approval.
+
+`render-cue-sheet <DOCUMENT_FILE|-> <CUE_SHEET_FILE|->` takes one narrative document and one separate closed cue sheet. It validates their declared identities, beat and asset references, timing, and exclusive-track conflicts, then emits deterministic human-readable text. Only one input may use standard input. The command does not read asset bytes, record, play or mix audio. `NarrativeDocumentV1` remains unchanged.
 
 | Common exit code | Meaning |
 | --- | --- |

@@ -130,6 +130,16 @@ cargo run --release --quiet --locked -p storytelling-cli -- check-narrative-styl
 
 成功時輸出一行 JSON，只驗證宣告的順序。規則互相矛盾時回報 `narrative.style.order_conflict` 和規則 ID；profile 版本不支援時回報 `narrative.style.unsupported_version`。它不評價美感，也不代表真人核准。P1 是由 S3 延伸的意象提議，並非對敲擊來源的實際說明。盲讀回饋仍為 `manual-pending`。[Profile 契約（英文）](narrative/EDITORIAL_STYLE_PROFILE_V1.md) · [N-08 驗證紀錄（英文）](validation/n08-style-profile.md)
 
+## 輸出錄音提示表（N-09）
+
+```sh
+cargo run --release --quiet --locked -p storytelling-cli -- render-cue-sheet \
+  tests/fixtures/narrative-v1/n09-umbrella-source-v1.json \
+  tests/fixtures/narrative-v1/n09-cue-sheet-v1.json
+```
+
+指令讀取獨立且封閉的 cue sheet，並綁定指定的 `NarrativeDocumentV1` 與口述變體。旁白提示取自其引用的 beat，接著列出估時停頓與宣告的 `taps.wav` 音效。旁白長度未知時保持未解析；停頓估時與 WAV 已知長度不混為一談。相同互斥軌上已解析的疊音回報 `narrative.cue.track_conflict`；跨軌疊音及半開區間首尾相接則允許。輸出為可重播的可讀文字，不錄音、播放或混音。[Cue sheet 規格](narrative/NARRATIVE_CUE_SHEET_V1.zh-TW.md) · [N-09 重播證據](validation/n09-cue-sheet.zh-TW.md)
+
 <a id="export-a-selected-proposal-as-otio"></a>
 
 ## 將所選提案交付為 OTIO

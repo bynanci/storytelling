@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "document_id": "umbrella-workshop",
+  "document_revision": 1,
+  "purpose": "邀請附近居民參加修傘工作坊。",
+  "audience": "附近居民。",
+  "units": [
+    {
+      "id": "S1",
+      "revision": 1,
+      "origin": "supplied_observation",
+      "text": "週六舉辦修傘活動。請帶一把傘。",
+      "based_on": []
+    }
+  ],
+  "relations": [],
+  "variants": [
+    {
+      "id": "oral",
+      "name": "修傘邀請旁白",
+      "kind": "spoken_outline",
+      "beats": [
+        {
+          "id": "invite",
+          "unit_ref": { "unit_id": "S1", "revision": 1 },
+          "text": "週六修傘工作坊，請帶一把傘。"
+        }
+      ]
+    }
+  ]
+}
