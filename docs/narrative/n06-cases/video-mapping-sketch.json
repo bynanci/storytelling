@@ -1,0 +1,58 @@
+{
+  "format": "n06-discovery-sketch-not-accepted-wire",
+  "source_document": "door-repair",
+  "source_revision": 1,
+  "selected_unit_refs": [
+    {
+      "unit_id": "S02",
+      "revision": 1
+    },
+    {
+      "unit_id": "S03",
+      "revision": 1
+    }
+  ],
+  "asset_declarations": [
+    {
+      "asset_id": "clip-hinge-declared",
+      "duration_seconds": {
+        "numerator": "12",
+        "denominator": "1"
+      },
+      "content_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "evidence": "placeholder declaration only; no clip bytes supplied or hash verified"
+    }
+  ],
+  "mappings": [
+    {
+      "narrative_ref": {
+        "unit_id": "S02",
+        "revision": 1
+      },
+      "asset_id": "clip-hinge-declared",
+      "source_range_seconds": {
+        "start": {
+          "numerator": "5",
+          "denominator": "2"
+        },
+        "end": {
+          "numerator": "9",
+          "denominator": "2"
+        }
+      },
+      "mapping_status": "declared",
+      "unresolved_question": "Does the actual clip show the declared action? No clip was supplied."
+    },
+    {
+      "narrative_ref": {
+        "unit_id": "S03",
+        "revision": 1
+      },
+      "asset_id": null,
+      "source_range_seconds": null,
+      "mapping_status": "unresolved",
+      "reason": "No recording of the closing test was supplied."
+    }
+  ],
+  "whole_handoff_status": "unresolved; do not submit as a complete story plan"
+}

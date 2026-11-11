@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "document_id": "n06-two-reveals",
+  "document_revision": 1,
+  "purpose": "同一組事件用順敘與先結果後回看的兩種揭露方式呈現。",
+  "audience": "初次得知這件修門小事的觀眾。",
+  "units": [
+    {
+      "id": "S02",
+      "revision": 1,
+      "origin": "supplied_observation",
+      "text": "阿梅扶住門；阿安收緊上方鉸鏈的一顆螺絲。",
+      "based_on": []
+    },
+    {
+      "id": "S03",
+      "revision": 1,
+      "origin": "supplied_observation",
+      "text": "兩人試關一次；這一次門沒有磨到地面。",
+      "based_on": []
+    },
+    {
+      "id": "S04",
+      "revision": 1,
+      "origin": "supplied_observation",
+      "text": "兩人把工具收回工具箱。",
+      "based_on": []
+    }
+  ],
+  "relations": [
+    {
+      "id": "R_LINEAR",
+      "kind": "must_precede",
+      "variant_id": "linear",
+      "before": {
+        "unit_id": "S02",
+        "revision": 1
+      },
+      "after": {
+        "unit_id": "S03",
+        "revision": 1
+      }
+    },
+    {
+      "id": "R_RESULT_FIRST",
+      "kind": "must_precede",
+      "variant_id": "result-first",
+      "before": {
+        "unit_id": "S03",
+        "revision": 1
+      },
+      "after": {
+        "unit_id": "S02",
+        "revision": 1
+      }
+    }
+  ],
+  "variants": [
+    {
+      "id": "linear",
+      "name": "順敘：先調整，再試關",
+      "kind": "spoken_outline",
+      "beats": [
+        {
+          "id": "L_ACTION",
+          "unit_ref": {
+            "unit_id": "S02",
+            "revision": 1
+          },
+          "text": "阿梅扶門，阿安收緊上方鉸鏈的一顆螺絲。"
+        },
+        {
+          "id": "L_TEST",
+          "unit_ref": {
+            "unit_id": "S03",
+            "revision": 1
+          },
+          "text": "接著兩人試關一次；這次沒有磨到地面。"
+        },
+        {
+          "id": "L_TOOLS",
+          "unit_ref": {
+            "unit_id": "S04",
+            "revision": 1
+          },
+          "text": "最後把工具收回工具箱。"
+        }
+      ]
+    },
+    {
+      "id": "result-first",
+      "name": "先結果：再交代剛才的動作",
+      "kind": "spoken_outline",
+      "beats": [
+        {
+          "id": "F_TEST",
+          "unit_ref": {
+            "unit_id": "S03",
+            "revision": 1
+          },
+          "text": "先給觀眾看這一次順利關門的結果。"
+        },
+        {
+          "id": "F_ACTION",
+          "unit_ref": {
+            "unit_id": "S02",
+            "revision": 1
+          },
+          "text": "回看剛才：阿梅扶門，阿安收緊上方鉸鏈螺絲。"
+        },
+        {
+          "id": "F_TOOLS",
+          "unit_ref": {
+            "unit_id": "S04",
+            "revision": 1
+          },
+          "text": "回到工具收妥的收尾。"
+        }
+      ]
+    }
+  ],
+  "occurrence_order": [
+    {
+      "unit_id": "S02",
+      "revision": 1
+    },
+    {
+      "unit_id": "S03",
+      "revision": 1
+    },
+    {
+      "unit_id": "S04",
+      "revision": 1
+    }
+  ]
+}

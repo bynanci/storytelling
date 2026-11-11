@@ -13,8 +13,32 @@ Keep the supplied observations fixed: S01 places Mei and An beside the shared wo
 | Candidate | Matched authoring task | Current fit and compatibility | Smallest reversible change |
 | --- | --- | --- | --- |
 | Branching brainstorm | Keep two possible next steps open: “if the adjustment holds” and “if rubbing returns.” Ask whether the author needs both alternatives visible before choosing. | NarrativeDocumentV1 already permits named variants, source references and creative proposals, but it has no explicit unresolved-branch state or branch-selection lifecycle. A pair of named drafts can preserve text but cannot reliably distinguish “not decided” from “selected.” | Start with a skill template using stable branch IDs, source refs, a what-if label, unresolved/selected status and an explicit decision question. No Rust type is justified until an author needs the status to survive edits or be queried. |
-| Screenplay reveal | Keep event order S02 then S03, but try revealing the result S03 before showing the hinge action S02. Do not change what happened. | NarrativeDocumentV1 supports ordered spoken beats and N-08 NarrativeStyleProfileV1 checks declared must_precede relations within a spoken variant. It can represent this small reveal-order question. It does not model scene headings, dialogue turns or occurrence time separately from reveal order, so it is not a screenplay contract. | Reuse the current narrative variant plus N-08 order profile for a text-only probe. Add no screenplay schema unless an author needs scene/dialogue semantics beyond beat order. |
+| Screenplay reveal | Keep event order S02 then S03, but try revealing the result S03 before showing the hinge action S02. Do not change what happened. | NarrativeDocumentV1 supports ordered spoken beats and N-08 NarrativeStyleProfileV1 checks declared must_precede relations within a spoken variant. It can represent this small reveal-order question and can hold another named chronology variant with its own ordering. It does not type occurrence/reveal roles or verify the same event/revision set across views; scene headings and dialogue turns also remain outside V1. | Reuse the current narrative variant plus N-08 order profile for a text-only probe. Add no screenplay schema unless an author needs scene/dialogue semantics beyond beat order. |
 | Video handoff with absent asset | Select S03@1 as the intended moment, then identify which supplied video clip should carry it. If none exists, leave the mapping unresolved. | N-11 NarrativeHandoffManifestV1 can bind narrative unit references to declared file, description or transcript sources and artifact components, but it does not map those references to StoryBrief/Planner asset_id values or media ranges. Its file paths and digests are declarations, not host asset identities. A narrative ID must not be treated as an asset ID; unresolved mappings must not become planned shots or executable OTIO. | Test an explicit, non-executable mapping row that reuses N-11 source IDs and adds narrative_ref, nullable asset_id, mapping_status (unresolved or resolved) and a reason. Keep missing-asset rows blocked from planning/export. Do not extend closed N-11 or another contract until an author needs this mapping. |
+
+## Concrete three-case supplement
+
+The [author-comparison pack](../narrative/n06-cases/README.md) supplies three small cases, accepted-V1 examples, deliberately refused extension examples and a separate [decision record](../narrative/n06-cases/decision.md). It retains the recorded defer-all decision and no task-specific author observations. It is based on main `ce73836caa86502933f538821fdbf5dac92c1224`; the existing #51 source/variant contracts remain unchanged.
+
+| Candidate / case | First failure to compare | Smallest current path | Planning cost assumption / evidence gap |
+| --- | --- | --- | --- |
+| [Brainstorm](../narrative/n06-cases/brainstorm.zh-TW.md) | Typed unresolved option state is refused; ordinary named variants do not enforce a pending or exclusive choice. | Retain two proposal IDs and separate unanswered questions in a text table. | Template 0.5–1 day; bounded native state 3–5 days. No real branch edit/query task; low confidence. |
+| [Screenplay](../narrative/n06-cases/screenplay.zh-TW.md) | Named chronology and reveal variants are structurally possible, but lack typed roles and cross-view same-event/revision checks; a new chronology field is refused. | Keep an explicit event table or chronology variant beside existing V1/N-08 reveal variants. | Material 0.5–1 day; bounded role/cross-view consistency validation 2–4 days. No scene/dialogue need or reader response; low confidence. |
+| [Video handoff](../narrative/n06-cases/video-handoff.zh-TW.md) | A resolved subset can plan after a missing selected unit was omitted; a narrative/asset join field is refused. | Keep the missing S03 row unresolved in an explicit, non-executable coverage table. | Table 0.5–1 day; pure mapping validator 4–7 days, excluding actual-media/host proof. No real clip/task; low confidence. |
+
+A planning day means roughly six focused engineering hours for one engineer familiar with the code. These ranges exclude recruitment, interaction design, production hosts and release work. They are estimates, not observed implementation time or a value ranking. Each case sheet includes current-model fit, compatibility, validation, the original source/proposal boundary and a blank author-response row. [Actual CLI probes](../narrative/n06-cases/evidence/probes.json) establish the current contracts only.
+
+### N-R06 traceability
+
+| Requested evidence | Location |
+| --- | --- |
+| Two mutually exclusive ideas, separate unresolved questions, delayed convergence | Brainstorm case and its named V1 drafts; explicit unknown-state negative |
+| Same events, different event/reveal order | Screenplay event table, two V1 variants, N-08 profile and unsupported typed-chronology-field negative |
+| Unit-to-declared-asset/range plus absent coverage | Video map sketch, exact `[5/2, 9/2)` seconds, unresolved S03 row and Planner subset/join probes |
+| First failure, minimal change, compatibility, verification, cost and author evidence | Three case sheets and comparison tables |
+| At most one next native feature / evidence-based deferral | Recorded requester decision below and supplemental decision record: adopt none, defer all |
+
+The [local build/probe/document checks](../narrative/n06-cases/evidence/checks.json) cover preparation only. The new materials do not convert the earlier closure into evidence of a task trial or authorize N-10. N-07 can run its independent baseline/pilot work without waiting for this supplement.
 
 ## Compatibility and regression boundary
 
@@ -86,3 +110,5 @@ Exact-head hosted run [#317](https://github.com/bynanci/storytelling/actions/run
 ## Reproduction and document checks
 
 This packet changes no runtime behavior. From the repository root, run python3 scripts/check_repo.py and cargo test --locked --workspace. These checks establish repository consistency and existing regression status only; they do not establish author need or acceptance.
+
+The expanded author packet also has [local formatting/workspace/repository results](../narrative/n06-cases/evidence/local-checks.json) and an [independent automated review](../narrative/n06-cases/evidence/review.md). Review clarified existing multi-variant order support and zero-or-one brainstorm selection; it did not supply author feedback or adopt a mode. The supplement's PR records CI for its own submitted head.

@@ -1,0 +1,40 @@
+{
+  "requirement": "N-R06",
+  "base_main": "ce73836caa86502933f538821fdbf5dac92c1224",
+  "runtime_changes": false,
+  "cli_probe_count": 7,
+  "all_expected_exits": true,
+  "all_replayed_stdout_identical": true,
+  "all_inputs_unchanged": true,
+  "checks": [
+    {
+      "command": [
+        "cargo",
+        "build",
+        "--release",
+        "--locked",
+        "-p",
+        "storytelling-cli"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/check_repo.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Repository links, provenance, dependencies and requirement test references passed.\n"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "human_task_sessions": null,
+  "scope": "preparation and current-contract probes; no new behavior to require a RED/GREEN implementation claim"
+}

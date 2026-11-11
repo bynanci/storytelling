@@ -1,0 +1,124 @@
+{
+  "requirement": "N-R06",
+  "base_main": "ce73836caa86502933f538821fdbf5dac92c1224",
+  "scope": "existing declared-contract probes; no author trial or media verification",
+  "cli_sha256": "36f33426db638f9025c8f4f4a0aa26df1a623a72438c60be15cc53874c7df40f",
+  "input_sha256_before": {
+    "docs/narrative/n06-cases/brainstorm-current-v1.json": "f69440b4e94f37f2f94b9702170e93616cc2b80aa3a443361eca4f0a1a972e26",
+    "docs/narrative/n06-cases/brainstorm-unsupported-state-v1.json": "0eae0ed1a1a5b8f2bca7a799f2671148add1b43db270bd16bd48eb65e7439259",
+    "docs/narrative/n06-cases/screenplay-current-v1.json": "b36ca69d7be9badd07b5ea5be68db56c0024ff14b6992c8da8445be1d2ac5f51",
+    "docs/narrative/n06-cases/screenplay-order-profile-v1.json": "6a2ebdba519d3614becc476a618cdcad97e15dbe1986e3d897b7a456756ed9a6",
+    "docs/narrative/n06-cases/screenplay-unsupported-chronology-v1.json": "e24e5b660f2c7b2ae380c1801bf84d59973d10a562b1268b7c542bcb29be1285",
+    "docs/narrative/n06-cases/video-mapping-sketch.json": "ce1141dba8e144c8737e798d9134372f5ea803c575cf90febecb2a6d7c7a3f47",
+    "docs/narrative/n06-cases/video-resolved-subset-v1.json": "8a5aedbc0800f38b9e5fa03b8d74d7471656d297c1a3da28b67a8247d4e69c94",
+    "docs/narrative/n06-cases/video-unsupported-join-v1.json": "2a5c75431ac8981482ae9299d2057952d18b4b113ca5a0cf77c1bfc093c223a4"
+  },
+  "input_sha256_after": {
+    "docs/narrative/n06-cases/brainstorm-current-v1.json": "f69440b4e94f37f2f94b9702170e93616cc2b80aa3a443361eca4f0a1a972e26",
+    "docs/narrative/n06-cases/brainstorm-unsupported-state-v1.json": "0eae0ed1a1a5b8f2bca7a799f2671148add1b43db270bd16bd48eb65e7439259",
+    "docs/narrative/n06-cases/screenplay-current-v1.json": "b36ca69d7be9badd07b5ea5be68db56c0024ff14b6992c8da8445be1d2ac5f51",
+    "docs/narrative/n06-cases/screenplay-order-profile-v1.json": "6a2ebdba519d3614becc476a618cdcad97e15dbe1986e3d897b7a456756ed9a6",
+    "docs/narrative/n06-cases/screenplay-unsupported-chronology-v1.json": "e24e5b660f2c7b2ae380c1801bf84d59973d10a562b1268b7c542bcb29be1285",
+    "docs/narrative/n06-cases/video-mapping-sketch.json": "ce1141dba8e144c8737e798d9134372f5ea803c575cf90febecb2a6d7c7a3f47",
+    "docs/narrative/n06-cases/video-resolved-subset-v1.json": "8a5aedbc0800f38b9e5fa03b8d74d7471656d297c1a3da28b67a8247d4e69c94",
+    "docs/narrative/n06-cases/video-unsupported-join-v1.json": "2a5c75431ac8981482ae9299d2057952d18b4b113ca5a0cf77c1bfc093c223a4"
+  },
+  "all_inputs_unchanged": true,
+  "probes": [
+    {
+      "case": "brainstorm-current",
+      "command": [
+        "./target/release/storytelling",
+        "render-narrative",
+        "docs/narrative/n06-cases/brainstorm-current-v1.json"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "replay_stdout_identical": true,
+      "stderr_empty": true,
+      "stdout": "Narrative: n06-brainstorm@1 (schema v1)\nPurpose: \"保留互斥的維修構思，等作者決定；不是後續行動的觀察紀錄。\"\nAudience: \"規劃下一次維護的作者。\"\n\n## Variant keep-hinge — \"A：保留後觀察（尚未選定）\" [spoken_outline]\n1. [A_ACTION] [S02@1 | supplied_observation] \"原始紀錄：阿梅扶門，阿安收緊上方鉸鏈的一顆螺絲。\"\n2. [A_TEST] [S03@1 | supplied_observation] \"原始紀錄只有一次試關沒有磨地。\"\n3. [A_OPTION] [P_KEEP@1 | creative_proposal] \"創作提議 A：保留鉸鏈並觀察。未解問題：連續使用與雨後是否仍會磨地？\"\n\n## Variant replace-hinge — \"B：先換再使用（尚未選定）\" [spoken_outline]\n1. [B_ACTION] [S02@1 | supplied_observation] \"原始紀錄：阿梅扶門，阿安收緊上方鉸鏈的一顆螺絲。\"\n2. [B_TEST] [S03@1 | supplied_observation] \"原始紀錄只有一次試關沒有磨地。\"\n3. [B_OPTION] [P_REPLACE@1 | creative_proposal] \"創作提議 B：先安排更換鉸鏈。未解問題：規格、費用與共用門的授權由誰確認？\"\n\n"
+    },
+    {
+      "case": "brainstorm-typed-state",
+      "command": [
+        "./target/release/storytelling",
+        "render-narrative",
+        "docs/narrative/n06-cases/brainstorm-unsupported-state-v1.json"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "replay_stdout_identical": true,
+      "stderr_empty": true,
+      "stdout": "{\"error\":{\"code\":\"narrative.unknown_field\",\"path\":\"$\"},\"ok\":false}\n",
+      "diagnostic": "narrative.unknown_field"
+    },
+    {
+      "case": "screenplay-two-reveals",
+      "command": [
+        "./target/release/storytelling",
+        "render-narrative",
+        "docs/narrative/n06-cases/screenplay-current-v1.json"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "replay_stdout_identical": true,
+      "stderr_empty": true,
+      "stdout": "Narrative: n06-two-reveals@1 (schema v1)\nPurpose: \"同一組事件用順敘與先結果後回看的兩種揭露方式呈現。\"\nAudience: \"初次得知這件修門小事的觀眾。\"\n\n## Variant linear — \"順敘：先調整，再試關\" [spoken_outline]\n1. [L_ACTION] [S02@1 | supplied_observation] \"阿梅扶門，阿安收緊上方鉸鏈的一顆螺絲。\"\n2. [L_TEST] [S03@1 | supplied_observation] \"接著兩人試關一次；這次沒有磨到地面。\"\n3. [L_TOOLS] [S04@1 | supplied_observation] \"最後把工具收回工具箱。\"\n\n## Variant result-first — \"先結果：再交代剛才的動作\" [spoken_outline]\n1. [F_TEST] [S03@1 | supplied_observation] \"先給觀眾看這一次順利關門的結果。\"\n2. [F_ACTION] [S02@1 | supplied_observation] \"回看剛才：阿梅扶門，阿安收緊上方鉸鏈螺絲。\"\n3. [F_TOOLS] [S04@1 | supplied_observation] \"回到工具收妥的收尾。\"\n\n"
+    },
+    {
+      "case": "screenplay-order",
+      "command": [
+        "./target/release/storytelling",
+        "check-narrative-style",
+        "docs/narrative/n06-cases/screenplay-current-v1.json",
+        "docs/narrative/n06-cases/screenplay-order-profile-v1.json"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "replay_stdout_identical": true,
+      "stderr_empty": true,
+      "stdout": "{\"ok\":true,\"style_check\":{\"checked_rules\":2,\"document_id\":\"n06-two-reveals\",\"document_revision\":1,\"profile_id\":\"n06-reveal-order\",\"scope\":\"declared-beat-order-only\"}}\n"
+    },
+    {
+      "case": "screenplay-chronology",
+      "command": [
+        "./target/release/storytelling",
+        "render-narrative",
+        "docs/narrative/n06-cases/screenplay-unsupported-chronology-v1.json"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "replay_stdout_identical": true,
+      "stderr_empty": true,
+      "stdout": "{\"error\":{\"code\":\"narrative.unknown_field\",\"path\":\"$\"},\"ok\":false}\n",
+      "diagnostic": "narrative.unknown_field"
+    },
+    {
+      "case": "video-resolved-subset",
+      "command": [
+        "./target/release/storytelling",
+        "plan-story",
+        "docs/narrative/n06-cases/video-resolved-subset-v1.json"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "replay_stdout_identical": true,
+      "stderr_empty": true,
+      "stdout": "{\"ok\":true,\"planning\":{\"brief_audit\":{\"brief_id\":\"n06-declared-resolved-subset\",\"conflicts\":[],\"consistent\":true,\"duration_analysis\":\"not-performed\",\"excluded_assets\":[],\"executable\":false,\"intent\":\"僅檢查宣告的鉸鏈片段；不是完整敘事銜接。\",\"manual_selected_asset_ids\":[\"clip-hinge-declared\"],\"precedence_edges\":[],\"preferences\":{\"preferred_asset_ids\":[]},\"required_assets\":[{\"asset_id\":\"clip-hinge-declared\",\"origins\":[\"$.manual_selected_asset_ids[0]\"]}],\"schema_version\":1,\"scope\":\"declared-constraint-audit-only\",\"selection_planned\":false,\"warnings\":[]},\"content_clock_rate\":\"2\",\"duration_analysis\":\"exact-fixed-windows\",\"executable\":false,\"host_verified\":false,\"plan\":{\"assets\":[{\"content_hash\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"duration\":{\"denominator\":\"1\",\"numerator\":\"12\"},\"id\":\"clip-hinge-declared\"}],\"plan_id\":\"n06-declared-resolved-subset\",\"schema_version\":1,\"shots\":[{\"asset_id\":\"clip-hinge-declared\",\"id\":\"shot-000001\",\"source_range\":{\"end\":{\"denominator\":\"2\",\"numerator\":\"9\"},\"start\":{\"denominator\":\"2\",\"numerator\":\"5\"}}}]},\"profile\":\"storytelling.fixed-window-planner.v1\",\"schema_version\":1,\"scope\":\"declared-fixed-window-plan-only\",\"selection_planned\":true,\"selections\":[{\"asset_id\":\"clip-hinge-declared\",\"declared_score\":0,\"duration\":{\"denominator\":\"1\",\"numerator\":\"2\"},\"reason_paths\":[\"$.brief.manual_selected_asset_ids[0]\",\"$.candidates[0].source_range\"],\"required\":true,\"shot_id\":\"shot-000001\",\"timeline_start\":{\"denominator\":\"1\",\"numerator\":\"0\"}}],\"skipped_candidates\":[],\"source_verified\":false,\"target_status\":\"not-requested\",\"total_duration\":{\"denominator\":\"1\",\"numerator\":\"2\"}}}\n"
+    },
+    {
+      "case": "video-join-field",
+      "command": [
+        "./target/release/storytelling",
+        "plan-story",
+        "docs/narrative/n06-cases/video-unsupported-join-v1.json"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "replay_stdout_identical": true,
+      "stderr_empty": true,
+      "stdout": "{\"error\":{\"code\":\"input.invalid_json\",\"conflicts\":[],\"path\":\"$\"},\"ok\":false}\n",
+      "diagnostic": "input.invalid_json"
+    }
+  ]
+}
