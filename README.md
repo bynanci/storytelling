@@ -1,148 +1,49 @@
-# storytelling
+# Storytelling
 
-A Rust foundation for local-first story planning and reviewed editor workflows.
+[繁體中文](README.zh-TW.md) · [CLI guide](docs/CLI_GUIDE.md) · [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md) · [CI runs](https://github.com/bynanci/storytelling/actions/workflows/ci.yml)
 
-**Status: M0, finite M1-01/M1-02, bounded M2-01 audit and M1-03 host proof are accepted on main. M2-02 fixed-window planning is accepted. M2-03 selected-domain live shadow is accepted via PR #26. No release is published.**
-The executable slices validate declared plans, map finite OpenFilm snapshots and
-propose fixed-window StoryPlans from supplied constraints. The planner selects
-supplied windows; narrative interpretation and editor execution remain separate.
-`verify-source` separately hashes explicitly supplied bytes; the isolated test harness has proved one real FilmCraft profile.
-Main integrates the bounded `prepare-review` / `check-review` profile via PR #32:
-same-input OTIO binding and declared-context freshness, with all approval/source/
-host/execution flags false. The profile has signed bounded G2 acceptance in
-[the M3-01/P1 record](docs/migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md);
-this does not accept PR #28 or broader M3 work. Its paired OpenFilm runtime evidence
-and fixed Rust digest/error-order tests are recorded for [issue #27](https://github.com/bynanci/storytelling/issues/27).
-Future functionality is tracked separately in [TASKS](TASKS.md) and [ROADMAP](ROADMAP.md).
+Storytelling is a local-first Rust toolkit for planning a story from material you have already selected. Its first working use case is a video rough cut. Give the planner candidate clips, exact source ranges and editorial constraints. It proposes a shot order, explains which clips it skipped and can turn the selected cuts into an OpenTimelineIO (OTIO) timeline for review.
 
-The merged [M3-01/P2 bounded bridge](docs/migration/PLANNER_OTIO_REVIEW_V1.md) connects saved
-`plan-story` stdout to `prepare-story-review` / `export-story-otio` and
-`check-story-review`: the selected cuts compile against one explicit snapshot,
-the bundle contains the actual reviewed OTIO, and changed declarations/loss choices
-invalidate it. This remains read-only and grants no approval or host authority.
-
-[繁體中文](README.zh-TW.md) · [PR register](docs/delivery/PR_REGISTER.md) · [CLI guide](docs/CLI_GUIDE.md) · [Architecture](docs/ARCHITECTURE.md) · [SDLC](docs/SDLC.md) · [Contract](docs/CONTRACTS.md)
+**Development version `0.1.0-dev.0` is available from source.** The first release is still ahead. The [cross-media roadmap](ROADMAP.md#cross-media-narrative-roadmap) proposes ways to use the same material for scripts, illustrations, copy, brainstorming and everyday storytelling.
 
 ## Quick start
 
-Install Rust through the official rustup distribution, then:
+Install Rust with [rustup](https://rustup.rs/). Clone the repository and run the bundled synthetic examples. The repository selects Rust 1.85.0.
 
 ```sh
-cargo test --workspace --locked
+git clone https://github.com/bynanci/storytelling.git
+cd storytelling
 cargo run --locked -p storytelling-cli -- validate examples/minimal-plan.json
-cargo run --locked -p storytelling-cli -- validate tests/fixtures/invalid-source-range.json
-cargo run --locked -p storytelling-cli -- import-openfilm tests/fixtures/openfilm/finite-v1/still.json
-cargo run --locked -p storytelling-cli -- export-otio tests/fixtures/openfilm/finite-v1/still.json --metadata-only-locks > finite.otio
-
-cargo run --locked -p storytelling-cli -- audit-brief tests/fixtures/brief-v1/valid.json
 cargo run --locked -p storytelling-cli -- plan-story tests/fixtures/planner-v1/valid.json
 ```
 
-The first validation exits 0 with `ok: true`. The invalid fixture exits 1 with
-`plan.source_out_of_bounds`. For stdin use `storytelling validate -`.
-`--help` and `--version` do not open a project. JSON goes to stdout; error codes
-are documented in [CONTRACTS](docs/CONTRACTS.md). A successful result explicitly
-has `scope: "declared-metadata-only"`; it is not media or editorial approval.
+1. `validate` reports `ok: true` for `travel-recap` with one asset and two shots. The result covers the declared IDs and source ranges. To check actual file contents against a digest, use `verify-source`.
+2. `plan-story` returns JSON on stdout. In the [example brief](tests/fixtures/planner-v1/valid.json), the author explicitly places `detail` before `opening`. The two shots in `planning.plan` preserve that order, even though `opening` has the higher score.
 
-The importer also supports stdin: `storytelling import-openfilm -`. It accepts
-one contiguous picture track of still/video cuts with strict field and resource
-limits. It preserves raw source facts and exact numeric lexemes. Success has
-`scope: "declared-visual-mapping-only"`, `executable: false`; video reports
-`audio.not_mapped / blocks-host-handoff`. Explicit audio, effects and animation
-reject without a plan. See the [finite-v1 contract](docs/migration/FINITE_V1.md),
-[comparison/evidence](docs/migration/records/M1-01.md) and
-[work tracking](docs/migration/M1-01-WORK-QUEUE.md).
+To try the handoff, follow the [CLI guide](docs/CLI_GUIDE.md) from a saved planner proposal to a review bundle and an `.otio` file. The guide includes the matching snapshot and review context.
 
-`export-otio` writes actual OTIO Timeline JSON to stdout. Videos require
-`--picture-only`; true source locks require `--metadata-only-locks`. These choices
-permit limited serialization, not editor execution approval. Exact common content
-ticks remain distinct from project FPS; unsafe native values reject. Original
-snapshot text and structured limitations travel in owner metadata. See the
-[finite OTIO contract](docs/migration/FINITE_OTIO_V1.md). Official parser support
-does not certify an editor or actual media.
+## What works today
 
-`audit-brief FILE|-` checks a versioned StoryBrief's declared hard references,
-required/excluded membership and partial ordering. It preserves manual choices
-and returns typed conflicts; preferences remain soft and unchanged. A clean
-report has `scope: "declared-constraint-audit-only"`, `selection_planned: false`
-and `duration_analysis: "not-performed"`. It does not produce a shot selection
-or establish achievable timing. See the [brief contract](docs/migration/STORY_BRIEF_V1.md)
-and [M2-01 evidence](docs/migration/records/M2-01.md).
+| Goal | Commands | Scope |
+| --- | --- | --- |
+| Check and plan | `validate`, `audit-brief`, `plan-story` | Check references, required and excluded assets, and ordering constraints. Select from supplied time ranges within shot and duration limits. |
+| Exchange a visual cut | `import-openfilm`, `export-otio` | Read an OpenFilm snapshot with one contiguous picture track of stills or video cuts. Exporting video requires an explicit picture-only choice. Separate audio, effects and animation are unsupported. |
+| Review a proposal | `prepare-story-review`, `export-story-otio`, `check-story-review` | Bind the selected proposal and snapshot to the actual OTIO. Check whether the declared inputs, conversion choices or artifact have changed. |
+| Review an existing composition | `prepare-review`, `check-review` | Bind a finite composition and its OTIO to a declared review context. A match establishes consistency. Human approval and editor execution remain separate steps. |
+| Check supplied bytes | `verify-source` | Compare an explicit file or stdin against a SHA-256 digest, up to 16 MiB. |
 
-`verify-source FILE|- SHA256` verifies at most 16 MiB of explicitly supplied bytes
-against a lowercase SHA-256 and returns metadata only. Its immutable owned buffer
-cannot be reconstructed from a serialized receipt. This does not verify later
-filesystem reads. The [M1-03 proof](docs/migration/records/M1-03.md) exercised
-FilmCraft v0.18.0 Linux at 25 fps: exact native 1920×1080 ranges, save/reopen and OTIO
-reimport, plus a 45-frame 192×108 CPU H.264 review export. Audio, GUI/GPU,
-full-resolution export and human editorial acceptance remain open.
+OpenFilm supplies the composition snapshot. The target editor owns the working timeline. An isolated test exercised FilmCraft v0.18.0 on Linux at 25 fps, including save/reopen, OTIO reimport and a 45-frame CPU preview. Production editor execution is planned. Audio handoff and full-resolution output are outside the tested profile. [FilmCraft test record](docs/migration/records/M1-03.md) · [Review contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md)
 
-`plan-story FILE|-` proposes fixed declared source windows within hard duration/shot
-budgets, preserving required choices and precedence. Target duration stays soft;
-selection is deterministic with source declaration paths and explicit skipped
-reasons. It returns `{ok:true,planning:...}` containing an actual M0-valid plan.
-See [planner profile](docs/migration/FIXED_WINDOW_PLANNER_V1.md) and
-[CLI guide](docs/CLI_GUIDE.md). Full multi-beat solving and host execution remain later work.
+## Cross-media direction
 
-The test-only [live shadow](tests/oracles/planner-shadow-v1/README.md) now compares
-actual pinned TypeScript compose with the actual native CLI. Its selected domain
-passed 64 pairs: 56 agreements, four documented policy differences and four
-unsupported probes. PR #26 passed all ten same-head hosted checks and is merged;
-full solver parity remains open. See [M2-03 evidence](docs/migration/records/M2-03.md).
+The proposed first use case starts with one account of an event and produces a spoken outline and alternative compositions for a single illustration. An invented visual detail can stay with the illustration while the spoken account keeps its link to the source. A second use case tests commercial copy by tracing each claim to supplied evidence. Both are planning work. The [narrative backlog](TASKS.md#cross-media-narrative-backlog) lists their dependencies and acceptance criteria.
 
-## Current architecture
+## Architecture and contributions
 
-```text
-storytelling-cli      local input/output and process exit status
-        |
-storytelling-engine   pure bounded validation and finite snapshot mapping
-        |
-storytelling-core     strict wire types and exact rational source time
-```
+The workspace contains three crates. `storytelling-core` defines wire types and exact rational time. `storytelling-engine` validates, plans and exports in memory. `storytelling-cli` owns file and stdin access, stdout and exit codes. [Architecture](docs/ARCHITECTURE.md) · [Wire and CLI contracts](docs/CONTRACTS.md)
 
-Rust 2024, resolver 3, pinned toolchain 1.85.0 and a Cargo-generated lockfile.
-First-party unsafe code is forbidden. Core/engine have no Tokio, SQLite, network,
-GUI, FFmpeg or host dependency. Future workflow/adapters are design boundaries,
-not empty crates or implemented integrations. All packages have `publish = false`.
-
-## Product direction
-
-OpenFilm remains a consumer and media-analysis source. FilmCraft is the first
-planned external editor. Storytelling will own story intent, evidence references,
-reviewed proposals and execution receipts; the host owns its edited timeline.
-No second live timeline, codec stack or full nonlinear editor is planned.
-
-Finite OTIO, the bounded synthetic FilmCraft proof and M2-02 fixed-window planning
-are accepted. Full solver shadow, reviewed production execution and broader
-host/media acceptance remain later gates. See [migration](docs/MIGRATION.md)
-and [risks](docs/RISKS.md).
-
-## Develop and review
-
-```sh
-cargo fmt --all -- --check
-cargo clippy --workspace --all-targets --locked -- -D warnings
-cargo test --workspace --locked
-cargo test --workspace --release --locked
-cargo doc --workspace --no-deps --locked
-python3 scripts/check_repo.py
-```
-
-CI covers Linux, Windows and macOS CLI behavior. Hosted CI is not a real editor,
-installer, GPU or listening certification. Exact-head results belong in the PR
-and [validation record](docs/validation/m0-foundation.md).
-
-See [contributing](CONTRIBUTING.md), [agent rules](AGENTS.md), [security](SECURITY.md)
-and [requirements traceability](docs/REQUIREMENTS.md). Completed, verified PRs may
-be merged under the user's explicit task authorization; releases and repository
-policy changes remain separate decisions. See [accepted lifecycle](TASKS.md#accepted-lifecycle).
+Pick a [task](TASKS.md), check [open pull requests](https://github.com/bynanci/storytelling/pulls) and connect the change to its [requirements](docs/REQUIREMENTS.md). The [contribution guide](CONTRIBUTING.md) lists the local checks, and the [SDLC](docs/SDLC.md) explains when a change is ready for implementation, review or release. Use a synthetic example when reporting a [bug](https://github.com/bynanci/storytelling/issues/new/choose). For sensitive reports, follow the [security policy](SECURITY.md).
 
 ## License
 
-The repository's original [MIT LICENSE](LICENSE) is preserved. The source-informed
-Source-informed importer, OTIO, brief, buffer-verification and planner components
-are Apache-2.0, with per-file [provenance](PROVENANCE.md) and
-upstream [NOTICE](NOTICE.openfilm) / [license](LICENSES/Apache-2.0.txt). Existing
-MIT integration remains separately identified; see [PROVENANCE](PROVENANCE.md).
-No private media is copied. Repository naming does not reserve a
-crates.io package name or establish FilmCraft affiliation.
+Original project code and documentation use the [MIT License](LICENSE). OpenFilm-informed components identified in the [per-file provenance records](PROVENANCE.md) use [Apache-2.0](LICENSES/Apache-2.0.txt) with the retained [upstream notice](NOTICE.openfilm).

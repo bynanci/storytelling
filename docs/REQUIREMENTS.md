@@ -237,6 +237,22 @@ M4's OpenFilm feature flag follows accepted journal/executor readback, with one 
 
 ## Remaining breadth and future requirements
 
+### Proposed cross-media narrative requirements
+
+The following are acceptance targets for the [N-track tasks](../TASKS.md#cross-media-narrative-backlog).
+Implementation PRs record their real fixture paths, test names and evidence here.
+Each example below describes evidence to collect during future development.
+
+| ID / task | User-visible requirement | Evidence to supply at the applicable SDLC gate |
+| --- | --- | --- |
+| N-R01 / N-01 | An author can describe who the work is for, what they want to communicate and which details they supplied. | G0–G1 synthetic source notes, a spoken outline, two contrasting compositions and a commercial claim with missing support. Record a plain-notes baseline, a success measure and a stop condition before the pilot. |
+| N-R02 / N-02 | A separately versioned narrative document can describe material and its relationships without media files or clocks. | G2 ADR plus paired valid/invalid examples. A free association loop is admissible. A cycle in required speaking order, a dangling ID and an unsupported version have defined diagnostics. Inventory the existing video CLI/schema/digest regression cases. |
+| N-R03 / N-03 | An author can reuse a single source for a spoken outline and two distinct spatial compositions. | G3–G4 read-only CLI run on synthetic notes, deterministic repeat output and unchanged input. Both forms reference the original IDs. A suggested visual detail appears only in the variant that uses it. |
+| N-R04 / N-04 | Authors can retain alternative variants and see which one is affected by a revision. | G3–G4 edit a shared unit, then a unit used by only one variant. Identify exactly the affected variants. Preserve prior revisions and author choices. Treat an AI-suggested detail as a suggestion until a separate author decision is recorded. |
+| N-R05 / N-05 | An author can assemble a commercial outline and see which factual claims still need support. | G3–G4 trace a claim to an explicit reference, flag a claim with none, and flag a dangling or changed reference. The report describes the reference provided and leaves factual and publication judgment with the reviewer. |
+| N-R06 / N-06 | A contributor can determine which additional profile justifies further development. | G0–G2 compare an unresolved brainstorm branch, a screenplay reveal that differs from event order, and a proposed video handoff with a missing asset. Record the smallest viable boundary, cost and a proceed/defer decision for each. |
+| N-R07 / N-07 | A maintainer can decide whether the authoring workflow merits another iteration or a release candidate. | G4–G6 compare the same synthetic authoring task against the N-01 baseline. Record observed results, regressions, manual feedback and a continue/narrow/stop decision. For a release candidate, attach compatibility, migration and rollback evidence and follow the existing release process. |
+
 ## Evidence levels
 
 Structural parsing < declared semantic validation < actual source verification <
