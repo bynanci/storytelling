@@ -135,7 +135,7 @@ Success is one JSON line. The command validates only the declared order. A contr
 
 The default command retains ReportV1. Append `--report-v2` for the enhanced report below.
 
-`audit-copy-claims --report-v2` organizes a supplied outline for a fictional product into audience, original factual wording, citations, a proposed slogan and a CTA. It reads the existing N-04 revision ledger. `current` means only that the source ID and revision match; all factual claims remain `support_status: human_review_required`.
+`audit-copy-claims <COPY> <LEDGER> --report-v2` organizes a supplied outline for a fictional product into audience, original factual wording, citations, a proposed slogan and a CTA. It reads the existing N-04 revision ledger. `current` means only that the source ID and revision match; all factual claims remain `support_status: human_review_required`.
 
 ```sh
 cargo run --release --quiet --locked -p storytelling-cli -- audit-copy-claims tests/fixtures/commercial-copy-v1/n05-pilot-copy-v1.json tests/fixtures/commercial-copy-v1/n05-pilot-ledger-v1.json --report-v2

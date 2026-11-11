@@ -1,3 +1,7 @@
 # These fixtures are embedded and hashed as exact source bytes by cross-platform tests.
 tests/fixtures/openfilm/finite-v1/repeat-source.json -text
 tests/fixtures/openfilm/finite-v1/video-trim.json -text
+
+# Preserve CLI compatibility receipt bytes in Windows checkouts.
+/docs/validation/n05-commercial-copy-reviewed.stdout text eol=lf
+/docs/validation/n05-pilot/*.stdout text eol=lf

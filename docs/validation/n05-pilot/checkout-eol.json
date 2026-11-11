@@ -1,0 +1,19 @@
+{
+  "hosted_failure_run": 335,
+  "hosted_failure_url": "https://github.com/bynanci/storytelling/actions/runs/43000884961",
+  "receipt": "docs/validation/n05-commercial-copy-reviewed.stdout",
+  "simulation": [
+    "git",
+    "-c",
+    "core.autocrlf=true",
+    "cat-file",
+    "--filters",
+    "HEAD:docs/validation/n05-commercial-copy-reviewed.stdout"
+  ],
+  "before_ends_crlf": true,
+  "before_equals_committed_bytes": false,
+  "after_equals_committed_bytes": true,
+  "canonical_sha256": "06d15c752dc36fdaf312d4a6e10639afdb6aa996794ba784a1afd54eeedcbcdd",
+  "cli_output_changed": false,
+  "assertion_weakened": false
+}

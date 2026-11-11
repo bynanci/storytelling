@@ -65,7 +65,7 @@ The [real CLI integration tests](../../crates/storytelling-cli/tests/commercial_
 | Explicit trailing flag and V1 input versions | `report_selection_rejects_bad_flags_and_does_not_upgrade_input_schema` |
 | Accepted N-04, narrative, video V1 and OTIO compatibility | Full workspace debug/release tests and hosted quality/oracle lanes |
 
-Core owns report DTOs; engine reuses N-04 ledger replay and organizes deterministic references; CLI retains its existing bounded reader/output path. The opt-in ReportV2 adds current text, attention IDs and human-review markers. Default ReportV1 retains its accepted shape and exact reviewed output bytes. The input contract and accepted NarrativeDocumentV1/NarrativeRevisionLedgerV1/video/OTIO contracts are unchanged. No dependency is added. Roll back by ceasing to use this new CLI command.
+Core owns report DTOs; engine reuses N-04 ledger replay and organizes deterministic references; CLI retains its existing bounded reader/output path. The opt-in ReportV2 adds current text, attention IDs and human-review markers. Default ReportV1 retains its accepted shape and exact reviewed output bytes. The input contract and accepted NarrativeDocumentV1/NarrativeRevisionLedgerV1/video/OTIO contracts are unchanged. No dependency is added. Roll back by omitting `--report-v2` to return to accepted ReportV1; no input migration is needed.
 
 ## RED / GREEN and review evidence
 
@@ -98,3 +98,7 @@ No product-case author decisions, task times or usability outcome are claimed. K
 The concurrent requester assessment for the earlier gate example is preserved in the [original scoped review record](n05-gate-requester-review.md) and [Issue #52 comment](https://github.com/bynanci/storytelling/issues/52#issuecomment-6792555292). The reviewed gate fixture and its original replay receipts remain unchanged. That assessment supports the gate example only; it does not fill the product pilot review table above. The new report fields add reference information without changing the reviewed draft's original wording or source.
 
 The [current default-V1 gate replay](n05-pilot/gate-reviewed-replay.json) confirms exact byte equality with the original reviewed receipt; [current stdout](n05-pilot/gate-reviewed.stdout) retains the accepted V1 shape. The prior receipt remains historical evidence for its original head.
+
+## Windows receipt checkout regression
+
+Hosted run [#335](https://github.com/bynanci/storytelling/actions/runs/43000884961) passed the seven other product/option/capacity tests, but default-V1 byte equality failed because Git checked out the saved receipt as CRLF while CLI stdout uses LF. The [checkout simulation](n05-pilot/checkout-eol.json) reproduces that difference with core.autocrlf=true and confirms exact committed bytes after explicit LF attributes. The CLI output and strict byte assertion are unchanged. Final-head CI is tracked on PR #87.
