@@ -1,0 +1,1 @@
+Two pairs of hands, a blue colander and one head of broccoli. I remember learning to break the head into small florets together. Somewhere between the first floret and the last, making dinner started to feel like something we did together.

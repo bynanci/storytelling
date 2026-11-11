@@ -1,0 +1,1 @@
+“I thought Save would send it.” That was U4’s reading of the button. In this session U4 opened Preview, pressed Save and closed the tab. The log contains no Share action.

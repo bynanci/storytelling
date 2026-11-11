@@ -47,6 +47,8 @@ Use the [first seven Codex prompts](docs/CODEX_NARRATIVE_PROMPTS.md) or the [fiv
 
 ### Starting N-01
 
+For a separate reading or handoff exercise, use the [scenario collection](examples/README.md). Keep its observations separate from the original N-01 trial.
+
 1. In [issue #48](https://github.com/bynanci/storytelling/issues/48), record the current main commit and overlapping PRs.
 2. Give the author the [study packet](docs/narrative/N-01-AUTHOR-STUDY.md). Ask them to correct the repairers' identities. Ask which outputs change and where the umbrella came from.
 3. Recruit five participants. Follow the packet's thresholds for paired eight-minute trials. Report notes, skill and any subsequent native-tool trials separately.

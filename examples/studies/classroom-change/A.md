@@ -1,0 +1,1 @@
+Draw a horizontal waterline on two small sketches. Mark the upper blue edge above each line and bracket the distance between them. At minute 2 the edge was 1 cm above the line. At minute 8 it was 4 cm above it. How did the height of the blue edge change?

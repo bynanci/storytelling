@@ -1,0 +1,1 @@
+We logged 8,800 minutes of Service A in the last four weeks, down 12% from 10,000 in the previous four. You asked whether the bill covers both sites that moved. Can we establish which sites the bill counts before we interpret the change?

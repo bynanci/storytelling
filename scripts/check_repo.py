@@ -68,7 +68,8 @@ else:
     if not re.search(r"^description: [^\s].*", fields, re.M):
         errors.append("Storytelling skill needs a discovery description")
 
-docs = [*ROOT.glob("*.md"), *(ROOT / "docs").rglob("*.md"), *skill_dir.rglob("*.md")]
+docs = [*ROOT.glob("*.md"), *(ROOT / "docs").rglob("*.md"), *skill_dir.rglob("*.md"),
+        *(ROOT / "examples").rglob("*.md")]
 for doc in docs:
     for target in re.findall(r"\[[^\]]+\]\(([^\s)]+)\)", doc.read_text()):
         if "://" in target or target.startswith(("#", "mailto:")):

@@ -1,0 +1,1 @@
+Ten minutes with the old version, eight with the preview: those were the median times for four volunteers, each importing the same six-row sheet both ways. The preview highlights unmatched headers before import. Select Review mapping to inspect them.
