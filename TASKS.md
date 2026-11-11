@@ -37,7 +37,7 @@ The maintainer decides whether to publish to a public registry.
 | [N-02 / #49](https://github.com/bynanci/storytelling/issues/49) · N-R02 | G2 accepted. Uses the N-01 packet. | [ADR 0005](docs/adr/0005-independent-narrative-document-v1.md) and the [V1 profile](docs/narrative/NARRATIVE_DOCUMENT_V1.md) define sources, variants, spoken outlines and illustrations. [PR #71](https://github.com/bynanci/storytelling/pull/71) records acceptance. |
 | [N-03 / #50](https://github.com/bynanci/storytelling/issues/50) · N-R03 | Follows N-02. CLI on main. Author inspection remains open. | Render one outline and two compositions. Check provenance, failure cases, unchanged inputs, repeatable output and video regressions. See [commands and results](docs/validation/n03-narrative-cli.md). |
 | [N-04 / #51](https://github.com/bynanci/storytelling/issues/51) · N-R04 | Follows N-03. Revision queries on main. Human inspection remains separate. | Revise a shared fact, then one illustration. Find affected variants by direct reference. Retain earlier drafts, suggestions and declared decisions. See [revision evidence](docs/validation/n04-narrative-revisions.md). |
-| [N-05 / #52](https://github.com/bynanci/storytelling/issues/52) · N-R05 | G3–G4. Follows N-04. | Show the audience, claim, reference, wording and action. Flag missing and stale references. A reviewer judges whether a source supports the claim. |
+| [N-05 / #52](https://github.com/bynanci/storytelling/issues/52) · N-R05 | PR #83 adds a read-only CLI slice; a human still needs to judge whether sources support the wording. | `audit-copy-claims` displays audience, claims, CTA, cited historical text and reference revision status. Track same-head CI and semantic review separately. See the [contract](docs/narrative/COMMERCIAL_COPY_V1.md) and [validation record](docs/validation/n05-commercial-copy.md). |
 | [N-06 / #53](https://github.com/bynanci/storytelling/issues/53) · N-R06 | G0–G2. Follows N-04. | Compare unresolved brainstorm branches, screenplay reveal order and a video mapping with a missing asset. Record need, cost and compatibility. Select one or defer all three. |
 | [N-07 / #54](https://github.com/bynanci/storytelling/issues/54) · N-R07 | G4–G6. Follows N-05. | Repeat the baseline. Report completion counts, denominators, time and attribution errors per condition. Link failures to fixtures. The maintainer decides whether to continue, narrow the scope or stop. Consider release separately. |
 
@@ -46,6 +46,8 @@ Use the [first seven Codex prompts](docs/CODEX_NARRATIVE_PROMPTS.md) or the [fiv
 <a name="執行作者試用"></a>
 
 ### Starting N-01
+
+For a separate reading or handoff exercise, use the [scenario collection](examples/README.md). Keep its observations separate from the original N-01 trial.
 
 1. In [issue #48](https://github.com/bynanci/storytelling/issues/48), record the current main commit and overlapping PRs.
 2. Give the author the [study packet](docs/narrative/N-01-AUTHOR-STUDY.md). Ask them to correct the repairers' identities. Ask which outputs change and where the umbrella came from.

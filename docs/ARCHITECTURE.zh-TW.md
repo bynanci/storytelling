@@ -87,6 +87,8 @@ N-02 的來源與衍生關係可參考 [W3C PROV-DM](https://www.w3.org/TR/prov-
 空間分組可參考 [JSON Canvas 1.0](https://jsoncanvas.org/spec/1.0/)。
 用合成案例評估實作成本。將決定記在[敘事任務](../TASKS.zh-TW.md#cross-media-narrative-backlog)指定的架構決策紀錄。
 
+N-05 的 `audit-copy-claims` 沿用相同邊界：core 保存版本化文案與報告型別，engine 對照呼叫端提供的敘事修訂簿驗證有上限的引用，CLI 讀取兩份本機輸入並輸出一行 JSON。報告附上所引用 revision 的原始文字供人比對。引用目前有效不代表語意上獲得佐證、來源真實或文案可發布。
+
 <a id="workflow-and-editor-adapters"></a>
 
 ### 工作流程與宿主轉接器
@@ -177,6 +179,7 @@ M3-03 須證明舊請求已停止，才能將宿主讀回用作重試依據。
 - [ADR 0001](adr/0001-scope-and-boundaries.md) 記錄 Rust 移植策略。
 - [ADR 0002](adr/0002-exact-time-and-wire.md) 記錄時間與傳輸限制。
 - [ADR 0003](adr/0003-license-and-provenance.md) 記錄儲存庫授權與來源。
+- [ADR 0008](adr/0008-local-png-host-feasibility.md) 提議 N-12 本機 PNG 交付邊界，保留獨立宿主與讀回證據。
 
 <a id="accepted-fixed-window-planner"></a>
 

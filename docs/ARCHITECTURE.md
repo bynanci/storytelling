@@ -70,6 +70,13 @@ Narrative inputs need no asset hashes, source ranges or frame rates. A future vi
 
 For origin and derivation, consult [W3C PROV-DM](https://www.w3.org/TR/prov-dm/). For spatial grouping, consult [JSON Canvas 1.0](https://jsoncanvas.org/spec/1.0/). Use synthetic cases to assess implementation cost. Record the decision in the ADR specified by the [narrative backlog](../TASKS.md#cross-media-narrative-backlog).
 
+The N-05 `audit-copy-claims` slice follows the same boundary: core carries the
+versioned copy/report DTOs, engine checks bounded references against the supplied
+narrative ledger, and CLI reads two local inputs and emits one JSON report. The
+report includes the cited revision's supplied text for human comparison. A
+current reference is not proof of semantic support, source authenticity or
+publishability.
+
 <a id="工作流程與宿主轉接器"></a>
 
 ### Workflow and editor adapters

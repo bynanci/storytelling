@@ -3,14 +3,13 @@
   "copy_id": "gate-repair-outreach-stale",
   "copy_revision": 1,
   "evidence_document_id": "door-repair",
-  "evidence_document_revision": 1,
   "purpose": "Describe the neighbors' work without extending the evidence.",
   "audience": "Residents who read the neighborhood bulletin.",
   "claims": [
     {
       "id": "hinge-action",
       "kind": "factual_claim",
-      "wording": "An tightened one hinge screw while Mei held the gate.",
+      "wording": "An tightened one hinge screw as Mei held the gate.",
       "evidence_refs": [{ "unit_id": "S02", "revision": 1 }]
     }
   ],

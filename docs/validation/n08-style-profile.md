@@ -125,6 +125,17 @@ Ask:
 there are no participant quotes or usability claims to report. Record actual
 answers only after a person completes the blind read.
 
+## Merge reconciliation and remaining N-08 gate
+
+PR #75 was reconciled with the intervening main changes from #76, #77 and #79.
+The English-first and Traditional Chinese documentation updates were retained
+alongside the profile contract. The final PR head was
+`99765e0eae28e0338d78fa465bf4c44edaf792d1`; exact-head CI run #265 passed all
+configured jobs, and PR #75 was squash-merged as
+`003191c834bfc46903f1a436fd73c5df6edd9a77`. Issue #65 remains open because the
+blind reader trial is a human acceptance criterion. Deterministic replay is
+covered by the CLI integration test; it does not substitute for that trial.
+
 ## Automated evidence
 
 Local targeted result: cargo test --locked -p storytelling-cli --test style_profile — 7 passed.

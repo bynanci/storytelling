@@ -1,6 +1,7 @@
 //! Pure, portable story contracts. No filesystem, runtime, or host access.
 pub mod approval;
 pub mod brief;
+pub mod commercial_copy;
 pub mod compatibility;
 pub mod compiled_plan;
 pub mod narrative;
