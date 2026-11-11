@@ -1,0 +1,4 @@
+interface:
+  display_name: "Storytelling"
+  short_description: "Turn source notes into stories, concepts and copy"
+  default_prompt: "Use $storytelling to turn my notes into a spoken outline and two illustration concepts."

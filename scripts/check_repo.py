@@ -55,12 +55,29 @@ license_bytes = (ROOT / "LICENSE").read_bytes()
 blob = hashlib.sha1(f"blob {len(license_bytes)}\0".encode() + license_bytes).hexdigest()
 if blob != "f317799529d13f4d9301daa2dba63dfea559ff69":
     errors.append("Original MIT LICENSE changed without updating the approved provenance contract")
-for doc in list(ROOT.glob("*.md")) + list((ROOT / "docs").rglob("*.md")):
+skill_dir = ROOT / ".agents/skills/storytelling"
+entry = skill_dir / "SKILL.md"
+if not entry.is_file():
+    errors.append("Missing storytelling skill entry point")
+else:
+    # Sanity-check the front matter used here. Client discovery also parses its YAML.
+    header = re.match(r"\A---\n(.*?)\n---\n", entry.read_text(encoding="utf-8"), re.S)
+    fields = header.group(1) if header else ""
+    if not re.search(r"^name: storytelling$", fields, re.M):
+        errors.append("Storytelling skill name must match its directory")
+    if not re.search(r"^description: [^\s].*", fields, re.M):
+        errors.append("Storytelling skill needs a discovery description")
+
+docs = [*ROOT.glob("*.md"), *(ROOT / "docs").rglob("*.md"), *skill_dir.rglob("*.md")]
+for doc in docs:
     for target in re.findall(r"\[[^\]]+\]\(([^\s)]+)\)", doc.read_text()):
         if "://" in target or target.startswith(("#", "mailto:")):
             continue
         path = target.split("#", 1)[0]
-        if path and not (doc.parent / path).resolve().exists():
+        resolved = (doc.parent / path).resolve()
+        if doc.is_relative_to(skill_dir) and (Path(path).is_absolute() or not resolved.is_relative_to(skill_dir)):
+            errors.append(f"Skill link would escape the installed package: {doc.relative_to(ROOT)} -> {target}")
+        elif path and not resolved.exists():
             errors.append(f"Broken link: {doc.relative_to(ROOT)} -> {target}")
 tests = "\n".join(p.read_text() for p in (ROOT / "crates").rglob("*.rs"))
 requirements = (ROOT / "docs/REQUIREMENTS.md").read_text()

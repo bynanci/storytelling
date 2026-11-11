@@ -270,6 +270,11 @@ is claimed.
 The following are acceptance targets for the [N-track tasks](../TASKS.md#cross-media-narrative-backlog).
 Implementation PRs record their real fixture paths, test names and evidence here.
 Each example below describes evidence to collect during future development.
+For cross-media delivery, capture the original request to the [skill](../.agents/skills/storytelling/SKILL.md)
+and the output the author received. For a deterministic claim, also record the local
+command, fixture, output and exit status. For a human outcome, attach the actual
+observation. Packaging checks, drafted examples and author pilot evidence answer
+different questions.
 
 | ID / task | User-visible requirement | Evidence to supply at the applicable SDLC gate |
 | --- | --- | --- |

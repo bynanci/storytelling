@@ -32,6 +32,14 @@ queue](#next-actionable-work) continues independently.
 | [N-06](https://github.com/bynanci/storytelling/issues/53) / N-R06 · Evaluate additional profiles | Proposed · G0–G2 | N-04 | Compare three small examples: a brainstorm with two alternative branches, a script whose reveal order differs from event order, and an optional mapping from selected units to real video references. Record author feedback and recommend at most one follow-up slice. Missing video references must remain unresolved. |
 | [N-07](https://github.com/bynanci/storytelling/issues/54) / N-R07 · Pilot and release decision | Proposed · G4–G6 | N-05 | Run the N-01 comparison on the oral/visual and copy workflows. Report observed times, attribution errors and completion counts with denominators. Record a continue, narrow or stop decision and convert reproducible failures into synthetic regression cases. Document compatibility and rollback for any proposed release. |
 
+**Author-facing entry point.** Start each cross-media acceptance case with a
+natural-language request to the [Storytelling skill](.agents/skills/storytelling/SKILL.md).
+Keep the request, the output shown to the author, and any separately observed
+engine checks. Discovery and draft examples can run with the skill alone. For
+N-03 onward, the CLI provides repeatable checks where a contract has shipped.
+The pilot measures what an author can complete from the skill. Use the
+[seven Codex handoffs](docs/CODEX_NARRATIVE_PROMPTS.zh-TW.md) when picking up a task.
+
 ### Starting N-01
 
 1. Start with [issue #48](https://github.com/bynanci/storytelling/issues/48). Record N-01 /

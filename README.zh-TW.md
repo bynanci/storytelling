@@ -2,13 +2,23 @@
 
 [English](README.md) · [CLI 指南](docs/CLI_GUIDE.md) · [開發路線圖](ROADMAP.md) · [貢獻指南](CONTRIBUTING.md) · [CI 執行紀錄](https://github.com/bynanci/storytelling/actions/workflows/ci.yml)
 
-Storytelling 是用 Rust 開發、在本機執行的敘事規劃工具。第一個能實際操作的用途是影片粗剪。提供候選片段、可用的起訖時間和剪輯規則後，規劃器會排出鏡頭順序、說明略過哪些片段，再將選定的剪點轉為可審閱的 OpenTimelineIO（OTIO）時間軸。
+Storytelling 幫你把手上的材料整理成故事、劇本場景、單幅插畫構圖、商業文案或影片提案。日常使用從 **Storytelling Skill** 開始。影片工作另有本機 Rust CLI，可驗證結構化輸入、匯出能審閱的 OpenTimelineIO（OTIO）時間軸。
 
-**目前可從原始碼建置 `0.1.0-dev.0`。** 專案尚未正式發布。[跨媒介路線圖](ROADMAP.md#cross-media-narrative-roadmap) 說明未來如何運用同一組材料，構思劇本、插畫、商業文案、腦力激盪與日常敘說。
+## 從 Skill 開始
+
+在 Codex 開啟這個專案，直接輸入想完成的工作：
+
+```text
+$storytelling 兩位鄰居一起修好了一扇門。請寫一段口述故事，再給我兩個單幅插畫構圖。為了畫面而增加的細節只放在插畫裡。
+```
+
+想在其他專案用，將整個 [storytelling 資料夾](.agents/skills/storytelling) 複製到該專案的 `.agents/skills/`。想在個人的所有本機 Codex 專案使用，放入 `~/.agents/skills/`。其他支援 Agent Skills 的工具則使用各自的安裝位置。資料夾內已附範例與使用指引。口述、編劇、插畫構思、商業文案、腦力激盪及文字分鏡可由 Agent 直接起草；本機有對應 CLI 且輸入符合影片契約時，還能執行機器驗證。[使用範例](.agents/skills/storytelling/references/examples.md) · [Codex Skills](https://developers.openai.com/codex/skills/) · [Agent Skills 格式](https://agentskills.io/specification)
 
 ## 快速開始
 
-透過 [rustup](https://rustup.rs/) 安裝 Rust，再下載專案、執行內附的合成範例。專案會選用固定的 Rust 1.89.0 工具鏈。
+### 選用 Rust CLI
+
+原始碼版本為 `0.1.0-dev.0`，目前尚未發布套件。透過 [rustup](https://rustup.rs/) 安裝 Rust，再下載專案、執行內附的合成範例。專案會選用固定的 Rust 1.89.0 工具鏈。
 
 ```sh
 git clone https://github.com/bynanci/storytelling.git
@@ -36,7 +46,7 @@ OpenFilm 提供剪輯快照，工作中的時間軸由目標剪輯器管理。�
 
 ## 跨媒介發展方向
 
-第一個規劃中的案例，是將同一段生活記憶整理成口述提綱與單幅插畫的不同構圖。為插畫增加的想像細節可以只留在該構圖，口述仍能追溯原始敘述。第二個案例則用商業文案驗證每項主張能否追溯到提供的佐證。兩項案例目前都在規劃階段，各自的依賴與驗收條件列於[跨媒介任務清單](TASKS.md#cross-media-narrative-backlog)。
+第一個規劃中的案例，是將同一段生活記憶整理成口述提綱與單幅插畫的不同構圖。為插畫增加的想像細節可以只留在該構圖，口述仍能追溯原始敘述。第二個案例則用商業文案驗證每項主張能否追溯到提供的佐證。Skill 現在能起草這兩種內容。可重跑的 Rust 契約、版本比對與真人試用仍在規劃中，依賴與驗收條件列於[跨媒介任務清單](TASKS.md#cross-media-narrative-backlog)。
 
 ## 架構與參與開發
 

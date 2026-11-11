@@ -2,13 +2,23 @@
 
 [繁體中文](README.zh-TW.md) · [CLI guide](docs/CLI_GUIDE.md) · [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md) · [CI runs](https://github.com/bynanci/storytelling/actions/workflows/ci.yml)
 
-Storytelling is a local-first Rust toolkit for planning a story from material you have already selected. Its first working use case is a video rough cut. Give the planner candidate clips, exact source ranges and editorial constraints. It proposes a shot order, explains which clips it skipped and can turn the selected cuts into an OpenTimelineIO (OTIO) timeline for review.
+Storytelling helps you shape material into a story, a scene, a single-image composition, commercial copy or a video plan. Start in your agent with the **Storytelling skill**. For video work, the optional local Rust CLI validates structured inputs and exports a reviewable OpenTimelineIO (OTIO) timeline.
 
-**Development version `0.1.0-dev.0` is available from source.** The first release is still ahead. The [cross-media roadmap](ROADMAP.md#cross-media-narrative-roadmap) proposes ways to use the same material for scripts, illustrations, copy, brainstorming and everyday storytelling.
+## Start with the skill
+
+Open this checkout in Codex and enter a request:
+
+```text
+$storytelling Two neighbors fixed a gate together. Draft a short spoken story and two illustration concepts. Keep anything invented for the image out of the spoken account.
+```
+
+For another project, copy the entire [storytelling skill folder](.agents/skills/storytelling) into that project's `.agents/skills/`. For all your local Codex projects, copy the folder into `~/.agents/skills/`. In another Agent Skills client, use its skill installation location. The skill includes its references. Spoken drafts, screenwriting, illustration briefs, copy and brainstorming work with the agent alone. The agent can also draft a shot list from ordinary notes. With an appropriate local CLI and structured video inputs, it can additionally run the supported machine checks. [Examples](.agents/skills/storytelling/references/examples.md) · [Codex skills](https://developers.openai.com/codex/skills/) · [Agent Skills format](https://agentskills.io/specification)
 
 ## Quick start
 
-Install Rust with [rustup](https://rustup.rs/). Clone the repository and run the bundled synthetic examples. The repository selects Rust 1.89.0.
+### Optional Rust CLI
+
+The source build is `0.1.0-dev.0`. A packaged release is pending. Install Rust with [rustup](https://rustup.rs/). Clone the repository and run the bundled synthetic examples. The repository selects Rust 1.89.0.
 
 ```sh
 git clone https://github.com/bynanci/storytelling.git
@@ -36,7 +46,7 @@ OpenFilm supplies the composition snapshot. The target editor owns the working t
 
 ## Cross-media direction
 
-The proposed first use case starts with one account of an event and produces a spoken outline and alternative compositions for a single illustration. An invented visual detail can stay with the illustration while the spoken account keeps its link to the source. A second use case tests commercial copy by tracing each claim to supplied evidence. Both are planning work. The [narrative backlog](TASKS.md#cross-media-narrative-backlog) lists their dependencies and acceptance criteria.
+The proposed first use case starts with one account of an event and produces a spoken outline and alternative compositions for a single illustration. An invented visual detail can stay with the illustration while the spoken account keeps its link to the source. A second use case tests commercial copy by tracing each claim to supplied evidence. The agent can draft these forms today. The deterministic cross-media contract, revision checks and pilot are proposed Rust work. The [narrative backlog](TASKS.md#cross-media-narrative-backlog) lists their dependencies and acceptance criteria.
 
 ## Architecture and contributions
 
