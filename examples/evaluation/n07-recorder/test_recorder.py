@@ -216,8 +216,12 @@ class RecorderTests(unittest.TestCase):
         sid = self.start(m)
         answer = self.base / 'answer.txt'; answer.write_bytes(b'original')
         m.attach(self.round, sid, 'feedback', answer)
-        with sqlite3.connect(self.round / 'records.sqlite3') as db:
+        db = sqlite3.connect(self.round / 'records.sqlite3')
+        try:
             db.execute('UPDATE blobs SET bytes=?', (b'corrupted',))
+            db.commit()
+        finally:
+            db.close()
         with self.assertRaises(ValueError):
             m.export(self.round, self.base / 'export')
 

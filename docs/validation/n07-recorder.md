@@ -57,3 +57,5 @@ Local workspace debug/release tests each passed 302 tests with three existing ig
 ## Windows checkout correction
 
 The first [PR CI run](https://github.com/bynanci/storytelling/actions/runs/43129282130) passed Linux/macOS but Windows correctly rejected a different protocol digest: Git autocrlf had rewritten the frozen Markdown bytes. Added narrow `.gitattributes` rules for the hashed protocol, material receipt, participant kit and recorder Python files. A local `core.autocrlf=true` checkout replay preserved all 14 hashed files byte-for-byte. The strict hash assertions remain unchanged; final Windows CI must pass on the corrected head.
+
+The next Windows run passed the recorder operations but caught an open SQLite connection in the corruption test cleanup (`WinError 32`). The test now explicitly closes its injected-corruption connection; no assertions or production recovery behavior were changed. The production transaction context already closes connections in `finally`.
