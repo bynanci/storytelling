@@ -1,0 +1,28 @@
+# Who should try Storytelling next?
+
+English · [繁體中文](README.zh-TW.md) · [Scenario catalog](../README.md)
+
+A small editorial team may have one person write, another review and a third publish or produce the work. When a source changes, the writer needs to locate affected drafts, the reviewer needs to check what each sentence still supports, and the recipient needs to decide whether they have enough material to deliver. Storytelling can bring those decisions into the same handoff. For a one-person, one-paragraph edit, include the time spent preparing the source map in the cost of using it.
+
+## Where to start
+
+| Order | Who has the problem | Decision to observe |
+| --- | --- | --- |
+| First · [A booking service notice](service-counter.md) | A duty editor must explain that residents can book online again but can only check existing bookings by phone. A change of shift can turn partial recovery into a claim of full recovery. | Can a resident choose a confirmed channel? Can the incoming colleague distinguish three enquiry receipts from booking outcomes? Both tasks can be tried with text. |
+| Next · [The kiln opening in a documentary](kiln-coverage.md) | A production log establishes that an event took place. The assistant editor has no shot of the action. The director still wants two possible openings. | Can the director identify an event that has written evidence but lacks footage? Does the assistant keep it on the outstanding shot list? |
+| Interview first · [Four further situations](opportunities.md) | A citizen-science editor, a meeting secretary, a print producer and a theatre surtitler face a corrected denominator, a motion with uncertain status, same-name file revisions and a live cue. | Ask the person responsible for each decision about the last time it caused rework. Use that account to choose which packet to develop. |
+
+The first two cases include copyable A/B passages, a third handoff draft, source information and two independent change cards. The other four are interview prompts. All six use synthetic materials. The existing 16 cases have their own [scoring key](../evaluation/keys.md). There are no participant returns for these six.
+
+## What the existing evidence supports
+
+- **Author revisions.** Five authors each tried both conditions in the gate repair case. Three of five finished with ordinary notes within 480 seconds and five of five finished with the Skill. The maintainer chose to continue that task on the basis of private study records. In a new domain, measure both setup and revision time again. [#48 study record](https://github.com/bynanci/storytelling/issues/48#issuecomment-6809944728)
+- **Audience readings.** Both readers in the umbrella workshop case saw A first and B second. They read text and sound cues. The maintainer recorded the focus they recognized and a point each found unclear. In a new case, capture first impressions and the words that prompted them. [#65 reading record](https://github.com/bynanci/storytelling/issues/65#issuecomment-6810251787)
+- **Handoffs and media.** The revision query lists variants that directly cite a source. A reviewer checks how a revision changes the meaning of nearby sentences. Video coverage can flag a required unit with no declared footage. Inspecting an actual clip and testing audience comprehension each require separate observations. [CLI guide](../../docs/CLI_GUIDE.md) · [#67 video handoff record](https://github.com/bynanci/storytelling/issues/67#issuecomment-6815393001)
+- **Tool versions.** In the external-wrapper pilot, 0/5 authors finished the primary task and 5/5 made a major attribution error. The maintainer stopped that workflow. There were zero verified pairs for the pinned native CLI. The text exercises here can be run manually. A separate prospective protocol covers a potential native trial. [#54 decision](https://github.com/bynanci/storytelling/issues/54#issuecomment-6810253339) · [Native trial proposal](../../docs/validation/n07-native-v3.md)
+
+## How to decide whether to continue
+
+1. **Test the readings.** Freeze the versions, audience, medium and key. Assign first-time readers to A-first or B-first. Collect their first response before presenting the second version. Record what they noticed, which words prompted it and what they would do next. Report first-focus matches and correct decisions separately, each over first exposures per version.
+2. **Test the handoff.** To measure the added value of evidence limits, give both conditions the same drafts, change card and source map. Give both conditions the first two columns of the source table. Add the third column only to the evidence-limits condition. Copy only the draft and source IDs from the map. Keep the scoring key with the facilitator. Cross-assign different cases, counterbalance the order and start each card from clean drafts. Keep actual returns privately and score missing changes, extra changes and collateral damage per draft. Freeze a private key for the new case and score it on a private sheet. The existing scorer accepts the original case IDs. [Protocol and denominators](../evaluation/README.md)
+3. **Make a product decision.** If readers recognize the openings but still choose the wrong channel or mistake a missing shot for available footage, revise the wording first. If editors miss fewer changes but spend more time building the map than they save, reduce the scope of annotation. A recurring tool limitation across handoffs can justify a development proposal with an input, a failed return and an expected result. [Development roadmap](../../ROADMAP.md)

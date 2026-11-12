@@ -37,6 +37,8 @@
 | --- | --- | --- |
 | 社區口述與插畫 | [門這次關起來了](studies/gate-repair/README.zh-TW.md) | 共用目擊筆記與插畫專用道具 |
 
+另有[六個待探索的使用情境](discovery/README.zh-TW.md)，其中兩案已附可複製的讀本與接手練習。
+
 ## 既有可執行範例與素材
 
 - [八種樣板與雙語示例](../skills/storytelling/references/multimodal-templates.zh-TW.md)與[修傘工作坊的圖與聲音](../skills/storytelling/references/workshop-demo.zh-TW.md)。
