@@ -3,7 +3,7 @@
 
 [English](n10-resume-gate.md) · 繁體中文
 
-**狀態：** `NarrativeVideoCoverageV1` 的 G2 契約已接受；G3 CLI 與自動化 G4 驗證已透過 PR #97 合併。Codex 已用合併後 CLI 重播附件輸入，維護者另提供 `ffprobe` 回報；作者親自操作 CLI 的使用性試用仍待完成，該探測回報在此未經獨立稽核。
+**狀態：** `NarrativeVideoCoverageV1` 的 G2 契約已接受；G3 CLI 與自動化 G4 驗證已透過 PR #97 合併。N10-05 限定證據門檻已完成：維護者提供合併後 VH-01-S3 作者自操作紀錄，Codex 重播附件 JSON，並直接探測提供的合成 MP4。該 session 是維護者證言的定性自我操作，不是獨立或隨機使用者研究。
 **追蹤：** [Issue #67](https://github.com/bynanci/storytelling/issues/67) · [前置研究 #53](https://github.com/bynanci/storytelling/issues/53) · [V 選擇紀錄](https://github.com/bynanci/storytelling/issues/53#issuecomment-6812213432) · **G2 接受：**[維護者決定](https://github.com/bynanci/storytelling/issues/67#issuecomment-6812948322) · **G2 合併：** PR #93，merge `80577b7334110abf0c0765ec1d1c3e4cf4ae3996`。
 **G3/G4 實作：** [PR #97](https://github.com/bynanci/storytelling/pull/97)，merge `169bf6baff33cd452238337237d437e15ac5b292`；合併前 exact head `aa9cafae6dcd51bc78188ac5b80b9bbe3155d234` 的 [run #376](https://github.com/bynanci/storytelling/actions/runs/43148901399) 六項工作全數通過。自動程式審查完成且沒有發現。
 **決策沿革：** 2026-11-11 的三項暫緩仍是 N-06 當時結論；2026-11-12 的 V 決定只對 N-10 取代該暫緩。編劇與分支構思仍暫緩。維護者已接受精確欄位規則、21 個診斷碼與優先順序、結果狀態及九個合成 fixture。獨立 G3 Rust CLI 工作不變更凍結契約。
@@ -12,11 +12,13 @@
 
 2026-11-12，請求者選擇 **V**，並指定作者任務：選兩個故事單元，一個宣告有影片、一個沒有素材；接手者必須保留缺件為 unresolved，並阻擋「可進入規劃／匯出」狀態。採用的版次邊界是獨立、僅限影片、唯讀的 `NarrativeVideoCoverageV1` 宣告與驗證器。它不讀取或驗證媒體、不媒合素材、不渲染、不產生 OTIO／匯出，也不寫入剪輯器；既有敘事及影片契約維持不變。此決定本身不是真人試用或真實媒體結果。維護者後續提供兩次 session 的作者紀錄；來源與限制列於下方及 [#67 決定留言](https://github.com/bynanci/storytelling/issues/67#issuecomment-6812948322)。
 
+PR #97、#99 合併後，維護者提供 VH-01-S3：一場合併後作者親自操作 CLI session，並記錄自述 145 秒耗時、逐字回饋與使用性觀察。Codex 另外重播作者所述的成功／錯誤輸入，並以 `ffprobe` 讀取提供的合成測試圖樣 MP4，確認 H.264、1280×720、30/1 fps、5 秒及 150 格。操作者是已有先前接觸的專案維護者／作者，沒有隨機分派或獨立觀察；此證據只支持定性自我操作觀察。詳見[操作紀錄](n10-05-execution-record.zh-TW.md)及[#67 session 留言](https://github.com/bynanci/storytelling/issues/67#issuecomment-6815393001)。
+
 ## G0｜具體作者需求與第一個可觀察缺口
 
 專案維護者已要求推進 #67，也曾提出讓結構化故事協調影片、圖片、旁白和剪輯選擇的目標。本階段以不涉及私人素材的**候選使用情境**作為切入：作者選定兩個敘事單元，一個有可用影片，另一個沒有素材，希望交接時明確標出缺口，不能在匯出前悄悄漏掉選定段落。
 
-以上是**使用者曾描述的工作需求方向，加上本次提出的合成案例**；尚無真實影片、正式操作時長、實機成果或使用性失敗證據。不得把這些情境當成已觀察到的真人試用。公開文件不放入私人的人名、錄音或素材路徑。
+在 G0 規劃時，以上是**使用者曾描述的工作需求方向，加上合成案例**，當時尚無實際觀察的影片、session、耗時或使用性失敗證據。後續 VH-01-S3 自我操作紀錄與合成 MP4 探測分開列於下方；MP4 是產生的測試圖樣，不是真實拍攝素材。公開文件不放入私人的人名、錄音或素材路徑。
 
 既有 [N-06 影片銜接案例](../narrative/n06-cases/video-handoff.zh-TW.md) 已用合成資料呈現**契約缺口**：S02@1 宣告素材及精確區間 [5/2, 9/2)，S03@1 雖被選定卻沒有素材。現有 `plan-story` 仍能規劃只有 S02 的子集，因為它無法知道上游曾選了 S03。這**不是 Planner 的缺陷**；若要保證涵蓋選定敘事單元，就必須在 Planner 之前驗證敘事單元與資產的覆蓋關係。
 
@@ -64,9 +66,9 @@
 | N10-02 · 純驗證 | 已觀察 RED 後完成 GREEN；Rust 有界驗證不呼叫 filesystem／model／host，也不自動選素材。 | Engine · **G3 已實作並於 PR #97 合併** |
 | N10-03 · CLI | 已新增明確 opt-in 的本機唯讀入口、固定成功／錯誤 envelope 及契約測試。 | CLI · **G3 已實作並於 PR #97 合併** |
 | N10-04 · 回歸 | N-02/N-04/N-08/N-11、Planner V1、video V1、OTIO 回歸、debug/release、fmt、Clippy、repo checks 與固定版官方 OTIO oracle 均通過；run #376 的六項 exact-head CI 全過，自動程式審查無發現。 | Reviewer · **自動化 G4 已通過** |
-| N10-05 · 真人與素材 | 先前 VH-01 兩次 session 仍是維護者提供且未經稽核；第二次發生於 CLI 實作前。Codex 已於合併後用兩份附件 JSON 重播，取得 exit 0／unresolved 與 exit 1／invalid-range 結果，輸入未變且檔案／stdin 輸出相同。附件另報告 `ffprobe` 實測 5.000000 秒／30 fps／150 格，但未提供媒體檔，Codex 未能重新執行或獨立稽核該量測。 | Author／Maintainer · **機器重播與探測回報已記錄；作者新 CLI 使用性試用待完成** |
+| N10-05 · 真人與素材 | 維護者提供 VH-01-S3 合併後作者自操作 session：自述耗時 145 秒，先收到 `invalid_range`，修正為 `5/1` 後取得 `ready_for_planning=false` 與 `unresolved_required`；原話與使用摩擦見操作紀錄。作者先前已有接觸、操作順序固定，無獨立觀察者或隨機化。Codex 分別重播兩份附件 JSON（exit 0／unresolved、exit 1／invalid-range），輸入位元未變、檔案與 stdin 輸出相同；另以 `ffprobe` 直接讀取提供的合成 MP4，確認 H.264、1280×720、30/1 fps、5.000000 秒及 150 格。Repo 不留私人媒體、雜湊或路徑。V1 本身不讀媒體，也不確認 `CLIP-01` 指向該檔。 | Author／Maintainer · **限定證據門檻完成；僅定性自我操作紀錄** |
 
-G2 接受紀錄早於 G3 實作。已提供的作者紀錄包含原題、起始資料、逐字原話、觀察及限制；維護者提供的紀錄未經獨立稽核，也不等於使用已完成的 CLI 重跑。私人素材不進公開 repo。發布與遷移另經 G5 核准。
+G2 接受紀錄早於 G3 實作。較早的 S1／S2 作者紀錄包含原題、起始資料、逐字原話、觀察及限制；該紀錄由維護者提供且未經獨立稽核，S2 也早於 CLI。後續 S3 記錄作者在合併後操作 CLI；Codex 另行重現宣告的輸出，但兩者都不能驗證作者自述的真人耗時。私人素材不進公開 repo；公開 fixture 維持合成資料。發布與遷移另經 G5 核准。
 
 ## 決策紀錄
 
@@ -74,6 +76,6 @@ G2 接受紀錄早於 G3 實作。已提供的作者紀錄包含原題、起始�
 - **S 與 B：** 仍暫緩，不屬於 N-10。
 - **D：** 是 2026-11-11 的 N-06 歷史決定；仍保留為當時結果，但後來的 V 決定只在 N-10 範圍內取代它。
 
-模式選擇、G2 契約、G3 實作與自動化 G4 回歸門檻已完成。#67 仍開啟，等待作者親自操作合併後 CLI，並記錄作者時間及使用性觀察。維護者另提供 `ffprobe` 執行紀錄；未提供媒體檔，因此 Codex 未能重跑或稽核該量測。先前第二次 session 早於 CLI。V1 只讀取 JSON 宣告與精確有理數區間，成功結果不代表媒體位元組符合目錄聲明。若作者可用既有文字表格安全完成交接，或沒有具體單元／素材缺口，仍可取消新增原生模式。沒有授權 G5 發布或上架。
+模式選擇、G2 契約、G3 實作、自動化 G4 回歸及 N10-05 限定證據門檻均已完成。VH-01-S3 是維護者／作者的自我操作紀錄，操作者已先前接觸且順序固定；時間是自述，因此只支持定性使用性觀察，不能宣稱是獨立研究或工具造成的節省。Codex 確實探測了提供的合成 MP4，但 V1 仍只檢查 JSON 宣告與精確有理數區間；成功結果不代表媒體位元組符合目錄聲明。沒有授權 G5 發布或上架。
 
-**證據區分：** [G3 CLI 驗證紀錄](n10-video-coverage-cli.zh-TW.md)列出程式與 CI 證據；[合併後操作紀錄](n10-05-execution-record.zh-TW.md)記錄附件輸入重播及媒體探測回報的限制。[既有工程探針](../narrative/n06-cases/evidence/probes.json)僅證明舊有契約行為；作者 CLI 使用性證據仍待完成。
+**證據區分：** [G3 CLI 驗證紀錄](n10-video-coverage-cli.zh-TW.md)列出程式與 CI 證據；[合併後操作紀錄](n10-05-execution-record.zh-TW.md)記錄附件輸入重播、VH-01-S3 自我操作資料及合成媒體探測。[較早兩次作者紀錄](https://github.com/bynanci/storytelling/issues/67#issuecomment-6812948322)與[新 session 紀錄](https://github.com/bynanci/storytelling/issues/67#issuecomment-6815393001)皆由維護者提供；Codex 未旁觀作者操作。目錄 ID 與片長仍為宣告，產品不驗證媒體 identity、雜湊、同步、OTIO 或宿主行為。G5 發布須另外決定。

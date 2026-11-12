@@ -71,9 +71,9 @@ cat tests/fixtures/narrative-video-coverage-v1/valid-unresolved.json | cargo +1.
 
 ## 真人與媒體證據限制
 
-維護者在 [#67 紀錄](https://github.com/bynanci/storytelling/issues/67#issuecomment-6812948322)提供匿名代碼 `VH-01` 與兩次 session。每次都列出原題、起始資料、作者原話、觀察及限制。提供的順序是先試算表，再手動核對結構化契約；未提供 session 時間、先前接觸情形或隨機化程序。紀錄未經獨立稽核。第二次 session 早於本 CLI 實作，因此其中的狀態碼是依已接受契約進行手動對照，不是 Rust CLI 的執行收據。Codex 後來用合併後 CLI 重播兩份附件 JSON；這是機器重跑，不是作者新 session，也不能證明可用性。見[合併後操作紀錄](n10-05-execution-record.zh-TW.md)。
+維護者在 [#67 原始紀錄](https://github.com/bynanci/storytelling/issues/67#issuecomment-6812948322)提供匿名代碼 `VH-01` 與兩次較早的 session。提供順序是先試算表，再手動核對結構化契約；第二次 session 早於本 CLI 實作，其中狀態碼是依契約人工比對，並非 Rust CLI 執行收據。後續維護者補上[合併後 VH-01-S3](https://github.com/bynanci/storytelling/issues/67#issuecomment-6815393001)：一場作者親自操作 session，自述耗時 145 秒、先收到 `invalid_range`、修正成 `5/1` 後取得阻擋規劃的 unresolved 結果，並提供逐字原話及使用觀察。VH-01 先前已有接觸；未隨機、未盲測，且無獨立觀察者。Codex 未旁觀或獨立核實作者操作與計時；Codex 另行重播附件 JSON 並重現所述輸出狀態，此重播只核對輸出，不能證實作者操作。見[合併後操作紀錄](n10-05-execution-record.zh-TW.md)。
 
-作者陳述本機 `clip-01` 量得 5 秒／30 fps 下 150 格。後續附件提供維護者提交的 `ffprobe -count_frames` 執行紀錄，顯示 H.264、1280×720、30/1 fps、5.000000 秒與 150 格；但未提供影音檔，因此 Codex 沒有重新執行或獨立稽核該量測。V1 只檢查宣告的有理數片長與區間，不讀取或雜湊影音位元組、不驗證影格率或同步、不確認 asset ID 指向該檔、不產生 OTIO，也不在剪輯器匯入或播放。Repo 未加入任何媒體。證據界線見[操作紀錄](n10-05-execution-record.zh-TW.md)。
+提供的 `clip-01.mp4` 說明為 FFmpeg `testsrc` 合成測試圖樣。Codex 直接對附件執行 `ffprobe -count_frames`，確認 H.264、1280×720、30/1 fps、5.000000 秒、150 格及 75,276 bytes。檔案沒有複製進 repo。此探測只驗證該附件中繼資料；V1 僅檢查宣告的有理數片長與區間，產品不讀取或雜湊影音位元組、不驗證影格率或同步、不證明 asset ID 指向該檔、不產生 OTIO，也不在剪輯器匯入或播放。證據界線見[操作紀錄](n10-05-execution-record.zh-TW.md)。
 
 ## G4 驗證狀態
 
@@ -87,4 +87,4 @@ cat tests/fixtures/narrative-video-coverage-v1/valid-unresolved.json | cargo +1.
 
 Windows 最初發現 CLI 輸出與預期 fixture 的行尾格式不同；測試現會同時正規化兩者的 JSON 行尾，仍以原始 bytes 驗證同主機重播與輸入檔不變。最終 exact-head Windows 工作已通過。
 
-PR #97 的自動化 G4 驗證已完成。附件輸入已有合併後機器重播，另有 `ffprobe` 回報；作者親自操作 CLI 的使用性試用仍待完成。本工作未授權 G5 發布或上架。
+PR #97 的自動化 G4 驗證及 N10-05 限定證據門檻已完成。真人證據是一位維護者／作者在先前接觸後自我操作，耗時為本人自述；另有機器重播與合成媒體探測。這不是獨立或隨機使用者研究。本工作未授權 G5 發布或上架。
