@@ -3,11 +3,13 @@
 
 [主持人操作腳本（繁體中文）](protocol.zh-TW.md) · [Pilot report](../../../docs/validation/n07-pilot.md) · [Original N-01 protocol](../../../docs/narrative/N-01-AUTHOR-STUDY.md)
 
-This packet prepares a separate notes-versus-native-CLI round for Issue #54 / N-R07. It does not pool the original notes-versus-Skill proxy, requester sample judgments, or engineering process timings. No participant observations are supplied. Current decision: **待真人證據**.
+**Current disposition (2026-11-12, Asia/Taipei):** the maintainer [stopped the submitted external-wrapper evaluation and closed #54 as not planned](https://github.com/bynanci/storytelling/issues/54#issuecomment-6809828575): 0/5 primary completions, 5/5 authors with a major U01 attribution error, no release. Those human submissions do not establish five eligible pairs on the frozen native executable. **Frozen native acceptance remains 待真人證據.** See the [report](../../../docs/validation/n07-pilot.md) for the scored outcomes and provenance limits.
+
+This is the preserved notes-versus-native-CLI packet, separate from #48/Skill, requester sample judgments and process benchmarks. The instructions and planned allocation are historical handoff materials. The maintainer elected not to ask the prior authors to repeat their work. A future native evaluation needs its own versioned prospective protocol and fresh authors; no follow-up recruitment or session is claimed here. The preparation observations.json, blank forms, original protocol and captured output are unchanged. The historical material-hash receipt binds [delivery 8e2c080](https://github.com/bynanci/storytelling/tree/8e2c08094f6bce70a7507e11ed84265bd98e3820/examples/evaluation/n07-pilot), before this README status update.
 
 Use the original N-01 facts and N-03 source fixture. C01 stays in illustration A; the correction changes S01 and S02 names to Ju/Zhe. Do not substitute the existing N-04 history (different role change and umbrella scope) or the reviewed N-03 C02 draft. Both arms start from the same shared text. Only the CLI arm receives the extra structured templates and tool instructions. It must enter its own corrections and manually revise actual drafts.
 
-The frozen engineering CLI is built from main `ce73836caa86502933f538821fdbf5dac92c1224`, with accepted N-05 ReportV1 from merged PR #83. PR #87 ReportV2 is an unmerged candidate and is not a primary trial dependency. N-06 is optional; its recorded deferral does not block this pilot.
+The frozen engineering CLI is built from main `ce73836caa86502933f538821fdbf5dac92c1224`, with accepted N-05 ReportV1 from merged PR #83. PR #87 subsequently merged opt-in ReportV2; it does not change this fixed ReportV1 baseline. N-06 is optional and remains a separate decision.
 
 ## Rerun engineering checks and CLI timing
 

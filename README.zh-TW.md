@@ -169,7 +169,7 @@ cargo run --quiet --locked -p storytelling-cli -- query-narrative-impact tests/f
 cargo run --quiet --locked -p storytelling-cli -- check-narrative-style tests/fixtures/narrative-v1/n08-umbrella-openings-v1.json tests/fixtures/narrative-v1/n08-style-profile-v1.json
 ```
 
-指令以 JSON 回報宣告順序的檢查結果，不判斷美感，也不代表作者已核准。意象版的比喻是根據 S3 提出的創作內容，不是對敲擊來源的事實主張。真人盲讀仍待執行。[N-08 profile 與驗證紀錄（英文）](https://github.com/bynanci/storytelling/blob/main/docs/validation/n08-style-profile.md)
+指令以 JSON 回報宣告順序的檢查結果，不判斷美感，也不代表作者已核准。意象版的比喻是根據 S3 提出的創作內容，不是對敲擊來源的事實主張。兩次官方表單閱讀依維護者證言完成定性門檻；皆為 A→B，未記錄隨機方法，私人答案未經獨立稽核。[N-08 profile 與驗證紀錄（英文）](https://github.com/bynanci/storytelling/blob/main/docs/validation/n08-style-profile.md)
 
 ### 製作錄音提示表（N-09）
 

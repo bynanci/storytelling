@@ -1,0 +1,880 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "engineering-cli-measurement",
+  "human_evidence_included": false,
+  "recorded_utc": "2026-11-12T00:12:10.244150+00:00",
+  "checkout": {
+    "commit": "8e2c08094f6bce70a7507e11ed84265bd98e3820",
+    "dirty": false,
+    "available": true
+  },
+  "cli": {
+    "name": "storytelling",
+    "sha256_before": "adf39d84283dc2a1f7e5281bf4a274eae1ec6d7fd77cce29fe811125669802ef",
+    "sha256_after": "adf39d84283dc2a1f7e5281bf4a274eae1ec6d7fd77cce29fe811125669802ef",
+    "source_binding_verified": false
+  },
+  "manifest_sha256": "6459f83a65c14fd37f85b376919c9e082c3cc2e3a9e78b1aa28231c9499ce50c",
+  "manifest_sha256_after": "6459f83a65c14fd37f85b376919c9e082c3cc2e3a9e78b1aa28231c9499ce50c",
+  "platform": {
+    "system": "Linux",
+    "release": "6.18.57",
+    "machine": "x86_64",
+    "python": "3.12.14"
+  },
+  "run_policy": {
+    "warmup_runs_per_case": 1,
+    "measured_runs_per_case": 5,
+    "timeout_seconds": 30,
+    "warmup_excluded_from_statistics": true,
+    "timing_scope": "process wall time including startup and I/O; all measured attempts"
+  },
+  "input_sha256_before": {
+    "tests/fixtures/narrative-v1/n03-authoring-v1.json": "cccff034e9d6a434ec7ee22a16c45629bf584b2ff9d4943b3e27c5fec8889a20",
+    "examples/evaluation/n07-pilot/participant-kit/cli/copy-template.json": "3df97b4de44ae4db5ff0b38452782e0219b7d6e33c5a2027468f9b24af36672a",
+    "examples/evaluation/n07-pilot/facilitator/copy-unknown-version.json": "27f86ab6887308ed31b6c047eb61840a802204b70e5456616976cab5ad7f4217",
+    "tests/fixtures/commercial-copy-v1/n05-copy-revised-ref-v1.json": "34e327bedd11baa65575796b2db4a60a077bd2f0d672905cda74ca208e037b87",
+    "tests/fixtures/commercial-copy-v1/n05-copy-dangling-ref-v1.json": "56af714e9f93336c366747063c5b4cdb63fe83c3b9411ba6f3df438be59482c4",
+    "tests/fixtures/narrative-v1/n04-revision-history-v1.json": "29d51fa72c3ad872d442c45d03ec2458bf948fb7bb4b804b46247de6c4714f6c",
+    "tests/fixtures/narrative-v1/n04-invalid-self-confirm-v1.json": "2835aeaac13ce2392d45016b7e00541ddd97f02c0e1c3b573e44eeea81f2c001",
+    "tests/fixtures/narrative-v1/invalid-dangling-reference.json": "976a831f9cb5142b1c7875608679077b11c7be6fc4dafb3de6b93f6752f740c1",
+    "examples/evaluation/n07-pilot/participant-kit/cli/working-document.json": "af4abd553f6f226748ca93138430729fa723e23eeb522e0f4b98767250270c63",
+    "examples/evaluation/n07-pilot/participant-kit/cli/evidence-ledger.json": "860a76fef4fbca59faf8c5f004330c5ef6b28c70430b7998e653f609aab67b98",
+    "examples/evaluation/n07-pilot/facilitator/document-corrected.json": "3c311f5876e1f3ccc02cd968fc1c7746934082d9ce5a52766bb5557108b0e444",
+    "examples/evaluation/n07-pilot/facilitator/ledger-batch-pending.json": "954159636769694f1c996c228ac686f994c4702fe533520d731fd4c63000f9a3",
+    "examples/evaluation/n07-pilot/facilitator/ledger-s01-only.json": "2df98565c5c9f57b28a79b5d8ce3fff449e75aec75a6f560fc1e6b89c1021e4f",
+    "examples/evaluation/n07-pilot/facilitator/ledger-s02-only.json": "72524936254548602e4fe27f752c1d9ae4a6c6fde626c86a614d490e9fb7ed95",
+    "examples/evaluation/n07-pilot/participant-kit/cli/base-document.json": "af4abd553f6f226748ca93138430729fa723e23eeb522e0f4b98767250270c63"
+  },
+  "input_sha256_after": {
+    "tests/fixtures/narrative-v1/n03-authoring-v1.json": "cccff034e9d6a434ec7ee22a16c45629bf584b2ff9d4943b3e27c5fec8889a20",
+    "examples/evaluation/n07-pilot/participant-kit/cli/copy-template.json": "3df97b4de44ae4db5ff0b38452782e0219b7d6e33c5a2027468f9b24af36672a",
+    "examples/evaluation/n07-pilot/facilitator/copy-unknown-version.json": "27f86ab6887308ed31b6c047eb61840a802204b70e5456616976cab5ad7f4217",
+    "tests/fixtures/commercial-copy-v1/n05-copy-revised-ref-v1.json": "34e327bedd11baa65575796b2db4a60a077bd2f0d672905cda74ca208e037b87",
+    "tests/fixtures/commercial-copy-v1/n05-copy-dangling-ref-v1.json": "56af714e9f93336c366747063c5b4cdb63fe83c3b9411ba6f3df438be59482c4",
+    "tests/fixtures/narrative-v1/n04-revision-history-v1.json": "29d51fa72c3ad872d442c45d03ec2458bf948fb7bb4b804b46247de6c4714f6c",
+    "tests/fixtures/narrative-v1/n04-invalid-self-confirm-v1.json": "2835aeaac13ce2392d45016b7e00541ddd97f02c0e1c3b573e44eeea81f2c001",
+    "tests/fixtures/narrative-v1/invalid-dangling-reference.json": "976a831f9cb5142b1c7875608679077b11c7be6fc4dafb3de6b93f6752f740c1",
+    "examples/evaluation/n07-pilot/participant-kit/cli/working-document.json": "af4abd553f6f226748ca93138430729fa723e23eeb522e0f4b98767250270c63",
+    "examples/evaluation/n07-pilot/participant-kit/cli/evidence-ledger.json": "860a76fef4fbca59faf8c5f004330c5ef6b28c70430b7998e653f609aab67b98",
+    "examples/evaluation/n07-pilot/facilitator/document-corrected.json": "3c311f5876e1f3ccc02cd968fc1c7746934082d9ce5a52766bb5557108b0e444",
+    "examples/evaluation/n07-pilot/facilitator/ledger-batch-pending.json": "954159636769694f1c996c228ac686f994c4702fe533520d731fd4c63000f9a3",
+    "examples/evaluation/n07-pilot/facilitator/ledger-s01-only.json": "2df98565c5c9f57b28a79b5d8ce3fff449e75aec75a6f560fc1e6b89c1021e4f",
+    "examples/evaluation/n07-pilot/facilitator/ledger-s02-only.json": "72524936254548602e4fe27f752c1d9ae4a6c6fde626c86a614d490e9fb7ed95",
+    "examples/evaluation/n07-pilot/participant-kit/cli/base-document.json": "af4abd553f6f226748ca93138430729fa723e23eeb522e0f4b98767250270c63"
+  },
+  "all_inputs_unchanged": true,
+  "cases": [
+    {
+      "id": "n01-matched-baseline-render",
+      "args": [
+        "render-narrative",
+        "examples/evaluation/n07-pilot/participant-kit/cli/base-document.json"
+      ],
+      "expected_exit": 0,
+      "warmup": {
+        "index": 0,
+        "exit_code": 0,
+        "wallclock_ms": 1.62181,
+        "stdout_sha256": "fe4e6bb54eedd7ee56505a224cf121e080c4826790c326ace7b6480e0a4fac6c",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false,
+        "launch_error": false
+      },
+      "measured_runs": [
+        {
+          "index": 1,
+          "exit_code": 0,
+          "wallclock_ms": 1.132703,
+          "stdout_sha256": "fe4e6bb54eedd7ee56505a224cf121e080c4826790c326ace7b6480e0a4fac6c",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 2,
+          "exit_code": 0,
+          "wallclock_ms": 1.111642,
+          "stdout_sha256": "fe4e6bb54eedd7ee56505a224cf121e080c4826790c326ace7b6480e0a4fac6c",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 3,
+          "exit_code": 0,
+          "wallclock_ms": 1.572896,
+          "stdout_sha256": "fe4e6bb54eedd7ee56505a224cf121e080c4826790c326ace7b6480e0a4fac6c",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 4,
+          "exit_code": 0,
+          "wallclock_ms": 1.020645,
+          "stdout_sha256": "fe4e6bb54eedd7ee56505a224cf121e080c4826790c326ace7b6480e0a4fac6c",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 5,
+          "exit_code": 0,
+          "wallclock_ms": 1.015778,
+          "stdout_sha256": "fe4e6bb54eedd7ee56505a224cf121e080c4826790c326ace7b6480e0a4fac6c",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        }
+      ],
+      "wallclock_ms_summary": {
+        "count": 5,
+        "min": 1.015778,
+        "median": 1.111642,
+        "max": 1.572896
+      },
+      "replay_identical": true,
+      "failures": [],
+      "success": true
+    },
+    {
+      "id": "commercial-current-and-missing",
+      "args": [
+        "audit-copy-claims",
+        "examples/evaluation/n07-pilot/participant-kit/cli/copy-template.json",
+        "examples/evaluation/n07-pilot/participant-kit/cli/evidence-ledger.json"
+      ],
+      "expected_exit": 0,
+      "warmup": {
+        "index": 0,
+        "exit_code": 0,
+        "wallclock_ms": 1.2432,
+        "stdout_sha256": "c3f2f995dbdb9b177c0b6cd234af90fef6c2f263846be43976a4b83f4b7ffc11",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false,
+        "launch_error": false
+      },
+      "measured_runs": [
+        {
+          "index": 1,
+          "exit_code": 0,
+          "wallclock_ms": 1.206144,
+          "stdout_sha256": "c3f2f995dbdb9b177c0b6cd234af90fef6c2f263846be43976a4b83f4b7ffc11",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 2,
+          "exit_code": 0,
+          "wallclock_ms": 1.185122,
+          "stdout_sha256": "c3f2f995dbdb9b177c0b6cd234af90fef6c2f263846be43976a4b83f4b7ffc11",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 3,
+          "exit_code": 0,
+          "wallclock_ms": 1.234286,
+          "stdout_sha256": "c3f2f995dbdb9b177c0b6cd234af90fef6c2f263846be43976a4b83f4b7ffc11",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 4,
+          "exit_code": 0,
+          "wallclock_ms": 1.166044,
+          "stdout_sha256": "c3f2f995dbdb9b177c0b6cd234af90fef6c2f263846be43976a4b83f4b7ffc11",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 5,
+          "exit_code": 0,
+          "wallclock_ms": 1.233305,
+          "stdout_sha256": "c3f2f995dbdb9b177c0b6cd234af90fef6c2f263846be43976a4b83f4b7ffc11",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        }
+      ],
+      "wallclock_ms_summary": {
+        "count": 5,
+        "min": 1.166044,
+        "median": 1.206144,
+        "max": 1.234286
+      },
+      "replay_identical": true,
+      "failures": [],
+      "success": true
+    },
+    {
+      "id": "commercial-revised-control",
+      "args": [
+        "audit-copy-claims",
+        "tests/fixtures/commercial-copy-v1/n05-copy-revised-ref-v1.json",
+        "tests/fixtures/narrative-v1/n04-revision-history-v1.json"
+      ],
+      "expected_exit": 0,
+      "warmup": {
+        "index": 0,
+        "exit_code": 0,
+        "wallclock_ms": 1.250421,
+        "stdout_sha256": "6465b1fbd7d62a0d55459e3c241c492581e81ffd2a0cd6fcf5b190255d3944c6",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false,
+        "launch_error": false
+      },
+      "measured_runs": [
+        {
+          "index": 1,
+          "exit_code": 0,
+          "wallclock_ms": 1.506917,
+          "stdout_sha256": "6465b1fbd7d62a0d55459e3c241c492581e81ffd2a0cd6fcf5b190255d3944c6",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 2,
+          "exit_code": 0,
+          "wallclock_ms": 1.245283,
+          "stdout_sha256": "6465b1fbd7d62a0d55459e3c241c492581e81ffd2a0cd6fcf5b190255d3944c6",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 3,
+          "exit_code": 0,
+          "wallclock_ms": 1.227276,
+          "stdout_sha256": "6465b1fbd7d62a0d55459e3c241c492581e81ffd2a0cd6fcf5b190255d3944c6",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 4,
+          "exit_code": 0,
+          "wallclock_ms": 1.688069,
+          "stdout_sha256": "6465b1fbd7d62a0d55459e3c241c492581e81ffd2a0cd6fcf5b190255d3944c6",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 5,
+          "exit_code": 0,
+          "wallclock_ms": 1.284152,
+          "stdout_sha256": "6465b1fbd7d62a0d55459e3c241c492581e81ffd2a0cd6fcf5b190255d3944c6",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        }
+      ],
+      "wallclock_ms_summary": {
+        "count": 5,
+        "min": 1.227276,
+        "median": 1.284152,
+        "max": 1.688069
+      },
+      "replay_identical": true,
+      "failures": [],
+      "success": true
+    },
+    {
+      "id": "commercial-dangling-control",
+      "args": [
+        "audit-copy-claims",
+        "tests/fixtures/commercial-copy-v1/n05-copy-dangling-ref-v1.json",
+        "tests/fixtures/narrative-v1/n04-revision-history-v1.json"
+      ],
+      "expected_exit": 0,
+      "warmup": {
+        "index": 0,
+        "exit_code": 0,
+        "wallclock_ms": 1.341387,
+        "stdout_sha256": "8c90852398c2079cd034cbe604c89e4fc8f9aec03d338071e26b54112af35169",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false,
+        "launch_error": false
+      },
+      "measured_runs": [
+        {
+          "index": 1,
+          "exit_code": 0,
+          "wallclock_ms": 3.451081,
+          "stdout_sha256": "8c90852398c2079cd034cbe604c89e4fc8f9aec03d338071e26b54112af35169",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 2,
+          "exit_code": 0,
+          "wallclock_ms": 1.457633,
+          "stdout_sha256": "8c90852398c2079cd034cbe604c89e4fc8f9aec03d338071e26b54112af35169",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 3,
+          "exit_code": 0,
+          "wallclock_ms": 2.653667,
+          "stdout_sha256": "8c90852398c2079cd034cbe604c89e4fc8f9aec03d338071e26b54112af35169",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 4,
+          "exit_code": 0,
+          "wallclock_ms": 2.455984,
+          "stdout_sha256": "8c90852398c2079cd034cbe604c89e4fc8f9aec03d338071e26b54112af35169",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 5,
+          "exit_code": 0,
+          "wallclock_ms": 1.817143,
+          "stdout_sha256": "8c90852398c2079cd034cbe604c89e4fc8f9aec03d338071e26b54112af35169",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        }
+      ],
+      "wallclock_ms_summary": {
+        "count": 5,
+        "min": 1.457633,
+        "median": 2.455984,
+        "max": 3.451081
+      },
+      "replay_identical": true,
+      "failures": [],
+      "success": true
+    },
+    {
+      "id": "commercial-version-control",
+      "args": [
+        "audit-copy-claims",
+        "examples/evaluation/n07-pilot/facilitator/copy-unknown-version.json",
+        "examples/evaluation/n07-pilot/participant-kit/cli/evidence-ledger.json"
+      ],
+      "expected_exit": 1,
+      "warmup": {
+        "index": 0,
+        "exit_code": 1,
+        "wallclock_ms": 1.464332,
+        "stdout_sha256": "faea61b69d04ca9639e3b6f59c38f8aea5bd3f24be5af41af420aa3b8ad57b5c",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false,
+        "launch_error": false
+      },
+      "measured_runs": [
+        {
+          "index": 1,
+          "exit_code": 1,
+          "wallclock_ms": 1.257562,
+          "stdout_sha256": "faea61b69d04ca9639e3b6f59c38f8aea5bd3f24be5af41af420aa3b8ad57b5c",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 2,
+          "exit_code": 1,
+          "wallclock_ms": 1.240947,
+          "stdout_sha256": "faea61b69d04ca9639e3b6f59c38f8aea5bd3f24be5af41af420aa3b8ad57b5c",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 3,
+          "exit_code": 1,
+          "wallclock_ms": 1.189159,
+          "stdout_sha256": "faea61b69d04ca9639e3b6f59c38f8aea5bd3f24be5af41af420aa3b8ad57b5c",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 4,
+          "exit_code": 1,
+          "wallclock_ms": 1.146154,
+          "stdout_sha256": "faea61b69d04ca9639e3b6f59c38f8aea5bd3f24be5af41af420aa3b8ad57b5c",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 5,
+          "exit_code": 1,
+          "wallclock_ms": 0.96407,
+          "stdout_sha256": "faea61b69d04ca9639e3b6f59c38f8aea5bd3f24be5af41af420aa3b8ad57b5c",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        }
+      ],
+      "wallclock_ms_summary": {
+        "count": 5,
+        "min": 0.96407,
+        "median": 1.189159,
+        "max": 1.257562
+      },
+      "replay_identical": true,
+      "failures": [],
+      "success": true
+    },
+    {
+      "id": "untrusted-author-control",
+      "args": [
+        "track-narrative-revisions",
+        "tests/fixtures/narrative-v1/n04-invalid-self-confirm-v1.json"
+      ],
+      "expected_exit": 1,
+      "warmup": {
+        "index": 0,
+        "exit_code": 1,
+        "wallclock_ms": 1.413616,
+        "stdout_sha256": "49499d8f79ee42fb6901ed560c57569243ff2022ed72133882df5b8621d8b5d8",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false,
+        "launch_error": false
+      },
+      "measured_runs": [
+        {
+          "index": 1,
+          "exit_code": 1,
+          "wallclock_ms": 1.159584,
+          "stdout_sha256": "49499d8f79ee42fb6901ed560c57569243ff2022ed72133882df5b8621d8b5d8",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 2,
+          "exit_code": 1,
+          "wallclock_ms": 1.888641,
+          "stdout_sha256": "49499d8f79ee42fb6901ed560c57569243ff2022ed72133882df5b8621d8b5d8",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 3,
+          "exit_code": 1,
+          "wallclock_ms": 3.408017,
+          "stdout_sha256": "49499d8f79ee42fb6901ed560c57569243ff2022ed72133882df5b8621d8b5d8",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 4,
+          "exit_code": 1,
+          "wallclock_ms": 1.584183,
+          "stdout_sha256": "49499d8f79ee42fb6901ed560c57569243ff2022ed72133882df5b8621d8b5d8",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 5,
+          "exit_code": 1,
+          "wallclock_ms": 1.539656,
+          "stdout_sha256": "49499d8f79ee42fb6901ed560c57569243ff2022ed72133882df5b8621d8b5d8",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        }
+      ],
+      "wallclock_ms_summary": {
+        "count": 5,
+        "min": 1.159584,
+        "median": 1.584183,
+        "max": 3.408017
+      },
+      "replay_identical": true,
+      "failures": [],
+      "success": true
+    },
+    {
+      "id": "narrative-dangling-control",
+      "args": [
+        "render-narrative",
+        "tests/fixtures/narrative-v1/invalid-dangling-reference.json"
+      ],
+      "expected_exit": 1,
+      "warmup": {
+        "index": 0,
+        "exit_code": 1,
+        "wallclock_ms": 1.448249,
+        "stdout_sha256": "5857ea0f24155cd44134be2e8257302dc96463c3ff0860d1b41debd1e85a3677",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false,
+        "launch_error": false
+      },
+      "measured_runs": [
+        {
+          "index": 1,
+          "exit_code": 1,
+          "wallclock_ms": 1.415529,
+          "stdout_sha256": "5857ea0f24155cd44134be2e8257302dc96463c3ff0860d1b41debd1e85a3677",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 2,
+          "exit_code": 1,
+          "wallclock_ms": 1.372665,
+          "stdout_sha256": "5857ea0f24155cd44134be2e8257302dc96463c3ff0860d1b41debd1e85a3677",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 3,
+          "exit_code": 1,
+          "wallclock_ms": 1.527528,
+          "stdout_sha256": "5857ea0f24155cd44134be2e8257302dc96463c3ff0860d1b41debd1e85a3677",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 4,
+          "exit_code": 1,
+          "wallclock_ms": 1.348788,
+          "stdout_sha256": "5857ea0f24155cd44134be2e8257302dc96463c3ff0860d1b41debd1e85a3677",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 5,
+          "exit_code": 1,
+          "wallclock_ms": 3.186002,
+          "stdout_sha256": "5857ea0f24155cd44134be2e8257302dc96463c3ff0860d1b41debd1e85a3677",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        }
+      ],
+      "wallclock_ms_summary": {
+        "count": 5,
+        "min": 1.348788,
+        "median": 1.415529,
+        "max": 3.186002
+      },
+      "replay_identical": true,
+      "failures": [],
+      "success": true
+    },
+    {
+      "id": "n01-corrected-snapshot",
+      "args": [
+        "render-narrative",
+        "examples/evaluation/n07-pilot/facilitator/document-corrected.json"
+      ],
+      "expected_exit": 0,
+      "warmup": {
+        "index": 0,
+        "exit_code": 0,
+        "wallclock_ms": 1.56271,
+        "stdout_sha256": "1b4802cceaa1cab4d292d6f227bcee1d1752824c3a85a18ef6507f2592e8008f",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false,
+        "launch_error": false
+      },
+      "measured_runs": [
+        {
+          "index": 1,
+          "exit_code": 0,
+          "wallclock_ms": 3.174525,
+          "stdout_sha256": "1b4802cceaa1cab4d292d6f227bcee1d1752824c3a85a18ef6507f2592e8008f",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 2,
+          "exit_code": 0,
+          "wallclock_ms": 3.630631,
+          "stdout_sha256": "1b4802cceaa1cab4d292d6f227bcee1d1752824c3a85a18ef6507f2592e8008f",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 3,
+          "exit_code": 0,
+          "wallclock_ms": 1.4565,
+          "stdout_sha256": "1b4802cceaa1cab4d292d6f227bcee1d1752824c3a85a18ef6507f2592e8008f",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 4,
+          "exit_code": 0,
+          "wallclock_ms": 1.406896,
+          "stdout_sha256": "1b4802cceaa1cab4d292d6f227bcee1d1752824c3a85a18ef6507f2592e8008f",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 5,
+          "exit_code": 0,
+          "wallclock_ms": 2.868946,
+          "stdout_sha256": "1b4802cceaa1cab4d292d6f227bcee1d1752824c3a85a18ef6507f2592e8008f",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        }
+      ],
+      "wallclock_ms_summary": {
+        "count": 5,
+        "min": 1.406896,
+        "median": 2.868946,
+        "max": 3.630631
+      },
+      "replay_identical": true,
+      "failures": [],
+      "success": true
+    },
+    {
+      "id": "n01-s01-independent-impact",
+      "args": [
+        "query-narrative-impact",
+        "examples/evaluation/n07-pilot/facilitator/ledger-s01-only.json",
+        "rename-s01"
+      ],
+      "expected_exit": 0,
+      "warmup": {
+        "index": 0,
+        "exit_code": 0,
+        "wallclock_ms": 1.887639,
+        "stdout_sha256": "3db8d166cfc5f01bfc9d19f79b50a00b153ab3200fed4d64d3b59f39442bf384",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false,
+        "launch_error": false
+      },
+      "measured_runs": [
+        {
+          "index": 1,
+          "exit_code": 0,
+          "wallclock_ms": 1.571644,
+          "stdout_sha256": "3db8d166cfc5f01bfc9d19f79b50a00b153ab3200fed4d64d3b59f39442bf384",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 2,
+          "exit_code": 0,
+          "wallclock_ms": 12.59887,
+          "stdout_sha256": "3db8d166cfc5f01bfc9d19f79b50a00b153ab3200fed4d64d3b59f39442bf384",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 3,
+          "exit_code": 0,
+          "wallclock_ms": 1.630232,
+          "stdout_sha256": "3db8d166cfc5f01bfc9d19f79b50a00b153ab3200fed4d64d3b59f39442bf384",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 4,
+          "exit_code": 0,
+          "wallclock_ms": 3.752395,
+          "stdout_sha256": "3db8d166cfc5f01bfc9d19f79b50a00b153ab3200fed4d64d3b59f39442bf384",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 5,
+          "exit_code": 0,
+          "wallclock_ms": 1.654229,
+          "stdout_sha256": "3db8d166cfc5f01bfc9d19f79b50a00b153ab3200fed4d64d3b59f39442bf384",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        }
+      ],
+      "wallclock_ms_summary": {
+        "count": 5,
+        "min": 1.571644,
+        "median": 1.654229,
+        "max": 12.59887
+      },
+      "replay_identical": true,
+      "failures": [],
+      "success": true
+    },
+    {
+      "id": "n01-s02-independent-impact",
+      "args": [
+        "query-narrative-impact",
+        "examples/evaluation/n07-pilot/facilitator/ledger-s02-only.json",
+        "rename-s02"
+      ],
+      "expected_exit": 0,
+      "warmup": {
+        "index": 0,
+        "exit_code": 0,
+        "wallclock_ms": 1.517943,
+        "stdout_sha256": "ec0a24d1875f0c73bbe9fa1b45f04df4cf073bb5fc633445fd06d116e5303280",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false,
+        "launch_error": false
+      },
+      "measured_runs": [
+        {
+          "index": 1,
+          "exit_code": 0,
+          "wallclock_ms": 1.617312,
+          "stdout_sha256": "ec0a24d1875f0c73bbe9fa1b45f04df4cf073bb5fc633445fd06d116e5303280",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 2,
+          "exit_code": 0,
+          "wallclock_ms": 1.559415,
+          "stdout_sha256": "ec0a24d1875f0c73bbe9fa1b45f04df4cf073bb5fc633445fd06d116e5303280",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 3,
+          "exit_code": 0,
+          "wallclock_ms": 3.405042,
+          "stdout_sha256": "ec0a24d1875f0c73bbe9fa1b45f04df4cf073bb5fc633445fd06d116e5303280",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 4,
+          "exit_code": 0,
+          "wallclock_ms": 2.962165,
+          "stdout_sha256": "ec0a24d1875f0c73bbe9fa1b45f04df4cf073bb5fc633445fd06d116e5303280",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 5,
+          "exit_code": 0,
+          "wallclock_ms": 1.351433,
+          "stdout_sha256": "ec0a24d1875f0c73bbe9fa1b45f04df4cf073bb5fc633445fd06d116e5303280",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        }
+      ],
+      "wallclock_ms_summary": {
+        "count": 5,
+        "min": 1.351433,
+        "median": 1.617312,
+        "max": 3.405042
+      },
+      "replay_identical": true,
+      "failures": [],
+      "success": true
+    },
+    {
+      "id": "n01-atomic-batch-guard",
+      "args": [
+        "track-narrative-revisions",
+        "examples/evaluation/n07-pilot/facilitator/ledger-batch-pending.json"
+      ],
+      "expected_exit": 1,
+      "warmup": {
+        "index": 0,
+        "exit_code": 1,
+        "wallclock_ms": 1.262018,
+        "stdout_sha256": "9e1dac4d3307a267017f9f445afad90c97e3dd9276eab7db53ab006a7723ba99",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timed_out": false,
+        "launch_error": false
+      },
+      "measured_runs": [
+        {
+          "index": 1,
+          "exit_code": 1,
+          "wallclock_ms": 1.173275,
+          "stdout_sha256": "9e1dac4d3307a267017f9f445afad90c97e3dd9276eab7db53ab006a7723ba99",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 2,
+          "exit_code": 1,
+          "wallclock_ms": 1.419255,
+          "stdout_sha256": "9e1dac4d3307a267017f9f445afad90c97e3dd9276eab7db53ab006a7723ba99",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 3,
+          "exit_code": 1,
+          "wallclock_ms": 1.166054,
+          "stdout_sha256": "9e1dac4d3307a267017f9f445afad90c97e3dd9276eab7db53ab006a7723ba99",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 4,
+          "exit_code": 1,
+          "wallclock_ms": 1.191683,
+          "stdout_sha256": "9e1dac4d3307a267017f9f445afad90c97e3dd9276eab7db53ab006a7723ba99",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        },
+        {
+          "index": 5,
+          "exit_code": 1,
+          "wallclock_ms": 2.631278,
+          "stdout_sha256": "9e1dac4d3307a267017f9f445afad90c97e3dd9276eab7db53ab006a7723ba99",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timed_out": false,
+          "launch_error": false
+        }
+      ],
+      "wallclock_ms_summary": {
+        "count": 5,
+        "min": 1.166054,
+        "median": 1.191683,
+        "max": 2.631278
+      },
+      "replay_identical": true,
+      "failures": [],
+      "success": true
+    }
+  ],
+  "global_failures": [],
+  "machine_success": true
+}

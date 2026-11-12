@@ -5,3 +5,10 @@ tests/fixtures/openfilm/finite-v1/video-trim.json -text
 # Preserve CLI compatibility receipt bytes in Windows checkouts.
 /docs/validation/n05-commercial-copy-reviewed.stdout text eol=lf
 /docs/validation/n05-pilot/*.stdout text eol=lf
+
+# N07 recorder compares these exact Git blob bytes with frozen SHA-256 receipts.
+# Do not let core.autocrlf rewrite the protocol, material receipt or source copies.
+/docs/validation/n07-native-v3.md -text
+/docs/validation/n07-pilot/material-sha256.json -text
+/examples/evaluation/n07-pilot/participant-kit/** -text
+/examples/evaluation/n07-recorder/*.py -text

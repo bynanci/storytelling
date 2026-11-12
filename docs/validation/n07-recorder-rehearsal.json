@@ -1,0 +1,37 @@
+{
+  "evidence_kind": "synthetic-recorder-rehearsal",
+  "human_authors": 0,
+  "eligible_human_pairs": null,
+  "recommendation": "待真人證據",
+  "mode": "rehearsal",
+  "recorder_sha256": "1e806088b393305db7547aba4fa990ad44023a880aa9b49bafb93176d6ec07c4",
+  "protocol_sha256": "a9b3038272107ee6986c22879c354e73cbbd55d40d498ad3d3c12aef87d0bb1d",
+  "cli_source_commit_declared": "ce73836caa86502933f538821fdbf5dac92c1224",
+  "cli_binary_sha256": "adf39d84283dc2a1f7e5281bf4a274eae1ec6d7fd77cce29fe811125669802ef",
+  "source_binding_verified": false,
+  "material_receipt_sha256": "e7c4f610811eb90ec8a46597bfdc8093ad81ae2bc21c7ea0ababbe82a375c42a",
+  "synthetic_sessions_captured": 2,
+  "raw_calls": [
+    {
+      "command": "render-narrative",
+      "exit_code": 0,
+      "stdout_sha256": "fe4e6bb54eedd7ee56505a224cf121e080c4826790c326ace7b6480e0a4fac6c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binary_unchanged": true,
+      "inputs_unchanged": true,
+      "snapshots_unchanged": true
+    },
+    {
+      "command": "audit-copy-claims",
+      "exit_code": 0,
+      "stdout_sha256": "c3f2f995dbdb9b177c0b6cd234af90fef6c2f263846be43976a4b83f4b7ffc11",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "binary_unchanged": true,
+      "inputs_unchanged": true,
+      "snapshots_unchanged": true
+    }
+  ],
+  "unsupported_claim_reference_status": "missing",
+  "export_hashes_checked": true,
+  "note": "Uncorrected initial drafts and blank answers captured by automation; submitted is not a scored completion. No author timing or feedback inferred."
+}

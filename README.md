@@ -159,7 +159,7 @@ The same workshop facts support two openings: one states the event before the ta
 cargo run --quiet --locked -p storytelling-cli -- check-narrative-style tests/fixtures/narrative-v1/n08-umbrella-openings-v1.json tests/fixtures/narrative-v1/n08-style-profile-v1.json
 ```
 
-The command checks declared beat order and returns JSON. It does not judge aesthetics or establish author approval. The imagery metaphor is a creative proposal based on S3, not a claim about the sound's cause. The label-free reader trial remains pending. [N-08 profile and validation record](https://github.com/bynanci/storytelling/blob/main/docs/validation/n08-style-profile.md)
+The command checks declared beat order and returns JSON. It does not judge aesthetics or establish author approval. The imagery metaphor is a creative proposal based on S3, not a claim about the sound's cause. Two official-sheet readings satisfied the qualitative gate on maintainer attestation; both were A→B, randomization was unrecorded, and private answers were not independently audited. [N-08 profile and validation record](https://github.com/bynanci/storytelling/blob/main/docs/validation/n08-style-profile.md)
 
 ### Build a recording cue sheet (N-09)
 
