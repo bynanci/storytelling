@@ -78,6 +78,8 @@ The [workshop](skills/storytelling/references/workshop-demo.md) supplies a notic
 | Mixed-media handoff | `render-handoff` binds file, description, transcript, proposal and missing-material declarations to N-04 revisions. It separates changed dates from reusable layout and sound. | [N-11 / #68](https://github.com/bynanci/storytelling/issues/68): [profile](docs/narrative/NARRATIVE_HANDOFF_MANIFEST_V1.md) and [replay evidence](docs/validation/n11-handoff.md). Human semantic review remains separate. |
 | Actual image or audio file | N-12 used Inkscape 1.4 on Linux to export and reopen a synthetic PNG, then delivered a brief with the export entry point unavailable. [Trial and artifacts](docs/validation/n12-inkscape-png.md) | [N-12 / #69](https://github.com/bynanci/storytelling/issues/69): narrow-adoption recommendation awaits the maintainer. Schedule a production adapter separately. |
 
+The [manual narration host guide](skills/storytelling/references/manual-narration-review.md) supplements N-09/N-R09, N-11/N-R11 and N-12/N-R12 with source, take and listening evidence from an anonymized operator account. It adds no native adapter or task acceptance; private-media observations are not a public reproducibility test.
+
 <a name="影片工程任務"></a>
 
 ## Next actionable work

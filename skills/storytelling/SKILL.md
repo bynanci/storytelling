@@ -95,6 +95,8 @@ Use the [templates](references/multimodal-templates.md) to select a form. The [w
 
 Describe an image or recording directly only if the host can inspect it. When you use a caption, transcript or author description, identify that source. Mark inferred causes, invented dialogue and proposed effects. For a requested media file, use a suitable tool within scope. Open or play the result. If the tool or input is missing, deliver the usable brief and identify the outstanding artifact.
 
+For recorded or synthesized narration, use the [manual host review guide](references/manual-narration-review.md). Keep content checks, voice preference and full-track acceptance separate; preserve the actual take and settings when the author selects an earlier version.
+
 <a name="修訂與交接"></a>
 
 ## Revise or hand off
