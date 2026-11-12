@@ -43,7 +43,7 @@
 | [N-06／#53](https://github.com/bynanci/storytelling/issues/53) · N-R06 選擇新模式 | G0–G2 比較完成；請求者明確暫緩三種原生模式。 | [格式探索紀錄](docs/validation/n06-format-discovery.md)列出相容性、最小變更與[暫緩決策](https://github.com/bynanci/storytelling/issues/53#issuecomment-6792555714)。未宣稱任務耗時或試用結果；實際需求與單一採用決策出現前，N-10 維持暫緩。 |
 | [N-07／#54](https://github.com/bynanci/storytelling/issues/54) · N-R07 產品決定 | 維護者已停止提交的外部 wrapper 試用，關閉為 not planned。 | [處置與證據](docs/validation/n07-pilot.zh-TW.md)：0/5 主要完成、5/5 重大 U01 錯誤；固定 ce73836／ReportV1 native 驗收未證實。未來評估須另訂版本並事前同意，不授權發布。 |
 
-N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)提供獨立前瞻協議與固定版本建置檢查，尚未採用或收案；#54 維持 Stop。
+N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)提供獨立前瞻協議與固定版本建置檢查，尚未採用或收案；#54 維持 Stop。[N07-REC01 紀錄工具](examples/evaluation/n07-recorder/README.zh-TW.md)提供私人 SQLite、同材料工作副本及中斷紀錄；工程完成與真人驗收分開。
 
 將[前七段 Codex 指令](docs/CODEX_NARRATIVE_PROMPTS.zh-TW.md)派給對應任務。後續五票與既有任務的追加指令收在[多模態派工指南](docs/CODEX_MULTIMODAL_PROMPTS.zh-TW.md)。
 
