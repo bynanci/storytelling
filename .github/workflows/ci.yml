@@ -142,6 +142,12 @@ jobs:
         run: cargo build --workspace --locked
       - name: Unit and real CLI integration tests
         run: cargo test --workspace --locked
+      - name: Pinned Python for trial recorder
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
+      - name: Private trial recorder and raw native CLI regressions
+        run: python -m unittest discover -s examples/evaluation/n07-recorder -p 'test_*.py'
       - name: Read-only sample
         run: cargo run --locked -p storytelling-cli -- validate examples/minimal-plan.json
       - name: Checkout remains unchanged

@@ -315,7 +315,7 @@ see the [validation record](validation/m3-03-filmcraft-execution.md).
 | N-R06／N-06 | 選出值得開發的新模式。 | [格式探索紀錄](validation/n06-format-discovery.md)比較三個候選方向、現有契約相容性與最小可行變更。請求者已[明確暫緩三者](https://github.com/bynanci/storytelling/issues/53#issuecomment-6792555714)；不宣稱任務試用或耗時結果。 |
 | N-R07／N-07 | 依實際 native 工作流證據決定繼續、縮小或停止。 | [N-07 處置](validation/n07-pilot.zh-TW.md)記錄外部流程五份產物的實際 Stop／不發布：0/5 主要完成、5/5 重大 U01 錯誤。固定 ce73836／ReportV1 native 驗收仍未證實，結果待真人證據。保留準備快照、原始量測保護與 helper／packet 測試；未來評估和 G5 發布另案決定。 |
 
-N-R07 後續準備：[原生 v3](validation/n07-native-v3.zh-TW.md)補充執行檔來源、配對資格與私人紀錄流程。既有 helper／packet 測試僅驗證工程準備；真人驗收仍待真人證據。
+N-R07 後續準備：[原生 v3](validation/n07-native-v3.zh-TW.md)補充執行檔來源、配對資格與私人紀錄流程。既有 helper／packet 測試僅驗證工程準備；真人驗收仍待真人證據。[N07-REC01 驗證](validation/n07-recorder.md)對照並行、逾時、原始 bytes、復原及正常入口測試；協議宣告及附件不代表身分驗證或真人評分。
 
 N-R02 的資料契約與 N-01 的試用條件已固定。新增觀察可以補充證據。變更契約或試用條件時，須另行記錄決定。
 
