@@ -3,8 +3,9 @@
 
 English · [繁體中文](n10-resume-gate.zh-TW.md)
 
-**Status:** G2 contract accepted on 2026-11-12; G3 Rust CLI implementation and G4 verification are tracked in the implementation PR. Human and real-media claims remain separately limited.
+**Status:** G2 contract accepted on 2026-11-12; G3 CLI and automated G4 verification merged in PR #97. The post-merge CLI author rerun and independent real-media byte verification remain open evidence tasks.
 **Issue:** [#67](https://github.com/bynanci/storytelling/issues/67) · **Discovery:** [#53](https://github.com/bynanci/storytelling/issues/53) · **Selected V decision:** [#53 comment](https://github.com/bynanci/storytelling/issues/53#issuecomment-6812213432) · **G2 acceptance:** [maintainer decision](https://github.com/bynanci/storytelling/issues/67#issuecomment-6812948322) · **G2 merge:** PR #93, merge `80577b7334110abf0c0765ec1d1c3e4cf4ae3996`.
+**G3/G4 implementation:** [PR #97](https://github.com/bynanci/storytelling/pull/97), merge `169bf6baff33cd452238337237d437e15ac5b292`; exact PR head `aa9cafae6dcd51bc78188ac5b80b9bbe3155d234` passed all six jobs in [run #376](https://github.com/bynanci/storytelling/actions/runs/43148901399). Automated code review completed with no findings.
 **Decision history:** the 2026-11-11 defer-all decision remains the N-06 outcome; the 2026-11-12 V decision supersedes it only for N-10. Screenplay and brainstorm remain deferred. The maintainer accepted the exact field rules, 21 diagnostics and ordering, result status, and nine synthetic fixtures. The separate G3 Rust CLI work does not alter that frozen contract.
 
 ## Latest checkpoint · 2026-11-12
@@ -58,9 +59,9 @@ The accepted stable profile codes include `video_coverage.missing_selected_unit`
 | --- | --- | --- |
 | N10-00 · Adoption | V, the two-unit/one-footage author task, and the video-only read-only V1 boundary are recorded in #53 and this packet. | Maintainer · **recorded** |
 | N10-01 · Contract | Accepted the versioned profile, closed schemas, source/catalog identity, exact ranges, diagnostic policy and nine fixtures in PR #93. | Maintainer · **G2 accepted** |
-| N10-02 · Pure validation | Test-first observed RED then GREEN; bounded Rust validation has no filesystem/model/host calls or implicit asset selection. | Engine · **G3 implemented; locally verified** |
-| N10-03 · CLI | Add an **explicit, opt-in** local read-only entry point with deterministic success/error envelopes and contract tests. | CLI · **G3 implemented; locally verified** |
-| N10-04 · Regression | N-02/N-04/N-08/N-11, Planner V1, video V1 and OTIO workspace regressions, debug/release, formatting, Clippy and repository checks passed locally; exact-head CI and review remain pending. | Reviewer · **G4 underway** |
+| N10-02 · Pure validation | Test-first observed RED then GREEN; bounded Rust validation has no filesystem/model/host calls or implicit asset selection. | Engine · **G3 implemented and merged in PR #97** |
+| N10-03 · CLI | Add an **explicit, opt-in** local read-only entry point with deterministic success/error envelopes and contract tests. | CLI · **G3 implemented and merged in PR #97** |
+| N10-04 · Regression | N-02/N-04/N-08/N-11, Planner V1, video V1 and OTIO regressions plus debug/release, formatting, Clippy, repository checks, pinned official OTIO oracle and exact-head hosted CI passed; all six jobs passed in run #376. Automated code review reported no findings. | Reviewer · **automated G4 passed** |
 | N10-05 · Human/media evidence | A maintainer supplied one anonymous two-session account with the five required fields. Session 2 is a manual contract walk-through, not a run of the CLI. The author-declared local duration was not independently checked; V1 does not read media bytes. Re-run the task with the built CLI before claiming tool usability. | Author / maintainer · **partial account recorded; tool/media evidence pending** |
 
 G2 acceptance is recorded before G3 implementation. The supplied author account contains the exact task, starting material, verbatim words, observations and limitations; it was not independently audited and does not replace a CLI-based re-run. Preserve all original media in private storage; public fixtures remain invented. A new release or migration requires a separate G5 decision.
@@ -71,6 +72,6 @@ G2 acceptance is recorded before G3 implementation. The supplied author account 
 - **S and B:** remain deferred; they are not part of N-10.
 - **D:** was the 2026-11-11 N-06 decision and remains a valid historical outcome, but the later V decision supersedes it for N-10 only.
 
-The mode-selection and G2 contract gates are complete. #67 remains open while the separate G3/G4 implementation is reviewed. Reported author observations are not independent audit evidence; real media bytes remain unread by V1. Cancel native work if authors can safely finish with the current text table or cannot produce a concrete selected-unit/asset gap. This packet is a reviewable design, **not** a release or proof of actual media.
+The mode-selection, G2 contract, G3 implementation and automated G4 regression gates are complete. #67 remains open for a post-merge author run with the CLI and separately verified real-media evidence. The supplied observations are maintainer-provided and not independently audited; session 2 predates the CLI. V1 reads only JSON declarations and exact rational ranges, so its green result never proves that media bytes match a catalog claim. Cancel native work if authors can safely finish with the current text table or cannot produce a concrete selected-unit/asset gap. No G5 release or publication is authorized.
 
-**Evidence separation:** the [G3 CLI validation record](n10-video-coverage-cli.md) records automated results. The two-session author account is preserved in [#67](https://github.com/bynanci/storytelling/issues/67#issuecomment-6812948322) and is maintainer-supplied, not independently audited. Catalog IDs and duration are declarations; no media bytes, file digest, synchronization, OTIO or host behavior is verified.
+**Evidence separation:** the [G3 CLI validation record](n10-video-coverage-cli.md) records code and CI evidence. The two-session author account is preserved in [#67](https://github.com/bynanci/storytelling/issues/67#issuecomment-6812948322) and is maintainer-supplied, not independently audited. Catalog IDs and duration are declarations; this implementation verifies no media bytes, file digest, synchronization, OTIO, or host behavior.

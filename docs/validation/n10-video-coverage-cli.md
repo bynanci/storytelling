@@ -6,6 +6,8 @@ English · [繁體中文](n10-video-coverage-cli.zh-TW.md)
 **Requirement:** N-R10 / [Issue #67](https://github.com/bynanci/storytelling/issues/67)  
 **Accepted contract:** G2 decision in [#67](https://github.com/bynanci/storytelling/issues/67#issuecomment-6812948322), delivered by [PR #93](https://github.com/bynanci/storytelling/pull/93), merged as `80577b7334110abf0c0765ec1d1c3e4cf4ae3996`.  
 **G3 branch:** `feat/n10-video-coverage-cli-20261112`, based on that main commit.
+**Implementation:** [PR #97](https://github.com/bynanci/storytelling/pull/97), merged as `169bf6baff33cd452238337237d437e15ac5b292` from exact PR head `aa9cafae6dcd51bc78188ac5b80b9bbe3155d234`.
+**Hosted verification:** all six jobs passed for that exact head in [run #376](https://github.com/bynanci/storytelling/actions/runs/43148901399); automated code review completed with no findings.
 
 ## Delivered behavior
 
@@ -81,6 +83,8 @@ Local verification on the implementation branch passed:
 - Full workspace tests: debug and release each reported 309 passed, 0 failed, 3 ignored (the ignored FilmCraft case requires its pinned host).
 - Formatting, Clippy with warnings denied, rustdoc with warnings denied, and `scripts/check_repo.py`: passed.
 - N-07 helper regressions: 12 tests; story-graph plan and trace: 6 and 5 tests; FilmCraft rejection checks: 6 tests; frozen OpenFilm finite-v1 differential: 6 cases, all passed.
-- The existing Rust video V1, OTIO and story-review CLI regressions passed in both workspace profiles. The optional official Python OTIO parser is not installed in this local environment, so that oracle was not run locally; the hosted CI workflow installs its pinned parser and is the required same-head verification.
+- The existing Rust video V1, OTIO and story-review CLI regressions passed in both workspace profiles. The optional official Python OTIO parser is not installed in this local environment; the exact-head hosted Quality and Contracts job installed the pinned parser and passed as part of run #376.
 
-Exact-head hosted CI and review are pending on the implementation PR. No G5 release or publication is authorized by this work.
+Windows initially exposed a fixture line-ending mismatch after the CLI output was normalized; the tests now normalize both the CLI JSON line and expected fixture while preserving byte-identical same-host replays and input bytes. The final Windows job passed on the exact head.
+
+Automated G4 verification is complete for PR #97. A post-merge author run with the CLI and independent real-media byte verification remain separate evidence tasks. No G5 release or publication is authorized by this work.
