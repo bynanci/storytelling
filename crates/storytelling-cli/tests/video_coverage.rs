@@ -108,7 +108,9 @@ fn accepts_complete_video_coverage_without_media_access() {
 #[test]
 fn reports_unresolved_video_unit_and_blocks_planning() {
     let output = run_file("valid-unresolved.json");
-    let expected = std::fs::read(fixture("expected-valid-unresolved.stdout.json")).unwrap();
+    let expected = canonical_json_line_ending(
+        &std::fs::read(fixture("expected-valid-unresolved.stdout.json")).unwrap(),
+    );
     assert_eq!(output.status.code(), Some(0));
     assert!(output.stderr.is_empty());
     assert_eq!(canonical_json_line_ending(&output.stdout), expected);
@@ -200,7 +202,9 @@ fn compares_file_stdin_replay_and_preserves_input_bytes() {
     assert_eq!(first.stdout, stdin.stdout);
     assert_eq!(
         canonical_json_line_ending(&first.stdout),
-        std::fs::read(fixture("expected-valid-unresolved.stdout.json")).unwrap()
+        canonical_json_line_ending(
+            &std::fs::read(fixture("expected-valid-unresolved.stdout.json")).unwrap()
+        )
     );
     assert_eq!(std::fs::read(&input_path).unwrap(), input);
     assert_eq!(
