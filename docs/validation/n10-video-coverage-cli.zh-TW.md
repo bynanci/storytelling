@@ -6,6 +6,8 @@
 **需求：** N-R10／[Issue #67](https://github.com/bynanci/storytelling/issues/67)  
 **已接受契約：**[#67 維護者決定](https://github.com/bynanci/storytelling/issues/67#issuecomment-6812948322)，由 [PR #93](https://github.com/bynanci/storytelling/pull/93) 交付，合併至 `80577b7334110abf0c0765ec1d1c3e4cf4ae3996`。  
 **G3 分支：**`feat/n10-video-coverage-cli-20261112`，以該 main commit 為基礎。
+**實作：**[PR #97](https://github.com/bynanci/storytelling/pull/97) 已合併為 `169bf6baff33cd452238337237d437e15ac5b292`；合併前 exact head 為 `aa9cafae6dcd51bc78188ac5b80b9bbe3155d234`。
+**Hosted 驗證：**該 exact head 的 [run #376](https://github.com/bynanci/storytelling/actions/runs/43148901399) 六項工作全數通過；自動程式審查完成且沒有發現。
 
 ## 交付行為
 
@@ -81,6 +83,8 @@ cat tests/fixtures/narrative-video-coverage-v1/valid-unresolved.json | cargo +1.
 - Workspace 測試的 debug 與 release 各為 309 通過、0 失敗、3 忽略（忽略的 FilmCraft 案例需要指定宿主）。
 - 格式、拒絕 warning 的 Clippy、拒絕 warning 的 rustdoc 與 `scripts/check_repo.py` 均通過。
 - N-07 helper 回歸 12 項；story graph plan 與 trace 分別 6、5 項；FilmCraft rejection checks 6 項；凍結 OpenFilm finite-v1 差異 oracle 6 案例，全數通過。
-- 既有 Rust video V1、OTIO 與 story-review CLI 回歸，在兩種 workspace profile 均通過。本機未安裝選配的官方 Python OTIO parser，因此未執行該 oracle；hosted CI workflow 會安裝固定版本，仍須以同一 head 通過。
+- 既有 Rust video V1、OTIO 與 story-review CLI 回歸，在兩種 workspace profile 均通過。本機未安裝選配的官方 Python OTIO parser；exact-head hosted Quality and Contracts 工作安裝固定版 parser，並在 run #376 通過。
 
-實作 PR 的 exact-head hosted CI 與審查尚待完成。本工作未授權 G5 發布或上架。
+Windows 最初發現 CLI 輸出與預期 fixture 的行尾格式不同；測試現會同時正規化兩者的 JSON 行尾，仍以原始 bytes 驗證同主機重播與輸入檔不變。最終 exact-head Windows 工作已通過。
+
+PR #97 的自動化 G4 驗證已完成。使用 CLI 的合併後作者試用與獨立真實媒體位元組驗證仍是另外兩項證據工作。本工作未授權 G5 發布或上架。
