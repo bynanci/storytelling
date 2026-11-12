@@ -39,6 +39,7 @@ storytelling validate plan.json
 | 指令 | 輸入 | 結果 |
 | --- | --- | --- |
 | `render-narrative` | `NarrativeDocumentV1`，無須媒體或片長 | 依宣告順序輸出口述大綱與插畫構圖，附來源標籤。 |
+| `render-video-coverage` | `NarrativeVideoCoverageV1` | 依宣告目錄與精確區間驗證指定變體的映射；保留 unresolved 並阻擋規劃就緒狀態，不開啟媒體。 |
 | `render-handoff` | `NarrativeHandoffManifestV1` | 來源表示法、精確的部分影響與草稿審閱狀態，沿用 N-04 修訂簿。 |
 | `track-narrative-revisions` | `NarrativeRevisionLedgerV1` 修訂簿 | 列出來源與變體的修訂歷史、作者決定和待審狀態。 |
 | `query-narrative-impact` | 修訂簿與來源變更事件 ID | 列出直接引用該來源版本的變體。由引擎計算影響範圍。 |
@@ -82,6 +83,21 @@ cat tests/fixtures/narrative-v1/n03-author-reviewed-v1.json | cargo run --releas
 ```
 
 成功時，標準輸出為多行 UTF-8 文字。用檔案或標準輸入重跑，輸出位元組相同。資料錯誤時，標準輸出為單行 JSON，退出碼為 1。用法錯誤為 2，輸入輸出錯誤為 3。指令只讀資料，不呼叫模型或剪輯器。[敘事契約](narrative/NARRATIVE_DOCUMENT_V1.md) · [N-03 命令列實測與待驗項目](validation/n03-narrative-cli.md)
+
+## 驗證敘事到影片素材的覆蓋（N-10）
+
+```sh
+cargo run --release --quiet --locked -p storytelling-cli -- render-video-coverage tests/fixtures/narrative-video-coverage-v1/valid-unresolved.json
+```
+
+範例選取兩個單元：一個映射到已宣告的影片區間，另一個保留為 unresolved。
+合法的缺件列退出碼仍是 0，但輸出 `ready_for_planning=false` 及
+`video_coverage.unresolved_required`。完整映射可能回傳
+`ready_for_planning=true`。無效宣告輸出一行 JSON 並退出 1；用法與輸入輸出錯誤
+分別為 2 和 3。使用 `-` 可從標準輸入讀取，相同輸入會產生相同位元組。
+指令只讀提供的 JSON；asset ID、revision 與片長是宣告，不會開啟或雜湊影片、檢查同步、產生 OTIO 或寫入剪輯器。
+見[已接受契約](validation/n10-resume-gate.zh-TW.md)、[fixtures](../tests/fixtures/narrative-video-coverage-v1/README.md)
+與[G3 驗證紀錄](validation/n10-video-coverage-cli.zh-TW.md)。
 
 ## 查核跨媒體交接（N-11）
 

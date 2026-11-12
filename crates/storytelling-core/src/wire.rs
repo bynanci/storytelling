@@ -26,14 +26,14 @@ pub struct DeclaredShot {
     pub source_range: SourceRange,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct SourceRange {
     pub start: TimeValue,
     pub end: TimeValue,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct TimeValue {
     pub numerator: String,

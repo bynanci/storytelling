@@ -40,6 +40,7 @@ A **snapshot** is a composition export that follows the `finite-v1` contract. Op
 | Command | Input | Result |
 | --- | --- | --- |
 | `render-narrative` | `NarrativeDocumentV1` | A spoken outline and illustration briefs with source labels. No media or duration required. |
+| `render-video-coverage` | `NarrativeVideoCoverageV1` | Validates a selected variant against a declared asset catalog and exact ranges; unresolved rows remain visible and block planning readiness. It does not open media. |
 | `render-handoff` | `NarrativeHandoffManifestV1` | Source representations, exact component impact and draft review status, using the N-04 ledger. |
 | `track-narrative-revisions` | `NarrativeRevisionLedgerV1` | Source and variant history, author decisions and review status. |
 | `query-narrative-impact` | Ledger and source change event ID | Variants that directly reference this source revision. The engine computes the list. |
@@ -81,6 +82,24 @@ cat tests/fixtures/narrative-v1/n03-author-reviewed-v1.json | cargo run --releas
 ```
 
 Success produces multiline UTF-8 text. File and standard input produce identical bytes. Invalid data produces one JSON line on standard output and exit 1. Usage errors return 2. I/O errors return 3. The command only reads input. See the [narrative contract](narrative/NARRATIVE_DOCUMENT_V1.md) and [N-03 evidence](validation/n03-narrative-cli.md).
+
+## Validate narrative-to-video coverage (N-10)
+
+```sh
+cargo run --release --quiet --locked -p storytelling-cli -- render-video-coverage tests/fixtures/narrative-video-coverage-v1/valid-unresolved.json
+```
+
+The example selects two units, maps one to a declared clip range, and leaves the
+other unresolved. A valid unresolved row returns exit 0 with
+`ready_for_planning=false` and `video_coverage.unresolved_required`. A complete
+mapping may return `ready_for_planning=true`. Invalid declarations return one
+JSON error line and exit 1; usage and I/O errors use 2 and 3. The command accepts
+`-` for standard input and emits identical bytes for the same input. It reads
+only the supplied JSON: asset IDs, revisions and durations are declarations.
+It does not open or hash video, test synchronization, create OTIO or write to an
+editor. See the [accepted contract](validation/n10-resume-gate.md),
+[fixtures](../tests/fixtures/narrative-video-coverage-v1/README.md) and
+[G3 validation record](validation/n10-video-coverage-cli.md).
 
 ## Check a mixed-media handoff (N-11)
 

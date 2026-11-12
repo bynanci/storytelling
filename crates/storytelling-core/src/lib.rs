@@ -8,6 +8,7 @@ pub mod narrative;
 pub mod narrative_cue;
 pub mod narrative_handoff;
 pub mod narrative_revision;
+pub mod narrative_video_coverage;
 pub mod review;
 pub mod source_evidence;
 pub mod time;

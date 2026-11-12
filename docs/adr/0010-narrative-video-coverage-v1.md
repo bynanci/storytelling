@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: MIT -->
 # ADR 0010: NarrativeVideoCoverageV1
 
-- **Status:** Proposed G2 contract for maintainer review; mode and version boundary selected.
+- **Status:** G2 contract accepted by the maintainer on 2026-11-12; the separate G3 CLI implementation is in progress.
 - **Date:** 2026-11-12
 - **Issue:** [#67 / N-10](https://github.com/bynanci/storytelling/issues/67)
 - **Selection:** [#53 comment](https://github.com/bynanci/storytelling/issues/53#issuecomment-6812213432)
@@ -14,10 +14,11 @@ for one and no asset for the other, then verify the handoff preserves the
 uncovered unit as unresolved and blocks ready-for-planning/export status.
 N-06's synthetic S02/S03 case shows a contract gap: a Planner can accept an
 S02-only plan without knowing S03 was selected upstream. This does not identify
-a Planner defect or establish a human failure. No real footage, catalog or
-author trial is supplied.
+a Planner defect or establish a human failure. The design case is synthetic. A
+later maintainer-supplied two-session account is recorded in [#67](https://github.com/bynanci/storytelling/issues/67#issuecomment-6812948322);
+it is a manual contract walk-through, not a CLI run or independent media verification.
 
-## Proposed decision
+## Accepted decision
 
 Define a separate, closed, versioned `NarrativeVideoCoverageV1` declaration and
 read-only validator. It binds a complete NarrativeDocumentV1 snapshot, one
@@ -33,13 +34,12 @@ An `unresolved` row is valid input, remains visible in the deterministic result,
 and blocks the `ready_for_planning` status. A complete mapping can enter
 planning only; this profile never emits or authorizes an export.
 
-The exact candidate input schema is
+The accepted input schema is
 [`narrative-video-coverage-v1.schema.json`](../../contracts/narrative-video-coverage-v1.schema.json);
 the semantic rules, diagnostic order and result contract are in the
 [N-10 profile](../validation/n10-resume-gate.md) and
 [paired fixtures](../../tests/fixtures/narrative-video-coverage-v1/README.md).
-Those field-level rules still require G2 acceptance. The maintainer's selection
-chooses the profile boundary, not automatic acceptance of this detailed schema.
+The maintainer accepted the exact fields, diagnostics, result status and fixtures in the [G2 decision](https://github.com/bynanci/storytelling/issues/67#issuecomment-6812948322).
 
 ## Binding and validation rules
 
@@ -73,7 +73,7 @@ chooses the profile boundary, not automatic acceptance of this detailed schema.
 
 ### Result and command contract
 
-The proposed `render-video-coverage <FILE|->` success result is one compact
+The `render-video-coverage <FILE|->` success result is one compact
 UTF-8 JSON line with fixed key order:
 
 ```json
@@ -109,7 +109,7 @@ ranges; then deterministic result/blocker projection. Report the first
 contract error in this order, scanning arrays in input order. Safe error paths
 never echo source text, unknown keys or parser internals.
 
-Stable profile codes proposed for G2 acceptance:
+Accepted stable profile codes:
 
 | Code | Meaning |
 | --- | --- |
@@ -168,10 +168,12 @@ no existing input migration or catalog mutation is needed.
 
 ## G2 / G3 gates
 
-G2 remains open until a maintainer accepts or revises this exact field schema,
-diagnostic taxonomy, result status and fixture expectations. G3 then requires a
-separate implementation PR with observed RED before pure Rust GREEN, CLI
-positive/negative replay, input-byte/read-only and deterministic-output tests,
-and existing narrative, video V1 and OTIO regressions. G4 requires same-head
-hosted CI. Actual asset identity, author adequacy and any release remain
-separate evidence and G5 decisions.
+The maintainer accepted this exact field schema, the 21 diagnostics and their
+ordering, result status, and nine synthetic fixtures on 2026-11-12; see the
+[recorded decision](https://github.com/bynanci/storytelling/issues/67#issuecomment-6812948322).
+The separate G3 CLI implementation adds observed RED before Rust GREEN, normal
+entry-point contract cases, replay and read-only checks. G4 requires same-head
+hosted CI and the video V1/OTIO regressions. The reported author sessions and
+local duration remain separately qualified evidence; this contract does not
+read media bytes or establish actual asset identity. Any release remains a G5
+maintainer decision.
