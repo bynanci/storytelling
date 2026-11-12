@@ -12,7 +12,7 @@ A small editorial team may have one person write, another review and a third pub
 | Next · [The kiln opening in a documentary](kiln-coverage.md) | A production log establishes that an event took place. The assistant editor has no shot of the action. The director still wants two possible openings. | Can the director identify an event that has written evidence but lacks footage? Does the assistant keep it on the outstanding shot list? |
 | Interview first · [Four further situations](opportunities.md) | A citizen-science editor, a meeting secretary, a print producer and a theatre surtitler face a corrected denominator, a motion with uncertain status, same-name file revisions and a live cue. | Ask the person responsible for each decision about the last time it caused rework. Use that account to choose which packet to develop. |
 
-The first two cases include copyable A/B passages, a third handoff draft, source information and two independent change cards. The other four are interview prompts. All six use synthetic materials. The existing 16 cases have their own [scoring key](../evaluation/keys.md). There are no participant returns for these six.
+The first two cases include copyable A/B passages, a third handoff draft, source information and two independent change cards. The other four are interview prompts. All six use synthetic materials. The existing 16 cases have their own [scoring key](../evaluation/keys.md). The booking notice and kiln handoff have completed one round of anonymous human participant testing; results, denominators and limitations are recorded in the [2026-11-12 trial record](validation-2026-11-12.md).
 
 ## What the existing evidence supports
 
