@@ -71,9 +71,9 @@ cat tests/fixtures/narrative-video-coverage-v1/valid-unresolved.json | cargo +1.
 
 ## 真人與媒體證據限制
 
-維護者在 [#67 紀錄](https://github.com/bynanci/storytelling/issues/67#issuecomment-6812948322)提供匿名代碼 `VH-01` 與兩次 session。每次都列出原題、起始資料、作者原話、觀察及限制。提供的順序是先試算表，再手動核對結構化契約；未提供 session 時間、先前接觸情形或隨機化程序。紀錄未經獨立稽核。第二次 session 早於本 CLI 實作，因此其中的狀態碼是依已接受契約進行手動對照，不是 Rust CLI 的執行收據。若要主張 CLI 可用性，需以本 CLI 重跑。
+維護者在 [#67 紀錄](https://github.com/bynanci/storytelling/issues/67#issuecomment-6812948322)提供匿名代碼 `VH-01` 與兩次 session。每次都列出原題、起始資料、作者原話、觀察及限制。提供的順序是先試算表，再手動核對結構化契約；未提供 session 時間、先前接觸情形或隨機化程序。紀錄未經獨立稽核。第二次 session 早於本 CLI 實作，因此其中的狀態碼是依已接受契約進行手動對照，不是 Rust CLI 的執行收據。Codex 後來用合併後 CLI 重播兩份附件 JSON；這是機器重跑，不是作者新 session，也不能證明可用性。見[合併後操作紀錄](n10-05-execution-record.zh-TW.md)。
 
-作者陳述本機 `clip-01` 量得 5 秒／30 fps 下 150 格；沒有公開檔案、雜湊或獨立稽核的量測。V1 只檢查宣告的有理數片長與區間，不讀取或雜湊影音位元組、不驗證影格率或同步、不確認 asset ID 指向該檔、不產生 OTIO，也不在剪輯器匯入或播放。Repo 未加入任何媒體。這不算完成真實媒體驗證門檻。
+作者陳述本機 `clip-01` 量得 5 秒／30 fps 下 150 格。後續附件提供維護者提交的 `ffprobe -count_frames` 執行紀錄，顯示 H.264、1280×720、30/1 fps、5.000000 秒與 150 格；但未提供影音檔，因此 Codex 沒有重新執行或獨立稽核該量測。V1 只檢查宣告的有理數片長與區間，不讀取或雜湊影音位元組、不驗證影格率或同步、不確認 asset ID 指向該檔、不產生 OTIO，也不在剪輯器匯入或播放。Repo 未加入任何媒體。證據界線見[操作紀錄](n10-05-execution-record.zh-TW.md)。
 
 ## G4 驗證狀態
 
@@ -87,4 +87,4 @@ cat tests/fixtures/narrative-video-coverage-v1/valid-unresolved.json | cargo +1.
 
 Windows 最初發現 CLI 輸出與預期 fixture 的行尾格式不同；測試現會同時正規化兩者的 JSON 行尾，仍以原始 bytes 驗證同主機重播與輸入檔不變。最終 exact-head Windows 工作已通過。
 
-PR #97 的自動化 G4 驗證已完成。使用 CLI 的合併後作者試用與獨立真實媒體位元組驗證仍是另外兩項證據工作。本工作未授權 G5 發布或上架。
+PR #97 的自動化 G4 驗證已完成。附件輸入已有合併後機器重播，另有 `ffprobe` 回報；作者親自操作 CLI 的使用性試用仍待完成。本工作未授權 G5 發布或上架。

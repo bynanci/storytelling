@@ -3,7 +3,7 @@
 
 [English](n10-resume-gate.md) · 繁體中文
 
-**狀態：** `NarrativeVideoCoverageV1` 的 G2 契約已接受；G3 CLI 與自動化 G4 驗證已透過 PR #97 合併。合併後 CLI 作者重跑與獨立真實媒體位元組驗證仍是未完成證據工作。
+**狀態：** `NarrativeVideoCoverageV1` 的 G2 契約已接受；G3 CLI 與自動化 G4 驗證已透過 PR #97 合併。Codex 已用合併後 CLI 重播附件輸入，維護者另提供 `ffprobe` 回報；作者親自操作 CLI 的使用性試用仍待完成，該探測回報在此未經獨立稽核。
 **追蹤：** [Issue #67](https://github.com/bynanci/storytelling/issues/67) · [前置研究 #53](https://github.com/bynanci/storytelling/issues/53) · [V 選擇紀錄](https://github.com/bynanci/storytelling/issues/53#issuecomment-6812213432) · **G2 接受：**[維護者決定](https://github.com/bynanci/storytelling/issues/67#issuecomment-6812948322) · **G2 合併：** PR #93，merge `80577b7334110abf0c0765ec1d1c3e4cf4ae3996`。
 **G3/G4 實作：** [PR #97](https://github.com/bynanci/storytelling/pull/97)，merge `169bf6baff33cd452238337237d437e15ac5b292`；合併前 exact head `aa9cafae6dcd51bc78188ac5b80b9bbe3155d234` 的 [run #376](https://github.com/bynanci/storytelling/actions/runs/43148901399) 六項工作全數通過。自動程式審查完成且沒有發現。
 **決策沿革：** 2026-11-11 的三項暫緩仍是 N-06 當時結論；2026-11-12 的 V 決定只對 N-10 取代該暫緩。編劇與分支構思仍暫緩。維護者已接受精確欄位規則、21 個診斷碼與優先順序、結果狀態及九個合成 fixture。獨立 G3 Rust CLI 工作不變更凍結契約。
@@ -64,7 +64,7 @@
 | N10-02 · 純驗證 | 已觀察 RED 後完成 GREEN；Rust 有界驗證不呼叫 filesystem／model／host，也不自動選素材。 | Engine · **G3 已實作並於 PR #97 合併** |
 | N10-03 · CLI | 已新增明確 opt-in 的本機唯讀入口、固定成功／錯誤 envelope 及契約測試。 | CLI · **G3 已實作並於 PR #97 合併** |
 | N10-04 · 回歸 | N-02/N-04/N-08/N-11、Planner V1、video V1、OTIO 回歸、debug/release、fmt、Clippy、repo checks 與固定版官方 OTIO oracle 均通過；run #376 的六項 exact-head CI 全過，自動程式審查無發現。 | Reviewer · **自動化 G4 已通過** |
-| N10-05 · 真人與素材 | 維護者提供 1 位匿名作者、2 次 session 與五項必填紀錄；第二次是手動契約核對，未執行 CLI。作者陳述的本機片長未經獨立核實；V1 不讀取媒體位元組。須以已完成 CLI 重跑後才能主張工具可用性。 | Author／Maintainer · **部分紀錄已存；工具／媒體證據待補** |
+| N10-05 · 真人與素材 | 先前 VH-01 兩次 session 仍是維護者提供且未經稽核；第二次發生於 CLI 實作前。Codex 已於合併後用兩份附件 JSON 重播，取得 exit 0／unresolved 與 exit 1／invalid-range 結果，輸入未變且檔案／stdin 輸出相同。附件另報告 `ffprobe` 實測 5.000000 秒／30 fps／150 格，但未提供媒體檔，Codex 未能重新執行或獨立稽核該量測。 | Author／Maintainer · **機器重播與探測回報已記錄；作者新 CLI 使用性試用待完成** |
 
 G2 接受紀錄早於 G3 實作。已提供的作者紀錄包含原題、起始資料、逐字原話、觀察及限制；維護者提供的紀錄未經獨立稽核，也不等於使用已完成的 CLI 重跑。私人素材不進公開 repo。發布與遷移另經 G5 核准。
 
@@ -74,6 +74,6 @@ G2 接受紀錄早於 G3 實作。已提供的作者紀錄包含原題、起始�
 - **S 與 B：** 仍暫緩，不屬於 N-10。
 - **D：** 是 2026-11-11 的 N-06 歷史決定；仍保留為當時結果，但後來的 V 決定只在 N-10 範圍內取代它。
 
-模式選擇、G2 契約、G3 實作與自動化 G4 回歸門檻已完成。#67 仍開啟，等待使用 CLI 的合併後作者試用與另外驗證的真實媒體證據。現有觀察由維護者提供且未經獨立稽核；第二次 session 早於 CLI。V1 只讀取 JSON 宣告與精確有理數區間，成功結果不代表媒體位元組符合目錄聲明。若作者可用既有文字表格安全完成交接，或沒有具體單元／素材缺口，仍可取消新增原生模式。沒有授權 G5 發布或上架。
+模式選擇、G2 契約、G3 實作與自動化 G4 回歸門檻已完成。#67 仍開啟，等待作者親自操作合併後 CLI，並記錄作者時間及使用性觀察。維護者另提供 `ffprobe` 執行紀錄；未提供媒體檔，因此 Codex 未能重跑或稽核該量測。先前第二次 session 早於 CLI。V1 只讀取 JSON 宣告與精確有理數區間，成功結果不代表媒體位元組符合目錄聲明。若作者可用既有文字表格安全完成交接，或沒有具體單元／素材缺口，仍可取消新增原生模式。沒有授權 G5 發布或上架。
 
-**證據區分：** [G3 CLI 驗證紀錄](n10-video-coverage-cli.zh-TW.md)列出程式與 CI 證據。[既有工程探針](../narrative/n06-cases/evidence/probes.json)僅證明舊有契約行為；真人可用性與媒體位元組仍依前述限制另待驗證。
+**證據區分：** [G3 CLI 驗證紀錄](n10-video-coverage-cli.zh-TW.md)列出程式與 CI 證據；[合併後操作紀錄](n10-05-execution-record.zh-TW.md)記錄附件輸入重播及媒體探測回報的限制。[既有工程探針](../narrative/n06-cases/evidence/probes.json)僅證明舊有契約行為；作者 CLI 使用性證據仍待完成。
