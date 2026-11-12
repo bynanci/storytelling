@@ -39,12 +39,28 @@ cargo +1.89.0 test --locked -p storytelling-cli --test video_coverage
 
 Result: **7 passed, 0 failed**.
 
-## Supplied media-probe report and its limits
+## VH-01-S3: post-merge author-operated session
 
-The attached execution record reports that `ffprobe -v error -select_streams v:0 -count_frames ... clip-01.mp4` exited 0 and returned H.264, 1280×720, 30/1 fps, 5.000000 seconds, and 150 decoded frames. The record says the original media remains in an isolated environment. The media file was not among the attachments, so Codex did not rerun `ffprobe` or independently audit that output. No private media, path, hash, or identifying source text was added to this repository.
+The maintainer's [#67 execution record](https://github.com/bynanci/storytelling/issues/67#issuecomment-6815393001) adds a single-person session after the CLI became available. It is recorded separately from the Codex replay above.
 
-This is a maintainer-supplied report of a separate media-probe run. It does not show that `NarrativeVideoCoverageV1` read the file or verified that `CLIP-01` refers to it. The CLI only checked the supplied JSON declaration and rational range; it did not inspect media bytes, synchronization, OTIO, or an editor.
+| Item | VH-01-S3 record |
+| --- | --- |
+| Operator and time | VH-01, the project maintainer/author, on 2026-11-12 at 13:02 +08:00, after PRs #97 and #99 merged. This is a self-session with no external recruit or independent observer. |
+| Prior exposure and order | VH-01 had previously used a spreadsheet in S1 and walked through the contract before the CLI existed in S2. This session was not randomized or blinded. |
+| Prompt and starting data | Prepare a video handoff for two selected units: use the declared `CLIP-01` range for `u-open@2` and retain `u-test@1` as missing footage. The synthetic test clip is declared as five seconds long. |
+| Actions and result | The author first entered an end range of `6/1`; the CLI returned exit 1, `video_coverage.invalid_range`, at `$.mappings[0].source_range.end`. After changing it to `5/1`, the rerun returned exit 0, `ready_for_planning: false`, and `video_coverage.unresolved_required` at `$.mappings[1]`. |
+| Author time | 145 seconds, including checking the duration, editing JSON, both CLI runs and reviewing their outputs. This is total author task time, separate from Codex's single-process measurements. |
+| Verbatim author statement | “實際用合併後的 `render-video-coverage` 跑這次雙單元交接，一開始我把 `CLIP-01` 的結束時間填成 `6/1` 秒，CLI 馬上以 exit `1` 指到 `$.mappings[0].source_range.end` 報 `video_coverage.invalid_range`；我對照 `ffprobe` 的 5 秒長度改成 `5/1` 秒重跑後就順利拿到 exit `0`，而且因為 `u-test@1` 還缺門底特寫，輸出明確標出 `ready_for_planning: false` 跟 `$.mappings[1]` 的 `video_coverage.unresolved_required`。不過手寫 JSON 時發現有理數的 `numerator` 跟 `denominator` 必須加引號寫成字串（像 `"5"`、`"1"`），如果直接寫整數 `5` 會觸發 `video_coverage.invalid_shape`。” |
+| Observations and limits | The JSONPath helped the author locate the out-of-range field. Requiring JSON strings for rational fields was a friction point, and first-error-wins requires iterative fixes and reruns. The author also reports that spreadsheet S1 took 260 seconds and missed the range error. Prior exposure, fixed order and practice effects confound this comparison, so the times are descriptive and do not establish that the tool caused a reduction. The quote and author timing come from the maintainer-supplied account; Codex did not observe the session. A replay checks output, not the author's actions. |
+
+The record supplies the prompt, starting data, verbatim statement, observations, and limitations/failure log. It is qualitative usability evidence from one maintainer-reported self-session, not an independent user study, randomized comparison or statistical sample. Earlier VH-01-S2 predates the CLI and remains a manual contract walkthrough, not a CLI execution.
+
+## Read-only probe of the supplied synthetic MP4
+
+The supplied `clip-01.mp4` is described as a synthetic test pattern generated with FFmpeg `testsrc`, not recorded footage. Codex ran `ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=codec_name,width,height,r_frame_rate,duration,nb_read_frames:format=size,bit_rate -of json` directly on the attachment. It exited 0 and reported H.264, 1280×720, 30/1 fps, 5.000000 seconds, 150 frames and a file size of 75,276 bytes. Only these non-sensitive media metadata are recorded; the video, hash and local path were not added to the repository.
+
+This `ffprobe` check establishes readable metadata for the supplied synthetic file. `NarrativeVideoCoverageV1` did not read or validate its media bytes and did not prove that JSON asset ID `CLIP-01` identifies this attachment. It does not check synchronization, generate OTIO or operate an editor.
 
 ## N10-05 status
 
-The output and error paths now have a post-merge CLI replay on the supplied inputs. The earlier VH-01 sessions remain maintainer-supplied and unaudited; the second session predates the CLI. A fresh author-operated CLI session, with author time and verbatim usability observations, remains pending. Keep #67 open until that human evidence is recorded and the maintainer resolves the remaining evidence gate. G5 publication remains separate.
+With the maintainer-supplied VH-01-S3 record, the post-merge CLI replay and this synthetic-media probe, the bounded N10-05 acceptance evidence is complete. The source and evidence limits are preserved in the [#67 record comment](https://github.com/bynanci/storytelling/issues/67#issuecomment-6815393001). This is not an external or randomized user study. G5 publication remains a separate maintainer decision.
