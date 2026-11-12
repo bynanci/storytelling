@@ -179,6 +179,8 @@ observation criterion. They do not establish aesthetic superiority, preference,
 general reader comprehension or broad efficacy. This update records the existing
 closure and performs no new participant session.
 
+For additional sessions, use the [facilitator checklist and blank private record](open-issues-2026-11-11/additional-reading-handoff.zh-TW.md). The reader receives only the unchanged sheet; new observations cannot retroactively supply the old randomization record.
+
 ## Merge reconciliation and N-08 acceptance scope
 
 PR #75 was reconciled with the intervening main changes from #76, #77 and #79.

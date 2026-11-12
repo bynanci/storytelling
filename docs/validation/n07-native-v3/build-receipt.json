@@ -1,0 +1,12 @@
+{
+  "protocol": "n07-native-notes-v3-proposed",
+  "human_evidence": false,
+  "source_commit": "ce73836caa86502933f538821fdbf5dac92c1224",
+  "materials_commit": "8e2c08094f6bce70a7507e11ed84265bd98e3820",
+  "binary_sha256": "adf39d84283dc2a1f7e5281bf4a274eae1ec6d7fd77cce29fe811125669802ef",
+  "lock_sha256": "145165518ae1cee8775131e241545a4e6036b14f63493f5b5f9afc62988a9797",
+  "raw_report_sha256": "c3f2f995dbdb9b177c0b6cd234af90fef6c2f263846be43976a4b83f4b7ffc11",
+  "engineering_results_sha256": "cc2885f353ac75f6daa7f73ba99e4127892c5053090108459a743dfbdb492164",
+  "rustc": "rustc 1.89.0 (29483883e 2025-08-04)",
+  "cargo": "cargo 1.89.0 (c24e10642 2025-06-23)"
+}
