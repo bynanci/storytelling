@@ -19,7 +19,7 @@ python3 "$N07_RECORDER" init --round "$N07_PRIVATE/round" \
   --receipt "$N07_RUN/build-receipt.json" --mode rehearsal
 ```
 
-On Windows use Python 3 and private absolute paths, including `storytelling.exe`. The recorder itself uses no shell, Bash or Git subprocesses. The Bash setup above is a convenience, not a Windows setup test.
+On Windows use Python 3 and private absolute paths, including `storytelling.exe`. Repository attributes preserve the exact protocol, material and recorder bytes even with Git autocrlf enabled; do not normalize captured participant files. The recorder itself uses no shell, Bash or Git subprocesses. The Bash setup above is a convenience, not a Windows setup test.
 
 Initialization creates an exclusive private directory and SQLite database, records the executable/receipt/protocol/recorder hashes and a once-only 3 AB / 2 BA draw with seed and Python version. Repeating initialization refuses to overwrite it. Planned slots are not enrolled authors. A matching executable hash is a comparison against a declared receipt, not proof of its build source; `source_binding_verified` and `agreement_authenticated` remain false.
 
