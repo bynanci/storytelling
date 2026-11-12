@@ -10,8 +10,8 @@ use storytelling_engine::{
     check_narrative_style_profile, check_review, check_story_review, export_openfilm_otio,
     export_story_otio, import_openfilm_snapshot, parse_review_context, plan_story, prepare_review,
     prepare_story_review, query_narrative_impact, render_narrative, render_narrative_cue_sheet,
-    render_narrative_handoff, track_narrative_revisions, validate_plan_json,
-    verify_supplied_sha256,
+    render_narrative_handoff, render_narrative_video_coverage, track_narrative_revisions,
+    validate_plan_json, verify_supplied_sha256,
 };
 
 fn emit(value: Value, code: u8) -> ExitCode {
@@ -122,6 +122,23 @@ fn render_narrative_command(args: &[OsString]) -> ExitCode {
     match render_narrative(&bytes) {
         Ok(projection) => text(&render_narrative_text(&projection)),
         Err(error) => emit(json!({"ok": false, "error": error}), 1),
+    }
+}
+
+fn render_video_coverage_command(args: &[OsString]) -> ExitCode {
+    if args.len() != 2 || args[1].as_encoded_bytes().starts_with(b"--") {
+        return failure("cli.usage", 2);
+    }
+    let bytes = match read_argument(&args[1], MAX_INPUT_BYTES) {
+        Ok(bytes) => bytes,
+        Err(_) => return failure("input.io", 3),
+    };
+    match render_narrative_video_coverage(&bytes) {
+        Ok(result) => match serde_json::to_vec(&result) {
+            Ok(bytes) => emit_bytes(bytes, 0),
+            Err(_) => failure("output.serialization", 3),
+        },
+        Err(error) => emit(json!({"error": error}), 1),
     }
 }
 
@@ -591,6 +608,12 @@ fn main() -> ExitCode {
     }
     if args
         .first()
+        .is_some_and(|arg| arg == OsStr::new("render-video-coverage"))
+    {
+        return render_video_coverage_command(&args);
+    }
+    if args
+        .first()
         .is_some_and(|arg| arg == OsStr::new("render-cue-sheet"))
     {
         return render_cue_sheet_command(&args);
@@ -725,7 +748,7 @@ fn main() -> ExitCode {
     match command {
         Some(value) if value == OsStr::new("--help") && args.len() == 1 => {
             return text(
-                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\n       storytelling plan-story <FILE|->\n       storytelling render-narrative <FILE|->\n       storytelling render-cue-sheet <DOCUMENT_FILE|-> <CUE_SHEET_FILE|->\n       storytelling render-handoff <FILE|->\n       storytelling track-narrative-revisions <FILE|->\n       storytelling query-narrative-impact <FILE|-> <CHANGE_ID>\n       storytelling check-narrative-style <DOCUMENT_FILE|-> <PROFILE_FILE|->\n       storytelling audit-copy-claims <COPY_FILE|-> <EVIDENCE_LEDGER_FILE|-> [--report-v2]\n       storytelling prepare-story-review <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling export-story-otio <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling check-story-review <REVIEW_BUNDLE> <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling prepare-review <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling check-review <REVIEW_RECORD> <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling verify-source <FILE|-> <SHA256>\nRead-only metadata, interchange and declared review identity; no editor execution.\n",
+                "Usage: storytelling validate <FILE|->\n       storytelling import-openfilm <FILE|->\n       storytelling export-otio <FILE|-> [--picture-only] [--metadata-only-locks]\n       storytelling audit-brief <FILE|->\n       storytelling plan-story <FILE|->\n       storytelling render-narrative <FILE|->\n       storytelling render-video-coverage <FILE|->\n       storytelling render-cue-sheet <DOCUMENT_FILE|-> <CUE_SHEET_FILE|->\n       storytelling render-handoff <FILE|->\n       storytelling track-narrative-revisions <FILE|->\n       storytelling query-narrative-impact <FILE|-> <CHANGE_ID>\n       storytelling check-narrative-style <DOCUMENT_FILE|-> <PROFILE_FILE|->\n       storytelling audit-copy-claims <COPY_FILE|-> <EVIDENCE_LEDGER_FILE|-> [--report-v2]\n       storytelling prepare-story-review <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling export-story-otio <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling check-story-review <REVIEW_BUNDLE> <PROPOSAL|-> <SNAPSHOT_FILE> <CONTEXT_FILE>\n       storytelling prepare-review <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling check-review <REVIEW_RECORD> <COMPOSITION|-> <CONTEXT_FILE>\n       storytelling verify-source <FILE|-> <SHA256>\nRead-only metadata, interchange and declared review identity; no editor execution.\n",
             );
         }
         Some(value) if value == OsStr::new("--version") && args.len() == 1 => {

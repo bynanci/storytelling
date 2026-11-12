@@ -30,16 +30,16 @@ enum PreflightFailure {
     DepthExceeded,
 }
 
-#[derive(Default)]
 struct JsonPreflight {
     failure: Option<PreflightFailure>,
+    max_nesting: usize,
 }
 
 impl JsonPreflight {
     fn scan(&mut self, raw: &RawValue, depth: usize) -> Result<(), serde_json::Error> {
         match raw.get().as_bytes()[0] {
             b'{' => {
-                if depth >= MAX_NESTING {
+                if depth >= self.max_nesting {
                     self.failure = Some(PreflightFailure::DepthExceeded);
                     return Err(de::Error::custom("narrative nesting limit exceeded"));
                 }
@@ -54,7 +54,7 @@ impl JsonPreflight {
                 deserializer.end()
             }
             b'[' => {
-                if depth >= MAX_NESTING {
+                if depth >= self.max_nesting {
                     self.failure = Some(PreflightFailure::DepthExceeded);
                     return Err(de::Error::custom("narrative nesting limit exceeded"));
                 }
@@ -74,9 +74,19 @@ impl JsonPreflight {
 }
 
 pub(crate) fn preflight_json(bytes: &[u8]) -> Result<(), NarrativeValidationErrorV1> {
+    preflight_json_with_max_nesting(bytes, MAX_NESTING)
+}
+
+pub(crate) fn preflight_json_with_max_nesting(
+    bytes: &[u8],
+    max_nesting: usize,
+) -> Result<(), NarrativeValidationErrorV1> {
     let raw: &RawValue =
         serde_json::from_slice(bytes).map_err(|_| error("input.invalid_json", "$"))?;
-    let mut preflight = JsonPreflight::default();
+    let mut preflight = JsonPreflight {
+        failure: None,
+        max_nesting,
+    };
     if preflight.scan(raw, 0).is_err() {
         return Err(match preflight.failure {
             Some(PreflightFailure::DuplicateField) => error("narrative.duplicate_field", "$"),

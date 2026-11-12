@@ -31,6 +31,8 @@ mod narrative_handoff;
 mod narrative_revision;
 pub use narrative_handoff::{NarrativeHandoffProjectionV1, render_narrative_handoff};
 pub use narrative_revision::{query_narrative_impact, track_narrative_revisions};
+mod narrative_video_coverage;
+pub use narrative_video_coverage::render_narrative_video_coverage;
 pub use storytelling_core::narrative_revision::{
     NarrativeAuthorDecisionV1, NarrativeCurrentVariantV1, NarrativeRevisionEventResultV1,
     NarrativeRevisionReportV1, NarrativeSourceRevisionV1, NarrativeSuggestionRecordV1,

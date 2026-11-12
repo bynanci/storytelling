@@ -83,9 +83,7 @@ N-09 保持 `NarrativeDocumentV1` 封閉，另新增 `NarrativeCueSheetV1` 以�
 
 N-11 在原有修訂簿外新增獨立的 `NarrativeHandoffManifestV1`。Core 定義 wire 型別；純引擎將目前來源描述與完整產物部分對照綁定實際變體快照，沿用 N-04 的直接引用影響，對整個綁定快照檢查提案範圍，並分列歷史影響與目前審閱狀態。CLI 讀取明確指定的清單並輸出可重播文字。路徑與摘要只是宣告，不開啟媒體。[ADR 0009](adr/0009-read-only-mixed-media-handoff.md) · [規格](narrative/NARRATIVE_HANDOFF_MANIFEST_V1.zh-TW.md) · [證據](validation/n11-handoff.md)
 
-敘事輸入獨立於媒體雜湊、來源區間及幀率。
-後續影片轉接器可將所選單元連到明確素材，再經公開契約呼叫規劃器。
-保留影片 V1 輸入、CLI 行為、摘要向量與 OTIO 測試資料作回歸檢查。
+N-10 新增獨立 `NarrativeVideoCoverageV1` 契約，不擴充 `NarrativeDocumentV1`。Core 負責 wire DTO；純引擎驗證目前所選單元 revision、變體成員與順序、宣告目錄 revision 及精確有理數區間，再輸出穩定結果。`render-video-coverage` 讀取指定 JSON，輸出確定性 JSON。`ready_for_planning` 只代表提供的宣告符合本 profile；有 unresolved 列就會阻擋。指令不讀取或雜湊媒體、不產生 OTIO，也不寫入專案或剪輯器。保留影片 V1 輸入、CLI 行為、摘要向量與 OTIO fixture 作回歸檢查。[ADR 0010](adr/0010-narrative-video-coverage-v1.md) · [N-10 驗證紀錄](validation/n10-video-coverage-cli.zh-TW.md)
 
 N-02 的來源與衍生關係可參考 [W3C PROV-DM](https://www.w3.org/TR/prov-dm/)。
 空間分組可參考 [JSON Canvas 1.0](https://jsoncanvas.org/spec/1.0/)。

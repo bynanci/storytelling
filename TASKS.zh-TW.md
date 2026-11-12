@@ -72,7 +72,7 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 | 商業文案 | Skill 可整理主張及依據。影片條件檢查器無法判定文案是否獲得佐證。 | [N-05 查核主張](https://github.com/bynanci/storytelling/issues/52) |
 | 流派與手法 | CLI 檢查宣告順序；兩次官方表單閱讀依維護者證言完成定性門檻。實際皆 A→B，隨機方法未記錄。 | [N-08／#65 紀錄](docs/validation/n08-style-profile.md)保留具限制結案、來源判斷、困惑與原單頁交接，不宣稱審美優越。 |
 | 聲音與 Podcast | `render-cue-sheet` 依 N-02 綁定旁白、停頓與已提供的音效，保留未知時間並檢查互斥聲軌衝突。錄音與混音仍由宿主處理。 | [N-09／#66](https://github.com/bynanci/storytelling/issues/66)：[規格](docs/narrative/NARRATIVE_CUE_SHEET_V1.zh-TW.md)與[重播證據](docs/validation/n09-cue-sheet.zh-TW.md)。 |
-| 編劇、分支構思與影片對照 | 文字樣板可用。N-06 當時暫緩三種原生模式；請求者後續只為 N-10 選擇影片限定 `NarrativeVideoCoverageV1`，作者任務是選兩個故事單元並保留一個缺素材。 | [N-10／#67](https://github.com/bynanci/storytelling/issues/67) 正在 G2：先審查／凍結 PR #93 的 ADR 0010、schema 與成對 fixture，再開獨立 G3 實作。沒有真人或真實媒體證據。 |
+| 編劇、分支構思與影片對照 | 文字樣板可用。N-06 當時暫緩三種原生模式；請求者後續只為 N-10 選擇影片限定 `NarrativeVideoCoverageV1`，作者任務是選兩個故事單元並保留一個缺素材。 | [N-10／#67](https://github.com/bynanci/storytelling/issues/67) 的 G2 已由 [PR #93](https://github.com/bynanci/storytelling/pull/93) 接受，目前推進獨立 G3 CLI 實作。維護者提供一位匿名作者、兩次手動契約核對紀錄；未經獨立稽核，也不是 CLI 試用。V1 不讀取媒體位元組。見[實作驗證紀錄](docs/validation/n10-video-coverage-cli.zh-TW.md)。 |
 | 跨媒體交接 | `render-handoff` 將檔案、描述、文字標註、提案及缺件宣告綁定 N-04 修訂，區分須改日期與可沿用的構圖、聲音。 | [N-11／#68](https://github.com/bynanci/storytelling/issues/68)：[規格](docs/narrative/NARRATIVE_HANDOFF_MANIFEST_V1.zh-TW.md)與[重播證據](docs/validation/n11-handoff.md)。語意仍由作者檢視。 |
 | 實際產出圖檔或音檔 | N-12 在 Linux 用 Inkscape 1.4 將合成 SVG 匯出 PNG 並讀回；入口不可用時交付構圖說明。[可行性紀錄與真實產物](docs/validation/n12-inkscape-png.zh-TW.md) | [N-12／#69](https://github.com/bynanci/storytelling/issues/69) 的縮小採用建議待維護者決定；正式 adapter 另行排程。 |
 
