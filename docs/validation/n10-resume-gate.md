@@ -4,8 +4,12 @@
 English · [繁體中文](n10-resume-gate.zh-TW.md)
 
 **Status:** G0–G2 *decision proposal*, not a selected native mode or an implementation.
-**Issue:** [#67](https://github.com/bynanci/storytelling/issues/67) · **Discovery:** [#53](https://github.com/bynanci/storytelling/issues/53) · **Base:** `489273bdfedc39d429af4445a2b5f559741336da`.
+**Issue:** [#67](https://github.com/bynanci/storytelling/issues/67) · **Discovery:** [#53](https://github.com/bynanci/storytelling/issues/53) · **Updated base:** `a2de070db0c485bf55af6b7553bbfdd49f5efc44`.
 **Controlling decision:** [Defer all three modes](https://github.com/bynanci/storytelling/issues/53#issuecomment-6792555714) remains in force until the maintainer makes a later, explicit single-mode decision. A request to resume issue work is **not** an implicit selection of a profile.
+
+## Latest checkpoint · 2026-11-12
+
+The latest request is to continue issue #67 and this preparation PR. It advances this review proposal; it does not choose V/S/B or D, adopt a profile/version, or provide a new concrete media task. The linked #53 decision to defer all three therefore remains controlling. The maintainer must record one option and its author need/version scope before G3.
 
 ## G0 — The author need and first observable gap
 

@@ -4,8 +4,12 @@
 [English](n10-resume-gate.md) · 繁體中文
 
 **狀態：** SDLC G0–G2 的**決策提案**，尚未採用新原生模式，也未實作。
-**追蹤：** [Issue #67](https://github.com/bynanci/storytelling/issues/67) · [前置研究 #53](https://github.com/bynanci/storytelling/issues/53) · **基準 commit：** `489273bdfedc39d429af4445a2b5f559741336da`。
+**追蹤：** [Issue #67](https://github.com/bynanci/storytelling/issues/67) · [前置研究 #53](https://github.com/bynanci/storytelling/issues/53) · **更新後基準 commit：** `a2de070db0c485bf55af6b7553bbfdd49f5efc44`。
 **既有決定：** [「暫緩三者，等實際需求」](https://github.com/bynanci/storytelling/issues/53#issuecomment-6792555714)持續有效。要求開始 #67 的後續工作，不等於已正式選定三種模式中的任一種。
+
+## 最新進度｜2026-11-12
+
+最新指示為繼續 #67 與本準備 PR，故更新本決策提案供審查。此指示未選 V／S／B／D、未採納模式／版次，也未提供新的具體媒體任務；#53 三者暫緩的決定仍有效。進入 G3 前，維護者須明確記錄單一選項、作者需求及版本範圍。
 
 ## G0｜具體作者需求與第一個可觀察缺口
 
