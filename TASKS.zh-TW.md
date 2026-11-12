@@ -40,7 +40,7 @@
 | [N-03／#50](https://github.com/bynanci/storytelling/issues/50) · N-R03 口述與插畫 | 已記錄 CLI 與請求者檢視；revision 2 回應近景取景建議，原始 fixture 不變。 | `render-narrative` 輸出口述與兩種構圖，保留來源 ID。C01 僅屬寬景，C02 僅為近景構圖提案。[驗證紀錄](docs/validation/n03-narrative-cli.md)附逐位元重播與來源未變證據。N-01／N-07 真人試用另列。 |
 | [N-04／#51](https://github.com/bynanci/storytelling/issues/51) · N-R04 修訂與作者決定 | 接續 N-03。主分支已有修訂查詢。真人檢視另列。 | 先改共同事實，再改單一構圖。工具依直接引用列出受影響的版本。歷史保留舊稿、提案及宣告的作者決定。[修訂驗證紀錄](docs/validation/n04-narrative-revisions.md) |
 | [N-05／#52](https://github.com/bynanci/storytelling/issues/52) · N-R05 文案與證據 | 已合併 PR #83 提供 V1 基礎；[PR #87](https://github.com/bynanci/storytelling/pull/87) 加入產品試行 ReportV2。修門審查已記錄，產品作者審閱另待完成。 | `audit-copy-claims` 顯示受眾、主張、CTA、被引用的歷史文字與 revision 狀態。修訂稿刪除無來源的計畫成效句，並明示文案提案。N-01／N-07 真人量測另行追蹤。[契約](docs/narrative/COMMERCIAL_COPY_V1.md) · [驗證紀錄](docs/validation/n05-commercial-copy.md) |
-| [N-06／#53](https://github.com/bynanci/storytelling/issues/53) · N-R06 選擇新模式 | G0–G2 比較完成；請求者明確暫緩三種原生模式。 | [格式探索紀錄](docs/validation/n06-format-discovery.md)列出相容性、最小變更與[暫緩決策](https://github.com/bynanci/storytelling/issues/53#issuecomment-6792555714)。未宣稱任務耗時或試用結果；實際需求與單一採用決策出現前，N-10 維持暫緩。 |
+| [N-06／#53](https://github.com/bynanci/storytelling/issues/53) · N-R06 選擇新模式 | G0–G2 比較完成；請求者於 2026-11-11 暫緩三種原生模式，後續連結決定僅為 N-10 選擇影片對照。 | [格式探索紀錄](docs/validation/n06-format-discovery.md)保留相容性、最小變更與[歷史暫緩決定](https://github.com/bynanci/storytelling/issues/53#issuecomment-6792555714)。後續 [N-10 選擇](https://github.com/bynanci/storytelling/issues/53#issuecomment-6812213432)不代表實際媒體驗證、操作時間或試用結果。 |
 | [N-07／#54](https://github.com/bynanci/storytelling/issues/54) · N-R07 產品決定 | 維護者已停止提交的外部 wrapper 試用，關閉為 not planned。 | [處置與證據](docs/validation/n07-pilot.zh-TW.md)：0/5 主要完成、5/5 重大 U01 錯誤；固定 ce73836／ReportV1 native 驗收未證實。未來評估須另訂版本並事前同意，不授權發布。 |
 
 N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)提供獨立前瞻協議與固定版本建置檢查，尚未採用或收案；#54 維持 Stop。[N07-REC01 紀錄工具](examples/evaluation/n07-recorder/README.zh-TW.md)提供私人 SQLite、同材料工作副本及中斷紀錄；工程完成與真人驗收分開。
@@ -72,7 +72,7 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 | 商業文案 | Skill 可整理主張及依據。影片條件檢查器無法判定文案是否獲得佐證。 | [N-05 查核主張](https://github.com/bynanci/storytelling/issues/52) |
 | 流派與手法 | CLI 檢查宣告順序；兩次官方表單閱讀依維護者證言完成定性門檻。實際皆 A→B，隨機方法未記錄。 | [N-08／#65 紀錄](docs/validation/n08-style-profile.md)保留具限制結案、來源判斷、困惑與原單頁交接，不宣稱審美優越。 |
 | 聲音與 Podcast | `render-cue-sheet` 依 N-02 綁定旁白、停頓與已提供的音效，保留未知時間並檢查互斥聲軌衝突。錄音與混音仍由宿主處理。 | [N-09／#66](https://github.com/bynanci/storytelling/issues/66)：[規格](docs/narrative/NARRATIVE_CUE_SHEET_V1.zh-TW.md)與[重播證據](docs/validation/n09-cue-sheet.zh-TW.md)。 |
-| 編劇、分支構思與影片對照 | 文字樣板可用。請求者在 [N-06](docs/validation/n06-format-discovery.md) 暫緩三種新原生模式。 | [N-10／#67](https://github.com/bynanci/storytelling/issues/67) 保持開啟／暫緩；待實際作者需求與明確單一採用決策才啟動。 |
+| 編劇、分支構思與影片對照 | 文字樣板可用。N-06 當時暫緩三種原生模式；請求者後續只為 N-10 選擇影片限定 `NarrativeVideoCoverageV1`，作者任務是選兩個故事單元並保留一個缺素材。 | [N-10／#67](https://github.com/bynanci/storytelling/issues/67) 正在 G2：先審查／凍結 PR #93 的 ADR 0010、schema 與成對 fixture，再開獨立 G3 實作。沒有真人或真實媒體證據。 |
 | 跨媒體交接 | `render-handoff` 將檔案、描述、文字標註、提案及缺件宣告綁定 N-04 修訂，區分須改日期與可沿用的構圖、聲音。 | [N-11／#68](https://github.com/bynanci/storytelling/issues/68)：[規格](docs/narrative/NARRATIVE_HANDOFF_MANIFEST_V1.zh-TW.md)與[重播證據](docs/validation/n11-handoff.md)。語意仍由作者檢視。 |
 | 實際產出圖檔或音檔 | N-12 在 Linux 用 Inkscape 1.4 將合成 SVG 匯出 PNG 並讀回；入口不可用時交付構圖說明。[可行性紀錄與真實產物](docs/validation/n12-inkscape-png.zh-TW.md) | [N-12／#69](https://github.com/bynanci/storytelling/issues/69) 的縮小採用建議待維護者決定；正式 adapter 另行排程。 |
 
