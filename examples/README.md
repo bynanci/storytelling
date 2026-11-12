@@ -37,6 +37,8 @@ Within each case, A and B address the same audience in the same language. C is a
 | --- | --- | --- |
 | Community presenter and illustrator | [The gate clears the ground](studies/gate-repair/README.md) | A shared observation and an illustration-only detail |
 
+For six further user problems and two copyable revision exercises, see [Who should try Storytelling next?](discovery/README.md).
+
 ## Existing runnable examples and assets
 
 - [Eight templates and worked treatments](../skills/storytelling/references/multimodal-templates.md) and the [workshop drawing and sound](../skills/storytelling/references/workshop-demo.md).
