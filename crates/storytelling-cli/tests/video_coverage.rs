@@ -80,6 +80,13 @@ fn json_line(output: &Output, exit: i32) -> Value {
     serde_json::from_slice(&output.stdout).unwrap()
 }
 
+fn canonical_json_line_ending(bytes: &[u8]) -> Vec<u8> {
+    String::from_utf8(bytes.to_vec())
+        .unwrap()
+        .replace("\r\n", "\n")
+        .into_bytes()
+}
+
 fn assert_error(output: Output, code: &str, path: &str) {
     let value = json_line(&output, 1);
     assert_eq!(value, json!({"error":{"code":code,"path":path}}));
@@ -104,7 +111,7 @@ fn reports_unresolved_video_unit_and_blocks_planning() {
     let expected = std::fs::read(fixture("expected-valid-unresolved.stdout.json")).unwrap();
     assert_eq!(output.status.code(), Some(0));
     assert!(output.stderr.is_empty());
-    assert_eq!(output.stdout, expected);
+    assert_eq!(canonical_json_line_ending(&output.stdout), expected);
     let value: Value = serde_json::from_slice(&output.stdout).unwrap();
     assert_eq!(value["ready_for_planning"], false);
     assert_eq!(value["mappings"][1]["status"], "unresolved");
@@ -192,7 +199,7 @@ fn compares_file_stdin_replay_and_preserves_input_bytes() {
     assert_eq!(first.stdout, second.stdout);
     assert_eq!(first.stdout, stdin.stdout);
     assert_eq!(
-        first.stdout,
+        canonical_json_line_ending(&first.stdout),
         std::fs::read(fixture("expected-valid-unresolved.stdout.json")).unwrap()
     );
     assert_eq!(std::fs::read(&input_path).unwrap(), input);

@@ -33,7 +33,7 @@ cargo +1.89.0 test --locked -p storytelling-cli --test video_coverage
 - `rejects_shape_order_and_json_limit_violations`
 - `rejects_cross_reference_duplicate_and_bound_errors_by_contract_code`
 
-測試涵蓋已接受的結構與跨引用錯誤碼、兩種敘事變體、完整與 unresolved 映射、九個已接受的合成 fixture、缺漏／過期／懸空引用、無效有理數區間、未知版本、重複原始 JSON 欄位、未知欄位、選取順序、素材 revision、first-error 順序、1 MiB 輸入上限、深度 33、檔案與 stdin 逐位元重播、輸入及相鄰檔案不變，以及沒有影片檔。unresolved 結果會與 `expected-valid-unresolved.stdout.json` 逐位元比較。
+測試涵蓋已接受的結構與跨引用錯誤碼、兩種敘事變體、完整與 unresolved 映射、九個已接受的合成 fixture、缺漏／過期／懸空引用、無效有理數區間、未知版本、重複原始 JSON 欄位、未知欄位、選取順序、素材 revision、first-error 順序、1 MiB 輸入上限、深度 33、檔案與 stdin 逐位元重播、輸入及相鄰檔案不變，以及沒有影片檔。unresolved 結果會先正規化主機平台的 JSON 行尾，再與 `expected-valid-unresolved.stdout.json` 比較；同一主機上的重跑及檔案／stdin 輸出仍須逐位元相同。
 
 ## 重現命令與輸出
 

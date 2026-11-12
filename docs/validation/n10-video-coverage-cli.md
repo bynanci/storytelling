@@ -33,7 +33,7 @@ The seven tests are:
 - `rejects_shape_order_and_json_limit_violations`
 - `rejects_cross_reference_duplicate_and_bound_errors_by_contract_code`
 
-They exercise all accepted structural and cross-reference error codes across the cases, both variant kinds, valid complete and unresolved mappings, the nine accepted synthetic fixtures, missing/stale/dangling references, invalid exact ranges, unsupported versions, duplicate raw keys, unknown fields, selection order, asset revision, first-error order, the 1 MiB limit, depth 33, byte-identical file/stdin replay, input and neighboring-file preservation, and the absence of media files. The unresolved result is compared byte-for-byte with `expected-valid-unresolved.stdout.json`.
+They exercise all accepted structural and cross-reference error codes across the cases, both variant kinds, valid complete and unresolved mappings, the nine accepted synthetic fixtures, missing/stale/dangling references, invalid exact ranges, unsupported versions, duplicate raw keys, unknown fields, selection order, asset revision, first-error order, the 1 MiB limit, depth 33, byte-identical file/stdin replay, input and neighboring-file preservation, and the absence of media files. The unresolved result is compared with `expected-valid-unresolved.stdout.json` after normalizing the host platform's JSON-line ending; repeated runs and file/stdin forms must remain byte-identical on that host.
 
 ## Reproduction
 
