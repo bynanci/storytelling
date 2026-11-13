@@ -16,3 +16,6 @@ tests/fixtures/openfilm/finite-v1/video-trim.json -text
 # The R1 manifest hashes exact Git blob bytes. Keep every packaged text file,
 # including BOM-prefixed CSVs, byte-identical in Windows/Linux/macOS checkouts.
 /docs/research/evaluations/2026-11-13-gemini-r1/** text eol=lf
+
+# SK-E01 fixture hashes cover exact bytes; preserve them in EOL-converting checkouts.
+/docs/research/evaluations/sk-e01/** text eol=lf

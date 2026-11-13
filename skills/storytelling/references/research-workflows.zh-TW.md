@@ -80,6 +80,7 @@
 4. A/B 分開回報：第一焦點符合數／首次接觸數（`rating`），另列 `inference_status` 各類數量與分母。無據因果斷言 `unsupported` 與 `unassessed` 數量單獨呈現；未評估不能當成有據。交接另報完成／嘗試、漏改／預期改稿、多改／收到且不需改的稿件、誤改／收到稿件、未交／要求稿件，盡可能按條件、情境與修改卡拆列。分母為零時填不適用；兩個閱讀軸及各項交接錯誤率分開。
 5. 遵循專案的[閱讀與交接協定](https://github.com/bynanci/storytelling/blob/main/examples/evaluation/README.md)。[來源界線](https://github.com/bynanci/storytelling/blob/main/examples/evaluation/source-boundaries.zh-TW.md)只交給指定交接條件；[account-review 校準範例](https://github.com/bynanci/storytelling/blob/main/examples/studies/account-review/calibration.zh-TW.md)保留給主持人。其中門檻是本地先導決策，並非論文效果量。招募前凍結門檻；決策必須涵蓋漏改、多改、誤改與未交，不能只看速度或漏改。N-01 與這次評估分開。
 6. 模型評論只用來提出失敗案例。代理演練標成合成測試。沒有人類觀察時，只交付協定與空白結果欄。
+7. 進行 model-only Skill 評估時，使用版本化的 [SK-E01 離線紀錄與盲測資料包流程](https://github.com/bynanci/storytelling/blob/main/docs/research/evaluations/sk-e01/README.zh-TW.md)。逐稿產生來源資料與評分資料包分開，分派金鑰由主持人私下保管。這套流程只記錄評估輸入，不證明效益。
 
 **輸出：**協定或有證據的結果報告，附繼續／縮小／修訂／停止建議與限制。**停止：**預定試驗完成，或沒有觀察資料；不捏造成功參與者。**規則：**ST-R06、ST-R12、ST-R13。**依據：**P03、P05、P10。
 
