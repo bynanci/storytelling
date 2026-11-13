@@ -11,7 +11,7 @@
 2. Complete the app/host/M3 preflight. Freeze exact build, editor profile, OS, SDK, fixtures and fault-injection path.
 3. Prepare two new licensed 36-item packs plus matching 75-second starter projects and answer keys. Complete the private [pack-freeze manifest](forms/pack-freeze.csv) and [pack receipts](forms/freeze-receipts.csv); record both pack and answer-key hashes. The repository contains no participant media or completed manifest.
 4. Run a task-neutral dry run to check both packs, the expected answers, timing and source references. Do not count the dry run as a participant.
-5. After protocol acceptance, generate and hash the constrained five-slot allocation once with python3 allocate.py --output <private>/allocation.json. Copy the blank forms to private storage. Keep consent and participant identity/contact data separately.
+5. After protocol acceptance, run python3 examples/evaluation/m5-02-rough-cut-beta-v1/allocate.py --output /private/path/allocation.json once from the repository root; create the private directory first. Copy the blank forms to private storage. Keep consent and participant identity/contact data separately.
 6. Recruit five eligible, fresh creators. Exclude PR #102 and prior N-01/N-07 participants, implementers, maintainers and anyone who has seen the packs or keys.
 7. Run both arms for each participant in the assigned order, with a fresh isolated project copy per arm. Limit each arm to 45 minutes; include all user-visible waiting. Inject the same applied-but-lost-ack event in each arm and require readback before retry.
 8. Save each submitted artifact before revealing the key. Score with two condition-blind scorers if available. Report missing data as unknown, not zero.
