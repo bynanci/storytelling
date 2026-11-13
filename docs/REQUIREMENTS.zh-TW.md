@@ -355,3 +355,7 @@ M0、M1-01 與限定範圍的 M2-01 稽核只支援前兩項。
 | N-R11／[N-11](https://github.com/bynanci/storytelling/issues/68) | `render-handoff` 透過原有 N-04 修訂簿對照文字、圖像與聲音部分。[規格](narrative/NARRATIVE_HANDOFF_MANIFEST_V1.zh-TW.md)、[案例](../tests/fixtures/narrative-handoff-v1/README.md)及[證據](validation/n11-handoff.md)涵蓋事先固定的日期影響集合、遺失與過期引用、專屬提案外溢、完整對照、描述來源、來源未變及一致重播。語意另由作者檢視。 |
 | N-R12／[N-12](https://github.com/bynanci/storytelling/issues/69) | [Inkscape 可行性試驗](validation/n12-inkscape-png.zh-TW.md)以同一請求與 S2 交付真正 PNG、完整解碼及視覺讀回，再受控隱藏匯出入口交付構圖說明。保存來源前後身分與命令／退出碼。正式 adapter 的縮小採用建議待維護者決定。 |
 
+## Gemini R1技能評估紀錄（SK-EVAL-R1）
+
+[40案模型評分報告與視覺化](research/evaluations/2026-11-13-gemini-r1/README.zh-TW.md)保存原始數值、來源勘誤與宣告分組限制。這是W4/W6的診斷觀察，不新增已驗收需求、真人結果或完成的技能改善。
+沿用[#115](https://github.com/bynanci/storytelling/issues/115)總追蹤；後續為[#118](https://github.com/bynanci/storytelling/issues/118)、[#119](https://github.com/bynanci/storytelling/issues/119)、[#120](https://github.com/bynanci/storytelling/issues/120)、[#121](https://github.com/bynanci/storytelling/issues/121)、[#122](https://github.com/bynanci/storytelling/issues/122)，皆為待實作／驗證工作。既有N與M任務、#54處置及#112真人門檻維持各自證據範圍。

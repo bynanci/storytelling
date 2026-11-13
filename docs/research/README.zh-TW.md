@@ -54,3 +54,8 @@ npm 已包含 `references/*.md`，英文與繁中參考文件隨既有套件散�
 - **合成代理演練：**測間接修訂、單版隔離、產物誠實與缺乏人工觀察。記錄輸入與行為；模型不算參與者。
 - **人工：**觀察目標語言、受眾與完成媒介，分開作者與接收者角色。沒有資料即待驗證。
 - **維護者：**依紀錄決定範圍、驗收與發版。書目或 CI 通過不構成核准。
+
+## Gemini R1技能評估紀錄（SK-EVAL-R1）
+
+[40案模型評分報告與視覺化](evaluations/2026-11-13-gemini-r1/README.zh-TW.md)保存原始數值、來源勘誤與宣告分組限制。這是W4/W6的診斷觀察，不新增已驗收需求、真人結果或完成的技能改善。
+沿用[#115](https://github.com/bynanci/storytelling/issues/115)總追蹤；後續為[#118](https://github.com/bynanci/storytelling/issues/118)、[#119](https://github.com/bynanci/storytelling/issues/119)、[#120](https://github.com/bynanci/storytelling/issues/120)、[#121](https://github.com/bynanci/storytelling/issues/121)、[#122](https://github.com/bynanci/storytelling/issues/122)，皆為待實作／驗證工作。既有N與M任務、#54處置及#112真人門檻維持各自證據範圍。

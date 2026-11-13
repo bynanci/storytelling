@@ -90,3 +90,8 @@ Record each candidate's source commit, locked dependencies, schema versions and 
 6. Compare both implementations before switching the feature flag. Keep one writer. Retire the previous implementation after acceptance. Preserve source data throughout read-only import.
 
 See the [migration guide](docs/MIGRATION.md). Check behavior, runtime dependencies and regression results for each port.
+
+## Gemini R1 skill evaluation record (SK-EVAL-R1)
+
+The [40-case model-judged report and visual comparison](docs/research/evaluations/2026-11-13-gemini-r1/README.md) preserve numeric observations, source-packet errata and unverified declared assignments. This is W4/W6 diagnostic evidence, not a newly accepted requirement, human result or implemented skill improvement.
+Use [#115](https://github.com/bynanci/storytelling/issues/115) as the umbrella; [#118](https://github.com/bynanci/storytelling/issues/118), [#119](https://github.com/bynanci/storytelling/issues/119), [#120](https://github.com/bynanci/storytelling/issues/120), [#121](https://github.com/bynanci/storytelling/issues/121) and [#122](https://github.com/bynanci/storytelling/issues/122) track work still to implement/verify. Existing N/M acceptance, #54's disposition and #112's human-evidence gates retain their separate scope.
