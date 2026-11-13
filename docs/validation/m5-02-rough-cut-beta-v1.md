@@ -66,7 +66,7 @@ Before recruitment, run the kit's allocate.py once after protocol acceptance. It
 
 Both packs contain **36 cleared items**: 18 photographs, 12 video clips and 6 narration/audio items. The 12 videos must provide 180–240 seconds of usable source footage in each pack; the two totals must be within 5% of one another. The packs use the same aspect ratio and target resolution. Each has five story beats (setting, preparation, action, verified result, next step), one 75-second starter rough cut, two protected video segments, one source fact changed during the task, one unsupported claim, and one optional shot present in the production log but absent from the supplied media. Both protected segments are video clips with exact source ranges. The participant's final cut must be 60–90 seconds.
 
-The names below fix the story logic; actual asset IDs, exact frame/rational ranges, source-card revisions and SHA-256 values must be filled in the private freeze manifest before sessions. The checked-in form is deliberately blank; this PR does not pretend the media pack already exists.
+The names below fix the story logic; actual asset IDs, exact frame/rational ranges, source-card revisions and SHA-256 values must be filled in the private freeze manifest before sessions. The checked-in forms (pack-freeze.csv and freeze-receipts.csv) are deliberately blank; this PR does not pretend the media pack already exists.
 
 | Requirement | Pack A · community garden open day | Pack B · neighborhood book exchange |
 | --- | --- | --- |
@@ -75,7 +75,7 @@ The names below fix the story logic; actual asset IDs, exact frame/rational rang
 | Log-only optional insert | A soil-moisture close-up is requested in the production log, but no such image or clip is supplied. Keep the insert explicitly unresolved in the handoff; do not substitute or invent footage. | A barcode-scan close-up is requested in the production log, but no such image or clip is supplied. Keep the insert explicitly unresolved in the handoff; do not substitute or invent footage. |
 | Protected shots | One opening sign/wide video shot and one closing harvest-table video shot, with exact source ranges frozen in the manifest. | One opening exchange-sign video shot and one closing handover-stack video shot, with exact source ranges frozen in the manifest. |
 
-The pack-freeze manifest must identify, for each file and source card: neutral asset ID, type, source revision, duration/range, rights/source note, protected or editable status, SHA-256, and the answer-key reference. Hash private files locally; only publish the manifest if rights and privacy allow. The public repository must not contain private media or paths.
+The pack-freeze manifest must identify, for each file and source card: neutral asset ID, type, source revision, media duration when applicable, still-image timeline duration, exact video/audio source range when applicable, rights/source note, protected or editable status, SHA-256, and answer-key reference. The separate freeze receipt records each pack's manifest, starter-project, source-card, answer-key and build hashes. Hash private files locally; only publish the manifest if rights and privacy allow. The public repository must not contain private media or paths.
 
 ## 5. Participant task and success standard
 
@@ -112,17 +112,17 @@ A saved file alone is not a safe completion. Score task completion and safe comp
 
 ## 7. Measures and scoring
 
-Score de-identified exports with a frozen answer key. Two scorers independently score all ten outputs without seeing participant names, allocation or condition labels when practical. Preserve both original scores; record adjudication rather than silently overwriting disagreement. If only one scorer is available, identify the self-review limitation.
+Score de-identified exports with a frozen answer key. Two scorers independently score every submitted output (up to ten) without seeing participant names, allocation or condition labels when practical. Preserve both original scores; record adjudication rather than silently overwriting disagreement. If only one scorer is available, identify the self-review limitation.
 
 | Measure | Definition and denominator |
 | --- | --- |
 | Enrollment / starts / withdrawals | Counts by five assigned slots and by arm. Withdrawals and timeouts remain visible; blank means unknown, not zero. |
 | Completion | Project saved, reopened and 60–90 seconds; report count/5 enrolled slots per arm. |
 | Safe completion | Meets all nine requirements above; report count/5 slots for S as the #112 acceptance target and also show D. |
-| Author time | Seconds from prompt-ready to submitted/reopened output, capped at 2,700 on timeout. Report all five values, median and range by arm; show paired differences only for valid pairs. |
+| Author time | Seconds from prompt-ready to submitted/reopened output, capped at 2,700 on timeout. Show the five assigned slots and every observed duration by arm; use 2,700 seconds for timeouts, actual elapsed time to withdrawal for a started withdrawal, and blank when an arm never started. Report median/range from observed durations and paired differences only for valid pairs. |
 | Missed edits | Count each required output that still has the old/missing value. Report numerator and required-output denominator. |
 | Wrong edits | Count required outputs changed to an incorrect value, source revision or clip range. Report separately from missed and extra edits. |
-| Extra / collateral edits | Count changed outputs outside the authorized change set. Report separately from missed and wrong edits. |
+| Extra / collateral edits | Count changes outside the authorized source/copy scope or edits to protected/unrelated project state. Participant-selected unprotected shots, order and pacing are allowed by the task and are not errors merely because they differ from another participant's cut. Report separately from missed and wrong edits. |
 | Rework | Count each corrective edit or repeated operation after the participant first says the draft is ready for review but before final submission. Record the trigger and whether the correction was participant- or system-driven. |
 | Protected-shot changes | Per protected video segment, compare asset ID, source range, timeline position, crop/effects and attached audio to the frozen starting project. Any change fails that guard. |
 | Source trace | Correct source ID and revision for each factual claim; each selected video has an asset ID and exact source range, and each still has an asset ID and timeline duration. Report correct/required and unsupported/missing separately. A citation is not a human judgment that the claim is true. |
