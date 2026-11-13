@@ -4,9 +4,12 @@
 import hashlib
 import os
 import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
+
+sys.dont_write_bytecode = True
 
 from r1_package_checksums import (
     MANIFEST, PACKAGE, ROOT, package_blobs, parse_manifest, render_manifest, verify, verify_worktree,
