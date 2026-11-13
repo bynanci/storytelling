@@ -11,7 +11,8 @@ R1 原始資料包、完整草稿、主張清單、來源快照與產生前凍�
 ## RED / GREEN
 
 - **RED：** 先寫最初 14 項回歸測試，再執行 `python3 scripts/test_sk_e02_contract.py`，因 `ModuleNotFoundError: No module named 'sk_e02_contract'` 失敗（exit 1）。
-- **GREEN：** 加入版本化紀錄契約、Schema、合法／非法 fixture 及標準函式庫檢查器後，擴充後的 20 項測試全部通過。`python3 scripts/sk_e02_contract.py check` 通過。
+- **首次 Hosted RED：** head `7ed781a8e1c8e3f8285357ee21758d744b67f6b7` 的 [CI run 43385781285](https://github.com/bynanci/storytelling/actions/runs/43385781285) 中，Windows SK-E02 測試因 Git 將兩個 SHA 綁定文字 fixture 轉成 CRLF 而失敗；該次 Linux、macOS 與 Dependency Audit 通過。
+- **GREEN 候選：** `.gitattributes` 現已將精確位元組資料夾固定為 LF，並新增 `core.autocrlf=false`、`input`、`true` 三種 clean-checkout 回歸，驗證資料包、封存段落及 plan-to-adjudication 雜湊。擴充後共有 21 項測試；仍須等新 PR head 的 hosted rerun。
 
 ## 來源直接存取觀察
 

@@ -2,7 +2,11 @@
 """Synthetic regressions for the SK-E02 evidence-plan and errata contract."""
 import copy
 import json
+import os
+import shutil
+import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -38,6 +42,53 @@ class EvidencePlanTests(unittest.TestCase):
         self.assertIsNone(plan["freeze"]["variant_generation_started_at"])
         self.assertTrue(all(c["requiredness"] in {"required", "optional"} for c in plan["claims"]))
         self.assertEqual(verify_fixture_hashes(plan), [])
+
+    def test_hashed_fixtures_survive_clean_autocrlf_checkouts(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "source"
+            source.mkdir()
+            (source / "scripts").mkdir()
+            audit_dir = source / "docs/research/evaluations/2026-11-13-gemini-r1"
+            audit_dir.mkdir(parents=True)
+            shutil.copy2(ROOT / ".gitattributes", source / ".gitattributes")
+            shutil.copy2(ROOT / "scripts/sk_e02_contract.py", source / "scripts/sk_e02_contract.py")
+            shutil.copy2(
+                ROOT / "docs/research/evaluations/2026-11-13-gemini-r1/source_audit_R1.csv",
+                audit_dir / "source_audit_R1.csv",
+            )
+            shutil.copytree(ROOT / "docs/research/evaluations/sk-e02",
+                            source / "docs/research/evaluations/sk-e02")
+            env = os.environ.copy()
+            env["GIT_CONFIG_GLOBAL"] = os.devnull
+            env["GIT_CONFIG_SYSTEM"] = os.devnull
+
+            def git(*args):
+                return subprocess.run(
+                    ["git", *args], env=env, check=True,
+                    stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                )
+
+            git("init", "--quiet", str(source))
+            git("-C", str(source), "config", "core.autocrlf", "false")
+            git("-C", str(source), "config", "user.name", "SK-E02 test")
+            git("-C", str(source), "config", "user.email", "sk-e02-test@example.invalid")
+            git("-C", str(source), "add", "--", ".gitattributes", "scripts/sk_e02_contract.py",
+                "docs/research/evaluations/sk-e02", "docs/research/evaluations/2026-11-13-gemini-r1/source_audit_R1.csv")
+            git("-C", str(source), "commit", "--quiet", "-m", "synthetic SK-E02 EOL fixture")
+            for mode in ("false", "input", "true"):
+                with self.subTest(autocrlf=mode):
+                    checkout = root / f"checkout-{mode}"
+                    git("clone", "--quiet", "--shared", "--no-checkout", str(source), str(checkout))
+                    git("-C", str(checkout), "config", "core.autocrlf", mode)
+                    git("-C", str(checkout), "checkout", "--quiet", "--detach", "HEAD")
+                    check = subprocess.run(
+                        [sys.executable, "scripts/sk_e02_contract.py", "check"],
+                        cwd=checkout, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                    )
+                    self.assertEqual(check.returncode, 0, check.stderr.decode("utf-8", errors="replace"))
+                    status = git("-C", str(checkout), "status", "--porcelain").stdout
+                    self.assertEqual(status, b"", "Verification must leave a clean checkout")
 
     def test_evidence_mode_is_one_frozen_string_not_a_combination(self):
         plan = copy.deepcopy(load("prospective-evidence-plan.json"))

@@ -11,7 +11,8 @@ R1's original packets, full drafts, claim register, source snapshots and pre-gen
 ## RED / GREEN
 
 - **RED:** after writing the initial 14-test regression first, `python3 scripts/test_sk_e02_contract.py` failed with `ModuleNotFoundError: No module named 'sk_e02_contract'` (exit 1).
-- **GREEN:** after adding the versioned record contract, schemas, valid/invalid fixtures and stdlib checker, the expanded suite passed all 20 tests. `python3 scripts/sk_e02_contract.py check` passed.
+- **First hosted RED:** on head `7ed781a8e1c8e3f8285357ee21758d744b67f6b7`, [CI run 43385781285](https://github.com/bynanci/storytelling/actions/runs/43385781285) failed the Windows SK-E02 test because Git checked out the two SHA-bound text fixtures with CRLF. Linux, macOS and Dependency Audit passed in that run.
+- **GREEN candidate:** `.gitattributes` now pins the exact-byte package to LF. A clean-checkout regression exercises `core.autocrlf=false`, `input` and `true`, then verifies packet, archived-passage and plan-to-adjudication hashes. The expanded suite now has 21 tests; hosted rerun on the new PR head is required.
 
 ## Direct source-access observations
 

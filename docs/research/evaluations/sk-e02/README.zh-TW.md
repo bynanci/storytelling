@@ -58,6 +58,6 @@ python3 scripts/check_repo.py
 git diff --check
 ```
 
-標準函式庫回歸測試檢查封閉欄位、單一模式、先凍結再產生、主張／來源／revision／位置參照、來源不可用處理、兩種標註軸分離、版本化 C13／C28 勘誤、合法與非法 fixture 位元組，以及禁止改寫 R1 結果。此工作環境另以 `jsonschema` 4.26.0 驗證三份 Draft 2020-12 Schema 及合法／非法結構範例；時間先後與跨紀錄 ID 需專用檢查器處理，因 JSON Schema 無法比對時間值或解析跨紀錄 ID。CI 不安裝這個選配套件，而執行獨立的標準函式庫契約測試。
+標準函式庫回歸測試檢查封閉欄位、單一模式、先凍結再產生、主張／來源／revision／位置參照、來源不可用處理、兩種標註軸分離、版本化 C13／C28 勘誤、合法與非法 fixture 位元組，以及禁止改寫 R1 結果。`.gitattributes` 將 SK-E02 精確位元組工件固定為 LF，另以 clean-checkout 回歸測試 `core.autocrlf=false`、`input` 與 `true`。此工作環境另以 `jsonschema` 4.26.0 驗證三份 Draft 2020-12 Schema 及合法／非法結構範例；時間先後與跨紀錄 ID 需專用檢查器處理，因 JSON Schema 無法比對時間值或解析跨紀錄 ID。CI 不安裝這個選配套件，而執行獨立的標準函式庫契約測試。
 
 請見[驗證紀錄](../../../validation/sk-e02-evidence-contract.md)，其中列出 base/head、RED/GREEN、測試與來源實際可取得狀態。
