@@ -90,7 +90,7 @@ The [manual narration host guide](skills/storytelling/references/manual-narratio
 | M3 | P1, P2 and the M3-02 journal passed bounded acceptance. M3-03 has an isolated test. Production execution, in-flight timeouts and broader host tests remain open. |
 | M4 | The TypeScript client and single-writer integration require M2-03 and M3-03. |
 | M5 and v1.0 | Test a second editor, independent users and distribution. Stable release needs migration, compatibility and recovery evidence. |
-| [M5-02 / #112](https://github.com/bynanci/storytelling/issues/112) | Blocked on #109, #111 and an accepted M3 execution/recovery path. | [Prospective v1 protocol](docs/validation/m5-02-rough-cut-beta-v1.md) and blank anonymous forms are design-only; no recruitment, measured session or beta result is claimed. |
+| [M5-02 / #112](https://github.com/bynanci/storytelling/issues/112) | Blocked on #109, #111 and an accepted M3 execution/recovery path. The [prospective v1 protocol](docs/validation/m5-02-rough-cut-beta-v1.md) and blank anonymous forms are design-only; no recruitment, measured session or beta result is claimed. |
 
 The [video task history](docs/delivery/VIDEO_TASK_HISTORY.md#next-actionable-work) lists individual dependencies, priorities and acceptance criteria. A full editor, codec suite, effects engine and arbitrary plug-ins remain outside the current backlog.
 
