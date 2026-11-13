@@ -1,0 +1,57 @@
+{
+  "schema_version": "skill-evaluation-order-protocol/v1",
+  "record_kind": "prospective_protocol",
+  "study_id": "SK-E04-R2",
+  "status": "prepared_blocked",
+  "objective": "Estimate within-case scoring stability and presentation-order sensitivity without changing the judged texts, packet, rubric, or model configuration between order arms.",
+  "analysis_unit": "case",
+  "evidence_inventory": {
+    "r1_case_count": 40,
+    "r1_presentation_order": "X_then_Y for all 40 cases",
+    "r1_preference_counts": {"X": 27, "Y": 10, "tie": 3},
+    "r1_rating_count": 560,
+    "r1_perfect_ratings": 325,
+    "original_pair_texts_available_in_public_package": false,
+    "complete_source_packets_available_in_public_package": false,
+    "exact_original_prompts_available": false,
+    "exact_original_rubric_available": false,
+    "judge_model_revision_and_settings_available": false,
+    "verbatim_judge_requests_and_responses_available": false
+  },
+  "order_only_run": {
+    "status": "not_started_blocked",
+    "required_invariants": [
+      "Retain each original X/Y draft byte-for-byte and bind both to a shared exact-byte digest.",
+      "Retain the same packet, judge prompt, rubric, model revision, generation parameters and tool policy in both arms.",
+      "Run one fresh isolated context per case and order; present the same two drafts as X_then_Y and Y_then_X.",
+      "Use neutral draft identifiers; do not reveal R1 scores, preferences, declared assignments or answer keys to the judge.",
+      "Preserve raw model output and raw annotation before any source adjudication or correction.",
+      "Record failed calls, refusals, timeouts and unresolved source checks without deleting or regenerating them silently."
+    ],
+    "primary_descriptive_measures": [
+      "case-level preference flip between orders",
+      "within-case X-minus-Y score-gap shift between orders",
+      "per-dimension mean absolute score change for each draft",
+      "raw-versus-adjudicated annotation disagreement by case",
+      "unresolved source-check counts by W4 state"
+    ],
+    "analysis_limits": [
+      "Do not treat dimensions, drafts or repeated judge calls as independent cases.",
+      "Do not calculate population claims or superiority/equivalence tests from this protocol alone.",
+      "Report denominators, failed/missing pairs and case-level values before aggregate summaries."
+    ]
+  },
+  "separate_calibration_run": {
+    "status": "protocol_only",
+    "rubric": "rubric-v1.md",
+    "rule": "Source adjudication and any revised rubric must use a different run ID and packet. Never combine those scores with the order-only comparison."
+  },
+  "resumption_gate": [
+    "Obtain authorized exact X/Y draft bytes and source packet bytes, or explicitly create a separately labeled prospective replacement study.",
+    "Obtain original prompt, rubric and judge model/settings records. Unknown historical fields stay null; do not reconstruct them.",
+    "Freeze the current prompt, model revision/settings, allocation procedure, failure handling and analysis script before judging.",
+    "Keep the key, R1 scores and declared condition assignments outside the judge context until raw outputs and annotations are frozen."
+  ],
+  "no_implicit_calls": true,
+  "human_evidence": "not supplied by this model-only protocol"
+}
