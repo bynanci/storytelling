@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/bynanci/storytelling/main/docs/research/evaluations/sk-e02/schemas/evidence-plan-v1.schema.json",
+  "title": "Storytelling skill evaluation evidence plan V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "record_kind", "evaluation_id", "phase", "evidence_mode", "packet", "freeze", "sources", "claims"],
+  "properties": {
+    "schema_version": {"const": "skill-evaluation-evidence-plan/v1"},
+    "record_kind": {"enum": ["evaluation_plan", "retrospective_record", "synthetic_fixture"]},
+    "evaluation_id": {"type": "string", "minLength": 1, "maxLength": 80},
+    "phase": {"enum": ["prospective", "retrospective"]},
+    "evidence_mode": {"enum": ["packet_only", "packet_plus_archived_sources"]},
+    "packet": {"$ref": "#/$defs/packet"},
+    "freeze": {"$ref": "#/$defs/freeze"},
+    "sources": {"type": "array", "items": {"$ref": "#/$defs/source"}},
+    "claims": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/claim"}}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"phase": {"const": "prospective"}}, "required": ["phase"]},
+      "then": {
+        "properties": {
+          "packet": {"properties": {"sha256": {"$ref": "#/$defs/sha256"}}},
+          "freeze": {"properties": {"claims_frozen_at": {"$ref": "#/$defs/dateTime"}}},
+          "claims": {"items": {"properties": {"requiredness": {"enum": ["required", "optional"]}}}}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"phase": {"const": "retrospective"}}, "required": ["phase"]},
+      "then": {
+        "properties": {
+          "packet": {"properties": {"sha256": {"type": "null"}}},
+          "freeze": {"properties": {"claims_frozen_at": {"type": "null"}, "variant_generation_started_at": {"type": "null"}}},
+          "claims": {"items": {"properties": {"requiredness": {"const": "unknown"}}}}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"evidence_mode": {"const": "packet_only"}}, "required": ["evidence_mode"]},
+      "then": {
+        "properties": {
+          "sources": {"items": {"properties": {"access_status": {"enum": ["not_attempted", "not_recorded"]}}}},
+          "claims": {"items": {"properties": {"source_refs": {"items": {"properties": {"archived_source_location": {"type": "null"}}}}}}}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "dateTime": {"type": "string", "format": "date-time", "pattern": "Z$"},
+    "packet": {
+      "type": "object", "additionalProperties": false,
+      "required": ["packet_id", "revision", "sha256"],
+      "properties": {
+        "packet_id": {"type": "string", "minLength": 1},
+        "revision": {"type": "string", "minLength": 1},
+        "sha256": {"oneOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]}
+      }
+    },
+    "freeze": {
+      "type": "object", "additionalProperties": false,
+      "required": ["claims_frozen_at", "variant_generation_started_at"],
+      "properties": {
+        "claims_frozen_at": {"oneOf": [{"$ref": "#/$defs/dateTime"}, {"type": "null"}]},
+        "variant_generation_started_at": {"oneOf": [{"$ref": "#/$defs/dateTime"}, {"type": "null"}]}
+      }
+    },
+    "source": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_id", "source_revision", "revision_status", "citation_url", "access_status", "retrieved_at", "http_status", "content_type", "response_sha256", "archive_ref", "archived_passage_location"],
+      "properties": {
+        "source_id": {"type": "string", "minLength": 1},
+        "source_revision": {"oneOf": [{"type": "string", "minLength": 1}, {"type": "null"}]},
+        "revision_status": {"enum": ["known", "unknown", "not_recorded"]},
+        "citation_url": {"type": "string", "format": "uri", "pattern": "^https://"},
+        "access_status": {"enum": ["available", "unavailable", "not_attempted", "not_recorded"]},
+        "retrieved_at": {"oneOf": [{"$ref": "#/$defs/dateTime"}, {"type": "null"}]},
+        "http_status": {"oneOf": [{"type": "integer", "minimum": 100, "maximum": 599}, {"type": "null"}]},
+        "content_type": {"oneOf": [{"type": "string", "minLength": 1}, {"type": "null"}]},
+        "response_sha256": {"oneOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+        "archive_ref": {"oneOf": [{"type": "string", "minLength": 1}, {"type": "null"}]},
+        "archived_passage_location": {"oneOf": [{"type": "string", "minLength": 1}, {"type": "null"}]}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"access_status": {"const": "available"}}, "required": ["access_status"]},
+          "then": {
+            "properties": {
+              "source_revision": {"type": "string", "minLength": 1},
+              "revision_status": {"const": "known"},
+              "retrieved_at": {"$ref": "#/$defs/dateTime"},
+              "http_status": {"type": "integer", "minimum": 200, "maximum": 299},
+              "content_type": {"type": "string", "minLength": 1},
+              "response_sha256": {"$ref": "#/$defs/sha256"},
+              "archive_ref": {"type": "string", "minLength": 1},
+              "archived_passage_location": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"access_status": {"enum": ["unavailable", "not_attempted", "not_recorded"]}}, "required": ["access_status"]},
+          "then": {"properties": {"response_sha256": {"type": "null"}, "archive_ref": {"type": "null"}, "archived_passage_location": {"type": "null"}}}
+        }
+      ]
+    },
+    "sourceRef": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_id", "source_revision", "packet_location", "archived_source_location"],
+      "properties": {
+        "source_id": {"type": "string", "minLength": 1},
+        "source_revision": {"oneOf": [{"type": "string", "minLength": 1}, {"type": "null"}]},
+        "packet_location": {"type": "string", "minLength": 1},
+        "archived_source_location": {"oneOf": [{"type": "string", "minLength": 1}, {"type": "null"}]}
+      }
+    },
+    "claim": {
+      "type": "object", "additionalProperties": false,
+      "required": ["claim_id", "proposition_summary", "requiredness", "source_refs"],
+      "properties": {
+        "claim_id": {"type": "string", "minLength": 1},
+        "proposition_summary": {"type": "string", "minLength": 1},
+        "requiredness": {"enum": ["required", "optional", "unknown"]},
+        "source_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/sourceRef"}}
+      }
+    }
+  }
+}

@@ -1,0 +1,3 @@
+Synthetic packet for SK-E02 contract checks only.
+CL-REQUIRED: The sample workshop used two steps.
+CL-UNAVAILABLE: The sample event cost 40 credits.

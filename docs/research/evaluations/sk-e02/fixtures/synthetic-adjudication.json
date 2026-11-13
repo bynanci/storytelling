@@ -1,0 +1,49 @@
+{
+  "schema_version": "skill-evaluation-adjudication/v1",
+  "record_kind": "synthetic_fixture",
+  "evidence_plan_sha256": "ba18c0fa1a95a5b6eaed81d03210d6cfe1a1e2cff99cb7215917b7438ceffeef",
+  "claim_checks": [
+    {
+      "claim_id": "CL-SUPPORTED",
+      "source_access_status": "available",
+      "support_state": "supported",
+      "evidence_locations": ["S-AVAILABLE: paragraph 1, sentence 1"],
+      "note": "Synthetic source directly states the proposition."
+    },
+    {
+      "claim_id": "CL-CONTRADICTED",
+      "source_access_status": "available",
+      "support_state": "contradicted",
+      "evidence_locations": ["S-AVAILABLE: paragraph 1, sentence 1"],
+      "note": "Synthetic passage says two steps, not three."
+    },
+    {
+      "claim_id": "CL-INSUFFICIENT",
+      "source_access_status": "available",
+      "support_state": "insufficient",
+      "evidence_locations": ["S-AVAILABLE: paragraph 1, sentence 1"],
+      "note": "A step count does not establish a fastest-method comparison."
+    },
+    {
+      "claim_id": "CL-UNAVAILABLE",
+      "source_access_status": "unavailable",
+      "support_state": "unavailable",
+      "evidence_locations": ["packet:/claims/CL-UNAVAILABLE"],
+      "note": "Source access failed. This is not evidence that the cost claim is false."
+    }
+  ],
+  "packet_scope_violations": [
+    {
+      "claim_id": "CL-INSUFFICIENT",
+      "detail": "The draft adds a ranking not present in the closed packet.",
+      "evidence_location": "draft:D-1/paragraph-2"
+    }
+  ],
+  "packet_source_mismatches": [
+    {
+      "claim_id": "CL-SUPPORTED",
+      "detail": "Synthetic example: the packet says three steps while its archived source says two.",
+      "evidence_location": "packet:/claims/CL-SUPPORTED; S-AVAILABLE: paragraph 1, sentence 1"
+    }
+  ]
+}

@@ -19,3 +19,6 @@ tests/fixtures/openfilm/finite-v1/video-trim.json -text
 
 # SK-E01 fixture hashes cover exact bytes; preserve them in EOL-converting checkouts.
 /docs/research/evaluations/sk-e01/** text eol=lf
+
+# SK-E02 packet, plan and source-passage hashes bind exact fixture bytes.
+/docs/research/evaluations/sk-e02/** text eol=lf

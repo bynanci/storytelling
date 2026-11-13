@@ -150,6 +150,8 @@ jobs:
         run: python -m unittest discover -s examples/evaluation/n07-recorder -p 'test_*.py'
       - name: Offline skill-evaluation provenance and blinding regressions
         run: python scripts/test_skill_evaluation_records.py
+      - name: Skill-evaluation evidence-plan and errata regressions
+        run: python scripts/test_sk_e02_contract.py
       - name: R1 checksums from clean Git checkouts (LF and CRLF settings)
         run: python scripts/test_r1_package_checksums.py
       - name: Read-only sample

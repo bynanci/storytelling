@@ -1,0 +1,64 @@
+{
+  "schema_version": "skill-evaluation-packet-errata/v1",
+  "record_kind": "reported_historical_errata",
+  "errata_revision": "gemini-r1-packet-errata/v1",
+  "source_audit_ref": "../2026-11-13-gemini-r1/source_audit_R1.csv",
+  "r1_exact_packet_bytes": {
+    "status": "unavailable",
+    "value": null
+  },
+  "mutates_r1_artifacts": false,
+  "errata": [
+    {
+      "case_id": "C13",
+      "field": "person_name",
+      "original_fragment": "鄭博宇",
+      "original_fragment_fidelity": "exact_fragment_from_public_R1_audit",
+      "corrected_fragment": "鄭博隅",
+      "corrected_fragment_fidelity": "direct_current_source_review",
+      "corrected_packet_revision": "R2-proposed",
+      "source_review": {
+        "source_id": "C13",
+        "source_revision": null,
+        "revision_status": "not_recorded",
+        "citation_url": "https://www.sports.gov.tw/News_Content/309/24062",
+        "access_status": "captured_transiently",
+        "support_state": "supported",
+        "retrieved_at": "2026-11-13T06:54:33.868047Z",
+        "http_status": 200,
+        "content_type": "text/html",
+        "response_sha256": "de297b15ff73640af20142d8223576c5320d0d08fbc4b1aeb2e61c0a372b99c7",
+        "archive_ref": null,
+        "retained_in_repository": false,
+        "support_location_summary": "Official event-results page, result row containing the name; only this short factual correction is summarized publicly. The captured response bytes were temporary and were not preserved as an archive."
+      }
+    },
+    {
+      "case_id": "C28",
+      "field": "legislative_scope_and_newness",
+      "original_fragment": "at least 12 state legislative chambers",
+      "original_fragment_fidelity": "paraphrase_from_public_R1_audit",
+      "corrected_fragment": "at least 12 new state legislative chambers",
+      "corrected_fragment_fidelity": "quoted_in_public_R1_audit",
+      "corrected_packet_revision": "R2-proposed",
+      "source_review": {
+        "source_id": "C28",
+        "source_revision": null,
+        "revision_status": "not_recorded",
+        "citation_url": "https://www.coloradopolitics.com/2026/11/12/democrats-denver-conference/",
+        "access_status": "unavailable",
+        "support_state": "unavailable",
+        "retrieved_at": "2026-11-13T07:00:36Z",
+        "http_status": 403,
+        "content_type": "text/html; charset=UTF-8",
+        "response_sha256": null,
+        "archive_ref": null,
+        "retained_in_repository": false,
+        "support_location_summary": "The public R1 audit records the source wording and correction. A fresh direct request returned HTTP 403; the exact R1 packet bytes and a permissible archived source passage are unavailable. Do not treat access failure as contradiction."
+      }
+    }
+  ],
+  "scores": {
+    "C13": 5
+  }
+}
