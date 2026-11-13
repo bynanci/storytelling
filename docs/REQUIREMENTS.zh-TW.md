@@ -358,4 +358,4 @@ M0、M1-01 與限定範圍的 M2-01 稽核只支援前兩項。
 ## Gemini R1技能評估紀錄（SK-EVAL-R1）
 
 [40案模型評分報告與視覺化](research/evaluations/2026-11-13-gemini-r1/README.zh-TW.md)保存原始數值、來源勘誤與宣告分組限制。這是W4/W6的診斷觀察，不新增已驗收需求、真人結果或完成的技能改善。
-沿用[#115](https://github.com/bynanci/storytelling/issues/115)總追蹤；後續為[#118](https://github.com/bynanci/storytelling/issues/118)、[#119](https://github.com/bynanci/storytelling/issues/119)、[#120](https://github.com/bynanci/storytelling/issues/120)、[#121](https://github.com/bynanci/storytelling/issues/121)、[#122](https://github.com/bynanci/storytelling/issues/122)，皆為待實作／驗證工作。既有N與M任務、#54處置及#112真人門檻維持各自證據範圍。
+沿用[#115](https://github.com/bynanci/storytelling/issues/115)總追蹤。**SK-E01／#118** 將 W6／ST-R12–ST-R13 對應到[離線紀錄、盲測／分派 Schema 與 fixture](research/evaluations/sk-e01/README.zh-TW.md)。`scripts/skill_evaluation_records.py` 與標準函式庫測試檢查提示／資料包／草稿精確位元組、中性 ID、私有金鑰配對、隨機順序及條件／分數外洩。模型範例是合成資料，不是真人證據或效益證明。[#119](https://github.com/bynanci/storytelling/issues/119)、[#120](https://github.com/bynanci/storytelling/issues/120)、[#121](https://github.com/bynanci/storytelling/issues/121)及[#122](https://github.com/bynanci/storytelling/issues/122)仍各自追蹤。既有N與M任務、#54處置及#112真人門檻維持各自證據範圍。

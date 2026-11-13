@@ -1,0 +1,80 @@
+{
+  "schema_version": "skill-evaluation-record/v1",
+  "evaluation_id": "sk-e01-synthetic-gate-pair",
+  "record_kind": "synthetic_fixture",
+  "cases": [
+    {
+      "case_id": "case-gate-repair",
+      "task": "Write a two-sentence notice for residents who did not attend.",
+      "audience": "Residents who did not attend the repair.",
+      "packet_version": "gate-notes-synthetic-v1",
+      "generations": [
+        {
+          "run_id": "run-synthetic-01",
+          "generation_id": "generation-synthetic-01",
+          "text_id": "T-7K4Q9D",
+          "condition_provenance": {
+            "status": "synthetic",
+            "condition": "skill_on",
+            "evidence_ref": "E-SYNTHETIC-01"
+          },
+          "model_runtime": {
+            "provider": null,
+            "model": null,
+            "version": null,
+            "runtime": "hand-authored synthetic fixture; no model call",
+            "settings": null
+          },
+          "skill": {
+            "git_commit": null,
+            "sha256": null
+          },
+          "generated_at": null,
+          "prompt": {
+            "path": "inputs/prompt.txt",
+            "sha256": "d49f388807b747425867608b4127cf0c506a9756f211eb7716310754b48d636f"
+          },
+          "evidence_packet": {
+            "path": "inputs/evidence-packet.json",
+            "sha256": "5768403da3774ec402667a945ced4aa4be44cf00d48dfd2e964d56190ddac42b"
+          },
+          "text": {
+            "path": "drafts/T-7K4Q9D.txt",
+            "sha256": "50d8499bd65f0596f2b39416d785ba400d3188e3f917a55d4c14caf9997eb505"
+          }
+        },
+        {
+          "run_id": "run-synthetic-02",
+          "generation_id": "generation-synthetic-02",
+          "text_id": "T-M2F8WC",
+          "condition_provenance": {
+            "status": "synthetic",
+            "condition": "skill_off",
+            "evidence_ref": "E-SYNTHETIC-01"
+          },
+          "model_runtime": {
+            "provider": null,
+            "model": null,
+            "version": null,
+            "runtime": "hand-authored synthetic fixture; no model call",
+            "settings": null
+          },
+          "skill": null,
+          "generated_at": null,
+          "prompt": {
+            "path": "inputs/prompt.txt",
+            "sha256": "d49f388807b747425867608b4127cf0c506a9756f211eb7716310754b48d636f"
+          },
+          "evidence_packet": {
+            "path": "inputs/evidence-packet.json",
+            "sha256": "5768403da3774ec402667a945ced4aa4be44cf00d48dfd2e964d56190ddac42b"
+          },
+          "text": {
+            "path": "drafts/T-M2F8WC.txt",
+            "sha256": "6f98cf3404b68e69d9c67bef11bcb577a9fc824e2174ba8caadec12245564732"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -94,4 +94,4 @@ Skill 可以獨立安裝。目前套件版本為 `0.1.0-dev.0`。使用者可從
 ## Gemini R1技能評估紀錄（SK-EVAL-R1）
 
 [40案模型評分報告與視覺化](docs/research/evaluations/2026-11-13-gemini-r1/README.zh-TW.md)保存原始數值、來源勘誤與宣告分組限制。這是W4/W6的診斷觀察，不新增已驗收需求、真人結果或完成的技能改善。
-沿用[#115](https://github.com/bynanci/storytelling/issues/115)總追蹤；後續為[#118](https://github.com/bynanci/storytelling/issues/118)、[#119](https://github.com/bynanci/storytelling/issues/119)、[#120](https://github.com/bynanci/storytelling/issues/120)、[#121](https://github.com/bynanci/storytelling/issues/121)、[#122](https://github.com/bynanci/storytelling/issues/122)，皆為待實作／驗證工作。既有N與M任務、#54處置及#112真人門檻維持各自證據範圍。
+沿用[#115](https://github.com/bynanci/storytelling/issues/115)總追蹤。[SK-E01／#118](https://github.com/bynanci/storytelling/issues/118)提供[離線紀錄與盲測流程](docs/research/evaluations/sk-e01/README.zh-TW.md)及合成完整性檢查，不會新增評估證據。[#119](https://github.com/bynanci/storytelling/issues/119)、[#120](https://github.com/bynanci/storytelling/issues/120)、[#121](https://github.com/bynanci/storytelling/issues/121)及[#122](https://github.com/bynanci/storytelling/issues/122)仍是各自獨立的後續工作。既有N與M任務、#54處置及#112真人門檻維持各自證據範圍。

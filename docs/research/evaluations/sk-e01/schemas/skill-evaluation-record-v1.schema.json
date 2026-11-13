@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/bynanci/storytelling/main/docs/research/evaluations/sk-e01/schemas/skill-evaluation-record-v1.schema.json",
+  "title": "Offline Storytelling skill evaluation record V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "evaluation_id", "record_kind", "cases"],
+  "properties": {
+    "schema_version": {"const": "skill-evaluation-record/v1"},
+    "evaluation_id": {"$ref": "#/$defs/id"},
+    "record_kind": {"enum": ["observed_evaluation", "synthetic_fixture"]},
+    "cases": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/case"}}
+  },
+  "$defs": {
+    "id": {"type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"},
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "fileRef": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1, "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "case": {
+      "type": "object", "additionalProperties": false,
+      "required": ["case_id", "task", "audience", "packet_version", "generations"],
+      "properties": {
+        "case_id": {"$ref": "#/$defs/id"},
+        "task": {"type": "string", "minLength": 1},
+        "audience": {"type": "string", "minLength": 1},
+        "packet_version": {"type": "string", "minLength": 1},
+        "generations": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/generation"}}
+      }
+    },
+    "conditionProvenance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "condition", "evidence_ref"],
+      "properties": {
+        "status": {"enum": ["observed", "declared", "synthetic", "unknown"]},
+        "condition": {"enum": ["skill_on", "skill_off", "unknown"]},
+        "evidence_ref": {"type": ["string", "null"], "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"const": "unknown"}}, "required": ["status"]},
+          "then": {"properties": {"condition": {"const": "unknown"}, "evidence_ref": {"const": null}}}
+        },
+        {
+          "if": {"properties": {"condition": {"const": "unknown"}}, "required": ["condition"]},
+          "then": {"properties": {"status": {"const": "unknown"}, "evidence_ref": {"const": null}}}
+        },
+        {
+          "if": {"properties": {"status": {"enum": ["observed", "declared", "synthetic"]}}, "required": ["status"]},
+          "then": {"properties": {"condition": {"enum": ["skill_on", "skill_off"]}, "evidence_ref": {"type": "string"}}}
+        }
+      ]
+    },
+    "modelRuntime": {
+      "type": "object", "additionalProperties": false,
+      "required": ["provider", "model", "version", "runtime", "settings"],
+      "properties": {
+        "provider": {"type": ["string", "null"]},
+        "model": {"type": ["string", "null"]},
+        "version": {"type": ["string", "null"]},
+        "runtime": {"type": ["string", "null"]},
+        "settings": {"type": ["object", "null"]}
+      }
+    },
+    "skill": {
+      "type": ["object", "null"], "additionalProperties": false,
+      "required": ["git_commit", "sha256"],
+      "properties": {
+        "git_commit": {"type": ["string", "null"], "pattern": "^([a-f0-9]{40})?$"},
+        "sha256": {"anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]}
+      }
+    },
+    "generation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["run_id", "generation_id", "text_id", "condition_provenance", "model_runtime", "skill", "generated_at", "prompt", "evidence_packet", "text"],
+      "properties": {
+        "run_id": {"$ref": "#/$defs/id"},
+        "generation_id": {"$ref": "#/$defs/id"},
+        "text_id": {"type": "string", "pattern": "^T-[23456789ABCDEFGHJKMNPQRSTVWXYZ]{6}$"},
+        "condition_provenance": {"$ref": "#/$defs/conditionProvenance"},
+        "model_runtime": {"$ref": "#/$defs/modelRuntime"},
+        "skill": {"$ref": "#/$defs/skill"},
+        "generated_at": {"type": ["string", "null"], "format": "date-time", "pattern": "Z$"},
+        "prompt": {"$ref": "#/$defs/fileRef"},
+        "evidence_packet": {"$ref": "#/$defs/fileRef"},
+        "text": {"$ref": "#/$defs/fileRef"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"condition_provenance": {"properties": {"condition": {"const": "skill_on"}}, "required": ["condition"]}},
+            "required": ["condition_provenance"]
+          },
+          "then": {"properties": {"skill": {"type": "object"}}}
+        },
+        {
+          "if": {
+            "properties": {"condition_provenance": {"properties": {"condition": {"const": "skill_off"}}, "required": ["condition"]}},
+            "required": ["condition_provenance"]
+          },
+          "then": {"properties": {"skill": {"const": null}}}
+        }
+      ]
+    }
+  }
+}
