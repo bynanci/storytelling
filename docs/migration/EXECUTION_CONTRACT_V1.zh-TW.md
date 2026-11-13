@@ -35,6 +35,8 @@ FilmCraft v0.18.0 的既有 Linux 證據是獨立合成專案的單次匯入與�
 第一版建議僅允許 `import_otio_isolated_project`：新建、隔離、空的專案副本。
 現有共用或使用者正式專案須另行接受 profile。Host／profile／binary／adapter
 都綁定精確版本與摘要；既有 test-only proof 不等於 profile 已通過生產驗收。
+G2 審過的 candidate profile 可供 #104 fake tests 及另行授權的隔離驗證使用；
+實際 production-enabled profile 須等 #105／#106 證據與維護者啟用。請求不能登錄或升格 profile。
 空專案須在 Review／核准前明確建立並登錄 baseline 收據；本匯入動作不得暗中
 新建或重建遺失的 target。建立專案的自動化需要另一個已接受的 action 契約。
 

@@ -15,6 +15,13 @@ effects outside the accepted finite profile, remote workers and offline signed
 grants. A future registered host profile must be accepted separately; the
 test-only FilmCraft 0.18.0 Linux picture-only proof does not register one.
 
+A G2-reviewed **candidate profile specification** supports #104 fake tests and a
+separately authorized isolated proof. A **production-enabled accepted profile**
+requires #105/#106 evidence and explicit maintainer activation in the protected
+runtime allowlist. Requests cannot register, promote or override profiles.
+Candidate verification does not activate production; the two stages avoid making
+#104 implementation depend on its later #106 production acceptance.
+
 Provisioning the empty target is an explicit prior operator/profile workflow,
 with its own durable registry/baseline receipt, completed before review and
 approval. This action only imports into that existing registered target. It
@@ -291,13 +298,15 @@ report a fresh preflight failure.
 | Codes under `execution.` | Meaning |
 | --- | --- |
 | `input_too_large`, `invalid_json`, `unsupported_version`, `invalid_shape`, `limit_exceeded` | Ordered admission failures. Duplicate fields use invalid_json. |
-| `identity_mismatch`, `stale_review` | Digest disagreement or existing P2 freshness failure; preserve P2 detail/path as a nested bounded cause. |
+| `identity_mismatch`, `stale_review` | Digest disagreement or existing P2 freshness failure; retain bounded P2 detail/path in private evidence, not extra fields in the closed public error. |
 | `idempotency_conflict`, `writer_conflict` | Changed identity under a key, or project owner/quarantine conflict. |
 | `host_mismatch`, `target_mismatch`, `source_mismatch` | Actual registered host/profile/binary, baseline or source bytes differ from reviewed intent. |
 | `unauthorized`, `unsupported_approval`, `approval_expired`, `policy_changed`, `replayed_grant` | Local provider absent/deny, signed/offline mode not admitted, stale time/policy or consumed approval. |
 | `storage_failure`, `stale_owner` | Atomic persistence failed or operation/project/attempt fencing check failed. |
 | `unknown_outcome`, `readback_mismatch`, `partial_outcome`, `retry_forbidden` | Preserve uncertain/partial state; never authorize another call from these codes. |
 
+The ready/dispatching outcomes are API-only intermediate states. The synchronous
+CLI returns a classified final or unknown outcome, not an intermediate permit.
 Proposed CLI: separate future `execute-story-review`/`reconcile-execution` entry
 points with JSON result/diagnostic, exits 0 for readback-verified applied or cached
 applied; 1 for rejection, unknown, not_applied or partial; 2 usage; 3 pre-dispatch

@@ -46,7 +46,7 @@
         "automatic_retries": 0,
         "undo_calls": 0
       },
-      "assertion": "Run one subcase for source, cut, loss, proposal bytes and context; retain P2 nested stale fields."
+      "assertion": "Run one subcase for source, cut, loss, proposal bytes and context; retain bounded P2 stale details in private evidence, not extra public error fields."
     },
     {
       "id": "EX04",
