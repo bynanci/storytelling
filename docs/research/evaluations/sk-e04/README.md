@@ -14,10 +14,10 @@ Because the order-only comparison must hold text, packet, prompt, rubric and mod
 
 - [`protocol-v1.json`](protocol-v1.json) freezes the estimand, case-level analysis unit, run separation, missing-data rules and exact resumption gate.
 - [`rubric-v1.md`](rubric-v1.md) gives independent anchors for factual accuracy, traceability, uncertainty, narrative coherence, clarity, audience fit and required-task coverage. It is for a separate calibration run; do not use it to replace the unknown R1 rubric in an order-only run.
-- The order-only run requires one fresh context per case and order, with the same exact X/Y texts, packet, judge prompt, rubric, model revision and settings; only presentation order changes. The judge sees neutral IDs and no R1 scores, declared assignments or key.
+- The order-only run requires at least two replicate pairs per case, with one fresh context per order in each pair. The same exact X/Y texts, packet, judge prompt, rubric, model revision and settings are used; only presentation order changes. Context execution order is randomized and recorded in a private allocation key. The judge sees neutral IDs and no R1 scores, declared assignments or key.
 - Preserve raw output and annotations before adjudication. Store adjudicated annotations separately with the reason. Record missing calls, timeouts and unresolved source checks.
 
-The analysis helper computes case-level preference flips, the X-minus-Y score-gap shift across orders, per-draft/per-dimension absolute score changes, annotation disagreements and W4 source-check counts. It emits descriptive records only: no significance test or population claim. Repeated calls and the seven rubric dimensions do not increase the independent case count.
+The analysis helper computes paired preference flips, per-case preference changes, the X-minus-Y score-gap shift across orders, per-draft/per-dimension absolute score changes, annotation disagreements and W4 source-check counts. It averages repeated values within case before across-case summaries. It emits descriptive records only: no significance test or population claim. Repeated calls and the seven rubric dimensions do not increase the independent case count.
 
 ## Synthetic tool fixture
 
