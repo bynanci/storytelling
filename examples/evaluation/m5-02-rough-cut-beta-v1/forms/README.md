@@ -9,6 +9,7 @@ These files contain headers/templates only. Copy them to access-controlled priva
 - `scorecard.csv`: one row per requirement and arm; separately count missed, wrong, extra/collateral edits and rework; use pass, fail or not_observed.
 - `process-events.csv`: per-call tool/host timing, separate from author time.
 - `ratings.csv`: one row per question and arm. Do not quote without consent.
+- `follow-up.csv`: one row per enrolled participant; separately track follow-up invitation/response and actual safe completion of a second project in S during days 14–28. Intent is not actual return.
 - `failures.csv`: index to the detailed private `failure-record.md`.
 - `deviations.csv`: preserve planned versus actual procedure.
 - `pack-freeze.csv`: one row per asset and source card. Use exact rational ranges; use neutral IDs and SHA-256, never local paths.

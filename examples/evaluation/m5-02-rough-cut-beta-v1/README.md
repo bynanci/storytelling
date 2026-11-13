@@ -15,7 +15,8 @@
 6. Recruit five eligible, fresh creators. Exclude PR #102 and prior N-01/N-07 participants, implementers, maintainers and anyone who has seen the packs or keys.
 7. Run both arms for each participant in the assigned order, with a fresh isolated project copy per arm. Limit each arm to 45 minutes; include all user-visible waiting. Inject the same applied-but-lost-ack event in each arm and require readback before retry.
 8. Save each submitted artifact before revealing the key. Score with two condition-blind scorers if available. Report missing data as unknown, not zero.
-9. Publish only anonymized counts, sanitized reproducible failures and the maintainer's actual continue/narrow/stop decision. Leave G5 publication separate.
+9. Between days 14 and 28 after each participant's second arm, offer an opted-in follow-up on the other frozen pack in a fresh S project. Record actual start and safe completion in `forms/follow-up.csv`; stated intention does not count as actual return.
+10. Publish only anonymized counts, sanitized reproducible failures and the maintainer's actual continue/narrow/stop decision. Leave G5 publication separate.
 
 ## Frozen comparison at a glance
 
@@ -25,6 +26,7 @@
 - Each participant uses both conditions on fresh clones of the same exact pack and starting snapshot. Randomize three S→D and two D→S; make both packs appear in each first-condition group. The randomized first period is the primary comparison; the repeated second period is descriptive because task practice can carry over.
 - Each pack has 18 photos, 12 video clips and 6 narration/audio items; five beats; one 75-second starter cut; two protected shots; two outputs dependent on one revised fact; one unsupported claim; and one log-only optional insert that stays unresolved.
 - The primary #112 completion gate is **safe completion**, not merely a saved file: a reopened 60–90 second project, correct source update, no invented evidence, protected shots intact, current human review, and readback before retry.
+- Report immediate willingness/ability to return separately from actual second-project use. A continue recommendation requires at least two observed safe returns after the 14–28 day follow-up window closes.
 - Five participants provide formative counts only. Report the randomized first-period groups (3 versus 2) and paired descriptions separately; no significance test or time-saving claim.
 
 ## Files
