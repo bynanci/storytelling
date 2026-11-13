@@ -1,0 +1,52 @@
+{
+  "base_commit": "48c1ca005c0087a585f2028d59ebb45fcdab5a46",
+  "scope": "design-only; existing Rust regression gates, no real host invoked; manual host test remains ignored",
+  "toolchain": "Rust/Cargo 1.89.0",
+  "checks": [
+    {
+      "command": "cargo fmt --all -- --check",
+      "exit_code": 0,
+      "seconds": 0.32
+    },
+    {
+      "command": "cargo clippy --workspace --all-targets --locked --offline -- -D warnings",
+      "exit_code": 0,
+      "seconds": 10.83
+    },
+    {
+      "command": "cargo test --workspace --locked --offline",
+      "exit_code": 0,
+      "seconds": 19.95
+    },
+    {
+      "command": "cargo test --workspace --release --locked --offline",
+      "exit_code": 0,
+      "seconds": 55.12
+    },
+    {
+      "command": "cargo doc --workspace --no-deps --locked --offline",
+      "exit_code": 0,
+      "seconds": 3.16
+    }
+  ],
+  "design_checks": [
+    {
+      "command": "python3 tests/fixtures/execution-contract-v1/check_design.py",
+      "result": "passed: 5 design-artifact checks; no runtime verdict evaluated"
+    },
+    {
+      "command": "python3 scripts/check_repo.py",
+      "result": "passed"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    },
+    {
+      "command": "installed jsonschema Draft202012Validator.check_schema and example/negative shape validation",
+      "tool_version": "4.26.0",
+      "result": "passed for two schemas, valid request/result and selected shape/evidence negatives; local supplementary check, no new pinned dependency"
+    }
+  ],
+  "acceptance": "G2 pending; #103 open, #104 blocked; no new runtime implementation or real host call"
+}

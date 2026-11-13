@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "intent": {
+    "operation_id": "op-synthetic-001",
+    "idempotency_key": "request-001",
+    "project_resource_id": "isolated-project-001",
+    "target_revision_sha256": "977b85603429ddbb8e7555c2d73642b76f0ef1e612708047a585b445b6c61c93",
+    "review_binding_sha256": "56495ccf26eb538505b3b1f1d021398827d1c27a228f78e4d5ad3c27d110bfa7",
+    "proposal_sha256": "8ab9662c0993e819949392b08f41dc9698b9f87c63de0ab1d4248a1be9bb6685",
+    "snapshot_sha256": "c73722043fe1e1a56fa71c54fd0b1bdec03d70cd7c27e530ae02fe8e6f19bce1",
+    "artifact_sha256": "9e7dc60b81d31121a99e497b7d84ed77b5084f84d14668709b38f86d70d5055d",
+    "report_sha256": "1b53a95d44c71cd7aef17526b9e23bea7886b5691dbca538018e6bbd27923e2c",
+    "compiler_version": "storytelling-engine-0.1.0-dev.0",
+    "export_profile": "storytelling.planner-otio-visual-ticks.v1",
+    "host_profile_id": "synthetic-filmcraft-linux-picture-v1",
+    "host_profile_sha256": "c1a207b9075abf3d2c55f4dd7cfac44d9f04fba2626e6af33e36bc8fa870c8b3",
+    "host_version": "0.18.0",
+    "host_binary_sha256": "93c92172153039179e146ee5e4f8266be790e2755c03ce411bfd621a6e5b88ce",
+    "adapter_build_sha256": "e31004e8d10ae89f40c7318d354b3e3fe53a2fc5526f2224f2d33e1bb51bb35b",
+    "expected_projection_sha256": "8c9d89fd566685345475bf70f1a3e9f9599aef3233b0167c29fb789dafdf3d20",
+    "action": "import_otio_isolated_project"
+  },
+  "intent_sha256": "5bb43438e4452be0d3fb32aa44c14611b840196cfa0d05dd47d56af694e8aba4",
+  "approval_ref": "local-approval-001"
+}

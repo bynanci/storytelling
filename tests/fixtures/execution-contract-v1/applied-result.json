@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "operation_id": "op-synthetic-001",
+  "intent_sha256": "5bb43438e4452be0d3fb32aa44c14611b840196cfa0d05dd47d56af694e8aba4",
+  "outcome": "applied",
+  "receipt": {
+    "payload": {
+      "schema_version": 1,
+      "operation_id": "op-synthetic-001",
+      "intent_sha256": "5bb43438e4452be0d3fb32aa44c14611b840196cfa0d05dd47d56af694e8aba4",
+      "project_resource_id": "isolated-project-001",
+      "target_revision_before_sha256": "977b85603429ddbb8e7555c2d73642b76f0ef1e612708047a585b445b6c61c93",
+      "target_revision_after_sha256": "6c70553a65cebaa597d704216001b0c9cccf259e1cddecf060a39a4dea6dd2bf",
+      "attempt_id": 1,
+      "operation_fence_epoch": 1,
+      "project_fence_epoch": 1,
+      "host_profile_id": "synthetic-filmcraft-linux-picture-v1",
+      "host_profile_sha256": "c1a207b9075abf3d2c55f4dd7cfac44d9f04fba2626e6af33e36bc8fa870c8b3",
+      "host_version": "0.18.0",
+      "host_binary_sha256": "93c92172153039179e146ee5e4f8266be790e2755c03ce411bfd621a6e5b88ce",
+      "authority_receipt_sha256": "9a94fae9ca38ec67cb9bf898bcbba7db3ada480f16ae7fc5992c6281b92bf569",
+      "readback_sha256": "f44a4eeac08ea83c605e6af17f62cad17c02707e25d985d4e83573421e630167",
+      "quiescence_sha256": "250088f9cd1cef1fb7f745b405c8e616ae04fca45b2388cb6e11a1fed4aa4adb",
+      "outcome": "applied",
+      "recorded_at_ms": 1000
+    },
+    "sha256": "98a88cc047097f5ade8a8a12af812db58d6ac6817e63e77e76469b2b0b01dd59"
+  },
+  "error": null
+}
