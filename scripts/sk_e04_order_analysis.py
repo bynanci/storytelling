@@ -36,7 +36,7 @@ def _hash(value, label):
 
 
 def _validate_annotation(annotation, label):
-    _keys(annotation, {"preference", "ratings", "source_checks"}, label)
+    _keys(annotation, {"preference", "ratings", "source_checks", "rationale"}, label)
     if annotation["preference"] not in {"X", "Y", "tie"}:
         raise RecordError(f"{label}.preference must be X, Y or tie")
     _keys(annotation["ratings"], {"X", "Y"}, f"{label}.ratings")
@@ -48,13 +48,20 @@ def _validate_annotation(annotation, label):
             raise RecordError(f"{label}.ratings.{draft} scores must be integers from 1 to 5")
     if not isinstance(annotation["source_checks"], list):
         raise RecordError(f"{label}.source_checks must be an array")
+    if not isinstance(annotation["rationale"], str) or not annotation["rationale"]:
+        raise RecordError(f"{label}.rationale must retain the annotation rationale")
     seen = set()
     for index, check in enumerate(annotation["source_checks"]):
-        _keys(check, {"claim_id", "state"}, f"{label}.source_checks[{index}]")
+        _keys(check, {"claim_id", "state", "evidence_location"}, f"{label}.source_checks[{index}]")
         if not isinstance(check["claim_id"], str) or not check["claim_id"] or check["claim_id"] in seen:
             raise RecordError(f"{label} source claim IDs must be nonempty and unique")
         if check["state"] not in W4_STATES:
             raise RecordError(f"{label} source check has an unsupported W4 state")
+        location = check["evidence_location"]
+        if location is not None and (not isinstance(location, str) or not location):
+            raise RecordError(f"{label} evidence location must be nonempty text or null")
+        if check["state"] in {"supported", "contradicted"} and location is None:
+            raise RecordError(f"{label} supported/contradicted checks need an evidence location")
         seen.add(check["claim_id"])
 
 
@@ -70,6 +77,7 @@ def validate_record(record):
         raise RecordError("cases must be a nonempty array")
 
     case_ids = set()
+    frozen_cross_case = None
     for case_index, case in enumerate(record["cases"]):
         label = f"cases[{case_index}]"
         _keys(case, {"case_id", "shared_inputs", "runs"}, label)
@@ -79,9 +87,9 @@ def validate_record(record):
         case_ids.add(case_id)
 
         shared = case["shared_inputs"]
-        _keys(shared, {"draft_pair_sha256", "packet_sha256", "prompt_sha256", "rubric_sha256", "model"},
+        _keys(shared, {"draft_x_sha256", "draft_y_sha256", "packet_sha256", "prompt_sha256", "rubric_sha256", "model"},
               f"{label}.shared_inputs")
-        for field in ("draft_pair_sha256", "packet_sha256", "prompt_sha256", "rubric_sha256"):
+        for field in ("draft_x_sha256", "draft_y_sha256", "packet_sha256", "prompt_sha256", "rubric_sha256"):
             _hash(shared[field], f"{label}.shared_inputs.{field}")
         model = shared["model"]
         _keys(model, {"provider", "model_id", "model_revision", "settings_sha256"}, f"{label}.shared_inputs.model")
@@ -89,39 +97,57 @@ def validate_record(record):
             if not isinstance(model[field], str) or not model[field]:
                 raise RecordError(f"{label}.shared_inputs.model.{field} must be explicit")
         _hash(model["settings_sha256"], f"{label}.shared_inputs.model.settings_sha256")
+        cross_case = (shared["prompt_sha256"], shared["rubric_sha256"], json.dumps(model, sort_keys=True))
+        if frozen_cross_case is None:
+            frozen_cross_case = cross_case
+        elif cross_case != frozen_cross_case:
+            raise RecordError("prompt, rubric and model/settings must be identical across all cases")
 
         runs = case["runs"]
-        if not isinstance(runs, list) or len(runs) != 2:
-            raise RecordError(f"{label} must contain exactly the two order-only runs")
-        order_by_name = {}
+        if not isinstance(runs, list) or len(runs) < 2 or len(runs) % 2:
+            raise RecordError(f"{label} must contain complete X_then_Y/Y_then_X replicate pairs")
+        by_replicate = {}
         run_ids = set()
         contexts = set()
         for run_index, run in enumerate(runs):
             run_label = f"{label}.runs[{run_index}]"
-            _keys(run, {"run_id", "judge_context_id", "order", "presented_ids", "raw", "adjudicated"}, run_label)
+            _keys(run, {"run_id", "judge_context_id", "replicate_id", "order", "presented_ids", "raw_output_sha256", "raw", "adjudicated"}, run_label)
             for field, seen in (("run_id", run_ids), ("judge_context_id", contexts)):
                 value = run[field]
                 if not isinstance(value, str) or not value or value in seen:
                     raise RecordError(f"{run_label}.{field} must be nonempty and unique within the pair")
                 seen.add(value)
-            if run["order"] not in {"X_then_Y", "Y_then_X"} or run["order"] in order_by_name:
-                raise RecordError(f"{label} must have one X_then_Y and one Y_then_X run")
+            if run["order"] not in {"X_then_Y", "Y_then_X"}:
+                raise RecordError(f"{run_label}.order must be X_then_Y or Y_then_X")
+            replicate_id = run["replicate_id"]
+            if not isinstance(replicate_id, str) or not replicate_id:
+                raise RecordError(f"{run_label}.replicate_id must be nonempty")
+            orders = by_replicate.setdefault(replicate_id, {})
+            if run["order"] not in {"X_then_Y", "Y_then_X"} or run["order"] in orders:
+                raise RecordError(f"{label} replicate must have one X_then_Y and one Y_then_X run")
             expected_ids = ["X", "Y"] if run["order"] == "X_then_Y" else ["Y", "X"]
             if run["presented_ids"] != expected_ids:
                 raise RecordError(f"{run_label}.presented_ids disagree with declared order")
+            _hash(run["raw_output_sha256"], f"{run_label}.raw_output_sha256")
             _validate_annotation(run["raw"], f"{run_label}.raw")
             adjudicated = run["adjudicated"]
-            _keys(adjudicated, {"status", "annotation"}, f"{run_label}.adjudicated")
+            _keys(adjudicated, {"status", "reviewer_id", "reason", "annotation"}, f"{run_label}.adjudicated")
             if adjudicated["status"] == "pending":
-                if adjudicated["annotation"] is not None:
-                    raise RecordError(f"{run_label} pending adjudication must remain null")
+                if any(adjudicated[field] is not None for field in ("reviewer_id", "reason", "annotation")):
+                    raise RecordError(f"{run_label} pending adjudication fields must remain null")
             elif adjudicated["status"] == "complete":
+                if not all(isinstance(adjudicated[field], str) and adjudicated[field]
+                           for field in ("reviewer_id", "reason")):
+                    raise RecordError(f"{run_label} adjudication needs reviewer ID and reason")
                 _validate_annotation(adjudicated["annotation"], f"{run_label}.adjudicated.annotation")
             else:
                 raise RecordError(f"{run_label}.adjudicated.status must be pending or complete")
-            order_by_name[run["order"]] = run
-        if set(order_by_name) != {"X_then_Y", "Y_then_X"}:
-            raise RecordError(f"{label} lacks a balanced order pair")
+            orders[run["order"]] = run
+        min_replicates = 1 if record["record_kind"] == "synthetic_fixture" else 2
+        if len(by_replicate) < min_replicates:
+            raise RecordError(f"{label} needs at least {min_replicates} replicate pairs")
+        if any(set(orders) != {"X_then_Y", "Y_then_X"} for orders in by_replicate.values()):
+            raise RecordError(f"{label} has an incomplete order replicate")
     return record
 
 
@@ -135,51 +161,80 @@ def _gap(annotation):
     return x - y
 
 
+def _canonical_annotation(annotation):
+    return {
+        "preference": annotation["preference"],
+        "ratings": annotation["ratings"],
+        "source_checks": sorted(
+            ({"claim_id": item["claim_id"], "state": item["state"], "evidence_location": item["evidence_location"]}
+             for item in annotation["source_checks"]),
+            key=lambda item: item["claim_id"],
+        ),
+    }
+
+
 def analyze_record(record):
     validate_record(record)
     per_case = []
-    flips = 0
-    stable = 0
+    preference_flips = 0
+    preference_pairs = 0
+    changed_preference_cases = 0
     shifts = []
-    score_changes = {dimension: [] for dimension in DIMENSIONS}
+    case_score_changes = {dimension: [] for dimension in DIMENSIONS}
     unresolved = {"insufficient": 0, "unavailable": 0}
     disagreement_case_ids = set()
     pending_adjudications = 0
 
     for case in record["cases"]:
-        by_order = {run["order"]: run for run in case["runs"]}
-        xy = by_order["X_then_Y"]
-        yx = by_order["Y_then_X"]
-        xy_pref = xy["raw"]["preference"]
-        yx_pref = yx["raw"]["preference"]
-        if xy_pref == yx_pref:
-            stable += 1
-        else:
-            flips += 1
-        gap_xy = _gap(xy["raw"])
-        gap_yx = _gap(yx["raw"])
+        by_replicate = {}
+        for run in case["runs"]:
+            by_replicate.setdefault(run["replicate_id"], {})[run["order"]] = run
+        replicate_ids = sorted(by_replicate)
+        xy_runs = [by_replicate[key]["X_then_Y"] for key in replicate_ids]
+        yx_runs = [by_replicate[key]["Y_then_X"] for key in replicate_ids]
+        xy_preferences = [run["raw"]["preference"] for run in xy_runs]
+        yx_preferences = [run["raw"]["preference"] for run in yx_runs]
+        flips_in_case = 0
+        for replicate_id in replicate_ids:
+            xy_pref = by_replicate[replicate_id]["X_then_Y"]["raw"]["preference"]
+            yx_pref = by_replicate[replicate_id]["Y_then_X"]["raw"]["preference"]
+            preference_pairs += 1
+            if xy_pref != yx_pref:
+                preference_flips += 1
+                flips_in_case += 1
+        xy_profile = {pref: xy_preferences.count(pref) for pref in ("X", "Y", "tie")}
+        yx_profile = {pref: yx_preferences.count(pref) for pref in ("X", "Y", "tie")}
+        preference_profile_changed = xy_profile != yx_profile
+        if preference_profile_changed:
+            changed_preference_cases += 1
+        gap_xy = _mean([_gap(run["raw"]) for run in xy_runs])
+        gap_yx = _mean([_gap(run["raw"]) for run in yx_runs])
         shift = gap_xy - gap_yx
         shifts.append(shift)
-        for run in (xy, yx):
-            for dimension_index, dimension in enumerate(DIMENSIONS):
+        for dimension_index, dimension in enumerate(DIMENSIONS):
+            changes = []
+            for replicate_id in replicate_ids:
+                xy = by_replicate[replicate_id]["X_then_Y"]["raw"]["ratings"]
+                yx = by_replicate[replicate_id]["Y_then_X"]["raw"]["ratings"]
                 for draft in ("X", "Y"):
-                    score_changes[dimension].append(abs(
-                        xy["raw"]["ratings"][draft][dimension_index]
-                        - yx["raw"]["ratings"][draft][dimension_index]
-                    ))
+                    changes.append(abs(xy[draft][dimension_index] - yx[draft][dimension_index]))
+            case_score_changes[dimension].append(_mean(changes))
+        for run in case["runs"]:
             for check in run["raw"]["source_checks"]:
                 if check["state"] in unresolved:
                     unresolved[check["state"]] += 1
             adjudicated = run["adjudicated"]
             if adjudicated["status"] == "pending":
                 pending_adjudications += 1
-            elif adjudicated["annotation"] != run["raw"]:
+            elif _canonical_annotation(adjudicated["annotation"]) != _canonical_annotation(run["raw"]):
                 disagreement_case_ids.add(case["case_id"])
         per_case.append({
             "case_id": case["case_id"],
-            "preference_xy": xy_pref,
-            "preference_yx": yx_pref,
-            "preference_flipped": xy_pref != yx_pref,
+            "replicate_pair_count": len(replicate_ids),
+            "preference_flip_pair_count": flips_in_case,
+            "preference_profile_xy": xy_profile,
+            "preference_profile_yx": yx_profile,
+            "preference_profile_changed": preference_profile_changed,
             "x_minus_y_gap_xy": round(gap_xy, 6),
             "x_minus_y_gap_yx": round(gap_yx, 6),
             "order_gap_shift": round(shift, 6),
@@ -191,19 +246,19 @@ def analyze_record(record):
         "record_kind": record["record_kind"],
         "analysis_unit": "case",
         "case_count": n,
-        "preference_flip_count": flips,
-        "preference_stable_count": stable,
-        "preference_flip_rate": round(flips / n, 6),
+        "matched_preference_flip_count": preference_flips,
+        "matched_preference_pair_count": preference_pairs,
+        "matched_preference_flip_rate": round(preference_flips / preference_pairs, 6),
+        "case_preference_profile_changed_count": changed_preference_cases,
         "mean_x_minus_y_order_gap_shift": _mean(shifts),
         "mean_absolute_score_change_by_dimension": {
-            key: _mean(values) for key, values in score_changes.items()
+            key: _mean(values) for key, values in case_score_changes.items()
         },
         "raw_adjudicated_disagreement_case_count": len(disagreement_case_ids),
         "raw_adjudicated_disagreement_case_ids": sorted(disagreement_case_ids),
         "pending_adjudication_run_count": pending_adjudications,
         "unresolved_source_check_counts": unresolved,
         "per_case": per_case,
-        "claims": [],
     }
 
 
