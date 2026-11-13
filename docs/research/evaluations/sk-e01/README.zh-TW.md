@@ -17,6 +17,8 @@ Issue [#118](https://github.com/bynanci/storytelling/issues/118) · W6／ST-R12�
 
 所有引用路徑都相對於資料包根目錄。驗證器直接雜湊檔案位元組，不轉換換行或 Unicode。私人提示、媒體、個人資訊及受著作權保護的原文，應留在獲授權的本機研究資料夾。公開 fixture 只含虛構文字。不要把絕對路徑、憑證或私人佐證放入公開紀錄。
 
+`.gitattributes` 將此資料夾固定為 LF，避免乾淨 checkout 的自動換行轉換使紀錄雜湊失效；驗證器仍直接讀取並雜湊原始檔案位元組。
+
 載入 Skill 套件時，請記錄完整 Git commit 及 `hash-skill-tree` 的 `sha256`。V1 套件摘要的算法是：先雜湊領域前綴 `storytelling-skill-tree/v1\0`，再依排序後的相對 POSIX 路徑，依序加入 8 位元組大端序路徑長度、路徑 UTF-8 位元組、8 位元組大端序檔案長度與檔案原始位元組。拒絕符號連結。摘要描述本機載入的檔案；commit 記錄 repo 版本。
 
 ## 盲測資料包與分派金鑰

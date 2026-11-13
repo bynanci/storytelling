@@ -2,7 +2,9 @@
 """Synthetic regressions for versioned, blinded skill-evaluation records."""
 import hashlib
 import json
+import os
 import shutil
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -58,6 +60,47 @@ class SkillEvaluationRecordTests(unittest.TestCase):
             with self.assertRaises(RecordError) as caught:
                 hash_skill_tree(root)
             self.assertEqual(caught.exception.code, "unsafe_path")
+
+    def test_skill_tree_digest_sorts_relative_posix_paths(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "skill"
+            (root / "a").mkdir(parents=True)
+            (root / "a" / "x").write_bytes(b"nested\n")
+            (root / "a.txt").write_bytes(b"sibling\n")
+            digest = hashlib.sha256(b"storytelling-skill-tree/v1\0")
+            for name, raw in (("a.txt", b"sibling\n"), ("a/x", b"nested\n")):
+                path = name.encode("utf-8")
+                digest.update(len(path).to_bytes(8, "big"))
+                digest.update(path)
+                digest.update(len(raw).to_bytes(8, "big"))
+                digest.update(raw)
+            self.assertEqual(hash_skill_tree(root), digest.hexdigest())
+
+    def test_hashed_fixture_verifies_in_clean_autocrlf_checkouts(self):
+        for mode in ("false", "input", "true"):
+            with self.subTest(autocrlf=mode), tempfile.TemporaryDirectory() as directory:
+                checkout = Path(directory) / "checkout"
+                env = os.environ.copy()
+                env["GIT_CONFIG_GLOBAL"] = os.devnull
+                env["GIT_CONFIG_SYSTEM"] = os.devnull
+
+                def git(*args):
+                    return subprocess.run(
+                        ["git", *args], env=env, check=True,
+                        stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                    )
+
+                git("clone", "--quiet", "--shared", "--no-checkout", str(ROOT), str(checkout))
+                git("-C", str(checkout), "config", "core.autocrlf", mode)
+                git("-C", str(checkout), "checkout", "--quiet", "--detach", "HEAD")
+                verify = subprocess.run(
+                    [sys.executable, "scripts/skill_evaluation_records.py", "verify",
+                     "docs/research/evaluations/sk-e01/fixtures/synthetic-valid"],
+                    cwd=checkout, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                )
+                self.assertEqual(verify.returncode, 0, verify.stderr.decode("utf-8", errors="replace"))
+                status = git("-C", str(checkout), "status", "--porcelain").stdout
+                self.assertEqual(status, b"", "Verification must leave a clean checkout")
 
     def test_r1_missing_provenance_remains_explicitly_unknown(self):
         status = json.loads(R1_STATUS.read_text(encoding="utf-8"))

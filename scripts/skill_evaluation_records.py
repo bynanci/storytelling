@@ -498,7 +498,7 @@ def hash_skill_tree(directory: Path | str):
     if not root.is_dir():
         _fail("missing_directory", "/directory", "skill path is not a directory")
     digest = hashlib.sha256(b"storytelling-skill-tree/v1\0")
-    entries = sorted(root.rglob("*"))
+    entries = sorted(root.rglob("*"), key=lambda path: path.relative_to(root).as_posix())
     for path in entries:
         if path.is_symlink():
             _fail("unsafe_path", path.relative_to(root).as_posix(), "symlinks are not allowed in skill-tree hashes")

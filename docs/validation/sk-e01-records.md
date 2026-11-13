@@ -12,9 +12,11 @@ The final local suite covers raw-byte hash mismatch, duplicate neutral IDs, mism
 
 A focused regression initially failed because a symlinked directory was omitted by the file-only traversal. The hash routine now checks every traversed entry before selecting regular files; the regression passes and the documented symlink rejection includes both file and directory links.
 
+Review-driven regressions also reproduced two additional issues before correction: `core.autocrlf=true` changed the prompt fixture bytes in a clean clone and caused `hash_mismatch`; `Path` ordering disagreed with the documented relative POSIX path order for `a/x` and `a.txt`. The fixture subtree is now pinned to LF in `.gitattributes`, the clean-clone regression checks `false`, `input`, and `true`, and tree hashing sorts the relative POSIX strings.
+
 ```text
 python3 scripts/test_skill_evaluation_records.py
-Ran 16 tests — OK
+Ran 18 tests — OK
 
 python3 scripts/skill_evaluation_records.py verify docs/research/evaluations/sk-e01/fixtures/synthetic-valid
 OK: sk-e01-synthetic-gate-pair (2 generations)

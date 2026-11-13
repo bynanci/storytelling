@@ -17,6 +17,8 @@ This package records what actually produced each draft and prepares a separate c
 
 All referenced paths are relative to the bundle. The verifier hashes the exact file bytes without newline or Unicode normalization. Keep private prompts, media, personal details and copyrighted source text in an authorized local study folder. The public fixture contains only invented text. Do not put absolute paths, credentials or private evidence in a public record.
 
+`.gitattributes` pins this package to LF so clean checkouts with automatic EOL conversion cannot invalidate the recorded hashes; verification still reads and hashes raw file bytes.
+
 For a loaded skill package, record the full Git commit and `sha256` from `hash-skill-tree`. The v1 tree digest is SHA-256 over the domain prefix `storytelling-skill-tree/v1\0`, followed in sorted relative POSIX path order by each path's 8-byte big-endian length, path UTF-8 bytes, file 8-byte big-endian length and exact file bytes. Symlinks are rejected. This captures local package bytes, while the commit records repository revision.
 
 ## Blind packet and allocation key
