@@ -202,9 +202,9 @@ def validate_adjudication(record):
         _choice(check["source_access_status"], {"available", "unavailable", "not_attempted", "not_recorded"},
                 f"source access state for {check['claim_id']}")
         _choice(check["support_state"], W4_STATES, f"W4 support state for {check['claim_id']}")
-        if check["source_access_status"] in {"unavailable", "not_attempted", "not_recorded"} \
-                and check["support_state"] == "contradicted":
-            _fail("failed source access cannot be used as evidence of contradiction")
+        if (check["source_access_status"] in {"unavailable", "not_attempted", "not_recorded"}
+                and check["support_state"] not in {"insufficient", "unavailable"}):
+            _fail("failed source access supports only insufficient or unavailable")
         if not isinstance(check["evidence_locations"], list) or not isinstance(check["note"], str):
             _fail(f"invalid evidence locations or note for {check['claim_id']}")
     _unique(claim_ids, "adjudicated claim IDs")
@@ -355,6 +355,7 @@ def run_fixture_checks():
         ("negative/invalid-multiple-evidence-modes.json", validate_evidence_plan),
         ("negative/invalid-generation-before-freeze.json", validate_evidence_plan),
         ("negative/invalid-unavailable-as-contradicted.json", validate_adjudication),
+        ("negative/invalid-unavailable-as-supported.json", validate_adjudication),
         ("negative/invalid-r1-score-rewrite.json", validate_errata),
     )
     for relative, validator in negative_examples:

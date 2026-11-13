@@ -25,7 +25,7 @@
 | `fixtures/prospective-evidence-plan.json` | 合成計畫：一份來源段落可用，另一份來源無法取得。 |
 | `fixtures/synthetic-adjudication.json` | 合成四種 W4 狀態與兩種分離標註軸。 |
 | `fixtures/r1-packet-errata.json` | C13／C28 歷史更正，不修改 R1 輸入與結果。 |
-| `fixtures/negative/*.json` | 配對非法範例：多重模式、凍結前產生、把來源不可用當矛盾，以及改寫 R1 分數。 |
+| `fixtures/negative/*.json` | 配對非法範例：多重模式、凍結前產生、把來源不可用當成 supported／contradicted，以及改寫 R1 分數。 |
 
 這些 Schema 只供評估使用，不更動 Rust wire 契約或既有 CLI 命令。
 

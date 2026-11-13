@@ -184,16 +184,22 @@ class AdjudicationTests(unittest.TestCase):
         self.assertIn("packet_scope_violations", record)
         self.assertIn("packet_source_mismatches", record)
 
-    def test_failed_source_access_cannot_be_relabelled_contradicted(self):
-        record = copy.deepcopy(load("synthetic-adjudication.json"))
-        check = next(c for c in record["claim_checks"] if c["claim_id"] == "CL-UNAVAILABLE")
-        check["support_state"] = "contradicted"
-        with self.assertRaises(ContractError):
-            validate_adjudication(record)
+    def test_failed_source_access_cannot_be_relabelled_supported_or_contradicted(self):
+        for state in ("supported", "contradicted"):
+            with self.subTest(support_state=state):
+                record = copy.deepcopy(load("synthetic-adjudication.json"))
+                check = next(c for c in record["claim_checks"] if c["claim_id"] == "CL-UNAVAILABLE")
+                check["support_state"] = state
+                with self.assertRaises(ContractError):
+                    validate_adjudication(record)
 
     def test_committed_unavailable_contradiction_example_is_rejected(self):
         with self.assertRaises(ContractError):
             validate_adjudication(load_negative("invalid-unavailable-as-contradicted.json"))
+
+    def test_committed_unavailable_support_example_is_rejected(self):
+        with self.assertRaises(ContractError):
+            validate_adjudication(load_negative("invalid-unavailable-as-supported.json"))
 
     def test_unknown_or_new_support_state_is_rejected(self):
         record = copy.deepcopy(load("synthetic-adjudication.json"))

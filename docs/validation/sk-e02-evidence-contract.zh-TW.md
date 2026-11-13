@@ -12,7 +12,8 @@ R1 原始資料包、完整草稿、主張清單、來源快照與產生前凍�
 
 - **RED：** 先寫最初 14 項回歸測試，再執行 `python3 scripts/test_sk_e02_contract.py`，因 `ModuleNotFoundError: No module named 'sk_e02_contract'` 失敗（exit 1）。
 - **首次 Hosted RED：** head `7ed781a8e1c8e3f8285357ee21758d744b67f6b7` 的 [CI run 43385781285](https://github.com/bynanci/storytelling/actions/runs/43385781285) 中，Windows SK-E02 測試因 Git 將兩個 SHA 綁定文字 fixture 轉成 CRLF 而失敗；該次 Linux、macOS 與 Dependency Audit 通過。
-- **GREEN 候選：** `.gitattributes` 現已將精確位元組資料夾固定為 LF，並新增 `core.autocrlf=false`、`input`、`true` 三種 clean-checkout 回歸，驗證資料包、封存段落及 plan-to-adjudication 雜湊。擴充後共有 21 項測試；仍須等新 PR head 的 hosted rerun。
+- **Review finding：** 第一個 head 的 Codex review 發現，來源存取失敗時標準函式庫裁定器會拒絕 `contradicted`，但仍允許 `supported`，與 JSON Schema 不一致。現在檢查器只允許 `insufficient` 或 `unavailable`，正反例都已納入回歸。
+- **GREEN 候選：** `.gitattributes` 現已將精確位元組資料夾固定為 LF，並新增 `core.autocrlf=false`、`input`、`true` 三種 clean-checkout 回歸，驗證資料包、封存段落及 plan-to-adjudication 雜湊。擴充後共有 22 項測試；仍須等新 PR head 的 hosted rerun。
 
 ## 來源直接存取觀察
 
@@ -31,7 +32,7 @@ R1 原始資料包、完整草稿、主張清單、來源快照與產生前凍�
 | 產生變體前凍結主張／來源／revision／位置／必要性 | `prospective-evidence-plan.json`；`test_prospective_fixture_is_frozen_before_variant_generation`、`test_variant_generation_must_follow_claim_freeze`、`test_committed_invalid_freeze_example_is_rejected`、`test_claim_source_ids_and_revisions_must_resolve`。 |
 | 沿用 W4 狀態，且範圍違規與資料包／原文差異分開 | `adjudication-v1.schema.json`；`test_w4_support_states_and_scope_annotations_are_separate`、`test_failed_source_access_cannot_be_relabelled_contradicted`。 |
 | 版本化 C13／C28 勘誤並保留 R1 | `r1-packet-errata.json`；`test_c13_c28_are_versioned_without_rewriting_r1_outcomes`、`test_errata_cannot_include_replacement_scores_assignments_or_flags`、`test_exact_original_packet_text_cannot_be_invented`。 |
-| 來源存取失敗維持 unavailable | C28 fixture、`test_failed_source_access_cannot_be_relabelled_contradicted`及`invalid-unavailable-as-contradicted.json`。 |
+| 來源存取失敗不得證明 supported 或 contradicted | C28 fixture、`test_failed_source_access_cannot_be_relabelled_supported_or_contradicted`、`invalid-unavailable-as-supported.json`及`invalid-unavailable-as-contradicted.json`。 |
 | 快照／雜湊來源及公開散布邊界 | SK-E02 README；C13 暫存回應中繼資料；C28 403 紀錄；Git 未納入來源全文。 |
 
 檢查器只用標準函式庫，不依賴產品 runtime。此工作環境另以 `jsonschema` 4.26.0 執行 Draft 2020-12 meta-schema 與 fixture 驗證；hosted CI 執行新增的標準函式庫契約回歸。沒有進行獨立人員的來源封存稽核。

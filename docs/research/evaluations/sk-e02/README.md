@@ -25,7 +25,7 @@ The claim register is a plan, not a verdict. During adjudication, each checkable
 | `fixtures/prospective-evidence-plan.json` | Synthetic plan with one archived source passage and one unavailable source. |
 | `fixtures/synthetic-adjudication.json` | Synthetic examples of all four W4 states and the two separate annotation axes. |
 | `fixtures/r1-packet-errata.json` | C13/C28 historical corrections without editing R1 inputs or results. |
-| `fixtures/negative/*.json` | Paired invalid examples for multi-mode selection, generation before freeze, unavailable-as-contradicted and R1 score rewriting. |
+| `fixtures/negative/*.json` | Paired invalid examples for multi-mode selection, generation before freeze, unavailable-as-supported/contradicted and R1 score rewriting. |
 
 The schemas are evaluation artifacts only. They do not change the Rust wire contract or existing CLI commands.
 
