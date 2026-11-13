@@ -14,6 +14,8 @@ A focused regression initially failed because a symlinked directory was omitted 
 
 Review-driven regressions also reproduced two additional issues before correction: `core.autocrlf=true` changed the prompt fixture bytes in a clean clone and caused `hash_mismatch`; `Path` ordering disagreed with the documented relative POSIX path order for `a/x` and `a.txt`. The fixture subtree is now pinned to LF in `.gitattributes`, the clean-clone regression checks `false`, `input`, and `true`, and tree hashing sorts the relative POSIX strings.
 
+The first hosted macOS run also exposed a test-only assertion that compared an uncanonicalized temporary path with its resolved path (`/var` versus `/private/var`). It now checks that both output files exist in their requested distinct directories, without assuming the platform's symlink alias spelling.
+
 ```text
 python3 scripts/test_skill_evaluation_records.py
 Ran 18 tests — OK

@@ -244,7 +244,8 @@ class SkillEvaluationRecordTests(unittest.TestCase):
             packet, key = prepare_blind_bundle(
                 FIXTURE, judge_dir / "packet.json", key_dir / "allocation.json", seed=1
             )
-            self.assertEqual(judge_dir, (root / "judge").resolve())
+            self.assertTrue((judge_dir / "packet.json").is_file())
+            self.assertTrue((key_dir / "allocation.json").is_file())
             self.assertNotEqual((judge_dir / "packet.json").parent,
                                 (key_dir / "allocation.json").parent)
             validate_blind_packet(packet)
