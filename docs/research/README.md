@@ -58,3 +58,8 @@ The npm file patterns already include `references/*.md`, so English and Traditio
 - **Synthetic agent rehearsal:** exercise indirect revision, variant isolation, artifact honesty and absence of human observations. Record the input and observed behavior; do not count a model as a participant.
 - **Human:** observe the intended language, audience and finished medium; keep author and recipient roles distinct. No results means pending.
 - **Maintainer:** decide scope, acceptance and release from those records. A bibliography or passing CI supplies no approval.
+
+## Gemini R1 skill evaluation record (SK-EVAL-R1)
+
+The [40-case model-judged report and visual comparison](evaluations/2026-11-13-gemini-r1/README.md) preserve numeric observations, source-packet errata and unverified declared assignments. This is W4/W6 diagnostic evidence, not a newly accepted requirement, human result or implemented skill improvement.
+Use [#115](https://github.com/bynanci/storytelling/issues/115) as the umbrella; [#118](https://github.com/bynanci/storytelling/issues/118), [#119](https://github.com/bynanci/storytelling/issues/119), [#120](https://github.com/bynanci/storytelling/issues/120), [#121](https://github.com/bynanci/storytelling/issues/121) and [#122](https://github.com/bynanci/storytelling/issues/122) track work still to implement/verify. Existing N/M acceptance, #54's disposition and #112's human-evidence gates retain their separate scope.

@@ -90,3 +90,8 @@ Skill 可以獨立安裝。目前套件版本為 `0.1.0-dev.0`。使用者可從
 6. 固定契約後，先並行比對新舊結果。再以功能開關切換。確認新實作接手後，才停用舊實作。唯讀匯入全程保留來源資料。
 
 [移轉指南](docs/MIGRATION.zh-TW.md)列出來源、工作清單與驗收紀錄。判定一項移轉完成時，須核對新舊行為、執行依賴及回歸結果。Rust 二進位檔、呼叫 FFmpeg 的轉接器與純 Rust 演算法各有不同的依賴。
+
+## Gemini R1技能評估紀錄（SK-EVAL-R1）
+
+[40案模型評分報告與視覺化](docs/research/evaluations/2026-11-13-gemini-r1/README.zh-TW.md)保存原始數值、來源勘誤與宣告分組限制。這是W4/W6的診斷觀察，不新增已驗收需求、真人結果或完成的技能改善。
+沿用[#115](https://github.com/bynanci/storytelling/issues/115)總追蹤；後續為[#118](https://github.com/bynanci/storytelling/issues/118)、[#119](https://github.com/bynanci/storytelling/issues/119)、[#120](https://github.com/bynanci/storytelling/issues/120)、[#121](https://github.com/bynanci/storytelling/issues/121)、[#122](https://github.com/bynanci/storytelling/issues/122)，皆為待實作／驗證工作。既有N與M任務、#54處置及#112真人門檻維持各自證據範圍。
