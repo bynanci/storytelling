@@ -14,7 +14,7 @@ PERM=200000
 
 def save_csv(name,rows,fields=None):
     with (ROOT/name).open('w',encoding='utf-8-sig',newline='') as f:
-        w=csv.DictWriter(f,fieldnames=fields or list(rows[0]));w.writeheader();w.writerows(rows)
+        w=csv.DictWriter(f,fieldnames=fields or list(rows[0]),lineterminator='\n');w.writeheader();w.writerows(rows)
 
 def json_safe(v):
     if isinstance(v,np.generic): return v.item()
@@ -93,7 +93,7 @@ def main():
     save_csv('case_pairs_R1.csv',case_rows)
     (ROOT/'ratings_normalized_R1.json').write_text(json.dumps(dict(
         scope='Numeric transcription only; not verbatim evidence/reasons JSON',
-        dimensions=DIMENSIONS,cases=cs),ensure_ascii=False,indent=2),encoding='utf-8')
+        dimensions=DIMENSIONS,cases=cs),ensure_ascii=False,indent=2),encoding='utf-8',newline='\n')
     dim_rows=[]
     for j,(dim,label) in enumerate(zip(DIMENSIONS,LABELS)):
         d=story[:,j]-control[:,j]
@@ -141,7 +141,7 @@ def main():
         computation=dict(seed=SEED,bootstrap_resamples=BOOT,sign_flip_permutations=PERM,
                          bootstrap_unit='whole case',python=platform.python_version(),numpy=np.__version__,scipy=scipy.__version__,
                          input_sha256=hashlib.sha256((ROOT/'score_input.py').read_bytes()).hexdigest()))
-    (ROOT/'statistics_R1.json').write_text(json.dumps(result,ensure_ascii=False,indent=2,default=json_safe),encoding='utf-8')
+    (ROOT/'statistics_R1.json').write_text(json.dumps(result,ensure_ascii=False,indent=2,default=json_safe),encoding='utf-8',newline='\n')
     print(json.dumps({k:v for k,v in result.items() if k not in ['dimensions','batches','missing_metadata']},ensure_ascii=False,indent=2,default=json_safe))
     print('DIMENSIONS',json.dumps(dim_rows,ensure_ascii=False,default=json_safe))
 

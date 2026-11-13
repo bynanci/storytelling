@@ -12,3 +12,7 @@ tests/fixtures/openfilm/finite-v1/video-trim.json -text
 /docs/validation/n07-pilot/material-sha256.json -text
 /examples/evaluation/n07-pilot/participant-kit/** -text
 /examples/evaluation/n07-recorder/*.py -text
+
+# The R1 manifest hashes exact Git blob bytes. Keep every packaged text file,
+# including BOM-prefixed CSVs, byte-identical in Windows/Linux/macOS checkouts.
+/docs/research/evaluations/2026-11-13-gemini-r1/** text eol=lf

@@ -37,6 +37,6 @@ fig.tight_layout()
 (ROOT / 'assets').mkdir(exist_ok=True)
 target = ROOT / 'assets/r1-comparison.svg'
 fig.savefig(target, bbox_inches='tight', metadata={'Date': None})
-target.write_text('\n'.join(line.rstrip() for line in target.read_text().splitlines()) + '\n')
+target.write_text('\n'.join(line.rstrip() for line in target.read_text(encoding='utf-8').splitlines()) + '\n',encoding='utf-8',newline='\n')
 plt.close(fig)
 print('Wrote assets/r1-comparison.svg')

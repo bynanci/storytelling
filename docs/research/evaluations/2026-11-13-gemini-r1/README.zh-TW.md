@@ -85,6 +85,43 @@ seed=20261113；案例bootstrap 100,000次；配對符號翻轉200,000次（雙�
 
 JSON中的輸入SHA256對應**score_input.py**，不是缺少的完整judge JSON。[MANIFEST.sha256](MANIFEST.sha256)記錄本次公開包；重算可能更動執行環境欄位，應保留提交版本的觀察。公開稽核資料含舊分派鍵與分數，盲評時不要把報告、已評分CSV／JSON或程式送給評審；依#118另建中性資料包。
 
+### 精確位元組、換行及 checksum 重算
+
+整個 manifest 資料包在 Git 及 checkout 都固定 LF；根目錄 `.gitattributes`
+對此目錄設定 `text eol=lf`。四個 CSV 保留既有 UTF-8 BOM 與結尾 LF。
+CSV writer 須同時使用 UTF-8-with-BOM、`newline=''` 和
+`lineterminator='\n'`；只有 `newline=''` 仍會輸出 CRLF。JSON／SVG 寫檔也明確固定 LF。
+`source_audit_R1.csv` 是靜態裁定紀錄，`analyze.py` 不會重建它。
+
+在 repo 根目錄先驗證已提交版本，再進行重算：
+
+```sh
+python scripts/r1_package_checksums.py verify --ref HEAD --worktree
+python scripts/test_r1_package_checksums.py
+```
+
+回歸測試會建立 `core.autocrlf=false`、`input`、`true` 三種全新本機 Git checkout，
+逐檔比較 manifest 資料包與 committed blob 的原始 bytes，不先正規化換行。
+Linux、Windows、macOS CI 都會執行。系統若有提供 `sha256sum`，也可在本資料夾執行
+`sha256sum -c MANIFEST.sha256`。
+
+經授權修改資料包時，先在暫存副本重跑分析／圖表，逐項核對原始分數、分組、旗標與
+統計；不要為配合不同環境而覆寫已發布觀察。接著在 repo 根目錄執行：
+
+```sh
+git add --renormalize docs/research/evaluations/2026-11-13-gemini-r1
+git add docs/research/evaluations/2026-11-13-gemini-r1
+python scripts/r1_package_checksums.py refresh --staged
+git add docs/research/evaluations/2026-11-13-gemini-r1/MANIFEST.sha256
+git diff --cached --check
+# 審閱 staged diff 並提交後，重新執行上方兩個驗證命令。
+```
+
+Refresh 只讀取 index 的 `git cat-file` blob bytes，涵蓋已 staged 的完整資料包，
+排除 manifest 本身；不從試算表匯出或尚未 staged 的工作檔取雜湊。
+Staging 後若再修改檔案，必須重新 stage／refresh，並通過最終 commit／乾淨 checkout
+驗證。不可為了 checksum 改成 CRLF，或更動 R1 分數、分組、旗標與研究結論。
+
 ## 後續改善
 
 | 任務 | 優先 | 交付 | 依賴 |
