@@ -8,11 +8,13 @@ Scope: offline evaluation records and blind-packet preparation only. No model ca
 
 Before adding the record helper, `python3 scripts/test_skill_evaluation_records.py` failed with `ModuleNotFoundError: No module named 'skill_evaluation_records'`. On the first implementation, the allocation-leak regression observed `unknown_field` instead of the required `allocation_leak`; the validator was changed to identify private fields before applying the closed packet schema.
 
-The final local suite covers raw-byte hash mismatch, duplicate neutral IDs, mismatched allocation IDs/order, unsafe paths, private condition and score leakage, R1 unknown provenance, closed schemas, and separate output locations.
+The final local suite covers raw-byte hash mismatch, duplicate neutral IDs, mismatched allocation IDs/order, unsafe paths, private condition and score leakage, R1 unknown provenance, closed schemas, separate output locations, and symlink rejection in skill-tree hashing.
+
+A focused regression initially failed because a symlinked directory was omitted by the file-only traversal. The hash routine now checks every traversed entry before selecting regular files; the regression passes and the documented symlink rejection includes both file and directory links.
 
 ```text
 python3 scripts/test_skill_evaluation_records.py
-Ran 15 tests — OK
+Ran 16 tests — OK
 
 python3 scripts/skill_evaluation_records.py verify docs/research/evaluations/sk-e01/fixtures/synthetic-valid
 OK: sk-e01-synthetic-gate-pair (2 generations)

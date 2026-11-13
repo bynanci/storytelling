@@ -42,6 +42,23 @@ class SkillEvaluationRecordTests(unittest.TestCase):
             (skill / "SKILL.md").write_bytes(b"one\r\n")
             self.assertNotEqual(first, hash_skill_tree(skill))
 
+    def test_skill_tree_digest_rejects_symlinked_directories(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "skill"
+            target = Path(directory) / "external"
+            root.mkdir()
+            target.mkdir()
+            (root / "SKILL.md").write_text("local\n", encoding="utf-8")
+            (target / "secret.md").write_text("outside\n", encoding="utf-8")
+            link = root / "linked-material"
+            try:
+                link.symlink_to(target, target_is_directory=True)
+            except (OSError, NotImplementedError) as error:
+                self.skipTest(f"directory symlinks unavailable: {error}")
+            with self.assertRaises(RecordError) as caught:
+                hash_skill_tree(root)
+            self.assertEqual(caught.exception.code, "unsafe_path")
+
     def test_r1_missing_provenance_remains_explicitly_unknown(self):
         status = json.loads(R1_STATUS.read_text(encoding="utf-8"))
         for key in (
