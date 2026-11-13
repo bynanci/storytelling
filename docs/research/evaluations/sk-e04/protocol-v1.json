@@ -23,7 +23,8 @@
     "required_invariants": [
       "Retain each original X/Y draft byte-for-byte and bind both to a shared exact-byte digest.",
       "Retain the same packet, judge prompt, rubric, model revision, generation parameters and tool policy in both arms.",
-      "Run one fresh isolated context per case and order; present the same two drafts as X_then_Y and Y_then_X.",
+      "Run at least two replicate pairs per case; each pair has one fresh isolated X_then_Y context and one fresh isolated Y_then_X context.",
+      "Present the same two drafts in each replicate pair; randomize the execution order of the four fresh contexts and record the allocation seed privately.",
       "Use neutral draft identifiers; do not reveal R1 scores, preferences, declared assignments or answer keys to the judge.",
       "Preserve raw model output and raw annotation before any source adjudication or correction.",
       "Record failed calls, refusals, timeouts and unresolved source checks without deleting or regenerating them silently."
@@ -31,7 +32,7 @@
     "primary_descriptive_measures": [
       "case-level preference flip between orders",
       "within-case X-minus-Y score-gap shift between orders",
-      "per-dimension mean absolute score change for each draft",
+      "per-dimension mean absolute score change for each draft, averaged within case before across-case summary",
       "raw-versus-adjudicated annotation disagreement by case",
       "unresolved source-check counts by W4 state"
     ],
