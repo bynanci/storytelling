@@ -42,19 +42,31 @@ class OrderAnalysisTests(unittest.TestCase):
         self.assertEqual(report["record_kind"], "synthetic_fixture")
         self.assertEqual(report["analysis_unit"], "case")
         self.assertEqual(report["case_count"], 4)
-        self.assertEqual(report["preference_flip_count"], 1)
-        self.assertEqual(report["preference_stable_count"], 3)
-        self.assertEqual(report["preference_flip_rate"], 0.25)
+        self.assertEqual(report["matched_preference_flip_count"], 1)
+        self.assertEqual(report["matched_preference_pair_count"], 4)
+        self.assertEqual(report["matched_preference_flip_rate"], 0.25)
+        self.assertEqual(report["case_preference_profile_changed_count"], 1)
         self.assertEqual(report["mean_x_minus_y_order_gap_shift"], 0.5)
         self.assertEqual(report["raw_adjudicated_disagreement_case_ids"], ["SYN-ORDER-02"])
         self.assertEqual(report["pending_adjudication_run_count"], 1)
         self.assertEqual(report["unresolved_source_check_counts"], {"insufficient": 2, "unavailable": 2})
-        self.assertEqual(report["claims"], [])
 
     def test_rejects_unbalanced_or_changed_order_input(self):
         bad = copy.deepcopy(self.fixture)
         bad["cases"][0]["runs"][1]["order"] = "X_then_Y"
         bad["cases"][0]["runs"][1]["presented_ids"] = ["X", "Y"]
+        with self.assertRaises(RecordError):
+            validate_record(bad)
+
+    def test_observed_runs_require_two_replicates_per_case(self):
+        bad = copy.deepcopy(self.fixture)
+        bad["record_kind"] = "observed_order_rerun"
+        with self.assertRaises(RecordError):
+            validate_record(bad)
+
+    def test_prompt_rubric_and_model_must_be_frozen_across_cases(self):
+        bad = copy.deepcopy(self.fixture)
+        bad["cases"][1]["shared_inputs"]["model"]["model_revision"] = "fixture-v2"
         with self.assertRaises(RecordError):
             validate_record(bad)
 
