@@ -12,27 +12,30 @@
 
 ## 凍結計畫與評分規則
 
-- [`protocol-v1.json`](protocol-v1.json) 凍結估計目標、以案例為單位、run 分離、缺失資料規則與重啟門檻。
+- [`protocol-v2.json`](protocol-v2.json) 是目前前瞻紀錄契約，取代已準備但未執行的 [`protocol-v1.json`](protocol-v1.json)，並凍結缺失呼叫狀態、明確配對時段、可比較配對的分母及逐稿分數摘要。兩個版本都沒有真人或模型實際評分紀錄。
 - [`rubric-v1.md`](rubric-v1.md) 為事實準確、來源可追溯、不確定性、敘事連貫、清晰度、受眾適配及必要任務涵蓋提供獨立錨點。它只供另一個校準 run 使用；不能取代反序比較中未知的 R1 規則。
 - 反序 run 每案至少做兩組重複配對；每組的 X→Y 與 Y→X 各用新的隔離上下文。共用完全相同的 X/Y 文字、資料包、評審提示、規則、模型修訂與設定，只更換呈現順序。隨機化四個上下文的執行順序並由主持人私下保存分派鍵。評審只見中性 ID，不得看到 R1 分數、宣告分組或答案鍵。
-- 先保留原始輸出與標註，再做裁定。裁定欄位另存並記錄理由。保留缺失呼叫、逾時及未解來源檢查。
+- 先保留原始輸出與標註，再做裁定。分析器仍接受舊版 v1 完整紀錄，但新 run 或恢復的 run 必須使用 v2。每個預定順序時段都要有紀錄，包括 `not_attempted`；缺少時段列是格式錯誤。只有兩個順序皆為 `valid_annotation` 才算可比較配對。失敗或缺少標註的配對留在預定分母中，只從比較指標排除。
+- V2 呼叫結果為 `valid_annotation`、`refusal`、`invalid_annotation`、`timeout`、`request_error` 與 `not_attempted`。拒絕或無效標註須保留輸出雜湊及不透明 artifact ID。逾時或請求錯誤則須同時填入或同時留空。精確輸出留在授權的證據儲存區；公開紀錄不得含私人回應文字或本機路徑。重試使用新上下文與新 replicate ID，不能取代原失敗時段。
 
-分析工具計算配對偏好翻轉、案例層級偏好變化、X–Y 分數差在反序間的變化、逐稿／逐維絕對分數變動、原始與裁定標註差異及 W4 來源檢查數。先在案例內平均重複值，再彙整案例。只輸出描述統計，不做顯著性或母體主張。重複呼叫及七個評分維度不會增加獨立案例數。
+分析工具會分開回報預定、可比較、不完整、失敗及未嘗試配對數、呼叫結果、逐案資料、原始／裁定標註差異及未解 W4 來源檢查。每個評分維度會分別回報 X 稿與 Y 稿的平均絕對分數變動。先在案例內平均重複值，再跨案例摘要。沒有可比較配對的案例仍會列出，其比較指標為 null。輸出只屬描述性分析，不做顯著性或母體推論；重複呼叫及七個評分維度不會增加獨立案例數。
 
-## 合成工具 fixture
+## 合成工具 fixtures
 
-`fixtures/synthetic-order-pairs-v1.json` 只用來測試紀錄驗證器與分析工具。它含四組虛構配對；數字不是複製自 R1，也不是模型觀察。執行：
+`fixtures/synthetic-order-pairs-v1.json` 保留作舊版完整紀錄相容性測試。[`fixtures/synthetic-order-pairs-v2.json`](fixtures/synthetic-order-pairs-v2.json) 是目前的合成回歸 fixture，含四個虛構案例，其中包括逾時、拒絕及未嘗試時段。預期工具分母為 5 組預定配對、3 組可比較、2 組不完整、2 組含失敗、1 組含未嘗試時段。這些數值只測試計數，不是模型觀察或評審行為估計。
+
+執行：
 
 ```sh
 python3 scripts/sk_e04_order_analysis.py analyze \
-  docs/research/evaluations/sk-e04/fixtures/synthetic-order-pairs-v1.json
+  docs/research/evaluations/sk-e04/fixtures/synthetic-order-pairs-v2.json
 python3 scripts/test_sk_e04_order_analysis.py
 ```
 
-fixture 結果須保留 `synthetic_fixture` 標示，只示範如何計算未解標註與順序差，不代表任何實際評審偏誤的方向或大小。
+fixture 結果必須保留 `synthetic_fixture` 標籤。它只示範缺失呼叫如何計數及逐稿分數如何分開，並不代表實際評審效果的大小或方向。
 
 ## 恢復條件
 
 執行 R1 反序評分前，須取得可授權使用的精確草稿、資料包、原評審提示與評分規則，以及當時模型／設定紀錄。缺任一項就明列缺失並暫停配對比較。兩種順序及分析都須先凍結，之後才可揭露分派鍵。來源裁定或新版規則另用不同 run ID。model-only 協定不會產生真人證據或產品效益。
 
-完整機器可讀門檻見 [`protocol-v1.json`](protocol-v1.json)。Issue 須等到具資格的模型 run 與逐案報告完成後才可結案。
+目前機器可讀門檻見 [`protocol-v2.json`](protocol-v2.json)。取得原始研究材料授權，並完成合格重評與逐案報告前，Issue #121 保持開啟且受阻。
