@@ -39,17 +39,24 @@ head before the repair. It failed in all three checkout subcases: false/input
 reported the four CSV mismatches; true additionally exposed checkout conversion
 of the manifest itself. These were actual byte mismatches, not missing tools.
 
-After repair, the suite passes four tests, including three fresh local Git clones
+After repair, the suite passes five tests, including three fresh local Git clones
 with `core.autocrlf=false`, `input`, and `true`. It verifies all manifested raw
 bytes against committed objects and leaves each clone clean. Negative tests
 reject CRLF mutation, incomplete/duplicate/unsafe manifest entries, and demonstrate
 that refresh reads staged bytes when working bytes have subsequently changed.
 The existing Linux/Windows/macOS CI matrix runs this stdlib-only suite.
 
+A subsequent Codex Review found a locale-dependent JSON read in `plot.py`.
+The added input-loading regression first failed with a simulated CP1252 default:
+`UnicodeDecodeError` at byte 3427. The script now explicitly decodes the retained
+statistics as UTF-8. The test executes the actual input-loading statement without
+requiring plotting dependencies in CI. A separate local full plotting run under
+the simulated default also reproduces the retained SVG byte-for-byte.
+
 | Executed local command / check | Actual result |
 | --- | --- |
 | `python3 scripts/r1_package_checksums.py verify --ref HEAD --worktree` | 15/15 verified |
-| `python3 scripts/test_r1_package_checksums.py` | 4 tests passed; all three autocrlf checkouts passed |
+| `python3 scripts/test_r1_package_checksums.py` | 5 tests passed; all three autocrlf checkouts and simulated CP1252 input passed |
 | `sha256sum -c MANIFEST.sha256` from package directory | 15/15 verified |
 | `python3 scripts/check_repo.py`; `git diff --check` | passed |
 | Temporary-copy `python3 analyze.py`; `python3 plot.py` | passed; all generated CSV/JSON/SVG outputs byte-identical to retained files |

@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: MIT
 """Local-only clean Git checkout checks, without numeric/model dependencies."""
+import ast
 import hashlib
+import json
 import os
 import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 
 sys.dont_write_bytecode = True
@@ -82,6 +85,23 @@ class R1Checksums(unittest.TestCase):
             manifest = render_manifest(blobs)
             self.assertEqual(parse_manifest(manifest)["sample.csv"], hashlib.sha256(staged).hexdigest())
             self.assertEqual(verify({**blobs, MANIFEST: manifest}), 1)
+
+    def test_plot_input_decodes_utf8_under_a_cp1252_default(self):
+        # Execute the real input-loading statement without scientific/plotting
+        # dependencies. Full numeric/visual reproduction is checked separately.
+        source = (ROOT / PACKAGE / "plot.py").read_text(encoding="utf-8")
+        tree = ast.parse(source)
+        assignment = next(node for node in tree.body if isinstance(node, ast.Assign)
+                          and any(isinstance(target, ast.Name) and target.id == "s"
+                                  for target in node.targets))
+        read_text = Path.read_text
+        def cp1252_default(path, encoding=None, errors=None):
+            return read_text(path, encoding=encoding or "cp1252", errors=errors)
+        namespace = {"ROOT": ROOT / PACKAGE, "json": json}
+        with mock.patch.object(Path, "read_text", cp1252_default):
+            exec(compile(ast.Module(body=[assignment], type_ignores=[]), "plot-input", "exec"), namespace)
+        expected = json.loads((ROOT / PACKAGE / "statistics_R1.json").read_bytes().decode("utf-8"))
+        self.assertEqual(namespace["s"], expected)
 
 
 if __name__ == "__main__":

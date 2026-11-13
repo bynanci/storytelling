@@ -7,7 +7,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 ROOT = Path(__file__).resolve().parent
-s = json.loads((ROOT / 'statistics_R1.json').read_text())
+s = json.loads((ROOT / 'statistics_R1.json').read_text(encoding='utf-8'))
 labels = ['Facts', 'Traceability', 'Uncertainty', 'Coherence', 'Clarity', 'Audience', 'Completion']
 yy = np.arange(7)
 matplotlib.rcParams['svg.hashsalt'] = 'storytelling-gemini-r1-20261113'
