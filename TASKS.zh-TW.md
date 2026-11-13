@@ -88,6 +88,7 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 | M3 | P1 與 P2 的限定審閱流程及 M3-02 日誌已採納。M3-03 具備隔離測試。正式執行器、執行中逾時的處理與跨平台實機驗收仍待完成。 |
 | M4 | 規劃 TypeScript 用戶端與單一寫入者。須先驗收 M2-03 和 M3-03。 |
 | M5、v1.0 | 規劃第二個編輯器、跨平台發行與獨立使用者評估。穩定版須通過相容性、遷移與復原驗收。 |
+| [M5-02／#112](https://github.com/bynanci/storytelling/issues/112) | 受阻於 #109、#111 及已接受的 M3 執行／復原流程。[前瞻式 v1 規程](docs/validation/m5-02-rough-cut-beta-v1.zh-TW.md)與匿名空白表單僅完成設計；尚未招募或開始 Beta。 |
 
 每張工程票的優先序、依賴與驗收條件見[逐項工程清單](docs/delivery/VIDEO_TASK_HISTORY.md#next-actionable-work)。現有範圍不包含完整剪輯器、編解碼器、特效引擎或任意外掛。新增功能時，先說明哪一項使用情境受阻。
 

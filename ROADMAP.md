@@ -47,7 +47,7 @@ The video work targets an editable 60–90 second rough cut from 30–50 selecte
 | M2 planning | The bounded audit, fixed-window planner and selected-domain comparison passed acceptance. The full solver remains open. | Repeat the result from the same inputs. Report hard conflicts. |
 | M3 review and execution | P1, P2 and the M3-02 journal passed bounded acceptance. M3-03 has an isolated test. A production executor remains open. | Bind the proposal and artifact to the review. Check authority and operation ownership. Recover partial or unknown outcomes from receipts and host observations. |
 | M4 consumers | Planned. A reference application and an independent TypeScript client will use the SDK. | One writer per service, visible review and approval, and an optional MCP interface. |
-| M5 beta | Planned. Evaluate a second editor and an independent user workflow. | Measured outcomes, tested host profiles and distribution evidence. |
+| M5 beta | Planned. M5-02 / #112 remains blocked on #109, #111 and accepted M3 execution/recovery. The [prospective v1 protocol](docs/validation/m5-02-rough-cut-beta-v1.md) is design-only; no beta has started. | Measured outcomes, tested host profiles and distribution evidence. |
 | v1.0 | No release date. | Accepted migration, recovery, compatibility and security evidence for the public contract. |
 
 <a name="實作依賴"></a>
@@ -70,7 +70,7 @@ Read the [P2 contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md), [journal evide
 - **M1.** Narrow the supported profile if basic clips or source ranges change during interchange.
 - **M2.** Retain the reference planner if Rust produces different results. Use Rust for validation and compilation until the team explains the difference.
 - **M4.** Compare the SDK with direct use of FilmCraft and an agent. Measure author effort, creative control and output quality.
-- **M5.** The initial target is three of five testers completing a rough cut. Two should return for another project. Seek an independent integrator. These are targets.
+- **M5.** Issue #112 retains the targets of three of five testers completing a rough cut and two returning for another project. The proposed protocol defines completion as safe completion and requires maintainer acceptance before recruitment; it does not establish results or release readiness.
 
 <a name="發布與維運"></a>
 
