@@ -64,7 +64,7 @@ Before recruitment, run the kit's allocate.py once after protocol acceptance. It
 
 ## 4. Frozen task-pack specification
 
-Both packs contain **36 cleared items**: 18 photographs, 12 video clips and 6 narration/audio items. The 12 videos must provide 180–240 seconds of usable source footage in each pack; the two totals must be within 5% of one another. The packs use the same aspect ratio and target resolution. Each has five story beats (setting, preparation, action, verified result, next step), one 75-second starter rough cut, two protected timeline segments, one source fact changed during the task, one unsupported claim, and one optional shot present in the production log but absent from the supplied media. The participant's final cut must be 60–90 seconds.
+Both packs contain **36 cleared items**: 18 photographs, 12 video clips and 6 narration/audio items. The 12 videos must provide 180–240 seconds of usable source footage in each pack; the two totals must be within 5% of one another. The packs use the same aspect ratio and target resolution. Each has five story beats (setting, preparation, action, verified result, next step), one 75-second starter rough cut, two protected video segments, one source fact changed during the task, one unsupported claim, and one optional shot present in the production log but absent from the supplied media. Both protected segments are video clips with exact source ranges. The participant's final cut must be 60–90 seconds.
 
 The names below fix the story logic; actual asset IDs, exact frame/rational ranges, source-card revisions and SHA-256 values must be filled in the private freeze manifest before sessions. The checked-in form is deliberately blank; this PR does not pretend the media pack already exists.
 
@@ -73,7 +73,7 @@ The names below fix the story logic; actual asset IDs, exact frame/rational rang
 | Source correction delivered mid-task | Opening time changes from 10:00 to 10:20. It is cited in exactly two starter outputs: one title card and one narration line. | Opening time changes from 13:00 to 13:20. It is cited in exactly two starter outputs: one title card and one narration line. |
 | Unsupported statement | “Every plot is pesticide-free.” The source cards do not support this for the whole garden. It must not remain as an unqualified factual claim in the final cut. | “Every donated book was checked for accuracy.” The intake record only confirms count/condition; it does not support a content check. It must not remain as an unqualified factual claim in the final cut. |
 | Log-only optional insert | A soil-moisture close-up is requested in the production log, but no such image or clip is supplied. Keep the insert explicitly unresolved in the handoff; do not substitute or invent footage. | A barcode-scan close-up is requested in the production log, but no such image or clip is supplied. Keep the insert explicitly unresolved in the handoff; do not substitute or invent footage. |
-| Protected shots | One opening sign/wide shot and one closing harvest-table shot, with exact source ranges frozen in the manifest. | One opening exchange sign shot and one closing handover-stack shot, with exact source ranges frozen in the manifest. |
+| Protected shots | One opening sign/wide video shot and one closing harvest-table video shot, with exact source ranges frozen in the manifest. | One opening exchange-sign video shot and one closing handover-stack video shot, with exact source ranges frozen in the manifest. |
 
 The pack-freeze manifest must identify, for each file and source card: neutral asset ID, type, source revision, duration/range, rights/source note, protected or editable status, SHA-256, and the answer-key reference. Hash private files locally; only publish the manifest if rights and privacy allow. The public repository must not contain private media or paths.
 
@@ -81,7 +81,7 @@ The pack-freeze manifest must identify, for each file and source card: neutral a
 
 Give each participant the following task card, replacing only the pack name and IDs:
 
-> Revise this 75-second starter rough cut into a 60–90 second handoff-ready cut. You may change unprotected shots, order and pacing. Keep both marked protected shots and their exact source ranges unchanged. At the facilitator's revision point, update every output that depends on the new opening time. Do not present the unsupported statement as a fact. The requested close-up exists only in the production log, not in the media bin; leave it unresolved in the handoff and do not invent a replacement. Provide the final cut and a handoff sheet that traces each factual statement and selected clip to a source ID/revision and exact clip/source range. Inspect the version you intend to save. The facilitator may introduce one acknowledgement interruption after the final apply/save; verify the project state before retrying.
+> Revise this 75-second starter rough cut into a 60–90 second handoff-ready cut. You may change unprotected shots, order and pacing. Keep both marked protected shots and their exact source ranges unchanged. At the facilitator's revision point, update every output that depends on the new opening time. Do not present the unsupported statement as a fact. The requested close-up exists only in the production log, not in the media bin; leave it unresolved in the handoff and do not invent a replacement. Provide the final cut and a handoff sheet that traces each factual statement to a source ID/revision, each selected video to an asset ID and exact source range, and each selected still to an asset ID and timeline duration. Inspect the version you intend to save. The facilitator may introduce one acknowledgement interruption after the final apply/save; verify the project state before retrying.
 
 The facilitator reveals the updated source card after the participant first says the cut is ready for review. In S, the former review must become stale and the participant must inspect and approve a fresh proposal before apply. In D, the participant must re-check the changed card and manually confirm the current edit before saving. This measures a formal freshness gate against a direct human check without giving either arm a different fact.
 
@@ -93,8 +93,8 @@ After the final apply/save, inject the same scripted “operation applied, ackno
 2. Both revised time outputs use the new value.
 3. The unsupported statement is absent or explicitly qualified; no new unsupported claim is introduced.
 4. The missing optional insert remains identified as unresolved and is not replaced with invented media.
-5. Both protected shots retain their exact frozen asset IDs, source ranges, order and protected properties.
-6. The final handoff identifies each selected asset and source range and cites source revisions for factual claims.
+5. Both protected video shots retain their exact frozen asset IDs, source ranges, timeline positions and protected properties.
+6. The final handoff identifies each video asset and source range, each still and its timeline duration, and cites source revisions for factual claims.
 7. The participant inspects the current version before the write and, after the source revision, does not use a stale review/approval.
 8. After the lost acknowledgement, the participant reads back the isolated project before retry. No duplicate application occurs.
 9. Source media and the source catalog remain byte-for-byte unchanged.
@@ -123,9 +123,9 @@ Score de-identified exports with a frozen answer key. Two scorers independently 
 | Missed edits | Count each required output that still has the old/missing value. Report numerator and required-output denominator. |
 | Wrong edits | Count required outputs changed to an incorrect value, source revision or clip range. Report separately from missed and extra edits. |
 | Extra / collateral edits | Count changed outputs outside the authorized change set. Report separately from missed and wrong edits. |
-| Rework | Count post-submission corrections or repeated operations needed to reach the expected state. Record the trigger and whether the correction was participant- or system-driven. |
-| Protected-shot changes | Per protected segment, compare asset ID, range, order, crop/effects and attached audio to the frozen starting project. Any change fails that guard. |
-| Source trace | Correct source ID and revision for each factual claim, and asset ID plus exact source range for every selected visual. Report correct/required and unsupported/missing separately. A citation is not a human judgment that the claim is true. |
+| Rework | Count each corrective edit or repeated operation after the participant first says the draft is ready for review but before final submission. Record the trigger and whether the correction was participant- or system-driven. |
+| Protected-shot changes | Per protected video segment, compare asset ID, source range, timeline position, crop/effects and attached audio to the frozen starting project. Any change fails that guard. |
+| Source trace | Correct source ID and revision for each factual claim; each selected video has an asset ID and exact source range, and each still has an asset ID and timeline duration. Report correct/required and unsupported/missing separately. A citation is not a human judgment that the claim is true. |
 | Human approval / freshness | S: current proposal identity, explicit human approval before apply, invalidation after source revision, and fresh approval after re-review. D: observed inspection and explicit confirmation before save, including after revision. Record violations and event timestamps; do not assume a click proves comprehension. |
 | Unresolved footage | Whether the log-only insert remains explicitly unresolved and no substitute is invented. Report each pack-arm result. |
 | Recovery | Lost-ack injected/observed; readback before retry; retries; duplicate apply; restart/reopen; undo; final state verified. Record both success and uncertainty. |
