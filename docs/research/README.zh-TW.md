@@ -58,4 +58,4 @@ npm 已包含 `references/*.md`，英文與繁中參考文件隨既有套件散�
 ## Gemini R1技能評估紀錄（SK-EVAL-R1）
 
 [40案模型評分報告與視覺化](evaluations/2026-11-13-gemini-r1/README.zh-TW.md)保存原始數值、來源勘誤與宣告分組限制。這是W4/W6的診斷觀察，不新增已驗收需求、真人結果或完成的技能改善。
-沿用[#115](https://github.com/bynanci/storytelling/issues/115)總追蹤；後續為[#118](https://github.com/bynanci/storytelling/issues/118)、[#119](https://github.com/bynanci/storytelling/issues/119)、[#120](https://github.com/bynanci/storytelling/issues/120)、[#121](https://github.com/bynanci/storytelling/issues/121)、[#122](https://github.com/bynanci/storytelling/issues/122)，皆為待實作／驗證工作。既有N與M任務、#54處置及#112真人門檻維持各自證據範圍。
+沿用[#115](https://github.com/bynanci/storytelling/issues/115)總追蹤。[SK-E01／#118](https://github.com/bynanci/storytelling/issues/118)已合併。[SK-E02／#119](https://github.com/bynanci/storytelling/issues/119)新增[版本化證據計畫、裁定及資料包勘誤契約](evaluations/sk-e02/README.zh-TW.md)與合成完整性測試；不補造 R1 來源脈絡，也不產生新的評估結果。[#120](https://github.com/bynanci/storytelling/issues/120)、[#121](https://github.com/bynanci/storytelling/issues/121)及[#122](https://github.com/bynanci/storytelling/issues/122)仍為各自獨立工作。既有N與M驗收、#54處置及#112真人門檻維持各自證據範圍。

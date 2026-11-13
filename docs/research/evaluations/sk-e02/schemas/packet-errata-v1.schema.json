@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/bynanci/storytelling/main/docs/research/evaluations/sk-e02/schemas/packet-errata-v1.schema.json",
+  "title": "Storytelling skill evaluation source-packet errata V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "record_kind", "errata_revision", "source_audit_ref", "r1_exact_packet_bytes", "mutates_r1_artifacts", "errata"],
+  "properties": {
+    "schema_version": {"const": "skill-evaluation-packet-errata/v1"},
+    "record_kind": {"const": "reported_historical_errata"},
+    "errata_revision": {"type": "string", "minLength": 1},
+    "source_audit_ref": {"type": "string", "minLength": 1},
+    "r1_exact_packet_bytes": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "value"],
+      "properties": {"status": {"const": "unavailable"}, "value": {"type": "null"}}
+    },
+    "mutates_r1_artifacts": {"const": false},
+    "errata": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/erratum"}}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "dateTime": {"type": "string", "format": "date-time", "pattern": "Z$"},
+    "sourceReview": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_id", "source_revision", "revision_status", "citation_url", "access_status", "support_state", "retrieved_at", "http_status", "content_type", "response_sha256", "archive_ref", "retained_in_repository", "support_location_summary"],
+      "properties": {
+        "source_id": {"type": "string", "minLength": 1},
+        "source_revision": {"type": "null"},
+        "revision_status": {"const": "not_recorded"},
+        "citation_url": {"type": "string", "format": "uri", "pattern": "^https://"},
+        "access_status": {"enum": ["captured_transiently", "unavailable"]},
+        "support_state": {"enum": ["supported", "contradicted", "insufficient", "unavailable"]},
+        "retrieved_at": {"oneOf": [{"$ref": "#/$defs/dateTime"}, {"type": "null"}]},
+        "http_status": {"oneOf": [{"type": "integer", "minimum": 100, "maximum": 599}, {"type": "null"}]},
+        "content_type": {"oneOf": [{"type": "string", "minLength": 1}, {"type": "null"}]},
+        "response_sha256": {"oneOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+        "archive_ref": {"type": "null"},
+        "retained_in_repository": {"const": false},
+        "support_location_summary": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"access_status": {"const": "unavailable"}}, "required": ["access_status"]},
+          "then": {"properties": {"support_state": {"const": "unavailable"}, "response_sha256": {"type": "null"}}}
+        },
+        {
+          "if": {"properties": {"access_status": {"const": "captured_transiently"}}, "required": ["access_status"]},
+          "then": {"properties": {"support_state": {"enum": ["supported", "contradicted", "insufficient"]}, "response_sha256": {"$ref": "#/$defs/sha256"}}}
+        }
+      ]
+    },
+    "erratum": {
+      "type": "object", "additionalProperties": false,
+      "required": ["case_id", "field", "original_fragment", "original_fragment_fidelity", "corrected_fragment", "corrected_fragment_fidelity", "corrected_packet_revision", "source_review"],
+      "properties": {
+        "case_id": {"enum": ["C13", "C28"]},
+        "field": {"type": "string", "minLength": 1},
+        "original_fragment": {"type": "string", "minLength": 1},
+        "original_fragment_fidelity": {"enum": ["exact_fragment_from_public_R1_audit", "paraphrase_from_public_R1_audit"]},
+        "corrected_fragment": {"type": "string", "minLength": 1},
+        "corrected_fragment_fidelity": {"enum": ["direct_current_source_review", "quoted_in_public_R1_audit", "paraphrase_from_public_R1_audit"]},
+        "corrected_packet_revision": {"type": "string", "minLength": 1},
+        "source_review": {"$ref": "#/$defs/sourceReview"}
+      },
+      "not": {"properties": {"original_fragment": {"const": ""}}, "required": ["original_fragment"]}
+    }
+  }
+}
