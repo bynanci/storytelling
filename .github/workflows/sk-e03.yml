@@ -1,0 +1,25 @@
+name: SK-E03 synthetic instruction-conformance cases
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/sk-e03.yml'
+      - 'docs/research/evaluations/sk-e03/**'
+      - 'scripts/test_sk_e03_cases.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sk-e03.yml'
+      - 'docs/research/evaluations/sk-e03/**'
+      - 'scripts/test_sk_e03_cases.py'
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-cases:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Validate bilingual cases and captured outputs
+        run: python3 scripts/test_sk_e03_cases.py
