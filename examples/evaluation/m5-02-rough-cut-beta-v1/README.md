@@ -22,10 +22,10 @@
 - **S:** accepted Storytelling app/workflow with review, explicit current approval, host apply, receipt/readback and recovery.
 - **D:** direct operation in the same editor and version, with the same source cards and a plain manual handoff sheet.
 - No generative agent in either arm. A different agent setup requires a new protocol revision before recruitment.
-- Each participant uses both conditions and both matched packs. Randomize three S→D and two D→S; balance Pack A across each condition at 2/3.
+- Each participant uses both conditions on fresh clones of the same exact pack and starting snapshot. Randomize three S→D and two D→S; make both packs appear in each first-condition group. The randomized first period is the primary comparison; the repeated second period is descriptive because task practice can carry over.
 - Each pack has 18 photos, 12 video clips and 6 narration/audio items; five beats; one 75-second starter cut; two protected shots; two outputs dependent on one revised fact; one unsupported claim; and one log-only optional insert that stays unresolved.
 - The primary #112 completion gate is **safe completion**, not merely a saved file: a reopened 60–90 second project, correct source update, no invented evidence, protected shots intact, current human review, and readback before retry.
-- Five participants provide formative counts and paired descriptions only. No significance test or time-saving claim.
+- Five participants provide formative counts only. Report the randomized first-period groups (3 versus 2) and paired descriptions separately; no significance test or time-saving claim.
 
 ## Files
 
