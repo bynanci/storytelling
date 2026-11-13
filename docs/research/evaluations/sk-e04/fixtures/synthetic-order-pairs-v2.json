@@ -1,0 +1,650 @@
+{
+  "schema_version": "skill-evaluation-order-record/v2",
+  "record_kind": "synthetic_fixture",
+  "dimensions": [
+    "factual_accuracy",
+    "source_traceability",
+    "uncertainty_boundary",
+    "narrative_coherence",
+    "clarity",
+    "audience_fit",
+    "required_task_coverage"
+  ],
+  "cases": [
+    {
+      "case_id": "SYN-ORDER-01",
+      "shared_inputs": {
+        "packet_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "prompt_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "rubric_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "model": {
+          "provider": "synthetic",
+          "model_id": "fixture",
+          "model_revision": "fixture-v1",
+          "settings_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        },
+        "draft_x_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "draft_y_sha256": "f116ab343e487de7c218f159d5fa787fdaa912d497fc76a634f552a8671f5f86"
+      },
+      "runs": [
+        {
+          "run_id": "SYN-ORDER-01-XY",
+          "judge_context_id": "CTX-01-A",
+          "order": "X_then_Y",
+          "presented_ids": [
+            "X",
+            "Y"
+          ],
+          "raw": {
+            "preference": "X",
+            "ratings": {
+              "X": [
+                5,
+                5,
+                5,
+                5,
+                5,
+                5,
+                5
+              ],
+              "Y": [
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4
+              ]
+            },
+            "source_checks": [
+              {
+                "claim_id": "C1",
+                "state": "supported",
+                "evidence_location": "synthetic-source-passage"
+              }
+            ],
+            "rationale": "Synthetic fixture annotation rationale."
+          },
+          "adjudicated": {
+            "status": "complete",
+            "annotation": {
+              "preference": "X",
+              "ratings": {
+                "X": [
+                  5,
+                  5,
+                  5,
+                  5,
+                  5,
+                  5,
+                  5
+                ],
+                "Y": [
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4
+                ]
+              },
+              "source_checks": [
+                {
+                  "claim_id": "C1",
+                  "state": "supported",
+                  "evidence_location": "synthetic-source-passage"
+                }
+              ],
+              "rationale": "Synthetic fixture annotation rationale."
+            },
+            "reviewer_id": "SYNTHETIC-REVIEWER",
+            "reason": "Synthetic fixture adjudication."
+          },
+          "replicate_id": "R1",
+          "raw_output_sha256": "9f93a09c284142a37ce693b4164360fbf29323e330783cf2cdc8f149571de853",
+          "call_outcome": "valid_annotation",
+          "raw_output_ref": "SYN-ORDER-01-XY-OUTPUT"
+        },
+        {
+          "run_id": "SYN-ORDER-01-YX",
+          "judge_context_id": "CTX-01-B",
+          "order": "Y_then_X",
+          "presented_ids": [
+            "Y",
+            "X"
+          ],
+          "raw": {
+            "preference": "Y",
+            "ratings": {
+              "X": [
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4
+              ],
+              "Y": [
+                5,
+                5,
+                5,
+                5,
+                5,
+                5,
+                5
+              ]
+            },
+            "source_checks": [
+              {
+                "claim_id": "C1",
+                "state": "supported",
+                "evidence_location": "synthetic-source-passage"
+              }
+            ],
+            "rationale": "Synthetic fixture annotation rationale."
+          },
+          "adjudicated": {
+            "status": "complete",
+            "annotation": {
+              "preference": "Y",
+              "ratings": {
+                "X": [
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4
+                ],
+                "Y": [
+                  5,
+                  5,
+                  5,
+                  5,
+                  5,
+                  5,
+                  5
+                ]
+              },
+              "source_checks": [
+                {
+                  "claim_id": "C1",
+                  "state": "supported",
+                  "evidence_location": "synthetic-source-passage"
+                }
+              ],
+              "rationale": "Synthetic fixture annotation rationale."
+            },
+            "reviewer_id": "SYNTHETIC-REVIEWER",
+            "reason": "Synthetic fixture adjudication."
+          },
+          "replicate_id": "R1",
+          "raw_output_sha256": "6e0560c499f0fadc3a91be54351a2792e683a6f72461730db067618fd275688f",
+          "call_outcome": "valid_annotation",
+          "raw_output_ref": "SYN-ORDER-01-YX-OUTPUT"
+        },
+        {
+          "run_id": "SYN-ORDER-01-R2-XY",
+          "judge_context_id": "CTX-01-R2-A",
+          "replicate_id": "R2",
+          "order": "X_then_Y",
+          "presented_ids": [
+            "X",
+            "Y"
+          ],
+          "call_outcome": "timeout",
+          "raw_output_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "raw_output_ref": "SYN-ORDER-01-R2-XY-OUTPUT",
+          "raw": null,
+          "adjudicated": null
+        },
+        {
+          "run_id": "SYN-ORDER-01-R2-YX",
+          "judge_context_id": null,
+          "replicate_id": "R2",
+          "order": "Y_then_X",
+          "presented_ids": [
+            "Y",
+            "X"
+          ],
+          "call_outcome": "not_attempted",
+          "raw_output_sha256": null,
+          "raw_output_ref": null,
+          "raw": null,
+          "adjudicated": null
+        }
+      ]
+    },
+    {
+      "case_id": "SYN-ORDER-02",
+      "shared_inputs": {
+        "packet_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+        "prompt_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "rubric_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "model": {
+          "provider": "synthetic",
+          "model_id": "fixture",
+          "model_revision": "fixture-v1",
+          "settings_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        },
+        "draft_x_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "draft_y_sha256": "3648437fcae19ee5a78328fb2853cc1acce77d0daa23f96d0ead6af102f41d9e"
+      },
+      "runs": [
+        {
+          "run_id": "SYN-ORDER-02-XY",
+          "judge_context_id": "CTX-02-A",
+          "order": "X_then_Y",
+          "presented_ids": [
+            "X",
+            "Y"
+          ],
+          "raw": {
+            "preference": "X",
+            "ratings": {
+              "X": [
+                5,
+                4,
+                5,
+                4,
+                5,
+                4,
+                5
+              ],
+              "Y": [
+                4,
+                3,
+                4,
+                3,
+                4,
+                3,
+                4
+              ]
+            },
+            "source_checks": [],
+            "rationale": "Synthetic fixture annotation rationale."
+          },
+          "adjudicated": {
+            "status": "complete",
+            "annotation": {
+              "preference": "tie",
+              "ratings": {
+                "X": [
+                  5,
+                  4,
+                  5,
+                  4,
+                  5,
+                  4,
+                  5
+                ],
+                "Y": [
+                  4,
+                  3,
+                  4,
+                  3,
+                  4,
+                  3,
+                  4
+                ]
+              },
+              "source_checks": [],
+              "rationale": "Synthetic fixture annotation rationale."
+            },
+            "reviewer_id": "SYNTHETIC-REVIEWER",
+            "reason": "Synthetic fixture adjudication."
+          },
+          "replicate_id": "R1",
+          "raw_output_sha256": "5a1bbc0b62b8419c2ba3930ce8cfee5846deaf0c0126066fe890cbdf9eabcd92",
+          "call_outcome": "valid_annotation",
+          "raw_output_ref": "SYN-ORDER-02-XY-OUTPUT"
+        },
+        {
+          "run_id": "SYN-ORDER-02-YX",
+          "judge_context_id": "CTX-02-B",
+          "order": "Y_then_X",
+          "presented_ids": [
+            "Y",
+            "X"
+          ],
+          "raw": null,
+          "adjudicated": null,
+          "replicate_id": "R1",
+          "raw_output_sha256": "5b6a3350587569eff0d282de96ec9e92b51428363c2599f795846085cad90bdc",
+          "call_outcome": "refusal",
+          "raw_output_ref": "SYN-ORDER-02-YX-OUTPUT"
+        }
+      ]
+    },
+    {
+      "case_id": "SYN-ORDER-03",
+      "shared_inputs": {
+        "packet_sha256": "7777777777777777777777777777777777777777777777777777777777777777",
+        "prompt_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "rubric_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "model": {
+          "provider": "synthetic",
+          "model_id": "fixture",
+          "model_revision": "fixture-v1",
+          "settings_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        },
+        "draft_x_sha256": "6666666666666666666666666666666666666666666666666666666666666666",
+        "draft_y_sha256": "ca6ecfab489df393e6c677bf44aa46a6508e901e19c4ff01418fad436fc1a2b4"
+      },
+      "runs": [
+        {
+          "run_id": "SYN-ORDER-03-XY",
+          "judge_context_id": "CTX-03-A",
+          "order": "X_then_Y",
+          "presented_ids": [
+            "X",
+            "Y"
+          ],
+          "raw": {
+            "preference": "tie",
+            "ratings": {
+              "X": [
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4
+              ],
+              "Y": [
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4
+              ]
+            },
+            "source_checks": [
+              {
+                "claim_id": "C2",
+                "state": "insufficient",
+                "evidence_location": null
+              }
+            ],
+            "rationale": "Synthetic fixture annotation rationale."
+          },
+          "adjudicated": {
+            "status": "complete",
+            "annotation": {
+              "preference": "tie",
+              "ratings": {
+                "X": [
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4
+                ],
+                "Y": [
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4
+                ]
+              },
+              "source_checks": [
+                {
+                  "claim_id": "C2",
+                  "state": "insufficient",
+                  "evidence_location": null
+                }
+              ],
+              "rationale": "Synthetic fixture annotation rationale."
+            },
+            "reviewer_id": "SYNTHETIC-REVIEWER",
+            "reason": "Synthetic fixture adjudication."
+          },
+          "replicate_id": "R1",
+          "raw_output_sha256": "9d095649b3e0438a9cfaf78e398a254a7173b92d7630296d4ee9384246519e85",
+          "call_outcome": "valid_annotation",
+          "raw_output_ref": "SYN-ORDER-03-XY-OUTPUT"
+        },
+        {
+          "run_id": "SYN-ORDER-03-YX",
+          "judge_context_id": "CTX-03-B",
+          "order": "Y_then_X",
+          "presented_ids": [
+            "Y",
+            "X"
+          ],
+          "raw": {
+            "preference": "tie",
+            "ratings": {
+              "X": [
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4
+              ],
+              "Y": [
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4
+              ]
+            },
+            "source_checks": [
+              {
+                "claim_id": "C2",
+                "state": "insufficient",
+                "evidence_location": null
+              }
+            ],
+            "rationale": "Synthetic fixture annotation rationale."
+          },
+          "adjudicated": {
+            "status": "pending",
+            "reviewer_id": null,
+            "reason": null,
+            "annotation": null
+          },
+          "replicate_id": "R1",
+          "raw_output_sha256": "e4eb424cf37a8658b44df8b633ffa7532866ec6000dc7ff89b425f6490c3c652",
+          "call_outcome": "valid_annotation",
+          "raw_output_ref": "SYN-ORDER-03-YX-OUTPUT"
+        }
+      ]
+    },
+    {
+      "case_id": "SYN-ORDER-04",
+      "shared_inputs": {
+        "packet_sha256": "bcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbc",
+        "prompt_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "rubric_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "model": {
+          "provider": "synthetic",
+          "model_id": "fixture",
+          "model_revision": "fixture-v1",
+          "settings_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        },
+        "draft_x_sha256": "abababababababababababababababababababababababababababababababab",
+        "draft_y_sha256": "34d6c5fac80f93f82a0dc4d8bbbe8be6b91972ad67183ec33e2583b997849008"
+      },
+      "runs": [
+        {
+          "run_id": "SYN-ORDER-04-XY",
+          "judge_context_id": "CTX-04-A",
+          "order": "X_then_Y",
+          "presented_ids": [
+            "X",
+            "Y"
+          ],
+          "raw": {
+            "preference": "Y",
+            "ratings": {
+              "X": [
+                3,
+                3,
+                3,
+                3,
+                3,
+                3,
+                3
+              ],
+              "Y": [
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4
+              ]
+            },
+            "source_checks": [
+              {
+                "claim_id": "C3",
+                "state": "unavailable",
+                "evidence_location": null
+              }
+            ],
+            "rationale": "Synthetic fixture annotation rationale."
+          },
+          "adjudicated": {
+            "status": "complete",
+            "annotation": {
+              "preference": "Y",
+              "ratings": {
+                "X": [
+                  3,
+                  3,
+                  3,
+                  3,
+                  3,
+                  3,
+                  3
+                ],
+                "Y": [
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4
+                ]
+              },
+              "source_checks": [
+                {
+                  "claim_id": "C3",
+                  "state": "unavailable",
+                  "evidence_location": null
+                }
+              ],
+              "rationale": "Synthetic fixture annotation rationale."
+            },
+            "reviewer_id": "SYNTHETIC-REVIEWER",
+            "reason": "Synthetic fixture adjudication."
+          },
+          "replicate_id": "R1",
+          "raw_output_sha256": "e65d7a360512ccda76245b487e4837fd340015c23861446b790309f8a64627bb",
+          "call_outcome": "valid_annotation",
+          "raw_output_ref": "SYN-ORDER-04-XY-OUTPUT"
+        },
+        {
+          "run_id": "SYN-ORDER-04-YX",
+          "judge_context_id": "CTX-04-B",
+          "order": "Y_then_X",
+          "presented_ids": [
+            "Y",
+            "X"
+          ],
+          "raw": {
+            "preference": "Y",
+            "ratings": {
+              "X": [
+                3,
+                3,
+                3,
+                3,
+                3,
+                3,
+                3
+              ],
+              "Y": [
+                4,
+                4,
+                4,
+                4,
+                4,
+                4,
+                4
+              ]
+            },
+            "source_checks": [
+              {
+                "claim_id": "C3",
+                "state": "unavailable",
+                "evidence_location": null
+              }
+            ],
+            "rationale": "Synthetic fixture annotation rationale."
+          },
+          "adjudicated": {
+            "status": "complete",
+            "annotation": {
+              "preference": "Y",
+              "ratings": {
+                "X": [
+                  3,
+                  3,
+                  3,
+                  3,
+                  3,
+                  3,
+                  3
+                ],
+                "Y": [
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4
+                ]
+              },
+              "source_checks": [
+                {
+                  "claim_id": "C3",
+                  "state": "unavailable",
+                  "evidence_location": null
+                }
+              ],
+              "rationale": "Synthetic fixture annotation rationale."
+            },
+            "reviewer_id": "SYNTHETIC-REVIEWER",
+            "reason": "Synthetic fixture adjudication."
+          },
+          "replicate_id": "R1",
+          "raw_output_sha256": "f609ecfd82287a4d41a670f64f20d8dc837c7953bc3151f072f24b0105140620",
+          "call_outcome": "valid_annotation",
+          "raw_output_ref": "SYN-ORDER-04-YX-OUTPUT"
+        }
+      ]
+    }
+  ]
+}
