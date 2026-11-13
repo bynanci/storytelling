@@ -1,0 +1,27 @@
+name: SK-E04 order-analysis protocol fixtures
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/sk-e04.yml'
+      - 'docs/research/evaluations/sk-e04/**'
+      - 'scripts/sk_e04_order_analysis.py'
+      - 'scripts/test_sk_e04_order_analysis.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sk-e04.yml'
+      - 'docs/research/evaluations/sk-e04/**'
+      - 'scripts/sk_e04_order_analysis.py'
+      - 'scripts/test_sk_e04_order_analysis.py'
+
+permissions:
+  contents: read
+
+jobs:
+  paired-order-fixture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Validate protocol and analyze synthetic pair fixture
+        run: python3 scripts/test_sk_e04_order_analysis.py
