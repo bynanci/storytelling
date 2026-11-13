@@ -112,6 +112,47 @@ class OrderAnalysisTests(unittest.TestCase):
         self.assertIsNone(report["per_case"][2]["preference_profile_xy"])
         self.assertIsNone(report["per_case"][2]["mean_absolute_score_change_by_draft_and_dimension"]["X"]["clarity"])
 
+    def test_invalid_annotation_and_request_error_are_counted_as_failures(self):
+        for outcome in ("invalid_annotation", "request_error"):
+            with self.subTest(outcome=outcome):
+                record = copy.deepcopy(self.fixture)
+                run = next(run for case in record["cases"] for run in case["runs"]
+                           if run["call_outcome"] == "valid_annotation")
+                run["call_outcome"] = outcome
+                run["raw"] = None
+                run["adjudicated"] = None
+                if outcome == "request_error":
+                    run["raw_output_sha256"] = None
+                    run["raw_output_ref"] = None
+                report = analyze_record(record)
+                self.assertEqual(report["call_outcome_counts"][outcome], 1)
+                self.assertEqual(report["failed_call_count"], 3)
+                self.assertEqual(report["failed_pair_count"], 3)
+
+    def test_observed_run_requires_two_replicate_pairs_per_case(self):
+        observed = copy.deepcopy(self.fixture)
+        observed["record_kind"] = "observed_order_rerun"
+        with self.assertRaises(RecordError):
+            validate_record(observed)
+
+    def test_all_incomplete_record_has_null_aggregate_comparisons(self):
+        no_results = copy.deepcopy(self.fixture)
+        for case in no_results["cases"]:
+            for run in case["runs"]:
+                run.update({
+                    "call_outcome": "not_attempted",
+                    "judge_context_id": None,
+                    "raw_output_sha256": None,
+                    "raw_output_ref": None,
+                    "raw": None,
+                    "adjudicated": None,
+                })
+        report = analyze_record(no_results)
+        self.assertEqual(report["comparable_pair_count"], 0)
+        self.assertIsNone(report["matched_preference_flip_rate"])
+        self.assertIsNone(report["mean_x_minus_y_order_gap_shift"])
+        self.assertIsNone(report["mean_absolute_score_change_by_draft_and_dimension"]["X"]["clarity"])
+
     def test_missing_order_slot_cannot_be_silently_omitted(self):
         bad = copy.deepcopy(self.fixture)
         bad["cases"][0]["runs"].pop()
