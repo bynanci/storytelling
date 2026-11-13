@@ -1,0 +1,239 @@
+{
+  "schema_version": "skill-evaluation-cases/v1",
+  "record_kind": "synthetic_instruction_conformance_development_run",
+  "run": {
+    "run_id": "SK-E03-CODEX-2026-11-13",
+    "run_date": "2026-11-13",
+    "executor": "Codex assistant in the authoring session",
+    "model_family": "GPT-6",
+    "model_revision": null,
+    "skill_commit": "e6b27d852ef259faf392645a8461c7e6dc006302",
+    "guidance": [
+      "skills/storytelling/references/research-workflows.md#W1",
+      "skills/storytelling/references/research-workflows.md#W4",
+      "skills/storytelling/references/research-workflows.md#W5"
+    ],
+    "editorial_rules_revision": 2,
+    "capture_method": "The assistant applied the cited guidance while authoring each output in this task. Exact serving revision and independent rerun are unavailable.",
+    "blinded": false,
+    "human_observations": 0,
+    "holdout": false,
+    "narrative_quality_scored": false
+  },
+  "cases": [
+    {
+      "case_id": "C03-SYN-01",
+      "pattern": "release-versus-news attribution",
+      "sources": ["REL-01@1", "NEWS-01@1"],
+      "locales": {
+        "en": {
+          "prompt": "Write a brief for a general audience from both supplied records. Keep each statement attached to the source and speaker that made it. Preserve date, place, denominator, unit, time window, and scope qualifiers. Do not infer a cause.",
+          "input": "REL-01@1, Department of Labor release dated 5 August 2026: In Harbor District, a voluntary survey of 240 workers at 12 participating plants found the share reporting changed shifts rose from 18% to 24% between April and June 2026. The release assigns no cause; the sample covers only participating plants. NEWS-01@1, a news story by J. Lin dated 6 August 2026: independent analyst Mei Chen said, ‘A new shift policy may have contributed.’ The story does not attribute that view to the Department.",
+          "expected_invariants": [
+            "Report the release's 240 workers, 12 participating plants, 18% to 24% change, and April–June 2026 window.",
+            "Retain the voluntary sample and participating-plants scope.",
+            "Attribute the possible cause to analyst Mei Chen, not the Department of Labor.",
+            "Do not state that the release established a cause."
+          ],
+          "failure_conditions": [
+            "Attribute Mei Chen's explanation to the Department or to the survey itself.",
+            "Drop the denominator, unit of measurement, date window, or voluntary/sample-scope qualifier.",
+            "Turn ‘may have contributed’ into a confirmed cause."
+          ],
+          "observed_output": "The Department of Labor’s 5 August 2026 release reports that, in Harbor District, a voluntary survey of 240 workers at 12 participating plants found reports of changed shifts rose from 18% to 24% between April and June 2026. The release gives no cause and covers only participating plants. In a 6 August news story, J. Lin quoted independent analyst Mei Chen saying a new shift policy may have contributed; that is Chen’s view, not the Department’s conclusion.",
+          "assertions": {
+            "must_contain": ["240 workers", "12 participating plants", "voluntary", "April and June 2026", "Mei Chen", "not the Department’s conclusion"],
+            "must_not_contain": ["the Department concluded the policy caused"]
+          }
+        },
+        "zh-TW": {
+          "prompt": "根據兩份提供的紀錄，為一般讀者寫一段摘要。每項說法都要連回提出該說法的來源與說話者。保留日期、地點、分母、單位、時間範圍與範圍限定，不推論原因。",
+          "input": "REL-01@1，勞動部 2026 年 8 月 5 日發布：海港區一項自願參與的調查涵蓋 12 間參與工廠的 240 名員工；回報班次變動者的比例由 2026 年 4 月的 18% 上升至 6 月的 24%。新聞稿沒有歸因原因，樣本只涵蓋參與工廠。NEWS-01@1，記者 J. Lin 於 2026 年 8 月 6 日刊出的報導：獨立分析員 Mei Chen 表示「新的班次政策可能有影響」。該報導沒有把這個看法歸給勞動部。",
+          "expected_invariants": [
+            "保留 240 名員工、12 間參與工廠、18% 至 24% 與 2026 年 4 至 6 月的時間範圍。",
+            "保留自願樣本及僅涵蓋參與工廠的限制。",
+            "將可能原因歸給分析員 Mei Chen，不歸給勞動部或調查。",
+            "不得寫成新聞稿已確立原因。"
+          ],
+          "failure_conditions": [
+            "把 Mei Chen 的解釋歸給勞動部或調查本身。",
+            "漏掉分母、變動單位、時間範圍或自願樣本限制。",
+            "把「可能有影響」改成確定因果。"
+          ],
+          "observed_output": "勞動部 2026 年 8 月 5 日的新聞稿指出，海港區一項自願調查涵蓋 12 間參與工廠的 240 名員工；回報班次變動者的比例從 2026 年 4 月的 18% 升至 6 月的 24%。新聞稿未說明原因，且樣本僅限參與工廠。記者 J. Lin 於 8 月 6 日的報導引述獨立分析員 Mei Chen，稱新班次政策「可能有影響」；這是 Chen 的看法，不是勞動部的結論。",
+          "assertions": {
+            "must_contain": ["240 名員工", "12 間參與工廠", "自願調查", "2026 年 4 月", "Mei Chen", "不是勞動部的結論"],
+            "must_not_contain": ["勞動部證實政策造成"]
+          }
+        }
+      },
+      "assessment": {
+        "instruction_conformance": "self-reviewed pass",
+        "narrative_quality": "not scored",
+        "failed_model_output_observed": false,
+        "review_limit": "Not blinded or independently rated."
+      }
+    },
+    {
+      "case_id": "C04-C06-SYN-01",
+      "pattern": "agency statement versus organizer advice and speaker identity",
+      "sources": ["AGENCY-01@1", "ORGANIZER-01@1"],
+      "locales": {
+        "en": {
+          "prompt": "Prepare a short handoff note from the official notice and organizer note. Identify who supplied each instruction. Preserve the dates and location. Do not present non-agency logistics advice as an agency rule.",
+          "input": "AGENCY-01@1, notice issued 12 September 2026 by the Tainan Community Office: local groups may register for the East Garden session in Tainan through 1 October 2026. The notice contains no route, weather, or safety instructions. ORGANIZER-01@1, separate note signed by organizer Li Wei: ‘Use the west service road, bring water, and expect mud.’ Li Wei is an event organizer, not an agency spokesperson.",
+          "expected_invariants": [
+            "Keep the issuing body and 12 September 2026 issue date attached to the official notice.",
+            "Preserve local-group eligibility, East Garden in Tainan, and the 1 October 2026 registration deadline.",
+            "Attribute the west-road, water, and mud advice to organizer Li Wei.",
+            "State that the organizer's advice is not an agency instruction."
+          ],
+          "failure_conditions": [
+            "Attribute the route or preparation advice to the Tainan Community Office.",
+            "Omit Li Wei's identity or turn the advice into an official safety requirement.",
+            "Change the venue, date, or registration deadline."
+          ],
+          "observed_output": "The Tainan Community Office’s notice, issued 12 September 2026, says local groups may register for the East Garden session in Tainan through 1 October 2026. A separate note from organizer Li Wei recommends the west service road, bringing water, and expecting mud. Those are Li Wei’s event tips, not instructions from the agency.",
+          "assertions": {
+            "must_contain": ["12 September 2026", "1 October 2026", "East Garden", "Tainan", "Li Wei", "not instructions from the agency"],
+            "must_not_contain": ["the agency requires the west service road"]
+          }
+        },
+        "zh-TW": {
+          "prompt": "根據官方通知與主辦者備註，準備一段簡短交接說明。指出每項指示由誰提供，保留日期與地點。不可把非機關的交通或準備建議寫成官方規定。",
+          "input": "AGENCY-01@1，台南社區辦公室於 2026 年 9 月 12 日發布通知：地方團體可在 2026 年 10 月 1 日前報名參加台南東園場次。通知未提供路線、天候或安全指示。ORGANIZER-01@1，活動主辦者 Li Wei 簽署的另一份備註：「走西側服務道路、帶水，並預期路面泥濘。」Li Wei 是活動主辦者，不是機關發言人。",
+          "expected_invariants": [
+            "官方通知的發布日期是 2026 年 9 月 12 日，發布者是台南社區辦公室。",
+            "保留地方團體資格、台南東園場次及 2026 年 10 月 1 日報名期限。",
+            "將西側道路、帶水及泥濘資訊歸給主辦者 Li Wei。",
+            "說明主辦者建議不是機關指示。"
+          ],
+          "failure_conditions": [
+            "把路線或準備建議歸給台南社區辦公室。",
+            "漏掉 Li Wei 身分，或將建議改寫成官方安全規定。",
+            "更動場地、日期或報名期限。"
+          ],
+          "observed_output": "台南社區辦公室於 2026 年 9 月 12 日發布的通知表示，地方團體可在 2026 年 10 月 1 日前報名台南東園場次。另一份由主辦者 Li Wei 簽署的備註建議走西側服務道路、帶水並預期路面泥濘。這些是 Li Wei 提供的活動建議，不是機關指示。",
+          "assertions": {
+            "must_contain": ["2026 年 9 月 12 日", "2026 年 10 月 1 日", "東園", "台南", "Li Wei", "不是機關指示"],
+            "must_not_contain": ["機關要求走西側服務道路"]
+          }
+        }
+      },
+      "assessment": {
+        "instruction_conformance": "self-reviewed pass",
+        "narrative_quality": "not scored",
+        "failed_model_output_observed": false,
+        "review_limit": "Not blinded or independently rated."
+      }
+    },
+    {
+      "case_id": "C07-SYN-01",
+      "pattern": "required detail absent, optional omission, and explicit contradiction",
+      "sources": ["CALENDAR-01@2", "STATUS-01@1"],
+      "locales": {
+        "en": {
+          "prompt": "Draft a short event notice from the packet. Keep absent fields visibly unresolved, omit optional details that have no source, and do not repeat a claim contradicted by the packet. Include only a speaker identity if one is supplied.",
+          "input": "CALENDAR-01@2, Riverline volunteer calendar: the next repair day is scheduled for 24 October 2026 in the central-canal area of Northport. Exact meeting point is blank; speaker field is blank; attendance denominator/count is blank. Refreshments are optional and not mentioned. STATUS-01@1, status note dated 30 September 2026: no repair workshop was held in September. Requester's draft says ‘September 20 at Dock 9; 60 residents attended; speaker Sara Liu; refreshments provided.’",
+          "expected_invariants": [
+            "Keep the supported 24 October 2026 date and Northport central-canal area.",
+            "Mark exact meeting point, speaker identity, and attendance number/denominator as not supplied.",
+            "Treat the claim of a September workshop as contradicted by STATUS-01@1.",
+            "Do not treat omitted optional refreshments as a factual contradiction."
+          ],
+          "failure_conditions": [
+            "Invent Dock 9, Sara Liu, 60 residents, or refreshments.",
+            "Omit the known date or place qualifier while leaving invented exact details in place.",
+            "Call the September 20 workshop merely unavailable instead of noting that the status record contradicts it.",
+            "Treat an optional refreshment omission as evidence that refreshments were not provided."
+          ],
+          "observed_output": "Riverline volunteers plan a repair day for 24 October 2026 in Northport’s central-canal area. The supplied calendar does not give an exact meeting point, a speaker name, or an attendance count or denominator. STATUS-01@1 says no repair workshop was held in September, so I would not describe this as a September 20 event. Refreshments were not specified; the packet does not establish whether they will be provided.",
+          "assertions": {
+            "must_contain": ["24 October 2026", "Northport", "does not give an exact meeting point", "speaker name", "attendance count or denominator", "no repair workshop was held in September", "Refreshments were not specified"],
+            "must_not_contain": ["60 residents attended", "Sara Liu", "Dock 9"]
+          }
+        },
+        "zh-TW": {
+          "prompt": "根據資料包寫一則簡短活動通知。缺少的欄位須明確保留未解狀態；沒有來源的選填細節可省略；不可重述與資料包矛盾的說法。只有在資料提供講者身分時才能列出講者。",
+          "input": "CALENDAR-01@2，Riverline 志工行事曆：下一次修繕日預定於 2026 年 10 月 24 日在 Northport 中央運河一帶舉行。精確集合地點、講者欄位及出席人數／分母均空白。茶點為選填，資料未提及。STATUS-01@1，2026 年 9 月 30 日狀態紀錄：9 月沒有舉辦修繕工作坊。提出者草稿寫「9 月 20 日在 Dock 9；60 位居民出席；講者 Sara Liu；提供茶點。」",
+          "expected_invariants": [
+            "保留有來源支持的 2026 年 10 月 24 日及 Northport 中央運河一帶。",
+            "指出精確集合地點、講者身分及出席人數／分母未提供。",
+            "將 9 月工作坊說法標為與 STATUS-01@1 矛盾。",
+            "不要把省略選填茶點寫成事實矛盾。"
+          ],
+          "failure_conditions": [
+            "捏造 Dock 9、Sara Liu、60 位居民或茶點。",
+            "漏掉已知日期或地點範圍，卻保留捏造的精確細節。",
+            "將 9 月 20 日工作坊只標成資料不足，而未指出狀態紀錄與其矛盾。",
+            "把未提及選填茶點當成茶點未提供的證據。"
+          ],
+          "observed_output": "Riverline 志工預定於 2026 年 10 月 24 日在 Northport 中央運河一帶舉辦修繕日。提供的行事曆沒有精確集合地點、講者姓名、出席人數或分母。STATUS-01@1 記載 9 月沒有舉辦修繕工作坊，因此不能把這場活動寫成 9 月 20 日舉行。資料未說明茶點；現有資料無法判定是否會提供。",
+          "assertions": {
+            "must_contain": ["2026 年 10 月 24 日", "Northport", "沒有精確集合地點", "講者姓名", "出席人數或分母", "9 月沒有舉辦修繕工作坊", "資料未說明茶點"],
+            "must_not_contain": ["60 位居民出席", "Sara Liu", "Dock 9"]
+          }
+        }
+      },
+      "assessment": {
+        "instruction_conformance": "self-reviewed pass",
+        "narrative_quality": "not scored",
+        "failed_model_output_observed": false,
+        "review_limit": "Not blinded or independently rated. Optional omission and explicit contradiction were checked as separate states."
+      }
+    },
+    {
+      "case_id": "C24-SYN-01",
+      "pattern": "juxtaposed indicators must not become a causal claim",
+      "sources": ["ENERGY-01@1", "SALES-01@1", "STEWARD-01@1"],
+      "locales": {
+        "en": {
+          "prompt": "Write a concise evidence note from the three records. Preserve date windows, place, units, denominators, and the steward's identity. Distinguish parallel trends from an estimated relationship; do not claim that one metric caused the other.",
+          "input": "ENERGY-01@1, Northport quarterly dashboard: median weekly electricity use was 100 kWh per store in January–March 2026 among 40 reporting stores, and 88 kWh per store in April–June 2026 among 38 reporting stores. SALES-01@1, separate sales summary for Northport: median weekly sales were $1,100 per store in January–March among 36 reporting stores and $1,150 per store in April–June among 38 reporting stores. Store membership is not matched across sources. STEWARD-01@1, data steward Mina Park: ‘These are descriptive summaries; we did not run a causal analysis.’",
+          "expected_invariants": [
+            "Keep the two date windows, Northport location, kWh/store and dollars/store units, and each separate denominator.",
+            "Attribute the limitation to data steward Mina Park.",
+            "State that the stores are not matched and no causal analysis was run.",
+            "Do not claim that reduced electricity use caused increased sales."
+          ],
+          "failure_conditions": [
+            "Write that the energy change caused, drove, or produced the sales change.",
+            "Merge the different sample sizes or imply that the same stores were compared.",
+            "Drop units, dates, place, or Mina Park's qualification."
+          ],
+          "observed_output": "In Northport, median weekly electricity use fell from 100 kWh per store among 40 reporting stores in January–March 2026 to 88 kWh per store among 38 reporting stores in April–June. A separate, unmatched sales summary shows median weekly sales rising from $1,100 per store among 36 reporting stores to $1,150 per store among 38 in the same windows. Data steward Mina Park says these are descriptive summaries with no causal analysis. The parallel changes do not establish that lower electricity use caused higher sales.",
+          "assertions": {
+            "must_contain": ["100 kWh per store", "40 reporting stores", "88 kWh per store", "38 reporting stores", "$1,100 per store", "$1,150 per store", "36 reporting stores", "Mina Park", "no causal analysis", "do not establish that lower electricity use caused higher sales"],
+            "must_not_contain": ["electricity savings drove sales"]
+          }
+        },
+        "zh-TW": {
+          "prompt": "根據三份紀錄寫一段精簡的證據說明。保留日期範圍、地點、單位、分母與資料管理者身分。區分並列趨勢與估計關係，不可宣稱一項指標造成另一項變化。",
+          "input": "ENERGY-01@1，Northport 季度儀表板：2026 年 1 至 3 月，40 間回報商店的每店每週用電中位數為 100 kWh；4 至 6 月，38 間回報商店為每店每週 88 kWh。SALES-01@1，Northport 另一份銷售摘要：2026 年 1 至 3 月，36 間回報商店的每店每週銷售中位數為每週 $1,100；4 至 6 月，38 間為每週 $1,150。兩份來源的商店名單未配對。STEWARD-01@1，資料管理者 Mina Park 表示：「這些是描述性摘要，沒有執行因果分析。」",
+          "expected_invariants": [
+            "保留兩段日期、Northport、kWh／店及美元／店單位，以及各自不同的分母。",
+            "將限制歸給資料管理者 Mina Park。",
+            "說明商店未配對且沒有執行因果分析。",
+            "不得宣稱用電下降造成銷售增加。"
+          ],
+          "failure_conditions": [
+            "寫成用電變化造成、帶動或產生銷售變化。",
+            "合併不同樣本數，或暗示兩份來源追蹤相同商店。",
+            "漏掉單位、日期、地點或 Mina Park 的限制說明。"
+          ],
+          "observed_output": "Northport 的每店每週用電中位數，從 2026 年 1 至 3 月 40 間回報商店的 100 kWh，降至 4 至 6 月 38 間商店的 88 kWh。另一份未配對的銷售摘要顯示，同期每店每週銷售中位數從 36 間回報商店的 $1,100，升至 38 間的 $1,150。資料管理者 Mina Park 表示，這些是描述性摘要，沒有進行因果分析。兩項變化並列，無法證明用電下降造成銷售增加。",
+          "assertions": {
+            "must_contain": ["100 kWh", "40 間回報商店", "88 kWh", "38 間商店", "$1,100", "$1,150", "36 間回報商店", "Mina Park", "因果分析", "無法證明用電下降造成銷售增加"],
+            "must_not_contain": ["節省用電帶動銷售"]
+          }
+        }
+      },
+      "assessment": {
+        "instruction_conformance": "self-reviewed pass",
+        "narrative_quality": "not scored",
+        "failed_model_output_observed": false,
+        "review_limit": "Not blinded or independently rated. The structural check does not establish semantic truth."
+      }
+    }
+  ]
+}
