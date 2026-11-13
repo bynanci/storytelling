@@ -1,0 +1,63 @@
+{
+  "schema_version": "skill-evaluation-order-record/v1",
+  "record_kind": "synthetic_fixture",
+  "dimensions": ["factual_accuracy", "source_traceability", "uncertainty_boundary", "narrative_coherence", "clarity", "audience_fit", "required_task_coverage"],
+  "cases": [
+    {
+      "case_id": "SYN-ORDER-01",
+      "shared_inputs": {
+        "draft_pair_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "packet_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "prompt_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "rubric_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+        "model": {"provider": "synthetic", "model_id": "fixture", "model_revision": "fixture-v1", "settings_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"}
+      },
+      "runs": [
+        {"run_id": "SYN-ORDER-01-XY", "judge_context_id": "CTX-01-A", "order": "X_then_Y", "presented_ids": ["X", "Y"], "raw": {"preference": "X", "ratings": {"X": [5,5,5,5,5,5,5], "Y": [4,4,4,4,4,4,4]}, "source_checks": [{"claim_id": "C1", "state": "supported"}]}, "adjudicated": {"status": "complete", "annotation": {"preference": "X", "ratings": {"X": [5,5,5,5,5,5,5], "Y": [4,4,4,4,4,4,4]}, "source_checks": [{"claim_id": "C1", "state": "supported"}]}}},
+        {"run_id": "SYN-ORDER-01-YX", "judge_context_id": "CTX-01-B", "order": "Y_then_X", "presented_ids": ["Y", "X"], "raw": {"preference": "Y", "ratings": {"X": [4,4,4,4,4,4,4], "Y": [5,5,5,5,5,5,5]}, "source_checks": [{"claim_id": "C1", "state": "supported"}]}, "adjudicated": {"status": "complete", "annotation": {"preference": "Y", "ratings": {"X": [4,4,4,4,4,4,4], "Y": [5,5,5,5,5,5,5]}, "source_checks": [{"claim_id": "C1", "state": "supported"}]}}}
+      ]
+    },
+    {
+      "case_id": "SYN-ORDER-02",
+      "shared_inputs": {
+        "draft_pair_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "packet_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+        "prompt_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+        "rubric_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+        "model": {"provider": "synthetic", "model_id": "fixture", "model_revision": "fixture-v1", "settings_sha256": "5555555555555555555555555555555555555555555555555555555555555555"}
+      },
+      "runs": [
+        {"run_id": "SYN-ORDER-02-XY", "judge_context_id": "CTX-02-A", "order": "X_then_Y", "presented_ids": ["X", "Y"], "raw": {"preference": "X", "ratings": {"X": [5,4,5,4,5,4,5], "Y": [4,3,4,3,4,3,4]}, "source_checks": []}, "adjudicated": {"status": "complete", "annotation": {"preference": "tie", "ratings": {"X": [5,4,5,4,5,4,5], "Y": [4,3,4,3,4,3,4]}, "source_checks": []}}},
+        {"run_id": "SYN-ORDER-02-YX", "judge_context_id": "CTX-02-B", "order": "Y_then_X", "presented_ids": ["Y", "X"], "raw": {"preference": "X", "ratings": {"X": [5,4,5,4,5,4,5], "Y": [4,3,4,3,4,3,4]}, "source_checks": []}, "adjudicated": {"status": "pending", "annotation": null}}
+      ]
+    },
+    {
+      "case_id": "SYN-ORDER-03",
+      "shared_inputs": {
+        "draft_pair_sha256": "6666666666666666666666666666666666666666666666666666666666666666",
+        "packet_sha256": "7777777777777777777777777777777777777777777777777777777777777777",
+        "prompt_sha256": "8888888888888888888888888888888888888888888888888888888888888888",
+        "rubric_sha256": "9999999999999999999999999999999999999999999999999999999999999999",
+        "model": {"provider": "synthetic", "model_id": "fixture", "model_revision": "fixture-v1", "settings_sha256": "0000000000000000000000000000000000000000000000000000000000000000"}
+      },
+      "runs": [
+        {"run_id": "SYN-ORDER-03-XY", "judge_context_id": "CTX-03-A", "order": "X_then_Y", "presented_ids": ["X", "Y"], "raw": {"preference": "tie", "ratings": {"X": [4,4,4,4,4,4,4], "Y": [4,4,4,4,4,4,4]}, "source_checks": [{"claim_id": "C2", "state": "insufficient"}]}, "adjudicated": {"status": "complete", "annotation": {"preference": "tie", "ratings": {"X": [4,4,4,4,4,4,4], "Y": [4,4,4,4,4,4,4]}, "source_checks": [{"claim_id": "C2", "state": "insufficient"}]}}},
+        {"run_id": "SYN-ORDER-03-YX", "judge_context_id": "CTX-03-B", "order": "Y_then_X", "presented_ids": ["Y", "X"], "raw": {"preference": "tie", "ratings": {"X": [4,4,4,4,4,4,4], "Y": [4,4,4,4,4,4,4]}, "source_checks": [{"claim_id": "C2", "state": "insufficient"}]}, "adjudicated": {"status": "complete", "annotation": {"preference": "tie", "ratings": {"X": [4,4,4,4,4,4,4], "Y": [4,4,4,4,4,4,4]}, "source_checks": [{"claim_id": "C2", "state": "insufficient"}]}}}
+      ]
+    },
+    {
+      "case_id": "SYN-ORDER-04",
+      "shared_inputs": {
+        "draft_pair_sha256": "abababababababababababababababababababababababababababababababab",
+        "packet_sha256": "bcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbc",
+        "prompt_sha256": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+        "rubric_sha256": "dededededededededededededededededededededededededededededededede",
+        "model": {"provider": "synthetic", "model_id": "fixture", "model_revision": "fixture-v1", "settings_sha256": "efefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefef"}
+      },
+      "runs": [
+        {"run_id": "SYN-ORDER-04-XY", "judge_context_id": "CTX-04-A", "order": "X_then_Y", "presented_ids": ["X", "Y"], "raw": {"preference": "Y", "ratings": {"X": [3,3,3,3,3,3,3], "Y": [4,4,4,4,4,4,4]}, "source_checks": [{"claim_id": "C3", "state": "unavailable"}]}, "adjudicated": {"status": "complete", "annotation": {"preference": "Y", "ratings": {"X": [3,3,3,3,3,3,3], "Y": [4,4,4,4,4,4,4]}, "source_checks": [{"claim_id": "C3", "state": "unavailable"}]}}},
+        {"run_id": "SYN-ORDER-04-YX", "judge_context_id": "CTX-04-B", "order": "Y_then_X", "presented_ids": ["Y", "X"], "raw": {"preference": "Y", "ratings": {"X": [3,3,3,3,3,3,3], "Y": [4,4,4,4,4,4,4]}, "source_checks": [{"claim_id": "C3", "state": "unavailable"}]}, "adjudicated": {"status": "complete", "annotation": {"preference": "Y", "ratings": {"X": [3,3,3,3,3,3,3], "Y": [4,4,4,4,4,4,4]}, "source_checks": [{"claim_id": "C3", "state": "unavailable"}]}}}
+      ]
+    }
+  ]
+}
