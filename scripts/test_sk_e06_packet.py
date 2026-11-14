@@ -10,6 +10,9 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
+
+import sk_e06_packet
 
 from sk_e06_packet import PacketError, load_packet, validate_packet
 
@@ -117,6 +120,58 @@ class PacketTests(unittest.TestCase):
         path.write_bytes(b'{"metric":NaN}')
         with self.assertRaisesRegex(PacketError, 'non-finite constant'):
             load_packet(self.root)
+
+    def test_hash_and_semantic_checks_use_one_artifact_snapshot(self):
+        name,case=self.first_case()
+        target=self.root/name
+        original=target.read_bytes()
+        changed=copy.deepcopy(case)
+        changed['locales']['en']['prompt']+=' CHANGED AFTER HASH'
+        changed_bytes=(json.dumps(changed,ensure_ascii=False,indent=2)+'\n').encode('utf-8')
+        native_read=Path.read_bytes
+        reads=0
+
+        def changing_read(path):
+            nonlocal reads
+            if path==target:
+                reads+=1
+                return original if reads==1 else changed_bytes
+            return native_read(path)
+
+        with mock.patch.object(Path,'read_bytes',changing_read):
+            with mock.patch.object(sk_e06_packet,'_case',wraps=sk_e06_packet._case) as checked_case:
+                result=validate_packet(self.packet,self.root)
+        self.assertEqual(result['scope'],'reference_packet_integrity_only')
+        inspected=checked_case.call_args_list[0].args[0]
+        self.assertEqual(inspected['locales']['en']['prompt'],case['locales']['en']['prompt'])
+        self.assertEqual(reads,1)
+
+    def test_resolution_failure_is_a_packet_error(self):
+        target=self.root/self.packet['case_files'][0]
+        native_resolve=Path.resolve
+
+        def cyclic_resolve(path,*args,**kwargs):
+            if path==target:
+                raise RuntimeError('simulated symlink resolution cycle')
+            return native_resolve(path,*args,**kwargs)
+
+        with mock.patch.object(Path,'resolve',cyclic_resolve):
+            with self.assertRaises(PacketError):
+                validate_packet(self.packet,self.root)
+
+    def test_symlink_cycle_cli_reports_safe_error_without_traceback(self):
+        target=self.root/self.packet['case_files'][0]
+        target.unlink()
+        try:
+            target.symlink_to(target.name)
+        except (OSError,NotImplementedError) as error:
+            self.skipTest(f'creating symlinks is unavailable: {type(error).__name__}')
+        process=subprocess.run([sys.executable,str(ROOT/'scripts/sk_e06_packet.py'),str(self.root)],
+                               capture_output=True,text=True)
+        self.assertEqual(process.returncode,1)
+        self.assertEqual(process.stderr,'')
+        result=json.loads(process.stdout)
+        self.assertEqual(result['error']['code'],'sk_e06.packet_invalid')
 
     def test_cli_reports_integrity_only(self):
         p=subprocess.run([sys.executable,str(ROOT/'scripts/sk_e06_packet.py'),str(PACKET)],capture_output=True,text=True,check=True)
