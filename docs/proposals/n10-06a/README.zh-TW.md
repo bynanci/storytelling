@@ -3,7 +3,7 @@
 
 [English](README.md) · 繁體中文 · [Issue #129](https://github.com/bynanci/storytelling/issues/129) · [ADR 0012 候選](../../adr/0012-draft-exact-video-range-input.md)
 
-**狀態：draft-only G2 已接受；G3 實作與本機回歸完成，G4 審查中；PR 保留 Draft。** 請求者於 2026-11-14 接受候選 `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf`。[決定紀錄](../../validation/n10-06a-g2-decision.md)保留原回覆與範圍。本次 base main 為 `52dc6c315f7b3d20693f3c51e052509997ab791b`。命令／API 仍為選擇啟用的 draft 介面；穩定 SDK facade 由 #107 決定。實際執行與最終 head 結果須於實作後補上收據。[Gate 盤點](../../validation/n10-06a-gates.md)記錄既有能力與依賴。
+**狀態：draft-only G2 已接受；G3 實作與本機回歸完成，實作 head 59516f2 的自動化 G4 已通過；工程合併仍須目前 head 的審查與 CI。** 請求者於 2026-11-14 接受候選 `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf`。[決定紀錄](../../validation/n10-06a-g2-decision.md)保留原回覆與範圍。本次 base main 為 `52dc6c315f7b3d20693f3c51e052509997ab791b`。命令／API 仍為選擇啟用的 draft 介面；穩定 SDK facade 由 #107 決定。[實際 RED／GREEN 與執行收據](../../validation/n10-06a-exact-input.md)已保留；實作 head 59516f2 的 [CI run #483](https://github.com/bynanci/storytelling/actions/runs/43538270184) 六項全過，後續 head 須重新檢查。[Gate 盤點](../../validation/n10-06a-gates.md)記錄既有能力與依賴。
 
 ## 作者任務與候選輸入
 
@@ -97,6 +97,6 @@ cargo run --quiet --locked -p storytelling-cli --features draft-video-input -- \
 
 > 接受此 G2 候選，授權 A 的 RED／GREEN 實作，保留 Draft（建議）
 
-[決定紀錄](../../validation/n10-06a-g2-decision.md)授權依 ADR 0012 已審閱的文法、API、輸出及診斷進行聚焦 A 實作；紀錄未推定簽署身分或獨立審查。已接受候選若有實質變更，須修訂 G2 決定。G4 證據與本次不得自動合併的限制仍適用。
+[決定紀錄](../../validation/n10-06a-g2-decision.md)授權依 ADR 0012 已審閱的文法、API、輸出及診斷進行聚焦 A 實作；紀錄未推定簽署身分或獨立審查。已接受候選若有實質變更，須修訂 G2 決定。[後續授權](../../validation/n10-06a-g2-decision.md#later-continuation-verified-engineering-merge-authorization)允許完成且驗證的工程 PR 於目前 head 通過審查與 CI 後合併；獨立作者、媒體、宿主及 G5 成果仍須各自證據。
 
 B 的逐列預檢／advisory UX 接續已接受且驗證的 A；未來 SDK／UI 遵循 #107–#109。C 須獨立的本機檔案契約、威脅模型與隱私 G2。#103／PR #117 及 #104–#106 未完成前，D 維持 dry-run 清單。任何隱藏 V1 首個錯誤、靜默夾限、補造缺素材、把 metadata 當內容證明、允許自我核准或自動重試 unknown 的方案，都須縮小或停止。回退時移除 helper／feature；既有 V1 流程仍可使用。

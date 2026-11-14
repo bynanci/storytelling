@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: MIT -->
 # N10-06A · Exact range input implementation evidence
 
-Task N10-06A / N-R10-06A, [#129](https://github.com/bynanci/storytelling/issues/129), [Draft PR #130](https://github.com/bynanci/storytelling/pull/130).
+Task N10-06A / N-R10-06A, [#129](https://github.com/bynanci/storytelling/issues/129), [PR #130](https://github.com/bynanci/storytelling/pull/130).
 Base: `52dc6c315f7b3d20693f3c51e052509997ab791b`.
 The requester accepted the draft-only G2 candidate `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf` and authorized A RED/GREEN; see the [decision record](n10-06a-g2-decision.md).
 
@@ -33,7 +33,7 @@ Implementation source commit: `2f906181d075d56a19d18fd29a0ec1a645ba0a78`. [RED/G
 
 [Three actual CLI previews and replay receipts](n10-06a/fixture-replay.json) match their expected V1 documents, retain original input bytes and agree with a subsequent `render-video-coverage` invocation. The seconds and 30 fps examples yield identical V1 documents; the NTSC example yields `1001/200` at frame boundary 150. All three preserve S03 unresolved and declaration-only blocking. No media was opened.
 
-Final-head hosted CI is recorded on PR #130. The CI matrix now runs the opt-in regression suite on Windows/Linux/macOS in addition to the default suite, and release/Clippy/rustdoc exercise the opt-in path. The PR remains Draft and must not merge automatically.
+Implementation head `59516f24f4d829a3d695c115d2f94e208a78cdea` passed all six hosted jobs in [CI run #483](https://github.com/bynanci/storytelling/actions/runs/43538270184). The CI matrix runs the opt-in regression suite on Windows/Linux/macOS in addition to the default suite, and release/Clippy/rustdoc exercise the opt-in path. The [later continuation](n10-06a-g2-decision.md#later-continuation-verified-engineering-merge-authorization) authorizes merging completed, verified engineering work after review and required CI on the current head. Any later head change requires fresh checks; independent author acceptance remains unobserved.
 
 ## Evidence states and follow-ups
 
@@ -46,6 +46,7 @@ Final-head hosted CI is recorded on PR #130. The CI matrix now runs the opt-in r
 | Author content confirmation | Not observed |
 | Host capabilities, target revision/readback | Not verified; #104–#106 remain pending |
 | Current execution authority | Not supplied by this helper; #103/PR #117 remains independent |
-| G5 release / merge | Not authorized by this task; keep Draft |
+| Engineering PR merge | Authorized by the later continuation after current-head checks and review |
+| G5 publication | Not authorized |
 
 B adds actionable multi-field advisory UX after A is reviewed; V1 stays authoritative. C requires a trusted read-only adapter contract/threat model, explicit file-selection/privacy scope and reliable byte/metadata binding. D stays a dry-run checklist with five separate evidence states. If any binding is ambiguous, retain unknown/not_verified; never infer host support, self-approval or safe retry from declaration readiness. Removing the opt-in feature/command is the rollback; existing inputs need no migration.

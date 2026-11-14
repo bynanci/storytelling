@@ -5,7 +5,7 @@
 - **Source:** requester response in the active Codex conversation for [Issue #129](https://github.com/bynanci/storytelling/issues/129).
 - **Accepted candidate commit:** `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf`.
 - **Base main:** `52dc6c315f7b3d20693f3c51e052509997ab791b`.
-- **Decision scope:** focused N10-06A draft-only G2; G3 RED/GREEN implementation authorized; PR remains Draft.
+- **Original decision scope:** focused N10-06A draft-only G2; G3 RED/GREEN implementation authorized; PR remained Draft at that stage. The later merge authorization below updates only the review/merge restriction.
 
 The requester selected this response verbatim:
 
@@ -22,10 +22,21 @@ The decision accepts the candidate [ADR 0012](../adr/0012-draft-exact-video-rang
 - The helper diagnostics and ordering, checked integer/GCD algorithm, strict JSON boundary, original-input preservation and unchanged final V1 validation authority.
 - The frozen positive/negative synthetic acceptance vectors, followed by observed RED, implementation, GREEN and final-head regression/CI evidence.
 
-The grammar, fields, API, output and diagnostics at that candidate remain the reviewed implementation target. A material change to them requires a revised G2 decision. G3 is now in progress; this record supplies no passing implementation or G4 result. RED/GREEN and CI receipts must identify their own tested commits.
+The grammar, fields, API, output and diagnostics at that candidate remain the reviewed implementation target. A material change to them requires a revised G2 decision. The [implementation record](n10-06a-exact-input.md) supplies the subsequent RED/GREEN and automated G4 receipts. This G2 decision itself supplies no passing implementation or human result; every test/CI receipt identifies its own tested commit.
 
 ## Gates that remain separate
 
 The draft helper is not the stable SDK facade required by #107. B's richer UX, C's local-file/media contract and privacy review, and D's dry-run checklist retain their separate dependencies. No media access or file-identity proof is authorized by this G2 response.
 
-#103 / Draft PR #117 and #104–#106 retain their pending production authority, executor, recovery and host-qualification gates. There is no FilmCraft mutation, Agent self-approval, automatic retry of an unknown outcome, host/readback acceptance, independent author observation or G5 release evidence in this decision. The current task prohibits automatic merge; the PR remains Draft for review.
+#103 / PR #117 design proposal and #104–#106 retain their pending production authority, executor, recovery and host-qualification gates. There is no FilmCraft mutation, Agent self-approval, automatic retry of an unknown outcome, host/readback acceptance, independent author observation or G5 release evidence in this decision. The original implementation task prohibited automatic merge; the later authorization below permits merging completed, verified engineering work after current-head review and CI.
+
+
+## Later continuation: verified engineering merge authorization
+
+After receiving the implementation report and CI results, the requester gave this instruction verbatim in the active conversation:
+
+> 繼續任務並想辦法解決所有issues 與pr 最終驗收完merge
+
+This authorizes progressing completed, verified PRs through review and merge. For N10-06A, the earlier requirement to keep PR #130 Draft is superseded once the current head passes required checks and review. The implementation head `59516f24f4d829a3d695c115d2f94e208a78cdea` passed all six jobs in [CI run #483](https://github.com/bynanci/storytelling/actions/runs/43538270184); later head changes need fresh checks.
+
+This continuation does not supply a technical G2 acceptance or W01 authorization for #103 / PR #117, an independent author session, media identity or metadata evidence, host qualification/readback, current execution authority, or a G5 publication decision. Issue #129 remains open for B/C/D and its outstanding human evidence. No signature or organizational role is inferred from the request.

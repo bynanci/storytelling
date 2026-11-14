@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: MIT -->
 # ADR 0012 · Exact video-range input helper (N10-06A candidate)
 
-- **Status: draft-only G2 accepted by the requester on 2026-11-14 for candidate `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf`; G3 implemented; G4 review in progress.** See the [exact decision and remaining gates](../validation/n10-06a-g2-decision.md). The candidate text below remains the accepted implementation basis; stable SDK, human, media, host, release and merge gates remain separate.
+- **Status: draft-only G2 accepted by the requester on 2026-11-14 for candidate `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf`; G3 implemented; automated G4 passed at implementation head 59516f2; current-head review required.** See the [exact decision and remaining gates](../validation/n10-06a-g2-decision.md). The candidate text below remains the accepted implementation basis; stable SDK, human, media, host and release gates remain separate. The [later continuation](../validation/n10-06a-g2-decision.md#later-continuation-verified-engineering-merge-authorization) permits engineering merge after current-head CI/review.
 - **Issue:** [#129](https://github.com/bynanci/storytelling/issues/129), N10-06A / N-R10-06A.
 - **Base:** `52dc6c315f7b3d20693f3c51e052509997ab791b`, checked 2026-11-14 UTC.
 - **Scope:** one draft-only input helper; the accepted [ADR 0010](0010-narrative-video-coverage-v1.md), V1 schemas, public Rust DTOs, 21 diagnostics and existing CLI semantics are unchanged.
