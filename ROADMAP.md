@@ -61,6 +61,7 @@ The video work targets an editable 60–90 second rough cut from 30–50 selecte
 | M1-01 → M1-02 → M1-03 | M0. Prove the limited interchange before a real host test. |
 | M2-01 → M2-02 → M2-03 | M2-01 follows M1-01. Requirements and fixtures can proceed in parallel. |
 | M3-01/P1 → P2 → M3-02 → M3-03 | P1 requires M1-03 and M2-02. P2 connects the selected proposal to read-only OTIO review. |
+| M3-04 / #103 → #104 → #105 → #106 | [Execution V1 proposal](docs/migration/EXECUTION_CONTRACT_V1.md) freezes identity/authority, project exclusion, readback and no blind retry. G2 is pending; executor, recovery and host acceptance are separate gates. |
 | M4 → M5 → v1.0 | M4 requires M2-03 and acceptance of production M3-03 execution and readback. |
 
 Read the [P2 contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md), [journal evidence](https://github.com/bynanci/storytelling/pull/56) and [M3-03 test](docs/validation/m3-03-filmcraft-execution.md). The test reproduces a successful import with a lost reply. After a timeout, read back the project. Stop if the operation might still run or the result remains ambiguous.

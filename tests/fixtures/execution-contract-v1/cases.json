@@ -1,0 +1,562 @@
+{
+  "schema_version": 1,
+  "status": "test-design-only",
+  "base_request": "valid-request.json",
+  "cases": [
+    {
+      "id": "EX01",
+      "requirement": "M3-EX01",
+      "scenario": "fresh_compiler_result",
+      "expected": {
+        "outcome": "ready",
+        "code": null,
+        "path": "$",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Admit exact bound inputs; pure check performs no host I/O."
+    },
+    {
+      "id": "EX02",
+      "requirement": "M3-EX02",
+      "scenario": "current_approval_then_complete_readback",
+      "expected": {
+        "outcome": "applied",
+        "code": null,
+        "path": "$",
+        "fake_mutation_calls": 1,
+        "fake_readback_calls": 1,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Assert evidence and consumed approval/dispatch marker durable before the fake call."
+    },
+    {
+      "id": "EX03",
+      "requirement": "M3-EX01",
+      "scenario": "changed_current_proposal_cut_or_loss",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.stale_review",
+        "path": "/intent/review_binding_sha256",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Run one subcase for source, cut, loss, proposal bytes and context; retain bounded P2 stale details in private evidence, not extra public error fields."
+    },
+    {
+      "id": "EX04",
+      "requirement": "M3-EX03",
+      "scenario": "actual_host_profile_or_binary_differs",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.host_mismatch",
+        "path": "/intent/host_profile_id",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Each host/profile/version/binary/capability mismatch is a distinct subcase."
+    },
+    {
+      "id": "EX05",
+      "requirement": "M3-EX03",
+      "scenario": "actual_target_revision_changed_under_guard",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.target_mismatch",
+        "path": "/intent/target_revision_sha256",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Declared freshness can be true while actual target is stale."
+    },
+    {
+      "id": "EX06",
+      "requirement": "M3-EX02",
+      "scenario": "authority_provider_missing_or_denies",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.unauthorized",
+        "path": "/approval_ref",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Subcases: no provider/session/decision, wrong principal/action/resource, revoked decision."
+    },
+    {
+      "id": "EX07",
+      "requirement": "M3-EX02",
+      "scenario": "pr28_signed_grant_supplied",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.unsupported_approval",
+        "path": "/approval_ref",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Both invalid signature and mathematically valid caller-selected key cannot become an execution grant; preserve existing approval tests separately."
+    },
+    {
+      "id": "EX08",
+      "requirement": "M3-EX02",
+      "scenario": "approval_expired_or_clock_uncertain",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.approval_expired",
+        "path": "/approval_ref",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Boundary now==expiry rejects; clock rollback fails closed."
+    },
+    {
+      "id": "EX09",
+      "requirement": "M3-EX02",
+      "scenario": "policy_revoked_before_dispatch_commit",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.policy_changed",
+        "path": "/approval_ref",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Concurrent policy change wins serialization before approval consumption."
+    },
+    {
+      "id": "EX10",
+      "requirement": "M3-EX02",
+      "scenario": "consumed_grant_on_new_operation",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.replayed_grant",
+        "path": "/approval_ref",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "New operation cannot reuse consumed approval."
+    },
+    {
+      "id": "EX11",
+      "requirement": "M3-EX04",
+      "scenario": "identical_completed_operation_replayed",
+      "expected": {
+        "outcome": "applied",
+        "code": null,
+        "path": "$",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Return exact stored receipt after read authorization; no new attempt/readback required."
+    },
+    {
+      "id": "EX12",
+      "requirement": "M3-EX04",
+      "scenario": "same_key_different_fresh_compiled_identity",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.idempotency_conflict",
+        "path": "/intent/operation_id",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Recompute request digest/P2 correctly, so the case reaches stored-identity comparison."
+    },
+    {
+      "id": "EX13",
+      "requirement": "M3-EX04",
+      "scenario": "different_operation_same_project_or_alias",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.writer_conflict",
+        "path": "/intent/project_resource_id",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Competing operations and aliases resolve to one configured production registry/store. An unregistered second-store setup is rejected as unsupported; distributed fencing is not claimed."
+    },
+    {
+      "id": "EX14",
+      "requirement": "M3-EX05",
+      "scenario": "unknown_replayed_with_fresh_approval",
+      "expected": {
+        "outcome": "unknown",
+        "code": "execution.unknown_outcome",
+        "path": "/intent/operation_id",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Persist unknown/quarantine across restart; approval never clears it."
+    },
+    {
+      "id": "EX15",
+      "requirement": "M3-EX05",
+      "scenario": "unchanged_readback_old_process_still_running",
+      "expected": {
+        "outcome": "unknown",
+        "code": "execution.unknown_outcome",
+        "path": "/readback",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 1,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Lease expiry/direct-child kill is not process-group or host quiescence."
+    },
+    {
+      "id": "EX16",
+      "requirement": "M3-EX05",
+      "scenario": "effect_applied_reply_lost_complete_readback",
+      "expected": {
+        "outcome": "applied",
+        "code": null,
+        "path": "$",
+        "fake_mutation_calls": 1,
+        "fake_readback_calls": 1,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Exactly one fake mutation; readback classifies effect; no resend or Undo."
+    },
+    {
+      "id": "EX17",
+      "requirement": "M3-EX06",
+      "scenario": "host_success_without_native_readback",
+      "expected": {
+        "outcome": "unknown",
+        "code": "execution.unknown_outcome",
+        "path": "/readback",
+        "fake_mutation_calls": 1,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Keep AppliedReported, not applied."
+    },
+    {
+      "id": "EX18",
+      "requirement": "M3-EX06",
+      "scenario": "wrong_target_or_incomplete_readback",
+      "expected": {
+        "outcome": "unknown",
+        "code": "execution.readback_mismatch",
+        "path": "/readback",
+        "fake_mutation_calls": 1,
+        "fake_readback_calls": 1,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Wrong attempt/profile/source/range/count or only inspect summary cannot prove applied."
+    },
+    {
+      "id": "EX19",
+      "requirement": "M3-EX06",
+      "scenario": "verified_partial_readback",
+      "expected": {
+        "outcome": "partial",
+        "code": "execution.partial_outcome",
+        "path": "/readback",
+        "fake_mutation_calls": 1,
+        "fake_readback_calls": 1,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Preserve effect and target quarantine; zero retry/Undo."
+    },
+    {
+      "id": "EX20",
+      "requirement": "M3-EX05",
+      "scenario": "verified_baseline_and_quiescence",
+      "expected": {
+        "outcome": "not_applied",
+        "code": "execution.retry_forbidden",
+        "path": "/intent/operation_id",
+        "fake_mutation_calls": 1,
+        "fake_readback_calls": 1,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "#104 remains single-attempt even when not_applied; #105 needs new approval/explicit retry."
+    },
+    {
+      "id": "EX21",
+      "requirement": "M3-EX04",
+      "scenario": "late_old_owner_or_attempt_receipt",
+      "expected": {
+        "outcome": "unknown",
+        "code": "execution.stale_owner",
+        "path": "/attempt",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Snapshot/evidence unchanged by late response or readback. Existing uncertain result/receipt remains unknown despite rejection of the late update."
+    },
+    {
+      "id": "EX22",
+      "requirement": "M3-EX04",
+      "scenario": "database_commit_fails_before_dispatch",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.storage_failure",
+        "path": "/journal",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "No marker/approval half-write; no fake mutation."
+    },
+    {
+      "id": "EX23",
+      "requirement": "M3-EX05",
+      "scenario": "result_persistence_fails_after_effect",
+      "expected": {
+        "outcome": "unknown",
+        "code": "execution.storage_failure",
+        "path": "/journal",
+        "fake_mutation_calls": 1,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Existing dispatch marker recovers unknown; never roll back externally or resend."
+    },
+    {
+      "id": "EX24",
+      "requirement": "M3-EX07",
+      "scenario": "duplicate-json.json",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.invalid_json",
+        "path": "$",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Actual raw duplicate-field file; no loss by normal json.loads."
+    },
+    {
+      "id": "EX25",
+      "requirement": "M3-EX07",
+      "scenario": "unknown-version.json",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.unsupported_version",
+        "path": "/schema_version",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Probe version before domain errors after duplicate/syntax check."
+    },
+    {
+      "id": "EX26",
+      "requirement": "M3-EX07",
+      "scenario": "generated_65537_bytes",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.input_too_large",
+        "path": "$",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "65,537 input bytes fail before parse; exact 65,536-byte sibling is admitted by the byte gate."
+    },
+    {
+      "id": "EX27",
+      "requirement": "M3-EX01",
+      "scenario": "changed_artifact_without_rebinding",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.identity_mismatch",
+        "path": "/intent_sha256",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Keep digest old to reach intent identity failure; separately change owned artifact after binding via compile-fail test."
+    },
+    {
+      "id": "EX28",
+      "requirement": "M3-EX06",
+      "scenario": "expected_projection_visible_old_work_active",
+      "expected": {
+        "outcome": "unknown",
+        "code": "execution.unknown_outcome",
+        "path": "/readback",
+        "fake_mutation_calls": 1,
+        "fake_readback_calls": 1,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Complete-looking effect without positive quiescence cannot finalize applied or release the project guard."
+    },
+    {
+      "id": "EX29",
+      "requirement": "M3-EX03",
+      "scenario": "registered_target_missing",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.target_mismatch",
+        "path": "/intent/project_resource_id",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "No implicit provisioning/recreation; zero mutation calls."
+    },
+    {
+      "id": "EX30",
+      "requirement": "M3-EX07",
+      "scenario": "depth-nine.json",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.limit_exceeded",
+        "path": "$",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Depth gate before version/closed-shape checks; root container has depth 1."
+    },
+    {
+      "id": "EX31",
+      "requirement": "M3-EX07",
+      "scenario": "unknown-field.json",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.invalid_shape",
+        "path": "/extra",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": ""
+    },
+    {
+      "id": "EX32",
+      "requirement": "M3-EX07",
+      "scenario": "null-approval.json",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.invalid_shape",
+        "path": "/approval_ref",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": ""
+    },
+    {
+      "id": "EX33",
+      "requirement": "M3-EX07",
+      "scenario": "bad-hash.json",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.invalid_shape",
+        "path": "/intent/artifact_sha256",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": ""
+    },
+    {
+      "id": "EX34",
+      "requirement": "M3-EX07",
+      "scenario": "generated_65536_bytes",
+      "expected": {
+        "outcome": "ready",
+        "code": null,
+        "path": "$",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Exact 65,536-byte request using inter-token JSON whitespace; parsed identity stays the same."
+    },
+    {
+      "id": "EX35",
+      "requirement": "M3-EX07",
+      "scenario": "noninteger-version.json",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.invalid_shape",
+        "path": "/schema_version",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "JSON Schema mathematical integer equivalence does not override strict integer wire parsing."
+    },
+    {
+      "id": "EX36",
+      "requirement": "M3-EX07",
+      "scenario": "depth-eight.json",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.invalid_shape",
+        "path": "/extra",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Depth limit allows eight containers, then closed-shape rejects the extra object."
+    },
+    {
+      "id": "EX37",
+      "requirement": "M3-EX03",
+      "scenario": "actual_source_bytes_changed_under_guard",
+      "expected": {
+        "outcome": "rejected",
+        "code": "execution.source_mismatch",
+        "path": "/sources",
+        "fake_mutation_calls": 0,
+        "fake_readback_calls": 0,
+        "automatic_retries": 0,
+        "undo_calls": 0
+      },
+      "assertion": "Declared snapshot/review may still be current; actual source digest/immutable staging mismatch blocks dispatch."
+    }
+  ]
+}

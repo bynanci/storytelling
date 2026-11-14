@@ -218,6 +218,21 @@ The [M3-03 profile](migration/M3-03-ISOLATED-FILMCRAFT.md) and [work index](migr
 
 The test injects a lost response only after the FilmCraft subprocess exits successfully. A hung host and safe retry after NotApplied require separate tests. The actual host test runs on Linux. Windows and macOS run journal regressions and compile the ignored integration test. The test records approval_granted=false and executable=false. Review freshness does not grant human approval. The production executor and the PR #28 G2 gate remain open. See the [validation record](validation/m3-03-filmcraft-execution.md).
 
+## M3-04 proposed execution contract (G2 pending)
+
+These are proposed requirements, not implemented test results. [ADR 0011](adr/0011-production-execution-contract-v1.md) and the [design/case/work-package record](validation/m3-04-execution-contract.md) trace the [synthetic case inventory](../tests/fixtures/execution-contract-v1/cases.json). Design-vector checks do not satisfy production contract testing or human acceptance.
+
+| ID | Proposed requirement | Designed cases (not passing runtime tests) |
+| --- | --- | --- |
+| M3-EX01 | Immutable P2-derived identity | EX01, EX03, EX27 |
+| M3-EX02 | Current local approval, expiry/revocation and grant consumption | EX02, EX06–EX10 |
+| M3-EX03 | Observed host/target/source binding; explicit prior provisioning | EX04–EX05, EX29, EX37 |
+| M3-EX04 | Project and operation fences, idempotency, atomic persistence | EX11–EX13, EX21–EX22 |
+| M3-EX05 | Unknown quarantine, quiescence and no automatic retry | EX14–EX16, EX20, EX23 |
+| M3-EX06 | Complete correlated readback and final quiescence | EX17–EX19, EX28 |
+| M3-EX07 | Strict bounded wire and deterministic diagnostics | EX24–EX26, EX30–EX36 |
+| M3-EX08 | Existing-format/API/database compatibility; no implicit host calls | All cases and existing regressions |
+
 <a name="敘事功能與後續需求"></a>
 
 ## Remaining breadth and future requirements

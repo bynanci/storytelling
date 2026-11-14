@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/bynanci/storytelling/contracts/execution-intent-v1.schema.json",
+  "title": "ExecutionIntentV1 (proposed, untrusted request)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "intent",
+    "intent_sha256",
+    "approval_ref"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "intent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "operation_id",
+        "idempotency_key",
+        "project_resource_id",
+        "target_revision_sha256",
+        "review_binding_sha256",
+        "proposal_sha256",
+        "snapshot_sha256",
+        "artifact_sha256",
+        "report_sha256",
+        "compiler_version",
+        "export_profile",
+        "host_profile_id",
+        "host_profile_sha256",
+        "host_version",
+        "host_binary_sha256",
+        "adapter_build_sha256",
+        "expected_projection_sha256",
+        "action"
+      ],
+      "properties": {
+        "operation_id": {
+          "$ref": "#/$defs/id"
+        },
+        "idempotency_key": {
+          "$ref": "#/$defs/id"
+        },
+        "project_resource_id": {
+          "$ref": "#/$defs/id"
+        },
+        "target_revision_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "review_binding_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "proposal_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "snapshot_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "artifact_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "report_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "compiler_version": {
+          "$ref": "#/$defs/id"
+        },
+        "export_profile": {
+          "$ref": "#/$defs/id"
+        },
+        "host_profile_id": {
+          "$ref": "#/$defs/id"
+        },
+        "host_profile_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "host_version": {
+          "$ref": "#/$defs/id"
+        },
+        "host_binary_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "adapter_build_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "expected_projection_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "action": {
+          "const": "import_otio_isolated_project"
+        }
+      }
+    },
+    "intent_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "approval_ref": {
+      "$ref": "#/$defs/id"
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+    },
+    "sha256": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}
