@@ -3,7 +3,7 @@
 [English](cli-file-input.md) · 繁體中文
 
 本次共用 CLI I/O 修正支援 M3-RB07 與 N-R10-06A，base 為
-`c562ce0d06b7330813fa42cad739f24f4a49e9da`；整合 base 為
+`c562ce0d06b7330813fa42cad739f24f4a49e9da`；首次整合 base 為
 `5bbe80dc2cf8286abb15ad5278e86ec7384cdb4d`。不修改契約、公開 DTO、診斷碼、
 依賴或位元組上限，也不新增媒體探測與 Host 操作。
 
@@ -70,12 +70,44 @@ Host 證據拒絕、SK-E01／E02／E04／E06 及 R1 Python checks 亦通過。�
 checkout-local `target`；先移除共用 target 的環境設定。新收據保留 rebase
 前後 patch 對應；有效的新驗證綁定上列整合來源。
 
+### 測試探索相容性修正
+
+PR #139 合併前，廣泛 Python discovery 發現 harness 設定錯誤：模組的 `CLI`
+尚未綁定，四個方法嘗試啟動 `None`，產生十項 errors。
+[設定 RED 收據](cli-file-input/discovery-red-receipt.json)與
+[輸出](cli-file-input/discovery-red.txt)記錄在 `fdd8283` 的實際重現。這不是
+原本 FIFO 產品缺陷的 RED，也不增加產品測試成果。
+
+以 merge 接入最新 main `3e0f0d0992df38acc53402f0eb1d1926f63cf8a7`，未改寫
+已推送歷史。在來源 `d1d8b64f8167eebe9a2e1ee915d3b0b3e2ef1923`，`setUp` 只在
+未綁定明確 binary 時 skip；standalone 入口先綁定 binary，所以四項產品
+測試方法維持必須執行且未修改。既有獨立 binary 與 Rust 來源雜湊均符合之前全新
+build，因此這次修正不需重編 Rust。
+
+[Discovery GREEN 收據](cli-file-input/discovery-green-receipt.json)與
+[完整輸出](cli-file-input/discovery-green.txt)記錄：
+
+| 呼叫 | 實際結果 |
+| --- | --- |
+| 明確指定 feature-enabled CLI binary | 四項產品方法通過；Linux 無 skip。 |
+| 未指定 binary 的 targeted discovery | 四項設定 skip，未執行產品斷言。 |
+| 廣泛 `scripts/test_*.py` discovery | 記錄 103 項：99 通過，四項設定 skip。 |
+| 整合後 SK-E04 suite | 24 項通過。 |
+| Repository 與完整分支 diff checks | 通過。 |
+
+CI 分成兩個各一條命令的步驟，先執行必須通過的明確 binary 呼叫，再做
+targeted discovery，避免 Windows PowerShell 讓後續成功的 discovery 蓋掉
+前面 binary 測試的失敗退出碼。Windows 的
+明確 binary 呼叫仍只 skip Unix FIFO 案例。最終新 head 必須重跑 hosted CI；
+舊 `fdd8283` 的結果不是最終 head 驗證。
+
 完整重跑命令見[英文紀錄](cli-file-input.md#test-first-evidence-and-replay)。
 最短回歸命令如下；Windows 使用 `python` 與 `.exe` 副檔名。
 
 ```sh
 cargo build --locked -p storytelling-cli --features draft-video-input
 python3 scripts/test_cli_file_input.py target/debug/storytelling
+python3 -m unittest discover -s scripts -p 'test_cli_file_input.py'
 cargo test --locked -p storytelling-cli --all-features --test video_coverage --test draft_video_input
 ```
 

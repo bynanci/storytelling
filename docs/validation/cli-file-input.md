@@ -3,7 +3,7 @@
 English · [繁體中文](cli-file-input.zh-TW.md)
 
 This shared CLI I/O fix supports M3-RB07 and N-R10-06A without changing their
-contracts. Original base: `c562ce0d06b7330813fa42cad739f24f4a49e9da`. The integrated
+contracts. Original base: `c562ce0d06b7330813fa42cad739f24f4a49e9da`. The first integrated
 base is `5bbe80dc2cf8286abb15ad5278e86ec7384cdb4d`. It adds no media probe,
 host operation, public DTO, diagnostic, dependency or byte budget.
 
@@ -85,9 +85,42 @@ binary to the Python test. The commands below use the default checkout-local
 historical pre-rebase commits and rebased patch lineage are listed in the new
 receipt; the fresh result binds the integrated source above.
 
+### Test discovery compatibility correction
+
+Before merging PR #139, broad Python discovery exposed a test-harness error:
+the module's `CLI` global was unbound, so four methods produced ten errors while
+trying to launch `None`. The [configuration RED receipt](cli-file-input/discovery-red-receipt.json)
+and [log](cli-file-input/discovery-red.txt) reproduce this at `fdd8283`. This is
+separate from the original product FIFO failure and adds no product test claim.
+
+Latest main `3e0f0d0992df38acc53402f0eb1d1926f63cf8a7` was merged without rewriting
+the pushed branch. At source `d1d8b64f8167eebe9a2e1ee915d3b0b3e2ef1923`, `setUp`
+skips only when no explicit binary has been bound. The standalone invocation
+binds its binary before running tests, so all four product test methods remain
+mandatory and unchanged. The existing isolated binary and Rust source hashes
+match the earlier fresh build; no Rust compilation was needed for this fix.
+
+The [discovery GREEN receipt](cli-file-input/discovery-green-receipt.json) and
+[complete output](cli-file-input/discovery-green.txt) record:
+
+| Invocation | Actual result |
+| --- | --- |
+| Explicit feature-enabled CLI binary | Four product methods passed; no skips on Linux. |
+| Targeted discovery without a binary | Four configuration skips; no product assertions executed. |
+| Broad `scripts/test_*.py` discovery | 103 methods recorded: 99 passed, four configuration skips. |
+| Integrated SK-E04 suite | 24 passed. |
+| Repository and complete branch diff checks | Passed. |
+
+CI runs the mandatory explicit-binary command first, then targeted discovery,
+in two separate single-command steps. This prevents Windows PowerShell from
+letting a later successful discovery overwrite a failed binary test exit code.
+Windows still skips only the Unix FIFO case in the explicit-binary run. New-head
+hosted CI is required; the old `fdd8283` results are not the final-head check.
+
 ```sh
 cargo build --locked -p storytelling-cli --features draft-video-input
 python3 scripts/test_cli_file_input.py target/debug/storytelling
+python3 -m unittest discover -s scripts -p 'test_cli_file_input.py'
 cargo test --locked -p storytelling-cli --all-features --test video_coverage --test draft_video_input
 cargo fmt --all -- --check
 cargo clippy --workspace --all-targets --all-features --locked -- -D warnings
