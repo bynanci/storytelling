@@ -1,0 +1,641 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:storytelling:proposal:n10-06c:local-sidecar:0",
+  "title": "PROPOSED N10-06C private local sidecar v0 (not accepted)",
+  "description": "Shape-only candidate. Cross-field trusted-capability/stability/evidence rules are normative in README; this schema cannot grant file access or verify observations.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sidecar_version",
+    "record_kind",
+    "binding_id",
+    "observed_at_utc",
+    "coverage_ref",
+    "selection_ref",
+    "binding_state",
+    "file_access",
+    "stability",
+    "byte_identity",
+    "metadata",
+    "duration_check",
+    "range_check",
+    "content_review",
+    "diagnostics"
+  ],
+  "properties": {
+    "sidecar_version": {
+      "const": "n10-06c.local-sidecar.0-candidate"
+    },
+    "record_kind": {
+      "enum": [
+        "synthetic_contract_example",
+        "local_observation"
+      ]
+    },
+    "binding_id": {
+      "$ref": "#/$defs/id"
+    },
+    "observed_at_utc": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time",
+          "maxLength": 64
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "coverage_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "coverage_sha256",
+        "catalog_id",
+        "catalog_revision",
+        "asset_id",
+        "asset_revision",
+        "declared_duration",
+        "source_range"
+      ],
+      "properties": {
+        "coverage_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "catalog_id": {
+          "$ref": "#/$defs/id"
+        },
+        "catalog_revision": {
+          "$ref": "#/$defs/revision"
+        },
+        "asset_id": {
+          "$ref": "#/$defs/id"
+        },
+        "asset_revision": {
+          "$ref": "#/$defs/revision"
+        },
+        "declared_duration": {
+          "$ref": "#/$defs/rational"
+        },
+        "source_range": {
+          "$ref": "#/$defs/range"
+        }
+      }
+    },
+    "selection_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "grant_id",
+        "root_scope_ref",
+        "selected_file_ref"
+      ],
+      "properties": {
+        "grant_id": {
+          "$ref": "#/$defs/id"
+        },
+        "root_scope_ref": {
+          "$ref": "#/$defs/id"
+        },
+        "selected_file_ref": {
+          "$ref": "#/$defs/id"
+        }
+      }
+    },
+    "binding_state": {
+      "enum": [
+        "not_verified",
+        "bound_for_read_view",
+        "unknown",
+        "rejected"
+      ]
+    },
+    "file_access": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "evidence_ref"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "not_verified",
+            "readable",
+            "unreadable",
+            "unknown"
+          ]
+        },
+        "evidence_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "stability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "profile_id",
+        "read_view_ref",
+        "file_id_before_ref",
+        "file_id_after_ref",
+        "evidence_ref"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "not_verified",
+            "stable_read_view",
+            "unknown"
+          ]
+        },
+        "profile_id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "read_view_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "file_id_before_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "file_id_after_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "byte_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "expected_sha256",
+        "expected_evidence_ref",
+        "sha256_before",
+        "sha256_after",
+        "byte_length",
+        "evidence_ref"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "not_verified",
+            "matches",
+            "mismatch",
+            "unknown"
+          ]
+        },
+        "expected_sha256": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "expected_evidence_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sha256_before": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sha256_after": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "byte_length": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/u64"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "probe_ref",
+        "tool_ref",
+        "stream_count",
+        "selected_stream_index",
+        "timing_mode",
+        "time_base",
+        "start_pts",
+        "end_pts_exclusive",
+        "boundary_basis",
+        "read_complete",
+        "observed_interval",
+        "evidence_ref"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "not_verified",
+            "observed",
+            "unsupported",
+            "unknown"
+          ]
+        },
+        "probe_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tool_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "stream_count": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 16
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "selected_stream_index": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4294967295
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "timing_mode": {
+          "enum": [
+            "not_verified",
+            "constant_cadence",
+            "variable",
+            "unknown"
+          ]
+        },
+        "time_base": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/rational"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "start_pts": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/signed_ticks"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "end_pts_exclusive": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/signed_ticks"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "boundary_basis": {
+          "enum": [
+            "unverified",
+            "header_only",
+            "complete_packet_pts"
+          ]
+        },
+        "read_complete": {
+          "type": "boolean"
+        },
+        "observed_interval": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/range"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "duration_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "evidence_ref"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "not_verified",
+            "compatible",
+            "incompatible",
+            "unknown"
+          ]
+        },
+        "evidence_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "range_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "evidence_ref"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "not_verified",
+            "compatible",
+            "incompatible",
+            "unknown"
+          ]
+        },
+        "evidence_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "content_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state",
+        "review_ref"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "not_reviewed",
+            "confirmed",
+            "rejected",
+            "unknown"
+          ]
+        },
+        "review_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "diagnostics": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "path",
+          "evidence_ref"
+        ],
+        "properties": {
+          "code": {
+            "$ref": "#/$defs/diagnostic"
+          },
+          "path": {
+            "type": "string",
+            "pattern": "^\\$(\\.[A-Za-z_][A-Za-z0-9_]*(\\[[0-9]+\\])?)*$",
+            "maxLength": 256
+          },
+          "evidence_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/id"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4294967295
+    },
+    "u64": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]{0,19})$",
+      "maxLength": 20,
+      "description": "Semantic code must enforce <=u64::MAX."
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "minLength": 64,
+      "maxLength": 64
+    },
+    "signed_ticks": {
+      "type": "string",
+      "pattern": "^(0|-?[1-9][0-9]{0,38})$",
+      "maxLength": 40,
+      "description": "Semantic code must enforce i128 bounds before checked origin subtraction; no floats."
+    },
+    "rational": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "numerator",
+        "denominator"
+      ],
+      "properties": {
+        "numerator": {
+          "$ref": "#/$defs/u64"
+        },
+        "denominator": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]{0,19}$",
+          "maxLength": 20
+        }
+      }
+    },
+    "range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "start",
+        "end"
+      ],
+      "properties": {
+        "start": {
+          "$ref": "#/$defs/rational"
+        },
+        "end": {
+          "$ref": "#/$defs/rational"
+        }
+      }
+    },
+    "diagnostic": {
+      "enum": [
+        "media_identity.input_too_large",
+        "media_identity.unsupported_version",
+        "media_identity.invalid_sidecar",
+        "media_identity.selection_required",
+        "media_identity.scope_rejected",
+        "media_identity.unreadable",
+        "media_identity.unsupported_profile",
+        "media_identity.stability_unproven",
+        "media_identity.file_changed",
+        "media_identity.fingerprint_mismatch",
+        "media_identity.probe_failed",
+        "media_identity.budget_exceeded",
+        "media_identity.stream_ambiguous",
+        "media_identity.timing_unknown",
+        "media_identity.duration_incompatible",
+        "media_identity.range_incompatible"
+      ]
+    }
+  },
+  "$comment": "SPDX-License-Identifier: MIT. Proposed shape-only local sidecar; no file access or observed evidence."
+}

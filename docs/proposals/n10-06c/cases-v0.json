@@ -1,0 +1,161 @@
+{
+  "contract_version": "n10-06c.acceptance-cases.0-candidate",
+  "record_kind": "planned_synthetic_cases",
+  "status": "proposed_G2_not_executed",
+  "base_sha": "52dc6c315f7b3d20693f3c51e052509997ab791b",
+  "cases": [
+    {
+      "id": "C-P01",
+      "given": "Qualified stable read view, same authorized object, complete hashes match independently supplied expected digest, one selected stream, qualified full exact boundary evidence and range fit.",
+      "expected": "bound_for_read_view; duration/range compatible; content remains not_reviewed",
+      "limit": "Requires separately accepted and directly tested OS/tool profile; this is a planned synthetic case, not qualification.",
+      "observed_result": null,
+      "receipt_ref": null
+    },
+    {
+      "id": "C-N01",
+      "given": "Selection grant missing, forged or expired; loaded sidecar carries a former selected_file_ref.",
+      "expected": "rejected / selection_required; no file resolution or process launch",
+      "limit": "A serialized report never grants capability.",
+      "observed_result": null,
+      "receipt_ref": null
+    },
+    {
+      "id": "C-N02",
+      "given": "Symlink/reparse component, parent traversal, network/UNC share, device, FIFO, mount crossing or unqualified multi-link alias.",
+      "expected": "rejected / scope_rejected before any probe",
+      "limit": "Do not follow to inspect the out-of-scope target.",
+      "observed_result": null,
+      "receipt_ref": null
+    },
+    {
+      "id": "C-N03",
+      "given": "File missing or unreadable after explicit authorized selection.",
+      "expected": "file_access unreadable; binding rejected or unknown; no success",
+      "limit": "Public error contains no local path.",
+      "observed_result": null,
+      "receipt_ref": null
+    },
+    {
+      "id": "C-N04",
+      "given": "Same asset_id/revision selected with changed bytes.",
+      "expected": "byte_identity mismatch / fingerprint_mismatch; reject previous-binding reuse",
+      "limit": "Preserve original evidence; no automatic catalog revision.",
+      "observed_result": null,
+      "receipt_ref": null
+    },
+    {
+      "id": "C-N05",
+      "given": "Rename replacement between first hash and probe.",
+      "expected": "file_changed or unknown; pathname reopen is forbidden",
+      "limit": "Probe must use selected read view, not a late pathname lookup.",
+      "observed_result": null,
+      "receipt_ref": null
+    },
+    {
+      "id": "C-N06",
+      "given": "Concurrent write-and-restore (ABA) with equal before/after SHA and stat.",
+      "expected": "stability unknown / stability_unproven; binding unknown",
+      "limit": "Hash equality alone cannot pass this case.",
+      "observed_result": null,
+      "receipt_ref": null
+    },
+    {
+      "id": "C-N07",
+      "given": "Qualified stability lease is lost; an old writable mapping or handle makes exclusivity unprovable.",
+      "expected": "binding unknown; file_changed or stability_unproven",
+      "limit": "Require positive OS-profile proof, not advisory locks.",
+      "observed_result": null,
+      "receipt_ref": null
+    },
+    {
+      "id": "C-N08",
+      "given": "Tool tries a relative external file, URL or other protocol.",
+      "expected": "probe failed / scope_rejected; no file/network side read",
+      "limit": "Protocol flags plus tested OS sandbox; no fallback download.",
+      "observed_result": null,
+      "receipt_ref": null
+    },
+    {
+      "id": "C-N09",
+      "given": "Tool/hash exceeds byte/time/output/stream/packet budget, malformed/truncated JSON or incomplete reads.",
+      "expected": "unknown / budget_exceeded or probe_failed; retain partial evidence privately",
+      "limit": "No partial-output success or auto-retry; supervise process-tree quiescence.",
+      "observed_result": null,
+      "receipt_ref": null
+    },
+    {
+      "id": "C-N10",
+      "given": "More than one eligible video stream and no explicit selected stream; attached image is stream 0.",
+      "expected": "metadata unknown / stream_ambiguous; no implicit first-stream selection",
+      "limit": "Explicit stream selector is part of the binding.",
+      "observed_result": null,
+      "receipt_ref": null
+    },
+    {
+      "id": "C-N11",
+      "given": "VFR or unknown cadence with only nominal/average fps; request supplied frame indices.",
+      "expected": "timing unknown / timing_unknown; frame mapping unsupported",
+      "limit": "No inference of PTS from metadata fps.",
+      "observed_result": null,
+      "receipt_ref": null
+    },
+    {
+      "id": "C-N12",
+      "given": "Only header duration exists, packet scan partial, PTS missing/discontinuous or container/stream disagree.",
+      "expected": "duration/range unknown; never compatible",
+      "limit": "A complete normalized observed interval needs a qualified basis.",
+      "observed_result": null,
+      "receipt_ref": null
+    },
+    {
+      "id": "C-N13",
+      "given": "Qualified observed interval is shorter than declared duration, or selected OUT lies outside it.",
+      "expected": "duration incompatible and/or range incompatible; no clamping",
+      "limit": "Existing V1 may independently accept declarations; sidecar must preserve contradiction.",
+      "observed_result": null,
+      "receipt_ref": null
+    },
+    {
+      "id": "C-N14",
+      "given": "No authorized expected fingerprint exists for this asset revision.",
+      "expected": "byte_identity not_verified; new observed baseline only; binding not_verified",
+      "limit": "Never substitute the new observed hash as expected.",
+      "observed_result": null,
+      "receipt_ref": null
+    },
+    {
+      "id": "C-N15",
+      "given": "All technical checks pass but images depict a different narrative beat.",
+      "expected": "content not_reviewed or rejected after actual author review",
+      "limit": "Hash/metadata never sets human confirmation.",
+      "observed_result": null,
+      "receipt_ref": null
+    },
+    {
+      "id": "C-N16",
+      "given": "Sidecar with unknown version/field/duplicate key or integer/rational overflow.",
+      "expected": "reject parse before capability lookup",
+      "limit": "Schema shape checks do not replace strict raw JSON and semantic validation.",
+      "observed_result": null,
+      "receipt_ref": null
+    },
+    {
+      "id": "C-N17",
+      "given": "Same selection reused after coverage bytes, asset revision, source range, tool/profile or expected evidence changes.",
+      "expected": "reject reuse; new attempt required",
+      "limit": "Do not overwrite prior evidence or current result with a stale response.",
+      "observed_result": null,
+      "receipt_ref": null
+    }
+  ],
+  "evidence_states": {
+    "adapter_implementation": "blocked_pending_independent_G2_privacy_approval",
+    "OS_tool_qualification": null,
+    "real_file_access_or_probe": null,
+    "author_content_review": null,
+    "host_readback": null,
+    "maintainer_acceptance": null,
+    "release_decision": null
+  }
+}
