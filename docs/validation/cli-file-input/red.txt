@@ -1,5 +1,5 @@
 test_directory_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_directory_inputs_reject_with_io_exit_without_blocking) ... ok
-test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) ... 
+test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) ...
   test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='validate:file1') ... FAIL
   test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='import-openfilm:file1') ... FAIL
   test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='export-otio:file1') ... FAIL

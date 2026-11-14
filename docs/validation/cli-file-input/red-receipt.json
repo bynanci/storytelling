@@ -12,6 +12,6 @@
   "result": "4 tests; 33 FIFO subcase failures; directory, replay and limit checks passed",
   "child_cleanup": "subprocess.run killed and waited for each timed-out direct child; no storytelling processes remained",
   "stored_log": "red.txt",
-  "stored_log_sha256": "b25044497f1fd73b0b7a6df73f0578713770f1c64b25ca38092b5a6d73fd42b5",
-  "log_redaction": "Only the absolute checkout prefix was replaced with <checkout>; original stderr SHA-256 is retained above."
+  "stored_log_sha256": "f33ecd84a04cd42743585042742f8f736d4d8a600f5abcf801b9c85a5c4b3ffa",
+  "log_redaction": "The absolute checkout prefix was replaced with <checkout> and trailing line whitespace removed for repository hygiene; original stderr SHA-256 is retained above."
 }
