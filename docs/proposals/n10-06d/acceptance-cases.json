@@ -1,0 +1,169 @@
+{
+  "document_kind": "n10-06d-acceptance-specification.1-draft",
+  "record_kind": "synthetic_expected_cases_not_observations",
+  "base_commit": "52dc6c315f7b3d20693f3c51e052509997ab791b",
+  "mode": "dry_run_only",
+  "actual_results": null,
+  "cases": [
+    {
+      "id": "D01",
+      "scenario": "Valid V1 declaration contains one unresolved selected unit.",
+      "expected_review_assertions": {
+        "declaration_validity": "passed_if_actual_receipt_exists",
+        "ready_for_planning": false,
+        "unresolved_unit_visible": true,
+        "review_outcome": "blocked"
+      },
+      "evidence_needed": [
+        "Existing V1 valid-unresolved fixture",
+        "Preserved S03@1 and reason"
+      ],
+      "actual_result": null
+    },
+    {
+      "id": "D02",
+      "scenario": "All declaration rows mapped; no selected-file evidence exists.",
+      "expected_review_assertions": {
+        "declaration_label": "declarations_only",
+        "media_probed": "not_verified",
+        "review_outcome": "blocked"
+      },
+      "evidence_needed": [
+        "Actual V1 receipt",
+        "Missing C record"
+      ],
+      "actual_result": null
+    },
+    {
+      "id": "D03",
+      "scenario": "Asset ID/revision remains the same but actual bytes changed.",
+      "expected_review_assertions": {
+        "media_probed": "unknown",
+        "content_reviewed": "not_verified",
+        "compilation_review_binding": "not_verified",
+        "review_outcome": "blocked"
+      },
+      "evidence_needed": [
+        "Old and new byte evidence under accepted C",
+        "No reuse of stale author confirmation"
+      ],
+      "actual_result": null
+    },
+    {
+      "id": "D04",
+      "scenario": "A signature verifies mathematically, but no current trusted approval/provider record exists.",
+      "expected_review_assertions": {
+        "signature_mathematical_validity": "passed_only_with_actual_verification",
+        "authority_accepted": "blocked",
+        "review_outcome": "blocked"
+      },
+      "evidence_needed": [
+        "Signature verification scope",
+        "Missing current approval/policy record"
+      ],
+      "actual_result": null
+    },
+    {
+      "id": "D05",
+      "scenario": "Proposal A was reviewed; caller supplies different artifact B and a valid signature.",
+      "expected_review_assertions": {
+        "compilation_review_binding": "failed",
+        "authority_accepted": "blocked",
+        "review_outcome": "blocked"
+      },
+      "evidence_needed": [
+        "Compiler-owned binding evidence",
+        "Exact artifact/proposal mismatch"
+      ],
+      "actual_result": null
+    },
+    {
+      "id": "D06",
+      "scenario": "Host/profile/build or target revision changed after review.",
+      "expected_review_assertions": {
+        "host_qualified": "not_verified",
+        "authority_accepted": "blocked",
+        "review_outcome": "blocked"
+      },
+      "evidence_needed": [
+        "Current exact host/target identity",
+        "Target-bound review/approval invalidation"
+      ],
+      "actual_result": null
+    },
+    {
+      "id": "D07",
+      "scenario": "A prior operation may have applied but its response was lost.",
+      "expected_review_assertions": {
+        "prior_operation_outcome": "unknown",
+        "quarantine_preserved": true,
+        "automatic_retry": false,
+        "undo_requested": false,
+        "review_outcome": "blocked"
+      },
+      "evidence_needed": [
+        "Last durable receipt",
+        "Future accepted correlated recovery path"
+      ],
+      "actual_result": null
+    },
+    {
+      "id": "D08",
+      "scenario": "Readback resembles expected state while old/queued work may still run.",
+      "expected_review_assertions": {
+        "prior_operation_outcome": "unknown",
+        "positive_quiescence": "not_verified",
+        "automatic_retry": false,
+        "review_outcome": "blocked"
+      },
+      "evidence_needed": [
+        "Readback correlation",
+        "Positive prior-request quiescence is still missing"
+      ],
+      "actual_result": null
+    },
+    {
+      "id": "D09",
+      "scenario": "A verified partial effect or not_applied observation exists, but no fresh explicit operator action/authority exists.",
+      "expected_review_assertions": {
+        "prior_operation_outcome": "retain_actual_partial_or_not_applied",
+        "automatic_retry": false,
+        "review_outcome": "blocked"
+      },
+      "evidence_needed": [
+        "Accepted recovery policy",
+        "Fresh current review/source/authority and attempt budget"
+      ],
+      "actual_result": null
+    },
+    {
+      "id": "D10",
+      "scenario": "A response from an old owner/attempt arrives after newer state.",
+      "expected_review_assertions": {
+        "late_response_can_overwrite": false,
+        "original_evidence_preserved": true,
+        "automatic_retry": false,
+        "review_outcome": "blocked"
+      },
+      "evidence_needed": [
+        "Operation/attempt/fence identity",
+        "Existing unknown state remains until accepted reconciliation"
+      ],
+      "actual_result": null
+    },
+    {
+      "id": "D11",
+      "scenario": "Hypothetical future: complete coverage, compilation binding and all five evidence lanes are genuinely accepted/current.",
+      "expected_review_assertions": {
+        "review_outcome": "review_packet_complete",
+        "checklist_execution_action": "unavailable",
+        "automatic_retry": false
+      },
+      "evidence_needed": [
+        "Future accepted C and M3 boundaries",
+        "Actual source/author/host/current-authority receipts"
+      ],
+      "actual_result": null
+    }
+  ]
+}

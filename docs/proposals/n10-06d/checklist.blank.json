@@ -1,0 +1,125 @@
+{
+  "form_revision": "n10-06d.1-draft",
+  "record_kind": "manual_blank_form",
+  "mode": "dry_run_only",
+  "case_code": null,
+  "checklist_revision": null,
+  "recorded_at_utc": null,
+  "reviewer_code": null,
+  "storytelling_commit": null,
+  "source_identity": {
+    "document_id": null,
+    "document_revision": null,
+    "variant_id": null,
+    "coverage_id": null,
+    "catalog_id": null,
+    "catalog_revision": null,
+    "input_sha256": null
+  },
+  "selected_units": [],
+  "checks": {
+    "declared_valid": {
+      "state": "not_verified",
+      "observed_at_utc": null,
+      "reviewer_code": null,
+      "evidence_ref_ids": [],
+      "evidence_sha256": [],
+      "notes": null,
+      "blocking_reason": null,
+      "actual_exit": null,
+      "actual_result_ref": null,
+      "ready_for_planning": null,
+      "unresolved_unit_refs": []
+    },
+    "media_probed": {
+      "state": "not_verified",
+      "observed_at_utc": null,
+      "reviewer_code": null,
+      "evidence_ref_ids": [],
+      "evidence_sha256": [],
+      "notes": null,
+      "blocking_reason": null,
+      "asset_bindings": []
+    },
+    "content_reviewed": {
+      "state": "not_verified",
+      "observed_at_utc": null,
+      "reviewer_code": null,
+      "evidence_ref_ids": [],
+      "evidence_sha256": [],
+      "notes": null,
+      "blocking_reason": null,
+      "author_code": null,
+      "author_words_verbatim": null,
+      "confirmed_unit_range_refs": []
+    },
+    "host_qualified": {
+      "state": "blocked",
+      "observed_at_utc": null,
+      "reviewer_code": null,
+      "evidence_ref_ids": [],
+      "evidence_sha256": [],
+      "notes": null,
+      "blocking_reason": "Accepted production host/profile/target evidence under #104–#106 is required.",
+      "host_profile_ref": null,
+      "host_build_ref": null,
+      "os_runtime_ref": null,
+      "target_identity_ref": null,
+      "target_revision_sha256": null
+    },
+    "authority_accepted": {
+      "state": "blocked",
+      "observed_at_utc": null,
+      "reviewer_code": null,
+      "evidence_ref_ids": [],
+      "evidence_sha256": [],
+      "notes": null,
+      "blocking_reason": "The #103 contract, W01 evidence and current trusted authority record remain separately gated.",
+      "accepted_contract_commit": null,
+      "current_policy_ref": null,
+      "current_approval_receipt_ref": null,
+      "operation_identity_ref": null
+    }
+  },
+  "compilation_review_binding": {
+    "state": "not_verified",
+    "observed_at_utc": null,
+    "reviewer_code": null,
+    "evidence_ref_ids": [],
+    "evidence_sha256": [],
+    "notes": null,
+    "blocking_reason": null,
+    "proposal_sha256": null,
+    "source_snapshot_sha256": null,
+    "compiler_build_ref": null,
+    "export_profile_ref": null,
+    "artifact_sha256": null,
+    "review_binding_ref": null,
+    "accepted_losses_ref": null
+  },
+  "signature_check": {
+    "mathematical_validity": "not_verified",
+    "evidence_ref_id": null,
+    "trusted_key_policy_ref": null,
+    "note": "A mathematically valid signature alone supplies no current authorization or compiler binding."
+  },
+  "prior_operation": {
+    "operation_ref": null,
+    "outcome": null,
+    "last_durable_receipt_ref": null,
+    "correlated_readback_ref": null,
+    "positive_quiescence_ref": null,
+    "automatic_retry": false,
+    "undo_requested": false
+  },
+  "review_outcome": {
+    "state": "blocked",
+    "blocking_reasons": [
+      "Actual observations have not been supplied.",
+      "Host and execution-authority acceptance are pending."
+    ],
+    "next_steps": []
+  },
+  "privacy_note": "Keep real paths, media, sensitive raw evidence and personal/signer details in authorized private storage. References here are opaque evidence IDs.",
+  "actual_results": null
+}
