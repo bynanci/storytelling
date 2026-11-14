@@ -1,0 +1,495 @@
+Fresh isolated-target verification; actual output excerpts. Compiler and selected test lines retained; other individual passing test lines omitted.
+
+
+$ cargo build --workspace --all-features --locked
+   Compiling typenum v1.20.1
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.27
+   Compiling version_check v0.9.5
+   Compiling semver v1.0.28
+   Compiling generic-array v0.14.7
+   Compiling cfg-if v1.0.5
+   Compiling rustc_version v0.4.1
+   Compiling serde_core v1.0.229
+   Compiling curve25519-dalek v5.0.0
+   Compiling cpufeatures v0.3.1
+   Compiling shlex v2.0.1
+   Compiling find-msvc-tools v0.1.15
+   Compiling zmij v1.0.23
+   Compiling hybrid-array v0.4.15
+   Compiling syn v2.0.119
+   Compiling syn v3.0.9
+   Compiling crypto-common v0.2.2
+   Compiling block-buffer v0.12.1
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling digest v0.10.7
+   Compiling cc v1.11.1
+   Compiling digest v0.11.3
+   Compiling subtle v2.6.1
+   Compiling signature v3.0.0
+   Compiling serde v1.0.229
+   Compiling serde_json v1.0.154
+   Compiling cpufeatures v0.2.17
+   Compiling vcpkg v0.2.15
+   Compiling pkg-config v0.3.34
+   Compiling sha2 v0.10.9
+   Compiling libsqlite3-sys v0.39.1
+   Compiling ed25519 v3.0.0
+   Compiling serde_derive v1.0.229
+   Compiling sha2 v0.11.0
+   Compiling curve25519-dalek-derive v0.1.1
+   Compiling itoa v1.0.18
+   Compiling memchr v2.8.3
+   Compiling ed25519-dalek v3.0.0
+   Compiling fallible-streaming-iterator v0.1.9
+   Compiling smallvec v1.16.5
+   Compiling bitflags v2.13.2
+   Compiling fallible-iterator v0.3.0
+   Compiling storytelling-core v0.1.0-dev.0 (<checkout>/crates/storytelling-core)
+   Compiling storytelling-engine v0.1.0-dev.0 (<checkout>/crates/storytelling-engine)
+   Compiling rusqlite v0.41.1
+   Compiling storytelling-journal v0.1.0-dev.0 (<checkout>/crates/storytelling-journal)
+   Compiling storytelling-cli v0.1.0-dev.0 (<checkout>/crates/storytelling-cli)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 13.50s
+
+$ python3 scripts/test_cli_file_input.py <isolated-target>/debug/storytelling
+test_directory_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_directory_inputs_reject_with_io_exit_without_blocking) ... ok
+test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) ... ok
+test_file_and_stdin_limits_still_reject_oversized_json (__main__.FileInputTests.test_file_and_stdin_limits_still_reject_oversized_json) ... ok
+test_regular_file_and_stdin_replays_preserve_existing_results (__main__.FileInputTests.test_regular_file_and_stdin_replays_preserve_existing_results) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.060s
+
+OK
+
+$ cargo fmt --all -- --check
+
+
+$ cargo clippy --workspace --all-targets --all-features --locked -- -D warnings
+    Checking typenum v1.20.1
+    Checking cfg-if v1.0.5
+    Checking serde_core v1.0.229
+    Checking cpufeatures v0.2.17
+    Checking zmij v1.0.23
+    Checking memchr v2.8.3
+    Checking itoa v1.0.18
+    Checking cpufeatures v0.3.1
+    Checking subtle v2.6.1
+    Checking signature v3.0.0
+    Checking libsqlite3-sys v0.39.1
+    Checking ed25519 v3.0.0
+    Checking smallvec v1.16.5
+    Checking fallible-streaming-iterator v0.1.9
+    Checking fallible-iterator v0.3.0
+    Checking bitflags v2.13.2
+    Checking generic-array v0.14.7
+    Checking hybrid-array v0.4.15
+    Checking rusqlite v0.41.1
+    Checking block-buffer v0.12.1
+    Checking block-buffer v0.10.4
+    Checking crypto-common v0.1.7
+    Checking crypto-common v0.2.2
+    Checking digest v0.10.7
+    Checking sha2 v0.10.9
+    Checking storytelling-journal v0.1.0-dev.0 (<checkout>/crates/storytelling-journal)
+    Checking serde_json v1.0.154
+    Checking serde v1.0.229
+    Checking digest v0.11.3
+    Checking curve25519-dalek v5.0.0
+    Checking sha2 v0.11.0
+    Checking ed25519-dalek v3.0.0
+    Checking storytelling-core v0.1.0-dev.0 (<checkout>/crates/storytelling-core)
+    Checking storytelling-engine v0.1.0-dev.0 (<checkout>/crates/storytelling-engine)
+    Checking storytelling-cli v0.1.0-dev.0 (<checkout>/crates/storytelling-cli)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 6.67s
+
+$ cargo test --workspace --locked
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 8.68s
+     Running unittests src/main.rs (<isolated-target>/debug/deps/storytelling-f7deb16b85dfa5c4)
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/brief.rs (<isolated-target>/debug/deps/brief-c9ca788a80e58ca8)
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/cli.rs (<isolated-target>/debug/deps/cli-1dda67259b39871e)
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/commercial_copy.rs (<isolated-target>/debug/deps/commercial_copy-e958fafaada2654c)
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/commercial_copy_pilot.rs (<isolated-target>/debug/deps/commercial_copy_pilot-6ec626470dc6d894)
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.15s
+     Running tests/cue_sheet.rs (<isolated-target>/debug/deps/cue_sheet-a4e3065fac89766a)
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/draft_video_input.rs (<isolated-target>/debug/deps/draft_video_input-52edaad214805110)
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/handoff.rs (<isolated-target>/debug/deps/handoff-ab470871ee6ae5bd)
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/narrative.rs (<isolated-target>/debug/deps/narrative-4ea4e90dfb652903)
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/openfilm.rs (<isolated-target>/debug/deps/openfilm-72e0adc9ff48411b)
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/otio.rs (<isolated-target>/debug/deps/otio-5af9c9a6c5de45f1)
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/planner.rs (<isolated-target>/debug/deps/planner-a0dd5e71e83a49fe)
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/review_cli.rs (<isolated-target>/debug/deps/review_cli-0c126c5159f77b79)
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/source_evidence.rs (<isolated-target>/debug/deps/source_evidence-cb629cbe5a3d66c2)
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+     Running tests/story_review.rs (<isolated-target>/debug/deps/story_review-83adbdce66770792)
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+     Running tests/style_profile.rs (<isolated-target>/debug/deps/style_profile-a9004430152632c9)
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/video_coverage.rs (<isolated-target>/debug/deps/video_coverage-3a862cd213ccbeae)
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+     Running unittests src/lib.rs (<isolated-target>/debug/deps/storytelling_core-5d91200ddf35a72b)
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/approval.rs (<isolated-target>/debug/deps/approval-7b815e1147598d56)
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.23s
+     Running tests/source_evidence.rs (<isolated-target>/debug/deps/source_evidence-d8f66c93813703d6)
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.73s
+     Running unittests src/lib.rs (<isolated-target>/debug/deps/storytelling_engine-747a373fa576acd9)
+test result: ok. 14 passed; 0 failed; 2 ignored; 0 measured; 0 filtered out; finished in 0.04s
+     Running tests/brief.rs (<isolated-target>/debug/deps/brief-8266feed5bdf16b7)
+test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.20s
+     Running tests/narrative.rs (<isolated-target>/debug/deps/narrative-6049243976c40811)
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+     Running tests/openfilm_snapshot.rs (<isolated-target>/debug/deps/openfilm_snapshot-14b8e7e4ee350f7a)
+test result: ok. 33 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.34s
+     Running tests/otio.rs (<isolated-target>/debug/deps/otio-47c78196d6b03a5b)
+test result: ok. 25 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.23s
+     Running tests/planner.rs (<isolated-target>/debug/deps/planner-dc0710926817dbc8)
+test result: ok. 28 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.24s
+     Running tests/review_binding.rs (<isolated-target>/debug/deps/review_binding-00779dd3d36862a8)
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/story_review.rs (<isolated-target>/debug/deps/story_review-97de8a8a551d1300)
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.76s
+     Running tests/validation.rs (<isolated-target>/debug/deps/validation-a99a359e9bb33be9)
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s
+     Running unittests src/lib.rs (<isolated-target>/debug/deps/storytelling_journal-c6f1ead29153b4f0)
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/filmcraft_execution.rs (<isolated-target>/debug/deps/filmcraft_execution-39c9991e4a397009)
+test result: ok. 0 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/journal.rs (<isolated-target>/debug/deps/journal-a249a3a6e7808b99)
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+   Doc-tests storytelling_core
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+   Doc-tests storytelling_engine
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+   Doc-tests storytelling_journal
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+$ cargo test --workspace --all-features --locked
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.76s
+     Running unittests src/main.rs (<isolated-target>/debug/deps/storytelling-2138b5d0f9113b6c)
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/brief.rs (<isolated-target>/debug/deps/brief-f5be105866f03880)
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/cli.rs (<isolated-target>/debug/deps/cli-1a854b54119dab50)
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/commercial_copy.rs (<isolated-target>/debug/deps/commercial_copy-7aad8a0014548c02)
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/commercial_copy_pilot.rs (<isolated-target>/debug/deps/commercial_copy_pilot-24f0a10d7e27f1db)
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.15s
+     Running tests/cue_sheet.rs (<isolated-target>/debug/deps/cue_sheet-4ea095d34445156e)
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/draft_video_input.rs (<isolated-target>/debug/deps/draft_video_input-d33a01c6f91ca3d7)
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+     Running tests/handoff.rs (<isolated-target>/debug/deps/handoff-30f999fb9225f993)
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/narrative.rs (<isolated-target>/debug/deps/narrative-071b746f2e0050fe)
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/openfilm.rs (<isolated-target>/debug/deps/openfilm-344c04acae4139f4)
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/otio.rs (<isolated-target>/debug/deps/otio-e7eab5bfa55337f2)
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/planner.rs (<isolated-target>/debug/deps/planner-71b774f7d49d58f1)
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/review_cli.rs (<isolated-target>/debug/deps/review_cli-abbd035bd4b915ea)
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/source_evidence.rs (<isolated-target>/debug/deps/source_evidence-176e1fa039249b1f)
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+     Running tests/story_review.rs (<isolated-target>/debug/deps/story_review-c87af5a0549e3771)
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+     Running tests/style_profile.rs (<isolated-target>/debug/deps/style_profile-4ec4229f43314597)
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/video_coverage.rs (<isolated-target>/debug/deps/video_coverage-42a4e130184d427f)
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+     Running unittests src/lib.rs (<isolated-target>/debug/deps/storytelling_core-5d91200ddf35a72b)
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/approval.rs (<isolated-target>/debug/deps/approval-7b815e1147598d56)
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.21s
+     Running tests/source_evidence.rs (<isolated-target>/debug/deps/source_evidence-d8f66c93813703d6)
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.71s
+     Running unittests src/lib.rs (<isolated-target>/debug/deps/storytelling_engine-a40b129e883d4e65)
+test result: ok. 22 passed; 0 failed; 2 ignored; 0 measured; 0 filtered out; finished in 0.05s
+     Running tests/brief.rs (<isolated-target>/debug/deps/brief-eccf8fc6adcd9965)
+test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.23s
+     Running tests/narrative.rs (<isolated-target>/debug/deps/narrative-f15265eb80c98673)
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+     Running tests/openfilm_snapshot.rs (<isolated-target>/debug/deps/openfilm_snapshot-54b9ff045d67099c)
+test result: ok. 33 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.28s
+     Running tests/otio.rs (<isolated-target>/debug/deps/otio-bbd82bb545e53f38)
+test result: ok. 25 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.22s
+     Running tests/planner.rs (<isolated-target>/debug/deps/planner-e0d415054518086a)
+test result: ok. 28 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.20s
+     Running tests/review_binding.rs (<isolated-target>/debug/deps/review_binding-0610b37d73a7dc93)
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/story_review.rs (<isolated-target>/debug/deps/story_review-b79183b58d2303e5)
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.84s
+     Running tests/validation.rs (<isolated-target>/debug/deps/validation-155e744e4c054545)
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s
+     Running unittests src/lib.rs (<isolated-target>/debug/deps/storytelling_journal-c6f1ead29153b4f0)
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/filmcraft_execution.rs (<isolated-target>/debug/deps/filmcraft_execution-39c9991e4a397009)
+test result: ok. 0 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/journal.rs (<isolated-target>/debug/deps/journal-a249a3a6e7808b99)
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.13s
+   Doc-tests storytelling_core
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
+   Doc-tests storytelling_engine
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+   Doc-tests storytelling_journal
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+$ cargo test --workspace --release --locked
+    Finished `release` profile [optimized] target(s) in 55.40s
+     Running unittests src/main.rs (<isolated-target>/release/deps/storytelling-3db9be6f42064ef9)
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/brief.rs (<isolated-target>/release/deps/brief-579065f468769a1b)
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/cli.rs (<isolated-target>/release/deps/cli-7980ced97729df42)
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/commercial_copy.rs (<isolated-target>/release/deps/commercial_copy-d9dea0cdf76aa294)
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/commercial_copy_pilot.rs (<isolated-target>/release/deps/commercial_copy_pilot-a715a5d653b3dd6b)
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/cue_sheet.rs (<isolated-target>/release/deps/cue_sheet-4b3ea4b81516d2eb)
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/draft_video_input.rs (<isolated-target>/release/deps/draft_video_input-29ce1f28ca8f4269)
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/handoff.rs (<isolated-target>/release/deps/handoff-556f4813050bbf51)
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/narrative.rs (<isolated-target>/release/deps/narrative-358a9f167cc20e5a)
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/openfilm.rs (<isolated-target>/release/deps/openfilm-2b9067d4b73a2800)
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/otio.rs (<isolated-target>/release/deps/otio-08768a60618b5b5d)
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/planner.rs (<isolated-target>/release/deps/planner-2c57c572adfbbd90)
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/review_cli.rs (<isolated-target>/release/deps/review_cli-880a596010fac7d0)
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/source_evidence.rs (<isolated-target>/release/deps/source_evidence-d376f5fa3f2447ad)
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s
+     Running tests/story_review.rs (<isolated-target>/release/deps/story_review-2767f4bc42189a6a)
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/style_profile.rs (<isolated-target>/release/deps/style_profile-9f21f85246712701)
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/video_coverage.rs (<isolated-target>/release/deps/video_coverage-05c2c1dd280dc7a8)
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running unittests src/lib.rs (<isolated-target>/release/deps/storytelling_core-1dd6517ed1eb23c1)
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/approval.rs (<isolated-target>/release/deps/approval-d9187c27514d2419)
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/source_evidence.rs (<isolated-target>/release/deps/source_evidence-0f23d5dd102c442c)
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+     Running unittests src/lib.rs (<isolated-target>/release/deps/storytelling_engine-dee2ff8bcadf4ade)
+test result: ok. 14 passed; 0 failed; 2 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/brief.rs (<isolated-target>/release/deps/brief-19c8cece7a2a6bdd)
+test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/narrative.rs (<isolated-target>/release/deps/narrative-154ffcf17b754ce3)
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/openfilm_snapshot.rs (<isolated-target>/release/deps/openfilm_snapshot-8f1f4a27bae431e0)
+test result: ok. 33 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+     Running tests/otio.rs (<isolated-target>/release/deps/otio-5b0289b3f7f273e9)
+test result: ok. 25 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/planner.rs (<isolated-target>/release/deps/planner-2a92652ad22f4637)
+test result: ok. 28 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+     Running tests/review_binding.rs (<isolated-target>/release/deps/review_binding-b21bd15ef630bea7)
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/story_review.rs (<isolated-target>/release/deps/story_review-b1cecd04f6e207ac)
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+     Running tests/validation.rs (<isolated-target>/release/deps/validation-20d8da3749923692)
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+     Running unittests src/lib.rs (<isolated-target>/release/deps/storytelling_journal-e791a03fbb3fce8b)
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/filmcraft_execution.rs (<isolated-target>/release/deps/filmcraft_execution-f1f6e2392507f85a)
+test result: ok. 0 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/journal.rs (<isolated-target>/release/deps/journal-65f2d8b74360a538)
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
+   Doc-tests storytelling_core
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+   Doc-tests storytelling_engine
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+   Doc-tests storytelling_journal
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+$ cargo test --workspace --all-features --release --locked
+    Finished `release` profile [optimized] target(s) in 23.38s
+     Running unittests src/main.rs (<isolated-target>/release/deps/storytelling-a33a775530a44b99)
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/brief.rs (<isolated-target>/release/deps/brief-16b7ec88d4fd3e10)
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/cli.rs (<isolated-target>/release/deps/cli-718388337a2671ee)
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/commercial_copy.rs (<isolated-target>/release/deps/commercial_copy-70f16b220fe69040)
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/commercial_copy_pilot.rs (<isolated-target>/release/deps/commercial_copy_pilot-06acc3120290a0d4)
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/cue_sheet.rs (<isolated-target>/release/deps/cue_sheet-716e4f004aae8e12)
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/draft_video_input.rs (<isolated-target>/release/deps/draft_video_input-22b97de25c20404e)
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+     Running tests/handoff.rs (<isolated-target>/release/deps/handoff-af6f8bd6ab99fd23)
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/narrative.rs (<isolated-target>/release/deps/narrative-5950e9a00387c08f)
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/openfilm.rs (<isolated-target>/release/deps/openfilm-4a6f737ca65a154c)
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/otio.rs (<isolated-target>/release/deps/otio-dcc9537c3a081268)
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/planner.rs (<isolated-target>/release/deps/planner-13b9e2872285b6ab)
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/review_cli.rs (<isolated-target>/release/deps/review_cli-aff028fe164c4ac1)
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/source_evidence.rs (<isolated-target>/release/deps/source_evidence-ea0a27acc186d8eb)
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+     Running tests/story_review.rs (<isolated-target>/release/deps/story_review-1fbc207fec9fa8c0)
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/style_profile.rs (<isolated-target>/release/deps/style_profile-8f65f8cef48230fe)
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/video_coverage.rs (<isolated-target>/release/deps/video_coverage-fadfaec715f0f6ea)
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running unittests src/lib.rs (<isolated-target>/release/deps/storytelling_core-1dd6517ed1eb23c1)
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/approval.rs (<isolated-target>/release/deps/approval-d9187c27514d2419)
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/source_evidence.rs (<isolated-target>/release/deps/source_evidence-0f23d5dd102c442c)
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+     Running unittests src/lib.rs (<isolated-target>/release/deps/storytelling_engine-16ce130879d654af)
+test result: ok. 22 passed; 0 failed; 2 ignored; 0 measured; 0 filtered out; finished in 0.01s
+     Running tests/brief.rs (<isolated-target>/release/deps/brief-6ce40e1dbffb31cb)
+test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/narrative.rs (<isolated-target>/release/deps/narrative-83eb5ea72a700eb7)
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/openfilm_snapshot.rs (<isolated-target>/release/deps/openfilm_snapshot-6a29ca204c351f56)
+test result: ok. 33 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+     Running tests/otio.rs (<isolated-target>/release/deps/otio-041630ca3feb9cbd)
+test result: ok. 25 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+     Running tests/planner.rs (<isolated-target>/release/deps/planner-5f810acc926c8216)
+test result: ok. 28 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+     Running tests/review_binding.rs (<isolated-target>/release/deps/review_binding-8e02f979bd7c9f88)
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/story_review.rs (<isolated-target>/release/deps/story_review-5c079f96c6e6d4e8)
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+     Running tests/validation.rs (<isolated-target>/release/deps/validation-0853c08be45a3435)
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+     Running unittests src/lib.rs (<isolated-target>/release/deps/storytelling_journal-e791a03fbb3fce8b)
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/filmcraft_execution.rs (<isolated-target>/release/deps/filmcraft_execution-f1f6e2392507f85a)
+test result: ok. 0 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s
+     Running tests/journal.rs (<isolated-target>/release/deps/journal-65f2d8b74360a538)
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s
+   Doc-tests storytelling_core
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+   Doc-tests storytelling_engine
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+   Doc-tests storytelling_journal
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+$ cargo doc --workspace --all-features --no-deps --locked
+    Checking storytelling-core v0.1.0-dev.0 (<checkout>/crates/storytelling-core)
+ Documenting storytelling-core v0.1.0-dev.0 (<checkout>/crates/storytelling-core)
+ Documenting storytelling-journal v0.1.0-dev.0 (<checkout>/crates/storytelling-journal)
+    Checking storytelling-engine v0.1.0-dev.0 (<checkout>/crates/storytelling-engine)
+ Documenting storytelling-engine v0.1.0-dev.0 (<checkout>/crates/storytelling-engine)
+ Documenting storytelling-cli v0.1.0-dev.0 (<checkout>/crates/storytelling-cli)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.90s
+   Generated <isolated-target>/doc/storytelling/index.html and 3 other files
+
+$ python3 scripts/check_repo.py
+Repository links, provenance, dependencies and requirement test references passed.
+
+$ git diff --check 5bbe80dc2cf8286abb15ad5278e86ec7384cdb4d..HEAD
+
+
+$ python3 tests/fixtures/execution-contract-v1/check_design.py
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.003s
+
+OK
+
+$ python3 -m unittest discover -s examples/evaluation/n07-pilot -p test_*.py
+............
+----------------------------------------------------------------------
+Ran 12 tests in 0.020s
+
+OK
+
+$ python3 scripts/test_storytelling_graph_plan.py
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.613s
+
+OK
+
+$ python3 scripts/test_storytelling_graph_trace.py
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.817s
+
+OK
+
+$ python3 tests/oracles/filmcraft-25-v1/test_checks.py
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.002s
+
+OK
+
+$ python3 -m unittest discover -s examples/evaluation/n07-recorder -p test_*.py
+.............s........
+----------------------------------------------------------------------
+Ran 22 tests in 4.117s
+
+OK (skipped=1)
+
+$ python3 scripts/test_skill_evaluation_records.py
+..................
+----------------------------------------------------------------------
+Ran 18 tests in 0.976s
+
+OK
+
+$ python3 scripts/test_sk_e02_contract.py
+......................
+----------------------------------------------------------------------
+Ran 22 tests in 0.360s
+
+OK
+
+$ python3 scripts/test_r1_package_checksums.py
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.950s
+
+OK
+
+$ python3 scripts/test_sk_e04_evidence.py
+python3: can't open file '<checkout>/scripts/test_sk_e04_evidence.py': [Errno 2] No such file or directory
+
+$ python3 scripts/test_sk_e04_order_analysis.py
+...............
+----------------------------------------------------------------------
+Ran 15 tests in 0.041s
+
+OK
+
+$ python3 scripts/test_sk_e06_packet.py
+..............
+----------------------------------------------------------------------
+Ran 14 tests in 0.124s
+
+OK

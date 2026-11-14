@@ -1,0 +1,68 @@
+{
+  "source_commit": "d1d8b64f8167eebe9a2e1ee915d3b0b3e2ef1923",
+  "integration_main": "3e0f0d0992df38acc53402f0eb1d1926f63cf8a7",
+  "binary_source_commit": "ed5bfa6a7d66cce9b66faf6ac8bef653b5e43485",
+  "binary_sha256": "952971ea905a93d1f6170a9b5fb3eae39d55e0e4d67346ebc7d45c1e380008a4",
+  "rust_source_and_binary_unchanged_from_fresh_isolated_build": true,
+  "checks": [
+    {
+      "command": "python3 -B scripts/test_cli_file_input.py <isolated-target>/debug/storytelling",
+      "exit": 0,
+      "elapsed_seconds": 0.186,
+      "raw_combined_log_sha256": "9685d1ce3e1e63be2226ed4ced7af01133c2c3aa534359763c4cc9f0a7c08ae9",
+      "methods_recorded": 4,
+      "skipped": 0,
+      "passed": 4
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_cli_file_input.py",
+      "exit": 0,
+      "elapsed_seconds": 0.087,
+      "raw_combined_log_sha256": "6a8dac87ca2e8f506864f3c06558d33292980ddefcb6a5500822f2d8bf4e5f20",
+      "methods_recorded": 4,
+      "skipped": 4,
+      "passed": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts -p test_*.py",
+      "exit": 0,
+      "elapsed_seconds": 4.154,
+      "raw_combined_log_sha256": "ba3f5f793790a76e6511d1a424ed457a35d722eba788ef67537efce21c737fbc",
+      "methods_recorded": 103,
+      "skipped": 4,
+      "passed": 99
+    },
+    {
+      "command": "python3 -B scripts/test_sk_e04_order_analysis.py",
+      "exit": 0,
+      "elapsed_seconds": 0.773,
+      "raw_combined_log_sha256": "028ca66cb4339cc0779528a88a8be7655a3b281a42aa75c6d53d86fdc3b7c302",
+      "methods_recorded": 24,
+      "skipped": 0,
+      "passed": 24
+    },
+    {
+      "command": "python3 -B scripts/check_repo.py",
+      "exit": 0,
+      "elapsed_seconds": 0.248,
+      "raw_combined_log_sha256": "728bbfaf33cce26d9fbaf87b18bd5a323ffebd1fb3d212369faab1c56d548238"
+    },
+    {
+      "command": "git diff --check 3e0f0d0992df38acc53402f0eb1d1926f63cf8a7..HEAD",
+      "exit": 0,
+      "elapsed_seconds": 0.006,
+      "raw_combined_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "stored_log": "discovery-green.txt",
+  "stored_log_sha256": "f1332dcaf32303fd1be560490af708934545e4dce326d8a77ba74b7648ca8332",
+  "log_normalization": "Absolute checkout/target prefixes labeled and trailing whitespace removed; original per-command combined-output hashes retained.",
+  "scope": "Test harness discovery correction only. Discovery skips do not execute product assertions; mandatory explicit-binary run separately passed all four.",
+  "rust_compilation": "Not repeated: Rust source and isolated binary hash matched the earlier clean ed5bfa6 build; only Python/config/docs changed.",
+  "final_head_ci": "Pending new final head; fdd8283 is superseded as PR head.",
+  "workflow_review_correction": {
+    "commit": "64f5a62ee6876f9e09af9adf19e5118ad68ec35a",
+    "change": "Explicit-binary and targeted-discovery commands are separate named steps, each with one command; a successful later discovery cannot mask a failed binary step on Windows.",
+    "validation": "Configuration review; final-head hosted CI pending. No product assertions or Rust source changed."
+  }
+}

@@ -1,0 +1,244 @@
+{
+  "source_commit": "ed5bfa6a7d66cce9b66faf6ac8bef653b5e43485",
+  "base_commit": "5bbe80dc2cf8286abb15ad5278e86ec7384cdb4d",
+  "target_absent_before_run": true,
+  "target_policy": "New unique target; never reused a target from another worktree. CARGO_INCREMENTAL=0.",
+  "commands": [
+    {
+      "command": "cargo build --workspace --all-features --locked",
+      "exit": 0,
+      "elapsed_seconds": 13.519,
+      "raw_combined_log_sha256": "a32ed0842b9a4b30e8d2dca974bae73c3adfa22e36424efd8d0946bd7a3b8f45",
+      "local_raw_log_name": "01.log"
+    },
+    {
+      "command": "python3 scripts/test_cli_file_input.py <isolated-target>/debug/storytelling",
+      "exit": 0,
+      "elapsed_seconds": 0.132,
+      "raw_combined_log_sha256": "75516fd2e0de68d055cff6205af5e437548c2387b94130726ec7d5e69363ba48",
+      "local_raw_log_name": "02.log"
+    },
+    {
+      "command": "cargo fmt --all -- --check",
+      "exit": 0,
+      "elapsed_seconds": 0.226,
+      "raw_combined_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "local_raw_log_name": "03.log"
+    },
+    {
+      "command": "cargo clippy --workspace --all-targets --all-features --locked -- -D warnings",
+      "exit": 0,
+      "elapsed_seconds": 6.729,
+      "raw_combined_log_sha256": "79db34b3c3b9a3a8473791763f9e74485433ec515d7c42b014ed4abed12ab6f7",
+      "local_raw_log_name": "04.log"
+    },
+    {
+      "command": "cargo test --workspace --locked",
+      "exit": 0,
+      "elapsed_seconds": 12.817,
+      "raw_combined_log_sha256": "c86409c18779c4a7adb37f5f3a1835be18d38c7605f2adbbf20d59aecc814638",
+      "local_raw_log_name": "05.log",
+      "passed_total_including_doc_tests": 312,
+      "test_result_summaries": 35
+    },
+    {
+      "command": "cargo test --workspace --all-features --locked",
+      "exit": 0,
+      "elapsed_seconds": 9.953,
+      "raw_combined_log_sha256": "a9ed66a18d1a98bef3f80a06c0589dca160a96863eccc7893a5379e30930288c",
+      "local_raw_log_name": "06.log",
+      "passed_total_including_doc_tests": 331,
+      "test_result_summaries": 35
+    },
+    {
+      "command": "cargo test --workspace --release --locked",
+      "exit": 0,
+      "elapsed_seconds": 56.711,
+      "raw_combined_log_sha256": "cf92c17eb97e0172383b8ee2d884ee441b36d533e1c9da4ff7e19170c903638b",
+      "local_raw_log_name": "07.log",
+      "passed_total_including_doc_tests": 312,
+      "test_result_summaries": 35
+    },
+    {
+      "command": "cargo test --workspace --all-features --release --locked",
+      "exit": 0,
+      "elapsed_seconds": 24.658,
+      "raw_combined_log_sha256": "5afbf6eb4feca39950e4cfd9bbfb574d6cd614394715a8111781d6d4d259f684",
+      "local_raw_log_name": "08.log",
+      "passed_total_including_doc_tests": 331,
+      "test_result_summaries": 35
+    },
+    {
+      "command": "cargo doc --workspace --all-features --no-deps --locked",
+      "exit": 0,
+      "elapsed_seconds": 2.914,
+      "raw_combined_log_sha256": "04b84c660dfc00702b1c89e32c0bf2e690fd51d91007c898c6d996b3f7c02a0f",
+      "local_raw_log_name": "09.log"
+    },
+    {
+      "command": "python3 scripts/check_repo.py",
+      "exit": 0,
+      "elapsed_seconds": 0.189,
+      "raw_combined_log_sha256": "728bbfaf33cce26d9fbaf87b18bd5a323ffebd1fb3d212369faab1c56d548238",
+      "local_raw_log_name": "10.log"
+    },
+    {
+      "command": "git diff --check 5bbe80dc2cf8286abb15ad5278e86ec7384cdb4d..HEAD",
+      "exit": 0,
+      "elapsed_seconds": 0.006,
+      "raw_combined_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "local_raw_log_name": "11.log"
+    }
+  ],
+  "feature_binary_sha256": "952971ea905a93d1f6170a9b5fb3eae39d55e0e4d67346ebc7d45c1e380008a4",
+  "provenance_status": "verified_isolated_target",
+  "supersedes": "workspace-checks.json",
+  "target_directory_basename": "storytelling-cli-file-input-clean-target",
+  "platform": "Linux x86_64",
+  "toolchain": "1.89.0",
+  "environment": {
+    "CARGO_INCREMENTAL": "0",
+    "RUSTDOCFLAGS": "-D warnings",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "additional_python_checks": [
+    {
+      "command": "python3 tests/fixtures/execution-contract-v1/check_design.py",
+      "exit": 0,
+      "elapsed_seconds": 0.143,
+      "raw_combined_log_sha256": "0f7e4b97443e54aca647179972594d13bb587afcbf151fab8228148587ea844a",
+      "local_raw_log_name": "python-01.log",
+      "test_methods": 5
+    },
+    {
+      "command": "python3 -m unittest discover -s examples/evaluation/n07-pilot -p test_*.py",
+      "exit": 0,
+      "elapsed_seconds": 0.162,
+      "raw_combined_log_sha256": "801524188e3685c494b3302dea7d76f2ce5465f79ea7636b33023966f00965f1",
+      "local_raw_log_name": "python-02.log",
+      "test_methods": 12
+    },
+    {
+      "command": "python3 scripts/test_storytelling_graph_plan.py",
+      "exit": 0,
+      "elapsed_seconds": 0.738,
+      "raw_combined_log_sha256": "805ed0e686d0ccd64b4537e7f9a562256fd63999eeac0f8e8476dcc42431f978",
+      "local_raw_log_name": "python-03.log",
+      "test_methods": 6
+    },
+    {
+      "command": "python3 scripts/test_storytelling_graph_trace.py",
+      "exit": 0,
+      "elapsed_seconds": 0.924,
+      "raw_combined_log_sha256": "faaebb1b1bf961ca1bc40e8dcfa77d25de2d488199a932a63444878a5774784f",
+      "local_raw_log_name": "python-04.log",
+      "test_methods": 5
+    },
+    {
+      "command": "python3 tests/oracles/filmcraft-25-v1/test_checks.py",
+      "exit": 0,
+      "elapsed_seconds": 0.115,
+      "raw_combined_log_sha256": "62cfbeb2911bb226088bfb0918eb4b05008ea70b20bce854ee2ca8a564bd37a5",
+      "local_raw_log_name": "python-05.log",
+      "test_methods": 6
+    },
+    {
+      "command": "python3 -m unittest discover -s examples/evaluation/n07-recorder -p test_*.py",
+      "exit": 0,
+      "elapsed_seconds": 4.241,
+      "raw_combined_log_sha256": "5391e3bb7adb6704fa39a12afcee2571644d2db65ae6de7fcfe42bb9823d3281",
+      "local_raw_log_name": "python-06.log",
+      "test_methods": 22
+    },
+    {
+      "command": "python3 scripts/test_skill_evaluation_records.py",
+      "exit": 0,
+      "elapsed_seconds": 1.07,
+      "raw_combined_log_sha256": "e1e22cac35cf8991ba5b8f08b1d38008cbbef21340c9a6875a9b4a2c283954c7",
+      "local_raw_log_name": "python-07.log",
+      "test_methods": 18
+    },
+    {
+      "command": "python3 scripts/test_sk_e02_contract.py",
+      "exit": 0,
+      "elapsed_seconds": 0.481,
+      "raw_combined_log_sha256": "2446c3fa0b79ae5725ab8df84f27a48446c2b08417f9786b7753e161ec56de05",
+      "local_raw_log_name": "python-08.log",
+      "test_methods": 22
+    },
+    {
+      "command": "python3 scripts/test_r1_package_checksums.py",
+      "exit": 0,
+      "elapsed_seconds": 1.095,
+      "raw_combined_log_sha256": "a558a166682efc4bb61c1c10099c7496afd1d827de873160012f10a4e6a1fe6f",
+      "local_raw_log_name": "python-09.log",
+      "test_methods": 5
+    },
+    {
+      "command": "python3 scripts/test_sk_e04_evidence.py",
+      "exit": 2,
+      "elapsed_seconds": 0.017,
+      "raw_combined_log_sha256": "35e57dc0e53948aacee09cecb68d88ceb4c9fdbe29b480358537a13900ae8657",
+      "classification": "invocation_error",
+      "correction": "Incorrect script name; no tests ran. Superseded by scripts/test_sk_e04_order_analysis.py below.",
+      "local_raw_log_name": "python-10.log"
+    },
+    {
+      "command": "python3 scripts/test_sk_e04_order_analysis.py",
+      "exit": 0,
+      "elapsed_seconds": 0.171,
+      "raw_combined_log_sha256": "b27c38acb2171e17d5c7bb4b5add1feb22e2f1893e9d3dbb949cbfb2655b7b7d",
+      "local_raw_log_name": "python-11.log",
+      "test_methods": 15
+    },
+    {
+      "command": "python3 scripts/test_sk_e06_packet.py",
+      "exit": 0,
+      "elapsed_seconds": 0.249,
+      "raw_combined_log_sha256": "70cb5b07949bed66fdb35ce48d922f0d960ca0f521435253b893257e09beafad",
+      "local_raw_log_name": "python-12.log",
+      "test_methods": 14
+    }
+  ],
+  "invocation_correction": "Supplemental attempt scripts/test_sk_e04_evidence.py exited2 because the name was incorrect; no tests ran. The existing scripts/test_sk_e04_order_analysis.py then passed. Both attempts are preserved.",
+  "source_blobs": {
+    "crates/storytelling-cli/src/main.rs": {
+      "git_blob": "343dd8a86a7af95f9a6b869c0ab984f9fa49dc52",
+      "sha256": "cf86fba27bdc2db09ffa9d6c2b6a34412a9e84678ddad500f21435729045663f"
+    },
+    "crates/storytelling-journal/src/lib.rs": {
+      "git_blob": "fd248ac836e354d4d540a4316d9af6b2016c42dd",
+      "sha256": "3a0746df043afb7d9e191522fe02a5e1a6317e0c6a72e103f3a20d55304b78fb"
+    },
+    "crates/storytelling-journal/tests/journal.rs": {
+      "git_blob": "73128469c51c0af37c4d7d12111534288dd3dceb",
+      "sha256": "f3418c5f8afb8cf8405a915c7a57d6e02999734698197a5f54ebc0ec0345154b"
+    },
+    "scripts/test_cli_file_input.py": {
+      "git_blob": "ef1a90c93806a01f33b22a94971b85b05f962811",
+      "sha256": "278b3c0ed5ddcf83aaca152fad01250c8685d053c033d7d3acf15156f2d4cb80"
+    },
+    ".github/workflows/ci.yml": {
+      "git_blob": "98b893e24da8dc7eaa593bdcac46cdaf8667200a",
+      "sha256": "acc12a65a3a8cec12b54358b7c575f96d477d22a951445148188ce35695261c8"
+    }
+  },
+  "included_regressions": {
+    "video_coverage_cli": 7,
+    "draft_video_input_cli": 12,
+    "journal_integration": 13,
+    "planner_narrative_n11_otio_m3": "workspace suites passed"
+  },
+  "historical_rebase_lineage": {
+    "test_first_commit_before_rebase": "b05a083d4e911564b38f6a70e715fa71bcd4bd01",
+    "test_first_commit_after_rebase": "8ef2558",
+    "implementation_before_rebase": "a6c9a367bedb5004fa39b5eafa763dc0ec4b6838",
+    "implementation_after_rebase": "5bccd78",
+    "meaning": "Patch lineage only; old and new complete source trees differ because latest main includes the journal fix."
+  },
+  "output_excerpts": "isolated-checks.txt",
+  "output_excerpts_sha256": "f1a66bef4990ed2b2da19cc759daa33c398754edd06a7b41170a035b91d8d84c",
+  "log_redaction": "Absolute checkout and target prefixes replaced with labels. Original raw combined-output SHA-256 values retained; excerpted individual passing lines omitted as stated.",
+  "hosted_ci": "pending final PR exact head; isolated local verification is Linux-only",
+  "human_media_host_release": "not performed"
+}

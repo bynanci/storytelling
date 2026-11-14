@@ -1,0 +1,18 @@
+{
+  "phase": "RED",
+  "source_commit": "b05a083d4e911564b38f6a70e715fa71bcd4bd01",
+  "base_commit": "c562ce0d06b7330813fa42cad739f24f4a49e9da",
+  "build_command": "cargo build --locked -p storytelling-cli --features draft-video-input",
+  "binary_sha256": "62c915cf07b52ad986e015d54f37630c0d00b7bebba42b67da9c01858a78d846",
+  "test_command": "python3 scripts/test_cli_file_input.py <target>/debug/storytelling",
+  "exit": 1,
+  "elapsed_seconds": 25.301,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "c75392a44d264427bee6756341b4bb27e89d132973a5234f113660bd612417ba",
+  "result": "4 tests; 33 FIFO subcase failures; directory, replay and limit checks passed",
+  "child_cleanup": "subprocess.run killed and waited for each timed-out direct child; no storytelling processes remained",
+  "stored_log": "red.txt",
+  "stored_log_sha256": "f33ecd84a04cd42743585042742f8f736d4d8a600f5abcf801b9c85a5c4b3ffa",
+  "log_redaction": "The absolute checkout prefix was replaced with <checkout> and trailing line whitespace removed for repository hygiene; original stderr SHA-256 is retained above.",
+  "build_cache_context": "Historical shared-target run before rebase. FIFO behavior was observed, but this receipt is not full workspace provenance. See isolated-checks.json for the fresh integrated build and focused GREEN."
+}

@@ -1,0 +1,77 @@
+{
+  "source_commit": "a6c9a367bedb5004fa39b5eafa763dc0ec4b6838",
+  "platform": "Linux x86_64",
+  "toolchain": "1.89.0",
+  "environment": {
+    "CARGO_INCREMENTAL": "0",
+    "RUSTDOCFLAGS": "-D warnings"
+  },
+  "checks": [
+    {
+      "command": "cargo fmt --all -- --check",
+      "exit": 0,
+      "elapsed_seconds": 0.354,
+      "raw_combined_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "cargo clippy --workspace --all-targets --all-features --locked -- -D warnings",
+      "exit": 0,
+      "elapsed_seconds": 0.512,
+      "raw_combined_log_sha256": "b6cdaaa7db02d912f6cb12e65a0ef49dda0a0103ab837b9a1bcb2041faebc8db"
+    },
+    {
+      "command": "cargo test --workspace --locked",
+      "exit": 0,
+      "elapsed_seconds": 5.727,
+      "raw_combined_log_sha256": "17f357a5ea20daee58b9d744bfe7ef996fd9c0df71aea9d1caaeb47d156425c5",
+      "passed_total_including_doc_tests": 312,
+      "test_result_summaries": 35
+    },
+    {
+      "command": "cargo test --workspace --all-features --locked",
+      "exit": 0,
+      "elapsed_seconds": 4.486,
+      "raw_combined_log_sha256": "858ccac4ed52b169277c4898b242b5fac5cabb82684e773bf5abbb64c1bbd290",
+      "passed_total_including_doc_tests": 331,
+      "test_result_summaries": 35
+    },
+    {
+      "command": "cargo test --workspace --release --locked",
+      "exit": 0,
+      "elapsed_seconds": 2.479,
+      "raw_combined_log_sha256": "069933cbaf8fe7255753014baa431b9122f318a4cc849882ba48d48d45089810",
+      "passed_total_including_doc_tests": 312,
+      "test_result_summaries": 35
+    },
+    {
+      "command": "cargo test --workspace --all-features --release --locked",
+      "exit": 0,
+      "elapsed_seconds": 2.446,
+      "raw_combined_log_sha256": "382bafff62227b8c42767e53b4aacfd11b367d18f046394c19d17edac924242e",
+      "passed_total_including_doc_tests": 331,
+      "test_result_summaries": 35
+    },
+    {
+      "command": "cargo doc --workspace --all-features --no-deps --locked",
+      "exit": 0,
+      "elapsed_seconds": 1.129,
+      "raw_combined_log_sha256": "7ff52a307207118d580fd48ca20a6e9c2211d09fc7c6f8e1b833650c09cf837c"
+    }
+  ],
+  "output_excerpts": "workspace-checks.txt",
+  "output_excerpts_sha256": "1da3b2621c480d29c2121991d36af5f4f34e855363373d8bb371d9128e421c74",
+  "included_regressions": {
+    "video_coverage_cli": 7,
+    "draft_video_input_cli": 12,
+    "planner": "workspace suites passed",
+    "narrative": "workspace suites passed",
+    "n11_handoff": "workspace suites passed",
+    "otio": "workspace suites passed",
+    "m3_core_and_review": "workspace suites passed"
+  },
+  "hosted_ci": "pending final PR exact head; local results do not establish cross-platform hosted success",
+  "human_media_host_release": "not performed",
+  "provenance_status": "cache_ambiguous",
+  "superseded": true,
+  "correction": "Shared CARGO_TARGET_DIR reused cross-worktree artifacts. The source commit had 11 journal tests, but the observed logs contain 13 journal tests from the parallel fix. Original observed results and output excerpts are preserved; they do not verify the named source commit. A fresh isolated-target run on the integrated main supersedes this receipt."
+}
