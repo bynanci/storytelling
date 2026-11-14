@@ -13,4 +13,3 @@ test enabled::rejects_fps_vfr_unknown_timing_and_timecode ... ok
 test enabled::rejects_invalid_seconds_and_overflow_without_returning_coverage ... ok
 
 test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
-

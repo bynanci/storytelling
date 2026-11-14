@@ -1,7 +1,7 @@
 {
   "kind": "synthetic_machine_test_evidence",
   "run_date": "2026-11-14 UTC",
-  "note": "Unmodified test-output excerpts start at the running-tests line; compiler installation/source-directory lines omitted. No media, participant or host observation.",
+  "note": "Test-output excerpts start at the running-tests line; compiler installation/source-directory lines and trailing empty lines omitted. Test line contents are unchanged. No media, participant or host observation.",
   "runs": [
     {
       "phase": "cli-red",
@@ -28,7 +28,7 @@
       "source_note": "transient test/stub or implementation working tree; no immutable source commit retained for this supplemental run",
       "raw_combined_output_sha256": "9ae4c3c640995e826e3a7a7e23fa7e60c1570a6084f609ea2a0d9ad234fda16c",
       "excerpt": "math-green.txt",
-      "excerpt_sha256": "5fe60fa8bf5f2870f8b9f6e8223421a2d7a8598053f39d7396c46f049b5b1c88"
+      "excerpt_sha256": "dd711522f608212407f312b23c555a819530a7cc5536a04c5a0847834d112d3d"
     },
     {
       "phase": "error-order-red",
@@ -46,7 +46,7 @@
       "source_note": "exact commit; CLI RED replayed from a clean detached worktree",
       "raw_combined_output_sha256": "a8edb2c186175e4b3aaab9ec35aa8d7ef18d7df35f106a85d603efe94706a17e",
       "excerpt": "cli-green.txt",
-      "excerpt_sha256": "1decda8c1f03e370d4661dce085018ee877245ee6c16961cefc4d9e13dbbdec9"
+      "excerpt_sha256": "af8249d98adc02ff759eda4e89611974e19a89cd0845debee732dff26e114c48"
     }
   ]
 }
