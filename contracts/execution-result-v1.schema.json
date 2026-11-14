@@ -1,0 +1,564 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/bynanci/storytelling/contracts/execution-result-v1.schema.json",
+  "title": "ExecutionResultV1 (proposed, portable evidence only)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "operation_id",
+    "intent_sha256",
+    "outcome",
+    "receipt",
+    "error"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "operation_id": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/id"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "intent_sha256": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/sha256"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "outcome": {
+      "enum": [
+        "ready",
+        "dispatching",
+        "applied",
+        "not_applied",
+        "unknown",
+        "partial",
+        "rejected"
+      ]
+    },
+    "receipt": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/receipt"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "error": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "path"
+          ],
+          "properties": {
+            "code": {
+              "enum": [
+                "execution.input_too_large",
+                "execution.invalid_json",
+                "execution.unsupported_version",
+                "execution.invalid_shape",
+                "execution.limit_exceeded",
+                "execution.identity_mismatch",
+                "execution.stale_review",
+                "execution.idempotency_conflict",
+                "execution.writer_conflict",
+                "execution.host_mismatch",
+                "execution.target_mismatch",
+                "execution.source_mismatch",
+                "execution.unauthorized",
+                "execution.unsupported_approval",
+                "execution.approval_expired",
+                "execution.policy_changed",
+                "execution.replayed_grant",
+                "execution.storage_failure",
+                "execution.stale_owner",
+                "execution.unknown_outcome",
+                "execution.readback_mismatch",
+                "execution.partial_outcome",
+                "execution.retry_forbidden"
+              ]
+            },
+            "path": {
+              "type": "string",
+              "maxLength": 512,
+              "pattern": "^(\\$|/.*)$"
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "payload",
+        "sha256"
+      ],
+      "properties": {
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "schema_version",
+            "operation_id",
+            "intent_sha256",
+            "project_resource_id",
+            "target_revision_before_sha256",
+            "target_revision_after_sha256",
+            "attempt_id",
+            "operation_fence_epoch",
+            "project_fence_epoch",
+            "host_profile_id",
+            "host_profile_sha256",
+            "host_version",
+            "host_binary_sha256",
+            "authority_receipt_sha256",
+            "readback_sha256",
+            "quiescence_sha256",
+            "outcome",
+            "recorded_at_ms"
+          ],
+          "properties": {
+            "schema_version": {
+              "type": "integer",
+              "const": 1
+            },
+            "operation_id": {
+              "$ref": "#/$defs/id"
+            },
+            "intent_sha256": {
+              "$ref": "#/$defs/sha256"
+            },
+            "project_resource_id": {
+              "$ref": "#/$defs/id"
+            },
+            "target_revision_before_sha256": {
+              "$ref": "#/$defs/sha256"
+            },
+            "target_revision_after_sha256": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/sha256"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "attempt_id": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 64
+            },
+            "operation_fence_epoch": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9223372036854775807
+            },
+            "project_fence_epoch": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9223372036854775807
+            },
+            "host_profile_id": {
+              "$ref": "#/$defs/id"
+            },
+            "host_profile_sha256": {
+              "$ref": "#/$defs/sha256"
+            },
+            "host_version": {
+              "$ref": "#/$defs/id"
+            },
+            "host_binary_sha256": {
+              "$ref": "#/$defs/sha256"
+            },
+            "authority_receipt_sha256": {
+              "$ref": "#/$defs/sha256"
+            },
+            "readback_sha256": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/sha256"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "quiescence_sha256": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/sha256"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "outcome": {
+              "enum": [
+                "dispatching",
+                "applied",
+                "not_applied",
+                "unknown",
+                "partial"
+              ]
+            },
+            "recorded_at_ms": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9223372036854775807
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "outcome": {
+                    "enum": [
+                      "applied",
+                      "not_applied"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "target_revision_after_sha256": {
+                    "$ref": "#/$defs/sha256"
+                  },
+                  "readback_sha256": {
+                    "$ref": "#/$defs/sha256"
+                  },
+                  "quiescence_sha256": {
+                    "$ref": "#/$defs/sha256"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "outcome": {
+                    "const": "partial"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "target_revision_after_sha256": {
+                    "$ref": "#/$defs/sha256"
+                  },
+                  "readback_sha256": {
+                    "$ref": "#/$defs/sha256"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+    },
+    "sha256": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "outcome": {
+            "enum": [
+              "ready",
+              "rejected"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "receipt": {
+            "type": "null"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "operation_id": {
+            "$ref": "#/$defs/id"
+          },
+          "intent_sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "receipt": {
+            "$ref": "#/$defs/receipt"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "outcome": {
+            "enum": [
+              "ready",
+              "applied",
+              "dispatching"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "dispatching"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "receipt": {
+            "properties": {
+              "payload": {
+                "properties": {
+                  "outcome": {
+                    "enum": [
+                      "dispatching"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "applied"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "receipt": {
+            "properties": {
+              "payload": {
+                "properties": {
+                  "outcome": {
+                    "enum": [
+                      "applied"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "not_applied"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "receipt": {
+            "properties": {
+              "payload": {
+                "properties": {
+                  "outcome": {
+                    "enum": [
+                      "not_applied"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "partial"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "receipt": {
+            "properties": {
+              "payload": {
+                "properties": {
+                  "outcome": {
+                    "enum": [
+                      "partial"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "unknown"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "receipt": {
+            "properties": {
+              "payload": {
+                "properties": {
+                  "outcome": {
+                    "enum": [
+                      "unknown",
+                      "dispatching"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "outcome": {
+            "enum": [
+              "rejected",
+              "unknown",
+              "partial",
+              "not_applied"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "error": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "code",
+              "path"
+            ],
+            "properties": {
+              "code": {
+                "enum": [
+                  "execution.input_too_large",
+                  "execution.invalid_json",
+                  "execution.unsupported_version",
+                  "execution.invalid_shape",
+                  "execution.limit_exceeded",
+                  "execution.identity_mismatch",
+                  "execution.stale_review",
+                  "execution.idempotency_conflict",
+                  "execution.writer_conflict",
+                  "execution.host_mismatch",
+                  "execution.target_mismatch",
+                  "execution.source_mismatch",
+                  "execution.unauthorized",
+                  "execution.unsupported_approval",
+                  "execution.approval_expired",
+                  "execution.policy_changed",
+                  "execution.replayed_grant",
+                  "execution.storage_failure",
+                  "execution.stale_owner",
+                  "execution.unknown_outcome",
+                  "execution.readback_mismatch",
+                  "execution.partial_outcome",
+                  "execution.retry_forbidden"
+                ]
+              },
+              "path": {
+                "type": "string",
+                "maxLength": 512,
+                "pattern": "^(\\$|/.*)$"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "outcome": {
+            "const": "ready"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "operation_id": {
+            "$ref": "#/$defs/id"
+          },
+          "intent_sha256": {
+            "$ref": "#/$defs/sha256"
+          }
+        }
+      }
+    }
+  ]
+}

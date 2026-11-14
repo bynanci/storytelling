@@ -121,6 +121,10 @@ Use the stable codes below. Diagnostic paths, prose and line or column numbers c
 - Time and range: `plan.invalid_time`, `plan.invalid_range`, `plan.source_out_of_bounds`.
 - References and collections: `plan.duplicate_id`, `plan.unknown_asset`, `plan.empty_collection`, `plan.too_many_items`.
 
+## Proposed M3-04 execution boundary
+
+[ADR 0011](adr/0011-production-execution-contract-v1.md), [Execution V1](migration/EXECUTION_CONTRACT_V1.md), closed [request](../contracts/execution-intent-v1.schema.json)/[result](../contracts/execution-result-v1.schema.json) schemas and [test design](validation/m3-04-execution-contract.md) are proposed for #103 G2. They add no executable command or authority. #103 stays open; #104 stays blocked until explicit maintainer acceptance. Existing review flags/signatures and V1 journal semantics are unchanged.
+
 <a id="m3-02-sqlite-操作日誌"></a>
 
 ## M3-02 SQLite operation journal

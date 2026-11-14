@@ -166,6 +166,10 @@ storytelling --version
 - 時間與範圍：`plan.invalid_time`、`plan.invalid_range`、`plan.source_out_of_bounds`。
 - 參照與集合：`plan.duplicate_id`、`plan.unknown_asset`、`plan.empty_collection`、`plan.too_many_items`。
 
+## M3-04 正式執行邊界提案
+
+[ADR 0011](adr/0011-production-execution-contract-v1.md)、[V1 審查摘要](migration/EXECUTION_CONTRACT_V1.zh-TW.md)、[請求](../contracts/execution-intent-v1.schema.json)／[結果](../contracts/execution-result-v1.schema.json)封閉 schema 與[測試設計](validation/m3-04-execution-contract.md)供 #103 G2 審查。目前沒有新執行命令或授權；#103 保持 open，#104 在維護者明確接受前維持 blocked。既有 Review flags、簽章與 V1 Journal 不變。
+
 <a id="m3-02-sqlite-operation-journal"></a>
 
 ## M3-02 SQLite 操作日誌

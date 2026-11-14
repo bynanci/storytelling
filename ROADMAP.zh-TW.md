@@ -57,6 +57,7 @@ Skill 可以獨立安裝。目前套件版本為 `0.1.0-dev.0`。使用者可從
 | M1-01 → M1-02 → M1-03 | 接續 M0。驗證限定格式的交接後，才執行編輯器測試。 |
 | M2-01 → M2-02 → M2-03 | M2-01 接續 M1-01。需求與測試素材可先準備。 |
 | M3-01/P1 → P2 → M3-02 → M3-03 | P1 需要 M1-03 與 M2-02。P2 將選定提案交給唯讀 OTIO 審閱流程。 |
+| M3-04／#103 → #104 → #105 → #106 | [執行契約 V1 提案](docs/migration/EXECUTION_CONTRACT_V1.zh-TW.md)凍結身分／授權、專案隔離、回讀及禁止盲目重試。G2 待審，執行器／復原／宿主分別驗收。 |
 | M4 → M5 → v1.0 | M4 需要 M2-03，以及可用於正式環境的 M3-03 執行與讀回流程。 |
 
 [P2 契約](docs/migration/PLANNER_OTIO_REVIEW_V1.md)及 [M3-02 日誌](https://github.com/bynanci/storytelling/pull/56)已納入主分支。[M3-03 隔離測試](docs/validation/m3-03-filmcraft-execution.md)重現了編輯器執行成功、呼叫端卻未收到回覆的情況。逾時後須先讀回專案。若操作仍可能執行，或讀回結果不明，應停止重送。
