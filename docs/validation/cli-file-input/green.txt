@@ -1,0 +1,9 @@
+test_directory_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_directory_inputs_reject_with_io_exit_without_blocking) ... ok
+test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) ... ok
+test_file_and_stdin_limits_still_reject_oversized_json (__main__.FileInputTests.test_file_and_stdin_limits_still_reject_oversized_json) ... ok
+test_regular_file_and_stdin_replays_preserve_existing_results (__main__.FileInputTests.test_regular_file_and_stdin_replays_preserve_existing_results) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.070s
+
+OK

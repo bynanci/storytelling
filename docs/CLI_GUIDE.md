@@ -60,6 +60,8 @@ A **snapshot** is a composition export that follows the `finite-v1` contract. Op
 
 Most JSON inputs have a 1 MiB limit. The source verification limit is 16 MiB. Proposal review accepts up to 4,194,336 bytes for a proposal and 4,292,672 bytes for a review bundle. Only the proposal can use `-` for standard input in this workflow. Supply regular files for the snapshot, context and bundle. Close standard input to send end-of-file (EOF). Each contract sets limits for collections, metadata, diagnostics and output.
 
+Named inputs are checked for regular-file metadata before opening and again on the opened handle. Static directories, FIFOs and devices return path-free `input.io` with exit 3. Standard input still waits for EOF. This check does not prevent concurrent pathname replacement or confine symlinks; see the [CLI file-input regression and limits](validation/cli-file-input.md).
+
 <a id="素材無關的口述與插畫提綱"></a>
 
 ## Render a spoken outline and two illustration briefs

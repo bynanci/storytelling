@@ -64,6 +64,8 @@ storytelling validate plan.json
 
 提案審閱流程只允許用 `-` 傳入提案。快照、設定與審閱結果須為一般檔案。使用標準輸入時，請傳送檔案結尾（EOF）。各契約另有限制集合、中繼資料、診斷及輸出大小。
 
+具名輸入會在開檔前及開檔後分別確認一般檔案 metadata。靜態目錄、FIFO 與裝置會回傳不含路徑的 `input.io`，退出碼為 3；標準輸入仍須等待 EOF。這項檢查不能防止路徑在檢查後遭替換，也不限制 symlink 範圍。見[CLI 檔案輸入回歸與限制](validation/cli-file-input.zh-TW.md)。
+
 <a id="render-a-spoken-outline-and-two-illustration-briefs"></a>
 
 ## 素材無關的口述與插畫提綱
