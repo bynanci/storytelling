@@ -1,0 +1,48 @@
+{
+  "schema_version": "skill-adversarial-manual-record/v1",
+  "record_kind": "blank_manual_execution_form",
+  "packet_id": "SK-E06-REFERENCE-1",
+  "record_id": null,
+  "case_id": null,
+  "locale": null,
+  "execution_kind": null,
+  "host": {
+    "name": null,
+    "version": null,
+    "version_unavailable_reason": null,
+    "capabilities": null
+  },
+  "skill": {
+    "commit": null,
+    "files_sha256": null
+  },
+  "model": {
+    "availability": null,
+    "provider": null,
+    "model_id": null,
+    "revision": null,
+    "revision_unavailable_reason": null,
+    "settings": null
+  },
+  "date_utc": null,
+  "started_at_utc": null,
+  "ended_at_utc": null,
+  "fresh_context": null,
+  "prior_exposure": null,
+  "raw_output": {
+    "verbatim": null,
+    "utf8_sha256": null
+  },
+  "review": {
+    "invariant_results": null,
+    "failure_conditions_seen": null,
+    "exact_output_evidence": null,
+    "unexpected_answer_verbatim": null,
+    "unresolved_questions": null,
+    "reviewer_code": null,
+    "instruction_conformance": null,
+    "narrative_quality": null,
+    "human_trial_outcomes": null
+  },
+  "decision": null
+}

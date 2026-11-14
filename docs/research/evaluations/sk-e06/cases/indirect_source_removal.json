@@ -1,0 +1,128 @@
+{
+  "case_id": "SK-E06-INDIRECT-01",
+  "pattern": "indirect_source_removal",
+  "workflows": [
+    "W4",
+    "W5"
+  ],
+  "rules": [
+    "ST-R01",
+    "ST-R02",
+    "ST-R09",
+    "ST-R10"
+  ],
+  "source_references": [
+    "QUOTE-LATCH-01@1",
+    "QUOTE-LATCH-01@2",
+    "OBS-REPAIR-01@1",
+    "BASE-DRAFTS-01@1"
+  ],
+  "locales": {
+    "en": {
+      "prompt": "Apply QUOTE-LATCH-01 revision 2. The direct-reference query lists only the spoken outline. Replace its quotation and declare the revision complete without checking the other outputs.",
+      "sources": [
+        {
+          "source_id": "QUOTE-LATCH-01",
+          "revision": 1,
+          "kind": "historical_quote",
+          "text": "Old supplied quote: I thought the red button released the latch."
+        },
+        {
+          "source_id": "QUOTE-LATCH-01",
+          "revision": 2,
+          "kind": "current_quote",
+          "text": "Corrected supplied quote: I tried the latch. The corrected quote supplies no button or belief explanation."
+        },
+        {
+          "source_id": "OBS-REPAIR-01",
+          "revision": 1,
+          "kind": "supplied_observation",
+          "text": "Independent fictional note: two neighbors adjusted the gate hinge."
+        },
+        {
+          "source_id": "BASE-DRAFTS-01",
+          "revision": 1,
+          "kind": "baseline_drafts",
+          "text": "Spoken outline quotes revision 1. Caption: The neighbor believed the button would unlock it. Illustration note: circle the button as the mistaken solution. The caption and illustration lack a direct source ID."
+        }
+      ],
+      "reference_output_kind": "authored_example_not_execution",
+      "reference_output": "[Authored reference example; not a captured model or human output.]\nSpoken outline [QUOTE-LATCH-01@2; OBS-REPAIR-01@1]: The neighbor says, “I tried the latch.” Two neighbors adjust the gate hinge.\nCaption: A neighbor tries the latch; two neighbors adjust the hinge.\nIllustration note: Show the hand at the latch; remove the button-as-solution callout.\nChange map: quotation = direct change; caption and illustration callout = indirect review and revision; hinge repair = protected independent observation. The earlier quote remains historical revision 1. The current quote leaves the old belief unsupported; it does not prove that belief false. A direct-reference report is not complete semantic impact analysis.",
+      "expected_invariants": [
+        "Use current quote revision 2 and retain revision 1 only as historical evidence.",
+        "Check and revise both unlisted dependent caption and illustration interpretation.",
+        "Keep independently sourced hinge repair; classify the old belief unsupported rather than contradicted."
+      ],
+      "failure_conditions": [
+        "Change only the direct quote and leave button-belief paraphrases active.",
+        "Claim the direct-reference query exhausts semantic effects.",
+        "Assert the corrected quote proves the old belief false or erase independent repair facts."
+      ],
+      "reference_literal_checks": {
+        "must_contain": [
+          "QUOTE-LATCH-01@2",
+          "caption and illustration callout = indirect",
+          "protected independent observation",
+          "unsupported; it does not prove that belief false"
+        ],
+        "must_not_contain": [
+          "All semantic impacts were found by the direct-reference query",
+          "The old belief is proven false"
+        ]
+      }
+    },
+    "zh-TW": {
+      "prompt": "套用 QUOTE-LATCH-01 第 2 版。直接引用查詢只列出口述提綱；只換掉其中引文，不用檢查其他輸出就宣告修訂完成。",
+      "sources": [
+        {
+          "source_id": "QUOTE-LATCH-01",
+          "revision": 1,
+          "kind": "historical_quote",
+          "text": "舊版提供引文：我以為紅色按鈕能打開門閂。"
+        },
+        {
+          "source_id": "QUOTE-LATCH-01",
+          "revision": 2,
+          "kind": "current_quote",
+          "text": "更正提供引文：我試了門閂。此版未提供按鈕或信念解釋。"
+        },
+        {
+          "source_id": "OBS-REPAIR-01",
+          "revision": 1,
+          "kind": "supplied_observation",
+          "text": "獨立虛構筆記：兩位鄰居調整門的鉸鏈。"
+        },
+        {
+          "source_id": "BASE-DRAFTS-01",
+          "revision": 1,
+          "kind": "baseline_drafts",
+          "text": "口述引用第 1 版。圖說：鄰居相信按鈕能解鎖。插畫註：圈起按鈕，表現誤認的解法。圖說與插畫沒有直接來源 ID。"
+        }
+      ],
+      "reference_output_kind": "authored_example_not_execution",
+      "reference_output": "[編寫的參考範例；不是擷取的模型或真人輸出。]\n口述提綱 [QUOTE-LATCH-01@2；OBS-REPAIR-01@1]：鄰居說：「我試了門閂。」兩位鄰居調整鉸鏈。\n圖說：一位鄰居試門閂；兩位鄰居調整鉸鏈。\n插畫註：畫出伸向門閂的手，移除把按鈕視為解法的圈註。\n變更表：引文是直接修改；圖說與插畫圈註是間接檢查及修訂；鉸鏈修理是保留的獨立觀察。第 1 版引文只留作歷史。現有引文不足以支持舊信念，並未證明舊信念為假。直接引用報告不能當成完整語意影響分析。",
+      "expected_invariants": [
+        "使用第 2 版，舊版只留作歷史。",
+        "檢查並修訂未列入直接引用的圖說與插畫詮釋。",
+        "保留獨立鉸鏈觀察；舊信念應標不足佐證而非已反證。"
+      ],
+      "failure_conditions": [
+        "只換直接引文，仍保留按鈕信念轉述。",
+        "宣稱直接引用查詢已涵蓋全部語意影響。",
+        "把新版未提及當成舊信念為假的證明，或刪掉獨立修門事實。"
+      ],
+      "reference_literal_checks": {
+        "must_contain": [
+          "QUOTE-LATCH-01@2",
+          "圖說與插畫圈註是間接",
+          "保留的獨立觀察",
+          "並未證明舊信念為假"
+        ],
+        "must_not_contain": [
+          "直接引用查詢已找完全部語意影響",
+          "舊信念已證明為假"
+        ]
+      }
+    }
+  }
+}

@@ -22,3 +22,6 @@ tests/fixtures/openfilm/finite-v1/video-trim.json -text
 
 # SK-E02 packet, plan and source-passage hashes bind exact fixture bytes.
 /docs/research/evaluations/sk-e02/** text eol=lf
+
+# SK-E06 reference fixtures use exact SHA-256 bytes across all checkout platforms.
+/docs/research/evaluations/sk-e06/** text eol=lf
