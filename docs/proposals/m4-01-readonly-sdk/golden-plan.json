@@ -1,0 +1,155 @@
+{
+  "plan_version": "m4-01-readonly-golden-plan/proposal-1",
+  "status": "proposed_not_executed",
+  "source_commit": "52dc6c315f7b3d20693f3c51e052509997ab791b",
+  "issue": 107,
+  "facade_namespace_proposed": "storytelling_engine::consumer_v1",
+  "wire_schema_change": false,
+  "runtime_implementation_supplied": false,
+  "g2_acceptance": null,
+  "cases": [
+    {
+      "id": "SDK-G01",
+      "proposed_operation": "validate_plan",
+      "existing_delegate": "validate_plan_json",
+      "existing_cli_command": "validate",
+      "fixture_paths": [
+        "examples/minimal-plan.json"
+      ],
+      "test_file": "crates/storytelling-cli/tests/cli.rs",
+      "existing_test_anchors": [
+        "accepts_valid_file_with_machine_readable_output",
+        "rejects_bad_source_range_with_exit_one"
+      ],
+      "sdk_parity_status": "not_run"
+    },
+    {
+      "id": "SDK-G02",
+      "proposed_operation": "render_narrative",
+      "existing_delegate": "render_narrative",
+      "existing_cli_command": "render-narrative",
+      "fixture_paths": [
+        "tests/fixtures/narrative-v1/n03-author-reviewed-v1.json",
+        "tests/fixtures/narrative-v1/invalid-dangling-reference.json"
+      ],
+      "test_file": "crates/storytelling-cli/tests/narrative.rs",
+      "existing_test_anchors": [
+        "renders_three_declared_outputs_reproducibly_without_media_or_writes",
+        "dangling_reference_returns_the_contract_diagnostic"
+      ],
+      "sdk_parity_status": "not_run"
+    },
+    {
+      "id": "SDK-G03",
+      "proposed_operation": "track_revisions/query_impact",
+      "existing_delegate": "track_narrative_revisions/query_narrative_impact",
+      "existing_cli_command": "track-narrative-revisions/query-narrative-impact",
+      "fixture_paths": [
+        "tests/fixtures/narrative-v1/n04-revision-history-v1.json",
+        "tests/fixtures/narrative-v1/n04-invalid-self-confirm-v1.json"
+      ],
+      "test_file": "crates/storytelling-cli/tests/narrative.rs",
+      "existing_test_anchors": [
+        "revision_tracking_queries_shared_and_variant_local_impacts",
+        "untrusted_suggestion_cannot_claim_author_acceptance_from_the_cli"
+      ],
+      "sdk_parity_status": "not_run"
+    },
+    {
+      "id": "SDK-G04",
+      "proposed_operation": "video_coverage",
+      "existing_delegate": "render_narrative_video_coverage",
+      "existing_cli_command": "render-video-coverage",
+      "fixture_paths": [
+        "tests/fixtures/narrative-video-coverage-v1/valid-complete.json",
+        "tests/fixtures/narrative-video-coverage-v1/valid-unresolved.json",
+        "tests/fixtures/narrative-video-coverage-v1/invalid-version.json"
+      ],
+      "test_file": "crates/storytelling-cli/tests/video_coverage.rs",
+      "existing_test_anchors": [
+        "accepts_complete_video_coverage_without_media_access",
+        "reports_unresolved_video_unit_and_blocks_planning",
+        "rejects_contract_failures_with_stable_codes_and_safe_paths"
+      ],
+      "sdk_parity_status": "not_run"
+    },
+    {
+      "id": "SDK-G05",
+      "proposed_operation": "plan_story",
+      "existing_delegate": "plan_story",
+      "existing_cli_command": "plan-story",
+      "fixture_paths": [
+        "tests/fixtures/planner-v1/valid.json",
+        "tests/fixtures/planner-v1/conflicting.json"
+      ],
+      "test_file": "crates/storytelling-cli/tests/planner.rs",
+      "existing_test_anchors": [
+        "plans_file_and_stdin_identically_without_mutating_input_or_directory",
+        "hard_conflicts_emit_typed_global_paths_without_a_partial_plan",
+        "malformed_future_unknown_and_oversized_inputs_return_domain_exit_one"
+      ],
+      "sdk_parity_status": "not_run"
+    },
+    {
+      "id": "SDK-G06",
+      "proposed_operation": "prepare_story_review",
+      "existing_delegate": "prepare_story_review",
+      "existing_cli_command": "prepare-story-review",
+      "fixture_paths": [
+        "tests/fixtures/story-review-v1/planner-request.json",
+        "tests/fixtures/story-review-v1/context.json",
+        "tests/fixtures/openfilm/finite-v1/video-trim.json"
+      ],
+      "test_file": "crates/storytelling-engine/tests/story_review.rs",
+      "existing_test_anchors": [
+        "story_review_compiles_selected_subset_and_order_and_binds_the_exact_owned_artifact",
+        "story_review_fixture_has_a_fixed_cross_platform_artifact_and_binding_vector"
+      ],
+      "sdk_parity_status": "not_run"
+    },
+    {
+      "id": "SDK-G07",
+      "proposed_operation": "check_story_review",
+      "existing_delegate": "check_story_review",
+      "existing_cli_command": "check-story-review",
+      "fixture_paths": [
+        "tests/fixtures/story-review-v1/planner-request.json",
+        "tests/fixtures/story-review-v1/context.json",
+        "tests/fixtures/openfilm/finite-v1/video-trim.json"
+      ],
+      "test_file": "crates/storytelling-cli/tests/story_review.rs",
+      "existing_test_anchors": [
+        "story_review_invalidates_asset_cut_loss_and_detects_displayed_artifact_tampering",
+        "story_review_rejects_unsupported_audio_effects_missing_loss_choices_and_bad_cli_usage"
+      ],
+      "sdk_parity_status": "not_run"
+    },
+    {
+      "id": "SDK-G08",
+      "proposed_operation": "all_supported_operations",
+      "existing_delegate": "existing_operation_specific_validators",
+      "existing_cli_command": "existing_commands",
+      "fixture_paths": [
+        "tests/fixtures/narrative-v1/invalid-unknown-version.json",
+        "tests/fixtures/narrative-v1/invalid-duplicate-field.json",
+        "tests/fixtures/narrative-video-coverage-v1/invalid-duplicate-field.raw"
+      ],
+      "test_file": "crates/storytelling-engine/tests/story_review.rs",
+      "existing_test_anchors": [
+        "story_review_preflights_every_size_and_accepts_exact_snapshot_and_bundle_limits",
+        "story_review_rejects_unknown_duplicate_forged_or_inconsistent_proposals"
+      ],
+      "sdk_parity_status": "not_run"
+    }
+  ],
+  "additional_planned_checks": {
+    "SDK-G09": "Owned results/Send/Sync, deterministic caller-thread replay, unchanged buffers and pure dependency boundary.",
+    "SDK-G10": "External-consumer compile-fail: no execute/approve/recover, no unchecked prepared-review construction or mutable/Deserialize access."
+  },
+  "evidence_limits": [
+    "Existing test anchors are backend/CLI evidence only, not facade parity results.",
+    "No source input is normalized before delegation; existing hash/profile/error order remains authoritative.",
+    "Narrative projections are typed and not Serialize at baseline; preserve text golden without inventing a new JSON wire format.",
+    "No author, media, host, authority, production recovery or release observation is supplied."
+  ]
+}

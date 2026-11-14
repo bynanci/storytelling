@@ -375,3 +375,9 @@ M0、M1-01 與限定範圍的 M2-01 稽核只支援前兩項。
 
 [40案模型評分報告與視覺化](research/evaluations/2026-11-13-gemini-r1/README.zh-TW.md)保存原始數值、來源勘誤與宣告分組限制。這是W4/W6的診斷觀察，不新增已驗收需求、真人結果或完成的技能改善。
 沿用[#115](https://github.com/bynanci/storytelling/issues/115)總追蹤。**SK-E01／#118** 將 W6／ST-R12–ST-R13 對應到[離線紀錄、盲測／分派 Schema 與 fixture](research/evaluations/sk-e01/README.zh-TW.md)。**SK-E02／#119** 將 W1／W4／W5 與 ST-R01／ST-R02／ST-R09／ST-R10 對應到[評估專用證據計畫、裁定及勘誤契約](research/evaluations/sk-e02/README.zh-TW.md)，由 `scripts/test_sk_e02_contract.py` 檢查；它凍結證據模式、產生前主張、W4 狀態、範圍／原文差異欄位及 C13／C28 勘誤，不修改 R1。**SK-E03／#120** 將 W1／W4／W5 與 ST-R01／ST-R02／ST-R05／ST-R09／ST-R10 對應到四個中英合成指令遵循案例與開發演練輸出；服務修訂未公開，演練不是效益結果。**SK-E04／#121** 將 W6／ST-R12–ST-R13 對應到[反序協定、錨點 rubric 與配對描述分析](research/evaluations/sk-e04/README.zh-TW.md)，由 `scripts/test_sk_e04_order_analysis.py` 檢查；R1 原始重評仍因精確輸入與評審設定缺失而受阻。這些評估工具不新增 Rust／CLI Schema，也不改寫歷史分數。**SK-E05／#122**仍是獨立的前瞻保留集任務。既有 N/M 驗收、#54 處置及 #112 真人證據門檻維持各自範圍。
+
+## 唯讀 Consumer Facade 提案（M4-R01）
+
+| 需求／任務 | 提議要求與證據狀態 |
+| --- | --- |
+| M4-R01／[M4-01 #107](https://github.com/bynanci/storytelling/issues/107) | 獨立 consumer 可由單一有文件的唯讀 Rust facade 使用驗證、敘事／版本影響、影片 coverage、規劃及選定提案審核，不需匯入 private module 或解析 CLI 文字。[ADR 0013](adr/0013-read-only-consumer-facade-v1.md)提議八個委派入口、既有 result 型別、保留來源錯誤細節、逐操作 byte／version／digest 行為，以及不提供 mutation／recovery。[Golden 計畫](proposals/m4-01-readonly-sdk/test-plan.md)列出既有 CLI／engine fixtures 與未來 test-first parity／opacity／concurrency 檢查。目前只完成 G2 提案，尚未凍結 API、實作 facade、取得 RED／GREEN、同 head SDK parity、consumer 或宿主驗收。#107 保持 Open；#103–#106 管控執行，#108 決定 transport。 |

@@ -90,6 +90,7 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 | [M3-04／#103](https://github.com/bynanci/storytelling/issues/103) | G2 待審。[ADR 0011](docs/adr/0011-production-execution-contract-v1.md)、[V1 摘要](docs/migration/EXECUTION_CONTRACT_V1.zh-TW.md)及[案例／工作包](docs/validation/m3-04-execution-contract.md)只完成設計；沒有執行器或 G2 核准。 |
 | [M3-05／#104](https://github.com/bynanci/storytelling/issues/104) | 受阻於 #103 明確接受；提案限單次派送，後續為 #105 復原及 #106 宿主驗收。 |
 | M4 | 規劃 TypeScript 用戶端與單一寫入者。須先驗收 M2-03 和 M3-03。 |
+| [M4-01／#107](https://github.com/bynanci/storytelling/issues/107) · 提案 M4-R01 | 唯讀 facade 的 [ADR 0013](docs/adr/0013-read-only-consumer-facade-v1.md)、[繁中指南](docs/proposals/m4-01-readonly-sdk/README.zh-TW.md)及[golden 測試計畫](docs/proposals/m4-01-readonly-sdk/test-plan.md)為 G2 提案。八個操作重用既有純函式，尚未實作 facade、凍結公開 API 或驗證 CLI／SDK 等價。#107 保持 Open；execution／recovery 待 #103–#106 接受。 |
 | M5、v1.0 | 規劃第二個編輯器、跨平台發行與獨立使用者評估。穩定版須通過相容性、遷移與復原驗收。 |
 | [M5-02／#112](https://github.com/bynanci/storytelling/issues/112) | 受阻於 #109、#111 及已接受的 M3 執行／復原流程。[前瞻式 v1 規程](docs/validation/m5-02-rough-cut-beta-v1.zh-TW.md)與匿名空白表單僅完成設計；尚未招募或開始 Beta。 |
 
