@@ -1,0 +1,573 @@
+{
+  "proposal_version": "n10-06b.scenarios.1",
+  "record_kind": "synthetic_design_assertions",
+  "status": "proposed_pending_G2",
+  "design_base_commit": "59516f24f4d829a3d695c115d2f94e208a78cdea",
+  "source_context": "New MIT design cases using the repository-authored synthetic A fixture. Edits are test-plan instructions, not an implemented patch API.",
+  "operations_note": "set replaces/adds the value at an RFC6901-style pointer; remove deletes that array item/property; reverse_array reverses the specified array. A future test harness applies these only in memory and never alters the base fixture.",
+  "shared_invariants": [
+    "Every input selection remains visible in original order with exact supplied unit_id and revision.",
+    "Mapped and unresolved remain explicit; absent or invalid mapping rows are not synthesized, filtered or repaired.",
+    "IN is inclusive and OUT exclusive; show original unit, exact conversion where interpretable and fixed/indexed input/output JSONPaths.",
+    "Advisory hints are labeled non-authoritative; only the full unchanged A/V1 result supplies actual first-error code/path and exit.",
+    "Raw syntax, duplicate, depth or budget failure prevents decoding rows or hints.",
+    "Invalid input emits no V1 document; valid unresolved input may print V1 declaration JSON through unchanged A only and still blocks planning.",
+    "File bytes, metadata, content suitability, host capability and execution authority remain unverified by this preview.",
+    "No implicit writes, media reads/probes, model/network calls, host invocation, self-approval or unknown retry."
+  ],
+  "scenarios": [
+    {
+      "id": "B01-valid-unresolved",
+      "purpose_en": "Preserve selected order, exact conversion and missing footage.",
+      "purpose_zh_TW": "保留選取順序、精確換算與缺素材。",
+      "base_fixture": "../../../tests/fixtures/n10-06a-draft/seconds-unresolved.draft.json",
+      "edits": [],
+      "expected_authority": {
+        "stage": "v1",
+        "v1_state": "valid",
+        "ready_for_planning": false,
+        "v1_json_allowed": true,
+        "exit": 0,
+        "label_zh_TW": "宣告輸入有效；缺素材仍阻擋規劃",
+        "label_en": "Declaration input valid; unresolved coverage blocks planning"
+      },
+      "expected_rows": [
+        {
+          "unit_id": "S02",
+          "revision": 1,
+          "declared_mapping_status": "mapped",
+          "mapping_indices": [
+            0
+          ]
+        },
+        {
+          "unit_id": "S03",
+          "revision": 1,
+          "declared_mapping_status": "unresolved",
+          "mapping_indices": [
+            1
+          ]
+        }
+      ],
+      "expected_first_range": {
+        "start": {
+          "numerator": "5",
+          "denominator": "2"
+        },
+        "end": {
+          "numerator": "9",
+          "denominator": "2"
+        }
+      },
+      "expected_v1_diagnostics": [
+        {
+          "code": "video_coverage.unresolved_required",
+          "path": "$.mappings[1]"
+        }
+      ],
+      "must_preserve_reason": "No video asset was selected for this unit."
+    },
+    {
+      "id": "B02-valid-complete",
+      "purpose_en": "Complete declared mapping has declaration-only readiness.",
+      "purpose_zh_TW": "完整對照只表示宣告可進入規劃。",
+      "base_fixture": "../../../tests/fixtures/n10-06a-draft/seconds-unresolved.draft.json",
+      "edits": [
+        {
+          "operation": "set",
+          "pointer": "/coverage/mappings/1",
+          "value": {
+            "unit_ref": {
+              "unit_id": "S03",
+              "revision": 1
+            },
+            "status": "mapped",
+            "asset_ref": {
+              "asset_id": "CLIP-01",
+              "revision": 1
+            },
+            "source_range": {
+              "unit": "seconds",
+              "start": "0",
+              "end": "0.1"
+            }
+          }
+        }
+      ],
+      "expected_authority": {
+        "stage": "v1",
+        "v1_state": "valid",
+        "ready_for_planning": true,
+        "v1_json_allowed": true,
+        "exit": 0,
+        "label_zh_TW": "宣告可進入規劃",
+        "label_en": "Declarations can enter planning"
+      },
+      "expected_rows": [
+        {
+          "unit_id": "S02",
+          "revision": 1,
+          "declared_mapping_status": "mapped",
+          "mapping_indices": [
+            0
+          ]
+        },
+        {
+          "unit_id": "S03",
+          "revision": 1,
+          "declared_mapping_status": "mapped",
+          "mapping_indices": [
+            1
+          ]
+        }
+      ],
+      "expected_v1_diagnostics": [],
+      "forbidden_labels": [
+        "media_verified",
+        "export_ready",
+        "execution_authorized",
+        "實體影片已驗證",
+        "可執行匯出"
+      ]
+    },
+    {
+      "id": "B03-multiple-helper-hints",
+      "purpose_en": "Several field hints cannot replace the actual first helper error.",
+      "purpose_zh_TW": "多欄位提示不能取代實際第一個 helper 錯誤。",
+      "base_fixture": "../../../tests/fixtures/n10-06a-draft/seconds-unresolved.draft.json",
+      "edits": [
+        {
+          "operation": "set",
+          "pointer": "/coverage/mappings/0/source_range/start",
+          "value": "-1"
+        },
+        {
+          "operation": "set",
+          "pointer": "/coverage/mappings/0/source_range/end",
+          "value": "1e2"
+        },
+        {
+          "operation": "set",
+          "pointer": "/coverage/mappings/1",
+          "value": {
+            "unit_ref": {
+              "unit_id": "S03",
+              "revision": 1
+            },
+            "status": "mapped",
+            "asset_ref": {
+              "asset_id": "CLIP-01",
+              "revision": 1
+            },
+            "source_range": {
+              "unit": "frames",
+              "start_frame": "75",
+              "end_frame": "135",
+              "fps": {
+                "numerator": "0",
+                "denominator": "1"
+              },
+              "timing": "variable"
+            }
+          }
+        }
+      ],
+      "expected_authority": {
+        "stage": "helper",
+        "code": "draft_time.invalid_decimal",
+        "path": "$.coverage.mappings[0].source_range.start",
+        "v1_state": "not_run",
+        "v1_json_allowed": false,
+        "exit": 1
+      },
+      "expected_rows": [
+        {
+          "unit_id": "S02",
+          "revision": 1,
+          "declared_mapping_status": "mapped",
+          "mapping_indices": [
+            0
+          ]
+        },
+        {
+          "unit_id": "S03",
+          "revision": 1,
+          "declared_mapping_status": "mapped",
+          "mapping_indices": [
+            1
+          ]
+        }
+      ],
+      "advisory_fields_permitted": [
+        "$.coverage.mappings[0].source_range.start",
+        "$.coverage.mappings[0].source_range.end",
+        "$.coverage.mappings[1].source_range.timing",
+        "$.coverage.mappings[1].source_range.fps"
+      ],
+      "must_label_hints_non_authoritative": true,
+      "must_not_report_v1_error": true
+    },
+    {
+      "id": "B04-stale-before-range",
+      "purpose_en": "Keep the actual stale reference error ahead of any later range validation.",
+      "purpose_zh_TW": "過期引用先於後續區間驗證，保留實際首錯。",
+      "base_fixture": "../../../tests/fixtures/n10-06a-draft/seconds-unresolved.draft.json",
+      "edits": [
+        {
+          "operation": "set",
+          "pointer": "/coverage/selected_unit_refs/0/revision",
+          "value": 2
+        },
+        {
+          "operation": "set",
+          "pointer": "/coverage/mappings/0/unit_ref/revision",
+          "value": 2
+        },
+        {
+          "operation": "set",
+          "pointer": "/coverage/mappings/0/source_range/start",
+          "value": "0"
+        },
+        {
+          "operation": "set",
+          "pointer": "/coverage/mappings/0/source_range/end",
+          "value": "6"
+        },
+        {
+          "operation": "set",
+          "pointer": "/coverage/asset_catalog/assets/0/duration",
+          "value": {
+            "numerator": "5",
+            "denominator": "1"
+          }
+        }
+      ],
+      "expected_authority": {
+        "stage": "v1",
+        "code": "video_coverage.stale_unit_revision",
+        "path": "$.selected_unit_refs[0].revision",
+        "v1_state": "rejected",
+        "v1_json_allowed": false,
+        "exit": 1
+      },
+      "expected_rows": [
+        {
+          "unit_id": "S02",
+          "revision": 2,
+          "declared_mapping_status": "mapped",
+          "mapping_indices": [
+            0
+          ]
+        },
+        {
+          "unit_id": "S03",
+          "revision": 1,
+          "declared_mapping_status": "unresolved",
+          "mapping_indices": [
+            1
+          ]
+        }
+      ],
+      "display_only_values": {
+        "OUT_seconds": {
+          "numerator": "6",
+          "denominator": "1"
+        },
+        "declared_duration_seconds": {
+          "numerator": "5",
+          "denominator": "1"
+        }
+      },
+      "must_not_report_as_actual_v1_error": "video_coverage.invalid_range"
+    },
+    {
+      "id": "B05-range-after-reference-repair",
+      "purpose_en": "A new invocation after repairing only the references can expose the V1 range error.",
+      "purpose_zh_TW": "只修引用後的新一次執行，才可顯示 V1 區間錯誤。",
+      "base_fixture": "../../../tests/fixtures/n10-06a-draft/seconds-unresolved.draft.json",
+      "edits": [
+        {
+          "operation": "set",
+          "pointer": "/coverage/mappings/0/source_range/start",
+          "value": "0"
+        },
+        {
+          "operation": "set",
+          "pointer": "/coverage/mappings/0/source_range/end",
+          "value": "6"
+        },
+        {
+          "operation": "set",
+          "pointer": "/coverage/asset_catalog/assets/0/duration",
+          "value": {
+            "numerator": "5",
+            "denominator": "1"
+          }
+        }
+      ],
+      "expected_authority": {
+        "stage": "v1",
+        "code": "video_coverage.invalid_range",
+        "path": "$.mappings[0].source_range.end",
+        "v1_state": "rejected",
+        "v1_json_allowed": false,
+        "exit": 1
+      },
+      "expected_rows": [
+        {
+          "unit_id": "S02",
+          "revision": 1,
+          "declared_mapping_status": "mapped",
+          "mapping_indices": [
+            0
+          ]
+        },
+        {
+          "unit_id": "S03",
+          "revision": 1,
+          "declared_mapping_status": "unresolved",
+          "mapping_indices": [
+            1
+          ]
+        }
+      ],
+      "must_preserve_OUT": "6",
+      "must_not_clamp_to": "5"
+    },
+    {
+      "id": "B06-missing-mapping-keeps-selection",
+      "purpose_en": "A selected unit without a mapping stays visible and is not fabricated into unresolved.",
+      "purpose_zh_TW": "選定單元缺 mapping 仍保留可見，不補造 unresolved。",
+      "base_fixture": "../../../tests/fixtures/n10-06a-draft/seconds-unresolved.draft.json",
+      "edits": [
+        {
+          "operation": "remove",
+          "pointer": "/coverage/mappings/1"
+        }
+      ],
+      "expected_authority": {
+        "stage": "v1",
+        "code": "video_coverage.missing_selected_unit",
+        "path": "$.selected_unit_refs[1]",
+        "v1_state": "rejected",
+        "v1_json_allowed": false,
+        "exit": 1
+      },
+      "expected_rows": [
+        {
+          "unit_id": "S02",
+          "revision": 1,
+          "declared_mapping_status": "mapped",
+          "mapping_indices": [
+            0
+          ]
+        },
+        {
+          "unit_id": "S03",
+          "revision": 1,
+          "declared_mapping_status": null,
+          "mapping_indices": []
+        }
+      ],
+      "display_hint_en": "No mapping row supplied.",
+      "display_hint_zh_TW": "未提供對應列。",
+      "must_not_synthesize_mapping": true
+    },
+    {
+      "id": "B07-reordered-mappings-not-repaired",
+      "purpose_en": "Show selected-unit order and original mapping indices without reordering input.",
+      "purpose_zh_TW": "顯示選取順序與原 mapping index，不重排輸入。",
+      "base_fixture": "../../../tests/fixtures/n10-06a-draft/seconds-unresolved.draft.json",
+      "edits": [
+        {
+          "operation": "reverse_array",
+          "pointer": "/coverage/mappings"
+        }
+      ],
+      "expected_authority": {
+        "stage": "v1",
+        "code": "video_coverage.mapping_order_mismatch",
+        "path": "$.mappings[1].unit_ref",
+        "v1_state": "rejected",
+        "v1_json_allowed": false,
+        "exit": 1
+      },
+      "expected_rows": [
+        {
+          "unit_id": "S02",
+          "revision": 1,
+          "declared_mapping_status": "mapped",
+          "mapping_indices": [
+            1
+          ]
+        },
+        {
+          "unit_id": "S03",
+          "revision": 1,
+          "declared_mapping_status": "unresolved",
+          "mapping_indices": [
+            0
+          ]
+        }
+      ],
+      "must_preserve_mapping_input_order": true
+    },
+    {
+      "id": "B08-duplicate-json-no-advisory-traversal",
+      "purpose_en": "Ambiguous raw JSON must fail before any row or hint is built.",
+      "purpose_zh_TW": "歧義原始 JSON 必須在建立列／提示前拒絕。",
+      "raw_input": "{\"draft_version\":\"n10-06a.1-draft\",\"coverage\":{\"x\":1,\"x\":2}}",
+      "expected_authority": {
+        "stage": "helper",
+        "code": "draft_time.duplicate_field",
+        "path": "$",
+        "v1_state": "not_run",
+        "v1_json_allowed": false,
+        "exit": 1
+      },
+      "expected_rows": null,
+      "expected_advisories": null
+    },
+    {
+      "id": "B09-vfr-no-exact-frame-time",
+      "purpose_en": "A nominal fps does not establish exact VFR frame timestamps.",
+      "purpose_zh_TW": "名目 fps 無法建立精確 VFR 影格時間戳。",
+      "base_fixture": "../../../tests/fixtures/n10-06a-draft/seconds-unresolved.draft.json",
+      "edits": [
+        {
+          "operation": "set",
+          "pointer": "/coverage/mappings/0/source_range",
+          "value": {
+            "unit": "frames",
+            "start_frame": "75",
+            "end_frame": "135",
+            "fps": {
+              "numerator": "30",
+              "denominator": "1"
+            },
+            "timing": "variable"
+          }
+        }
+      ],
+      "expected_authority": {
+        "stage": "helper",
+        "code": "draft_time.frame_timing_not_supported",
+        "path": "$.coverage.mappings[0].source_range.timing",
+        "v1_state": "not_run",
+        "v1_json_allowed": false,
+        "exit": 1
+      },
+      "expected_rows": [
+        {
+          "unit_id": "S02",
+          "revision": 1,
+          "declared_mapping_status": "mapped",
+          "mapping_indices": [
+            0
+          ]
+        },
+        {
+          "unit_id": "S03",
+          "revision": 1,
+          "declared_mapping_status": "unresolved",
+          "mapping_indices": [
+            1
+          ]
+        }
+      ],
+      "expected_first_range": null,
+      "must_not_infer_constant_timing": true
+    },
+    {
+      "id": "B10-unknown-field-not-echoed",
+      "purpose_en": "Unknown V1 fields reach V1 unchanged but never leak through text hints.",
+      "purpose_zh_TW": "未知 V1 欄位須保留給 V1 拒絕，不經提示回顯。",
+      "base_fixture": "../../../tests/fixtures/n10-06a-draft/seconds-unresolved.draft.json",
+      "edits": [
+        {
+          "operation": "set",
+          "pointer": "/coverage/unexpected_test_key",
+          "value": "DO-NOT-ECHO-SYNTHETIC-SENTINEL"
+        }
+      ],
+      "expected_authority": {
+        "stage": "v1",
+        "code": "video_coverage.unknown_field",
+        "path": "$",
+        "v1_state": "rejected",
+        "v1_json_allowed": false,
+        "exit": 1
+      },
+      "expected_rows": [
+        {
+          "unit_id": "S02",
+          "revision": 1,
+          "declared_mapping_status": "mapped",
+          "mapping_indices": [
+            0
+          ]
+        },
+        {
+          "unit_id": "S03",
+          "revision": 1,
+          "declared_mapping_status": "unresolved",
+          "mapping_indices": [
+            1
+          ]
+        }
+      ],
+      "forbidden_preview_text": [
+        "unexpected_test_key",
+        "DO-NOT-ECHO-SYNTHETIC-SENTINEL"
+      ]
+    },
+    {
+      "id": "B11-reason-terminal-escaping",
+      "purpose_en": "Retain unresolved reason data while escaping terminal controls.",
+      "purpose_zh_TW": "保留缺素材原因資料，同時轉義終端控制字元。",
+      "base_fixture": "../../../tests/fixtures/n10-06a-draft/seconds-unresolved.draft.json",
+      "edits": [
+        {
+          "operation": "set",
+          "pointer": "/coverage/mappings/1/reason",
+          "value": "Pending\n\u001b[2J detail"
+        }
+      ],
+      "expected_authority": {
+        "stage": "v1",
+        "v1_state": "valid",
+        "ready_for_planning": false,
+        "v1_json_allowed": true,
+        "exit": 0,
+        "label_zh_TW": "宣告輸入有效；缺素材仍阻擋規劃",
+        "label_en": "Declaration input valid; unresolved coverage blocks planning"
+      },
+      "expected_rows": [
+        {
+          "unit_id": "S02",
+          "revision": 1,
+          "declared_mapping_status": "mapped",
+          "mapping_indices": [
+            0
+          ]
+        },
+        {
+          "unit_id": "S03",
+          "revision": 1,
+          "declared_mapping_status": "unresolved",
+          "mapping_indices": [
+            1
+          ]
+        }
+      ],
+      "must_escape_display_codepoints": [
+        "U+000A",
+        "U+001B"
+      ],
+      "must_not_mutate_reason": true
+    }
+  ],
+  "observed_machine_runs": null,
+  "observed_author_sessions": null,
+  "maintainer_G2_decision": null
+}
