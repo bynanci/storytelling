@@ -152,7 +152,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Regular-file CLI boundary and bounded stdin regressions
-        run: python scripts/test_cli_file_input.py target/debug/storytelling
+        run: |
+          python scripts/test_cli_file_input.py target/debug/storytelling
+          python -m unittest discover -s scripts -p 'test_cli_file_input.py'
       - name: Private trial recorder and raw native CLI regressions
         run: python -m unittest discover -s examples/evaluation/n07-recorder -p 'test_*.py'
       - name: Offline skill-evaluation provenance and blinding regressions
