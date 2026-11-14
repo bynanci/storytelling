@@ -28,6 +28,10 @@ python3 scripts/test_sk_e06_packet.py
 
 檢查器核對五種情境、兩種語言、來源／revision 引用、明確參考範例標籤、空白表單欄位、產物精確 SHA-256，以及參考文字的少量 literal presence／absence。它不執行案例提示，也不檢查待評答案。通過只代表**資料包完整性**；同義改寫錯誤、語意完整度、品質、真實宿主同意遵循及真人效益仍須另審。參考文字可通過字面檢查，但未測試宿主仍可能做錯任務。
 
+每個產物的 hash 與 JSON／字面檢查使用同一份記憶體位元組快照，避免 hash 後再讀入不同內容。路徑解析失敗回傳有界的 `sk_e06.packet_invalid`，symlink 產物則拒絕。這些是本機資料包檢查，並未建立檔案系統隔離或來源真實性保證。
+
+`skill_snapshot` 的 commit／hash 是**宣告的準備資料**。檢查器只核對其語法與限定路徑，不抓取或比對指定 Git blob、不驗證 commit 真實性，也不能證明起草者確實載入那些 Skill 位元組。真正執行前，主持人須另行核對並記錄凍結的 Skill 位元組。
+
 `.gitattributes` 讓 Windows／Linux／macOS checkout 保留相同 LF 位元組。刻意修改 fixture 後，先審閱內容，再依精確 UTF-8 位元組重算該檔雜湊；不能在觀察後正規化或改寫證據。可從 repo 根目錄列出目前宣告檔案的 hash：
 
 ```sh

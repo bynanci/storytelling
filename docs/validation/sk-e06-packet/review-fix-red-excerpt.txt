@@ -1,0 +1,8 @@
+ERROR: test_resolution_failure_is_a_packet_error (__main__.PacketTests.test_resolution_failure_is_a_packet_error)
+RuntimeError: simulated symlink resolution cycle
+FAIL: test_hash_and_semantic_checks_use_one_artifact_snapshot (__main__.PacketTests.test_hash_and_semantic_checks_use_one_artifact_snapshot)
+AssertionError: 'Revi[182 chars] Keep the two neighbors repairing the gate. CHANGED AFTER HASH' != 'Revi[182 chars] Keep the two neighbors repairing the gate.'
+FAIL: test_symlink_cycle_cli_reports_safe_error_without_traceback (__main__.PacketTests.test_symlink_cycle_cli_reports_safe_error_without_traceback)
+AssertionError: 'Traceback (most recent call last):\n  Fil[1773 chars]\'\n' != ''
+Ran 14 tests in 0.091s
+FAILED (failures=2, errors=1)

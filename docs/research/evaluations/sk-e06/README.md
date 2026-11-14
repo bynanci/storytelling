@@ -28,6 +28,10 @@ python3 scripts/test_sk_e06_packet.py
 
 The checker validates five-pattern coverage, both locales, source/revision resolution, fixed reference-only labels, blank-form metadata fields, exact artifact SHA-256 values and a small set of literal presence/absence assertions on the authored references. It does not execute a case prompt or inspect a candidate response. A check passing means **packet integrity only**. Paraphrased mistakes, semantic completeness, quality, consent compliance in an actual host and human benefit all need separate review/evidence. Reference text can pass these literal checks while an untested host fails the task.
 
+Artifact hashes and JSON/literal checks use the same in-memory byte snapshot for each file, so a later file read cannot substitute different content after hashing. Path-resolution failures produce a bounded `sk_e06.packet_invalid` response; symlink artifacts reject. These are local packet checks, not a filesystem isolation or origin-authentication guarantee.
+
+The `skill_snapshot` commit/hash entries are **declared preparation metadata**. The checker verifies their syntax and scoped paths; it does not retrieve or compare the pinned Git blobs, authenticate the commit, or verify a drafter actually loaded those Skill bytes. Before an actual run, the facilitator must verify and record the frozen Skill bytes separately.
+
 `.gitattributes` pins this packet to LF bytes on Windows/Linux/macOS. After an intentional fixture edit, review the changed content and recompute only its manifest digest from exact UTF-8 file bytes; never normalize or rewrite evidence after a run. To print current declared artifact hashes for comparison, run from the repository root:
 
 ```sh
