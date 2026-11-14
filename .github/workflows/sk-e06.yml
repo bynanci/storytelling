@@ -1,0 +1,39 @@
+name: SK-E06 reference-packet integrity
+
+on:
+  pull_request:
+    paths:
+      - '.gitattributes'
+      - '.github/workflows/sk-e06.yml'
+      - 'docs/research/evaluations/sk-e06/**'
+      - 'docs/validation/sk-e06-reference-packet.md'
+      - 'docs/validation/sk-e06-packet/**'
+      - 'scripts/sk_e06_packet.py'
+      - 'scripts/test_sk_e06_packet.py'
+  push:
+    branches: [main]
+    paths:
+      - '.gitattributes'
+      - '.github/workflows/sk-e06.yml'
+      - 'docs/research/evaluations/sk-e06/**'
+      - 'docs/validation/sk-e06-reference-packet.md'
+      - 'docs/validation/sk-e06-packet/**'
+      - 'scripts/sk_e06_packet.py'
+      - 'scripts/test_sk_e06_packet.py'
+
+permissions:
+  contents: read
+
+jobs:
+  packet-integrity:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
+      - name: Check reference packet and negative integrity regressions (no model call)
+        run: python scripts/test_sk_e06_packet.py

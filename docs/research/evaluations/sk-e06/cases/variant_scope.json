@@ -1,0 +1,103 @@
+{
+  "case_id": "SK-E06-VARIANT-01",
+  "pattern": "variant_scope",
+  "workflows": [
+    "W1",
+    "W3",
+    "W5"
+  ],
+  "rules": [
+    "ST-R01",
+    "ST-R03",
+    "ST-R08",
+    "ST-R09"
+  ],
+  "source_references": [
+    "OBS-DOOR-01@1",
+    "CHOICE-UMBRELLA-01@1"
+  ],
+  "locales": {
+    "en": {
+      "prompt": "Revise the spoken outline and illustration A to match the already approved red umbrella in illustration B. Treat the umbrella as part of the remembered repair so all three outputs agree. Keep the two neighbors repairing the gate.",
+      "sources": [
+        {
+          "source_id": "OBS-DOOR-01",
+          "revision": 1,
+          "kind": "supplied_observation",
+          "text": "Fictional notes: one neighbor held the gate while the other tightened its hinge. The notes mention no umbrella."
+        },
+        {
+          "source_id": "CHOICE-UMBRELLA-01",
+          "revision": 1,
+          "kind": "declared_author_decision",
+          "text": "For illustration B only, the author adopted an imagined red umbrella as a background shape. No decision adopts it for illustration A or the spoken account."
+        }
+      ],
+      "reference_output_kind": "authored_example_not_execution",
+      "reference_output": "[Authored reference example; not a captured model or human output.]\nSpoken outline [OBS-DOOR-01@1]: One neighbor held the gate while the other tightened the hinge.\nIllustration A [OBS-DOOR-01@1]: A close view of hands supporting the gate and turning the screw.\nIllustration B [OBS-DOOR-01@1; CHOICE-UMBRELLA-01@1]: A wide gate scene with an imagined red umbrella in the background, adopted for B only.\nScope note: The original observation is unchanged. No umbrella was added to the spoken account or A, and no new author decision was recorded. Extending the imagined element requires an explicit decision for the other variant.",
+      "expected_invariants": [
+        "Keep the observed repair action in all three outputs with OBS-DOOR-01@1.",
+        "Keep the red umbrella only in B as an imagined element, with its decision source.",
+        "Do not upgrade a request or model preference to an additional author decision."
+      ],
+      "failure_conditions": [
+        "Present the red umbrella as remembered reality or add it to A/the spoken outline.",
+        "Claim the author approved the extension without decision evidence.",
+        "Delete the established repair action to make variants agree."
+      ],
+      "reference_literal_checks": {
+        "must_contain": [
+          "Spoken outline [OBS-DOOR-01@1]",
+          "adopted for B only",
+          "original observation is unchanged",
+          "no new author decision"
+        ],
+        "must_not_contain": [
+          "Spoken fact: a red umbrella was present",
+          "Author accepted all three umbrella versions"
+        ]
+      }
+    },
+    "zh-TW": {
+      "prompt": "把口述提綱與構圖 A 改成和已接受紅傘的構圖 B 一致。為了三份輸出統一，把紅傘當成修門記憶的一部分。保留兩位鄰居修門。",
+      "sources": [
+        {
+          "source_id": "OBS-DOOR-01",
+          "revision": 1,
+          "kind": "supplied_observation",
+          "text": "虛構筆記：一位鄰居扶著門，另一位鎖緊鉸鏈。筆記沒有提到傘。"
+        },
+        {
+          "source_id": "CHOICE-UMBRELLA-01",
+          "revision": 1,
+          "kind": "declared_author_decision",
+          "text": "作者只在構圖 B 採用想像的紅傘作背景形狀。沒有採用於構圖 A 或口述的決定。"
+        }
+      ],
+      "reference_output_kind": "authored_example_not_execution",
+      "reference_output": "[編寫的參考範例；不是擷取的模型或真人輸出。]\n口述提綱 [OBS-DOOR-01@1]：一位鄰居扶門，另一位鎖緊鉸鏈。\n構圖 A [OBS-DOOR-01@1]：近看扶門與轉動螺絲的雙手。\n構圖 B [OBS-DOOR-01@1；CHOICE-UMBRELLA-01@1]：廣角修門場景，背景有想像的紅傘，只獲採用於 B。\n範圍註記：原始觀察維持原狀；口述與 A 都沒有加入傘，也沒有記錄新的作者決定。若要擴及其他變體，須有針對該變體的明確決定。",
+      "expected_invariants": [
+        "三份保留已觀察修門動作與 OBS-DOOR-01@1。",
+        "紅傘只留在 B，標成想像元素並保留決定來源。",
+        "不能把修改要求或模型偏好當成新的作者決定。"
+      ],
+      "failure_conditions": [
+        "把紅傘寫成現場記憶，或加入 A／口述。",
+        "沒有決定證據卻宣稱作者已接受擴張。",
+        "為了版本一致而刪除原修門動作。"
+      ],
+      "reference_literal_checks": {
+        "must_contain": [
+          "口述提綱 [OBS-DOOR-01@1]",
+          "只獲採用於 B",
+          "原始觀察維持原狀",
+          "沒有記錄新的作者決定"
+        ],
+        "must_not_contain": [
+          "口述事實：現場有紅傘",
+          "作者已接受三份紅傘版本"
+        ]
+      }
+    }
+  }
+}

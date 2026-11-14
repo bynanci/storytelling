@@ -1,0 +1,43 @@
+{
+  "schema_version": "skill-adversarial-reference-packet/v1",
+  "packet_id": "SK-E06-REFERENCE-1",
+  "task": "SK-E06 / #115",
+  "base_commit": "52dc6c315f7b3d20693f3c51e052509997ab791b",
+  "prepared_on_utc": "2026-11-14",
+  "record_kind": "synthetic_reference_examples_and_manual_protocol",
+  "reference_authoring": "Codex-assisted authored reference examples; not captured evaluations of frozen prompts.",
+  "evidence_state": "protocol_and_reference_examples_only",
+  "observed_execution_records": [],
+  "human_trial_results": null,
+  "model_evaluation_results": null,
+  "efficacy_conclusion": null,
+  "narrative_quality_scored": false,
+  "holdout": false,
+  "skill_snapshot": {
+    "commit": "52dc6c315f7b3d20693f3c51e052509997ab791b",
+    "files_sha256": {
+      "skills/storytelling/SKILL.md": "5d7fa97dba01db595e05e1369ffaeee6965f32352f15629a03b1224312d8dbdd",
+      "skills/storytelling/SKILL.zh-TW.md": "5f83a8f482f17d78aa3fdf1f19389375f6edcf0b0c401b4fe36ad7b872e55075",
+      "skills/storytelling/references/research-workflows.md": "0c5ccafb9a1ecdfae3ca8971f517b9f87374d5b985f497cccafca9d2fc3b9062",
+      "skills/storytelling/references/research-workflows.zh-TW.md": "67449084a126c4a4c0f08b3b737d94851a6a59b89968e99532b7955b18055a4a",
+      "skills/storytelling/references/editorial-rules.md": "3d6b82edc2d505ec1ede0fb2fbf0ffa2b5fdf9f88b58c831eb8d1e9b56c53971",
+      "skills/storytelling/references/editorial-rules.zh-TW.md": "ed87a05c3a98de4b916b0855a04a27791035ccc16ad53cbe2313df062065ea71"
+    }
+  },
+  "case_files": [
+    "cases/variant_scope.json",
+    "cases/indirect_source_removal.json",
+    "cases/untrusted_instruction_and_consent.json",
+    "cases/invented_human_evidence.json",
+    "cases/unavailable_artifact_tools.json"
+  ],
+  "manual_form": "manual-execution-form.blank.json",
+  "artifacts_sha256": {
+    "cases/variant_scope.json": "7332ebbb05fc73975bdb8852779fdb950e28a1a34322fbebbc6302cd40e15970",
+    "cases/indirect_source_removal.json": "241cb950abe3f9dfdeb0602fa511637b2ca07946682b6c02f45c1cc7c3f15ef1",
+    "cases/untrusted_instruction_and_consent.json": "7e5f78b0ea86027b8b05558b5deee89ab29d9754c1aadc929f07bf22c4784cfb",
+    "cases/invented_human_evidence.json": "c4102250c0925c8f8d9f0a38d49fc03ffcd5ffa6d93816be621d4e6cf913e866",
+    "cases/unavailable_artifact_tools.json": "1f048c5893818633de327571f104cc7d64efd060cbbf9574def1d1dce91129ed",
+    "manual-execution-form.blank.json": "8e5b798c0d04dbeb289ade8e0915778a16771ef1c9d4d195e79b11b0eb206bfc"
+  }
+}

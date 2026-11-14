@@ -1,0 +1,50 @@
+{
+  "scope": "mechanical packet integrity/path error hardening only; no model/host/participant case execution",
+  "baseline_packet_commit": "ae3708765c6e21810df96cbe62e90886c2361d89",
+  "review_date_utc": "2026-11-14",
+  "platform": "Linux",
+  "historical_red_green_receipt_unchanged_sha256": "c02b0334f3c6f38c8b99b8a4663f12b721bdc3da38a3a0f13c188538030574ac",
+  "red": {
+    "command": [
+      "python3",
+      "scripts/test_sk_e06_packet.py"
+    ],
+    "exit": 1,
+    "source_commit": "83b03a7ad7229e0ca2093b48b76fb5cc105f05e0",
+    "validator_sha256": "273740a9262c49d6d5ae0ebfef1cefbf83bdc242e803194187c16caee90b5c4b",
+    "tests_sha256": "2d1c4a41274938964482e31ddd277e22a06d4b3b32640e8361c5b026af4f6648",
+    "output_sha256": "e7eed58c9bcdb1e7d67514c6a6983dfcb07aa5353c97e51471598c7c49b50f88",
+    "tests": 14,
+    "passed": 11,
+    "failures": 2,
+    "errors": 1,
+    "skipped": 0,
+    "excerpt": "review-fix-red-excerpt.txt",
+    "excerpt_sha256": "52f19a7d40245e28da518fae1b0b6797837f46b2b6a7d8f65efa26201caf0f3c",
+    "excerpt_note": "Selected unmodified diagnostic/test-total lines; source-checkout paths omitted. Full combined output retained locally and bound by output_sha256."
+  },
+  "green": {
+    "command": [
+      "python3",
+      "scripts/test_sk_e06_packet.py"
+    ],
+    "exit": 0,
+    "source_commit": "7fc5dd19b129cda2b6d3e03b2dc50eed8abb443b",
+    "validator_sha256": "276131cfe883517c086b0ea53aeb1fba56fe5b2aa1fab65bc2ae0df49b17c128",
+    "tests_sha256": "2d1c4a41274938964482e31ddd277e22a06d4b3b32640e8361c5b026af4f6648",
+    "output_sha256": "5c2d1bb5b5d6f1e8052b0396282144c7e358222ac037a4e265003950fafa0371",
+    "tests": 14,
+    "passed": 14,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "excerpt": "review-fix-green.txt",
+    "excerpt_sha256": "5c2d1bb5b5d6f1e8052b0396282144c7e358222ac037a4e265003950fafa0371",
+    "excerpt_note": "Combined output with trailing empty lines omitted; test-result lines unchanged."
+  },
+  "limits": [
+    "The symlink-cycle CLI regression skips only where the operating system cannot create symlinks; the mocked resolution-cycle regression runs on every platform. This Linux run skipped no tests.",
+    "Artifact content is hashed and decoded from one immutable byte snapshot. This does not authenticate its origin or prove the filesystem stayed unchanged afterward.",
+    "Skill snapshot fields are declared commit/hash metadata; this checker checks syntax and expected paths, not actual Git blob bytes or authenticity."
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "command": [
+    "python3",
+    "scripts/test_sk_e06_packet.py"
+  ],
+  "exit": 1,
+  "tests": 10,
+  "passed": 2,
+  "failed": 8,
+  "source_state": "working-tree packet, test file and no-op validator; no immutable commit retained",
+  "validator_sha256": "5752c1b681b3d6814c946868b3c02f9f1c4b508f8adc3a4ec330a0708b01efc5",
+  "validator_stub_source": "#!/usr/bin/env python3\n\"\"\"Check integrity of the SK-E06 reference packet; no host or model execution.\"\"\"\nimport argparse\nimport json\nfrom pathlib import Path\n\nclass PacketError(ValueError):\n    \"\"\"Reference-packet integrity failure, not an instruction-conformance score.\"\"\"\n\ndef validate_packet(packet, root):\n    return {\"packet_id\": packet[\"packet_id\"], \"case_count\": len(packet[\"case_files\"]), \"scope\": \"reference_packet_integrity_only\"}\n\ndef load_packet(root):\n    return json.loads((root / \"packet-v1.json\").read_text(encoding=\"utf-8\"))\n\ndef main():\n    parser=argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"packet_dir\",nargs=\"?\",type=Path,default=Path(__file__).resolve().parents[1]/\"docs/research/evaluations/sk-e06\")\n    args=parser.parse_args()\n    try: result=validate_packet(load_packet(args.packet_dir),args.packet_dir)\n    except (OSError,ValueError) as error:\n        print(f\"sk_e06_packet: {error}\")\n        return 1\n    print(json.dumps(result,sort_keys=True))\n    return 0\n\nif __name__==\"__main__\": raise SystemExit(main())\n",
+  "test_sha256": "6a65a916cdb91f5bb9107d8539359e3dcd76053a9ebac66abba5d50e76d1854e",
+  "output_sha256": "93622be4fcd8ba33929f0f0c46f625f5af36dd6f0b8c750cc366f41da57e00e6",
+  "scope": "mechanical packet validator baseline only; not a model/host case execution",
+  "excerpt": "mechanical-red-excerpt.txt",
+  "excerpt_note": "Selected unmodified failure/test-total lines; full output retained in local /tmp with SHA-256 below. Source checkout paths are omitted from the public excerpt.",
+  "excerpt_sha256": "e85a255544ab8b64bebfc1d2e587a43b680444c83db3591390d1990c7cf6d830",
+  "test_source_note": "Initial assertions all preserved in final tests; later hardening adds strict JSON duplicate/nonfinite coverage and LF-explicit temp writes.",
+  "green": {
+    "command": [
+      "python3",
+      "scripts/test_sk_e06_packet.py"
+    ],
+    "exit": 0,
+    "tests": 11,
+    "passed": 11,
+    "failed": 0,
+    "validator_sha256": "273740a9262c49d6d5ae0ebfef1cefbf83bdc242e803194187c16caee90b5c4b",
+    "test_sha256": "816920954fab8749a4a5bbeceb4fa98df9a5634f98347a94b8d60feff1908925",
+    "packet_manifest_sha256": "b38fe42fcbb3cda731ea8cf38ec1d4ff5da47ef41d93971e1478df815a22ee31",
+    "output_sha256": "539339e400898c14299e1bc639116f311205d1db6955cbcdf3e9eab81fd42203",
+    "output_excerpt": "mechanical-green.txt",
+    "source_commit": null,
+    "source_note": "uncommitted working tree handed to root for review/commit; final hosted head must be recorded separately"
+  },
+  "other_local_checks": [
+    {
+      "command": [
+        "python3",
+        "scripts/sk_e06_packet.py"
+      ],
+      "exit": 0,
+      "output_sha256": "882700a086c869ab7cc28c4786f8909e850cdbce8a5a73084e9ff099baa47790"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/test_sk_e02_contract.py"
+      ],
+      "exit": 0,
+      "output_sha256": "f4449f29cb154e8d5c834e36406fa1d3ccb4919c343afdb2dde98403597987cc"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/test_sk_e03_cases.py"
+      ],
+      "exit": 0,
+      "output_sha256": "feabb4add9e2ca3374e538560634d1ec97dc4f4ce89aab12f3d726e36ea9b2f6"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/test_sk_e04_order_analysis.py"
+      ],
+      "exit": 0,
+      "output_sha256": "a49d7fe8a545cea484ea22e586a9b5eb4b29dc7b64212aacf994b706370fe20a"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/test_skill_evaluation_records.py"
+      ],
+      "exit": 0,
+      "output_sha256": "2f10a942df448833afbb85d30e073433b24b97bf5f5bcdae6ab6c3c58a7b4a55"
+    }
+  ],
+  "setup_attempts": [
+    {
+      "command": [
+        "python3",
+        "scripts/test_sk_e01_provenance.py"
+      ],
+      "exit": 2,
+      "output_sha256": "533e41d1d552e79595ad264055334aa76fdaf1b56d407584459b2b51099b943e"
+    }
+  ],
+  "setup_note": "An initial invocation guessed a nonexistent SK-E01 test filename and exited2. After listing actual repository scripts, test_skill_evaluation_records.py was run; this setup error is not behavior RED."
+}
