@@ -1,0 +1,138 @@
+{
+  "document_kind": "documentation_only_blank_evidence_handoff",
+  "format_version": 1,
+  "runtime_schema_or_public_contract": false,
+  "baseline_commit": "bca998784a0e9d3891cd7b28aab660d7d4ad7db0",
+  "prepared_on_utc": "2026-11-14",
+  "status": "pending_protocol_adoption_no_execution",
+  "instructions": [
+    "Copy this blank template to an authorized private evidence store before collecting anything. Do not publish a filled record by default.",
+    "Freeze the exact task, version, material, scoring, stopping and privacy rules before recruitment or Host execution. A changed protocol requires a new version and decision.",
+    "This handoff authorizes no recruitment, model call, file/media access, Host mutation or new G2 decision.",
+    "Preserve complete actual raw output before scoring; keep unexpected answers, refusals, partial work, starts, withdrawals and failed attempts. Unknown stays null.",
+    "For #129B, use an actual independent author after the accepted implementation is available; record seconds/frames, unresolved and declaration-only interpretation.",
+    "For #107, use an actual independent consumer after the accepted facade exists; retain caller code, compiler/errors/help and CLI/API parity. Codex-written callers are engineering tests, not a human consumer.",
+    "For #103, W01 stays no-Host. Any later Host scenarios require #104-#106 authorization, isolated projects and actual readback/process evidence; no retry on unknown.",
+    "Do not relabel #48/#54 people or outcomes as a fresh cohort. Any permitted new task with a previously exposed person needs its actual exposure and separate cohort recorded. The proposed native v3 remains unadopted and retains its own freshness/sampling rules."
+  ],
+  "required_five_fields": [
+    "original_prompt",
+    "starting_data",
+    "author_verbatim",
+    "observed_behavior",
+    "limitations_and_usability_failures"
+  ],
+  "prospective_agreement": {
+    "protocol_id": null,
+    "protocol_revision": null,
+    "protocol_commit": null,
+    "protocol_sha256": null,
+    "intended_issue_and_slice": null,
+    "adoption_date_timezone": null,
+    "maintainer_decision_verbatim": null,
+    "maintainer_identity_private_ref": null,
+    "accepted_scope_and_exclusions": null,
+    "consent_and_retention_policy_ref": null,
+    "scoring_and_stop_rules_ref": null
+  },
+  "record_identity": {
+    "record_id": null,
+    "anonymous_operator_code": null,
+    "anonymous_facilitator_code": null,
+    "anonymous_observer_code": null,
+    "actual_date_timezone": null,
+    "operator_role": null,
+    "prior_exposure": null,
+    "relevant_experience": null,
+    "assigned_order": null,
+    "actual_order": null,
+    "deviations": null
+  },
+  "five_fields": {
+    "original_prompt": null,
+    "starting_data": null,
+    "author_verbatim": null,
+    "observed_behavior": null,
+    "limitations_and_usability_failures": null
+  },
+  "version_and_inputs": {
+    "source_commit": null,
+    "source_tree": null,
+    "tool_or_sdk_version": null,
+    "executable_sha256": null,
+    "build_receipt_ref": null,
+    "host_profile_and_binary_identity": null,
+    "platform_and_toolchain": null,
+    "material_commit_and_hashes": null,
+    "selected_units_and_revisions": null,
+    "target_project_revision": null,
+    "authoritative_contract_version": null
+  },
+  "private_execution_capture": {
+    "actual_argv": null,
+    "invocation_start_timezone": null,
+    "invocation_end_timezone": null,
+    "exit_status": null,
+    "input_artifact_refs_and_sha256": null,
+    "raw_stdout_ref_and_sha256": null,
+    "raw_stderr_ref_and_sha256": null,
+    "submitted_or_partial_output_refs_and_sha256": null,
+    "verbatim_feedback_ref": null,
+    "screen_or_host_readback_refs_and_sha256": null,
+    "process_liveness_or_quiescence_evidence_ref": null,
+    "late_response_or_recovery_observation_ref": null
+  },
+  "timing": {
+    "author_start": null,
+    "author_end": null,
+    "author_elapsed_seconds_including_waiting": null,
+    "process_elapsed_seconds": null,
+    "setup_time_separately": null,
+    "timeout_limit_seconds_from_adopted_protocol": null,
+    "timed_out": null,
+    "interrupted": null,
+    "withdrawn": null,
+    "withdrawal_reason_verbatim": null
+  },
+  "privacy_and_consent": {
+    "participation_consent_ref": null,
+    "private_storage_owner_and_retention_ref": null,
+    "public_summary_permission_ref": null,
+    "verbatim_publication_permission_ref": null,
+    "sensitive_material_exposure_or_deviation": null,
+    "actual_media_access_authorization_ref": null,
+    "actual_host_mutation_authorization_ref": null
+  },
+  "results_not_yet_observed": {
+    "starts": null,
+    "comparable_pairs": null,
+    "completions": null,
+    "attribution_errors": null,
+    "repeated_entries": null,
+    "rework": null,
+    "missed_or_extra_changes": null,
+    "instruction_or_api_result": null,
+    "host_outcome": null,
+    "content_review": null,
+    "new_human_performance_conclusion": null,
+    "new_host_qualification": null
+  },
+  "review_and_decisions": {
+    "machine_checks_with_raw_evidence_refs": null,
+    "human_judgment_and_verbatim_basis": null,
+    "unresolved_disagreement": null,
+    "reviewer_identity": null,
+    "formal_maintainer_G2_acceptance": null,
+    "accepted_commit": null,
+    "actual_continue_narrow_stop_decision": null,
+    "decision_date_timezone": null,
+    "signature": null,
+    "G5_publication_decision": null
+  },
+  "privacy_rules": [
+    "Store complete argv, raw outputs, caller code and any local-media/project evidence privately; publish only authorized anonymous summaries and opaque artifact references.",
+    "Do not place real names, contact details, private paths, media, tokens, signing secrets or sensitive evidence into the public repository.",
+    "A source reference, record checksum, checked box or parsed agreement does not authenticate a person, factual claim, current authority or actual Host state.",
+    "For a machine-only Host scenario with no author statement, leave author_verbatim null; do not convert logs into an invented quotation."
+  ]
+}

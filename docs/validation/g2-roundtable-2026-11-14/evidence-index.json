@@ -1,0 +1,679 @@
+{
+  "document_kind": "documentation_only_evidence_index",
+  "format_version": 1,
+  "runtime_schema_or_public_contract": false,
+  "baseline_commit": "bca998784a0e9d3891cd7b28aab660d7d4ad7db0",
+  "review_date_utc": "2026-11-14",
+  "meeting_kind": "asynchronous_AI_review",
+  "meeting_provenance": {
+    "existing_public_roundtable_record_found": false,
+    "search_scope": "Tracked repository tree and GitHub issue search for exact terms roundtable / 圓桌. This does not rule out private meetings.",
+    "process": "Collaborating Codex agents reviewed existing records asynchronously. This is not a recorded human meeting.",
+    "prior_involvement": "Agents share project history and some participated in prior engineering/evidence work. Their judgments are correlated and are not a blinded independent human review.",
+    "independent_human_roundtable_performed": false
+  },
+  "user_instruction": {
+    "verbatim": "根據圓桌會議判斷選擇內容，並加入真人與Host 支持研究證據 已送出的 #103 W01、#107 SDK、#129 B 三項技術選擇。",
+    "interpretation": "request_to_choose_and_ground",
+    "formal_G2_adoption_inferred": false
+  },
+  "new_human_run_performed": false,
+  "new_host_run_performed": false,
+  "new_results": {
+    "human_observations": null,
+    "host_observations": null,
+    "performance": null
+  },
+  "formal_maintainer_acceptance": null,
+  "formal_reviewer_identity": null,
+  "signature": null,
+  "choices": [
+    {
+      "issue": 103,
+      "slice": "W01",
+      "selection_kind": "AI_recommendation_for_maintainer_review",
+      "recommendation": "Select a pure deterministic no-Host W01 implementation reusing accepted review/journal semantics. Do not add an ExecutionPermit, dispatch-ready/admission behavior, authority acquisition or Host invocation.",
+      "state": "pending_explicit_focused_G2_and_W01_authorization",
+      "evidence_ids": [
+        "HOST-M1",
+        "HOST-M3",
+        "H-N07STOP"
+      ],
+      "conditions": [
+        "Freeze exact authority/provider/fencing/readback boundaries and negative cases before implementation.",
+        "Keep current authority, signer trust and actual Host truth separate from declarations.",
+        "Final tested-contract G2 acceptance and #104-#106 remain separate."
+      ],
+      "formal_acceptance": null,
+      "accepted_commit": null
+    },
+    {
+      "issue": 107,
+      "slice": "read_only_facade",
+      "selection_kind": "AI_recommendation_for_maintainer_review",
+      "recommendation": "Select the proposed eight thin read-only operations delegating to existing validators/engine results, with opaque review handles, complete error details and CLI golden parity; omit execution/recovery APIs.",
+      "state": "pending_explicit_focused_G2",
+      "evidence_ids": [
+        "H-N01",
+        "H-102-READ",
+        "H-102-HAND",
+        "M-V1",
+        "H-N07STOP"
+      ],
+      "conditions": [
+        "Obtain a version/error/compatibility decision for the proposed facade before G3.",
+        "Actual independent consumer implementation and API/CLI golden parity remain new evidence to collect.",
+        "Do not treat narrative author trials as SDK consumer usability or stable-release acceptance."
+      ],
+      "formal_acceptance": null,
+      "accepted_commit": null
+    },
+    {
+      "issue": 129,
+      "slice": "N10-06B",
+      "selection_kind": "AI_recommendation_for_maintainer_review",
+      "recommendation": "Revise the proposal before adoption: retain private projection/row/hint types and a single experimental text bridge into the existing A/V1 authority. Cross-crate linkage may require feature-gated, doc-hidden public Rust visibility; it is not private visibility or a stable SDK promise. Freeze deterministic hint order and escaped human-facing text before focused adoption.",
+      "state": "revise_before_adoption",
+      "evidence_ids": [
+        "VH-12",
+        "VH-3",
+        "M-V1",
+        "M-MEDIA",
+        "H-102-READ",
+        "H-102-HAND",
+        "H-N07STOP"
+      ],
+      "conditions": [
+        "V1 first-error-wins remains authoritative; hints cannot authorize invalid output.",
+        "Preserve selected unit order, revisions and unresolved rows. Declaration readiness never means real media verified or export executable.",
+        "Record an independent author using seconds/frames and preflight after implementation; B has no observed usability result now.",
+        "C media identity/privacy and D Host/authority evidence retain independent gates."
+      ],
+      "formal_acceptance": null,
+      "accepted_commit": null
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "H-N01",
+      "evidence_kind": "maintainer_attested_human_skill_trial",
+      "sources": [
+        {
+          "kind": "repository_record",
+          "repository_path": "docs/narrative/N-01-AUTHOR-STUDY.md",
+          "snapshot_commit": "bca998784a0e9d3891cd7b28aab660d7d4ad7db0",
+          "git_blob_sha1": "43d2e31fcd60d949162a1a04477dd9f14e18a5af",
+          "content_last_commit": "c29dbd25ee5319ece308fc22b5685a35cf90cb8c",
+          "url": "https://github.com/bynanci/storytelling/blob/bca998784a0e9d3891cd7b28aab660d7d4ad7db0/docs/narrative/N-01-AUTHOR-STUDY.md"
+        },
+        {
+          "kind": "public_issue_comment",
+          "issue_or_pr": 48,
+          "comment_id": 6798756961,
+          "url": "https://github.com/bynanci/storytelling/issues/48#issuecomment-6798756961",
+          "public_account": "bynanci",
+          "actual_human_identity_independently_verified": false
+        },
+        {
+          "kind": "public_issue_comment",
+          "issue_or_pr": 48,
+          "comment_id": 6809944728,
+          "url": "https://github.com/bynanci/storytelling/issues/48#issuecomment-6809944728",
+          "public_account": "bynanci",
+          "actual_human_identity_independently_verified": false
+        },
+        {
+          "kind": "public_issue_comment",
+          "issue_or_pr": 48,
+          "comment_id": 6798353913,
+          "url": "https://github.com/bynanci/storytelling/issues/48#issuecomment-6798353913",
+          "public_account": "bynanci",
+          "actual_human_identity_independently_verified": false
+        }
+      ],
+      "provenance": "Maintainer account summarizes private same-day facilitator records; original session outputs, identities and timers were not independently inspected for this review. The repository protocol table itself is blank, not a results table.",
+      "task_and_version": {
+        "task": "One door-repair source/name revision across an oral outline and two illustration briefs, preserving source/interpretation/proposal boundaries.",
+        "condition_A": "ordinary notes",
+        "condition_B": "installed Storytelling Skill",
+        "material_baseline_commit": "260485b2ff5b8d7b46215004e21a5bb1a37e6dfb",
+        "exact_skill_prompt_host_model_settings": null
+      },
+      "sample_and_exposure": {
+        "paired_authors": 5,
+        "allocation": "3 AB / 2 BA",
+        "prior_exposure": "maintainer reports a verbal no-prior-exposure check",
+        "reported_freeze": "2026-11-11 18:00 UTC+08:00",
+        "reported_sessions": "2026-11-11 19:00-21:00 UTC+08:00",
+        "public_protocol_entry_after_reported_freeze": "2026-11-11 21:50:22 UTC+08:00"
+      },
+      "observed_facts": [
+        "Reported primary completions: notes 3/5, Skill 5/5.",
+        "Reported condition medians: notes 310 seconds including a 480-second timeout, Skill 185 seconds.",
+        "Reported repeated entries: 3 versus 1; attribution events: 1 versus 0; authors with major attribution errors: 0 versus 0.",
+        "The maintainer chose Continue for this Skill exercise."
+      ],
+      "eligible_claims": [
+        "Supports continuing bounded source/scope-preserving authoring experiments and a hypothesis that explicit source distinctions can help this task."
+      ],
+      "limits": [
+        "Not a native CLI, SDK consumer, preflight B or Host authority trial.",
+        "Private original records were not independently audited; exact Skill prompt, host/model/settings are unavailable.",
+        "Small fixed-task study; no population, cross-modal or causal improvement claim is transferred to the three pending choices."
+      ]
+    },
+    {
+      "source_id": "H-102-READ",
+      "evidence_kind": "maintainer_confirmed_anonymous_human_readings",
+      "sources": [
+        {
+          "kind": "repository_record",
+          "repository_path": "examples/discovery/validation-2026-11-12.md",
+          "snapshot_commit": "bca998784a0e9d3891cd7b28aab660d7d4ad7db0",
+          "git_blob_sha1": "c887f3a9160dd86359407ec115a1cfb6a16bc7f3",
+          "content_last_commit": "b7dc6006d544bd6347b44cc48f36926db151b2cb",
+          "url": "https://github.com/bynanci/storytelling/blob/bca998784a0e9d3891cd7b28aab660d7d4ad7db0/examples/discovery/validation-2026-11-12.md"
+        },
+        {
+          "kind": "repository_record",
+          "repository_path": "examples/discovery/service-counter.md",
+          "snapshot_commit": "bca998784a0e9d3891cd7b28aab660d7d4ad7db0",
+          "git_blob_sha1": "824fef0d795b629fc6d0fba25eca68aed19b64fd",
+          "content_last_commit": "2b37c5c15ba57245640ac8f0b8d2aaad75e714ed",
+          "url": "https://github.com/bynanci/storytelling/blob/bca998784a0e9d3891cd7b28aab660d7d4ad7db0/examples/discovery/service-counter.md"
+        },
+        {
+          "kind": "repository_record",
+          "repository_path": "examples/discovery/kiln-coverage.md",
+          "snapshot_commit": "bca998784a0e9d3891cd7b28aab660d7d4ad7db0",
+          "git_blob_sha1": "835a62296bffc391d1fbea3fa32d70a66939fa6a",
+          "content_last_commit": "2b37c5c15ba57245640ac8f0b8d2aaad75e714ed",
+          "url": "https://github.com/bynanci/storytelling/blob/bca998784a0e9d3891cd7b28aab660d7d4ad7db0/examples/discovery/kiln-coverage.md"
+        },
+        {
+          "kind": "public_pr_conversation_comment",
+          "issue_or_pr": 102,
+          "comment_id": 6820309368,
+          "url": "https://github.com/bynanci/storytelling/pull/102#issuecomment-6820309368",
+          "public_account": "bynanci",
+          "actual_human_identity_independently_verified": false
+        }
+      ],
+      "provenance": "The maintainer confirmed that the reading records came from people; facilitator/scorer identity and full private transcripts are not embedded in the public summary. syn-* labels are retained anonymous codes, not a claim that participants were synthetic.",
+      "task_and_version": {
+        "task": "First-reading interpretation of a fictional booking notice and a kiln log/footage handoff.",
+        "pr_102_head": "2631f498b1a9b907f825cf913546530b6c07506f",
+        "pr_102_merge": "47b29df65bde96aa6f63a3eb0b73fc82d65843fd",
+        "english_record_introduced_at": "b7dc6006d544bd6347b44cc48f36926db151b2cb"
+      },
+      "sample_and_exposure": {
+        "booking_first_readings": 3,
+        "booking_order": "2 A-first / 1 B-first",
+        "kiln_readers": 1,
+        "kiln_order": "B then A",
+        "prior_exposure": "booking first exposure documented; only B was the kiln first exposure",
+        "unique_people_across_cases": null
+      },
+      "observed_facts": [
+        "Booking: all three recorded first readers selected the website for new bookings and matched the intended initial focus.",
+        "Kiln: the reader distinguished the logged event from available delivered footage and identified the missing opening footage."
+      ],
+      "eligible_claims": [
+        "For #129B, supports preserving the difference between a declared/logged event and delivered media.",
+        "For #107, supplies a product hypothesis for exposing source/coverage distinctions without hiding missing material."
+      ],
+      "limits": [
+        "Fictional text materials, not real transactions or inspected footage.",
+        "No actual booking-time measure, B preflight use or SDK consumer.",
+        "Kiln A/B also differ in a proposed title; not a pure presentation-order experiment.",
+        "Do not count the second-read A as another independent first-exposure observation or sum role counts into unique people."
+      ]
+    },
+    {
+      "source_id": "H-102-HAND",
+      "evidence_kind": "maintainer_supplied_anonymous_human_handoffs",
+      "sources": [
+        {
+          "kind": "repository_record",
+          "repository_path": "examples/discovery/validation-2026-11-12.md",
+          "snapshot_commit": "bca998784a0e9d3891cd7b28aab660d7d4ad7db0",
+          "git_blob_sha1": "c887f3a9160dd86359407ec115a1cfb6a16bc7f3",
+          "content_last_commit": "b7dc6006d544bd6347b44cc48f36926db151b2cb",
+          "url": "https://github.com/bynanci/storytelling/blob/bca998784a0e9d3891cd7b28aab660d7d4ad7db0/examples/discovery/validation-2026-11-12.md"
+        },
+        {
+          "kind": "public_pr_conversation_comment",
+          "issue_or_pr": 102,
+          "comment_id": 6820309368,
+          "url": "https://github.com/bynanci/storytelling/pull/102#issuecomment-6820309368",
+          "public_account": "bynanci",
+          "actual_human_identity_independently_verified": false
+        }
+      ],
+      "provenance": "Public summaries of anonymous editor handoffs supplied by the maintainer; kiln full A/B/C drafts were reviewed per draft. Independent participant-identity or timer audit is not claimed.",
+      "task_and_version": {
+        "task": "Booking R1 changes A/B while preserving C; booking R2 changes C only. Kiln source revisions require exact scoped changes to three drafts.",
+        "pr_102_merge": "47b29df65bde96aa6f63a3eb0b73fc82d65843fd"
+      },
+      "sample_and_exposure": {
+        "booking_handoff_editors": 2,
+        "kiln_handoff_editors": 2,
+        "prior_exposure": null,
+        "cross_case_participant_overlap": null,
+        "matched_control": false
+      },
+      "observed_facts": [
+        "Booking R1 took 72 seconds; R2 took 55 seconds on different tasks.",
+        "Kiln R1 took 68 seconds; R2 took 52 seconds. Each had missed changes 0/3, extra changes 0/3, collateral damage 0/6 and missing material 0/6.",
+        "Editors reported using the source map."
+      ],
+      "eligible_claims": [
+        "Supports further tests of scoped change/impact handoffs for #107 and visible unresolved/source distinctions for #129B."
+      ],
+      "limits": [
+        "No same-task control, source-map setup cost, demonstrated time saving or direct B/SDK use.",
+        "Prior exposure and cross-case overlap are unknown.",
+        "The record proposes no new schema/guardrail; a repeated failure class at the same step from at least two independent operators would be needed for a failure-driven new tool constraint."
+      ]
+    },
+    {
+      "source_id": "VH-12",
+      "evidence_kind": "maintainer_supplied_pre_cli_manual_walkthroughs",
+      "sources": [
+        {
+          "kind": "public_issue_comment",
+          "issue_or_pr": 67,
+          "comment_id": 6812948322,
+          "url": "https://github.com/bynanci/storytelling/issues/67#issuecomment-6812948322",
+          "public_account": "bynanci",
+          "actual_human_identity_independently_verified": false
+        },
+        {
+          "kind": "repository_record",
+          "repository_path": "docs/validation/n10-resume-gate.zh-TW.md",
+          "snapshot_commit": "bca998784a0e9d3891cd7b28aab660d7d4ad7db0",
+          "git_blob_sha1": "a7fbbd3705a3201e7a4134c5561ba69f4acb73b1",
+          "content_last_commit": "3d8bfc44ed1d73a07c84ee080f1bdadad450895a",
+          "url": "https://github.com/bynanci/storytelling/blob/bca998784a0e9d3891cd7b28aab660d7d4ad7db0/docs/validation/n10-resume-gate.zh-TW.md"
+        }
+      ],
+      "provenance": "One anonymous author record supplied by the maintainer; quotes were retained as provided without independent identity/transcript audit. These are manual contract walkthroughs, not executed G3 CLI outputs.",
+      "task_and_version": {
+        "task": "Map u-open to a declared clip and preserve u-test as unresolved; revise u-open and compare a six-second range against a declared five-second duration.",
+        "contract": "NarrativeVideoCoverageV1 / ADR 0010",
+        "stage": "S1 spreadsheet/text handoff, then S2 pre-CLI manual G2 contract check"
+      },
+      "sample_and_exposure": {
+        "authors": 1,
+        "sessions": 2,
+        "dates": null,
+        "original_timing": null,
+        "prior_exposure": null,
+        "order": "S1 then S2; not randomized"
+      },
+      "observed_facts": [
+        "The supplied account describes confusing a filled free-text missing-footage cell with complete coverage.",
+        "The manual contract check expected stale_unit_revision, then invalid_range, then unresolved_required after corrections.",
+        "The author identified rational input and sequential first-error fixes as friction."
+      ],
+      "eligible_claims": [
+        "Supports the #129B problem hypothesis for explicit mapped/unresolved rows, exact range explanations and retained authoritative diagnostics."
+      ],
+      "limits": [
+        "Expected contract results, not CLI observations or audited real media measurements.",
+        "No independent usability comparison, observed error frequency or causal time effect.",
+        "The local media length was a maintainer declaration at this stage."
+      ]
+    },
+    {
+      "source_id": "VH-3",
+      "evidence_kind": "maintainer_author_qualitative_self_session",
+      "sources": [
+        {
+          "kind": "public_issue_comment",
+          "issue_or_pr": 67,
+          "comment_id": 6815393001,
+          "url": "https://github.com/bynanci/storytelling/issues/67#issuecomment-6815393001",
+          "public_account": "bynanci",
+          "actual_human_identity_independently_verified": false
+        },
+        {
+          "kind": "repository_record",
+          "repository_path": "docs/validation/n10-05-execution-record.md",
+          "snapshot_commit": "3d8bfc44ed1d73a07c84ee080f1bdadad450895a",
+          "git_blob_sha1": "c1a8386c7695ebfdbbdc2b940b7b5ff911ebc6da",
+          "content_last_commit": "3d8bfc44ed1d73a07c84ee080f1bdadad450895a",
+          "url": "https://github.com/bynanci/storytelling/blob/3d8bfc44ed1d73a07c84ee080f1bdadad450895a/docs/validation/n10-05-execution-record.md"
+        }
+      ],
+      "provenance": "VH-01 is the project maintainer/author. The session and 145-second author time are maintainer-attested; Codex did not observe the actions or timing. A separate replay corroborated outputs only.",
+      "task_and_version": {
+        "task": "Two-unit handoff: correct u-open end 6/1 to 5/1 and retain missing u-test coverage.",
+        "implementation_merge": "169bf6baff33cd452238337237d437e15ac5b292",
+        "reported_session_after_prs": [
+          97,
+          99
+        ]
+      },
+      "sample_and_exposure": {
+        "authors": 1,
+        "sessions": 1,
+        "reported_date_time": "2026-11-12 13:02 UTC+08:00",
+        "prior_exposure": "Same author already used spreadsheet S1 and pre-CLI walkthrough S2.",
+        "order": "fixed; not randomized or blinded",
+        "independent_observer": false
+      },
+      "observed_facts": [
+        "Self-reported total author time: 145 seconds, including duration check, JSON edits, both CLI runs and result inspection.",
+        "End 6/1 returned invalid_range at $.mappings[0].source_range.end; end 5/1 returned ready_for_planning=false and unresolved_required at $.mappings[1].",
+        "JSONPath helped locate the field; rational numerator/denominator strings and iterative first-error fixes were friction points."
+      ],
+      "eligible_claims": [
+        "Most direct existing human problem evidence for #129B input/preflight ergonomics, subject to new independent author observation."
+      ],
+      "limits": [
+        "One prior-exposed self-session with no independent observer.",
+        "Reported earlier spreadsheet 260 seconds versus 145 seconds is confounded by practice/order; no causal time saving.",
+        "The author did not use the proposed B preflight or establish media identity/Host acceptance."
+      ]
+    },
+    {
+      "source_id": "M-V1",
+      "evidence_kind": "codex_native_cli_replay",
+      "sources": [
+        {
+          "kind": "repository_record",
+          "repository_path": "docs/validation/n10-05-execution-record.md",
+          "snapshot_commit": "3d8bfc44ed1d73a07c84ee080f1bdadad450895a",
+          "git_blob_sha1": "c1a8386c7695ebfdbbdc2b940b7b5ff911ebc6da",
+          "content_last_commit": "3d8bfc44ed1d73a07c84ee080f1bdadad450895a",
+          "url": "https://github.com/bynanci/storytelling/blob/3d8bfc44ed1d73a07c84ee080f1bdadad450895a/docs/validation/n10-05-execution-record.md"
+        },
+        {
+          "kind": "public_issue_comment",
+          "issue_or_pr": 67,
+          "comment_id": 6814524635,
+          "url": "https://github.com/bynanci/storytelling/issues/67#issuecomment-6814524635",
+          "public_account": "bynanci",
+          "actual_human_identity_independently_verified": false
+        }
+      ],
+      "provenance": "Codex replayed the two supplied JSON inputs on Linux x86_64 using Rust/Cargo 1.89.0. This is machine evidence, not an author-operated session.",
+      "task_and_version": {
+        "execution_source_commit": "5499f91c94cd12c6c82779978dc986843d403fe5",
+        "implementation_merge": "169bf6baff33cd452238337237d437e15ac5b292",
+        "entry": "render-video-coverage"
+      },
+      "sample_and_exposure": {
+        "provided_inputs": 2,
+        "legacy_cli_tests": 7,
+        "human_participants": null,
+        "prior_exposure": "not applicable to machine replay"
+      },
+      "observed_facts": [
+        "Valid unresolved input exited 0, retained the missing unit and blocked planning. Invalid range input exited 1 with the declared V1 code/path.",
+        "File/stdin outputs and exit states matched byte-for-byte; input bytes were unchanged. Seven legacy CLI tests passed.",
+        "Single direct-process observations were 3.568 ms and 1.839 ms after compilation, including launch and I/O."
+      ],
+      "eligible_claims": [
+        "Supports reusing unchanged V1 validation as #129B final authority and using exact CLI/SDK parity controls for #107."
+      ],
+      "limits": [
+        "Process milliseconds are neither author time nor a benchmark.",
+        "Supplied inputs were not copied into the public repository; the public result is not a complete private-input archive.",
+        "No author actions/timing, real-file binding, new B/SDK API or Host behavior is established."
+      ]
+    },
+    {
+      "source_id": "M-MEDIA",
+      "evidence_kind": "codex_supplied_synthetic_media_probe",
+      "sources": [
+        {
+          "kind": "repository_record",
+          "repository_path": "docs/validation/n10-05-execution-record.md",
+          "snapshot_commit": "3d8bfc44ed1d73a07c84ee080f1bdadad450895a",
+          "git_blob_sha1": "c1a8386c7695ebfdbbdc2b940b7b5ff911ebc6da",
+          "content_last_commit": "3d8bfc44ed1d73a07c84ee080f1bdadad450895a",
+          "url": "https://github.com/bynanci/storytelling/blob/3d8bfc44ed1d73a07c84ee080f1bdadad450895a/docs/validation/n10-05-execution-record.md"
+        },
+        {
+          "kind": "public_issue_comment",
+          "issue_or_pr": 67,
+          "comment_id": 6815393001,
+          "url": "https://github.com/bynanci/storytelling/issues/67#issuecomment-6815393001",
+          "public_account": "bynanci",
+          "actual_human_identity_independently_verified": false
+        }
+      ],
+      "provenance": "Codex directly ran a read-only ffprobe on the supplied synthetic FFmpeg testsrc MP4. Only public non-sensitive metadata are retained; no media, local path or fingerprint is reproduced here.",
+      "task_and_version": {
+        "task": "Inspect metadata of the supplied synthetic test-pattern file.",
+        "tool": "ffprobe",
+        "content_origin": "reported FFmpeg testsrc, not recorded story footage"
+      },
+      "sample_and_exposure": {
+        "files": 1,
+        "human_participants": null,
+        "prior_exposure": "not applicable to machine probe"
+      },
+      "observed_facts": [
+        "Exit 0: H.264, 1280x720, 30/1 fps, duration 5.000000 seconds, 150 frames, 75,276 bytes."
+      ],
+      "eligible_claims": [
+        "Supports keeping declaration validation, observed file metadata, content review and Host evidence separate for #129B/#107."
+      ],
+      "limits": [
+        "No binding between declared CLIP-01 and the probed file.",
+        "V1 did not read or verify those bytes.",
+        "Metadata do not establish narrative content, synchronization, OTIO/editor import or trusted sidecar qualification."
+      ]
+    },
+    {
+      "source_id": "HOST-M1",
+      "evidence_kind": "historical_codex_real_host_synthetic_profile_proof",
+      "sources": [
+        {
+          "kind": "repository_record",
+          "repository_path": "docs/migration/records/M1-03.md",
+          "snapshot_commit": "bca998784a0e9d3891cd7b28aab660d7d4ad7db0",
+          "git_blob_sha1": "3116d36fb6c9387ff51936b43c4434dfcfa1a3b0",
+          "content_last_commit": "89973143d9bcd6c1c99e40f37f6fa4f13972dc59",
+          "url": "https://github.com/bynanci/storytelling/blob/bca998784a0e9d3891cd7b28aab660d7d4ad7db0/docs/migration/records/M1-03.md"
+        },
+        {
+          "kind": "repository_record",
+          "repository_path": "tests/oracles/filmcraft-25-v1/evidence.json",
+          "snapshot_commit": "2b859d29e22f6f2a39f73822086b59618bb8a402",
+          "git_blob_sha1": "f99df78d9bea8f485d2fd676bd217b60cff07320",
+          "content_last_commit": "2b859d29e22f6f2a39f73822086b59618bb8a402",
+          "url": "https://github.com/bynanci/storytelling/blob/2b859d29e22f6f2a39f73822086b59618bb8a402/tests/oracles/filmcraft-25-v1/evidence.json"
+        }
+      ],
+      "provenance": "Codex automation used the real pinned FilmCraft Linux CLI with generated synthetic material in isolated projects. Technical review and command/artifact hashes are recorded; no human editorial trial is inferred.",
+      "task_and_version": {
+        "host": "FilmCraft CLI 0.18.0 Linux x86_64 CPU",
+        "host_source_commit": "015d5b3ea37e1202a529e6245d3cc021c8c16ffd",
+        "observed_clean_candidate_commit": "47f25e8b6e788885f32d401777b2989771c96e05",
+        "observed_candidate_tree": "95635f276d8107fa0846911284a642a3c1024af2",
+        "profile": "filmcraft-25-picture-only-v1",
+        "accepted_pr_18_merge": "e0a5ade7ee2c0414f87aa121bef1bdf259a7e75e"
+      },
+      "sample_and_exposure": {
+        "synthetic_isolated_profile_runs": "one final recorded clean-candidate proof",
+        "recorded_commands": 25,
+        "hashed_artifacts": 60,
+        "human_participants": null,
+        "prior_exposure": "not applicable to machine Host proof"
+      },
+      "observed_facts": [
+        "Checked import, native source ticks and source identity at 25 fps.",
+        "Decoded preview: 45 frames at n/25, duration 9/5 seconds, 20 red / 5 blue / 20 green.",
+        "Save As/reopen and Host OTIO export/reimport retained inspected sequence data; source and original empty-project inputs were unchanged."
+      ],
+      "eligible_claims": [
+        "Supports exact time/source/readback engineering premises for #103 W01 and preserving truthful bounded profile descriptions in #107."
+      ],
+      "limits": [
+        "Historical synthetic Linux headless CPU picture-only profile, not a fresh Host qualification.",
+        "No audio, GUI/GPU, full-resolution render, human editorial quality, production authority, arbitrary profile or filesystem TOCTOU guarantee.",
+        "Publisher archive hashes were checked; no detached signature or reproducible-build attestation was checked."
+      ]
+    },
+    {
+      "source_id": "HOST-M3",
+      "evidence_kind": "historical_codex_isolated_real_host_lost_reply_proof",
+      "sources": [
+        {
+          "kind": "repository_record",
+          "repository_path": "docs/validation/m3-03-filmcraft-execution.md",
+          "snapshot_commit": "11c04414c32165fa352f0759efd032ec53ce2103",
+          "git_blob_sha1": "3fca8fa061adfec139e832ea76d78c4d6cd9ef1f",
+          "content_last_commit": "11c04414c32165fa352f0759efd032ec53ce2103",
+          "url": "https://github.com/bynanci/storytelling/blob/11c04414c32165fa352f0759efd032ec53ce2103/docs/validation/m3-03-filmcraft-execution.md"
+        },
+        {
+          "kind": "repository_record",
+          "repository_path": "tests/oracles/m3-03-filmcraft-v1/evidence.json",
+          "snapshot_commit": "40748487342b89332088a18a158dbd5f93597abe",
+          "git_blob_sha1": "45bf5d639efce67dd0a9e312b0fc201cd3c59d87",
+          "content_last_commit": "40748487342b89332088a18a158dbd5f93597abe",
+          "url": "https://github.com/bynanci/storytelling/blob/40748487342b89332088a18a158dbd5f93597abe/tests/oracles/m3-03-filmcraft-v1/evidence.json"
+        }
+      ],
+      "provenance": "Codex automation imported once into a new isolated project on real FilmCraft 0.18.0 Linux. The receipt pins executable, runner, test and artifact hashes; no new run or current production acceptance is supplied.",
+      "task_and_version": {
+        "documented_base_commit": "d259196c0a356b547e86e4648e270af7bd2453b3",
+        "host": "FilmCraft CLI 0.18.0 Linux",
+        "storytelling_binary_sha256": "73f9add69b60c4b315a1f3527745fd1eb68ed6788ffd107344111aa622b2d175",
+        "runner_sha256": "5ef76ffc681931b557632f2a8cb51e10765640e5219687fc6e241e93e16bbf09",
+        "profile": "filmcraft-25-picture-only-v1"
+      },
+      "sample_and_exposure": {
+        "import_attempts": 1,
+        "retries": 0,
+        "undo": 0,
+        "human_participants": null,
+        "prior_exposure": "not applicable to machine Host proof"
+      },
+      "observed_facts": [
+        "One online native clip: 25 frames at 25/1 fps; source range [1/25,26/25). Source/review inputs and original empty project remained unchanged.",
+        "The Host child exited successfully before its response was withheld. Persisted outcome_unknown was resolved by native and project-byte readback to applied_observed; a late response was rejected.",
+        "The proof recorded approval_granted=false and executable=false."
+      ],
+      "eligible_claims": [
+        "Strong problem evidence for explicit identity, state, readback and no blind retry in #103 W01; does not select a current authority provider."
+      ],
+      "limits": [
+        "Does not exercise a still-running/hung Host or production process-group quiescence.",
+        "Does not prove safe NotApplied retry, current authority/signer trust, production contract acceptance or non-Linux compatibility.",
+        "No production executor or current user-project mutation permission is supplied."
+      ]
+    },
+    {
+      "source_id": "H-N07STOP",
+      "evidence_kind": "reviewed_external_work_products_and_actual_maintainer_stop",
+      "sources": [
+        {
+          "kind": "repository_record",
+          "repository_path": "docs/validation/n07-pilot.md",
+          "snapshot_commit": "4c78bc128f478265402392eeec7a1cfae1a69db6",
+          "git_blob_sha1": "76ed4caf798ec6a7fb499c483d7e8d259b34a73f",
+          "content_last_commit": "4c78bc128f478265402392eeec7a1cfae1a69db6",
+          "url": "https://github.com/bynanci/storytelling/blob/4c78bc128f478265402392eeec7a1cfae1a69db6/docs/validation/n07-pilot.md"
+        },
+        {
+          "kind": "public_issue_comment",
+          "issue_or_pr": 54,
+          "comment_id": 6800753461,
+          "url": "https://github.com/bynanci/storytelling/issues/54#issuecomment-6800753461",
+          "public_account": "bynanci",
+          "actual_human_identity_independently_verified": false
+        },
+        {
+          "kind": "public_issue_comment",
+          "issue_or_pr": 54,
+          "comment_id": 6800945586,
+          "url": "https://github.com/bynanci/storytelling/issues/54#issuecomment-6800945586",
+          "public_account": "bynanci",
+          "actual_human_identity_independently_verified": false
+        },
+        {
+          "kind": "public_issue_comment",
+          "issue_or_pr": 54,
+          "comment_id": 6809399303,
+          "url": "https://github.com/bynanci/storytelling/issues/54#issuecomment-6809399303",
+          "public_account": "bynanci",
+          "actual_human_identity_independently_verified": false
+        },
+        {
+          "kind": "public_issue_comment",
+          "issue_or_pr": 54,
+          "comment_id": 6809828575,
+          "url": "https://github.com/bynanci/storytelling/issues/54#issuecomment-6809828575",
+          "public_account": "bynanci",
+          "actual_human_identity_independently_verified": false
+        },
+        {
+          "kind": "public_issue_comment",
+          "issue_or_pr": 54,
+          "comment_id": 6810253339,
+          "url": "https://github.com/bynanci/storytelling/issues/54#issuecomment-6810253339",
+          "public_account": "bynanci",
+          "actual_human_identity_independently_verified": false
+        },
+        {
+          "kind": "repository_record",
+          "repository_path": "docs/validation/n07-native-v3.md",
+          "snapshot_commit": "fe2b145250b42564bf5b4d781ced5a95e8a8f9bf",
+          "git_blob_sha1": "2ceadc54395e2b83a881debe2757a111dde41583",
+          "content_last_commit": "fe2b145250b42564bf5b4d781ced5a95e8a8f9bf",
+          "url": "https://github.com/bynanci/storytelling/blob/fe2b145250b42564bf5b4d781ced5a95e8a8f9bf/docs/validation/n07-native-v3.md"
+        }
+      ],
+      "provenance": "Facilitator supplied anonymous timed attempts and claim-level judgments; submitted work products were reviewed and the maintainer explicitly stopped that external-wrapper workflow. Public comments summarize private submissions; participant identity/build execution is not independently authenticated here.",
+      "task_and_version": {
+        "task": "Door-repair narrative revision and commercial U01 claim check.",
+        "submitted_workflow": "reported external cli-eval-wrapper v1.0.0-rc.1; producing process remains unidentified",
+        "claimed_source_commit": "489273bdfedc39d429af4445a2b5f559741336da",
+        "agreed_native_source_commit": "ce73836caa86502933f538821fdbf5dac92c1224",
+        "agreed_native_report": "ReportV1",
+        "future_protocol": "n07-native-notes-v3-proposed revision 1; prepared, not adopted or started"
+      },
+      "sample_and_exposure": {
+        "reported_authors": 5,
+        "reported_timed_attempts": 10,
+        "reported_order": "3 AB / 2 BA",
+        "prior_exposure": null,
+        "verified_eligible_native_pairs": 0
+      },
+      "observed_facts": [
+        "Submitted workflow primary completion 0/5; 5/5 authors had at least one major U01 attribution error, at least five events. Duplicate log/claim manifestations count once per author.",
+        "Reported condition medians 390/190 seconds are descriptive external-workflow timing, not evidence of native benefit.",
+        "The maintainer chose Stop / no release on 2026-11-12; #54 is closed not_planned, not accepted as a passing native feature.",
+        "Frozen ce73836 native acceptance remains pending human evidence."
+      ],
+      "eligible_claims": [
+        "Counter-evidence against inferring safe completion from speed, output shape or citation presence.",
+        "Supports preserving exact build/argv/raw output and reference-versus-support boundaries in #107/#129B; declared approval/evidence is not authority for #103."
+      ],
+      "limits": [
+        "Unsupported process command and alternate envelope do not bind outputs to the frozen native executable or establish a native core defect.",
+        "Notes scoring, withdrawals, manual repeated entries, rework, feedback and round-specific process time remain unknown.",
+        "Do not pool with #48, relabel the same five authors as native pairs, restart them silently, or reverse Stop.",
+        "A future native trial requires its own adopted prospective protocol and fresh authors; recorder engineering does not supply adoption or people."
+      ]
+    }
+  ],
+  "evidence_separation": [
+    "Historical human attestation, machine replay, synthetic-media probe, historical real Host proof, engineering CI, maintainer G2 and G5 publication are distinct.",
+    "Observed historical numbers are retained with their original denominator and scope, including the external-wrapper Stop.",
+    "New decisions, identities, participant results, Host results and signatures remain null until actually supplied."
+  ],
+  "related_pending_gates": {
+    "issue_54": "closed not_planned / Stop for external wrapper; frozen native acceptance pending; no adoption of v3",
+    "issue_103": "W01 and final tested-contract G2 pending; #104-#106 blocked",
+    "issue_107": "read-only facade G2 and implementation/consumer parity pending",
+    "issue_129": "A engineering accepted in its own bounded scope; B revised G2, independent author, C and D evidence pending",
+    "publication": "separate G5 maintainer decision"
+  }
+}

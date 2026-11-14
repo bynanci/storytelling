@@ -23,6 +23,8 @@ The [2026-11-11 open-issue audit](docs/validation/open-issues-2026-11-11.md) lin
 
 The [2026-11-14 delivery/blocker reconciliation](docs/validation/continuation-2026-11-14.md) records merged artifacts, exact-head/post-merge CI and the remaining sixteen open issues without granting technical or human acceptance.
 
+The later [evidence-grounded AI roundtable selection](docs/validation/g2-roundtable-2026-11-14.md) chooses bounded #103 W01, the eight-operation #107 read-only SDK, and a narrowly revised #129 B preflight proposal. Existing human/Host records and the N07 Stop are indexed with limits. Recommendations are selected; actual G2 adoption, implementation and new human/Host observations remain separate and unrecorded.
+
 <a name="安裝與散布"></a>
 
 ## Skill distribution

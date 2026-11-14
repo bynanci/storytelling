@@ -21,6 +21,8 @@
 
 [2026-11-14 交付／阻擋盤點](docs/validation/continuation-2026-11-14.md)記錄已合併產物、精確 head／合併後 CI 及十六個仍為 Open 的議題；不代替技術接受或真人驗收。
 
+後續的[有證據支持之 AI 圓桌選擇](docs/validation/g2-roundtable-2026-11-14.zh-TW.md)選定受限 #103 W01、八入口 #107 唯讀 SDK，以及小幅修訂後的 #129 B 預檢提案。既有真人／Host 紀錄及 N07 Stop 均附來源與限制。建議方案已選定；正式 G2 採納、實作及新的真人／Host 觀察仍分別記錄，目前尚未提供。
+
 <a id="skill-distribution"></a>
 
 ## 安裝與散布
