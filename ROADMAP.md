@@ -21,6 +21,8 @@ The skill installs independently from Rust. The package version is `0.1.0-dev.0`
 
 <a name="跨媒體敘事的開發順序"></a>
 
+N10-06A / #129 is a separate [exact input helper candidate](docs/adr/0012-draft-exact-video-range-input.md). Its G2 grammar/API/CLI decision is pending; G3 is blocked. It changes no accepted V1 contract or M3 authority. B/C/D retain independent dependencies and evidence gates.
+
 ## Cross-media narrative roadmap
 
 The [research design map](docs/research/README.md) links evidence, rules and workflow priorities. Claims of benefit still require human observations.

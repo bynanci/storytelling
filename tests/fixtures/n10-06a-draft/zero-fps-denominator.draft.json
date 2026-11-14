@@ -1,0 +1,112 @@
+{
+  "draft_version": "n10-06a.1-draft",
+  "coverage": {
+    "schema_version": 1,
+    "coverage_id": "two-unit-cut",
+    "narrative_document": {
+      "schema_version": 1,
+      "document_id": "n10-synthetic-story",
+      "document_revision": 1,
+      "purpose": "A synthetic two-unit story-to-video handoff.",
+      "audience": "Engineering fixture readers.",
+      "units": [
+        {
+          "id": "S02",
+          "revision": 1,
+          "origin": "supplied_observation",
+          "text": "A neighbor turns the hinge screw.",
+          "based_on": []
+        },
+        {
+          "id": "S03",
+          "revision": 1,
+          "origin": "supplied_observation",
+          "text": "The door closes without scraping.",
+          "based_on": []
+        }
+      ],
+      "relations": [],
+      "variants": [
+        {
+          "id": "rough-cut",
+          "name": "Two selected beats",
+          "kind": "spoken_outline",
+          "beats": [
+            {
+              "id": "beat-1",
+              "unit_ref": {
+                "unit_id": "S02",
+                "revision": 1
+              },
+              "text": "First, the neighbor turns the screw."
+            },
+            {
+              "id": "beat-2",
+              "unit_ref": {
+                "unit_id": "S03",
+                "revision": 1
+              },
+              "text": "Then the door closes cleanly."
+            }
+          ]
+        }
+      ]
+    },
+    "variant_id": "rough-cut",
+    "selected_unit_refs": [
+      {
+        "unit_id": "S02",
+        "revision": 1
+      },
+      {
+        "unit_id": "S03",
+        "revision": 1
+      }
+    ],
+    "asset_catalog": {
+      "catalog_id": "synthetic-catalog",
+      "revision": 1,
+      "assets": [
+        {
+          "asset_id": "CLIP-01",
+          "revision": 1,
+          "duration": {
+            "numerator": "12",
+            "denominator": "1"
+          }
+        }
+      ]
+    },
+    "mappings": [
+      {
+        "unit_ref": {
+          "unit_id": "S02",
+          "revision": 1
+        },
+        "status": "mapped",
+        "asset_ref": {
+          "asset_id": "CLIP-01",
+          "revision": 1
+        },
+        "source_range": {
+          "unit": "frames",
+          "start_frame": "75",
+          "end_frame": "135",
+          "fps": {
+            "numerator": "30",
+            "denominator": "0"
+          },
+          "timing": "constant"
+        }
+      },
+      {
+        "unit_ref": {
+          "unit_id": "S03",
+          "revision": 1
+        },
+        "status": "unresolved",
+        "reason": "No video asset was selected for this unit."
+      }
+    ]
+  }
+}
