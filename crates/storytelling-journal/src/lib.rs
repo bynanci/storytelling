@@ -804,7 +804,11 @@ impl Journal {
             ReadbackResult::Ambiguous => (OperationState::OutcomeUnknown, "outcome_unknown"),
             ReadbackResult::Partial => (OperationState::PartialObserved, "partial_observed"),
         };
-        if stored.state == state_text && stored.evidence_sha256.as_deref() == Some(evidence_sha256)
+        // A response can share the unknown state and evidence digest, but the
+        // first readback must still persist its own receipt and consume its budget.
+        if stored.readback_count > 0
+            && stored.state == state_text
+            && stored.evidence_sha256.as_deref() == Some(evidence_sha256)
         {
             let snapshot = snapshot_from_stored(&operation)?;
             transaction.commit().map_err(map_sqlite)?;
