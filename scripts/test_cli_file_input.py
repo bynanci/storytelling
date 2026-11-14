@@ -80,6 +80,11 @@ def invoke(arguments, input_bytes=None):
 
 class FileInputTests(unittest.TestCase):
     def setUp(self):
+        if CLI is None:
+            self.skipTest(
+                "explicit feature-enabled binary required; run "
+                "python3 scripts/test_cli_file_input.py <target>/debug/storytelling"
+            )
         self.directory = tempfile.TemporaryDirectory(prefix="storytelling-file-input-")
         self.addCleanup(self.directory.cleanup)
         self.root = Path(self.directory.name)
