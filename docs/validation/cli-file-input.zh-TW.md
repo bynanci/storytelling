@@ -3,7 +3,8 @@
 [English](cli-file-input.md) · 繁體中文
 
 本次共用 CLI I/O 修正支援 M3-RB07 與 N-R10-06A，base 為
-`c562ce0d06b7330813fa42cad739f24f4a49e9da`。不修改契約、公開 DTO、診斷碼、
+`c562ce0d06b7330813fa42cad739f24f4a49e9da`；整合 base 為
+`5bbe80dc2cf8286abb15ad5278e86ec7384cdb4d`。不修改契約、公開 DTO、診斷碼、
 依賴或位元組上限，也不新增媒體探測與 Host 操作。
 
 ## 問題與範圍
@@ -43,8 +44,31 @@ Python 標準函式庫 `os.mkfifo` 建立，不依賴外部工具；Windows 明�
 [實際輸出節錄](cli-file-input/workspace-checks.txt)保留為 `cache_ambiguous`／
 superseded。共用 target 混用另一 worktree 的產物：所標示來源只有十一項
 journal tests，紀錄卻執行十三項。因此原觀察到的 312／331 項不能證明該
-source commit 的完整驗證；合併前須以獨立全新 target 重跑整合版本。FIFO
+source commit 的完整驗證；以下獨立全新 target 重跑取代這項主張。FIFO
 缺陷重現與這項無效的 workspace 來源主張分開記錄；原輸出與數字均未刪除。
+
+### 整合版本的全新驗證
+
+開始驗證時，整合來源 `ed5bfa6a7d66cce9b66faf6ac8bef653b5e43485` 為 clean。
+使用原本不存在、只供本 checkout 使用的全新 target，並設定
+`CARGO_INCREMENTAL=0`。[獨立收據](cli-file-input/isolated-checks.json)與
+[實際輸出節錄](cli-file-input/isolated-checks.txt)保留命令、binary／source blob
+雜湊、原始輸出雜湊及數量。這是取代舊收據的有效本機 workspace 結果，原
+疑義紀錄仍保留。
+
+全新 all-feature build、四項 CLI Python 方法、fmt、all-target／all-feature
+Clippy、預設及 all-feature debug／release tests、禁止警告的 rustdoc、repo
+checks 與完整分支 diff checks 全部通過。預設 Rust 各 312 項、all-feature
+各 331 項，含整合後十三項 journal、七項 V1 coverage 及十二項 draft-input
+CLI tests；總數含 doc tests，不含 Python 方法。既有 pilot、recorder、graph、
+Host 證據拒絕、SK-E01／E02／E04／E06 及 R1 Python checks 亦通過。另有一次
+補充命令誤用不存在的腳本名稱，退出 2，沒有執行測試；改用既有 E04 suite
+後通過，兩次呼叫都保留。
+
+不要讓 worktrees 共用 `CARGO_TARGET_DIR`。乾淨重跑須選擇本 checkout 專用、
+原本不存在的 target，並將該目錄的 binary 傳給 Python。以下命令採預設
+checkout-local `target`；先移除共用 target 的環境設定。新收據保留 rebase
+前後 patch 對應；有效的新驗證綁定上列整合來源。
 
 完整重跑命令見[英文紀錄](cli-file-input.md#test-first-evidence-and-replay)。
 最短回歸命令如下；Windows 使用 `python` 與 `.exe` 副檔名。

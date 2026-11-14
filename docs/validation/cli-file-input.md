@@ -3,7 +3,8 @@
 English · [繁體中文](cli-file-input.zh-TW.md)
 
 This shared CLI I/O fix supports M3-RB07 and N-R10-06A without changing their
-contracts. Base: `c562ce0d06b7330813fa42cad739f24f4a49e9da`. It adds no media probe,
+contracts. Original base: `c562ce0d06b7330813fa42cad739f24f4a49e9da`. The integrated
+base is `5bbe80dc2cf8286abb15ad5278e86ec7384cdb4d`. It adds no media probe,
 host operation, public DTO, diagnostic, dependency or byte budget.
 
 ## Problem and accepted scope
@@ -53,9 +54,36 @@ and [output excerpts](cli-file-input/workspace-checks.txt) are preserved as
 `cache_ambiguous` / superseded. A shared build target reused artifacts from a
 parallel worktree: the named source had eleven journal tests but these logs ran
 thirteen. Their observed 312/331 test totals do **not** prove verification of the
-named source commit. A fresh isolated-target integrated run is required before
-merge. The focused FIFO result is distinct from this invalid workspace-provenance
+named source commit. The fresh isolated-target run below supersedes that claim.
+The focused FIFO result is distinct from this invalid workspace-provenance
 claim. No historical output or count has been erased.
+
+### Fresh integrated verification
+
+Integration source `ed5bfa6a7d66cce9b66faf6ac8bef653b5e43485` was clean when
+verification started. Its new, absent-before-run target was used by this
+checkout alone, with `CARGO_INCREMENTAL=0`. The [isolated receipt](cli-file-input/isolated-checks.json)
+and [actual output excerpts](cli-file-input/isolated-checks.txt) retain commands,
+binary/source-blob hashes, raw-output hashes and counts. This is the authoritative
+local workspace result; it supersedes the ambiguous receipt without deleting it.
+
+All checks passed: fresh all-feature build, four CLI Python methods, fmt,
+all-target/all-feature Clippy, default and all-feature debug/release tests,
+rustdoc with warnings denied, repository checks and full-branch diff checks.
+Default Rust runs passed 312 tests each and all-feature runs 331 each, including
+thirteen integrated journal tests, seven V1 coverage tests and twelve draft-input
+CLI tests. Totals include doc tests and exclude the Python methods. Existing
+pilot, recorder, graph, host-proof rejection, SK-E01/E02/E04/E06 and R1 Python
+checks also passed. One supplemental command used a nonexistent script name and
+exited 2 without running tests; the corrected existing E04 suite passed. Both
+invocations remain recorded.
+
+Do not share `CARGO_TARGET_DIR` between worktrees. For a clean reproduction use a
+new empty target directory for this checkout and pass that directory's CLI
+binary to the Python test. The commands below use the default checkout-local
+`target` directory; unset any shared target environment setting first. The
+historical pre-rebase commits and rebased patch lineage are listed in the new
+receipt; the fresh result binds the integrated source above.
 
 ```sh
 cargo build --locked -p storytelling-cli --features draft-video-input

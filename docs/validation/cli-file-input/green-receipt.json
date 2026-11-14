@@ -11,5 +11,6 @@
   "stored_log": "green.txt",
   "stored_log_sha256": "64db671e587945f697310a156a4220766801ae128145d28184d6a9572eb17f0c",
   "log_redaction": "Only the absolute checkout prefix was replaced with <checkout>.",
-  "result": "4 tests; directory and FIFO checks cover 33 file positions each; regular/stdin and limit regressions included"
+  "result": "4 tests; directory and FIFO checks cover 33 file positions each; regular/stdin and limit regressions included",
+  "build_cache_context": "Historical shared-target run before rebase. FIFO behavior was observed, but this receipt is not full workspace provenance. See isolated-checks.json for the fresh integrated build and focused GREEN."
 }
