@@ -1,0 +1,16 @@
+running 12 tests
+test enabled::complete_mapping_labels_only_declaration_readiness ... ok
+test enabled::file_stdin_replay_is_identical_and_input_directory_unchanged ... ok
+test enabled::helper_reports_start_before_end_when_both_endpoints_are_invalid ... ok
+test enabled::frame_conversion_reduces_before_u64_and_rejects_real_overflow ... ok
+test enabled::converts_seconds_and_frames_to_expected_v1_and_preserves_unresolved ... ok
+test enabled::rejects_duplicate_keys_before_lossy_value_decode_and_raw_budgets ... ok
+test enabled::preserves_authoritative_v1_range_diagnostics_and_first_error_order ... ok
+test enabled::exact_seconds_vectors_include_wide_intermediates_and_long_reduction ... ok
+test enabled::version_and_closed_helper_shapes_fail_without_echoing_unknown_fields ... ok
+test enabled::usage_and_io_errors_retain_new_command_exit_conventions ... ok
+test enabled::rejects_fps_vfr_unknown_timing_and_timecode ... ok
+test enabled::rejects_invalid_seconds_and_overflow_without_returning_coverage ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
+

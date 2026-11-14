@@ -1,0 +1,120 @@
+running 11 tests
+test enabled::converts_seconds_and_frames_to_expected_v1_and_preserves_unresolved ... FAILED
+test enabled::complete_mapping_labels_only_declaration_readiness ... FAILED
+test enabled::exact_seconds_vectors_include_wide_intermediates_and_long_reduction ... FAILED
+test enabled::frame_conversion_reduces_before_u64_and_rejects_real_overflow ... FAILED
+test enabled::rejects_duplicate_keys_before_lossy_value_decode_and_raw_budgets ... FAILED
+test enabled::preserves_authoritative_v1_range_diagnostics_and_first_error_order ... FAILED
+test enabled::file_stdin_replay_is_identical_and_input_directory_unchanged ... FAILED
+test enabled::rejects_fps_vfr_unknown_timing_and_timecode ... FAILED
+test enabled::version_and_closed_helper_shapes_fail_without_echoing_unknown_fields ... FAILED
+test enabled::rejects_invalid_seconds_and_overflow_without_returning_coverage ... FAILED
+test enabled::usage_and_io_errors_retain_new_command_exit_conventions ... FAILED
+
+failures:
+
+---- enabled::converts_seconds_and_frames_to_expected_v1_and_preserves_unresolved stdout ----
+
+thread 'enabled::converts_seconds_and_frames_to_expected_v1_and_preserves_unresolved' panicked at crates/storytelling-cli/tests/draft_video_input.rs:57:9:
+assertion `left == right` failed: stdout={"error":{"code":"cli.usage","path":"$"},"ok":false}
+
+  left: Some(2)
+ right: Some(0)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- enabled::complete_mapping_labels_only_declaration_readiness stdout ----
+
+thread 'enabled::complete_mapping_labels_only_declaration_readiness' panicked at crates/storytelling-cli/tests/draft_video_input.rs:57:9:
+assertion `left == right` failed: stdout={"error":{"code":"cli.usage","path":"$"},"ok":false}
+
+  left: Some(2)
+ right: Some(0)
+
+---- enabled::exact_seconds_vectors_include_wide_intermediates_and_long_reduction stdout ----
+
+thread 'enabled::exact_seconds_vectors_include_wide_intermediates_and_long_reduction' panicked at crates/storytelling-cli/tests/draft_video_input.rs:57:9:
+assertion `left == right` failed: stdout={"error":{"code":"cli.usage","path":"$"},"ok":false}
+
+  left: Some(2)
+ right: Some(0)
+
+---- enabled::frame_conversion_reduces_before_u64_and_rejects_real_overflow stdout ----
+
+thread 'enabled::frame_conversion_reduces_before_u64_and_rejects_real_overflow' panicked at crates/storytelling-cli/tests/draft_video_input.rs:57:9:
+assertion `left == right` failed: stdout={"error":{"code":"cli.usage","path":"$"},"ok":false}
+
+  left: Some(2)
+ right: Some(0)
+
+---- enabled::rejects_duplicate_keys_before_lossy_value_decode_and_raw_budgets stdout ----
+
+thread 'enabled::rejects_duplicate_keys_before_lossy_value_decode_and_raw_budgets' panicked at crates/storytelling-cli/tests/draft_video_input.rs:57:9:
+assertion `left == right` failed: stdout={"error":{"code":"cli.usage","path":"$"},"ok":false}
+
+  left: Some(2)
+ right: Some(1)
+
+---- enabled::preserves_authoritative_v1_range_diagnostics_and_first_error_order stdout ----
+
+thread 'enabled::preserves_authoritative_v1_range_diagnostics_and_first_error_order' panicked at crates/storytelling-cli/tests/draft_video_input.rs:57:9:
+assertion `left == right` failed: stdout={"error":{"code":"cli.usage","path":"$"},"ok":false}
+
+  left: Some(2)
+ right: Some(1)
+
+---- enabled::file_stdin_replay_is_identical_and_input_directory_unchanged stdout ----
+
+thread 'enabled::file_stdin_replay_is_identical_and_input_directory_unchanged' panicked at crates/storytelling-cli/tests/draft_video_input.rs:57:9:
+assertion `left == right` failed: stdout={"error":{"code":"cli.usage","path":"$"},"ok":false}
+
+  left: Some(2)
+ right: Some(0)
+
+---- enabled::rejects_fps_vfr_unknown_timing_and_timecode stdout ----
+
+thread 'enabled::rejects_fps_vfr_unknown_timing_and_timecode' panicked at crates/storytelling-cli/tests/draft_video_input.rs:57:9:
+assertion `left == right` failed: stdout={"error":{"code":"cli.usage","path":"$"},"ok":false}
+
+  left: Some(2)
+ right: Some(1)
+
+---- enabled::version_and_closed_helper_shapes_fail_without_echoing_unknown_fields stdout ----
+
+thread 'enabled::version_and_closed_helper_shapes_fail_without_echoing_unknown_fields' panicked at crates/storytelling-cli/tests/draft_video_input.rs:57:9:
+assertion `left == right` failed: stdout={"error":{"code":"cli.usage","path":"$"},"ok":false}
+
+  left: Some(2)
+ right: Some(1)
+
+---- enabled::rejects_invalid_seconds_and_overflow_without_returning_coverage stdout ----
+
+thread 'enabled::rejects_invalid_seconds_and_overflow_without_returning_coverage' panicked at crates/storytelling-cli/tests/draft_video_input.rs:57:9:
+assertion `left == right` failed: stdout={"error":{"code":"cli.usage","path":"$"},"ok":false}
+
+  left: Some(2)
+ right: Some(1)
+
+---- enabled::usage_and_io_errors_retain_new_command_exit_conventions stdout ----
+
+thread 'enabled::usage_and_io_errors_retain_new_command_exit_conventions' panicked at crates/storytelling-cli/tests/draft_video_input.rs:204:178:
+assertion `left == right` failed
+  left: Some(2)
+ right: Some(3)
+
+
+failures:
+    enabled::complete_mapping_labels_only_declaration_readiness
+    enabled::converts_seconds_and_frames_to_expected_v1_and_preserves_unresolved
+    enabled::exact_seconds_vectors_include_wide_intermediates_and_long_reduction
+    enabled::file_stdin_replay_is_identical_and_input_directory_unchanged
+    enabled::frame_conversion_reduces_before_u64_and_rejects_real_overflow
+    enabled::preserves_authoritative_v1_range_diagnostics_and_first_error_order
+    enabled::rejects_duplicate_keys_before_lossy_value_decode_and_raw_budgets
+    enabled::rejects_fps_vfr_unknown_timing_and_timecode
+    enabled::rejects_invalid_seconds_and_overflow_without_returning_coverage
+    enabled::usage_and_io_errors_retain_new_command_exit_conventions
+    enabled::version_and_closed_helper_shapes_fail_without_echoing_unknown_fields
+
+test result: FAILED. 0 passed; 11 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `-p storytelling-cli --test draft_video_input`

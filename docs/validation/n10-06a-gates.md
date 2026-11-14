@@ -3,7 +3,7 @@
 
 **Checked:** 2026-11-14 UTC. **Task:** N10-06A / [Issue #129](https://github.com/bynanci/storytelling/issues/129).  
 **Actual latest main at start:** `52dc6c315f7b3d20693f3c51e052509997ab791b`, read from GitHub's `refs/heads/main`.  
-**State:** G0/G1 inventory complete; the requester accepted draft-only G2 at candidate `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf` on 2026-11-14 and authorized A's RED/GREEN implementation. **G3 is in progress; the PR remains Draft.** See the [decision record](n10-06a-g2-decision.md). The stable public SDK facade, host profile, execution authority and release retain separate gates.
+**State:** G0/G1 inventory complete; the requester accepted draft-only G2 at candidate `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf` on 2026-11-14 and authorized A's RED/GREEN implementation. **G3 is implemented; G4 review is in progress; the PR remains Draft.** See the [decision record](n10-06a-g2-decision.md). The stable public SDK facade, host profile, execution authority and release retain separate gates.
 
 ## Authorization and G2 boundary
 
@@ -35,7 +35,7 @@ The linked issue bodies/comments and PR were read on the check date. No later ap
 | --- | --- |
 | [#67 / N-10](https://github.com/bynanci/storytelling/issues/67) | **Closed/completed.** The [G2 decision](https://github.com/bynanci/storytelling/issues/67#issuecomment-6812948322) accepted the existing V1 fields, schemas, 21 diagnostics/order and fixtures. PR #93 merged as `80577b7334110abf0c0765ec1d1c3e4cf4ae3996`; implementation PR #97 merged as `169bf6baff33cd452238337237d437e15ac5b292`. This acceptance covers declarations only. |
 | [#103 / M3-04](https://github.com/bynanci/storytelling/issues/103) | **Open, ready for G2 contract decision; no comments.** Exact production execution/authority scope still needs explicit maintainer acceptance before executor implementation. |
-| [PR #117](https://github.com/bynanci/storytelling/pull/117) | **Open Draft**, head `d6728acae6afcf4039c695ad09296792a1107d4f`; no comments in the fetched PR. Its own record says design only; deterministic/no-host contract implementation and an explicit decision on the tested commit remain pending. Signature validity from PR #28 is separate from current authority and compilation; independent PR #28 G2 acceptance remains pending. |
+| [PR #117](https://github.com/bynanci/storytelling/pull/117) | **Open Draft**, initial head `d6728acae6afcf4039c695ad09296792a1107d4f`; refreshed without design changes to `aa6b4cf6bfe86295ad43ad1813e8057130d6d1d1` with main@52dc6c3 during this task. All six exact-head CI jobs passed in [run #479](https://github.com/bynanci/storytelling/actions/runs/43537207405). Its own record says design only; deterministic/no-host contract implementation and an explicit decision on the tested commit remain pending. Signature validity from PR #28 is separate from current authority and compilation; independent PR #28 G2 acceptance remains pending. |
 | [#104 / M3-05](https://github.com/bynanci/storytelling/issues/104) | **Open, blocked** until #103 is accepted. Owns the production FilmCraft executor. |
 | [#105 / M3-06](https://github.com/bynanci/storytelling/issues/105) | **Open; implementation blocked** on #104. Recovery specifications/fixtures may precede implementation. `unknown` must survive restart and block blind retry. |
 | [#106 / M3-07](https://github.com/bynanci/storytelling/issues/106) | **Open, blocked** until #104/#105 are verified. Requires actual host evidence, human project verification and maintainer accept/narrow/stop for M3. |

@@ -1,0 +1,52 @@
+{
+  "kind": "synthetic_machine_test_evidence",
+  "run_date": "2026-11-14 UTC",
+  "note": "Unmodified test-output excerpts start at the running-tests line; compiler installation/source-directory lines omitted. No media, participant or host observation.",
+  "runs": [
+    {
+      "phase": "cli-red",
+      "cargo_exit": 101,
+      "source_commit": "231b9cacb3ee3f9f283dca0cc6ff1ebda958a1fe",
+      "source_note": "exact commit; CLI RED replayed from a clean detached worktree",
+      "raw_combined_output_sha256": "fe5eb7924c30151622b0219ceaaf809461311a704fcd01a4949e3d63edf1d2fc",
+      "excerpt": "cli-red.txt",
+      "excerpt_sha256": "68ee6380e2cf6c49ac3fe7c0a7e2764bfd500611d01f0ebde92e610e7c42bd17"
+    },
+    {
+      "phase": "math-red",
+      "cargo_exit": 101,
+      "source_commit": null,
+      "source_note": "transient test/stub or implementation working tree; no immutable source commit retained for this supplemental run",
+      "raw_combined_output_sha256": "8bae3d39134efbbcfd16521088bf3d8290e424c191631510b134720d33038cde",
+      "excerpt": "math-red.txt",
+      "excerpt_sha256": "71bf278c30b74585959ab40f082c123fd65203ee8cfb06aa9b9400261398a318"
+    },
+    {
+      "phase": "math-green",
+      "cargo_exit": 0,
+      "source_commit": null,
+      "source_note": "transient test/stub or implementation working tree; no immutable source commit retained for this supplemental run",
+      "raw_combined_output_sha256": "9ae4c3c640995e826e3a7a7e23fa7e60c1570a6084f609ea2a0d9ad234fda16c",
+      "excerpt": "math-green.txt",
+      "excerpt_sha256": "5fe60fa8bf5f2870f8b9f6e8223421a2d7a8598053f39d7396c46f049b5b1c88"
+    },
+    {
+      "phase": "error-order-red",
+      "cargo_exit": 101,
+      "source_commit": null,
+      "source_note": "transient test/stub or implementation working tree; no immutable source commit retained for this supplemental run",
+      "raw_combined_output_sha256": "7dfa571e9f89eb2df33a71e9c9aeaa7949ce535ec6e58b95de90d7393d995115",
+      "excerpt": "error-order-red.txt",
+      "excerpt_sha256": "91c61b548d5d1c64fc250ec74107cbdfefa2b2a50f0a0dd6b2e7cd5c51b35a20"
+    },
+    {
+      "phase": "cli-green",
+      "cargo_exit": 0,
+      "source_commit": "2f906181d075d56a19d18fd29a0ec1a645ba0a78",
+      "source_note": "exact commit; CLI RED replayed from a clean detached worktree",
+      "raw_combined_output_sha256": "a8edb2c186175e4b3aaab9ec35aa8d7ef18d7df35f106a85d603efe94706a17e",
+      "excerpt": "cli-green.txt",
+      "excerpt_sha256": "1decda8c1f03e370d4661dce085018ee877245ee6c16961cefc4d9e13dbbdec9"
+    }
+  ]
+}

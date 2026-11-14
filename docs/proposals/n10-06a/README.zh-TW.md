@@ -3,7 +3,7 @@
 
 [English](README.md) · 繁體中文 · [Issue #129](https://github.com/bynanci/storytelling/issues/129) · [ADR 0012 候選](../../adr/0012-draft-exact-video-range-input.md)
 
-**狀態：draft-only G2 已接受；G3 RED／GREEN 實作中；PR 保留 Draft。** 請求者於 2026-11-14 接受候選 `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf`。[決定紀錄](../../validation/n10-06a-g2-decision.md)保留原回覆與範圍。本次 base main 為 `52dc6c315f7b3d20693f3c51e052509997ab791b`。命令／API 仍為選擇啟用的 draft 介面；穩定 SDK facade 由 #107 決定。實際執行與最終 head 結果須於實作後補上收據。[Gate 盤點](../../validation/n10-06a-gates.md)記錄既有能力與依賴。
+**狀態：draft-only G2 已接受；G3 實作與本機回歸完成，G4 審查中；PR 保留 Draft。** 請求者於 2026-11-14 接受候選 `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf`。[決定紀錄](../../validation/n10-06a-g2-decision.md)保留原回覆與範圍。本次 base main 為 `52dc6c315f7b3d20693f3c51e052509997ab791b`。命令／API 仍為選擇啟用的 draft 介面；穩定 SDK facade 由 #107 決定。實際執行與最終 head 結果須於實作後補上收據。[Gate 盤點](../../validation/n10-06a-gates.md)記錄既有能力與依賴。
 
 ## 作者任務與候選輸入
 
@@ -37,7 +37,7 @@ cargo test --locked -p storytelling-cli --test video_coverage
 
 ## 實作命令與檢查計畫
 
-G2 授權實作 `draft-video-coverage-input <FILE|-> [--emit-v1]`，由預設關閉的 `draft-video-input` feature 啟用。目前 G3 實作中；以下是本分支約定的驗證入口，實際結果尚待收據：
+G2 授權實作 `draft-video-coverage-input <FILE|-> [--emit-v1]`，由預設關閉的 `draft-video-input` feature 啟用。本分支已實作；以下命令可重播秒數範例與回歸，[實際 RED／GREEN 與本機驗證](../../validation/n10-06a-exact-input.md)另存。
 
 ```sh
 cargo run --quiet --locked -p storytelling-cli --features draft-video-input -- \
@@ -66,14 +66,24 @@ helper 驗證完成後，`--emit-v1` 輸出可原樣交給既有 `render-video-c
 
 行為實作後，執行 workspace debug／release tests、`cargo fmt --all -- --check`、Clippy `-D warnings`、rustdoc warnings denied 與 `python3 scripts/check_repo.py`。最終 PR head 的 Windows、Linux、macOS 與其餘必要 CI gate 都須通過；head 有變更就重取相關結果。
 
+輸出有效 V1 並重播最終驗證器，不寫入檔案：
+
+```sh
+cargo run --quiet --locked -p storytelling-cli --features draft-video-input -- \
+  draft-video-coverage-input tests/fixtures/n10-06a-draft/frames-30-unresolved.draft.json --emit-v1 | \
+  cargo run --quiet --locked -p storytelling-cli -- render-video-coverage -
+```
+
+[秒數／30fps／NTSC 的實際 preview 收據](../../validation/n10-06a/fixture-replay.json)均符合預期 V1，並保留一個 unresolved 單元。請核對 `conversions[].original`、精確 `source_range`、輸入／輸出 JSONPath 與 `validation.diagnostics`。宣告就緒不提供實體檔案或宿主證據。
+
 ## 證據欄
 
 | 證據 | 目前狀態 | 收據／決定 |
 | --- | --- | --- |
 | Draft-only G2 接受 | `accepted_for_A_G3` | [原回覆](../../validation/n10-06a-g2-decision.md)，候選 `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf` |
-| 新 helper CLI／engine RED | `receipt_pending` | null |
-| 新 helper CLI／engine GREEN | `pending` | null |
-| 實作最終 head 回歸／CI | `pending` | null |
+| 新 helper CLI／engine RED | `observed` | [CLI RED commit 與原始輸出節錄](../../validation/n10-06a/red-green-receipts.json) |
+| 新 helper CLI／engine GREEN | `passed` | CLI 12/12、math 8/8；[收據](../../validation/n10-06a-exact-input.md) |
+| 實作回歸／最終 head CI | 本機檢查通過；hosted 另追蹤 | [Workspace 檢查](../../validation/n10-06a/workspace-checks.json)／[PR #130](https://github.com/bynanci/storytelling/pull/130) |
 | 獨立作者輸入秒數／影格 | `not_observed` | null |
 | 可信本機媒體綁定／probe | `not_verified` | null |
 | Host readback／執行授權 | `blocked` | null |

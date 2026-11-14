@@ -1,0 +1,40 @@
+{
+  "base": "52dc6c315f7b3d20693f3c51e052509997ab791b",
+  "checks": [
+    {
+      "path": "contracts/narrative-video-coverage-v1.schema.json",
+      "sha256": "4421a8b52b429dba203a096e5ddbeb20b4f51b9ea2e554197306469f9d9884d3",
+      "base_bytes_identical": true
+    },
+    {
+      "path": "contracts/narrative-video-coverage-result-v1.schema.json",
+      "sha256": "3cd253faef265c8b4fadfae7d31ac499e08c976fdf2d94704b56ff9ee5356c67",
+      "base_bytes_identical": true
+    },
+    {
+      "path": "crates/storytelling-core/src/time.rs",
+      "sha256": "d7f44370079598be3846f4edee1bace758d55b9b9b1fad7202ed19e7851f23d8",
+      "base_bytes_identical": true
+    },
+    {
+      "path": "crates/storytelling-core/src/narrative_video_coverage.rs",
+      "sha256": "b7fc2920189baebbc79cceeffa5afd8144241f388c52ddf0fb34ad0b823004c6",
+      "base_bytes_identical": true
+    },
+    {
+      "path": "crates/storytelling-engine/src/narrative_video_coverage.rs",
+      "sha256": "8898c3915f9ef6246709da035b6f3e70a78a014bb3a6d22053c916e24ae30d42",
+      "base_bytes_identical": true
+    },
+    {
+      "path": "crates/storytelling-cli/tests/video_coverage.rs",
+      "sha256": "701a6b14ca459d0b247e99ed34bf68bac036e0540d5b14ee9d475962a917a19e",
+      "base_bytes_identical": true
+    },
+    {
+      "path": "Cargo.lock",
+      "sha256": "145165518ae1cee8775131e241545a4e6036b14f63493f5b5f9afc62988a9797",
+      "base_bytes_identical": true
+    }
+  ]
+}

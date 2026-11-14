@@ -3,7 +3,7 @@
 
 English · [繁體中文](README.zh-TW.md) · [Issue #129](https://github.com/bynanci/storytelling/issues/129) · [ADR 0012 candidate](../../adr/0012-draft-exact-video-range-input.md)
 
-**State: draft-only G2 accepted; G3 RED/GREEN implementation in progress; PR remains Draft.** The requester accepted candidate `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf` on 2026-11-14. [The decision record](../../validation/n10-06a-g2-decision.md) preserves the exact response and limits. Base main is `52dc6c315f7b3d20693f3c51e052509997ab791b`. The command/API remains an opt-in draft interface; #107 owns any stable SDK facade. Runtime and final-head results must be attached after implementation. [The gate inventory](../../validation/n10-06a-gates.md) records existing capability and dependencies.
+**State: draft-only G2 accepted; G3 implementation and local regression checks complete; G4 review in progress; PR remains Draft.** The requester accepted candidate `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf` on 2026-11-14. [The decision record](../../validation/n10-06a-g2-decision.md) preserves the exact response and limits. Base main is `52dc6c315f7b3d20693f3c51e052509997ab791b`. The command/API remains an opt-in draft interface; #107 owns any stable SDK facade. [Observed RED/GREEN, exact outputs and workspace checks](../../validation/n10-06a-exact-input.md) are retained; final-head hosted CI is tracked on Draft PR #130. [The gate inventory](../../validation/n10-06a-gates.md) records existing capability and dependencies.
 
 ## Author task and proposed input
 
@@ -37,7 +37,7 @@ Their expected baseline behavior is documented in [the accepted N-10 record](../
 
 ## Implementation commands and planned checks
 
-G2 authorizes `draft-video-coverage-input <FILE|-> [--emit-v1]` behind the disabled-by-default `draft-video-input` feature. Implementation is in progress; the following are the agreed entry points to verify on this branch, with observed results still pending:
+G2 authorizes `draft-video-coverage-input <FILE|-> [--emit-v1]` behind the disabled-by-default `draft-video-input` feature. The implementation is available on this branch. Copy these commands to preview the supplied seconds example and run its focused regressions:
 
 ```sh
 cargo run --quiet --locked -p storytelling-cli --features draft-video-input -- \
@@ -66,14 +66,24 @@ After the helper is verified, its `--emit-v1` output can be supplied unchanged t
 
 After behavior is implemented, run workspace debug/release tests, `cargo fmt --all -- --check`, Clippy with `-D warnings`, rustdoc with warnings denied, and `python3 scripts/check_repo.py`. Final PR-head Windows, Linux, macOS and remaining required CI gates must pass. Changes to the head require fresh relevant results.
 
+To emit validated V1 input and replay the final authority without writing a file:
+
+```sh
+cargo run --quiet --locked -p storytelling-cli --features draft-video-input -- \
+  draft-video-coverage-input tests/fixtures/n10-06a-draft/frames-30-unresolved.draft.json --emit-v1 | \
+  cargo run --quiet --locked -p storytelling-cli -- render-video-coverage -
+```
+
+The [actual seconds/30fps/NTSC preview receipts](../../validation/n10-06a/fixture-replay.json) match the expected V1 files. All three examples retain one unresolved unit. Review `conversions[].original`, exact `source_range`, input/output JSONPaths and `validation.diagnostics`; declaration readiness supplies no file or host evidence.
+
 ## Evidence ledger
 
 | Evidence | Current state | Receipt / decision |
 | --- | --- | --- |
 | Draft-only G2 acceptance | `accepted_for_A_G3` | [Exact response](../../validation/n10-06a-g2-decision.md), candidate `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf` |
-| New helper CLI/engine RED | `receipt_pending` | null |
-| New helper CLI/engine GREEN | `pending` | null |
-| Final-head implementation regression / CI | `pending` | null |
+| New helper CLI/engine RED | `observed` | [CLI RED commit and excerpts](../../validation/n10-06a/red-green-receipts.json) |
+| New helper CLI/engine GREEN | `passed` | CLI 12/12; math 8/8; [receipts](../../validation/n10-06a-exact-input.md) |
+| Implementation regression / final-head CI | Local checks passed; hosted results tracked separately | [Workspace checks](../../validation/n10-06a/workspace-checks.json) / [PR #130](https://github.com/bynanci/storytelling/pull/130) |
 | Independent author entering seconds/frames | `not_observed` | null |
 | Trusted local media binding/probe | `not_verified` | null |
 | Host readback / execution authority | `blocked` | null |

@@ -5,6 +5,8 @@ Task N10-06A / N-R10-06A, [#129](https://github.com/bynanci/storytelling/issues/
 Base: `52dc6c315f7b3d20693f3c51e052509997ab791b`.
 The requester accepted the draft-only G2 candidate `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf` and authorized A RED/GREEN; see the [decision record](n10-06a-g2-decision.md).
 
+The [complete changed-file list](n10-06a/file-list.txt) accompanies the PR diff.
+
 ## Implemented scope
 
 The disabled-by-default `draft-video-input` feature enables a separate pure engine module and explicit CLI `draft-video-coverage-input <FILE|-> [--emit-v1]`. Exact seconds and declared constant-rate frame boundaries become reduced nonnegative u64 rational strings. Bounded decimal factor cancellation precedes checked u128 arithmetic, GCD and final u64 checks; no floating point, rounding or clamping occurs. Existing JSON preflight checks syntax, duplicates and depth before `Value` parsing.
@@ -23,7 +25,15 @@ These are synthetic machine tests. The test-first commit and raw-output excerpts
 
 ## Verification receipts
 
-Final workspace/CLI receipts and final-head hosted CI are being collected. The PR remains Draft and must not merge automatically. New implementation/manual acceptance is not inferred from the earlier baseline CI.
+Implementation source commit: `2f906181d075d56a19d18fd29a0ec1a645ba0a78`. [RED/GREEN receipt index](n10-06a/red-green-receipts.json) links preserved test-output excerpts; the CLI RED commit is reproducible independently. Supplemental math-stub RED and diagnostic-order RED were transient working-tree observations and are labeled accordingly. CLI GREEN has 12 normal-entry tests; math GREEN has 8 tests. The unchanged `video_coverage` suite passed 7/7 in both default and opt-in workspace runs. Default builds additionally test that the draft command is absent.
+
+[Workspace checks](n10-06a/workspace-checks.json): fmt, Clippy `--workspace --all-targets --all-features -- -D warnings`, workspace debug/release with default and all features, rustdoc `--all-features` with warnings denied, repository and diff checks all exited 0. Existing Planner, Narrative, N-11, OTIO, approval/review and journal tests run in these workspace suites. The real FilmCraft manual test remains ignored and supplies no host observation. An initial baseline fmt/clippy launcher needed the installed toolchain location; the corrected runs passed and this is not counted as behavior RED.
+
+[Compatibility byte checks](n10-06a/compatibility-bytes.json) verify exact equality with base for both V1 schemas, public time/coverage DTOs, accepted V1 implementation, existing seven CLI tests and Cargo.lock. The remaining core sources also have no diff. The four crate dependency sets remain unchanged.
+
+[Three actual CLI previews and replay receipts](n10-06a/fixture-replay.json) match their expected V1 documents, retain original input bytes and agree with a subsequent `render-video-coverage` invocation. The seconds and 30 fps examples yield identical V1 documents; the NTSC example yields `1001/200` at frame boundary 150. All three preserve S03 unresolved and declaration-only blocking. No media was opened.
+
+Final-head hosted CI is recorded on PR #130. The CI matrix now runs the opt-in regression suite on Windows/Linux/macOS in addition to the default suite, and release/Clippy/rustdoc exercise the opt-in path. The PR remains Draft and must not merge automatically.
 
 ## Evidence states and follow-ups
 
