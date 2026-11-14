@@ -8,6 +8,9 @@ repository.workspace = true
 publish.workspace = true
 description = "Read-only story plan validation and future planning engine"
 
+[features]
+draft-video-input = []
+
 [dependencies]
 serde.workspace = true
 serde_json.workspace = true

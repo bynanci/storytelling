@@ -1,0 +1,303 @@
+{
+  "status": "G2 proposal; expected assertions, not observed execution",
+  "decimal_success": [
+    {
+      "id": "S01",
+      "input": "2.5",
+      "expected": {
+        "numerator": "5",
+        "denominator": "2"
+      }
+    },
+    {
+      "id": "S02",
+      "input": "0.1",
+      "expected": {
+        "numerator": "1",
+        "denominator": "10"
+      }
+    },
+    {
+      "id": "S03",
+      "input": "0",
+      "expected": {
+        "numerator": "0",
+        "denominator": "1"
+      }
+    },
+    {
+      "id": "S04",
+      "input": "2.5000",
+      "expected": {
+        "numerator": "5",
+        "denominator": "2"
+      }
+    },
+    {
+      "id": "S05",
+      "input": "0.0000",
+      "expected": {
+        "numerator": "0",
+        "denominator": "1"
+      }
+    },
+    {
+      "id": "S06",
+      "input": "9223372036854775807.5",
+      "expected": {
+        "numerator": "18446744073709551615",
+        "denominator": "2"
+      }
+    },
+    {
+      "id": "S07",
+      "input": "0.00000000000000000025",
+      "expected": {
+        "numerator": "1",
+        "denominator": "4000000000000000000"
+      }
+    },
+    {
+      "id": "S08",
+      "input": "18446744073709551615.0000",
+      "expected": {
+        "numerator": "18446744073709551615",
+        "denominator": "1"
+      }
+    },
+    {
+      "id": "S09",
+      "input": "0.000000000000000000108420217248550443400745280086994171142578125",
+      "expected": {
+        "numerator": "1",
+        "denominator": "9223372036854775808"
+      }
+    },
+    {
+      "id": "S10",
+      "input": "0.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected": {
+        "numerator": "0",
+        "denominator": "1"
+      }
+    },
+    {
+      "id": "S11",
+      "input": "0.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected": {
+        "numerator": "0",
+        "denominator": "1"
+      }
+    }
+  ],
+  "decimal_reject": [
+    {
+      "input": "-1",
+      "code": "draft_time.invalid_decimal"
+    },
+    {
+      "input": "-0",
+      "code": "draft_time.invalid_decimal"
+    },
+    {
+      "input": "+1",
+      "code": "draft_time.invalid_decimal"
+    },
+    {
+      "input": "1e2",
+      "code": "draft_time.invalid_decimal"
+    },
+    {
+      "input": "1E-1",
+      "code": "draft_time.invalid_decimal"
+    },
+    {
+      "input": "NaN",
+      "code": "draft_time.invalid_decimal"
+    },
+    {
+      "input": "Infinity",
+      "code": "draft_time.invalid_decimal"
+    },
+    {
+      "input": ".1",
+      "code": "draft_time.invalid_decimal"
+    },
+    {
+      "input": "1.",
+      "code": "draft_time.invalid_decimal"
+    },
+    {
+      "input": "01",
+      "code": "draft_time.invalid_decimal"
+    },
+    {
+      "input": " 1",
+      "code": "draft_time.invalid_decimal"
+    },
+    {
+      "input": "1 ",
+      "code": "draft_time.invalid_decimal"
+    },
+    {
+      "input": "1,5",
+      "code": "draft_time.invalid_decimal"
+    },
+    {
+      "input": "１",
+      "code": "draft_time.invalid_decimal"
+    },
+    {
+      "input": "00:00:02;15",
+      "code": "draft_time.invalid_decimal"
+    },
+    {
+      "input": "",
+      "code": "draft_time.invalid_decimal"
+    },
+    {
+      "input": "0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "code": "draft_time.invalid_decimal",
+      "note": "129-byte decimal string exceeds 128-byte field bound"
+    }
+  ],
+  "overflow": [
+    {
+      "kind": "seconds",
+      "input": "18446744073709551616",
+      "code": "draft_time.overflow"
+    },
+    {
+      "kind": "seconds",
+      "input": "99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999",
+      "code": "draft_time.overflow"
+    },
+    {
+      "kind": "seconds",
+      "input": "0.00000000000000000001",
+      "code": "draft_time.overflow"
+    }
+  ],
+  "frame_boundary_success": [
+    {
+      "frame": "150",
+      "fps": {
+        "numerator": "30000",
+        "denominator": "1001"
+      },
+      "expected": {
+        "numerator": "1001",
+        "denominator": "200"
+      }
+    },
+    {
+      "frame": "18446744073709551615",
+      "fps": {
+        "numerator": "18446744073709551615",
+        "denominator": "2"
+      },
+      "expected": {
+        "numerator": "2",
+        "denominator": "1"
+      }
+    }
+  ],
+  "frame_reject": [
+    {
+      "frame": "18446744073709551616",
+      "fps": {
+        "numerator": "30",
+        "denominator": "1"
+      },
+      "code": "draft_time.overflow"
+    },
+    {
+      "frame": "18446744073709551615",
+      "fps": {
+        "numerator": "1",
+        "denominator": "18446744073709551615"
+      },
+      "code": "draft_time.overflow"
+    },
+    {
+      "frame": "-1",
+      "fps": {
+        "numerator": "30",
+        "denominator": "1"
+      },
+      "code": "draft_time.invalid_frame"
+    },
+    {
+      "frame": "00:00:02;15",
+      "fps": {
+        "numerator": "30",
+        "denominator": "1"
+      },
+      "code": "draft_time.invalid_frame"
+    }
+  ],
+  "fps_reject": [
+    {
+      "numerator": "0",
+      "denominator": "1"
+    },
+    {
+      "numerator": "30",
+      "denominator": "0"
+    },
+    {
+      "numerator": "60",
+      "denominator": "2"
+    },
+    {
+      "numerator": "30.0",
+      "denominator": "1"
+    }
+  ],
+  "timing_reject": [
+    "variable",
+    "unknown",
+    null
+  ],
+  "v1_range_reject": [
+    {
+      "input": {
+        "unit": "seconds",
+        "start": "4.5",
+        "end": "2.5"
+      },
+      "code": "video_coverage.invalid_range"
+    },
+    {
+      "input": {
+        "unit": "seconds",
+        "start": "2.5",
+        "end": "2.5"
+      },
+      "code": "video_coverage.invalid_range"
+    },
+    {
+      "input": {
+        "unit": "seconds",
+        "start": "0",
+        "end": "6"
+      },
+      "declared_duration": {
+        "numerator": "5",
+        "denominator": "1"
+      },
+      "code": "video_coverage.invalid_range",
+      "path": "$.mappings[0].source_range.end"
+    }
+  ],
+  "integration_assertions": [
+    "File/stdin/repeat output bytes equal; input bytes and directory entries unchanged.",
+    "Preserve ordered unit refs, unresolved reason and original time strings.",
+    "Generated V1 rerun matches embedded validation, including valid unresolved exit 0 and ready_for_planning=false.",
+    "Stale unit/catalog and other V1 errors retain first-error precedence after helper conversion.",
+    "Duplicate key anywhere rejects before Value decoding; unknown V1 fields must survive conversion to be rejected by V1.",
+    "Raw helper bytes >1048576 and nesting >34 reject; generated V1 independently enforces its own budgets.",
+    "No media tools on PATH are needed; no filesystem access except explicit manifest/stdin; no writes.",
+    "Default build has no draft command; feature opt-in only after G2 acceptance."
+  ]
+}

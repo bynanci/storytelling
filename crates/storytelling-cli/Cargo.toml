@@ -12,6 +12,9 @@ description = "Local read-only JSON story-plan validator"
 name = "storytelling"
 path = "src/main.rs"
 
+[features]
+draft-video-input = ["storytelling-engine/draft-video-input"]
+
 [dependencies]
 serde_json.workspace = true
 storytelling-engine.workspace = true

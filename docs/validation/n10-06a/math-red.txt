@@ -1,0 +1,73 @@
+running 8 tests
+test draft_video_input::exact_time::tests::checks_denominator_overflow_and_keeps_decimal_integer_zeroes ... FAILED
+test draft_video_input::exact_time::tests::accepts_maximum_decimal_byte_bound_and_rejects_the_next_byte ... FAILED
+test draft_video_input::exact_time::tests::preserves_exact_thirty_fps_half_open_boundaries ... FAILED
+test draft_video_input::exact_time::tests::normalizes_frozen_frame_boundaries_and_reduces_before_u64_check ... FAILED
+test draft_video_input::exact_time::tests::normalizes_frozen_decimal_examples_and_verifies_canonical_output ... FAILED
+test draft_video_input::exact_time::tests::rejects_frozen_frame_inputs_and_final_overflow ... FAILED
+test draft_video_input::exact_time::tests::rejects_frozen_decimal_syntax_and_overflow_without_rounding ... FAILED
+test draft_video_input::exact_time::tests::rejects_nonpositive_noncanonical_or_nonreduced_fps ... FAILED
+
+failures:
+
+---- draft_video_input::exact_time::tests::checks_denominator_overflow_and_keeps_decimal_integer_zeroes stdout ----
+
+thread 'draft_video_input::exact_time::tests::checks_denominator_overflow_and_keeps_decimal_integer_zeroes' panicked at crates/storytelling-engine/src/draft_video_input/exact_time.rs:133:9:
+assertion `left == right` failed
+  left: Err("draft_time.not_implemented")
+ right: Err("draft_time.overflow")
+
+---- draft_video_input::exact_time::tests::accepts_maximum_decimal_byte_bound_and_rejects_the_next_byte stdout ----
+
+thread 'draft_video_input::exact_time::tests::accepts_maximum_decimal_byte_bound_and_rejects_the_next_byte' panicked at crates/storytelling-engine/src/draft_video_input/exact_time.rs:124:39:
+called `Result::unwrap()` on an `Err` value: "draft_time.not_implemented"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- draft_video_input::exact_time::tests::preserves_exact_thirty_fps_half_open_boundaries stdout ----
+
+thread 'draft_video_input::exact_time::tests::preserves_exact_thirty_fps_half_open_boundaries' panicked at crates/storytelling-engine/src/draft_video_input/exact_time.rs:114:35:
+called `Result::unwrap()` on an `Err` value: "draft_time.not_implemented"
+
+---- draft_video_input::exact_time::tests::normalizes_frozen_frame_boundaries_and_reduces_before_u64_check stdout ----
+
+thread 'draft_video_input::exact_time::tests::normalizes_frozen_frame_boundaries_and_reduces_before_u64_check' panicked at crates/storytelling-engine/src/draft_video_input/exact_time.rs:72:14:
+called `Result::unwrap()` on an `Err` value: "draft_time.not_implemented"
+
+---- draft_video_input::exact_time::tests::normalizes_frozen_decimal_examples_and_verifies_canonical_output stdout ----
+
+thread 'draft_video_input::exact_time::tests::normalizes_frozen_decimal_examples_and_verifies_canonical_output' panicked at crates/storytelling-engine/src/draft_video_input/exact_time.rs:39:67:
+called `Result::unwrap()` on an `Err` value: "draft_time.not_implemented"
+
+---- draft_video_input::exact_time::tests::rejects_frozen_frame_inputs_and_final_overflow stdout ----
+
+thread 'draft_video_input::exact_time::tests::rejects_frozen_frame_inputs_and_final_overflow' panicked at crates/storytelling-engine/src/draft_video_input/exact_time.rs:86:14:
+called `Result::unwrap()` on an `Err` value: "draft_time.not_implemented"
+
+---- draft_video_input::exact_time::tests::rejects_frozen_decimal_syntax_and_overflow_without_rounding stdout ----
+
+thread 'draft_video_input::exact_time::tests::rejects_frozen_decimal_syntax_and_overflow_without_rounding' panicked at crates/storytelling-engine/src/draft_video_input/exact_time.rs:48:13:
+assertion `left == right` failed: {"code":"draft_time.invalid_decimal","input":"-1"}
+  left: "draft_time.not_implemented"
+ right: "draft_time.invalid_decimal"
+
+---- draft_video_input::exact_time::tests::rejects_nonpositive_noncanonical_or_nonreduced_fps stdout ----
+
+thread 'draft_video_input::exact_time::tests::rejects_nonpositive_noncanonical_or_nonreduced_fps' panicked at crates/storytelling-engine/src/draft_video_input/exact_time.rs:98:13:
+assertion `left == right` failed: {"denominator":"1","numerator":"0"}
+  left: Err("draft_time.not_implemented")
+ right: Err("draft_time.invalid_fps")
+
+
+failures:
+    draft_video_input::exact_time::tests::accepts_maximum_decimal_byte_bound_and_rejects_the_next_byte
+    draft_video_input::exact_time::tests::checks_denominator_overflow_and_keeps_decimal_integer_zeroes
+    draft_video_input::exact_time::tests::normalizes_frozen_decimal_examples_and_verifies_canonical_output
+    draft_video_input::exact_time::tests::normalizes_frozen_frame_boundaries_and_reduces_before_u64_check
+    draft_video_input::exact_time::tests::preserves_exact_thirty_fps_half_open_boundaries
+    draft_video_input::exact_time::tests::rejects_frozen_decimal_syntax_and_overflow_without_rounding
+    draft_video_input::exact_time::tests::rejects_frozen_frame_inputs_and_final_overflow
+    draft_video_input::exact_time::tests::rejects_nonpositive_noncanonical_or_nonreduced_fps
+
+test result: FAILED. 0 passed; 8 failed; 0 ignored; 0 measured; 16 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p storytelling-engine --lib`

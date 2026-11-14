@@ -19,6 +19,8 @@ Skill 可以獨立安裝。目前套件版本為 `0.1.0-dev.0`。使用者可從
 
 <a id="cross-media-narrative-roadmap"></a>
 
+N10-06A／#129 為獨立的[精確時間輸入輔助](docs/adr/0012-draft-exact-video-range-input.md)。請求者已[接受候選 `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf` 的 draft-only G2](docs/validation/n10-06a-g2-decision.md)，聚焦 A 的實作 head 59516f2 已通過自動化 G4；工程合併須目前 head 通過審查與 CI。既有 V1 與 M3 權限維持各自已接受／待決範圍。穩定 SDK（#107）、作者／媒體／宿主證據、B/C/D、發布保留獨立門檻；後續授權允許工程合併。
+
 ## 跨媒體敘事的開發順序
 
 [研究設計對照](docs/research/README.zh-TW.md)連結證據、規則與流程優先順序。效益主張仍需人工觀察。

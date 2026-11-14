@@ -1,0 +1,126 @@
+{
+  "source_commit": "2f906181d075d56a19d18fd29a0ec1a645ba0a78",
+  "rust_version": "1.89.0",
+  "platform": "Linux x86_64",
+  "scope": "synthetic automated checks; default and all-feature builds",
+  "toolchain_environment": "Pinned installed Rust 1.89.0; correct RUSTUP_HOME/CARGO_HOME used. Earlier baseline fmt/clippy launcher errors were environment setup errors and passed after pointing to installed toolchain, not behavior RED.",
+  "checks": [
+    {
+      "command": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "exit": 0,
+      "combined_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "cargo",
+        "clippy",
+        "--workspace",
+        "--all-targets",
+        "--all-features",
+        "--locked",
+        "--offline",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit": 0,
+      "combined_output_sha256": "5f4d6a2a95594e5b2fc8637c2883374840090f5b90980db62ecee8e5b56b3b36"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--locked",
+        "--offline"
+      ],
+      "exit": 0,
+      "combined_output_sha256": "7c3ed60c8f2a8182332815cdae08b6edde978613196c39c69c27552e9b2e04a0",
+      "test_groups": 35,
+      "passed_assertion_test_count": 310,
+      "ignored_test_count": 3
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--all-features",
+        "--locked",
+        "--offline"
+      ],
+      "exit": 0,
+      "combined_output_sha256": "8166ac6cb70a06e3db09068f1aaa4fa15acce7fb283b104d86444f55070c119b",
+      "test_groups": 35,
+      "passed_assertion_test_count": 329,
+      "ignored_test_count": 3
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--release",
+        "--locked",
+        "--offline"
+      ],
+      "exit": 0,
+      "combined_output_sha256": "54e38cb0c956593c113346502cd9662be16db8315e12ae67c705621eb3826c83",
+      "test_groups": 35,
+      "passed_assertion_test_count": 310,
+      "ignored_test_count": 3
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--all-features",
+        "--release",
+        "--locked",
+        "--offline"
+      ],
+      "exit": 0,
+      "combined_output_sha256": "b4049fdbd3476f65863dd18add0d407092894e955ed9f79cc45d53901103974f",
+      "test_groups": 35,
+      "passed_assertion_test_count": 329,
+      "ignored_test_count": 3
+    },
+    {
+      "command": [
+        "cargo",
+        "doc",
+        "--workspace",
+        "--all-features",
+        "--no-deps",
+        "--locked",
+        "--offline"
+      ],
+      "exit": 0,
+      "combined_output_sha256": "de2502d35a6c1c992438c4961cf5482441d109d534538f2213ab6ded6b1c7828"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/check_repo.py"
+      ],
+      "exit": 0,
+      "combined_output_sha256": "728bbfaf33cce26d9fbaf87b18bd5a323ffebd1fb3d212369faab1c56d548238"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit": 0,
+      "combined_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

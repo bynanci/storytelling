@@ -1,0 +1,59 @@
+running 8 tests
+test draft_video_input::exact_time::tests::accepts_maximum_decimal_byte_bound_and_rejects_the_next_byte ... ok
+test draft_video_input::exact_time::tests::checks_denominator_overflow_and_keeps_decimal_integer_zeroes ... ok
+test draft_video_input::exact_time::tests::preserves_exact_thirty_fps_half_open_boundaries ... ok
+test draft_video_input::exact_time::tests::normalizes_frozen_frame_boundaries_and_reduces_before_u64_check ... ok
+test draft_video_input::exact_time::tests::rejects_frozen_frame_inputs_and_final_overflow ... ok
+test draft_video_input::exact_time::tests::normalizes_frozen_decimal_examples_and_verifies_canonical_output ... ok
+test draft_video_input::exact_time::tests::rejects_nonpositive_noncanonical_or_nonreduced_fps ... ok
+test draft_video_input::exact_time::tests::rejects_frozen_decimal_syntax_and_overflow_without_rounding ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 16 filtered out; finished in 0.00s
+
+     Running tests/brief.rs (target/debug/deps/brief-bbc1d4df1209a9f0)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 22 filtered out; finished in 0.00s
+
+     Running tests/narrative.rs (target/debug/deps/narrative-f433a1a720528291)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 8 filtered out; finished in 0.00s
+
+     Running tests/openfilm_snapshot.rs (target/debug/deps/openfilm_snapshot-5f423d16dc2ba81c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 33 filtered out; finished in 0.00s
+
+     Running tests/otio.rs (target/debug/deps/otio-b1d6402fce5e2132)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 25 filtered out; finished in 0.00s
+
+     Running tests/planner.rs (target/debug/deps/planner-e9ee8d2d4080692e)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 28 filtered out; finished in 0.00s
+
+     Running tests/review_binding.rs (target/debug/deps/review_binding-26498f1d595a7d0f)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 11 filtered out; finished in 0.00s
+
+     Running tests/story_review.rs (target/debug/deps/story_review-1f64ca3a71470972)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 8 filtered out; finished in 0.00s
+
+     Running tests/validation.rs (target/debug/deps/validation-d4c561bae746b6c3)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 14 filtered out; finished in 0.00s

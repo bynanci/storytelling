@@ -1,0 +1,20 @@
+running 1 test
+test enabled::helper_reports_start_before_end_when_both_endpoints_are_invalid ... FAILED
+
+failures:
+
+---- enabled::helper_reports_start_before_end_when_both_endpoints_are_invalid stdout ----
+
+thread 'enabled::helper_reports_start_before_end_when_both_endpoints_are_invalid' panicked at crates/storytelling-cli/tests/draft_video_input.rs:89:9:
+assertion `left == right` failed
+  left: Object {"error": Object {"code": String("draft_time.invalid_shape"), "path": String("$.coverage.mappings[0].source_range.end"), "stage": String("helper")}}
+ right: Object {"error": Object {"code": String("draft_time.invalid_decimal"), "path": String("$.coverage.mappings[0].source_range.start"), "stage": String("helper")}}
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    enabled::helper_reports_start_before_end_when_both_endpoints_are_invalid
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 11 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p storytelling-cli --test draft_video_input`

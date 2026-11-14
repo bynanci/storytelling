@@ -125,6 +125,28 @@ fn render_narrative_command(args: &[OsString]) -> ExitCode {
     }
 }
 
+#[cfg(feature = "draft-video-input")]
+fn draft_video_coverage_input_command(args: &[OsString]) -> ExitCode {
+    let emit_v1 = args.len() == 3 && args[2] == OsStr::new("--emit-v1");
+    if (args.len() != 2 && !emit_v1) || args[1].as_encoded_bytes().starts_with(b"--") {
+        return failure("cli.usage", 2);
+    }
+    let bytes = match read_argument(&args[1], MAX_INPUT_BYTES) {
+        Ok(bytes) => bytes,
+        Err(_) => return failure("input.io", 3),
+    };
+    match storytelling_engine::normalize_draft_video_coverage(&bytes) {
+        Ok(mut result) => {
+            if emit_v1 {
+                emit(result["coverage"].take(), 0)
+            } else {
+                emit(result, 0)
+            }
+        }
+        Err(error) => emit(error, 1),
+    }
+}
+
 fn render_video_coverage_command(args: &[OsString]) -> ExitCode {
     if args.len() != 2 || args[1].as_encoded_bytes().starts_with(b"--") {
         return failure("cli.usage", 2);
@@ -588,6 +610,14 @@ fn story_review_command(args: &[OsString]) -> ExitCode {
 
 fn main() -> ExitCode {
     let args: Vec<_> = std::env::args_os().skip(1).collect();
+    #[cfg(feature = "draft-video-input")]
+    if args
+        .first()
+        .is_some_and(|arg| arg == OsStr::new("draft-video-coverage-input"))
+    {
+        return draft_video_coverage_input_command(&args);
+    }
+
     if args
         .first()
         .is_some_and(|arg| arg == OsStr::new("audit-copy-claims"))

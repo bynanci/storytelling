@@ -1,0 +1,40 @@
+{
+  "source_commit": "2f906181d075d56a19d18fd29a0ec1a645ba0a78",
+  "kind": "synthetic_machine_cli_replay",
+  "binary": "feature-enabled release storytelling",
+  "cases": [
+    {
+      "fixture": "tests/fixtures/n10-06a-draft/seconds-unresolved.draft.json",
+      "exit": 0,
+      "input_sha256": "53160dac337de4c65caabe7e77100092a1aa9803a60c950e0d1085c683a4c97a",
+      "preview_stdout": "seconds-unresolved.preview.stdout.json",
+      "preview_stdout_sha256": "36a61088ec7ac242e9d34969e6fc454f237700ff8435aafe73d59d0fec4821bd",
+      "expected_v1_semantic_match": true,
+      "render_video_coverage_match": true,
+      "input_bytes_unchanged": true,
+      "planning_ready": false
+    },
+    {
+      "fixture": "tests/fixtures/n10-06a-draft/frames-30-unresolved.draft.json",
+      "exit": 0,
+      "input_sha256": "4a05d7672b3ca012cc7530c5f9975571669f9bf7b712b5473a5143834a03cc78",
+      "preview_stdout": "frames-30-unresolved.preview.stdout.json",
+      "preview_stdout_sha256": "ad30f769c001bc313dda5e03e1d64c2565a5f42dce9ad1e7b517d0dc900a47e0",
+      "expected_v1_semantic_match": true,
+      "render_video_coverage_match": true,
+      "input_bytes_unchanged": true,
+      "planning_ready": false
+    },
+    {
+      "fixture": "tests/fixtures/n10-06a-draft/frames-ntsc-unresolved.draft.json",
+      "exit": 0,
+      "input_sha256": "fb38982b9257e5cb33cfdeea8fa229cac82ab10887dd2ad499bd2939e3f88327",
+      "preview_stdout": "frames-ntsc-unresolved.preview.stdout.json",
+      "preview_stdout_sha256": "b62100839ae6eb936f205aa9094c7de3cc3412723cdc21a282d8eeca26e38555",
+      "expected_v1_semantic_match": true,
+      "render_video_coverage_match": true,
+      "input_bytes_unchanged": true,
+      "planning_ready": false
+    }
+  ]
+}
