@@ -62,3 +62,9 @@ The snapshot above is preserved. These later corrections complete only their nam
 CLI workspace provenance: the old shared-target receipt is retained as `cache_ambiguous` and its named-source verification claim is withdrawn. A new unique, previously absent target bound to clean integration source `ed5bfa6a7d66cce9b66faf6ac8bef653b5e43485` verified 312 default and 331 all-feature Rust tests in each debug/release run. The [corrected records](cli-file-input.md#fresh-integrated-verification) preserve the ambiguous outputs separately; the fresh run supplies the authoritative local source-bound evidence.
 
 All sixteen issues in the snapshot remain Open. The new #103 W01, #107 read-only SDK and #129 B G2 questions have no recorded answer; their implementation/acceptance gates remain pending. #115 actual model/manual runs and #121/#122 study evidence remain absent; no G5 decision is supplied.
+
+## Later evidence-grounded selection request · 2026-11-14
+
+The requester subsequently asked Codex to judge these three choices through a roundtable and include human/Host supporting evidence. The [new selection record](g2-roundtable-2026-11-14.md) and [source index](g2-roundtable-2026-11-14/evidence-index.json) document the resulting asynchronous AI recommendations: scoped no-Host W01, eight thin read-only SDK operations, and a text-only B after specific clarifications. The earlier pending-status snapshot above is preserved.
+
+The choices are now concrete recommendations for adoption. The request to select them is not recorded as a human's acceptance of the resulting exact candidate. Formal adoption fields remain null; no G3, current execution authority, new author/Host study or G5 decision is supplied. Historical observations retain their source, denominator and limitations, including N07 Stop. The blank private handoff is a collection aid for separately adopted future work, not completed evidence.
