@@ -1,0 +1,96 @@
+{
+  "sidecar_version": "n10-06c.local-sidecar.0-candidate",
+  "record_kind": "synthetic_contract_example",
+  "binding_id": "SYN-C-UNKNOWN-01",
+  "observed_at_utc": null,
+  "coverage_ref": {
+    "coverage_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "catalog_id": "SYN-CATALOG",
+    "catalog_revision": 1,
+    "asset_id": "SYN-CLIP",
+    "asset_revision": 1,
+    "declared_duration": {
+      "numerator": "5",
+      "denominator": "1"
+    },
+    "source_range": {
+      "start": {
+        "numerator": "0",
+        "denominator": "1"
+      },
+      "end": {
+        "numerator": "5",
+        "denominator": "1"
+      }
+    }
+  },
+  "selection_ref": {
+    "grant_id": "SYN-GRANT",
+    "root_scope_ref": "SYN-ROOT",
+    "selected_file_ref": "SYN-SELECTED-FILE"
+  },
+  "binding_state": "unknown",
+  "file_access": {
+    "state": "readable",
+    "evidence_ref": "SYN-ACCESS"
+  },
+  "stability": {
+    "state": "unknown",
+    "profile_id": null,
+    "read_view_ref": null,
+    "file_id_before_ref": "SYN-ID-BEFORE",
+    "file_id_after_ref": "SYN-ID-AFTER",
+    "evidence_ref": "SYN-STABILITY-UNPROVEN"
+  },
+  "byte_identity": {
+    "state": "matches",
+    "expected_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "expected_evidence_ref": "SYN-EXPECTED-REV1",
+    "sha256_before": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "sha256_after": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "byte_length": "75276",
+    "evidence_ref": "SYN-HASH-OBSERVATION"
+  },
+  "metadata": {
+    "state": "observed",
+    "probe_ref": "SYN-PROBE",
+    "tool_ref": "SYN-TOOL",
+    "stream_count": 1,
+    "selected_stream_index": 0,
+    "timing_mode": "unknown",
+    "time_base": {
+      "numerator": "1",
+      "denominator": "30"
+    },
+    "start_pts": "0",
+    "end_pts_exclusive": null,
+    "boundary_basis": "header_only",
+    "read_complete": false,
+    "observed_interval": null,
+    "evidence_ref": "SYN-METADATA"
+  },
+  "duration_check": {
+    "state": "unknown",
+    "evidence_ref": null
+  },
+  "range_check": {
+    "state": "unknown",
+    "evidence_ref": null
+  },
+  "content_review": {
+    "state": "not_reviewed",
+    "review_ref": null
+  },
+  "diagnostics": [
+    {
+      "code": "media_identity.stability_unproven",
+      "path": "$.stability",
+      "evidence_ref": "SYN-STABILITY-UNPROVEN"
+    },
+    {
+      "code": "media_identity.timing_unknown",
+      "path": "$.metadata",
+      "evidence_ref": "SYN-METADATA"
+    }
+  ]
+}
