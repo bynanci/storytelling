@@ -1,0 +1,36 @@
+{
+  "scope": "M3-JL02/M3-JL06 response/readback receipt bookkeeping only",
+  "base_sha": "c562ce0d06b7330813fa42cad739f24f4a49e9da",
+  "red_commit": "182822797470c812d7c1238d67d0fd443c19b953",
+  "implementation_commit": "dd38313e96906aad835fc975e63665599bc44ce9",
+  "command": "cargo test -p storytelling-journal --test journal --locked --offline -- --nocapture",
+  "toolchain": "rustc/cargo 1.89.0, Linux",
+  "red": {
+    "exit_code": 101,
+    "passed": 11,
+    "failed": 2,
+    "log": "red.log"
+  },
+  "green": {
+    "exit_code": 0,
+    "passed": 13,
+    "failed": 0,
+    "log": "green.log",
+    "note": "Observed before committing unchanged implementation bytes as implementation_commit."
+  },
+  "independent_review": {
+    "kind": "static AI review by a separate agent",
+    "result": "no blocking finding",
+    "not_human_g2_acceptance": true
+  },
+  "workspace_checks": {
+    "status": "passed",
+    "record": "workspace-checks.json",
+    "initial_infrastructure_failure": "Initial separate-target debug compilation exhausted disk (os error 28); this was not RED evidence. After capacity recovery, shared-target debug/release/default/all-feature, fmt, Clippy, rustdoc and repository checks passed."
+  },
+  "hosted_exact_head_ci": "pending; no PR has been pushed by this worktree",
+  "host_calls": 0,
+  "real_media_reads": 0,
+  "human_acceptance": "not performed",
+  "g2_or_release_decision": "not granted"
+}

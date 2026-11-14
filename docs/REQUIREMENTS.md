@@ -186,16 +186,18 @@ The M3-02 journal records caller observations, including `NotApplied`. It makes 
 
 ## SQLite operation journal
 
+The compatible first-readback receipt correction and observed RED/GREEN are [recorded separately](validation/m3-02-readback-receipt-collision.md); it adds no execution authority or #103 acceptance.
+
 The [M3-02 contract](migration/M3-02-OPERATION-JOURNAL.md) defines the storage adapter accepted in PR #56. This profile records operations without executing them. FilmCraft execution and readback require separate evidence. The PR #28 G2 review remains open.
 
 | ID | Acceptance | Implementation | Regression evidence |
 | --- | --- | --- | --- |
 | M3-JL01 | Store the exact operation, request key, project, review-binding digest and artifact digest. An exact replay has no additional effect. Reject changes to identity. | `crates/storytelling-journal/src/lib.rs` | `exact_review_and_artifact_identity_survive_restart_and_idempotent_prepare`, `reused_idempotency_key_with_changed_review_or_artifact_is_rejected` |
-| M3-JL02 | Store attempt identity and dispatching state before any host call. On restart, recover a committed dispatch marker as unknown. | `crates/storytelling-journal/src/lib.rs` | `crash_after_dispatch_marker_recovers_unknown_and_never_retries_without_readback` |
+| M3-JL02 | Store attempt identity and dispatching state before any host call. On restart, recover a committed dispatch marker as unknown. | `crates/storytelling-journal/src/lib.rs` | `crash_after_dispatch_marker_recovers_unknown_and_never_retries_without_readback`, `ambiguous_readback_sharing_response_digest_is_recorded_once_and_survives_restart` |
 | M3-JL03 | Monotonic fence epochs and attempt numbers reject stale owners and late old responses/readbacks | `crates/storytelling-journal/src/lib.rs` | `crash_after_dispatch_marker_recovers_unknown_and_never_retries_without_readback`, `stale_owner_and_late_attempt_response_cannot_overwrite_newer_state` |
 | M3-JL04 | Block retry for unknown, reported or partial outcomes. Require explicit NotApplied readback for the current attempt. Block retry if newer readback conflicts. | `crates/storytelling-journal/src/lib.rs` | `unknown_response_and_applied_response_never_enable_a_retry`, `crash_after_dispatch_marker_recovers_unknown_and_never_retries_without_readback`, `a_fresh_conflicting_readback_before_retry_keeps_the_attempt_blocked` |
 | M3-JL05 | Keep a busy write atomic. Permit retry after lock release. Reject unrelated SQLite schemas before changing the schema or journal mode. | `crates/storytelling-journal/src/lib.rs` | `busy_write_leaves_no_partial_record_and_succeeds_after_lock_release`, `foreign_database_is_rejected_without_changing_its_schema_or_journal_mode` |
-| M3-JL06 | Check identifiers, lowercase digests, timestamps and lease duration. Limit attempts, readbacks and events per operation. Keep other operations available. | `crates/storytelling-journal/src/lib.rs` | `invalid_identity_hash_and_time_limits_are_rejected_at_the_boundary`, `attempt_count_limit_is_per_operation_and_does_not_block_other_operations`, `repeated_ambiguous_readbacks_have_a_per_attempt_bound` |
+| M3-JL06 | Check identifiers, lowercase digests, timestamps and lease duration. Limit attempts, readbacks and events per operation. Keep other operations available. | `crates/storytelling-journal/src/lib.rs` | `invalid_identity_hash_and_time_limits_are_rejected_at_the_boundary`, `attempt_count_limit_is_per_operation_and_does_not_block_other_operations`, `repeated_ambiguous_readbacks_have_a_per_attempt_bound`, `first_ambiguous_readback_sharing_response_digest_consumes_readback_budget` |
 
 Before implementation, three tests panicked at the missing journal operation. They passed after implementation. Later regressions covered late readback, bounds on ambiguous readback, conflicting readback and unrelated databases. Each test failed before its specific safety check and passed afterward. All six jobs passed on PR #56 and on main after merge. The tests invoked no host or editor. See the [validation record](validation/m3-02-operation-journal.md).
 
