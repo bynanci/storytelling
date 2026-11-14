@@ -26,3 +26,7 @@ SHM files. No host, editor, Catalog, FilmCraft project, external asset or privat
 data is opened. Cross-platform hosted build/test evidence passed, but OS-specific
 power-loss and network-filesystem semantics are not established. Host-side
 readback and retry safety remain M3-03.
+
+The 2026-11-14 [first-readback receipt correction](m3-02-readback-receipt-collision.md)
+adds two test-first regressions to M3-JL02/M3-JL06. This follow-up does not alter
+the historical PR #56 results or grant execution authority.

@@ -1,0 +1,20 @@
+   Compiling storytelling-journal v0.1.0-dev.0 (/workspace/storytelling-journal-readback-fix/crates/storytelling-journal)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.76s
+     Running tests/journal.rs (/tmp/storytelling-journal-adversarial-target/debug/deps/journal-a19bb361257f5084)
+
+running 13 tests
+test ambiguous_readback_sharing_response_digest_is_recorded_once_and_survives_restart ... ok
+test a_fresh_conflicting_readback_before_retry_keeps_the_attempt_blocked ... ok
+test exact_review_and_artifact_identity_survive_restart_and_idempotent_prepare ... ok
+test crash_after_dispatch_marker_recovers_unknown_and_never_retries_without_readback ... ok
+test foreign_database_is_rejected_without_changing_its_schema_or_journal_mode ... ok
+test invalid_identity_hash_and_time_limits_are_rejected_at_the_boundary ... ok
+test first_ambiguous_readback_sharing_response_digest_consumes_readback_budget ... ok
+test busy_write_leaves_no_partial_record_and_succeeds_after_lock_release ... ok
+test reused_idempotency_key_with_changed_review_or_artifact_is_rejected ... ok
+test stale_owner_and_late_attempt_response_cannot_overwrite_newer_state ... ok
+test repeated_ambiguous_readbacks_have_a_per_attempt_bound ... ok
+test unknown_response_and_applied_response_never_enable_a_retry ... ok
+test attempt_count_limit_is_per_operation_and_does_not_block_other_operations ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s

@@ -460,3 +460,115 @@ fn repeated_ambiguous_readbacks_have_a_per_attempt_bound() {
         Err(JournalError::LimitExceeded)
     ));
 }
+
+#[test]
+fn ambiguous_readback_sharing_response_digest_is_recorded_once_and_survives_restart() {
+    let db = TestDb::new();
+    let mut journal = Journal::open(db.path()).unwrap();
+    journal.prepare(&intent(), 100).unwrap();
+    let lease = journal.claim("op-01", "executor-a", 101, 1_000).unwrap();
+    let attempt = journal.begin_attempt(&lease, 102).unwrap();
+    let shared_evidence = "d".repeat(64);
+    journal
+        .record_response(
+            &lease,
+            attempt,
+            DispatchResponse::Unknown,
+            103,
+            &shared_evidence,
+        )
+        .unwrap();
+
+    let observed = journal
+        .record_readback(
+            &lease,
+            attempt,
+            ReadbackResult::Ambiguous,
+            104,
+            &shared_evidence,
+        )
+        .unwrap();
+    assert_eq!(observed.state, OperationState::OutcomeUnknown);
+    let history = journal.history("op-01").unwrap();
+    assert_eq!(history.len(), 4, "the first readback is a distinct receipt");
+    assert_eq!(history[2].kind, JournalEventKind::ResponseRecorded);
+    assert_eq!(history[3].kind, JournalEventKind::ReadbackRecorded);
+    assert_eq!(history[3].occurred_at_ms, 104);
+    assert_eq!(
+        history[3].evidence_sha256.as_deref(),
+        Some(shared_evidence.as_str())
+    );
+    drop(journal);
+
+    let mut reopened = Journal::open(db.path()).unwrap();
+    assert_eq!(reopened.get("op-01").unwrap().unwrap(), observed);
+    assert_eq!(reopened.history("op-01").unwrap(), history);
+    reopened
+        .record_readback(
+            &lease,
+            attempt,
+            ReadbackResult::Ambiguous,
+            105,
+            &shared_evidence,
+        )
+        .unwrap();
+    assert_eq!(reopened.history("op-01").unwrap(), history);
+}
+
+#[test]
+fn first_ambiguous_readback_sharing_response_digest_consumes_readback_budget() {
+    let db = TestDb::new();
+    let mut journal = Journal::open(db.path()).unwrap();
+    journal.prepare(&intent(), 100).unwrap();
+    let lease = journal.claim("op-01", "executor-a", 101, 1_000).unwrap();
+    let attempt = journal.begin_attempt(&lease, 102).unwrap();
+    let shared_evidence = "d".repeat(64);
+    journal
+        .record_response(
+            &lease,
+            attempt,
+            DispatchResponse::Unknown,
+            103,
+            &shared_evidence,
+        )
+        .unwrap();
+    journal
+        .record_readback(
+            &lease,
+            attempt,
+            ReadbackResult::Ambiguous,
+            104,
+            &shared_evidence,
+        )
+        .unwrap();
+    for index in 0..3_u64 {
+        journal
+            .record_readback(
+                &lease,
+                attempt,
+                ReadbackResult::Ambiguous,
+                105 + index as i64,
+                &format!("{index:064x}"),
+            )
+            .unwrap();
+    }
+    let history = journal.history("op-01").unwrap();
+    assert!(matches!(
+        journal.record_readback(
+            &lease,
+            attempt,
+            ReadbackResult::Ambiguous,
+            108,
+            &"f".repeat(64),
+        ),
+        Err(JournalError::LimitExceeded)
+    ));
+    assert_eq!(journal.history("op-01").unwrap(), history);
+    assert_eq!(
+        history
+            .iter()
+            .filter(|event| event.kind == JournalEventKind::ReadbackRecorded)
+            .count(),
+        4
+    );
+}

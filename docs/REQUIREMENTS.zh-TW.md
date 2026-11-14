@@ -242,6 +242,8 @@ reference application feature flag follows accepted journal/executor readback, w
 
 ## SQLite operation journal
 
+首次回讀收據的相容修正與實際 RED／GREEN 見[獨立紀錄](validation/m3-02-readback-receipt-collision.zh-TW.md)，不新增執行權限或 #103 核准。
+
 The [M3-02 contract](migration/M3-02-OPERATION-JOURNAL.md) defines the accepted,
 bounded non-executable storage adapter delivered in PR #56. It does not complete
 FilmCraft execution/readback or PR #28 G2 acceptance.
@@ -249,11 +251,11 @@ FilmCraft execution/readback or PR #28 G2 acceptance.
 | ID | Acceptance | Implementation | Regression evidence |
 | --- | --- | --- | --- |
 | M3-JL01 | Persist exact operation, request key, project, review-binding digest and artifact digest; exact replay is idempotent and changed identity rejects | `crates/storytelling-journal/src/lib.rs` | `exact_review_and_artifact_identity_survive_restart_and_idempotent_prepare`, `reused_idempotency_key_with_changed_review_or_artifact_is_rejected` |
-| M3-JL02 | Persist attempt identity and dispatching state before any host call; restart after a committed marker recovers as unknown | `crates/storytelling-journal/src/lib.rs` | `crash_after_dispatch_marker_recovers_unknown_and_never_retries_without_readback` |
+| M3-JL02 | Persist attempt identity and dispatching state before any host call; restart after a committed marker recovers as unknown | `crates/storytelling-journal/src/lib.rs` | `crash_after_dispatch_marker_recovers_unknown_and_never_retries_without_readback`, `ambiguous_readback_sharing_response_digest_is_recorded_once_and_survives_restart` |
 | M3-JL03 | Monotonic fence epochs and attempt numbers reject stale owners and late old responses/readbacks | `crates/storytelling-journal/src/lib.rs` | `crash_after_dispatch_marker_recovers_unknown_and_never_retries_without_readback`, `stale_owner_and_late_attempt_response_cannot_overwrite_newer_state` |
 | M3-JL04 | Unknown/reported/partial outcomes do not authorize another attempt; only explicit current-attempt NotApplied readback permits retry, and newer conflicting readback can block it before retry | `crates/storytelling-journal/src/lib.rs` | `unknown_response_and_applied_response_never_enable_a_retry`, `crash_after_dispatch_marker_recovers_unknown_and_never_retries_without_readback`, `a_fresh_conflicting_readback_before_retry_keeps_the_attempt_blocked` |
 | M3-JL05 | Busy write is atomic/retryable after lock release; unrelated SQLite schemas reject before journal-mode/schema mutation | `crates/storytelling-journal/src/lib.rs` | `busy_write_leaves_no_partial_record_and_succeeds_after_lock_release`, `foreign_database_is_rejected_without_changing_its_schema_or_journal_mode` |
-| M3-JL06 | Validate identifiers, lowercase digests, timestamps and lease duration; enforce per-operation attempt/readback/event bounds while leaving other operations available | `crates/storytelling-journal/src/lib.rs` | `invalid_identity_hash_and_time_limits_are_rejected_at_the_boundary`, `attempt_count_limit_is_per_operation_and_does_not_block_other_operations`, `repeated_ambiguous_readbacks_have_a_per_attempt_bound` |
+| M3-JL06 | Validate identifiers, lowercase digests, timestamps and lease duration; enforce per-operation attempt/readback/event bounds while leaving other operations available | `crates/storytelling-journal/src/lib.rs` | `invalid_identity_hash_and_time_limits_are_rejected_at_the_boundary`, `attempt_count_limit_is_per_operation_and_does_not_block_other_operations`, `repeated_ambiguous_readbacks_have_a_per_attempt_bound`, `first_ambiguous_readback_sharing_response_digest_consumes_readback_budget` |
 
 The observed initial RED was three executed tests panicking at the unimplemented
 journal operation; after the storage implementation they passed. A later

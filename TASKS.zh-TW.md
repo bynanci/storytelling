@@ -109,6 +109,8 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 
 ## 已驗收工作與歷史紀錄
 
+M3-JL02／M3-JL06 維護：[首次回讀紀錄修正](docs/validation/m3-02-readback-receipt-collision.zh-TW.md)已有本機 RED／GREEN；最終 head 的 hosted 檢查待完成，不變更執行權限。
+
 維護者已授權合併完成且通過同一提交檢查的 PR。合併後須核對主分支結果。發布版本、建立標籤、修改儲存庫政策或權限仍須另外授權。實際媒體、編輯器與真人驗收各自留存證據。[合併與授權紀錄](docs/delivery/VIDEO_TASK_HISTORY.md#accepted-lifecycle)
 
 影片工程的 PR、版本、測試範圍與待驗項目，收錄於[逐項驗收紀錄](docs/delivery/VIDEO_TASK_HISTORY.md)。上游來源、對照版本與適用授權可查閱[來源紀錄](PROVENANCE.md)及[移轉指南](docs/MIGRATION.zh-TW.md)。

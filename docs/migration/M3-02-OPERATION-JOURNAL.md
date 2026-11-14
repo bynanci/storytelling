@@ -49,6 +49,11 @@ The current attempt number is also checked before accepting a response or
 readback, including an otherwise identical duplicate receipt. An old owner or a
 late receipt for an earlier attempt cannot overwrite a newer state. Repeating an
 identical receipt for the current attempt is idempotent.
+The first readback remains a distinct receipt from a host response, even when
+both map to `outcome_unknown` and carry the same evidence digest. It records a
+readback event and consumes one readback; only an already-recorded readback is
+eligible for the idempotent shortcut. See the compatible
+[regression correction](../validation/m3-02-readback-receipt-collision.md).
 
 The lease and fencing token protect journal state only; FilmCraft does not yet
 understand the token. Before M3-03 treats a `NotApplied` readback as retry

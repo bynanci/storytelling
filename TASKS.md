@@ -111,6 +111,8 @@ One PR owns a public schema or time contract change at a time. Adapters and inte
 
 ## Accepted lifecycle
 
+M3-JL02/M3-JL06 maintenance: the [first-readback receipt correction](docs/validation/m3-02-readback-receipt-collision.md) has local RED/GREEN evidence; final-head hosted checks remain pending. It changes no execution authority.
+
 The user authorized merging completed PRs after all required checks pass on the exact submitted commit. Check the resulting main commit. Releases, tags, repository policies and permissions require separate authority. Check actual media, host and human results independently. See the [merge record](docs/delivery/VIDEO_TASK_HISTORY.md#accepted-lifecycle), [origins](PROVENANCE.md) and [migration guide](docs/MIGRATION.md).
 
 <details>
