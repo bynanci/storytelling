@@ -21,7 +21,7 @@ The skill installs independently from Rust. The package version is `0.1.0-dev.0`
 
 <a name="跨媒體敘事的開發順序"></a>
 
-N10-06A / #129 is a separate [exact input helper](docs/adr/0012-draft-exact-video-range-input.md). The requester [accepted draft-only G2](docs/validation/n10-06a-g2-decision.md) at `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf`; focused A automated G4 passed at implementation head 59516f2; the later continuation permits engineering merge after current-head CI/review. V1 and M3 authority keep their accepted/pending boundaries. Stable SDK (#107), author/media/host evidence, B/C/D, release retain independent gates.
+N10-06A / #129's [exact input helper](docs/adr/0012-draft-exact-video-range-input.md) merged through [PR #130](https://github.com/bynanci/storytelling/pull/130) as `125e5b1`. Final head `b63552e` and post-merge main passed all six CI jobs; [the validation record](docs/validation/n10-06a-exact-input.md) preserves the prior draft-only G2 decision and RED/GREEN. [B/C/D proposal/checklist deliveries](docs/validation/continuation-2026-11-14.md) are also on main, with their individual technical G2, implementation and evidence gates pending. Independent author/media/host acceptance and G5 remain separate.
 
 ## Cross-media narrative roadmap
 
@@ -48,7 +48,7 @@ The video work targets an editable 60–90 second rough cut from 30–50 selecte
 | M1 interchange | The limited importer, OTIO writer and isolated Linux 25 fps proof passed acceptance. | FilmCraft imported, previewed and reopened the picture-only project. Audio, other profiles and human acceptance remain open. |
 | M2 planning | The bounded audit, fixed-window planner and selected-domain comparison passed acceptance. The full solver remains open. | Repeat the result from the same inputs. Report hard conflicts. |
 | M3 review and execution | P1, P2 and the M3-02 journal passed bounded acceptance. M3-03 has an isolated test. A production executor remains open. | Bind the proposal and artifact to the review. Check authority and operation ownership. Recover partial or unknown outcomes from receipts and host observations. |
-| M4 consumers | Planned. A reference application and an independent TypeScript client will use the SDK. | One writer per service, visible review and approval, and an optional MCP interface. |
+| M4 consumers | Read-only facade design merged in [PR #134](https://github.com/bynanci/storytelling/pull/134) as a [G2 proposal](docs/proposals/m4-01-readonly-sdk/README.md); facade, TypeScript and reference-app implementation remain pending. | One writer per service, visible review and approval, and an optional MCP interface. |
 | M5 beta | Planned. M5-02 / #112 remains blocked on #109, #111 and accepted M3 execution/recovery. The [prospective v1 protocol](docs/validation/m5-02-rough-cut-beta-v1.md) is design-only; no beta has started. | Measured outcomes, tested host profiles and distribution evidence. |
 | v1.0 | No release date. | Accepted migration, recovery, compatibility and security evidence for the public contract. |
 
@@ -61,7 +61,7 @@ The video work targets an editable 60–90 second rough cut from 30–50 selecte
 | M1-01 → M1-02 → M1-03 | M0. Prove the limited interchange before a real host test. |
 | M2-01 → M2-02 → M2-03 | M2-01 follows M1-01. Requirements and fixtures can proceed in parallel. |
 | M3-01/P1 → P2 → M3-02 → M3-03 | P1 requires M1-03 and M2-02. P2 connects the selected proposal to read-only OTIO review. |
-| M3-04 / #103 → #104 → #105 → #106 | [Execution V1 proposal](docs/migration/EXECUTION_CONTRACT_V1.md) freezes identity/authority, project exclusion, readback and no blind retry. G2 is pending; executor, recovery and host acceptance are separate gates. |
+| M3-04 / #103 → #104 → #105 → #106 | [Execution V1](docs/migration/EXECUTION_CONTRACT_V1.md) merged as proposal documents in [PR #117](https://github.com/bynanci/storytelling/pull/117), `a23a290`. W01 authorization/implementation and final tested-contract #103 G2 acceptance remain pending before #104. Executor, recovery and host acceptance retain separate gates. |
 | M4 → M5 → v1.0 | M4 requires M2-03 and acceptance of production M3-03 execution and readback. |
 
 Read the [P2 contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md), [journal evidence](https://github.com/bynanci/storytelling/pull/56) and [M3-03 test](docs/validation/m3-03-filmcraft-execution.md). The test reproduces a successful import with a lost reply. After a timeout, read back the project. Stop if the operation might still run or the result remains ambiguous.

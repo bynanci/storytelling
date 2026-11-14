@@ -19,7 +19,7 @@ Skill 可以獨立安裝。目前套件版本為 `0.1.0-dev.0`。使用者可從
 
 <a id="cross-media-narrative-roadmap"></a>
 
-N10-06A／#129 為獨立的[精確時間輸入輔助](docs/adr/0012-draft-exact-video-range-input.md)。請求者已[接受候選 `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf` 的 draft-only G2](docs/validation/n10-06a-g2-decision.md)，聚焦 A 的實作 head 59516f2 已通過自動化 G4；工程合併須目前 head 通過審查與 CI。既有 V1 與 M3 權限維持各自已接受／待決範圍。穩定 SDK（#107）、作者／媒體／宿主證據、B/C/D、發布保留獨立門檻；後續授權允許工程合併。
+N10-06A／#129 的[精確時間輸入輔助](docs/adr/0012-draft-exact-video-range-input.md)已由 [PR #130](https://github.com/bynanci/storytelling/pull/130) 以 `125e5b1` 合併。最終 head `b63552e` 與合併後 main 六項 CI 均通過；[驗證紀錄](docs/validation/n10-06a-exact-input.md)保留原 draft-only G2 決定及 RED／GREEN。[B/C/D 提案／檢查表](docs/validation/continuation-2026-11-14.md)也已納入 main，各自的技術 G2、實作及證據門檻仍待完成。獨立作者／媒體／Host 驗收及 G5 維持分開。
 
 ## 跨媒體敘事的開發順序
 
@@ -46,7 +46,7 @@ N10-06A／#129 為獨立的[精確時間輸入輔助](docs/adr/0012-draft-exact-
 | M1 影片交接 | 限定格式的匯入與 OTIO 匯出已採納。M1-03 已在 Linux 驗證 25 fps 純畫面專案。 | FilmCraft 已實測匯入、CPU 預覽、讀回、存檔與重開。音訊、其他設定與人工驗收仍待測。 |
 | M2 鏡頭規劃 | 限定範圍的條件稽核、固定區間規劃與執行結果比對已採納。完整求解器仍待開發。 | 相同輸入須能重現結果。硬性條件無法滿足時，應指出衝突。 |
 | M3 審閱與執行 | P1 審閱、P2 唯讀交接與 M3-02 操作日誌已採納。M3-03 已有隔離測試。正式執行器仍待驗收。 | 核對授權、提案、成品與操作擁有者。部分完成或結果不明時，需從日誌和實際專案復原。 |
-| M4 用戶端 | 規劃中。參考應用與獨立 TypeScript 用戶端共用 SDK。 | 同一服務只有一個寫入者。使用者能審閱、核准及檢查結果。MCP 介面為選用項目。 |
+| M4 用戶端 | 唯讀 facade 設計已由 [PR #134](https://github.com/bynanci/storytelling/pull/134) 合併為 [G2 提案](docs/proposals/m4-01-readonly-sdk/README.zh-TW.md)；facade、TypeScript 與 Reference App 實作仍待完成。 | 同一服務只有一個寫入者。使用者能審閱、核准及檢查結果。MCP 介面為選用項目。 |
 | M5 測試版 | M5-02／#112 仍受阻於 #109、#111 及已接受的 M3 執行／復原流程。[前瞻式 v1 規程](docs/validation/m5-02-rough-cut-beta-v1.zh-TW.md)僅為設計，Beta 尚未開始。 | 使用結果、實測平台組合與安裝證據。 |
 | v1.0 穩定版 | 尚未排定。 | 採納公開契約、遷移方式、安全、復原及相容性驗收結果。 |
 
@@ -59,7 +59,7 @@ N10-06A／#129 為獨立的[精確時間輸入輔助](docs/adr/0012-draft-exact-
 | M1-01 → M1-02 → M1-03 | 接續 M0。驗證限定格式的交接後，才執行編輯器測試。 |
 | M2-01 → M2-02 → M2-03 | M2-01 接續 M1-01。需求與測試素材可先準備。 |
 | M3-01/P1 → P2 → M3-02 → M3-03 | P1 需要 M1-03 與 M2-02。P2 將選定提案交給唯讀 OTIO 審閱流程。 |
-| M3-04／#103 → #104 → #105 → #106 | [執行契約 V1 提案](docs/migration/EXECUTION_CONTRACT_V1.zh-TW.md)凍結身分／授權、專案隔離、回讀及禁止盲目重試。G2 待審，執行器／復原／宿主分別驗收。 |
+| M3-04／#103 → #104 → #105 → #106 | [Execution V1](docs/migration/EXECUTION_CONTRACT_V1.zh-TW.md)已由 [PR #117](https://github.com/bynanci/storytelling/pull/117) 以 `a23a290` 合併為提案文件。W01 授權／實作與實測契約的最終 #103 G2 接受仍待完成，之後才可開始 #104；執行器、復原及宿主驗收各自有門檻。 |
 | M4 → M5 → v1.0 | M4 需要 M2-03，以及可用於正式環境的 M3-03 執行與讀回流程。 |
 
 [P2 契約](docs/migration/PLANNER_OTIO_REVIEW_V1.md)及 [M3-02 日誌](https://github.com/bynanci/storytelling/pull/56)已納入主分支。[M3-03 隔離測試](docs/validation/m3-03-filmcraft-execution.md)重現了編輯器執行成功、呼叫端卻未收到回覆的情況。逾時後須先讀回專案。若操作仍可能執行，或讀回結果不明，應停止重送。

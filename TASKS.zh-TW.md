@@ -19,6 +19,8 @@
 
 [2026-11-11 open issues 查核](docs/validation/open-issues-2026-11-11.zh-TW.md)整理請求者回饋、修訂稿、CLI 收據及仍需人工或相依決策的條件。
 
+[2026-11-14 交付／阻擋盤點](docs/validation/continuation-2026-11-14.md)記錄已合併產物、精確 head／合併後 CI 及十六個仍為 Open 的議題；不代替技術接受或真人驗收。
+
 <a id="skill-distribution"></a>
 
 ## 安裝與散布
@@ -73,7 +75,8 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 | 流派與手法 | CLI 檢查宣告順序；兩次官方表單閱讀依維護者證言完成定性門檻。實際皆 A→B，隨機方法未記錄。 | [N-08／#65 紀錄](docs/validation/n08-style-profile.md)保留具限制結案、來源判斷、困惑與原單頁交接，不宣稱審美優越。 |
 | 聲音與 Podcast | `render-cue-sheet` 依 N-02 綁定旁白、停頓與已提供的音效，保留未知時間並檢查互斥聲軌衝突。錄音與混音仍由宿主處理。 | [N-09／#66](https://github.com/bynanci/storytelling/issues/66)：[規格](docs/narrative/NARRATIVE_CUE_SHEET_V1.zh-TW.md)與[重播證據](docs/validation/n09-cue-sheet.zh-TW.md)。 |
 | 編劇、分支構思與影片對照 | 文字樣板可用。N-06 當時暫緩三種原生模式；請求者後續只為 N-10 選擇影片限定 `NarrativeVideoCoverageV1`，作者任務是選兩個故事單元並保留一個缺素材。 | [N-10／#67](https://github.com/bynanci/storytelling/issues/67) 已由 [PR #93](https://github.com/bynanci/storytelling/pull/93) 接受 G2；有界 Rust 驗證與唯讀 CLI 已透過 [PR #97](https://github.com/bynanci/storytelling/pull/97) 合併。同 head hosted CI 六項全過，見 [run #376](https://github.com/bynanci/storytelling/actions/runs/43148901399)。N10-05 的限定證據已完成：Codex 重播合法／無效 JSON；維護者提供一場合併後作者自操作 session（145 秒、先前已有接觸、無隨機化或獨立觀察者）；Codex 探測提供的合成 MP4。此 session 是定性紀錄，不是獨立使用者研究；V1 不讀取媒體位元組。見[實作驗證紀錄](docs/validation/n10-video-coverage-cli.zh-TW.md)、[操作紀錄](docs/validation/n10-05-execution-record.zh-TW.md)與[#67 證據](https://github.com/bynanci/storytelling/issues/67#issuecomment-6815393001)。G5 發布另行決定。 |
-| [N10-06A／#129](https://github.com/bynanci/storytelling/issues/129) · N-R10-06A | 候選 `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf` 的 draft-only G2 已接受；聚焦 A 的實作 head 59516f2 已通過自動化 G4；工程合併須目前 head 通過審查與 CI。 | [ADR 0012](docs/adr/0012-draft-exact-video-range-input.md)、[決定紀錄](docs/validation/n10-06a-g2-decision.md)、[固定輸入](tests/fixtures/n10-06a-draft/README.md)、[gate 盤點](docs/validation/n10-06a-gates.md)與[繁中說明](docs/proposals/n10-06a/README.zh-TW.md)定義秒數／影格精確轉為既有 V1。[RED／GREEN 與本機檢查收據](docs/validation/n10-06a-exact-input.md)已保留，最終 head CI 於 PR #130 追蹤；穩定 SDK（#107）、獨立作者、媒體、宿主、B/C/D、發布仍各自有門檻；後續授權允許已驗證工程 PR 通過目前 head 審查／CI 後合併。 |
+| [N10-06A／#129](https://github.com/bynanci/storytelling/issues/129) · N-R10-06A | 工程切片已由 [PR #130](https://github.com/bynanci/storytelling/pull/130) 以 `125e5b1` 合併；draft-only G2 仍綁定候選 `f148b6d`。最終 head `b63552e` 及合併後 main 六項 CI 均通過。 | [ADR 0012](docs/adr/0012-draft-exact-video-range-input.md)、[決定紀錄](docs/validation/n10-06a-g2-decision.md)、[fixtures](tests/fixtures/n10-06a-draft/README.md)、[指南](docs/proposals/n10-06a/README.zh-TW.md)與[追加的最終驗證紀錄](docs/validation/n10-06a-exact-input.md)保留精確輸入／既有 V1 界線與真實 RED／GREEN。獨立作者操作尚未觀察；#129 仍為 Open，B/C/D、媒體／Host／權限證據各自待驗收。 |
+| N10-06B/C/D／[#129](https://github.com/bynanci/storytelling/issues/129) | [B／PR #132](https://github.com/bynanci/storytelling/pull/132)、[C／PR #133](https://github.com/bynanci/storytelling/pull/133)及[D／PR #131](https://github.com/bynanci/storytelling/pull/131)已合併，範圍是提案／檢查表。 | [B 預檢設計](docs/proposals/n10-06b/README.zh-TW.md)仍須聚焦 G2 與實作；[C 契約／威脅模型](docs/proposals/n10-06c/README.zh-TW.md)須獨立 G2／隱私範圍、實作及真實檔案證據；[D dry-run 表](docs/proposals/n10-06d/README.zh-TW.md)分開記錄宣告、媒體、內容、Host 及 authority。不提供 Reference App、媒體 probe 或 Host 動作。 |
 | 跨媒體交接 | `render-handoff` 將檔案、描述、文字標註、提案及缺件宣告綁定 N-04 修訂，區分須改日期與可沿用的構圖、聲音。 | [N-11／#68](https://github.com/bynanci/storytelling/issues/68)：[規格](docs/narrative/NARRATIVE_HANDOFF_MANIFEST_V1.zh-TW.md)與[重播證據](docs/validation/n11-handoff.md)。語意仍由作者檢視。 |
 | 實際產出圖檔或音檔 | N-12 在 Linux 用 Inkscape 1.4 將合成 SVG 匯出 PNG 並讀回；入口不可用時交付構圖說明。[可行性紀錄與真實產物](docs/validation/n12-inkscape-png.zh-TW.md) | [N-12／#69](https://github.com/bynanci/storytelling/issues/69) 的縮小採用建議待維護者決定；正式 adapter 另行排程。 |
 
@@ -87,10 +90,10 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 | --- | --- |
 | M0、M1、M2 | 基礎、限定格式的影片交接及特定範圍的規劃已採納。更多編輯器、完整求解器與人工驗收另列。 |
 | M3 | P1 與 P2 的限定審閱流程及 M3-02 日誌已採納。M3-03 具備隔離測試。正式執行器、執行中逾時的處理與跨平台實機驗收仍待完成。 |
-| [M3-04／#103](https://github.com/bynanci/storytelling/issues/103) | G2 待審。[ADR 0011](docs/adr/0011-production-execution-contract-v1.md)、[V1 摘要](docs/migration/EXECUTION_CONTRACT_V1.zh-TW.md)及[案例／工作包](docs/validation/m3-04-execution-contract.md)只完成設計；沒有執行器或 G2 核准。 |
+| [M3-04／#103](https://github.com/bynanci/storytelling/issues/103) | [PR #117](https://github.com/bynanci/storytelling/pull/117) 已以 `a23a290` 合併提案文件：[ADR 0011](docs/adr/0011-production-execution-contract-v1.md)、[Execution V1](docs/migration/EXECUTION_CONTRACT_V1.zh-TW.md)及[案例／工作包](docs/validation/m3-04-execution-contract.md)。W01 授權／實作與實測契約的最終 G2 接受仍待完成；沒有執行器或當前 authority。 |
 | [M3-05／#104](https://github.com/bynanci/storytelling/issues/104) | 受阻於 #103 明確接受；提案限單次派送，後續為 #105 復原及 #106 宿主驗收。 |
 | M4 | 規劃 TypeScript 用戶端與單一寫入者。須先驗收 M2-03 和 M3-03。 |
-| [M4-01／#107](https://github.com/bynanci/storytelling/issues/107) · 提案 M4-R01 | 唯讀 facade 的 [ADR 0013](docs/adr/0013-read-only-consumer-facade-v1.md)、[繁中指南](docs/proposals/m4-01-readonly-sdk/README.zh-TW.md)及[golden 測試計畫](docs/proposals/m4-01-readonly-sdk/test-plan.md)為 G2 提案。八個操作重用既有純函式，尚未實作 facade、凍結公開 API 或驗證 CLI／SDK 等價。#107 保持 Open；execution／recovery 待 #103–#106 接受。 |
+| [M4-01／#107](https://github.com/bynanci/storytelling/issues/107) · 提案 M4-R01 | [PR #134](https://github.com/bynanci/storytelling/pull/134) 已以 `075d6b0` 合併唯讀 facade 的 [ADR 0013](docs/adr/0013-read-only-consumer-facade-v1.md)、[繁中指南](docs/proposals/m4-01-readonly-sdk/README.zh-TW.md)及[golden 計畫](docs/proposals/m4-01-readonly-sdk/test-plan.md)，均仍為 G2 提案。八個操作重用既有純函式；facade 實作、公開 API 凍結及 CLI／SDK 等價證據仍待完成。#107 保持 Open；execution／recovery 須等 #103–#106 接受。 |
 | M5、v1.0 | 規劃第二個編輯器、跨平台發行與獨立使用者評估。穩定版須通過相容性、遷移與復原驗收。 |
 | [M5-02／#112](https://github.com/bynanci/storytelling/issues/112) | 受阻於 #109、#111 及已接受的 M3 執行／復原流程。[前瞻式 v1 規程](docs/validation/m5-02-rough-cut-beta-v1.zh-TW.md)與匿名空白表單僅完成設計；尚未招募或開始 Beta。 |
 

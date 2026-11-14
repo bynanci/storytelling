@@ -50,3 +50,10 @@ Implementation head `59516f24f4d829a3d695c115d2f94e208a78cdea` passed all six ho
 | G5 publication | Not authorized |
 
 B adds actionable multi-field advisory UX after A is reviewed; V1 stays authoritative. C requires a trusted read-only adapter contract/threat model, explicit file-selection/privacy scope and reliable byte/metadata binding. D stays a dry-run checklist with five separate evidence states. If any binding is ambiguous, retain unknown/not_verified; never infer host support, self-approval or safe retry from declaration readiness. Removing the opt-in feature/command is the rollback; existing inputs need no migration.
+
+
+## Final submitted head and merge · 2026-11-14
+
+The earlier source and intermediate-head receipts above remain historical evidence. The final submitted PR #130 head was `b63552e7d50c57140398f428add3bdeb6318dad1`; all six required jobs passed in [run 43575521144](https://github.com/bynanci/storytelling/actions/runs/43575521144), including default and opt-in tests on Linux, Windows and macOS. PR #130 merged as `125e5b1bade5be2d406fc33de67773873d2a07f5`; all six post-merge jobs passed in [run 43575900666](https://github.com/bynanci/storytelling/actions/runs/43575900666).
+
+The final branch also incorporated PR #117's proposed design documents. That proposal merge did not accept #103 G2, authorize W01 or enable host execution. N10-06A's verified delivery remains the opt-in declaration-only helper. Independent author operation is unobserved, #129 stays Open, and the merged B/C/D artifacts remain proposed UX/media contracts or a dry-run checklist with their separate gates. The [continuation reconciliation](continuation-2026-11-14.md) records the later proposal deliveries and combined-main CI without replacing any original RED/GREEN or manual-evidence limits.
