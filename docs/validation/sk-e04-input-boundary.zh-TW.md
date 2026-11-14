@@ -51,3 +51,7 @@ git diff --check
 Scripts suite 通過 99 項、pilot helpers 12 項、recorder helpers 執行 22 項（因本 checkout 無建好的 CLI，跳過一項 native replay）、editorial checks 11 項、宿主證據拒絕檢查 6 項、execution-design checks 5 項。這些檢查不操作宿主，也不提供真人證據。文件完成後另行記錄 repository／diff 檢查。目前另一個 agent 使用共享 Cargo slot，本變更尚未本機執行 Rust workspace 檢查。合併前，最終 PR head 必須通過必要 CI 與擴充後的 Linux／Windows／macOS SK-E04 workflow；此處不宣稱已有結果。
 
 #121 原始重評仍缺已授權的精確草稿、資料包、提示／量表及評審設定。#122 維持受阻，不建立 holdout。凍結分派清單與已授權證據位元組仍需另行核對。G2 決定、真人接受與 G5 發布門檻維持。
+
+## Journal 修正後的整合
+
+兩個 commits 已 rebase 至 main `5bbe80dc2cf8286abb15ad5278e86ec7384cdb4d`，保留 journal 與 SK-E04 的需求／任務追溯。在 rebase 後的實作 head `80218b7d070218195933cb7ca5639bd2fb1b4e87`，重新通過 24 項 focused methods、v1／v2 stdout 逐位元組比對、repository 與乾淨 diff 檢查，見[整合收據](sk-e04-input-boundary/integration.json)。Rebase 將測試先行 commit 改寫為 `5ca1e3ad50830cb59a94f5cbda6c58da8e10470b`；原始 RED 仍是實際於 `c2a0d05` 觀察，保留上述紀錄。此次整合未呼叫 Cargo，不宣稱已有本機 Rust 或 hosted CI 結果。
