@@ -526,10 +526,6 @@ fn audit_commercial_copy_command(args: &[OsString]) -> ExitCode {
     }
 }
 
-fn read_bounded(reader: impl Read) -> io::Result<Vec<u8>> {
-    read_with_limit(reader, MAX_INPUT_BYTES)
-}
-
 fn read_with_limit(reader: impl Read, limit: usize) -> io::Result<Vec<u8>> {
     let mut bytes = Vec::new();
     reader.take(limit as u64 + 1).read_to_end(&mut bytes)?;
@@ -537,6 +533,14 @@ fn read_with_limit(reader: impl Read, limit: usize) -> io::Result<Vec<u8>> {
 }
 
 fn read_file_with_limit(path: &OsStr, limit: usize) -> io::Result<Vec<u8>> {
+    // Opening a FIFO can block before handle metadata is available. This rejects
+    // static nonregular paths; it does not prevent concurrent path replacement.
+    if !std::fs::metadata(path)?.is_file() {
+        return Err(io::Error::new(
+            io::ErrorKind::InvalidInput,
+            "not a regular file",
+        ));
+    }
     let file = File::open(path)?;
     if !file.metadata()?.is_file() {
         return Err(io::Error::new(
@@ -681,17 +685,7 @@ fn main() -> ExitCode {
         let Some(expected) = args[2].to_str() else {
             return failure("cli.usage", 2);
         };
-        let bytes = if args[1] == OsStr::new("-") {
-            read_with_limit(io::stdin().lock(), MAX_VERIFIED_BUFFER_BYTES)
-        } else {
-            match File::open(&args[1]) {
-                Ok(file) => match file.metadata() {
-                    Ok(m) if m.is_file() => read_with_limit(file, MAX_VERIFIED_BUFFER_BYTES),
-                    _ => return failure("input.io", 3),
-                },
-                Err(_) => return failure("input.io", 3),
-            }
-        };
+        let bytes = read_argument(&args[1], MAX_VERIFIED_BUFFER_BYTES);
         let Ok(bytes) = bytes else {
             return failure("input.io", 3);
         };
@@ -816,17 +810,7 @@ fn main() -> ExitCode {
     let Some(input) = args.get(1) else {
         return failure("cli.usage", 2);
     };
-    let bytes = if input == OsStr::new("-") {
-        read_bounded(io::stdin().lock())
-    } else {
-        match File::open(input) {
-            Ok(file) => match file.metadata() {
-                Ok(metadata) if metadata.is_file() => read_bounded(file),
-                _ => return failure("input.io", 3),
-            },
-            Err(_) => return failure("input.io", 3),
-        }
-    };
+    let bytes = read_argument(input, MAX_INPUT_BYTES);
     let Ok(bytes) = bytes else {
         return failure("input.io", 3);
     };
