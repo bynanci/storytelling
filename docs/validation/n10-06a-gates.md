@@ -1,8 +1,8 @@
 <!-- SPDX-License-Identifier: MIT -->
 # N10-06A baseline, scope and gate record
 
-**Checked:** 2026-11-14 UTC. **Task:** N10-06A / [Issue #129](https://github.com/bynanci/storytelling/issues/129).  
-**Actual latest main at start:** `52dc6c315f7b3d20693f3c51e052509997ab791b`, read from GitHub's `refs/heads/main`.  
+**Checked:** 2026-11-14 UTC. **Task:** N10-06A / [Issue #129](https://github.com/bynanci/storytelling/issues/129).
+**Actual latest main at start:** `52dc6c315f7b3d20693f3c51e052509997ab791b`, read from GitHub's `refs/heads/main`.
 **State:** G0/G1 inventory complete; the requester accepted draft-only G2 at candidate `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf` on 2026-11-14 and authorized A's RED/GREEN implementation. **G3 is implemented; G4 review is in progress; the PR remains Draft.** See the [decision record](n10-06a-g2-decision.md). The stable public SDK facade, host profile, execution authority and release retain separate gates.
 
 ## Authorization and G2 boundary
