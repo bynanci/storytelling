@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: MIT -->
 # ADR 0012 · Exact video-range input helper (N10-06A candidate)
 
-- **Status: proposed; G2 acceptance blocked pending maintainer decision.**
+- **Status: draft-only G2 accepted by the requester on 2026-11-14 for candidate `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf`; G3 in progress.** See the [exact decision and remaining gates](../validation/n10-06a-g2-decision.md). The candidate text below remains the accepted implementation basis; stable SDK, human, media, host, release and merge gates remain separate.
 - **Issue:** [#129](https://github.com/bynanci/storytelling/issues/129), N10-06A / N-R10-06A.
 - **Base:** `52dc6c315f7b3d20693f3c51e052509997ab791b`, checked 2026-11-14 UTC.
 - **Scope:** one draft-only input helper; the accepted [ADR 0010](0010-narrative-video-coverage-v1.md), V1 schemas, public Rust DTOs, 21 diagnostics and existing CLI semantics are unchanged.
@@ -12,9 +12,9 @@ An author supplies IN/OUT as exact decimal seconds or zero-based integer frame b
 
 Freeze the [acceptance vectors](../../tests/fixtures/n10-06a-draft/cases.json) before G3. The required examples include `2.5 = 5/2`, `0.1 = 1/10`, `0 = 0/1`, frame `[75,135)` at `30/1` fps = `[5/2,9/2)` seconds, and frame boundary `150` at `30000/1001` fps = `1001/200` seconds. Reject negative/exponent/NaN/timecode syntax, invalid rates, zero denominators, overflow and VFR/unknown frame timing. Empty/reversed/beyond-duration ranges must receive the unchanged V1 error and JSONPath after exact conversion. No rounding or clamping.
 
-## G2 proposal: minimum private DTO
+## G2 candidate accepted for draft implementation: minimum private DTO
 
-The following is a **candidate**, not an accepted public format. No schema is added to `contracts/`, and no existing public core/engine DTO is expanded. A feature-gated experimental function would return JSON values rather than freeze a new SDK type.
+The requester accepted the following **draft-only candidate** at `f148b6d` for focused G3 implementation; see the [decision record](../validation/n10-06a-g2-decision.md). It is not a stable public SDK format. No schema is added to `contracts/`, and no existing public core/engine DTO is expanded. A feature-gated experimental function would return JSON values rather than freeze a new SDK type.
 
 ```text
 DraftCoverageInput {
@@ -55,7 +55,7 @@ Regression vectors must include a reducible intermediate beyond u64: `9223372036
 
 ## Proposed opt-in CLI and output
 
-Proposed command: `draft-video-coverage-input <FILE|-> [--emit-v1]`, compiled only with CLI feature `draft-video-input`, disabled by default. This opt-in candidate is a local experiment for G2 review; removal is the rollback. Default builds retain their existing command surface. Implementation, including the feature, is **blocked until the focused G2 decision**.
+Proposed command: `draft-video-coverage-input <FILE|-> [--emit-v1]`, compiled only with CLI feature `draft-video-input`, disabled by default. This opt-in candidate is a local experiment for G2 review; removal is the rollback. Default builds retain their existing command surface. The [focused G2 decision](../validation/n10-06a-g2-decision.md) now authorizes this implementation.
 
 Default output is one deterministic compact JSON line:
 
@@ -95,12 +95,12 @@ Helper order: byte budget → strict JSON/depth/duplicate preflight → version 
 ## Responsibilities, compatibility and gates
 
 - Core: unchanged accepted time/wire types.
-- Engine: a separate, pure `draft_video_input` module behind feature `draft-video-input`; reuse existing strict JSON preflight, `RationalTime::from_strings` and final V1 validation. Candidate API: `normalize_draft_video_coverage(bytes: &[u8]) -> Result<serde_json::Value, serde_json::Value>`, behind the same feature. This experimental JSON boundary is pending G2, not the stable facade requested by #107. All existing APIs/DTOs keep their behavior.
+- Engine: a separate, pure `draft_video_input` module behind feature `draft-video-input`; reuse existing strict JSON preflight, `RationalTime::from_strings` and final V1 validation. Candidate API: `normalize_draft_video_coverage(bytes: &[u8]) -> Result<serde_json::Value, serde_json::Value>`, behind the same feature. This experimental JSON boundary is accepted for the focused draft implementation; the stable facade requested by #107 remains separately gated. All existing APIs/DTOs keep their behavior.
 - CLI: wires its disabled-by-default `draft-video-input` feature to the engine feature and owns explicitly selected file/stdin I/O and `--emit-v1`. No new crate or dependency, media tool, network, database or host call; the four existing crate dependency sets remain unchanged.
 - B: richer row preview/advisory hints is a separate PR after A; SDK/UI decisions follow #107–#109.
 - C: trusted local-file binding/probe adapter needs an independent G2 contract and threat model. No adapter is supplied by A.
 - D: dry-run specification only; independent declaration/media/content/host/authority states. #103/PR #117 acceptance and #104–#106 host evidence remain pending.
 
-G2 acceptance must name the exact candidate commit, grammar/bounds, CLI/feature/output, diagnostics/order, integer algorithm and compatibility boundary. Changes requested during review revise this candidate before G3. No acceptance, human operation, media probe, host readback, authority or G5 decision is inferred from this document or CI.
+The requester accepted exact candidate `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf` and authorized focused A G3 in the [decision record](../validation/n10-06a-g2-decision.md). Changes to this accepted draft grammar/API/diagnostics require another review. Human operation, media probe, host readback, authority, stable SDK adoption and G5 decisions remain unverified or separately gated.
 
 After acceptance: write normal-entry CLI regression tests; retain observed RED on the test-first commit; implement; retain GREEN; run unchanged seven `video_coverage` tests plus workspace debug/release, fmt, Clippy `-D warnings`, rustdoc, repository checks and final-head CI on Windows/Linux/macOS. An independent author operation remains a separate unverified G4 observation. The full test plan and evidence fields are in the [English guide](../proposals/n10-06a/README.md) and [繁中 guide](../proposals/n10-06a/README.zh-TW.md).

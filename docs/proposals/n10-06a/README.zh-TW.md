@@ -3,7 +3,7 @@
 
 [English](README.md) · 繁體中文 · [Issue #129](https://github.com/bynanci/storytelling/issues/129) · [ADR 0012 候選](../../adr/0012-draft-exact-video-range-input.md)
 
-**狀態：G2 提案；實作受阻，等待維護者針對候選內容決定。** 本次 base main 為 `52dc6c315f7b3d20693f3c51e052509997ab791b`（2026-11-14 UTC 核對）。本資料包定義最小 A 輔助層與驗收輸入。以下新命令、feature、DTO 及診斷均為提案，目前 checkout 尚不能執行。[Gate 盤點](../../validation/n10-06a-gates.md)記錄既有能力與依賴。
+**狀態：draft-only G2 已接受；G3 RED／GREEN 實作中；PR 保留 Draft。** 請求者於 2026-11-14 接受候選 `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf`。[決定紀錄](../../validation/n10-06a-g2-decision.md)保留原回覆與範圍。本次 base main 為 `52dc6c315f7b3d20693f3c51e052509997ab791b`。命令／API 仍為選擇啟用的 draft 介面；穩定 SDK facade 由 #107 決定。實際執行與最終 head 結果須於實作後補上收據。[Gate 盤點](../../validation/n10-06a-gates.md)記錄既有能力與依賴。
 
 ## 作者任務與候選輸入
 
@@ -35,14 +35,22 @@ cargo test --locked -p storytelling-cli --test video_coverage
 
 既有預期行為見[已接受的 N-10 紀錄](../../validation/n10-video-coverage-cli.md)。本 PR 的實際結果須另留收據；範例命令不等於已執行證據。
 
-## G2 接受後的檢查計畫
+## 實作命令與檢查計畫
 
-候選命令為 `draft-video-coverage-input <FILE|-> [--emit-v1]`，由預設關閉的 `draft-video-input` feature 啟用。**G2 接受且完成實作前，不可將以下候選命令視為可用：**
+G2 授權實作 `draft-video-coverage-input <FILE|-> [--emit-v1]`，由預設關閉的 `draft-video-input` feature 啟用。目前 G3 實作中；以下是本分支約定的驗證入口，實際結果尚待收據：
 
 ```sh
+cargo run --quiet --locked -p storytelling-cli --features draft-video-input -- \
+  draft-video-coverage-input tests/fixtures/n10-06a-draft/seconds-unresolved.draft.json
+cargo run --quiet --locked -p storytelling-cli --features draft-video-input -- \
+  draft-video-coverage-input tests/fixtures/n10-06a-draft/frames-30-unresolved.draft.json
+cargo run --quiet --locked -p storytelling-cli --features draft-video-input -- \
+  draft-video-coverage-input tests/fixtures/n10-06a-draft/frames-ntsc-unresolved.draft.json --emit-v1
 cargo test --locked -p storytelling-engine --features draft-video-input
 cargo test --locked -p storytelling-cli --features draft-video-input
 ```
+
+helper 驗證完成後，`--emit-v1` 輸出可原樣交給既有 `render-video-coverage <FILE|->`。原有已接受 CLI 仍是最終驗證器。預期輸出須等實際重播收據，才能記為觀察結果。
 
 | 計畫檢查 | 預先固定的驗收／失敗證據 |
 | --- | --- |
@@ -62,10 +70,10 @@ cargo test --locked -p storytelling-cli --features draft-video-input
 
 | 證據 | 目前狀態 | 收據／決定 |
 | --- | --- | --- |
-| 明確候選 head 的 G2 接受 | `blocked` | null |
-| 新 helper CLI／engine RED | `not_run` | null |
-| 新 helper CLI／engine GREEN | `not_run` | null |
-| 實作最終 head 回歸／CI | `not_run` | null |
+| Draft-only G2 接受 | `accepted_for_A_G3` | [原回覆](../../validation/n10-06a-g2-decision.md)，候選 `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf` |
+| 新 helper CLI／engine RED | `receipt_pending` | null |
+| 新 helper CLI／engine GREEN | `pending` | null |
+| 實作最終 head 回歸／CI | `pending` | null |
 | 獨立作者輸入秒數／影格 | `not_observed` | null |
 | 可信本機媒體綁定／probe | `not_verified` | null |
 | Host readback／執行授權 | `blocked` | null |
@@ -75,10 +83,10 @@ cargo test --locked -p storytelling-cli --features draft-video-input
 
 ## 維護者決定與後續
 
-維護者可針對候選 commit 明確接受或要求修改，例如：
+請求者於本次對話接受精確候選 `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf`：
 
-> 接受 N10-06A G2，候選 commit 為 `<exact candidate SHA>`：接受 ADR 0012 的 draft 外層、秒數／影格文法與上限、預設關閉的 `draft-video-input` feature 及候選 engine API、CLI／輸出、helper 診斷與順序、精確 checked 整數算法，以及 V1 最終權威界線。授權依此進行聚焦 A 的 G3 RED／GREEN 實作。B／C／D、媒體存取、Host 執行、G5 及 merge 仍各自待決定。
+> 接受此 G2 候選，授權 A 的 RED／GREEN 實作，保留 Draft（建議）
 
-此段是決定範本，尚無接受紀錄。若審查要求修改欄位或診斷，先修訂候選再進 G3。
+[決定紀錄](../../validation/n10-06a-g2-decision.md)授權依 ADR 0012 已審閱的文法、API、輸出及診斷進行聚焦 A 實作；紀錄未推定簽署身分或獨立審查。已接受候選若有實質變更，須修訂 G2 決定。G4 證據與本次不得自動合併的限制仍適用。
 
 B 的逐列預檢／advisory UX 接續已接受且驗證的 A；未來 SDK／UI 遵循 #107–#109。C 須獨立的本機檔案契約、威脅模型與隱私 G2。#103／PR #117 及 #104–#106 未完成前，D 維持 dry-run 清單。任何隱藏 V1 首個錯誤、靜默夾限、補造缺素材、把 metadata 當內容證明、允許自我核准或自動重試 unknown 的方案，都須縮小或停止。回退時移除 helper／feature；既有 V1 流程仍可使用。

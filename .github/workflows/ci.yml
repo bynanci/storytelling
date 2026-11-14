@@ -24,9 +24,9 @@ jobs:
           cargo fmt --all
           git diff --exit-code -- '*.rs'
       - name: Clippy
-        run: cargo clippy --workspace --all-targets --locked -- -D warnings
+        run: cargo clippy --workspace --all-targets --all-features --locked -- -D warnings
       - name: Rust documentation
-        run: cargo doc --workspace --no-deps --locked
+        run: cargo doc --workspace --all-features --no-deps --locked
         env:
           RUSTDOCFLAGS: -D warnings
       - name: SDLC traceability and architecture
@@ -39,6 +39,8 @@ jobs:
         run: python3 tests/oracles/filmcraft-25-v1/test_checks.py
       - name: Release-mode arithmetic regression
         run: cargo test --workspace --release --locked
+      - name: Opt-in exact time release regression
+        run: cargo test --workspace --all-features --release --locked
       - name: Frozen OpenFilm export conformance
         run: python3 tests/oracles/openfilm-finite-v1/compare.py target/release/storytelling --output "$RUNNER_TEMP/openfilm-differential.json"
       - name: Pinned Python for official OTIO oracle
@@ -142,6 +144,8 @@ jobs:
         run: cargo build --workspace --locked
       - name: Unit and real CLI integration tests
         run: cargo test --workspace --locked
+      - name: Opt-in exact time input and unchanged V1 regressions
+        run: cargo test --workspace --all-features --locked
       - name: Pinned Python for trial recorder
         uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
         with:

@@ -3,7 +3,7 @@
 
 English · [繁體中文](README.zh-TW.md) · [Issue #129](https://github.com/bynanci/storytelling/issues/129) · [ADR 0012 candidate](../../adr/0012-draft-exact-video-range-input.md)
 
-**State: G2 proposed; implementation blocked pending the maintainer's focused decision.** Base main is `52dc6c315f7b3d20693f3c51e052509997ab791b` (checked 2026-11-14 UTC). This packet specifies the smallest A helper and acceptance inputs. The new command, feature, DTO and diagnostics described below are proposed and are not runnable in this checkout. [The gate inventory](../../validation/n10-06a-gates.md) records existing capability and dependencies.
+**State: draft-only G2 accepted; G3 RED/GREEN implementation in progress; PR remains Draft.** The requester accepted candidate `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf` on 2026-11-14. [The decision record](../../validation/n10-06a-g2-decision.md) preserves the exact response and limits. Base main is `52dc6c315f7b3d20693f3c51e052509997ab791b`. The command/API remains an opt-in draft interface; #107 owns any stable SDK facade. Runtime and final-head results must be attached after implementation. [The gate inventory](../../validation/n10-06a-gates.md) records existing capability and dependencies.
 
 ## Author task and proposed input
 
@@ -35,14 +35,22 @@ cargo test --locked -p storytelling-cli --test video_coverage
 
 Their expected baseline behavior is documented in [the accepted N-10 record](../../validation/n10-video-coverage-cli.md). Run results for this PR must be recorded separately; an example command is not an execution receipt.
 
-## Planned checks after G2 acceptance
+## Implementation commands and planned checks
 
-The proposed command is `draft-video-coverage-input <FILE|-> [--emit-v1]`, behind the disabled-by-default `draft-video-input` feature. **Do not run the following candidate commands before G2 acceptance and implementation:**
+G2 authorizes `draft-video-coverage-input <FILE|-> [--emit-v1]` behind the disabled-by-default `draft-video-input` feature. Implementation is in progress; the following are the agreed entry points to verify on this branch, with observed results still pending:
 
 ```sh
+cargo run --quiet --locked -p storytelling-cli --features draft-video-input -- \
+  draft-video-coverage-input tests/fixtures/n10-06a-draft/seconds-unresolved.draft.json
+cargo run --quiet --locked -p storytelling-cli --features draft-video-input -- \
+  draft-video-coverage-input tests/fixtures/n10-06a-draft/frames-30-unresolved.draft.json
+cargo run --quiet --locked -p storytelling-cli --features draft-video-input -- \
+  draft-video-coverage-input tests/fixtures/n10-06a-draft/frames-ntsc-unresolved.draft.json --emit-v1
 cargo test --locked -p storytelling-engine --features draft-video-input
 cargo test --locked -p storytelling-cli --features draft-video-input
 ```
+
+After the helper is verified, its `--emit-v1` output can be supplied unchanged to the existing `render-video-coverage <FILE|->` command. The original accepted CLI remains the final validator. Expected outputs are assertions until their actual replay is recorded.
 
 | Planned check | Frozen acceptance / failure evidence |
 | --- | --- |
@@ -62,10 +70,10 @@ After behavior is implemented, run workspace debug/release tests, `cargo fmt --a
 
 | Evidence | Current state | Receipt / decision |
 | --- | --- | --- |
-| G2 acceptance of exact candidate head | `blocked` | null |
-| New helper CLI/engine RED | `not_run` | null |
-| New helper CLI/engine GREEN | `not_run` | null |
-| Final-head implementation regression / CI | `not_run` | null |
+| Draft-only G2 acceptance | `accepted_for_A_G3` | [Exact response](../../validation/n10-06a-g2-decision.md), candidate `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf` |
+| New helper CLI/engine RED | `receipt_pending` | null |
+| New helper CLI/engine GREEN | `pending` | null |
+| Final-head implementation regression / CI | `pending` | null |
 | Independent author entering seconds/frames | `not_observed` | null |
 | Trusted local media binding/probe | `not_verified` | null |
 | Host readback / execution authority | `blocked` | null |
@@ -75,10 +83,10 @@ Machine checks, media observations, author operation, host readback, maintainer 
 
 ## Decision and follow-up
 
-A maintainer may explicitly accept or request changes using the candidate commit, for example:
+The requester accepted the exact candidate `f148b6d1ad0883725c0dbe5fec601f6178f5dfdf` in the active conversation:
 
-> Accept N10-06A G2 at `<exact candidate SHA>`: ADR 0012's draft wrapper and decimal/frame grammar and bounds; disabled-by-default `draft-video-input` feature and candidate engine API; proposed CLI/output and helper diagnostics/order; exact checked integer algorithm and unchanged V1 authority. Authorize the focused A G3 RED/GREEN implementation on this basis. B/C/D, media access, host execution, G5 and merge remain separately gated.
+> 接受此 G2 候選，授權 A 的 RED／GREEN 實作，保留 Draft（建議）
 
-This text is a decision template; it is not an acceptance record. A requested field/diagnostic change revises the candidate before G3.
+The [decision record](../../validation/n10-06a-g2-decision.md) authorizes the focused A implementation under ADR 0012's reviewed grammar/API/output/diagnostics. It records no signer identity or independent review. Material changes to the accepted candidate need a revised G2 decision. G4 evidence and the current task's no-auto-merge restriction remain in force.
 
 B's richer row/advisory UX follows accepted and verified A; future SDK/UI adoption follows #107–#109. C needs its own local-file contract, threat model and privacy G2. D remains a dry-run checklist while #103/PR #117 and #104–#106 remain pending. Stop or narrow any design that hides V1's first error, silently clamps ranges, invents missing coverage, treats metadata as content proof, enables self-approval or retries an unknown host outcome. Remove the helper/feature to roll back; the accepted V1 workflow remains available.

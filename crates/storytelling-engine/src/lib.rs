@@ -31,6 +31,11 @@ mod narrative_handoff;
 mod narrative_revision;
 pub use narrative_handoff::{NarrativeHandoffProjectionV1, render_narrative_handoff};
 pub use narrative_revision::{query_narrative_impact, track_narrative_revisions};
+#[cfg(feature = "draft-video-input")]
+mod draft_video_input;
+#[cfg(feature = "draft-video-input")]
+pub use draft_video_input::normalize_draft_video_coverage;
+
 mod narrative_video_coverage;
 pub use narrative_video_coverage::render_narrative_video_coverage;
 pub use storytelling_core::narrative_revision::{
