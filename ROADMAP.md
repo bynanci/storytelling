@@ -91,3 +91,8 @@ Record each candidate's source commit, locked dependencies, schema versions and 
 6. Compare both implementations before switching the feature flag. Keep one writer. Retire the previous implementation after acceptance. Preserve source data throughout read-only import.
 
 See the [migration guide](docs/MIGRATION.md). Check behavior, runtime dependencies and regression results for each port.
+
+## Gemini R1 skill evaluation record (SK-EVAL-R1)
+
+The [40-case model-judged report and visual comparison](docs/research/evaluations/2026-11-13-gemini-r1/README.md) preserve numeric observations, source-packet errata and unverified declared assignments. This is W4/W6 diagnostic evidence, not a newly accepted requirement, human result or implemented skill improvement.
+Use [#115](https://github.com/bynanci/storytelling/issues/115) as the umbrella. [SK-E01 / #118](https://github.com/bynanci/storytelling/issues/118) is merged with the versioned [offline record and blind-packet workflow](docs/research/evaluations/sk-e01/README.md). [SK-E02 / #119](https://github.com/bynanci/storytelling/issues/119) now has an evaluation-only [evidence-plan, adjudication and packet-errata contract](docs/research/evaluations/sk-e02/README.md); synthetic validation does not supply R1 provenance or a new result. [SK-E03 / #120](https://github.com/bynanci/storytelling/issues/120), [SK-E04 / #121](https://github.com/bynanci/storytelling/issues/121) and [SK-E05 / #122](https://github.com/bynanci/storytelling/issues/122) stay separate follow-ups. Existing N/M acceptance, #54's disposition and #112's human-evidence gates retain their separate scope.

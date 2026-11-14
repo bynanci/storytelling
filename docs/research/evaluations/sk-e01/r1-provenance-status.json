@@ -1,0 +1,28 @@
+{
+  "record_version": "r1-provenance-status/v1",
+  "evaluation_id": "gemini-r1-2026-11-13",
+  "per_draft_generation_manifest": {"status": "unknown", "value": null},
+  "per_draft_condition": {"status": "unknown", "value": null},
+  "per_draft_prompt_bytes_and_sha256": {"status": "unknown", "value": null},
+  "per_draft_evidence_packet_bytes_and_sha256": {"status": "unknown", "value": null},
+  "per_draft_model_runtime_version_and_settings": {"status": "unknown", "value": null},
+  "per_draft_skill_commit_and_sha256": {"status": "unknown", "value": null},
+  "per_draft_generation_timestamp": {"status": "unknown", "value": null},
+  "published_group_assignments": {
+    "status": "preserved_as_declared",
+    "source": "docs/research/evaluations/2026-11-13-gemini-r1/ratings_normalized_R1.json",
+    "mapping_to_actual_generations": "unknown"
+  },
+  "published_scores_flags_and_conclusions": {
+    "status": "preserved_without_relabeling",
+    "source_paths": [
+      "docs/research/evaluations/2026-11-13-gemini-r1/case_pairs_R1.csv",
+      "docs/research/evaluations/2026-11-13-gemini-r1/dimension_summary_R1.csv",
+      "docs/research/evaluations/2026-11-13-gemini-r1/ratings_normalized_R1.json",
+      "docs/research/evaluations/2026-11-13-gemini-r1/ratings_numeric_R1.csv",
+      "docs/research/evaluations/2026-11-13-gemini-r1/source_audit_R1.csv",
+      "docs/research/evaluations/2026-11-13-gemini-r1/statistics_R1.json"
+    ]
+  },
+  "reconstruction_from_style_or_published_group": "prohibited"
+}

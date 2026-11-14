@@ -130,3 +130,7 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 
 </details>
 
+## Gemini R1技能評估紀錄（SK-EVAL-R1）
+
+[40案模型評分報告與視覺化](docs/research/evaluations/2026-11-13-gemini-r1/README.zh-TW.md)保存原始數值、來源勘誤與宣告分組限制。這是W4/W6的診斷觀察，不新增已驗收需求、真人結果或完成的技能改善。
+沿用[#115](https://github.com/bynanci/storytelling/issues/115)總追蹤。[SK-E01／#118](https://github.com/bynanci/storytelling/issues/118)與[SK-E02／#119](https://github.com/bynanci/storytelling/issues/119)已合併。[SK-E03／#120](https://github.com/bynanci/storytelling/issues/120)已結案，交付四個中英合成回歸案例及非獨立開發演練；不構成效益結果。[SK-E04／#121](https://github.com/bynanci/storytelling/issues/121)已建立凍結反序協定、錨點 rubric 與描述性分析工具（[前置資料包](docs/research/evaluations/sk-e04/README.zh-TW.md)）。原始草稿／資料包位元組、精確提示／量表及模型設定缺失，無法執行；未知歷史欄位維持未知。[SK-E05／#122](https://github.com/bynanci/storytelling/issues/122)仍獨立追蹤，需待相依工作完成，才可主張 holdout 效益。既有 N/M 任務、#54 處置及 #112 真人證據門檻維持各自範圍。

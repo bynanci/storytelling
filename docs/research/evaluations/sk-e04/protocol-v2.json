@@ -1,0 +1,113 @@
+{
+  "schema_version": "skill-evaluation-order-protocol/v2",
+  "record_kind": "prospective_protocol",
+  "study_id": "SK-E04-R2",
+  "status": "prepared_blocked",
+  "objective": "Estimate within-case scoring stability and presentation-order sensitivity without changing the judged texts, packet, rubric, or model configuration between order arms.",
+  "analysis_unit": "case",
+  "evidence_inventory": {
+    "r1_case_count": 40,
+    "r1_presentation_order": "X_then_Y for all 40 cases",
+    "r1_preference_counts": {
+      "X": 27,
+      "Y": 10,
+      "tie": 3
+    },
+    "r1_rating_count": 560,
+    "r1_perfect_ratings": 325,
+    "original_pair_texts_available_in_public_package": false,
+    "complete_source_packets_available_in_public_package": false,
+    "exact_original_prompts_available": false,
+    "exact_original_rubric_available": false,
+    "judge_model_revision_and_settings_available": false,
+    "verbatim_judge_requests_and_responses_available": false
+  },
+  "order_only_run": {
+    "status": "not_started_blocked",
+    "required_invariants": [
+      "Retain each original X/Y draft byte-for-byte and bind both to a shared exact-byte digest.",
+      "Retain the same packet, judge prompt, rubric, model revision, generation parameters and tool policy in both arms.",
+      "Run at least two replicate pairs per case; each pair has one fresh isolated X_then_Y context and one fresh isolated Y_then_X context.",
+      "Present the same two drafts in each replicate pair; randomize the execution order of the four fresh contexts and record the allocation seed privately.",
+      "Use neutral draft identifiers; do not reveal R1 scores, preferences, declared assignments or answer keys to the judge.",
+      "Preserve raw model output and raw annotation before any source adjudication or correction.",
+      "Record failed calls, refusals, timeouts and unresolved source checks without deleting or regenerating them silently.",
+      "Represent every scheduled order slot as one run row. If it was not attempted, record call_outcome=not_attempted, judge_context_id=null, and null output/result fields; do not omit the row.",
+      "For every returned refusal or unparseable response, preserve the exact output in the authorized evidence store and record its SHA-256 plus an opaque artifact ID. Do not put local paths or private output text in the public record.",
+      "For timeouts and request errors, record whether any partial response bytes exist: digest and artifact ID are both present or both null.",
+      "Only call_outcome=valid_annotation has a parsed raw annotation and adjudication object. All other outcomes keep both nullable result fields null.",
+      "Keep a failed or unattempted order slot in its replicate pair; a retry uses a fresh replicate ID and contexts and does not replace the original slot."
+    ],
+    "primary_descriptive_measures": [
+      "case-level preference flip between orders among comparable pairs",
+      "within-case X-minus-Y score-gap shift between orders among comparable pairs",
+      "per-dimension mean absolute score change for X and Y separately, averaging comparable replicate pairs within case before across-case summary",
+      "raw-versus-adjudicated annotation disagreement by case",
+      "unresolved source-check counts by W4 state"
+    ],
+    "analysis_limits": [
+      "Do not treat dimensions, drafts or repeated judge calls as independent cases.",
+      "Do not calculate population claims or superiority/equivalence tests from this protocol alone.",
+      "Report denominators, failed/missing pairs and case-level values before aggregate summaries.",
+      "Report planned, comparable, incomplete, failed and not-attempted pairs and calls separately; the case count includes cases with zero comparable pairs.",
+      "A replicate pair is comparable only when both order slots have valid_annotation. Cases without a comparable pair remain in the report with null comparative metrics.",
+      "Never average X and Y rating changes together; report each draft and rubric dimension separately."
+    ]
+  },
+  "separate_calibration_run": {
+    "status": "protocol_only",
+    "rubric": "rubric-v1.md",
+    "rule": "Source adjudication and any revised rubric must use a different run ID and packet. Never combine those scores with the order-only comparison."
+  },
+  "resumption_gate": [
+    "Obtain authorized exact X/Y draft bytes and source packet bytes, or explicitly create a separately labeled prospective replacement study.",
+    "Obtain original prompt, rubric and judge model/settings records. Unknown historical fields stay null; do not reconstruct them.",
+    "Freeze the current prompt, model revision/settings, allocation procedure, failure handling and analysis script before judging.",
+    "Keep the key, R1 scores and declared condition assignments outside the judge context until raw outputs and annotations are frozen."
+  ],
+  "no_implicit_calls": true,
+  "human_evidence": "not supplied by this model-only protocol",
+  "supersedes": "skill-evaluation-order-protocol/v1",
+  "record_schema_version": "skill-evaluation-order-record/v2",
+  "analysis_tool": "scripts/sk_e04_order_analysis.py",
+  "record_contract": {
+    "run_slot_fields": {
+      "call_outcome": [
+        "valid_annotation",
+        "refusal",
+        "invalid_annotation",
+        "timeout",
+        "request_error",
+        "not_attempted"
+      ],
+      "raw_output_sha256_and_ref": "Both are null or both present. The ref is an opaque artifact ID, never a filesystem path.",
+      "raw_and_adjudicated": "Non-null only for valid_annotation; both null for every other outcome.",
+      "judge_context_id": "Required for every attempted call; null only for not_attempted."
+    },
+    "outcome_evidence": {
+      "valid_annotation": "Requires output digest/reference, validated raw annotation and pending or complete adjudication.",
+      "refusal": "Requires output digest/reference; annotation and adjudication are null.",
+      "invalid_annotation": "Requires output digest/reference; annotation and adjudication are null.",
+      "timeout": "May retain a partial output digest/reference; annotation and adjudication are null.",
+      "request_error": "May retain any returned output digest/reference; annotation and adjudication are null.",
+      "not_attempted": "Requires null context, output digest/reference, annotation and adjudication."
+    },
+    "pair_rules": {
+      "scheduled_pair": "One X_then_Y and one Y_then_X run slot with the same replicate_id. Every slot is explicit, including not_attempted.",
+      "comparable_pair": "Both run slots have call_outcome=valid_annotation.",
+      "incomplete_pair": "A scheduled pair with one or both slots lacking a valid annotation; retain it in all planned-pair denominators.",
+      "retry": "A retry is a new replicate_id with fresh contexts; preserve the original failed/unattempted pair."
+    },
+    "required_denominators": [
+      "case_count",
+      "planned_pair_count",
+      "comparable_pair_count",
+      "incomplete_pair_count",
+      "failed_pair_count",
+      "not_attempted_pair_count",
+      "call_outcome_counts",
+      "matched_preference_pair_count"
+    ],
+    "zero_comparable_case": "Keep the case row, report zero comparable pairs, and set comparative rates, shifts, profiles and score changes to null."
+  }
+}

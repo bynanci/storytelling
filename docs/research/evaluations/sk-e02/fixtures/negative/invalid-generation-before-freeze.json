@@ -1,0 +1,98 @@
+{
+  "schema_version": "skill-evaluation-evidence-plan/v1",
+  "record_kind": "synthetic_fixture",
+  "evaluation_id": "SYN-SK-E02-01",
+  "phase": "prospective",
+  "evidence_mode": "packet_plus_archived_sources",
+  "packet": {
+    "packet_id": "SYN-PACKET-01",
+    "revision": "1",
+    "sha256": "054c33070a31a15946406bf37383cdfb8604afccd4261b0106370ed7ff2d8a33"
+  },
+  "freeze": {
+    "claims_frozen_at": "2026-11-13T06:00:00Z",
+    "variant_generation_started_at": "2026-11-13T06:00:00Z"
+  },
+  "sources": [
+    {
+      "source_id": "S-AVAILABLE",
+      "source_revision": "fixture-rev-1",
+      "revision_status": "known",
+      "citation_url": "https://example.invalid/synthetic-source",
+      "access_status": "available",
+      "retrieved_at": "2026-11-13T05:59:00Z",
+      "http_status": 200,
+      "content_type": "text/plain",
+      "response_sha256": "7035debae91c95e1c95f20022ef58f33b835469a44c1b7e7bc958ac91d857674",
+      "archive_ref": "archived-passages/S-AVAILABLE.txt",
+      "archived_passage_location": "paragraph 1, sentence 1"
+    },
+    {
+      "source_id": "S-UNAVAILABLE",
+      "source_revision": null,
+      "revision_status": "unknown",
+      "citation_url": "https://example.invalid/unavailable-source",
+      "access_status": "unavailable",
+      "retrieved_at": "2026-11-13T05:58:00Z",
+      "http_status": 403,
+      "content_type": "text/plain",
+      "response_sha256": null,
+      "archive_ref": null,
+      "archived_passage_location": null
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "CL-SUPPORTED",
+      "proposition_summary": "The sample workshop used two steps.",
+      "requiredness": "required",
+      "source_refs": [
+        {
+          "source_id": "S-AVAILABLE",
+          "source_revision": "fixture-rev-1",
+          "packet_location": "/claims/CL-SUPPORTED",
+          "archived_source_location": "paragraph 1, sentence 1"
+        }
+      ]
+    },
+    {
+      "claim_id": "CL-CONTRADICTED",
+      "proposition_summary": "The sample workshop used three steps.",
+      "requiredness": "optional",
+      "source_refs": [
+        {
+          "source_id": "S-AVAILABLE",
+          "source_revision": "fixture-rev-1",
+          "packet_location": "/claims/CL-CONTRADICTED",
+          "archived_source_location": "paragraph 1, sentence 1"
+        }
+      ]
+    },
+    {
+      "claim_id": "CL-INSUFFICIENT",
+      "proposition_summary": "The sample workshop is the fastest method.",
+      "requiredness": "optional",
+      "source_refs": [
+        {
+          "source_id": "S-AVAILABLE",
+          "source_revision": "fixture-rev-1",
+          "packet_location": "/claims/CL-INSUFFICIENT",
+          "archived_source_location": "paragraph 1, sentence 1"
+        }
+      ]
+    },
+    {
+      "claim_id": "CL-UNAVAILABLE",
+      "proposition_summary": "The sample event cost 40 credits.",
+      "requiredness": "optional",
+      "source_refs": [
+        {
+          "source_id": "S-UNAVAILABLE",
+          "source_revision": null,
+          "packet_location": "/claims/CL-UNAVAILABLE",
+          "archived_source_location": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+﻿case_id,kind,detail,source,action
+C11,packet_extra_but_source_supported,念頭轉動作、3D座標、發育階段與其他物種均見NIH原文。,https://www.nih.gov/news-events/news-releases/first-time-researchers-map-out-brains-behavioral-gatekeeper,封閉包模式可記超出範圍；不直接稱事實捏造。
+C12,packet_extra_but_source_supported,NIH明載血液於癌症診斷前多年採集。,https://www.nih.gov/news-events/news-releases/two-forever-chemicals-associated-higher-risk-aggressive-breast-cancer-nih-analysis,保留R1；新增原文裁定欄。
+C13,packet_extra_but_source_supported,運動部原文明載最後30秒的進攻與6:4得分。,https://www.sports.gov.tw/News_Content/309/24062,這項賽況有原文支持，不等於來源外捏造。
+C13,packet_source_error,運動部姓名是鄭博隅；資料包、X/Y與評分紀錄寫鄭博宇。,https://www.sports.gov.tw/News_Content/309/24062,另建v2修正姓名；R1舊稿與舊分數保留。
+C27,packet_extra_but_source_supported,AP同文開頭即指納瑟醫院是仍運作的主要醫院之一。,https://www.wosu.org/npr-news/2026-11-12/an-israeli-strike-on-a-gaza-hospital-kills-6-people-including-a-doctor-and-a-child,來源支援狀態與封閉包範圍分開紀錄。
+C33,packet_extra_but_source_supported,Reuters明載Asturias流亡背景，並描述被剝奪國籍。,https://www.reuters.com/world/americas/nobel-laureate-miguel-angel-asturias-ashes-return-home-guatemala-52-years-after-2026-11-12/,不能僅因資料包未載就裁為真實世界捏造。
+C38,packet_extra_but_source_supported,PubMed原始論文摘要明載52週及介入組4人、對照組13人死亡。,https://pubmed.ncbi.nlm.nih.gov/42981102/,原文支持；不取消其他完整度扣分。
+C28,packet_source_error,AP原文為at least 12 new state legislative chambers；資料包省略new並把chambers簡化為州議會。,https://www.coloradopolitics.com/2026/11/12/democrats-denver-conference/,新版改為新增取得至少12個州議會院別的控制權；避免解讀為12州完整州議會。
