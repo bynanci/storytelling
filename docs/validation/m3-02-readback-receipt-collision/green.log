@@ -18,4 +18,3 @@ test unknown_response_and_applied_response_never_enable_a_retry ... ok
 test attempt_count_limit_is_per_operation_and_does_not_block_other_operations ... ok
 
 test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
-

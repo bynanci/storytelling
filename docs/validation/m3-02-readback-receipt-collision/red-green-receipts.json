@@ -32,5 +32,6 @@
   "host_calls": 0,
   "real_media_reads": 0,
   "human_acceptance": "not performed",
-  "g2_or_release_decision": "not granted"
+  "g2_or_release_decision": "not granted",
+  "log_normalization": "Only trailing empty lines at EOF removed from green.log for the repository whitespace gate; no diagnostic or test output lines changed."
 }
