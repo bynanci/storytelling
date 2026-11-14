@@ -1,0 +1,66 @@
+{
+  "form_version": "n10-06b.evidence-form.1-proposed",
+  "record_kind": "blank_template",
+  "status": "not_run",
+  "notes": "This proposed private observation form supplies no run, participant, acceptance or stable SDK contract. Leave actual-result fields null until observed; publish only authorized anonymized summaries.",
+  "protocol": {
+    "candidate_commit": null,
+    "A_commit": null,
+    "G2_decision_reference": null,
+    "scenario_id": null,
+    "language": null,
+    "input_fixture_reference": null,
+    "input_sha256_before": null
+  },
+  "machine_replay": {
+    "date_UTC": null,
+    "OS_runtime": null,
+    "command": null,
+    "exit": null,
+    "raw_stdout_reference": null,
+    "raw_stdout_sha256": null,
+    "raw_stderr_reference": null,
+    "raw_stderr_sha256": null,
+    "actual_authority_stage": null,
+    "actual_first_error_code": null,
+    "actual_first_error_path": null,
+    "row_order_preserved": null,
+    "unresolved_reason_preserved": null,
+    "advisories_non_authoritative": null,
+    "invalid_V1_payload_absent": null,
+    "input_sha256_after": null,
+    "directory_sentinel_unchanged": null,
+    "process_elapsed_seconds": null,
+    "failure_evidence_reference": null
+  },
+  "independent_author_observation": {
+    "anonymous_author_code": null,
+    "date": null,
+    "prior_exposure": null,
+    "original_task_verbatim": null,
+    "starting_data_reference": null,
+    "consent_record_private_reference": null,
+    "actual_actions_verbatim": null,
+    "actual_errors": null,
+    "completion": null,
+    "elapsed_author_seconds_including_wait": null,
+    "author_interpretation_of_declaration_readiness_verbatim": null,
+    "author_interpretation_of_unverified_media_host_authority_verbatim": null,
+    "feedback_verbatim": null,
+    "withdrawal_or_missing_data_reason": null
+  },
+  "separate_evidence": {
+    "local_media_identity_or_metadata": null,
+    "author_content_confirmation": null,
+    "host_profile_target_revision_and_readback": null,
+    "current_execution_authority": null,
+    "G5_release_decision": null
+  },
+  "review": {
+    "reviewer_code_or_role": null,
+    "machine_vs_human_evidence_classification": null,
+    "reproducible_failure_task": null,
+    "maintainer_decision_reference": null,
+    "limitations_and_unexpected_observations": null
+  }
+}
