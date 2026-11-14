@@ -1,0 +1,29 @@
+test_all_incomplete_record_has_null_aggregate_comparisons (__main__.OrderAnalysisTests.test_all_incomplete_record_has_null_aggregate_comparisons) ... ok
+test_api_rejects_unhashable_discriminants_as_record_errors (__main__.OrderAnalysisTests.test_api_rejects_unhashable_discriminants_as_record_errors) ... ok
+test_case_without_comparable_pairs_is_kept_with_null_metrics (__main__.OrderAnalysisTests.test_case_without_comparable_pairs_is_kept_with_null_metrics) ... ok
+test_cli_bounds_existing_json_integer_conversion_failure (__main__.OrderAnalysisTests.test_cli_bounds_existing_json_integer_conversion_failure) ... ok
+test_cli_bounds_invalid_discriminant_types (__main__.OrderAnalysisTests.test_cli_bounds_invalid_discriminant_types) ... ok
+test_cli_emits_valid_json_for_v2_synthetic_fixture (__main__.OrderAnalysisTests.test_cli_emits_valid_json_for_v2_synthetic_fixture) ... ok
+test_cli_rejects_conflicting_artifact_identity (__main__.OrderAnalysisTests.test_cli_rejects_conflicting_artifact_identity) ... ok
+test_cli_rejects_duplicate_members_before_outcome_accounting (__main__.OrderAnalysisTests.test_cli_rejects_duplicate_members_before_outcome_accounting) ... ok
+test_cli_rejects_nonfinite_numbers_and_invalid_utf8 (__main__.OrderAnalysisTests.test_cli_rejects_nonfinite_numbers_and_invalid_utf8) ... ok
+test_draft_score_changes_are_not_averaged_together (__main__.OrderAnalysisTests.test_draft_score_changes_are_not_averaged_together) ... ok
+test_duplicate_member_diagnostic_does_not_echo_control_text (__main__.OrderAnalysisTests.test_duplicate_member_diagnostic_does_not_echo_control_text) ... ok
+test_invalid_annotation_and_request_error_are_counted_as_failures (__main__.OrderAnalysisTests.test_invalid_annotation_and_request_error_are_counted_as_failures) ... ok
+test_missing_order_slot_cannot_be_silently_omitted (__main__.OrderAnalysisTests.test_missing_order_slot_cannot_be_silently_omitted) ... ok
+test_not_attempted_requires_null_context_and_evidence (__main__.OrderAnalysisTests.test_not_attempted_requires_null_context_and_evidence) ... ok
+test_observed_run_requires_two_replicate_pairs_per_case (__main__.OrderAnalysisTests.test_observed_run_requires_two_replicate_pairs_per_case) ... ok
+test_output_digest_and_opaque_reference_must_match_presence (__main__.OrderAnalysisTests.test_output_digest_and_opaque_reference_must_match_presence) ... ok
+test_protocol_freezes_missing_call_and_comparability_rules (__main__.OrderAnalysisTests.test_protocol_freezes_missing_call_and_comparability_rules) ... ok
+test_refusal_keeps_raw_artifact_but_no_annotation (__main__.OrderAnalysisTests.test_refusal_keeps_raw_artifact_but_no_annotation) ... ok
+test_rejects_history_score_leak_and_bad_annotation (__main__.OrderAnalysisTests.test_rejects_history_score_leak_and_bad_annotation) ... ok
+test_rejects_one_artifact_id_bound_to_conflicting_digests (__main__.OrderAnalysisTests.test_rejects_one_artifact_id_bound_to_conflicting_digests) ... ok
+test_rejects_order_mutation_and_prompt_rubric_model_drift (__main__.OrderAnalysisTests.test_rejects_order_mutation_and_prompt_rubric_model_drift) ... ok
+test_repeated_artifact_id_with_same_digest_remains_accepted (__main__.OrderAnalysisTests.test_repeated_artifact_id_with_same_digest_remains_accepted) ... ok
+test_v1_complete_record_remains_accepted (__main__.OrderAnalysisTests.test_v1_complete_record_remains_accepted) ... ok
+test_v2_preserves_failed_and_unattempted_calls_in_denominators (__main__.OrderAnalysisTests.test_v2_preserves_failed_and_unattempted_calls_in_denominators) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.719s
+
+OK

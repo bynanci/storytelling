@@ -20,8 +20,15 @@ permissions:
 
 jobs:
   paired-order-fixture:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
       - name: Validate protocol and analyze synthetic pair fixture
-        run: python3 scripts/test_sk_e04_order_analysis.py
+        run: python scripts/test_sk_e04_order_analysis.py

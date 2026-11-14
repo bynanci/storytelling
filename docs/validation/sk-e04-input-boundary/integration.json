@@ -1,0 +1,57 @@
+{
+  "upstream_main": "5bbe80dc2cf8286abb15ad5278e86ec7384cdb4d",
+  "checked_rebased_head": "80218b7d070218195933cb7ca5639bd2fb1b4e87",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "scripts/test_sk_e04_order_analysis.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e7033de06f5acb731e0377e638c98a45aabf83fe677da04d1a2aabe66d1349fd"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/check_repo.py"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "728bbfaf33cce26d9fbaf87b18bd5a323ffebd1fb3d212369faab1c56d548238"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--exit-code"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "valid_fixture_compatibility": [
+    {
+      "version": 1,
+      "stdout_byte_identical": true,
+      "stdout_sha256": "b1de9eb18c1e5d1c8301be9651afdd65365a50bc59ce69cc64ba07d739048c3b"
+    },
+    {
+      "version": 2,
+      "stdout_byte_identical": true,
+      "stdout_sha256": "ec2aba1d6f4b3f3d54c28fff0f0752f136df3ff74a3b961a43b20fa0ff68d363"
+    }
+  ],
+  "rust_checks": "not_run",
+  "hosted_ci": "pending",
+  "rebased_test_first_commit": "5ca1e3ad50830cb59a94f5cbda6c58da8e10470b",
+  "historical_observed_red_commit": "c2a0d05b7984a7212e113db86d54293413b6d9cb"
+}
