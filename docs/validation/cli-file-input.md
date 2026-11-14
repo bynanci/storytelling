@@ -48,13 +48,14 @@ diagnostics. FIFO creation uses Python `os.mkfifo` without an external tool.
 Windows explicitly skips FIFO creation; directory and other checks run on all
 three CI platforms. Each subprocess has bounded cleanup.
 
-The Linux [workspace receipt](cli-file-input/workspace-checks.json) and
-[actual output excerpts](cli-file-input/workspace-checks.txt) record passing
-formatting, all-target/all-feature Clippy, default and all-feature debug/release
-tests and rustdoc with warnings denied. Default test runs passed 312 tests each;
-all-feature runs passed 331 each, including seven V1 video-coverage and twelve
-draft-input CLI regressions. These totals include doc tests and do not count
-the four Python methods. Repository checks and `git diff --check` also passed.
+The original Linux [workspace receipt](cli-file-input/workspace-checks.json)
+and [output excerpts](cli-file-input/workspace-checks.txt) are preserved as
+`cache_ambiguous` / superseded. A shared build target reused artifacts from a
+parallel worktree: the named source had eleven journal tests but these logs ran
+thirteen. Their observed 312/331 test totals do **not** prove verification of the
+named source commit. A fresh isolated-target integrated run is required before
+merge. The focused FIFO result is distinct from this invalid workspace-provenance
+claim. No historical output or count has been erased.
 
 ```sh
 cargo build --locked -p storytelling-cli --features draft-video-input

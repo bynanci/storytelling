@@ -39,12 +39,12 @@ bytes 雜湊、一般檔案／stdin 重播、原 fixture 不變及既有超限�
 Python 標準函式庫 `os.mkfifo` 建立，不依賴外部工具；Windows 明確 skip FIFO，
 其餘檢查在三平台 CI 都執行。所有子程序都有有界清理。
 
-Linux [workspace 收據](cli-file-input/workspace-checks.json)與
-[實際輸出節錄](cli-file-input/workspace-checks.txt)記錄 fmt、all-target／
-all-feature Clippy、預設及 all-feature debug／release tests，以及禁止警告的
-rustdoc 全數通過。預設測試各通過 312 項，all-feature 各通過 331 項，含七項
-V1 影片宣告與十二項 draft-input CLI 回歸；總數含 doc tests，不含四個 Python
-方法。Repository checks 與 `git diff --check` 也通過。
+原 Linux [workspace 收據](cli-file-input/workspace-checks.json)與
+[實際輸出節錄](cli-file-input/workspace-checks.txt)保留為 `cache_ambiguous`／
+superseded。共用 target 混用另一 worktree 的產物：所標示來源只有十一項
+journal tests，紀錄卻執行十三項。因此原觀察到的 312／331 項不能證明該
+source commit 的完整驗證；合併前須以獨立全新 target 重跑整合版本。FIFO
+缺陷重現與這項無效的 workspace 來源主張分開記錄；原輸出與數字均未刪除。
 
 完整重跑命令見[英文紀錄](cli-file-input.md#test-first-evidence-and-replay)。
 最短回歸命令如下；Windows 使用 `python` 與 `.exe` 副檔名。

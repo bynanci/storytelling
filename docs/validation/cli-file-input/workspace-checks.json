@@ -70,5 +70,8 @@
     "m3_core_and_review": "workspace suites passed"
   },
   "hosted_ci": "pending final PR exact head; local results do not establish cross-platform hosted success",
-  "human_media_host_release": "not performed"
+  "human_media_host_release": "not performed",
+  "provenance_status": "cache_ambiguous",
+  "superseded": true,
+  "correction": "Shared CARGO_TARGET_DIR reused cross-worktree artifacts. The source commit had 11 journal tests, but the observed logs contain 13 journal tests from the parallel fix. Original observed results and output excerpts are preserved; they do not verify the named source commit. A fresh isolated-target run on the integrated main supersedes this receipt."
 }
