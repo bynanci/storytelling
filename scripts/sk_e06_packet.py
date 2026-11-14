@@ -69,13 +69,20 @@ def _non_json_constant(_value):
     raise PacketError("JSON contains a non-finite constant")
 
 
+def _parse_json(data, label):
+    try:
+        _require(b"\r" not in data, f"{label}: expected canonical LF bytes")
+        return json.loads(data.decode("utf-8"), object_pairs_hook=_strict_object, parse_constant=_non_json_constant)
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise PacketError(f"{label}: cannot read strict UTF-8 JSON") from error
+
+
 def _read_json(path, label):
     try:
         data = path.read_bytes()
-        _require(b"\r" not in data, f"{label}: expected canonical LF bytes")
-        return json.loads(data.decode("utf-8"), object_pairs_hook=_strict_object, parse_constant=_non_json_constant)
-    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as error:
+    except OSError as error:
         raise PacketError(f"{label}: cannot read strict UTF-8 JSON") from error
+    return _parse_json(data, label)
 
 
 def load_packet(root):
@@ -88,12 +95,15 @@ def _artifact_path(root, name):
     _require(not relative.is_absolute() and re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._/-]*", name)
              and all(part not in {"", ".", ".."} for part in relative.parts), "artifact path escapes the packet")
     path = root.joinpath(*relative.parts)
-    _require(path.resolve().is_relative_to(root.resolve()), "artifact path escapes the packet")
-    cursor = root
-    for part in relative.parts:
-        cursor = cursor / part
-        _require(not cursor.is_symlink(), "packet artifact must not be a symlink")
-    _require(path.is_file(), "required packet artifact is missing")
+    try:
+        cursor = root
+        for part in relative.parts:
+            cursor = cursor / part
+            _require(not cursor.is_symlink(), "packet artifact must not be a symlink")
+        _require(path.resolve().is_relative_to(root.resolve()), "artifact path escapes the packet")
+        _require(path.is_file(), "required packet artifact is missing")
+    except (OSError, RuntimeError) as error:
+        raise PacketError("packet artifact path cannot be resolved") from error
     return path
 
 
@@ -196,19 +206,22 @@ def validate_packet(packet, root):
     artifacts = packet["artifacts_sha256"]
     _require(isinstance(artifacts, dict) and set(artifacts) == {*names, packet["manual_form"]},
              "packet: artifact manifest differs from required files")
-    paths = {}
+    snapshots = {}
     for name, digest in artifacts.items():
         _require(isinstance(digest, str) and HASH.fullmatch(digest), "packet: malformed artifact SHA-256")
         path = _artifact_path(root, name)
         try:
-            actual = hashlib.sha256(path.read_bytes()).hexdigest()
+            data = path.read_bytes()
+            actual = hashlib.sha256(data).hexdigest()
         except OSError as error:
             raise PacketError("packet artifact cannot be read") from error
         _require(actual == digest, "packet artifact checksum mismatch")
-        paths[name] = path
-    case_ids = [_case(_read_json(paths[name], name)) for name in names]
+        snapshots[name] = data
+    # Decode the same immutable bytes whose hashes were checked above. A second
+    # filesystem read could validate a different file version after the hash.
+    case_ids = [_case(_parse_json(snapshots[name], name)) for name in names]
     _require(len(set(case_ids)) == 5 and set(case_ids) == set(EXPECTED_CASES), "packet: duplicated or missing case")
-    _blank_form(_read_json(paths[packet["manual_form"]], packet["manual_form"]), packet["packet_id"])
+    _blank_form(_parse_json(snapshots[packet["manual_form"]], packet["manual_form"]), packet["packet_id"])
     return {"packet_id": packet["packet_id"], "case_count": len(case_ids), "locale_count": 2 * len(case_ids),
             "scope": "reference_packet_integrity_only"}
 
