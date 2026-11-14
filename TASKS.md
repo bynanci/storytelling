@@ -113,6 +113,8 @@ One PR owns a public schema or time contract change at a time. Adapters and inte
 
 - [x] **M3-JL02/M3-JL06 maintenance.** The [first-readback receipt correction](docs/validation/m3-02-readback-receipt-collision.md) merged in [PR #137](https://github.com/bynanci/storytelling/pull/137) as `5bbe80d`, with observed RED/GREEN and all six final-head and post-merge CI jobs passed. This completes the receipt-collision maintenance scope and changes no execution authority.
 
+- [x] **M3-RB07 / N-R10-06A file-input maintenance.** [PR #139](https://github.com/bynanci/storytelling/pull/139) merged as `e2934c2` after all six final-head CI jobs passed. [Static nonregular-file rejection and test-discovery compatibility](docs/validation/cli-file-input.md) are verified; the pathname-replacement race remains documented, and C/media, author and host acceptance remain separate.
+
 The user authorized merging completed PRs after all required checks pass on the exact submitted commit. Check the resulting main commit. Releases, tags, repository policies and permissions require separate authority. Check actual media, host and human results independently. See the [merge record](docs/delivery/VIDEO_TASK_HISTORY.md#accepted-lifecycle), [origins](PROVENANCE.md) and [migration guide](docs/MIGRATION.md).
 
 <details>
