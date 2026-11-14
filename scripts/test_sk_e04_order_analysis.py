@@ -3,6 +3,7 @@
 
 import copy
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -206,17 +207,17 @@ class OrderAnalysisTests(unittest.TestCase):
         with self.assertRaises(RecordError):
             validate_record(bad_score)
 
-    def run_cli_bytes(self, data):
+    def run_cli_bytes(self, data, env=None):
         with tempfile.TemporaryDirectory(prefix="sk-e04-input-") as directory:
             path = Path(directory) / "record.json"
             path.write_bytes(data)
             return subprocess.run(
                 [sys.executable, str(ROOT / "scripts/sk_e04_order_analysis.py"), "analyze", str(path)],
-                cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+                cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, env=env,
             )
 
-    def assert_cli_rejects(self, data):
-        result = self.run_cli_bytes(data)
+    def assert_cli_rejects(self, data, env=None):
+        result = self.run_cli_bytes(data, env=env)
         self.assertEqual(result.returncode, 2, result.stderr)
         self.assertEqual(result.stdout, "")
         self.assertIn("sk_e04_order_analysis:", result.stderr)
@@ -244,6 +245,18 @@ class OrderAnalysisTests(unittest.TestCase):
                 )
                 self.assert_cli_rejects(encoded.encode("utf-8"))
         self.assert_cli_rejects(b"\xff")
+
+    def test_duplicate_member_diagnostic_does_not_echo_control_text(self):
+        payload = b'{"untrusted\\n\\u001b[31m":0,"untrusted\\n\\u001b[31m":1}'
+        result = self.run_cli_bytes(payload)
+        self.assertEqual(result.returncode, 2)
+        self.assertEqual(result.stdout, "")
+        self.assertEqual(len(result.stderr.splitlines()), 1)
+        self.assertNotIn("\x1b", result.stderr)
+
+    def test_cli_bounds_existing_json_integer_conversion_failure(self):
+        payload = b'{"schema_version":' + b"1" * 4301 + b"}"
+        self.assert_cli_rejects(payload, env={**os.environ, "PYTHONINTMAXSTRDIGITS": "4300"})
 
     def test_cli_bounds_invalid_discriminant_types(self):
         for field in ("schema_version", "record_kind"):

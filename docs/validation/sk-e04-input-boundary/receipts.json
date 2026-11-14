@@ -1,0 +1,184 @@
+{
+  "record_kind": "synthetic_input_boundary_regression",
+  "base_commit": "c562ce0d06b7330813fa42cad739f24f4a49e9da",
+  "red": {
+    "head": "c2a0d05b7984a7212e113db86d54293413b6d9cb",
+    "command": [
+      "python3",
+      "scripts/test_sk_e04_order_analysis.py",
+      "-v"
+    ],
+    "exit_code": 1,
+    "elapsed_seconds": 0.791,
+    "stdout_sha256": "ec4c805c01895baaddc6183b7e9e86b63b540db9c1a2fb6d1a14bdbae173d8ee",
+    "log": "red.log"
+  },
+  "additional_red": {
+    "command": [
+      "python3",
+      "scripts/test_sk_e04_order_analysis.py",
+      "-v"
+    ],
+    "exit_code": 1,
+    "state": "uncommitted first implementation plus additional regression tests",
+    "source_sha256": "72bcf4784f402ec2c78659f2e77714dc304b220545a19ca1211204553871c17b",
+    "tests_sha256": "927a250997058cbb98b3bd6459609f05b0b909ec9fde8692667e2885856a7011",
+    "stdout_sha256": "092723c09d1258b0c8e59ad26d11a83a9d33f8b6d005411ffd217ae697b54393"
+  },
+  "green": {
+    "command": [
+      "python3",
+      "scripts/test_sk_e04_order_analysis.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "source_sha256": "a9b3e78464a5cab3bbcbf96c72759d568656b896895f23ddc443b7e060719fbb",
+    "tests_sha256": "927a250997058cbb98b3bd6459609f05b0b909ec9fde8692667e2885856a7011",
+    "stdout_sha256": "3444e5161955036405237d3d9ffbb60e43959c3060c34e8b221ba00c684f40c4"
+  },
+  "valid_fixture_compatibility": [
+    {
+      "record_schema_version": "skill-evaluation-order-record/v1",
+      "baseline_cli_exit": 0,
+      "fixed_cli_exit": 0,
+      "stdout_byte_identical": true,
+      "baseline_and_fixed_stdout_sha256": "b1de9eb18c1e5d1c8301be9651afdd65365a50bc59ce69cc64ba07d739048c3b"
+    },
+    {
+      "record_schema_version": "skill-evaluation-order-record/v2",
+      "baseline_cli_exit": 0,
+      "fixed_cli_exit": 0,
+      "stdout_byte_identical": true,
+      "baseline_and_fixed_stdout_sha256": "ec2aba1d6f4b3f3d54c28fff0f0752f136df3ff74a3b961a43b20fa0ff68d363"
+    }
+  ],
+  "local_checks": [
+    {
+      "name": "scripts",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 4.513,
+      "stdout_sha256": "022bdfd3cd703460b6e522ab9ab1580c80c40a8c91486c88c8f7ddd09248284a"
+    },
+    {
+      "name": "pilot",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "examples/evaluation/n07-pilot",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.223,
+      "stdout_sha256": "801524188e3685c494b3302dea7d76f2ce5465f79ea7636b33023966f00965f1"
+    },
+    {
+      "name": "recorder",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "examples/evaluation/n07-recorder",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 3.883,
+      "stdout_sha256": "afbfe1dd382102e51642c50411af82ef5e456c9650e8a1060d15045e3f48e36f"
+    },
+    {
+      "name": "editorial",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "examples/evaluation",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.199,
+      "stdout_sha256": "6e2c2e2d0c5d4f2445feb5005937a4d47635379f8adf4113de6f692d171b2766"
+    },
+    {
+      "name": "host_evidence",
+      "command": [
+        "python3",
+        "tests/oracles/filmcraft-25-v1/test_checks.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.145,
+      "stdout_sha256": "62cfbeb2911bb226088bfb0918eb4b05008ea70b20bce854ee2ca8a564bd37a5"
+    },
+    {
+      "name": "execution_design",
+      "command": [
+        "python3",
+        "tests/fixtures/execution-contract-v1/check_design.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.16,
+      "stdout_sha256": "d03ce458f2a6cd2b4f27522f3aacad03ce1872c028853507c3ad02ca621bdcad"
+    },
+    {
+      "name": "repository",
+      "command": [
+        "python3",
+        "scripts/check_repo.py"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "728bbfaf33cce26d9fbaf87b18bd5a323ffebd1fb3d212369faab1c56d548238"
+    },
+    {
+      "name": "diff",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "python_compile",
+      "command": [
+        "python3",
+        "-m",
+        "py_compile",
+        "scripts/sk_e04_order_analysis.py",
+        "scripts/test_sk_e04_order_analysis.py"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "logs_sha256": {
+    "red.log": "ec4c805c01895baaddc6183b7e9e86b63b540db9c1a2fb6d1a14bdbae173d8ee",
+    "red-parser-diagnostics.log": "092723c09d1258b0c8e59ad26d11a83a9d33f8b6d005411ffd217ae697b54393",
+    "green-final.log": "3444e5161955036405237d3d9ffbb60e43959c3060c34e8b221ba00c684f40c4"
+  },
+  "local_rust_workspace_checks": "not_run_yet_shared_Cargo_slot_reserved_for_other_agent",
+  "hosted_ci": "pending_final_head",
+  "actual_R1_rerun": "blocked_missing_original_inputs_and_model_settings",
+  "holdout": "blocked",
+  "model_calls": false,
+  "human_results": null
+}

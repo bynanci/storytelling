@@ -1,0 +1,256 @@
+test_all_incomplete_record_has_null_aggregate_comparisons (__main__.OrderAnalysisTests.test_all_incomplete_record_has_null_aggregate_comparisons) ... ok
+test_api_rejects_unhashable_discriminants_as_record_errors (__main__.OrderAnalysisTests.test_api_rejects_unhashable_discriminants_as_record_errors) ... 
+  test_api_rejects_unhashable_discriminants_as_record_errors (__main__.OrderAnalysisTests.test_api_rejects_unhashable_discriminants_as_record_errors) (field='schema_version', value=[]) ... ERROR
+  test_api_rejects_unhashable_discriminants_as_record_errors (__main__.OrderAnalysisTests.test_api_rejects_unhashable_discriminants_as_record_errors) (field='schema_version', value={}) ... ERROR
+  test_api_rejects_unhashable_discriminants_as_record_errors (__main__.OrderAnalysisTests.test_api_rejects_unhashable_discriminants_as_record_errors) (field='record_kind', value=[]) ... ERROR
+  test_api_rejects_unhashable_discriminants_as_record_errors (__main__.OrderAnalysisTests.test_api_rejects_unhashable_discriminants_as_record_errors) (field='record_kind', value={}) ... ERROR
+test_case_without_comparable_pairs_is_kept_with_null_metrics (__main__.OrderAnalysisTests.test_case_without_comparable_pairs_is_kept_with_null_metrics) ... ok
+test_cli_bounds_invalid_discriminant_types (__main__.OrderAnalysisTests.test_cli_bounds_invalid_discriminant_types) ... 
+  test_cli_bounds_invalid_discriminant_types (__main__.OrderAnalysisTests.test_cli_bounds_invalid_discriminant_types) (field='schema_version', value=[]) ... FAIL
+  test_cli_bounds_invalid_discriminant_types (__main__.OrderAnalysisTests.test_cli_bounds_invalid_discriminant_types) (field='schema_version', value={}) ... FAIL
+  test_cli_bounds_invalid_discriminant_types (__main__.OrderAnalysisTests.test_cli_bounds_invalid_discriminant_types) (field='record_kind', value=[]) ... FAIL
+  test_cli_bounds_invalid_discriminant_types (__main__.OrderAnalysisTests.test_cli_bounds_invalid_discriminant_types) (field='record_kind', value={}) ... FAIL
+test_cli_emits_valid_json_for_v2_synthetic_fixture (__main__.OrderAnalysisTests.test_cli_emits_valid_json_for_v2_synthetic_fixture) ... ok
+test_cli_rejects_conflicting_artifact_identity (__main__.OrderAnalysisTests.test_cli_rejects_conflicting_artifact_identity) ... FAIL
+test_cli_rejects_duplicate_members_before_outcome_accounting (__main__.OrderAnalysisTests.test_cli_rejects_duplicate_members_before_outcome_accounting) ... 
+  test_cli_rejects_duplicate_members_before_outcome_accounting (__main__.OrderAnalysisTests.test_cli_rejects_duplicate_members_before_outcome_accounting) (member='"record_kind": "synthetic_fixture"') ... FAIL
+  test_cli_rejects_duplicate_members_before_outcome_accounting (__main__.OrderAnalysisTests.test_cli_rejects_duplicate_members_before_outcome_accounting) (member='"call_outcome": "valid_annotation"') ... FAIL
+  test_cli_rejects_duplicate_members_before_outcome_accounting (__main__.OrderAnalysisTests.test_cli_rejects_duplicate_members_before_outcome_accounting) (member='"preference": "X"') ... FAIL
+test_cli_rejects_nonfinite_numbers_and_invalid_utf8 (__main__.OrderAnalysisTests.test_cli_rejects_nonfinite_numbers_and_invalid_utf8) ... FAIL
+test_draft_score_changes_are_not_averaged_together (__main__.OrderAnalysisTests.test_draft_score_changes_are_not_averaged_together) ... ok
+test_invalid_annotation_and_request_error_are_counted_as_failures (__main__.OrderAnalysisTests.test_invalid_annotation_and_request_error_are_counted_as_failures) ... ok
+test_missing_order_slot_cannot_be_silently_omitted (__main__.OrderAnalysisTests.test_missing_order_slot_cannot_be_silently_omitted) ... ok
+test_not_attempted_requires_null_context_and_evidence (__main__.OrderAnalysisTests.test_not_attempted_requires_null_context_and_evidence) ... ok
+test_observed_run_requires_two_replicate_pairs_per_case (__main__.OrderAnalysisTests.test_observed_run_requires_two_replicate_pairs_per_case) ... ok
+test_output_digest_and_opaque_reference_must_match_presence (__main__.OrderAnalysisTests.test_output_digest_and_opaque_reference_must_match_presence) ... ok
+test_protocol_freezes_missing_call_and_comparability_rules (__main__.OrderAnalysisTests.test_protocol_freezes_missing_call_and_comparability_rules) ... ok
+test_refusal_keeps_raw_artifact_but_no_annotation (__main__.OrderAnalysisTests.test_refusal_keeps_raw_artifact_but_no_annotation) ... ok
+test_rejects_history_score_leak_and_bad_annotation (__main__.OrderAnalysisTests.test_rejects_history_score_leak_and_bad_annotation) ... ok
+test_rejects_one_artifact_id_bound_to_conflicting_digests (__main__.OrderAnalysisTests.test_rejects_one_artifact_id_bound_to_conflicting_digests) ... 
+  test_rejects_one_artifact_id_bound_to_conflicting_digests (__main__.OrderAnalysisTests.test_rejects_one_artifact_id_bound_to_conflicting_digests) (case=0, run=1) ... FAIL
+  test_rejects_one_artifact_id_bound_to_conflicting_digests (__main__.OrderAnalysisTests.test_rejects_one_artifact_id_bound_to_conflicting_digests) (case=2, run=0) ... FAIL
+test_rejects_order_mutation_and_prompt_rubric_model_drift (__main__.OrderAnalysisTests.test_rejects_order_mutation_and_prompt_rubric_model_drift) ... ok
+test_repeated_artifact_id_with_same_digest_remains_accepted (__main__.OrderAnalysisTests.test_repeated_artifact_id_with_same_digest_remains_accepted) ... ok
+test_v1_complete_record_remains_accepted (__main__.OrderAnalysisTests.test_v1_complete_record_remains_accepted) ... ok
+test_v2_preserves_failed_and_unattempted_calls_in_denominators (__main__.OrderAnalysisTests.test_v2_preserves_failed_and_unattempted_calls_in_denominators) ... ok
+
+======================================================================
+ERROR: test_api_rejects_unhashable_discriminants_as_record_errors (__main__.OrderAnalysisTests.test_api_rejects_unhashable_discriminants_as_record_errors) (field='schema_version', value=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 263, in test_api_rejects_unhashable_discriminants_as_record_errors
+    validate_record(record)
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 112, in validate_record
+    if version not in {"skill-evaluation-order-record/v1", "skill-evaluation-order-record/v2"}:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'list'
+
+======================================================================
+ERROR: test_api_rejects_unhashable_discriminants_as_record_errors (__main__.OrderAnalysisTests.test_api_rejects_unhashable_discriminants_as_record_errors) (field='schema_version', value={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 263, in test_api_rejects_unhashable_discriminants_as_record_errors
+    validate_record(record)
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 112, in validate_record
+    if version not in {"skill-evaluation-order-record/v1", "skill-evaluation-order-record/v2"}:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'dict'
+
+======================================================================
+ERROR: test_api_rejects_unhashable_discriminants_as_record_errors (__main__.OrderAnalysisTests.test_api_rejects_unhashable_discriminants_as_record_errors) (field='record_kind', value=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 263, in test_api_rejects_unhashable_discriminants_as_record_errors
+    validate_record(record)
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 115, in validate_record
+    if record["record_kind"] not in {"synthetic_fixture", "observed_order_rerun"}:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'list'
+
+======================================================================
+ERROR: test_api_rejects_unhashable_discriminants_as_record_errors (__main__.OrderAnalysisTests.test_api_rejects_unhashable_discriminants_as_record_errors) (field='record_kind', value={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 263, in test_api_rejects_unhashable_discriminants_as_record_errors
+    validate_record(record)
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 115, in validate_record
+    if record["record_kind"] not in {"synthetic_fixture", "observed_order_rerun"}:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'dict'
+
+======================================================================
+FAIL: test_cli_bounds_invalid_discriminant_types (__main__.OrderAnalysisTests.test_cli_bounds_invalid_discriminant_types) (field='schema_version', value=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 254, in test_cli_bounds_invalid_discriminant_types
+    self.assert_cli_rejects(json.dumps(record).encode("utf-8"))
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 220, in assert_cli_rejects
+    self.assertEqual(result.returncode, 2, result.stderr)
+AssertionError: 1 != 2 : Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 426, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 417, in main
+    report = analyze_record(record)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 251, in analyze_record
+    validate_record(record)
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 112, in validate_record
+    if version not in {"skill-evaluation-order-record/v1", "skill-evaluation-order-record/v2"}:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'list'
+
+
+======================================================================
+FAIL: test_cli_bounds_invalid_discriminant_types (__main__.OrderAnalysisTests.test_cli_bounds_invalid_discriminant_types) (field='schema_version', value={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 254, in test_cli_bounds_invalid_discriminant_types
+    self.assert_cli_rejects(json.dumps(record).encode("utf-8"))
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 220, in assert_cli_rejects
+    self.assertEqual(result.returncode, 2, result.stderr)
+AssertionError: 1 != 2 : Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 426, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 417, in main
+    report = analyze_record(record)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 251, in analyze_record
+    validate_record(record)
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 112, in validate_record
+    if version not in {"skill-evaluation-order-record/v1", "skill-evaluation-order-record/v2"}:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'dict'
+
+
+======================================================================
+FAIL: test_cli_bounds_invalid_discriminant_types (__main__.OrderAnalysisTests.test_cli_bounds_invalid_discriminant_types) (field='record_kind', value=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 254, in test_cli_bounds_invalid_discriminant_types
+    self.assert_cli_rejects(json.dumps(record).encode("utf-8"))
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 220, in assert_cli_rejects
+    self.assertEqual(result.returncode, 2, result.stderr)
+AssertionError: 1 != 2 : Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 426, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 417, in main
+    report = analyze_record(record)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 251, in analyze_record
+    validate_record(record)
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 115, in validate_record
+    if record["record_kind"] not in {"synthetic_fixture", "observed_order_rerun"}:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'list'
+
+
+======================================================================
+FAIL: test_cli_bounds_invalid_discriminant_types (__main__.OrderAnalysisTests.test_cli_bounds_invalid_discriminant_types) (field='record_kind', value={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 254, in test_cli_bounds_invalid_discriminant_types
+    self.assert_cli_rejects(json.dumps(record).encode("utf-8"))
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 220, in assert_cli_rejects
+    self.assertEqual(result.returncode, 2, result.stderr)
+AssertionError: 1 != 2 : Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 426, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 417, in main
+    report = analyze_record(record)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 251, in analyze_record
+    validate_record(record)
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 115, in validate_record
+    if record["record_kind"] not in {"synthetic_fixture", "observed_order_rerun"}:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: unhashable type: 'dict'
+
+
+======================================================================
+FAIL: test_cli_rejects_conflicting_artifact_identity (__main__.OrderAnalysisTests.test_cli_rejects_conflicting_artifact_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 279, in test_cli_rejects_conflicting_artifact_identity
+    self.assert_cli_rejects(json.dumps(record).encode("utf-8"))
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 220, in assert_cli_rejects
+    self.assertEqual(result.returncode, 2, result.stderr)
+AssertionError: 0 != 2 : 
+
+======================================================================
+FAIL: test_cli_rejects_duplicate_members_before_outcome_accounting (__main__.OrderAnalysisTests.test_cli_rejects_duplicate_members_before_outcome_accounting) (member='"record_kind": "synthetic_fixture"')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 236, in test_cli_rejects_duplicate_members_before_outcome_accounting
+    self.assert_cli_rejects(encoded.replace(original, replacement, 1).encode("utf-8"))
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 220, in assert_cli_rejects
+    self.assertEqual(result.returncode, 2, result.stderr)
+AssertionError: 0 != 2 : 
+
+======================================================================
+FAIL: test_cli_rejects_duplicate_members_before_outcome_accounting (__main__.OrderAnalysisTests.test_cli_rejects_duplicate_members_before_outcome_accounting) (member='"call_outcome": "valid_annotation"')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 236, in test_cli_rejects_duplicate_members_before_outcome_accounting
+    self.assert_cli_rejects(encoded.replace(original, replacement, 1).encode("utf-8"))
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 220, in assert_cli_rejects
+    self.assertEqual(result.returncode, 2, result.stderr)
+AssertionError: 0 != 2 : 
+
+======================================================================
+FAIL: test_cli_rejects_duplicate_members_before_outcome_accounting (__main__.OrderAnalysisTests.test_cli_rejects_duplicate_members_before_outcome_accounting) (member='"preference": "X"')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 236, in test_cli_rejects_duplicate_members_before_outcome_accounting
+    self.assert_cli_rejects(encoded.replace(original, replacement, 1).encode("utf-8"))
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 220, in assert_cli_rejects
+    self.assertEqual(result.returncode, 2, result.stderr)
+AssertionError: 0 != 2 : 
+
+======================================================================
+FAIL: test_cli_rejects_nonfinite_numbers_and_invalid_utf8 (__main__.OrderAnalysisTests.test_cli_rejects_nonfinite_numbers_and_invalid_utf8)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 246, in test_cli_rejects_nonfinite_numbers_and_invalid_utf8
+    self.assert_cli_rejects(b"\xff")
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 220, in assert_cli_rejects
+    self.assertEqual(result.returncode, 2, result.stderr)
+AssertionError: 1 != 2 : Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 426, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/sk_e04_order_analysis.py", line 416, in main
+    record = json.loads(args.record.read_text(encoding="utf-8"))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1028, in read_text
+    return f.read()
+           ^^^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+
+
+======================================================================
+FAIL: test_rejects_one_artifact_id_bound_to_conflicting_digests (__main__.OrderAnalysisTests.test_rejects_one_artifact_id_bound_to_conflicting_digests) (case=0, run=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 272, in test_rejects_one_artifact_id_bound_to_conflicting_digests
+    with self.assertRaises(RecordError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RecordError not raised
+
+======================================================================
+FAIL: test_rejects_one_artifact_id_bound_to_conflicting_digests (__main__.OrderAnalysisTests.test_rejects_one_artifact_id_bound_to_conflicting_digests) (case=2, run=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-sk-e04-input-fix/scripts/test_sk_e04_order_analysis.py", line 272, in test_rejects_one_artifact_id_bound_to_conflicting_digests
+    with self.assertRaises(RecordError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RecordError not raised
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.707s
+
+FAILED (failures=11, errors=4)
