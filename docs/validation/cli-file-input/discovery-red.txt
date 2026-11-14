@@ -1,0 +1,233 @@
+EEEEEEEEEE
+======================================================================
+ERROR: test_directory_inputs_reject_with_io_exit_without_blocking (test_cli_file_input.FileInputTests.test_directory_inputs_reject_with_io_exit_without_blocking)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 105, in test_directory_inputs_reject_with_io_exit_without_blocking
+    self.check_nonregular(self.root)
+  File "<checkout>/scripts/test_cli_file_input.py", line 92, in check_nonregular
+    results = list(executor.map(lambda case: invoke(case[1]), cases))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "<python-runtime>/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<checkout>/scripts/test_cli_file_input.py", line 92, in <lambda>
+    results = list(executor.map(lambda case: invoke(case[1]), cases))
+                                             ^^^^^^^^^^^^^^^
+  File "<checkout>/scripts/test_cli_file_input.py", line 67, in invoke
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'None'
+
+======================================================================
+ERROR: test_fifo_inputs_reject_with_io_exit_without_blocking (test_cli_file_input.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 111, in test_fifo_inputs_reject_with_io_exit_without_blocking
+    self.check_nonregular(fifo)
+  File "<checkout>/scripts/test_cli_file_input.py", line 92, in check_nonregular
+    results = list(executor.map(lambda case: invoke(case[1]), cases))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "<python-runtime>/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<checkout>/scripts/test_cli_file_input.py", line 92, in <lambda>
+    results = list(executor.map(lambda case: invoke(case[1]), cases))
+                                             ^^^^^^^^^^^^^^^
+  File "<checkout>/scripts/test_cli_file_input.py", line 67, in invoke
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'None'
+
+======================================================================
+ERROR: test_file_and_stdin_limits_still_reject_oversized_json (test_cli_file_input.FileInputTests.test_file_and_stdin_limits_still_reject_oversized_json) (command='render-video-coverage', transport='file')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 151, in test_file_and_stdin_limits_still_reject_oversized_json
+    result = invoke(arguments, stdin)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<checkout>/scripts/test_cli_file_input.py", line 67, in invoke
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'None'
+
+======================================================================
+ERROR: test_file_and_stdin_limits_still_reject_oversized_json (test_cli_file_input.FileInputTests.test_file_and_stdin_limits_still_reject_oversized_json) (command='render-video-coverage', transport='stdin')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 151, in test_file_and_stdin_limits_still_reject_oversized_json
+    result = invoke(arguments, stdin)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<checkout>/scripts/test_cli_file_input.py", line 67, in invoke
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'None'
+
+======================================================================
+ERROR: test_file_and_stdin_limits_still_reject_oversized_json (test_cli_file_input.FileInputTests.test_file_and_stdin_limits_still_reject_oversized_json) (command='draft-video-coverage-input', transport='file')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 151, in test_file_and_stdin_limits_still_reject_oversized_json
+    result = invoke(arguments, stdin)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<checkout>/scripts/test_cli_file_input.py", line 67, in invoke
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'None'
+
+======================================================================
+ERROR: test_file_and_stdin_limits_still_reject_oversized_json (test_cli_file_input.FileInputTests.test_file_and_stdin_limits_still_reject_oversized_json) (command='draft-video-coverage-input', transport='stdin')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 151, in test_file_and_stdin_limits_still_reject_oversized_json
+    result = invoke(arguments, stdin)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<checkout>/scripts/test_cli_file_input.py", line 67, in invoke
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'None'
+
+======================================================================
+ERROR: test_regular_file_and_stdin_replays_preserve_existing_results (test_cli_file_input.FileInputTests.test_regular_file_and_stdin_replays_preserve_existing_results) (command='validate')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 122, in test_regular_file_and_stdin_replays_preserve_existing_results
+    file_result = invoke([command, str(path), *extra])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<checkout>/scripts/test_cli_file_input.py", line 67, in invoke
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'None'
+
+======================================================================
+ERROR: test_regular_file_and_stdin_replays_preserve_existing_results (test_cli_file_input.FileInputTests.test_regular_file_and_stdin_replays_preserve_existing_results) (command='render-video-coverage')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 122, in test_regular_file_and_stdin_replays_preserve_existing_results
+    file_result = invoke([command, str(path), *extra])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<checkout>/scripts/test_cli_file_input.py", line 67, in invoke
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'None'
+
+======================================================================
+ERROR: test_regular_file_and_stdin_replays_preserve_existing_results (test_cli_file_input.FileInputTests.test_regular_file_and_stdin_replays_preserve_existing_results) (command='draft-video-coverage-input')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 122, in test_regular_file_and_stdin_replays_preserve_existing_results
+    file_result = invoke([command, str(path), *extra])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<checkout>/scripts/test_cli_file_input.py", line 67, in invoke
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'None'
+
+======================================================================
+ERROR: test_regular_file_and_stdin_replays_preserve_existing_results (test_cli_file_input.FileInputTests.test_regular_file_and_stdin_replays_preserve_existing_results)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 136, in test_regular_file_and_stdin_replays_preserve_existing_results
+    file_result = invoke(["verify-source", str(path), digest])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<checkout>/scripts/test_cli_file_input.py", line 67, in invoke
+    result = subprocess.run(
+             ^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "<python-runtime>/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'None'
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.026s
+
+FAILED (errors=10)

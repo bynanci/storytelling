@@ -1,0 +1,13 @@
+{
+  "source_commit": "fdd82835eae52b47886e9bc1cd9b0f19dea67664",
+  "kind": "test harness configuration failure; distinct from product FIFO RED",
+  "command": "python3 -B -m unittest discover -s scripts -p test_cli_file_input.py",
+  "exit": 1,
+  "elapsed_seconds": 0.138,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "c14b93dd69294789f46b29e320c5cc3e56c9e84a0e2d672758cc6b57d7f0ce2b",
+  "observed": "4 methods, 10 configuration errors; CLI global remained None under unittest discovery",
+  "stored_log": "discovery-red.txt",
+  "stored_log_sha256": "e0c871a449914c73c802a8a01218f1d0953b1f61369cdcea0d021386befc399d",
+  "log_normalization": "Checkout/runtime prefixes labeled and trailing whitespace removed; original stderr SHA-256 retained."
+}
