@@ -1,0 +1,306 @@
+test_directory_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_directory_inputs_reject_with_io_exit_without_blocking) ... ok
+test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) ... 
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='validate:file1') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='import-openfilm:file1') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='export-otio:file1') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='audit-brief:file1') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='plan-story:file1') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='render-narrative:file1') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='render-video-coverage:file1') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='render-handoff:file1') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='track-narrative-revisions:file1') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='draft-video-coverage-input:file1') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='render-cue-sheet:file1') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='render-cue-sheet:file2') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='check-narrative-style:file1') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='check-narrative-style:file2') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='audit-copy-claims:file1') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='audit-copy-claims:file2') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='prepare-story-review:file1') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='prepare-story-review:file2') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='prepare-story-review:file3') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='export-story-otio:file1') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='export-story-otio:file2') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='export-story-otio:file3') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='check-story-review:file1') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='check-story-review:file2') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='check-story-review:file3') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='check-story-review:file4') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='prepare-review:file1') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='prepare-review:file2') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='check-review:file1') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='check-review:file2') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='check-review:file3') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='query-narrative-impact:file1') ... FAIL
+  test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='verify-source:file1') ... FAIL
+test_file_and_stdin_limits_still_reject_oversized_json (__main__.FileInputTests.test_file_and_stdin_limits_still_reject_oversized_json) ... ok
+test_regular_file_and_stdin_replays_preserve_existing_results (__main__.FileInputTests.test_regular_file_and_stdin_replays_preserve_existing_results) ... ok
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='validate:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : validate:file1 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='import-openfilm:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : import-openfilm:file1 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='export-otio:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : export-otio:file1 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='audit-brief:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : audit-brief:file1 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='plan-story:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : plan-story:file1 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='render-narrative:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : render-narrative:file1 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='render-video-coverage:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : render-video-coverage:file1 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='render-handoff:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : render-handoff:file1 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='track-narrative-revisions:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : track-narrative-revisions:file1 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='draft-video-coverage-input:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : draft-video-coverage-input:file1 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='render-cue-sheet:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : render-cue-sheet:file1 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='render-cue-sheet:file2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : render-cue-sheet:file2 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='check-narrative-style:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : check-narrative-style:file1 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='check-narrative-style:file2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : check-narrative-style:file2 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='audit-copy-claims:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : audit-copy-claims:file1 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='audit-copy-claims:file2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : audit-copy-claims:file2 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='prepare-story-review:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : prepare-story-review:file1 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='prepare-story-review:file2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : prepare-story-review:file2 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='prepare-story-review:file3')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : prepare-story-review:file3 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='export-story-otio:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : export-story-otio:file1 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='export-story-otio:file2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : export-story-otio:file2 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='export-story-otio:file3')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : export-story-otio:file3 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='check-story-review:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : check-story-review:file1 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='check-story-review:file2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : check-story-review:file2 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='check-story-review:file3')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : check-story-review:file3 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='check-story-review:file4')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : check-story-review:file4 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='prepare-review:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : prepare-review:file1 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='prepare-review:file2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : prepare-review:file2 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='check-review:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : check-review:file1 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='check-review:file2')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : check-review:file2 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='check-review:file3')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : check-review:file3 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='query-narrative-impact:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : query-narrative-impact:file1 blocked on nonregular input
+
+======================================================================
+FAIL: test_fifo_inputs_reject_with_io_exit_without_blocking (__main__.FileInputTests.test_fifo_inputs_reject_with_io_exit_without_blocking) (command='verify-source:file1')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<checkout>/scripts/test_cli_file_input.py", line 95, in check_nonregular
+    self.assertFalse(result["timed_out"], f"{name} blocked on nonregular input")
+AssertionError: True is not false : verify-source:file1 blocked on nonregular input
+
+----------------------------------------------------------------------
+Ran 4 tests in 25.143s
+
+FAILED (failures=33)
