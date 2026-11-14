@@ -25,3 +25,8 @@ tests/fixtures/openfilm/finite-v1/video-trim.json -text
 
 # SK-E06 reference fixtures use exact SHA-256 bytes across all checkout platforms.
 /docs/research/evaluations/sk-e06/** text eol=lf
+
+# SK-E04 input-boundary RED/GREEN receipt hashes use exact LF log bytes.
+/docs/validation/sk-e04-input-boundary/** text eol=lf
+# Preserve unittest's actual trailing spaces in raw failure receipts.
+/docs/validation/sk-e04-input-boundary/*.log -whitespace

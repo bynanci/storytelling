@@ -35,6 +35,31 @@ class RecordError(ValueError):
     """The record cannot be compared without violating the frozen protocol."""
 
 
+def _unique_json_object(pairs):
+    value = {}
+    for key, item in pairs:
+        if key in value:
+            raise RecordError("duplicate JSON member")
+        value[key] = item
+    return value
+
+
+def _reject_json_constant(value):
+    raise RecordError(f"non-finite JSON constant: {value}")
+
+
+def _parse_record_json(text):
+    try:
+        return json.loads(
+            text, object_pairs_hook=_unique_json_object, parse_constant=_reject_json_constant,
+        )
+    except (json.JSONDecodeError, RecordError):
+        raise
+    except ValueError as exc:
+        # Preserve the decoder's own numeric conversion limits; do not change them.
+        raise RecordError("JSON numeric value cannot be decoded") from exc
+
+
 def _keys(value, required, label):
     if not isinstance(value, dict) or set(value) != set(required):
         raise RecordError(f"{label} fields must be exactly {sorted(required)}")
@@ -109,10 +134,14 @@ def _validate_evidence_reference(run, label, outcome):
 def validate_record(record):
     _keys(record, {"schema_version", "record_kind", "dimensions", "cases"}, "record")
     version = record["schema_version"]
-    if version not in {"skill-evaluation-order-record/v1", "skill-evaluation-order-record/v2"}:
+    if not isinstance(version, str) or version not in {
+        "skill-evaluation-order-record/v1", "skill-evaluation-order-record/v2"
+    }:
         raise RecordError("unsupported order-record version")
     v2 = version.endswith("/v2")
-    if record["record_kind"] not in {"synthetic_fixture", "observed_order_rerun"}:
+    if not isinstance(record["record_kind"], str) or record["record_kind"] not in {
+        "synthetic_fixture", "observed_order_rerun"
+    }:
         raise RecordError("record_kind must identify a synthetic fixture or observed rerun")
     if record["dimensions"] != list(DIMENSIONS):
         raise RecordError("dimension names and order differ from rubric v1")
@@ -120,6 +149,7 @@ def validate_record(record):
         raise RecordError("cases must be a nonempty array")
 
     case_ids = set()
+    artifact_digests = {}
     frozen_cross_case = None
     for case_index, case in enumerate(record["cases"]):
         label = f"cases[{case_index}]"
@@ -192,6 +222,12 @@ def validate_record(record):
 
             if v2:
                 _validate_evidence_reference(run, run_label, outcome)
+                artifact_id = run["raw_output_ref"]
+                if artifact_id is not None:
+                    digest = run["raw_output_sha256"]
+                    if artifact_id in artifact_digests and artifact_digests[artifact_id] != digest:
+                        raise RecordError(f"{run_label}.raw_output_ref has conflicting output digests")
+                    artifact_digests[artifact_id] = digest
                 if outcome == "valid_annotation":
                     _validate_annotation(run["raw"], f"{run_label}.raw")
                     _validate_adjudicated(run["adjudicated"], f"{run_label}.adjudicated")
@@ -413,9 +449,9 @@ def main():
     analyze_parser.add_argument("record", type=Path)
     args = parser.parse_args()
     try:
-        record = json.loads(args.record.read_text(encoding="utf-8"))
+        record = _parse_record_json(args.record.read_text(encoding="utf-8"))
         report = analyze_record(record)
-    except (OSError, json.JSONDecodeError, RecordError) as exc:
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError, RecordError) as exc:
         print(f"sk_e04_order_analysis: {exc}", file=sys.stderr)
         return 2
     print(json.dumps(report, ensure_ascii=False, indent=2, sort_keys=True))

@@ -142,4 +142,6 @@ M3-JL02／M3-JL06 維護：[首次回讀紀錄修正](docs/validation/m3-02-read
 [40案模型評分報告與視覺化](docs/research/evaluations/2026-11-13-gemini-r1/README.zh-TW.md)保存原始數值、來源勘誤與宣告分組限制。這是W4/W6的診斷觀察，不新增已驗收需求、真人結果或完成的技能改善。
 沿用[#115](https://github.com/bynanci/storytelling/issues/115)總追蹤。[SK-E01／#118](https://github.com/bynanci/storytelling/issues/118)與[SK-E02／#119](https://github.com/bynanci/storytelling/issues/119)已合併。[SK-E03／#120](https://github.com/bynanci/storytelling/issues/120)已結案，交付四個中英合成回歸案例及非獨立開發演練；不構成效益結果。[SK-E04／#121](https://github.com/bynanci/storytelling/issues/121)已建立凍結反序協定、錨點 rubric 與描述性分析工具（[前置資料包](docs/research/evaluations/sk-e04/README.zh-TW.md)）。原始草稿／資料包位元組、精確提示／量表及模型設定缺失，無法執行；未知歷史欄位維持未知。[SK-E05／#122](https://github.com/bynanci/storytelling/issues/122)仍獨立追蹤，需待相依工作完成，才可主張 holdout 效益。既有 N/M 任務、#54 處置及 #112 真人證據門檻維持各自範圍。
 
+**SK-E04／#121 輸入修復**保留 v1／v2 報告，拒絕歧義 JSON、無效 UTF-8／辨識欄位型別及矛盾的 artifact ID／雜湊中繼資料。見 [RED／GREEN 紀錄](docs/validation/sk-e04-input-boundary.zh-TW.md)。既有翻轉率仍按配對加權，逐案分數平均不變。R1 實際重評與 #122 仍受阻。
+
 **SK-E06／#115** 補上其餘五種對抗[參考案例／手動規程](docs/research/evaluations/sk-e06/README.zh-TW.md)：變體範圍、來源移除的間接影響、不可信指令／同意、捏造真人證據及缺少產物。中英範例是編寫參考，不是擷取的模型／真人結果；`scripts/test_sk_e06_packet.py` 只檢查資料包完整性，實際執行表單維持空白。#121／#122 與真人／宿主／發布門檻仍開啟。

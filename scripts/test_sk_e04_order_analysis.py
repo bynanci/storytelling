@@ -3,8 +3,10 @@
 
 import copy
 import json
+import os
 import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -204,6 +206,101 @@ class OrderAnalysisTests(unittest.TestCase):
         good_run["raw"]["ratings"]["X"][0] = True
         with self.assertRaises(RecordError):
             validate_record(bad_score)
+
+    def run_cli_bytes(self, data, env=None):
+        with tempfile.TemporaryDirectory(prefix="sk-e04-input-") as directory:
+            path = Path(directory) / "record.json"
+            path.write_bytes(data)
+            return subprocess.run(
+                [sys.executable, str(ROOT / "scripts/sk_e04_order_analysis.py"), "analyze", str(path)],
+                cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, env=env,
+            )
+
+    def assert_cli_rejects(self, data, env=None):
+        result = self.run_cli_bytes(data, env=env)
+        self.assertEqual(result.returncode, 2, result.stderr)
+        self.assertEqual(result.stdout, "")
+        self.assertIn("sk_e04_order_analysis:", result.stderr)
+        self.assertNotIn("Traceback", result.stderr)
+
+    def test_cli_rejects_duplicate_members_before_outcome_accounting(self):
+        encoded = json.dumps(self.fixture)
+        mutations = (
+            ('"record_kind": "synthetic_fixture"',
+             '"record_kind": "synthetic_fixture", "record_kind": "synthetic_fixture"'),
+            ('"call_outcome": "valid_annotation"',
+             '"call_outcome": "timeout", "call_outcome": "valid_annotation"'),
+            ('"preference": "X"', '"preference": "Y", "preference": "X"'),
+        )
+        for original, replacement in mutations:
+            with self.subTest(member=original):
+                self.assert_cli_rejects(encoded.replace(original, replacement, 1).encode("utf-8"))
+
+    def test_cli_rejects_nonfinite_numbers_and_invalid_utf8(self):
+        for constant in ("NaN", "Infinity", "-Infinity"):
+            with self.subTest(constant=constant):
+                encoded = json.dumps(self.fixture).replace(
+                    '"schema_version": "skill-evaluation-order-record/v2"',
+                    '"schema_version": ' + constant, 1,
+                )
+                self.assert_cli_rejects(encoded.encode("utf-8"))
+        self.assert_cli_rejects(b"\xff")
+
+    def test_duplicate_member_diagnostic_does_not_echo_control_text(self):
+        payload = b'{"untrusted\\n\\u001b[31m":0,"untrusted\\n\\u001b[31m":1}'
+        result = self.run_cli_bytes(payload)
+        self.assertEqual(result.returncode, 2)
+        self.assertEqual(result.stdout, "")
+        self.assertEqual(len(result.stderr.splitlines()), 1)
+        self.assertNotIn("\x1b", result.stderr)
+
+    def test_cli_bounds_existing_json_integer_conversion_failure(self):
+        payload = b'{"schema_version":' + b"1" * 4301 + b"}"
+        self.assert_cli_rejects(payload, env={**os.environ, "PYTHONINTMAXSTRDIGITS": "4300"})
+
+    def test_cli_bounds_invalid_discriminant_types(self):
+        for field in ("schema_version", "record_kind"):
+            for value in (None, False, 1, 1.5, [], {}):
+                with self.subTest(field=field, value=value):
+                    record = copy.deepcopy(self.fixture)
+                    record[field] = value
+                    self.assert_cli_rejects(json.dumps(record).encode("utf-8"))
+
+    def test_api_rejects_unhashable_discriminants_as_record_errors(self):
+        for field in ("schema_version", "record_kind"):
+            for value in ([], {}):
+                with self.subTest(field=field, value=value):
+                    record = copy.deepcopy(self.fixture)
+                    record[field] = value
+                    with self.assertRaises(RecordError):
+                        validate_record(record)
+
+    def test_rejects_one_artifact_id_bound_to_conflicting_digests(self):
+        for target_case, target_run in ((0, 1), (2, 0)):
+            with self.subTest(case=target_case, run=target_run):
+                record = copy.deepcopy(self.fixture)
+                original = record["cases"][0]["runs"][0]
+                target = record["cases"][target_case]["runs"][target_run]
+                target["raw_output_ref"] = original["raw_output_ref"]
+                with self.assertRaises(RecordError):
+                    validate_record(record)
+
+    def test_cli_rejects_conflicting_artifact_identity(self):
+        record = copy.deepcopy(self.fixture)
+        first, second = record["cases"][0]["runs"][:2]
+        second["raw_output_ref"] = first["raw_output_ref"]
+        self.assert_cli_rejects(json.dumps(record).encode("utf-8"))
+
+    def test_repeated_artifact_id_with_same_digest_remains_accepted(self):
+        record = copy.deepcopy(self.fixture)
+        original = record["cases"][0]["runs"][0]
+        target = record["cases"][2]["runs"][0]
+        target["raw_output_ref"] = original["raw_output_ref"]
+        target["raw_output_sha256"] = original["raw_output_sha256"]
+        report = analyze_record(record)
+        self.assertEqual(report["planned_pair_count"], 5)
+        self.assertEqual(report["comparable_pair_count"], 3)
+        self.assertEqual(report["failed_call_count"], 2)
 
     def test_cli_emits_valid_json_for_v2_synthetic_fixture(self):
         result = subprocess.run(
