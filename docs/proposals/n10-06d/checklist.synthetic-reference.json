@@ -1,0 +1,202 @@
+{
+  "form_revision": "n10-06d.1-draft",
+  "record_kind": "synthetic_reference_only",
+  "mode": "dry_run_only",
+  "case_code": "SYN-D-01",
+  "checklist_revision": 1,
+  "recorded_at_utc": null,
+  "reviewer_code": "SYN-REVIEWER",
+  "storytelling_commit": "52dc6c315f7b3d20693f3c51e052509997ab791b",
+  "source_identity": {
+    "document_id": "n10-synthetic-story",
+    "document_revision": 1,
+    "variant_id": "rough-cut",
+    "coverage_id": "two-unit-cut",
+    "catalog_id": "synthetic-catalog",
+    "catalog_revision": 1,
+    "input_sha256": null
+  },
+  "selected_units": [
+    {
+      "unit_ref": {
+        "unit_id": "S02",
+        "revision": 1
+      },
+      "status": "mapped",
+      "asset_ref": {
+        "asset_id": "CLIP-01",
+        "revision": 1
+      },
+      "original_time_unit": "seconds",
+      "source_range": {
+        "start": {
+          "numerator": "5",
+          "denominator": "2"
+        },
+        "end": {
+          "numerator": "9",
+          "denominator": "2"
+        }
+      },
+      "declared_duration": {
+        "numerator": "12",
+        "denominator": "1"
+      },
+      "media_evidence_ref": null,
+      "content_evidence_ref": null
+    },
+    {
+      "unit_ref": {
+        "unit_id": "S03",
+        "revision": 1
+      },
+      "status": "unresolved",
+      "reason": "No video asset was selected for this unit.",
+      "media_evidence_ref": null,
+      "content_evidence_ref": null
+    }
+  ],
+  "checks": {
+    "declared_valid": {
+      "state": "not_verified",
+      "observed_at_utc": null,
+      "reviewer_code": null,
+      "evidence_ref_ids": [],
+      "evidence_sha256": [],
+      "notes": "The repository fixture is designed to yield valid unresolved V1 input. This form records no new CLI run; capture actual command/output before passing the observation lane.",
+      "blocking_reason": null,
+      "actual_exit": null,
+      "actual_result_ref": null,
+      "ready_for_planning": null,
+      "unresolved_unit_refs": [
+        {
+          "unit_id": "S03",
+          "revision": 1
+        }
+      ]
+    },
+    "media_probed": {
+      "state": "not_verified",
+      "observed_at_utc": null,
+      "reviewer_code": null,
+      "evidence_ref_ids": [],
+      "evidence_sha256": [],
+      "notes": "CLIP-01 is only a declared synthetic ID. No file was selected, read, hashed or probed in this example; S03 has no selected footage.",
+      "blocking_reason": null,
+      "asset_bindings": []
+    },
+    "content_reviewed": {
+      "state": "not_verified",
+      "observed_at_utc": null,
+      "reviewer_code": null,
+      "evidence_ref_ids": [],
+      "evidence_sha256": [],
+      "notes": "No author viewed material or supplied confirmation.",
+      "blocking_reason": null,
+      "author_code": null,
+      "author_words_verbatim": null,
+      "confirmed_unit_range_refs": []
+    },
+    "host_qualified": {
+      "state": "blocked",
+      "observed_at_utc": null,
+      "reviewer_code": null,
+      "evidence_ref_ids": [],
+      "evidence_sha256": [],
+      "notes": null,
+      "blocking_reason": "Accepted production host/profile/target evidence under #104–#106 is required.",
+      "host_profile_ref": null,
+      "host_build_ref": null,
+      "os_runtime_ref": null,
+      "target_identity_ref": null,
+      "target_revision_sha256": null
+    },
+    "authority_accepted": {
+      "state": "blocked",
+      "observed_at_utc": null,
+      "reviewer_code": null,
+      "evidence_ref_ids": [],
+      "evidence_sha256": [],
+      "notes": null,
+      "blocking_reason": "The #103 contract, W01 evidence and current trusted authority record remain separately gated.",
+      "accepted_contract_commit": null,
+      "current_policy_ref": null,
+      "current_approval_receipt_ref": null,
+      "operation_identity_ref": null
+    }
+  },
+  "compilation_review_binding": {
+    "state": "not_verified",
+    "observed_at_utc": null,
+    "reviewer_code": null,
+    "evidence_ref_ids": [],
+    "evidence_sha256": [],
+    "notes": null,
+    "blocking_reason": null,
+    "proposal_sha256": null,
+    "source_snapshot_sha256": null,
+    "compiler_build_ref": null,
+    "export_profile_ref": null,
+    "artifact_sha256": null,
+    "review_binding_ref": null,
+    "accepted_losses_ref": null
+  },
+  "signature_check": {
+    "mathematical_validity": "not_verified",
+    "evidence_ref_id": null,
+    "trusted_key_policy_ref": null,
+    "note": "A mathematically valid signature alone supplies no current authorization or compiler binding."
+  },
+  "prior_operation": {
+    "operation_ref": null,
+    "outcome": null,
+    "last_durable_receipt_ref": null,
+    "correlated_readback_ref": null,
+    "positive_quiescence_ref": null,
+    "automatic_retry": false,
+    "undo_requested": false
+  },
+  "review_outcome": {
+    "state": "blocked",
+    "blocking_reasons": [
+      "S03 remains unresolved.",
+      "The declaration result is an expected fixture assertion, not a newly observed CLI receipt.",
+      "No local media identity or author content observation exists.",
+      "Production host and authority gates remain pending."
+    ],
+    "next_steps": [
+      {
+        "owner_role": "facilitator",
+        "action": "Capture a real declaration replay receipt for the supplied public JSON."
+      },
+      {
+        "owner_role": "author",
+        "action": "Retain S03 as unresolved until actual footage is explicitly selected; no content review result is assumed."
+      },
+      {
+        "owner_role": "maintainer",
+        "action": "Review independent C and M3 contracts/evidence before any actual media adapter or host path is used."
+      }
+    ]
+  },
+  "privacy_note": "Keep real paths, media, sensitive raw evidence and personal/signer details in authorized private storage. References here are opaque evidence IDs.",
+  "actual_results": null,
+  "reference_origin": {
+    "kind": "authored_teaching_example",
+    "source": "tests/fixtures/narrative-video-coverage-v1/valid-unresolved.json",
+    "source_commit": "52dc6c315f7b3d20693f3c51e052509997ab791b",
+    "license": "MIT",
+    "actual_observations_performed": []
+  },
+  "expected_reference_result": {
+    "kind": "synthetic_expected_assertion_not_observation",
+    "valid_v1_input": true,
+    "ready_for_planning": false,
+    "diagnostics": [
+      {
+        "code": "video_coverage.unresolved_required",
+        "path": "$.mappings[1]"
+      }
+    ]
+  }
+}
