@@ -1,0 +1,660 @@
+{
+  "analysis_kind": "descriptive_existing_numeric_data",
+  "input_scope": "Numeric transcription only; not verbatim evidence/reasons JSON",
+  "analysis_unit": "case",
+  "denominators": {
+    "cases": 40,
+    "drafts": 80,
+    "dimensions_per_draft": 7,
+    "ratings": 560
+  },
+  "difference_definition": "Declared story minus control; equal-weight mean of seven ordinal ratings, not a validated scale.",
+  "declared_mean_difference": {
+    "fraction": "-51/280",
+    "approx_decimal": "-0.182143"
+  },
+  "leave_one_case_out": {
+    "rows": [
+      {
+        "removed_case_id": "C01",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-15/91",
+          "approx_decimal": "-0.164835"
+        }
+      },
+      {
+        "removed_case_id": "C02",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-53/273",
+          "approx_decimal": "-0.194139"
+        }
+      },
+      {
+        "removed_case_id": "C03",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-4/21",
+          "approx_decimal": "-0.190476"
+        }
+      },
+      {
+        "removed_case_id": "C04",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-7/39",
+          "approx_decimal": "-0.179487"
+        }
+      },
+      {
+        "removed_case_id": "C05",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-7/39",
+          "approx_decimal": "-0.179487"
+        }
+      },
+      {
+        "removed_case_id": "C06",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-47/273",
+          "approx_decimal": "-0.172161"
+        }
+      },
+      {
+        "removed_case_id": "C07",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-61/273",
+          "approx_decimal": "-0.223443"
+        }
+      },
+      {
+        "removed_case_id": "C08",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-53/273",
+          "approx_decimal": "-0.194139"
+        }
+      },
+      {
+        "removed_case_id": "C09",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-40/273",
+          "approx_decimal": "-0.146520"
+        }
+      },
+      {
+        "removed_case_id": "C10",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-53/273",
+          "approx_decimal": "-0.194139"
+        }
+      },
+      {
+        "removed_case_id": "C11",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-44/273",
+          "approx_decimal": "-0.161172"
+        }
+      },
+      {
+        "removed_case_id": "C12",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-43/273",
+          "approx_decimal": "-0.157509"
+        }
+      },
+      {
+        "removed_case_id": "C13",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-40/273",
+          "approx_decimal": "-0.146520"
+        }
+      },
+      {
+        "removed_case_id": "C14",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-44/273",
+          "approx_decimal": "-0.161172"
+        }
+      },
+      {
+        "removed_case_id": "C15",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-53/273",
+          "approx_decimal": "-0.194139"
+        }
+      },
+      {
+        "removed_case_id": "C16",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-17/91",
+          "approx_decimal": "-0.186813"
+        }
+      },
+      {
+        "removed_case_id": "C17",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-7/39",
+          "approx_decimal": "-0.179487"
+        }
+      },
+      {
+        "removed_case_id": "C18",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-4/21",
+          "approx_decimal": "-0.190476"
+        }
+      },
+      {
+        "removed_case_id": "C19",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-50/273",
+          "approx_decimal": "-0.183150"
+        }
+      },
+      {
+        "removed_case_id": "C20",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-15/91",
+          "approx_decimal": "-0.164835"
+        }
+      },
+      {
+        "removed_case_id": "C21",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-7/39",
+          "approx_decimal": "-0.179487"
+        }
+      },
+      {
+        "removed_case_id": "C22",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-7/39",
+          "approx_decimal": "-0.179487"
+        }
+      },
+      {
+        "removed_case_id": "C23",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-55/273",
+          "approx_decimal": "-0.201465"
+        }
+      },
+      {
+        "removed_case_id": "C24",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-41/273",
+          "approx_decimal": "-0.150183"
+        }
+      },
+      {
+        "removed_case_id": "C25",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-50/273",
+          "approx_decimal": "-0.183150"
+        }
+      },
+      {
+        "removed_case_id": "C26",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-7/39",
+          "approx_decimal": "-0.179487"
+        }
+      },
+      {
+        "removed_case_id": "C27",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-20/91",
+          "approx_decimal": "-0.219780"
+        }
+      },
+      {
+        "removed_case_id": "C28",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-50/273",
+          "approx_decimal": "-0.183150"
+        }
+      },
+      {
+        "removed_case_id": "C29",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-17/91",
+          "approx_decimal": "-0.186813"
+        }
+      },
+      {
+        "removed_case_id": "C30",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-46/273",
+          "approx_decimal": "-0.168498"
+        }
+      },
+      {
+        "removed_case_id": "C31",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-18/91",
+          "approx_decimal": "-0.197802"
+        }
+      },
+      {
+        "removed_case_id": "C32",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-44/273",
+          "approx_decimal": "-0.161172"
+        }
+      },
+      {
+        "removed_case_id": "C33",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-20/91",
+          "approx_decimal": "-0.219780"
+        }
+      },
+      {
+        "removed_case_id": "C34",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-46/273",
+          "approx_decimal": "-0.168498"
+        }
+      },
+      {
+        "removed_case_id": "C35",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-44/273",
+          "approx_decimal": "-0.161172"
+        }
+      },
+      {
+        "removed_case_id": "C36",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-50/273",
+          "approx_decimal": "-0.183150"
+        }
+      },
+      {
+        "removed_case_id": "C37",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-55/273",
+          "approx_decimal": "-0.201465"
+        }
+      },
+      {
+        "removed_case_id": "C38",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-20/91",
+          "approx_decimal": "-0.219780"
+        }
+      },
+      {
+        "removed_case_id": "C39",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-7/39",
+          "approx_decimal": "-0.179487"
+        }
+      },
+      {
+        "removed_case_id": "C40",
+        "remaining_case_count": 39,
+        "difference": {
+          "fraction": "-18/91",
+          "approx_decimal": "-0.197802"
+        }
+      }
+    ],
+    "range": {
+      "minimum": {
+        "fraction": "-61/273",
+        "approx_decimal": "-0.223443"
+      },
+      "maximum": {
+        "fraction": "-40/273",
+        "approx_decimal": "-0.146520"
+      }
+    }
+  },
+  "leave_one_dimension_out": {
+    "rows": [
+      {
+        "removed_dimension": "factual_accuracy",
+        "remaining_case_count": 40,
+        "remaining_dimensions_per_draft": 6,
+        "difference": {
+          "fraction": "-43/240",
+          "approx_decimal": "-0.179167"
+        }
+      },
+      {
+        "removed_dimension": "source_traceability",
+        "remaining_case_count": 40,
+        "remaining_dimensions_per_draft": 6,
+        "difference": {
+          "fraction": "-11/60",
+          "approx_decimal": "-0.183333"
+        }
+      },
+      {
+        "removed_dimension": "uncertainty_boundary",
+        "remaining_case_count": 40,
+        "remaining_dimensions_per_draft": 6,
+        "difference": {
+          "fraction": "-43/240",
+          "approx_decimal": "-0.179167"
+        }
+      },
+      {
+        "removed_dimension": "narrative_coherence",
+        "remaining_case_count": 40,
+        "remaining_dimensions_per_draft": 6,
+        "difference": {
+          "fraction": "-7/40",
+          "approx_decimal": "-0.175000"
+        }
+      },
+      {
+        "removed_dimension": "clarity",
+        "remaining_case_count": 40,
+        "remaining_dimensions_per_draft": 6,
+        "difference": {
+          "fraction": "-7/40",
+          "approx_decimal": "-0.175000"
+        }
+      },
+      {
+        "removed_dimension": "audience_fit",
+        "remaining_case_count": 40,
+        "remaining_dimensions_per_draft": 6,
+        "difference": {
+          "fraction": "-3/16",
+          "approx_decimal": "-0.187500"
+        }
+      },
+      {
+        "removed_dimension": "task_completion",
+        "remaining_case_count": 40,
+        "remaining_dimensions_per_draft": 6,
+        "difference": {
+          "fraction": "-47/240",
+          "approx_decimal": "-0.195833"
+        }
+      }
+    ],
+    "range": {
+      "minimum": {
+        "fraction": "-47/240",
+        "approx_decimal": "-0.195833"
+      },
+      "maximum": {
+        "fraction": "-7/40",
+        "approx_decimal": "-0.175000"
+      }
+    }
+  },
+  "individual_batches": [
+    {
+      "batch": 1,
+      "case_count": 10,
+      "case_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10"
+      ],
+      "difference": {
+        "fraction": "-4/35",
+        "approx_decimal": "-0.114286"
+      }
+    },
+    {
+      "batch": 2,
+      "case_count": 10,
+      "case_ids": [
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C16",
+        "C17",
+        "C18",
+        "C19",
+        "C20"
+      ],
+      "difference": {
+        "fraction": "-39/70",
+        "approx_decimal": "-0.557143"
+      }
+    },
+    {
+      "batch": 3,
+      "case_count": 10,
+      "case_ids": [
+        "C21",
+        "C22",
+        "C23",
+        "C24",
+        "C25",
+        "C26",
+        "C27",
+        "C28",
+        "C29",
+        "C30"
+      ],
+      "difference": {
+        "fraction": "-1/7",
+        "approx_decimal": "-0.142857"
+      }
+    },
+    {
+      "batch": 4,
+      "case_count": 10,
+      "case_ids": [
+        "C31",
+        "C32",
+        "C33",
+        "C34",
+        "C35",
+        "C36",
+        "C37",
+        "C38",
+        "C39",
+        "C40"
+      ],
+      "difference": {
+        "fraction": "3/35",
+        "approx_decimal": "0.085714"
+      }
+    }
+  ],
+  "leave_one_batch_out": {
+    "rows": [
+      {
+        "removed_batch": 1,
+        "remaining_case_count": 30,
+        "difference": {
+          "fraction": "-43/210",
+          "approx_decimal": "-0.204762"
+        }
+      },
+      {
+        "removed_batch": 2,
+        "remaining_case_count": 30,
+        "difference": {
+          "fraction": "-2/35",
+          "approx_decimal": "-0.057143"
+        }
+      },
+      {
+        "removed_batch": 3,
+        "remaining_case_count": 30,
+        "difference": {
+          "fraction": "-41/210",
+          "approx_decimal": "-0.195238"
+        }
+      },
+      {
+        "removed_batch": 4,
+        "remaining_case_count": 30,
+        "difference": {
+          "fraction": "-19/70",
+          "approx_decimal": "-0.271429"
+        }
+      }
+    ],
+    "range": {
+      "minimum": {
+        "fraction": "-19/70",
+        "approx_decimal": "-0.271429"
+      },
+      "maximum": {
+        "fraction": "-2/35",
+        "approx_decimal": "-0.057143"
+      }
+    }
+  },
+  "early_key_sensitivity": {
+    "assumption": "Only early summary-only keys vary; every other declared key is held fixed, not verified.",
+    "case_ids": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "C07",
+      "C08",
+      "C09",
+      "C10"
+    ],
+    "other_declared_keys_held_fixed": [
+      "C11",
+      "C12",
+      "C13",
+      "C14",
+      "C15",
+      "C16",
+      "C17",
+      "C18",
+      "C19",
+      "C20",
+      "C21",
+      "C22",
+      "C23",
+      "C24",
+      "C25",
+      "C26",
+      "C27",
+      "C28",
+      "C29",
+      "C30",
+      "C31",
+      "C32",
+      "C33",
+      "C34",
+      "C35",
+      "C36",
+      "C37",
+      "C38",
+      "C39",
+      "C40"
+    ],
+    "unrestricted": {
+      "arrangements": 1024,
+      "range": {
+        "minimum": {
+          "fraction": "-17/56",
+          "approx_decimal": "-0.303571"
+        },
+        "maximum": {
+          "fraction": "-1/280",
+          "approx_decimal": "-0.003571"
+        }
+      }
+    },
+    "preserve_declared_X_count": {
+      "declared_X_count": 5,
+      "arrangements": 252,
+      "range": {
+        "minimum": {
+          "fraction": "-81/280",
+          "approx_decimal": "-0.289286"
+        },
+        "maximum": {
+          "fraction": "-1/56",
+          "approx_decimal": "-0.017857"
+        }
+      }
+    },
+    "interpretation": "Sensitivity scenarios over the same cases; neither new cases nor confidence intervals."
+  },
+  "all_keys_unknown_bounds": {
+    "minimum": {
+      "fraction": "-173/280",
+      "approx_decimal": "-0.617857"
+    },
+    "maximum": {
+      "fraction": "173/280",
+      "approx_decimal": "0.617857"
+    },
+    "assumption": "Every case may label either X or Y as story; no allocation-count constraint.",
+    "interpretation": "Arithmetic label-uncertainty bounds, not confidence intervals."
+  },
+  "ceiling": {
+    "rating_denominator_per_declared_condition": 280,
+    "declared_story_at_5": 147,
+    "declared_control_at_5": 178
+  },
+  "limitations": [
+    "Declared assignments remain unverified generation conditions; none is repaired or authenticated.",
+    "All recorded presentations are X_then_Y; these diagnostics cannot identify a presentation-order effect.",
+    "Purposefully selected cases may share topics, sources and a judge; no population or causal efficacy claim.",
+    "Dimensions, omission runs and enumerated assignments add no independent observations.",
+    "Sensitivity extrema are not confidence intervals; no new p-values, confidence intervals or equivalence test.",
+    "This is neither a rescore, a new judge run, human evidence, a holdout nor product/host acceptance."
+  ],
+  "input_sha256": {
+    "ratings_normalized_R1.json": "f153b0d0b84ab0e98b4933176f12dd869dfb88cfb96e571069b1264dbac27d81",
+    "score_input.py": "5a6d416a9c5737241d69138a945bc3ab6bea9078d5b3f6ab46c98fcb69e3e8e6",
+    "statistics_R1.json": "d5f04263931b681cf0c3469d841c69990ecd2ec54a498b34098cfcf4fd842e3d"
+  }
+}

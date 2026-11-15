@@ -1,0 +1,3 @@
+Command: python scripts/r1_package_checksums.py verify --ref HEAD --worktree
+Exit: 0
+Verified 15 manifest entries against Git blobs and checkout bytes.

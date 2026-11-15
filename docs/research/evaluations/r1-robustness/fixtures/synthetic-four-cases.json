@@ -1,0 +1,10 @@
+{
+  "scope": "Synthetic arithmetic fixture only; no model or human observations",
+  "dimensions": ["factual_accuracy", "source_traceability", "uncertainty_boundary", "narrative_coherence", "clarity", "audience_fit", "task_completion"],
+  "cases": [
+    {"case_id": "S01", "batch": 1, "ratings_X": [5,5,5,5,5,5,5], "ratings_Y": [4,4,4,4,4,4,4], "declared_story_variant": "X", "assignment_provenance": "conversation_summary_only", "presentation_order": "X_then_Y"},
+    {"case_id": "S02", "batch": 1, "ratings_X": [2,2,2,2,2,2,2], "ratings_Y": [4,4,4,4,4,4,4], "declared_story_variant": "Y", "assignment_provenance": "conversation_summary_only", "presentation_order": "X_then_Y"},
+    {"case_id": "S03", "batch": 2, "ratings_X": [4,4,4,4,4,4,4], "ratings_Y": [2,2,2,2,2,2,2], "declared_story_variant": "Y", "assignment_provenance": "published_batch_answer_key", "presentation_order": "X_then_Y"},
+    {"case_id": "S04", "batch": 2, "ratings_X": [3,3,3,3,3,3,3], "ratings_Y": [3,3,3,3,3,3,3], "declared_story_variant": "X", "assignment_provenance": "published_batch_answer_key", "presentation_order": "X_then_Y"}
+  ]
+}

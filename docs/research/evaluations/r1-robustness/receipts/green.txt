@@ -1,0 +1,7 @@
+Command: python scripts/test_r1_robustness.py
+Exit: 0
+..........
+----------------------------------------------------------------------
+Ran 10 tests in 0.118s
+
+OK
