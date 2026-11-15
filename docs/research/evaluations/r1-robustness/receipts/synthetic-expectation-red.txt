@@ -1,0 +1,20 @@
+Command: python scripts/test_r1_robustness.py
+Exit: 1
+...F......
+======================================================================
+FAIL: test_enumeration_and_unconstrained_bounds_are_explicit (__main__.R1RobustnessTests.test_enumeration_and_unconstrained_bounds_are_explicit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-r1-robustness/scripts/test_r1_robustness.py", line 46, in test_enumeration_and_unconstrained_bounds_are_explicit
+    self.assertEqual(sensitivity[key]["range"]["minimum"]["fraction"], low)
+AssertionError: '-5/4' != '-3/4'
+- -5/4
+?  ^
++ -3/4
+?  ^
+
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.109s
+
+FAILED (failures=1)

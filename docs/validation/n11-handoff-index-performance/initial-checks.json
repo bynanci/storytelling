@@ -24,7 +24,7 @@
         "--locked"
       ],
       "exit": 101,
-      "log": "check-01.log",
+      "log": "characterization-compile-failure.log",
       "sha256": "a4db5aa3fa0625aeb79e53ebecfbfd53773a7619774009372301d6c112b0b67a"
     }
   ]

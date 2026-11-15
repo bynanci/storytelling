@@ -150,4 +150,8 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 
 **SK-E06／#115** 補上其餘五種對抗[參考案例／手動規程](docs/research/evaluations/sk-e06/README.zh-TW.md)：變體範圍、來源移除的間接影響、不可信指令／同意、捏造真人證據及缺少產物。中英範例是編寫參考，不是擷取的模型／真人結果；`scripts/test_sk_e06_packet.py` 只檢查資料包完整性，實際執行表單維持空白。#121／#122 與真人／宿主／發布門檻仍開啟。
 
+- [x] **SK-EVAL-R1 算術審查與敏感度診斷。** [追加報告](docs/research/evaluations/r1-robustness/README.zh-TW.md)重現原五份數值產物，新增精確的案例／維度／批次移除及分組敏感度界限。十項回歸及獨立 AI 數學審查涵蓋此診斷範圍；原 R1 位元組、結論與 #121／#122 證據門檻不變。同 head hosted 檢查另記於 PR。
+
+## 敘事交接維護
+
 - [x] **N-R11 交接查找維護。** 私有來源索引維持既有契約；兩種凍結的大型合成 release 負載中位耗時約為基準的 0.55。[流程、原始配對、檢查與獨立 AI review](docs/validation/n11-handoff-index-performance.zh-TW.md)區分程序量測與真人／Host 證據；最終 head 的 hosted 檢查另記於 PR。
