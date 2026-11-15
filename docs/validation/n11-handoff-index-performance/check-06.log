@@ -1,0 +1,8 @@
+    Checking storytelling-core v0.1.0-dev.0 (/workspace/storytelling-handoff-index/crates/storytelling-core)
+ Documenting storytelling-core v0.1.0-dev.0 (/workspace/storytelling-handoff-index/crates/storytelling-core)
+ Documenting storytelling-journal v0.1.0-dev.0 (/workspace/storytelling-handoff-index/crates/storytelling-journal)
+    Checking storytelling-engine v0.1.0-dev.0 (/workspace/storytelling-handoff-index/crates/storytelling-engine)
+ Documenting storytelling-engine v0.1.0-dev.0 (/workspace/storytelling-handoff-index/crates/storytelling-engine)
+ Documenting storytelling-cli v0.1.0-dev.0 (/workspace/storytelling-handoff-index/crates/storytelling-cli)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.80s
+   Generated /tmp/storytelling-handoff-opt-target/doc/storytelling/index.html and 3 other files

@@ -1,0 +1,148 @@
+{
+  "source_commit": "c5b4c61e8546d758441144359b6e5d86994deae5",
+  "target_initially_absent_before_first_build": true,
+  "target_owner": "storytelling-handoff-index only",
+  "date_utc": "2026-11-15T08:02:56.472533+00:00",
+  "checks": [
+    {
+      "command": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "exit": 0,
+      "log": "check-00.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--locked"
+      ],
+      "exit": 0,
+      "log": "check-01.log",
+      "sha256": "fbde100007d025dafaaf6e7f334c297da997f69262d8798aa06e59994a323276",
+      "rust_counts": {
+        "passed": 315,
+        "failed": 0,
+        "ignored": 3
+      }
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--all-features",
+        "--locked"
+      ],
+      "exit": 0,
+      "log": "check-02.log",
+      "sha256": "97167e3c3e542cb8f44350481c6207a1c9530ba302cafa7066678736837b1357",
+      "rust_counts": {
+        "passed": 334,
+        "failed": 0,
+        "ignored": 3
+      }
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--release",
+        "--locked"
+      ],
+      "exit": 0,
+      "log": "check-03.log",
+      "sha256": "2f4893b1f04965e6ea84bf83222103bb1e9c5b7584ad05eb90ac3dd6d6425213",
+      "rust_counts": {
+        "passed": 315,
+        "failed": 0,
+        "ignored": 3
+      }
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--all-features",
+        "--release",
+        "--locked"
+      ],
+      "exit": 0,
+      "log": "check-04.log",
+      "sha256": "6c8cfde887295a10b5f495001a745ce6ff27736094a4b686ad5e27b4b596b3e5",
+      "rust_counts": {
+        "passed": 334,
+        "failed": 0,
+        "ignored": 3
+      }
+    },
+    {
+      "command": [
+        "cargo",
+        "clippy",
+        "--workspace",
+        "--all-targets",
+        "--all-features",
+        "--locked",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit": 0,
+      "log": "check-05.log",
+      "sha256": "c1fe21621906d41c1191e7d5f6d880cf6b6ffcba0033fb33f1880edf4db9e706"
+    },
+    {
+      "command": [
+        "cargo",
+        "doc",
+        "--workspace",
+        "--all-features",
+        "--no-deps",
+        "--locked"
+      ],
+      "exit": 0,
+      "log": "check-06.log",
+      "sha256": "82d9f87c1afda3cc52ae29640c5f43cd25efdb445bb894b3b16a89a7b40917e1"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/check_repo.py"
+      ],
+      "exit": 0,
+      "log": "check-07.log",
+      "sha256": "728bbfaf33cce26d9fbaf87b18bd5a323ffebd1fb3d212369faab1c56d548238"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/test_benchmark_n11_handoff.py"
+      ],
+      "exit": 0,
+      "log": "check-08.log",
+      "sha256": "dcf310d3af65800f34b9fa9fd1f864b9236e53b8ef7dcc6407d2ff9157a885e2"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/test_cli_file_input.py",
+        "/tmp/storytelling-handoff-opt-target/debug/storytelling"
+      ],
+      "exit": 0,
+      "log": "check-09.log",
+      "sha256": "ec0db709e703ec65b601360329c819adb26e90f5914a3fb103fd10340df2c669"
+    }
+  ],
+  "source_note": "HEAD identifies engine/runtime sources; the characterization test iterator was corrected in the working tree before these checks. Exact tested Rust/Cargo bytes are hashed below.",
+  "rust_cargo_files_sha256": "fdeea789982e34f2b5dfb7cbf1c65a952be168a39256cfd2e37691caf843f6d1",
+  "characterization_test_sha256": "3727281cb8ac285f663d90955b3734e1eea729b42960135753005a118ed8b74a"
+}

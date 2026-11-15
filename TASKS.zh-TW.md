@@ -149,3 +149,5 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 - [x] **SK-E04／#121 輸入完整性維護。**[PR #138](https://github.com/bynanci/storytelling/pull/138) 已以 `3e0f0d0` 合併嚴格 JSON／UTF-8／辨識欄位及 artifact ID／雜湊檢查；最終 head 十二項 CI／matrix 全通過，包含 24 項分析器回歸，合法 v1／v2 輸出不變。見 [RED／GREEN 紀錄](docs/validation/sk-e04-input-boundary.zh-TW.md)。翻轉率仍按配對加權，逐案分數平均不變。僅驗證工具修正；R1 實際重評與 #122 仍受阻於已授權研究證據。
 
 **SK-E06／#115** 補上其餘五種對抗[參考案例／手動規程](docs/research/evaluations/sk-e06/README.zh-TW.md)：變體範圍、來源移除的間接影響、不可信指令／同意、捏造真人證據及缺少產物。中英範例是編寫參考，不是擷取的模型／真人結果；`scripts/test_sk_e06_packet.py` 只檢查資料包完整性，實際執行表單維持空白。#121／#122 與真人／宿主／發布門檻仍開啟。
+
+- [x] **N-R11 交接查找維護。** 私有來源索引維持既有契約；兩種凍結的大型合成 release 負載中位耗時約為基準的 0.55。[流程、原始配對、檢查與獨立 AI review](docs/validation/n11-handoff-index-performance.zh-TW.md)區分程序量測與真人／Host 證據；最終 head 的 hosted 檢查另記於 PR。

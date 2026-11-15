@@ -87,3 +87,80 @@ The debug observations motivated the experiment. They are not a release
 baseline, a before/after improvement estimate or evidence of author time saved.
 Release comparison, workspace regressions, independent review and exact-head
 hosted CI remain pending.
+
+## Observed release result · 2026-11-15
+
+[Raw primary receipt](n11-handoff-index-performance/paired-release.json) contains
+84 measured pairs (21 per workload), eight warmups, actual globally interleaved
+workload/arm orders, raw wall/CPU times and hashes. All 176 CLI calls returned
+zero, empty stderr and identical output bytes for their workload. Inputs and
+binaries remained unchanged. These are four synthetic workload shapes on one
+Linux machine; repetitions are not independent people, projects or hardware.
+No bootstrap interval, significance or population claim is added.
+
+| Artifacts | Base median ms | Candidate median ms | Ratio of medians | Base / candidate empirical p95 ms |
+| --- | ---: | ---: | ---: | ---: |
+| 1 | 8.836 | 7.314 | 0.8278 | 9.419 / 9.874 |
+| 8 | 26.962 | 16.617 | 0.6163 | 30.070 / 20.125 |
+| 32 | 89.083 | 48.761 | 0.5474 | 99.608 / 55.676 |
+| 63 | 173.874 | 95.283 | 0.5480 | 213.593 / 104.286 |
+
+Both large-workload ratios meet the prospectively frozen ≤0.75 target. The
+63-artifact median wall reduction is about 45.2%; it concerns this exact
+synthetic process workload, including roughly 2.81 MB stdout capture. It is not
+a measurement of author effort or Skill effectiveness. Each workload has 256
+references; even the one-artifact case is not a tiny reference set. Tiny-set
+allocation overhead and other hardware/OS performance remain unmeasured.
+
+[Build bindings](n11-handoff-index-performance/build-bindings.json) record
+separate initially absent Cargo targets, Rust 1.89.0, locked dependencies,
+all features, source commits and binary hashes. The harness verifies binary
+bytes, not the supplied source/build relationship. Root observed the builds
+from the isolated source worktrees; this is local provenance, not attestation.
+An initial run had an incorrect operator-supplied candidate source argument.
+Its [unaltered receipt](n11-handoff-index-performance/exploratory-mislabeled-source.json)
+is retained and excluded from the primary results. The correctly identified
+repeat used the same frozen protocol, workloads, seed and acceptance threshold.
+
+## Correctness, review and replay
+
+The index borrows references from the validated variant, with at most 256 entries
+per artifact. It does not use the inventory as a replacement for bound draft
+references. It leaves iteration order, historical/current revisions, complete
+coverage, proposal scope and the first error unchanged. It adds no DTO, schema,
+diagnostic, dependency, I/O or execution authority. Rollback restores the private
+linear lookup; there is no data migration.
+
+Three added tests in `crates/storytelling-cli/tests/handoff.rs` exercise the real
+CLI: bound/current revisions with repeated component refs, reversible declared
+component/unit order, and an inventory-only reference error before a later
+invalid component. [Baseline Python characterization](n11-handoff-index-performance/baseline-characterization.json)
+passed before the engine edit; it is not claimed as a compiled Rust test.
+The first full build caught an unsupported reverse iterator in a new test.
+The [compile failure](n11-handoff-index-performance/characterization-compile-failure.log)
+is retained; collecting then reversing fixed the test without changing engine
+behavior. This is no claimed functional defect in the original implementation.
+
+[Local checks](n11-handoff-index-performance/checks.json) identify the engine
+commit and exact Rust/Cargo/test bytes: debug and release workspace tests pass
+315 with default features and 334 with all features, each with three existing
+ignored manual/benchmark tests. Formatting, Clippy `-D warnings`, rustdoc
+`-D warnings`, repository checks, nine harness regressions and four CLI file-input
+regressions pass. The harness has separate actual
+[missing-entry RED](n11-handoff-index-performance/harness-red.txt) and
+[GREEN](n11-handoff-index-performance/harness-green.txt) calibration receipts.
+
+An independent AI reviewer checked duplicate-reference invariants, validation
+order, variant scope, borrowed index lifetime and the tests, finding no blocker.
+The reviewer did not build, run a host or grant human G2 acceptance. Hosted
+Windows/Linux/macOS tests and all other required gates must pass on the final
+PR head before merge; local timing does not replace those checks. #103, #107,
+#129 B/C/D and release decisions retain their separate gates.
+
+Rebuild two isolated source worktrees/targets, then run (replace paths with the
+actual binaries; never share a target between worktrees):
+
+```sh
+python scripts/test_benchmark_n11_handoff.py
+python scripts/benchmark_n11_handoff.py --baseline /path/to/base/storytelling --candidate /path/to/candidate/storytelling --baseline-source 87113b9a204a801847995a334ef8728b9185b449 --candidate-source c5b4c61e8546d758441144359b6e5d86994deae5 --output /tmp/n11-paired-release.json
+```

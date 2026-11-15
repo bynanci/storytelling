@@ -1,0 +1,31 @@
+{
+  "source_commit": "c5b4c61e8546d758441144359b6e5d86994deae5",
+  "target_initially_absent_before_first_build": true,
+  "target_owner": "storytelling-handoff-index only",
+  "date_utc": "2026-11-15T08:01:21.505091+00:00",
+  "checks": [
+    {
+      "command": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "exit": 0,
+      "log": "check-00.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--locked"
+      ],
+      "exit": 101,
+      "log": "check-01.log",
+      "sha256": "a4db5aa3fa0625aeb79e53ebecfbfd53773a7619774009372301d6c112b0b67a"
+    }
+  ]
+}

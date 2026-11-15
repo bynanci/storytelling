@@ -30,3 +30,6 @@ tests/fixtures/openfilm/finite-v1/video-trim.json -text
 /docs/validation/sk-e04-input-boundary/** text eol=lf
 # Preserve unittest's actual trailing spaces in raw failure receipts.
 /docs/validation/sk-e04-input-boundary/*.log -whitespace
+
+# N-11 synthetic performance receipts retain their exact LF log/JSON bytes.
+/docs/validation/n11-handoff-index-performance/** text eol=lf

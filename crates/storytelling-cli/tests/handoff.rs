@@ -207,7 +207,8 @@ fn renders_components_and_their_references_in_declared_order() {
         .rev()
         .map(|line| {
             let (prefix, references) = line.split_once(" · draft -> current source: ").unwrap();
-            let references: Vec<_> = references.split(", ").rev().collect();
+            let mut references: Vec<_> = references.split(", ").collect();
+            references.reverse();
             format!(
                 "{prefix} · draft -> current source: {}",
                 references.join(", ")

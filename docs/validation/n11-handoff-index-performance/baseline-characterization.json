@@ -1,0 +1,16 @@
+{
+  "kind": "preimplementation CLI characterization; Python replay of assertions for added Rust cases, not compiled Rust tests",
+  "cases": {
+    "preserves_bound_revisions_and_repeated_component_references": "PASS",
+    "renders_components_and_their_references_in_declared_order": "PASS",
+    "rejects_inventory_sources_outside_the_bound_variant_before_later_errors": "PASS"
+  },
+  "baseline_stdout_sha256": "bd97c3e4ffd4ebfcdf3438ea9635e14f373cc35bda784a3162905e111797767b",
+  "error": {
+    "error": {
+      "code": "handoff.dangling_reference",
+      "path": "$.artifacts[0].components[3].unit_ids"
+    },
+    "ok": false
+  }
+}

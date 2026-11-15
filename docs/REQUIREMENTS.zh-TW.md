@@ -387,3 +387,5 @@ M0、M1-01 與限定範圍的 M2-01 稽核只支援前兩項。
 | 需求／任務 | 提議要求與證據狀態 |
 | --- | --- |
 | M4-R01／[M4-01 #107](https://github.com/bynanci/storytelling/issues/107) | 獨立 consumer 可由單一有文件的唯讀 Rust facade 使用驗證、敘事／版本影響、影片 coverage、規劃及選定提案審核，不需匯入 private module 或解析 CLI 文字。[ADR 0013](adr/0013-read-only-consumer-facade-v1.md)提議八個委派入口、既有 result 型別、保留來源錯誤細節、逐操作 byte／version／digest 行為，以及不提供 mutation／recovery。[Golden 計畫](proposals/m4-01-readonly-sdk/test-plan.md)列出既有 CLI／engine fixtures 與未來 test-first parity／opacity／concurrency 檢查。目前只完成 G2 提案，尚未凍結 API、實作 facade、取得 RED／GREEN、同 head SDK parity、consumer 或宿主驗收。#107 保持 Open；#103–#106 管控執行，#108 決定 transport。 |
+
+**N-R11 查找維護**追溯至 `crates/storytelling-cli/tests/handoff.rs` 三項真正 CLI 的行為刻畫／變形測試、九項配對工具回歸及[凍結合成流程與結果](validation/n11-handoff-index-performance.zh-TW.md)。綁定草稿／當前版本、宣告順序、目錄外引用拒絕及第一錯誤語意不變；程序改善不代表真人／Host 驗收。
