@@ -104,6 +104,148 @@ fn component_set(rendered: &str, action: &str) -> BTreeSet<String> {
         .collect()
 }
 
+fn generated_reference_handoff() -> Value {
+    let units: Vec<_> = (0..256)
+        .map(|index| {
+            json!({"id":format!("u{index:03}"),"revision":1,
+                "origin":"supplied_observation","text":"synthetic source","based_on":[]})
+        })
+        .collect();
+    let beats: Vec<_> = (0..256)
+        .map(|index| {
+            json!({"id":format!("b{index:03}"),
+                "unit_ref":{"unit_id":format!("u{index:03}"),"revision":1},
+                "text":"synthetic beat"})
+        })
+        .collect();
+    let sources: Vec<_> = (0..256)
+        .map(|index| {
+            json!({"unit_id":format!("u{index:03}"),"revision":if index==0 {2} else {1},
+                "representation":{"kind":"description","media_kind":"text",
+                    "text":"synthetic description"}})
+        })
+        .collect();
+    let components: Vec<_> = (0..5)
+        .map(|index| {
+            let start = if index < 4 { index * 64 } else { 192 };
+            let ids: Vec<_> = (start..start + 64)
+                .map(|unit| format!("u{unit:03}"))
+                .collect();
+            json!({"id":format!("c{index}"),"unit_ids":ids})
+        })
+        .collect();
+    json!({"schema_version":1,"manifest_id":"generated-reference-test",
+        "ledger":{"schema_version":1,"base_document":{
+            "schema_version":1,"document_id":"generated-reference-test",
+            "document_revision":1,"purpose":"synthetic regression","audience":"machine",
+            "units":units,"relations":[],"variants":[{"id":"v","kind":"spoken_outline",
+                "name":"generated","beats":beats}]},
+            "events":[{"id":"e","kind":"source_revision","unit_id":"u000",
+                "expected_revision":1,"text":"revised synthetic source"}]},
+        "change_id":"e","sources":sources,
+        "artifacts":[{"id":"a0","name":"generated","medium":"text",
+            "variant_id":"v","components":components}]})
+}
+
+fn component_lines(rendered: &str) -> Vec<String> {
+    rendered
+        .lines()
+        .filter(|line| line.starts_with("UPDATE ") || line.starts_with("REUSE "))
+        .map(str::to_owned)
+        .collect()
+}
+
+#[test]
+fn preserves_bound_revisions_and_repeated_component_references() {
+    let dir = TestDirectory::new();
+    let output = render_stdin(
+        &serde_json::to_vec(&generated_reference_handoff()).unwrap(),
+        &dir.0,
+    );
+    assert_eq!(output.status.code(), Some(0));
+    assert!(output.stderr.is_empty());
+    let rendered = String::from_utf8(output.stdout).unwrap();
+    assert!(rendered.contains("Artifact a0 · variant=v@1 · status=needs_review"));
+    let expected: Vec<_> = (0..5)
+        .map(|component| {
+            let start = if component < 4 { component * 64 } else { 192 };
+            let references: Vec<_> = (start..start + 64)
+                .map(|unit| {
+                    let current = if unit == 0 { 2 } else { 1 };
+                    format!("u{unit:03}@1 -> u{unit:03}@{current}")
+                })
+                .collect();
+            let action = if component == 0 { "UPDATE" } else { "REUSE" };
+            format!(
+                "{action} a0/c{component} · draft -> current source: {}",
+                references.join(", ")
+            )
+        })
+        .collect();
+    assert_eq!(component_lines(&rendered), expected);
+}
+
+#[test]
+fn renders_components_and_their_references_in_declared_order() {
+    let dir = TestDirectory::new();
+    let mut value = generated_reference_handoff();
+    let original = render_stdin(&serde_json::to_vec(&value).unwrap(), &dir.0);
+    assert_eq!(original.status.code(), Some(0));
+    assert!(original.stderr.is_empty());
+    let original = String::from_utf8(original.stdout).unwrap();
+    let components = value["artifacts"][0]["components"].as_array_mut().unwrap();
+    components.reverse();
+    for component in components {
+        component["unit_ids"].as_array_mut().unwrap().reverse();
+    }
+    let reordered = render_stdin(&serde_json::to_vec(&value).unwrap(), &dir.0);
+    assert_eq!(reordered.status.code(), Some(0));
+    assert!(reordered.stderr.is_empty());
+    let reordered = String::from_utf8(reordered.stdout).unwrap();
+    let expected: Vec<_> = component_lines(&original)
+        .into_iter()
+        .rev()
+        .map(|line| {
+            let (prefix, references) = line.split_once(" · draft -> current source: ").unwrap();
+            let references: Vec<_> = references.split(", ").rev().collect();
+            format!(
+                "{prefix} · draft -> current source: {}",
+                references.join(", ")
+            )
+        })
+        .collect();
+    assert_eq!(component_lines(&reordered), expected);
+    let without_components = |text: &str| {
+        text.lines()
+            .filter(|line| !line.starts_with("UPDATE ") && !line.starts_with("REUSE "))
+            .map(str::to_owned)
+            .collect::<Vec<_>>()
+    };
+    assert_eq!(
+        without_components(&original),
+        without_components(&reordered)
+    );
+}
+
+#[test]
+fn rejects_inventory_sources_outside_the_bound_variant_before_later_errors() {
+    let dir = TestDirectory::new();
+    let mut value = generated_reference_handoff();
+    value["ledger"]["base_document"]["variants"][0]["beats"]
+        .as_array_mut()
+        .unwrap()
+        .pop();
+    value["artifacts"][0]["components"][4]["unit_ids"] = json!(["unknown"]);
+    let error = json_error(
+        render_stdin(&serde_json::to_vec(&value).unwrap(), &dir.0),
+        "handoff.dangling_reference",
+    );
+    assert_eq!(
+        error["error"]["path"],
+        "$.artifacts[0].components[3].unit_ids"
+    );
+}
+
 #[test]
 fn computes_the_predeclared_exact_date_impact_without_false_results() {
     let expected: Value =

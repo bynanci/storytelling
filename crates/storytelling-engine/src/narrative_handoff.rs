@@ -254,6 +254,11 @@ pub fn render_narrative_handoff(
                 return Err(error("handoff.variant_scope", format!("{path}.variant_id")));
             }
         }
+        let variant_refs: BTreeMap<_, _> = variant
+            .source_refs
+            .iter()
+            .map(|reference| (reference.unit_id.as_str(), reference))
+            .collect();
         bounded(artifact.components.len(), 64, &format!("{path}.components"))?;
         let mut component_ids = BTreeSet::new();
         let mut covered_units = BTreeSet::new();
@@ -298,16 +303,12 @@ pub fn render_narrative_handoff(
                         format!("{component_path}.unit_ids"),
                     ));
                 }
-                let draft_ref = variant
-                    .source_refs
-                    .iter()
-                    .find(|r| &r.unit_id == unit_id)
-                    .ok_or_else(|| {
-                        error(
-                            "handoff.dangling_reference",
-                            format!("{component_path}.unit_ids"),
-                        )
-                    })?;
+                let draft_ref = variant_refs.get(unit_id.as_str()).ok_or_else(|| {
+                    error(
+                        "handoff.dangling_reference",
+                        format!("{component_path}.unit_ids"),
+                    )
+                })?;
                 references.push(format!(
                     "{}@{} -> {}@{}",
                     unit_id, draft_ref.revision, unit_id, source.revision
