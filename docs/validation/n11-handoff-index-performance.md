@@ -164,3 +164,10 @@ actual binaries; never share a target between worktrees):
 python scripts/test_benchmark_n11_handoff.py
 python scripts/benchmark_n11_handoff.py --baseline /path/to/base/storytelling --candidate /path/to/candidate/storytelling --baseline-source 87113b9a204a801847995a334ef8728b9185b449 --candidate-source c5b4c61e8546d758441144359b6e5d86994deae5 --output /tmp/n11-paired-release.json
 ```
+
+The local `rust_cargo_files_sha256` is SHA-256 over the sorted nonempty paths
+from `git ls-files -z Cargo.toml Cargo.lock crates`, concatenating for each file
+its UTF-8 relative path, a NUL byte, its raw checkout bytes and a NUL byte. It
+binds the tested Linux checkout (including tests), not a normalized cross-OS
+serialization or an authenticated build. `characterization_test_sha256` hashes
+the corrected test file directly. Recompute at this source tree with LF bytes.
