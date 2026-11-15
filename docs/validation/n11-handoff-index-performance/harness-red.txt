@@ -1,0 +1,14 @@
+F
+======================================================================
+FAIL: test_emit_workload_is_reproducible_and_under_the_existing_input_limit (__main__.HandoffBenchmarkTests.test_emit_workload_is_reproducible_and_under_the_existing_input_limit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-handoff-index/scripts/test_benchmark_n11_handoff.py", line 20, in test_emit_workload_is_reproducible_and_under_the_existing_input_limit
+    self.assertEqual(first.returncode, 0, first.stderr.decode())
+AssertionError: 2 != 0 : /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python: can't open file '/workspace/storytelling-handoff-index/scripts/benchmark_n11_handoff.py': [Errno 2] No such file or directory
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.012s
+
+FAILED (failures=1)

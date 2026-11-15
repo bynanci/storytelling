@@ -1,0 +1,82 @@
+   Compiling typenum v1.20.1
+   Compiling version_check v0.9.5
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling generic-array v0.14.7
+   Compiling unicode-ident v1.0.27
+   Compiling cfg-if v1.0.5
+   Compiling serde_core v1.0.229
+   Compiling zmij v1.0.23
+   Compiling cpufeatures v0.2.17
+   Compiling serde_json v1.0.154
+   Compiling itoa v1.0.18
+   Compiling hybrid-array v0.4.15
+   Compiling semver v1.0.28
+   Compiling memchr v2.8.3
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling digest v0.10.7
+   Compiling crypto-common v0.2.2
+   Compiling sha2 v0.10.9
+   Compiling block-buffer v0.12.1
+   Compiling rustc_version v0.4.1
+   Compiling syn v2.0.119
+   Compiling curve25519-dalek v5.0.0
+   Compiling cpufeatures v0.3.1
+   Compiling digest v0.11.3
+   Compiling syn v3.0.9
+   Compiling subtle v2.6.1
+   Compiling serde v1.0.229
+   Compiling signature v3.0.0
+   Compiling ed25519 v3.0.0
+   Compiling sha2 v0.11.0
+   Compiling find-msvc-tools v0.1.15
+   Compiling shlex v2.0.1
+   Compiling cc v1.11.1
+   Compiling pkg-config v0.3.34
+   Compiling vcpkg v0.2.15
+   Compiling serde_derive v1.0.229
+   Compiling fallible-streaming-iterator v0.1.9
+   Compiling smallvec v1.16.5
+   Compiling bitflags v2.13.2
+   Compiling curve25519-dalek-derive v0.1.1
+   Compiling fallible-iterator v0.3.0
+   Compiling libsqlite3-sys v0.39.1
+   Compiling ed25519-dalek v3.0.0
+   Compiling storytelling-core v0.1.0-dev.0 (/workspace/storytelling-handoff-index/crates/storytelling-core)
+   Compiling storytelling-engine v0.1.0-dev.0 (/workspace/storytelling-handoff-index/crates/storytelling-engine)
+   Compiling rusqlite v0.41.1
+   Compiling storytelling-journal v0.1.0-dev.0 (/workspace/storytelling-handoff-index/crates/storytelling-journal)
+   Compiling storytelling-cli v0.1.0-dev.0 (/workspace/storytelling-handoff-index/crates/storytelling-cli)
+error[E0277]: the trait bound `StrSearcher<'_, '_>: DoubleEndedSearcher<'_>` is not satisfied
+   --> crates/storytelling-cli/tests/handoff.rs:210:61
+    |
+210 |             let references: Vec<_> = references.split(", ").rev().collect();
+    |                                                             ^^^ the trait `DoubleEndedSearcher<'_>` is not implemented for `StrSearcher<'_, '_>`
+    |
+    = help: the following other types implement trait `DoubleEndedSearcher<'a>`:
+              CharArrayRefSearcher<'a, 'b, N>
+              CharArraySearcher<'a, N>
+              CharPredicateSearcher<'a, F>
+              CharSearcher<'a>
+              CharSliceSearcher<'a, 'b>
+    = note: required for `std::str::Split<'_, &str>` to implement `DoubleEndedIterator`
+note: required by a bound in `rev`
+   --> /rustc/29483883eed69d5fb4db01964cdf2af4d86e9cb2/library/core/src/iter/traits/iterator.rs:3350:5
+
+error[E0599]: the method `collect` exists for struct `Rev<std::str::Split<'_, &str>>`, but its trait bounds were not satisfied
+   --> crates/storytelling-cli/tests/handoff.rs:210:67
+    |
+210 |             let references: Vec<_> = references.split(", ").rev().collect();
+    |                                                                   ^^^^^^^ method cannot be called on `Rev<std::str::Split<'_, &str>>` due to unsatisfied trait bounds
+    |
+    = note: the following trait bounds were not satisfied:
+            `std::str::Split<'_, &str>: DoubleEndedIterator`
+            which is required by `Rev<std::str::Split<'_, &str>>: Iterator`
+            `Rev<std::str::Split<'_, &str>>: Iterator`
+            which is required by `&mut Rev<std::str::Split<'_, &str>>: Iterator`
+
+Some errors have detailed explanations: E0277, E0599.
+For more information about an error, try `rustc --explain E0277`.
+error: could not compile `storytelling-cli` (test "handoff") due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...

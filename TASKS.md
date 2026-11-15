@@ -151,3 +151,7 @@ Use [#115](https://github.com/bynanci/storytelling/issues/115) as the umbrella. 
 **SK-E06 / #115** supplies the remaining five adversarial [reference/manual cases](docs/research/evaluations/sk-e06/README.md): variant scope, indirect source removal, untrusted instructions/consent, invented human evidence and unavailable artifacts. The bilingual examples are authored references, not captured model/human results. `scripts/test_sk_e06_packet.py` checks packet integrity only; actual execution forms remain blank. #121/#122 and human/host/release gates remain open.
 
 - [x] **SK-EVAL-R1 arithmetic review and sensitivity diagnostics.** The [append-only report](docs/research/evaluations/r1-robustness/README.md) reproduces all five original numeric artifacts and adds exact case/dimension/batch omissions and explicit assignment-sensitivity bounds. Ten regressions and independent AI math review cover this diagnostic scope; original R1 bytes, conclusions and #121/#122 evidence gates remain unchanged. Hosted checks are recorded on the submitted PR.
+
+## Narrative handoff maintenance
+
+- [x] **N-R11 handoff lookup maintenance.** A private source-reference index preserves the accepted contract while reducing the two frozen large synthetic release workloads to about 0.55 of baseline median wall time. [Protocol, raw pairs, local checks and independent AI review](docs/validation/n11-handoff-index-performance.md) distinguish process measurements from author/Host evidence; final-head hosted checks are recorded on the PR.

@@ -1,0 +1,40 @@
+{
+  "scope": "locally observed builds, not authenticated provenance or host evidence",
+  "toolchain": "rustc 1.89.0, Cargo 1.89.0",
+  "features": "all-features",
+  "profile": "release",
+  "command": [
+    "cargo",
+    "build",
+    "--release",
+    "--all-features",
+    "--locked",
+    "-p",
+    "storytelling-cli"
+  ],
+  "builds": [
+    {
+      "arm": "baseline",
+      "source_commit": "87113b9a204a801847995a334ef8728b9185b449",
+      "isolated_worktree": "storytelling-handoff-baseline",
+      "target_directory": "storytelling-handoff-base-target",
+      "target_initially_absent": true,
+      "exit": 0,
+      "binary_sha256": "84f4f955b03179192d0476fbb2c9b822e2fd6da45d021875c37b53dc1d0007f4"
+    },
+    {
+      "arm": "candidate",
+      "source_commit": "c5b4c61e8546d758441144359b6e5d86994deae5",
+      "isolated_worktree": "storytelling-handoff-index",
+      "target_directory": "storytelling-handoff-opt-target",
+      "target_initially_absent": true,
+      "exit": 0,
+      "binary_sha256": "fc326b4d9d59ab7d359728c1001f625cc1a381a592a299be20f566fe2b2846ce"
+    }
+  ],
+  "excluded_run": {
+    "receipt": "exploratory-mislabeled-source.json",
+    "reason": "operator supplied incorrect candidate source commit argument; receipt retained unchanged, timing values excluded from primary report",
+    "correct_candidate_commit": "c5b4c61e8546d758441144359b6e5d86994deae5"
+  }
+}
