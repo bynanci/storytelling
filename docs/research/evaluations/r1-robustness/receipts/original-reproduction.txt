@@ -1,0 +1,9 @@
+Command: python docs/research/evaluations/r1-robustness/receipts/reproduce-original.py
+Exit: 0
+Python 3.12.14 NumPy 2.3.5 SciPy 1.17.0
+ratings_numeric_R1.csv BYTE_IDENTICAL 80a663ac29ccbc2f607706cfbdc152cd43fee091661898976cdbfa6dffef2260
+case_pairs_R1.csv BYTE_IDENTICAL 9b313ec4ac541fadfa06506a5c7ac59d99b7e6d03e8cb91a08bd9a47f5473d03
+ratings_normalized_R1.json BYTE_IDENTICAL f153b0d0b84ab0e98b4933176f12dd869dfb88cfb96e571069b1264dbac27d81
+dimension_summary_R1.csv BYTE_IDENTICAL d1932092d0e8dec0967ddff51dad64e49a0b63eb15c04db1cf5af1d8d83535ea
+statistics_R1.json BYTE_IDENTICAL d5f04263931b681cf0c3469d841c69990ecd2ec54a498b34098cfcf4fd842e3d
+Disposable copy removed; original package unchanged.

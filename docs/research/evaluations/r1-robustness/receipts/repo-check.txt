@@ -1,0 +1,3 @@
+Command: python scripts/check_repo.py
+Exit: 0
+Repository links, provenance, dependencies and requirement test references passed.

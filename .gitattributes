@@ -17,6 +17,9 @@ tests/fixtures/openfilm/finite-v1/video-trim.json -text
 # including BOM-prefixed CSVs, byte-identical in Windows/Linux/macOS checkouts.
 /docs/research/evaluations/2026-11-13-gemini-r1/** text eol=lf
 
+# Separate R1 robustness report/fixtures/receipts compare exact UTF-8 LF bytes.
+/docs/research/evaluations/r1-robustness/** text eol=lf
+
 # SK-E01 fixture hashes cover exact bytes; preserve them in EOL-converting checkouts.
 /docs/research/evaluations/sk-e01/** text eol=lf
 

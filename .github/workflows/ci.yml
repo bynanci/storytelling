@@ -163,6 +163,8 @@ jobs:
         run: python scripts/test_sk_e02_contract.py
       - name: R1 checksums from clean Git checkouts (LF and CRLF settings)
         run: python scripts/test_r1_package_checksums.py
+      - name: Existing R1 exact-arithmetic sensitivity regressions
+        run: python scripts/test_r1_robustness.py
       - name: Read-only sample
         run: cargo run --locked -p storytelling-cli -- validate examples/minimal-plan.json
       - name: Checkout remains unchanged
