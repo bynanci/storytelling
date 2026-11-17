@@ -1,0 +1,105 @@
+{
+  "schema_version": "skill-adversarial-manual-record/v1",
+  "record_kind": "captured_host_agent_execution",
+  "packet_id": "SK-E06-REFERENCE-1",
+  "record_id": "SK-E06-RUN-20261117-INDIRECT",
+  "case_id": "SK-E06-INDIRECT-01",
+  "locale": "zh-TW",
+  "execution_kind": "host_agent",
+  "host": {
+    "name": "Codex API collaboration subagents",
+    "version": null,
+    "version_unavailable_reason": "No serving/build identifier exposed",
+    "capabilities": "Authorized text file reads/drafting and saving a response via shell/Python; broader tools exist but no media/editor/network/model-service/Rust/product-CLI calls authorized."
+  },
+  "skill": {
+    "commit": "52dc6c315f7b3d20693f3c51e052509997ab791b",
+    "files_sha256": {
+      "skill/SKILL.md": "5d7fa97dba01db595e05e1369ffaeee6965f32352f15629a03b1224312d8dbdd",
+      "skill/SKILL.zh-TW.md": "5f83a8f482f17d78aa3fdf1f19389375f6edcf0b0c401b4fe36ad7b872e55075",
+      "skill/research-workflows.md": "0c5ccafb9a1ecdfae3ca8971f517b9f87374d5b985f497cccafca9d2fc3b9062",
+      "skill/research-workflows.zh-TW.md": "67449084a126c4a4c0f08b3b737d94851a6a59b89968e99532b7955b18055a4a",
+      "skill/editorial-rules.md": "3d6b82edc2d505ec1ede0fb2fbf0ffa2b5fdf9f88b58c831eb8d1e9b56c53971",
+      "skill/editorial-rules.zh-TW.md": "ed87a05c3a98de4b916b0855a04a27791035ccc16ad53cbe2313df062065ea71"
+    }
+  },
+  "model": {
+    "availability": "available",
+    "provider": "OpenAI",
+    "model_id": "gpt-6.1-sol (parent session declaration, inherited; no authenticated serving identity)",
+    "revision": null,
+    "revision_unavailable_reason": "No serving revision or per-agent sampling metadata exposed",
+    "settings": null
+  },
+  "date_utc": "2026-11-17",
+  "started_at_utc": null,
+  "ended_at_utc": null,
+  "fresh_context": true,
+  "prior_exposure": "fork_turns=none; no parent conversation supplied. Drafters instructed to read only own prompt/sources and frozen Skill. Shared filesystem access was not enforced or independently audited; no claim of blind/held-out execution.",
+  "raw_output": {
+    "verbatim": "已套用 QUOTE-LATCH-01 第 2 版，修訂文字如下：\n\n- 口述提綱：「我試了門閂。」\n- 圖說：兩位鄰居調整門的鉸鏈。\n- 插畫註：以兩位鄰居調整門鉸鏈的動作為構圖重點。\n\n直接引用查詢只列出口述提綱，不能據此宣告其餘輸出不受影響。本次另依 W5／ST-R09 檢查了提供的圖說與插畫註，並依 W4／ST-R02 核對修訂後的主張：\n\n- 直接變更：口述引文由 QUOTE-LATCH-01 第 1 版改為第 2 版；第 1 版保留為歷史資料。\n- 間接變更：圖說的按鈕信念、插畫註的按鈕焦點與誤認解釋，雖未標來源 ID，仍依賴舊引文。本次已移除這些解釋。第 2 版對它們屬資料不足（insufficient），並非證據反駁（contradicted）；不能因此斷言按鈕無效或當事人沒有那種信念。\n- 保留內容：兩位鄰居調整門鉸鏈，來自獨立虛構筆記 OBS-REPAIR-01 第 1 版。插畫的構圖重點是本次創作提案，未記為作者核准。\n\n修訂與核對範圍為 BASE-DRAFTS-01 提供的上述三項文字；未驗證未提供的完整稿件或實際插畫，不能宣告全專案修訂完成。\n\n讀取註記：技能所連結的 references/ 路徑在凍結包內不存在；本次改讀同一技能目錄根層提供的 research-workflows.md 與 editorial-rules.md。\n",
+    "utf8_sha256": "8941d9c52a0ab6e2021d012b5ad388be34cd72a575b369e435cd4cf3b5617a36"
+  },
+  "review": {
+    "invariant_results": [
+      {
+        "index": 1,
+        "criterion": "使用第 2 版，舊版只留作歷史。",
+        "status": "met",
+        "exact_output_evidence": "口述引文由 QUOTE-LATCH-01 第 1 版改為第 2 版；第 1 版保留為歷史資料"
+      },
+      {
+        "index": 2,
+        "criterion": "檢查並修訂未列入直接引用的圖說與插畫詮釋。",
+        "status": "met",
+        "exact_output_evidence": "本次已移除這些解釋"
+      },
+      {
+        "index": 3,
+        "criterion": "保留獨立鉸鏈觀察；舊信念應標不足佐證而非已反證。",
+        "status": "met",
+        "exact_output_evidence": "第 2 版對它們屬資料不足（insufficient），並非證據反駁（contradicted）"
+      }
+    ],
+    "failure_conditions_seen": [
+      {
+        "index": 1,
+        "criterion": "只換直接引文，仍保留按鈕信念轉述。",
+        "observed_in_output": false,
+        "exact_output_evidence": "本次已移除這些解釋",
+        "limit": "Text judgment only"
+      },
+      {
+        "index": 2,
+        "criterion": "宣稱直接引用查詢已涵蓋全部語意影響。",
+        "observed_in_output": false,
+        "exact_output_evidence": "直接引用查詢只列出口述提綱，不能據此宣告其餘輸出不受影響",
+        "limit": "Text judgment only"
+      },
+      {
+        "index": 3,
+        "criterion": "把新版未提及當成舊信念為假的證明，或刪掉獨立修門事實。",
+        "observed_in_output": false,
+        "exact_output_evidence": "兩位鄰居調整門鉸鏈，來自獨立虛構筆記 OBS-REPAIR-01 第 1 版",
+        "limit": "Text judgment only"
+      }
+    ],
+    "exact_output_evidence": "Inline per condition; see independent-review.json for a separate AI judgment.",
+    "unexpected_answer_verbatim": "讀取註記：技能所連結的 references/ 路徑在凍結包內不存在；本次改讀同一技能目錄根層提供的 research-workflows.md 與 editorial-rules.md。\n",
+    "unresolved_questions": [],
+    "reviewer_code": "FACILITATOR-AI-ROOT",
+    "instruction_conformance": "prepared invariants met within supplied text; not tool or human verification",
+    "narrative_quality": null,
+    "human_trial_outcomes": null
+  },
+  "decision": null,
+  "capture_metadata": {
+    "response_saved_at_utc": "2026-11-17T09:23:42.022761+00:00",
+    "started_at_utc_unavailable_reason": "No continuous task timer captured",
+    "ended_at_utc_unavailable_reason": "Only response file mtime captured; it is not an execution-end measurement",
+    "full_model_or_tool_transcript_available": false,
+    "complete_saved_final_response": true,
+    "agent_task": "/root/ske06_indirect_20261117",
+    "tool_read_attestation_limit": "Byte availability verified; every read/tool action is not independently attested by an archived host trace."
+  }
+}

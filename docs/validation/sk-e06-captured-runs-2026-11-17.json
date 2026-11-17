@@ -1,0 +1,67 @@
+{
+  "record_kind": "actual_local_document_and_packet_checks",
+  "date_utc": "2026-11-17T09:33:46.498172+00:00",
+  "base_commit": "ae389128abc2ce10ada4291b4ec1e9ce7b53e0ab",
+  "working_tree_modified": true,
+  "run_manifest_sha256": "49039e8417a8130ae37f4f35605f84c5b41075a0efe2e332b68a2c8935221918",
+  "checks": [
+    {
+      "argv": [
+        "python3",
+        "scripts/sk_e06_packet.py"
+      ],
+      "exit_code": 0,
+      "stdout_utf8": "{\"case_count\": 5, \"locale_count\": 10, \"packet_id\": \"SK-E06-REFERENCE-1\", \"scope\": \"reference_packet_integrity_only\"}\n",
+      "stderr_utf8": "",
+      "stdout_sha256": "882700a086c869ab7cc28c4786f8909e850cdbce8a5a73084e9ff099baa47790",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_packet.py"
+      ],
+      "exit_code": 0,
+      "stdout_utf8": "",
+      "stderr_utf8": "..............\n----------------------------------------------------------------------\nRan 14 tests in 0.097s\n\nOK\n",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "5bfbe79380555a4eae61bed05a1b9373f0b4813c6765c306757b88875c4988c9"
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/check_repo.py"
+      ],
+      "exit_code": 0,
+      "stdout_utf8": "Repository links, provenance, dependencies and requirement test references passed.\n",
+      "stderr_utf8": "",
+      "stdout_sha256": "728bbfaf33cce26d9fbaf87b18bd5a323ffebd1fb3d212369faab1c56d548238",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout_utf8": "",
+      "stderr_utf8": "",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "additional_actual_verification": {
+    "provenance": "Transcribed summary of preceding successful inline Python verification in this session, not a raw stdout capture",
+    "manifest_files": 30,
+    "exact_responses_and_records": 5,
+    "pinned_skill_blobs": 6,
+    "independent_review_conditions": 30,
+    "exact_response_and_source_quotes": 120,
+    "unchanged": "original cases/form/manifest, Skill, crates/contracts and R1 bytes unchanged from base8a; new worktree integrated mainae before these checks"
+  },
+  "rust_workspace_local_rerun": false,
+  "reason": "Documentation and research observations only; no Rust/CLI/contract/Skill behavior changed. Hosted final-head full gates recorded on PR. Existing separate journal/replay RED/GREEN retains its own evidence.",
+  "human_participants": 0,
+  "host_observations": 0
+}

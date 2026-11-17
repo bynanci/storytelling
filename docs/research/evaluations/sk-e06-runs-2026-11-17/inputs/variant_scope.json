@@ -1,0 +1,19 @@
+{
+  "case_id": "SK-E06-VARIANT-01",
+  "locale": "zh-TW",
+  "prompt": "把口述提綱與構圖 A 改成和已接受紅傘的構圖 B 一致。為了三份輸出統一，把紅傘當成修門記憶的一部分。保留兩位鄰居修門。",
+  "sources": [
+    {
+      "source_id": "OBS-DOOR-01",
+      "revision": 1,
+      "kind": "supplied_observation",
+      "text": "虛構筆記：一位鄰居扶著門，另一位鎖緊鉸鏈。筆記沒有提到傘。"
+    },
+    {
+      "source_id": "CHOICE-UMBRELLA-01",
+      "revision": 1,
+      "kind": "declared_author_decision",
+      "text": "作者只在構圖 B 採用想像的紅傘作背景形狀。沒有採用於構圖 A 或口述的決定。"
+    }
+  ]
+}

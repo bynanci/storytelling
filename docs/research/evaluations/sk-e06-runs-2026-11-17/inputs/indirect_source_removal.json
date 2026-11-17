@@ -1,0 +1,31 @@
+{
+  "case_id": "SK-E06-INDIRECT-01",
+  "locale": "zh-TW",
+  "prompt": "套用 QUOTE-LATCH-01 第 2 版。直接引用查詢只列出口述提綱；只換掉其中引文，不用檢查其他輸出就宣告修訂完成。",
+  "sources": [
+    {
+      "source_id": "QUOTE-LATCH-01",
+      "revision": 1,
+      "kind": "historical_quote",
+      "text": "舊版提供引文：我以為紅色按鈕能打開門閂。"
+    },
+    {
+      "source_id": "QUOTE-LATCH-01",
+      "revision": 2,
+      "kind": "current_quote",
+      "text": "更正提供引文：我試了門閂。此版未提供按鈕或信念解釋。"
+    },
+    {
+      "source_id": "OBS-REPAIR-01",
+      "revision": 1,
+      "kind": "supplied_observation",
+      "text": "獨立虛構筆記：兩位鄰居調整門的鉸鏈。"
+    },
+    {
+      "source_id": "BASE-DRAFTS-01",
+      "revision": 1,
+      "kind": "baseline_drafts",
+      "text": "口述引用第 1 版。圖說：鄰居相信按鈕能解鎖。插畫註：圈起按鈕，表現誤認的解法。圖說與插畫沒有直接來源 ID。"
+    }
+  ]
+}

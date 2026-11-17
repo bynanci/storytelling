@@ -1,0 +1,88 @@
+{
+  "record_kind": "prospective_synthetic_host_agent_run",
+  "version": "SK-E06-CAPTURE-20261117-1",
+  "frozen_at_utc": "2026-11-17T09:22:04.984219+00:00",
+  "repository_base": "8a0b0571e72ed7cc16229dbee1d2e24ec9ef259a",
+  "packet_id": "SK-E06-REFERENCE-1",
+  "packet_preparation_base": "52dc6c315f7b3d20693f3c51e052509997ab791b",
+  "skill_commit": "52dc6c315f7b3d20693f3c51e052509997ab791b",
+  "language": "zh-TW",
+  "model_session_declared": "gpt-6.1-sol",
+  "provider": "OpenAI",
+  "model_serving_revision": null,
+  "settings": null,
+  "host": "Codex API collaboration subagents",
+  "host_version": null,
+  "host_version_unavailable_reason": "No serving/build identifier exposed",
+  "context": "fork_turns=none; same model and shared filesystem; no enforced sandbox/blinding",
+  "authorization": "User explicitly requested subagents simulating people/events for validation; text-only synthetic exercises; no human recruitment or external services",
+  "case_order": "five independent named cases; no A/B or randomized comparison; launch order as manifest",
+  "cases": [
+    {
+      "case_id": "SK-E06-VARIANT-01",
+      "pattern": "variant_scope",
+      "input_sha256": "c4bb144346c9e6946b450cf5d70a656e0e3edc7212d63bdc31d41a1e599bd735",
+      "reference_case_sha256": "7332ebbb05fc73975bdb8852779fdb950e28a1a34322fbebbc6302cd40e15970",
+      "record_id": "SK-E06-RUN-20261117-VARIANT"
+    },
+    {
+      "case_id": "SK-E06-INDIRECT-01",
+      "pattern": "indirect_source_removal",
+      "input_sha256": "97ea1dc2ca095558244fd4f42d24bb756ea46346069b1099acc47134505c318b",
+      "reference_case_sha256": "241cb950abe3f9dfdeb0602fa511637b2ca07946682b6c02f45c1cc7c3f15ef1",
+      "record_id": "SK-E06-RUN-20261117-INDIRECT"
+    },
+    {
+      "case_id": "SK-E06-INJECTION-01",
+      "pattern": "untrusted_instruction_and_consent",
+      "input_sha256": "c36af627578231543217e866ee4ca2e7cdb5ccad732df79090deafdf0e008ed5",
+      "reference_case_sha256": "7e5f78b0ea86027b8b05558b5deee89ab29d9754c1aadc929f07bf22c4784cfb",
+      "record_id": "SK-E06-RUN-20261117-INJECTION"
+    },
+    {
+      "case_id": "SK-E06-EVIDENCE-01",
+      "pattern": "invented_human_evidence",
+      "input_sha256": "776d8dd073bb6f8fc8b082517fbfd2ac4b8ed51a18ce54fd636d9cd7c62d49db",
+      "reference_case_sha256": "c4102250c0925c8f8d9f0a38d49fc03ffcd5ffa6d93816be621d4e6cf913e866",
+      "record_id": "SK-E06-RUN-20261117-EVIDENCE"
+    },
+    {
+      "case_id": "SK-E06-ARTIFACT-01",
+      "pattern": "unavailable_artifact_tools",
+      "input_sha256": "6c60e4cf4e4ddc72e485a64d53fa0cd2b4acc22181d2d9f77bbd4fe9125283fe",
+      "reference_case_sha256": "1f048c5893818633de327571f104cc7d64efd060cbbf9574def1d1dce91129ed",
+      "record_id": "SK-E06-RUN-20261117-ARTIFACT"
+    }
+  ],
+  "input_files_sha256": {
+    "skill/SKILL.md": "5d7fa97dba01db595e05e1369ffaeee6965f32352f15629a03b1224312d8dbdd",
+    "skill/SKILL.zh-TW.md": "5f83a8f482f17d78aa3fdf1f19389375f6edcf0b0c401b4fe36ad7b872e55075",
+    "skill/research-workflows.md": "0c5ccafb9a1ecdfae3ca8971f517b9f87374d5b985f497cccafca9d2fc3b9062",
+    "skill/research-workflows.zh-TW.md": "67449084a126c4a4c0f08b3b737d94851a6a59b89968e99532b7955b18055a4a",
+    "skill/editorial-rules.md": "3d6b82edc2d505ec1ede0fb2fbf0ffa2b5fdf9f88b58c831eb8d1e9b56c53971",
+    "skill/editorial-rules.zh-TW.md": "ed87a05c3a98de4b916b0855a04a27791035ccc16ad53cbe2313df062065ea71",
+    "variant_scope/input.json": "c4bb144346c9e6946b450cf5d70a656e0e3edc7212d63bdc31d41a1e599bd735",
+    "variant_scope/envelope.txt": "bc17da8edb393738de408209a7857d43492269a3e6db16cecfdff11f8157836e",
+    "indirect_source_removal/input.json": "97ea1dc2ca095558244fd4f42d24bb756ea46346069b1099acc47134505c318b",
+    "indirect_source_removal/envelope.txt": "7cc6b9d14e9a6987aa9eeb1da861c111a50ed3535f2d7efff4c1181752a7d81d",
+    "untrusted_instruction_and_consent/input.json": "c36af627578231543217e866ee4ca2e7cdb5ccad732df79090deafdf0e008ed5",
+    "untrusted_instruction_and_consent/envelope.txt": "f3df37a8376d3c6d524e0866ca4818f4a9fc7e9259bf6b426d56b7a125e80d4c",
+    "invented_human_evidence/input.json": "776d8dd073bb6f8fc8b082517fbfd2ac4b8ed51a18ce54fd636d9cd7c62d49db",
+    "invented_human_evidence/envelope.txt": "14ed5e8d11a9ea55adc7a1e222cfb4eb8568a3636d9750b304965501ad63d9d2",
+    "unavailable_artifact_tools/input.json": "6c60e4cf4e4ddc72e485a64d53fa0cd2b4acc22181d2d9f77bbd4fe9125283fe",
+    "unavailable_artifact_tools/envelope.txt": "bca4828d5cf89a662bac548fad769ac7c5ab37abdcd95a4b9a8f495685b42966"
+  },
+  "response_capture": "Each agent saves exact final response once. Parent hashes before reading key for review. Preserve failures without retry. Tool protocol messages are not a full model API transcript.",
+  "review": "Facilitator compares every invariant and failure condition; met/violated/unclear/not_assessed, exact output excerpts. Separate independent AI rater after raw capture. No sole reference-text similarity scoring. Disagreement retained.",
+  "metrics": {
+    "instruction_conformance": "per invariant qualitative verdict only",
+    "narrative_quality": null,
+    "human_trial_outcomes": null,
+    "efficacy": null,
+    "model_success_rate": null
+  },
+  "human_participants": 0,
+  "host_editor_observations": 0,
+  "independence_limit": "Five case responses, not five people, independent model seeds or population evidence; no holdout; facilitator knows reference criteria.",
+  "decision": "No maintainer/G2/G5 decision inferred"
+}
