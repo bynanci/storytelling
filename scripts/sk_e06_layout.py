@@ -200,7 +200,11 @@ def _validate_layout(record_bytes, archive_bytes):
     record = _record(record_bytes)
     _require(hashlib.sha256(archive_bytes).hexdigest() == record["archive"]["sha256"])
     _require(len(archive_bytes) == record["archive"]["bytes"])
-    local_links = []
+    mechanical = record["mechanical_preflight"]
+    remaining_links = Counter((link["source"], link["target"], link["resolved"])
+                              for link in mechanical["links"])
+    _require(sum(remaining_links.values()) == mechanical["relative_markdown_links_resolved"])
+    local_link_count = 0
     with zipfile.ZipFile(io.BytesIO(archive_bytes)) as archive:
         members = archive.infolist()
         _require(len(members) <= MAX_MEMBERS
@@ -231,15 +235,19 @@ def _validate_layout(record_bytes, archive_bytes):
                     if not target.startswith(("#", "//")) and not re.match(r"[A-Za-z][A-Za-z0-9+.-]*:", target):
                         resolved = posixpath.normpath(posixpath.join(posixpath.dirname(member.filename), target.split("#")[0]))
                         _require(resolved in declared)
-                        local_links.append((member.filename, target, resolved))
-    mechanical = record["mechanical_preflight"]
-    declared_links = [(link["source"], link["target"], link["resolved"]) for link in mechanical["links"]]
-    _require(Counter(local_links) == Counter(declared_links)
-             and len(local_links) == mechanical["relative_markdown_links_resolved"])
+                        # Consume the declared multiset as we scan. Reject an
+                        # undeclared link immediately instead of retaining an
+                        # amplified list of derived paths from hostile text.
+                        link = (member.filename, target, resolved)
+                        _require(remaining_links[link] > 0)
+                        remaining_links[link] -= 1
+                        local_link_count += 1
+    _require(not any(remaining_links.values())
+             and local_link_count == mechanical["relative_markdown_links_resolved"])
     return {
         "scope": "layout_snapshot_integrity_only",
         "file_count": len(members),
-        "local_link_count": len(local_links),
+        "local_link_count": local_link_count,
         "can_dispatch": False,
         "source_commit_membership_verified": False,
         "observed_model_executions": 0,
