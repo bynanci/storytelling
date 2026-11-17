@@ -1,0 +1,170 @@
+{
+  "record_kind": "captured_synthetic_run_file_index",
+  "run_version": "SK-E06-CAPTURE-20261117-1",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "f89f189f6eeb0696f7de1fc443ce44eafa4cc02088e852dc1e96ea827b77f4a5",
+      "bytes": 9756
+    },
+    {
+      "path": "README.zh-TW.md",
+      "sha256": "751529157f58d7a978ab302088ce55efb72acde5ca7a24fdd7cb1031fc8296a2",
+      "bytes": 5827
+    },
+    {
+      "path": "capture-seal.json",
+      "sha256": "3ad819b939b7da60323550a1e62b6264edb5468858e1515185dcc58e3549cf37",
+      "bytes": 2591
+    },
+    {
+      "path": "deviations.json",
+      "sha256": "f7a52b16d4ba5349675becae5e4da66d7e5e5c732f9246cbee05b9c0cdf7e0e9",
+      "bytes": 2494
+    },
+    {
+      "path": "dispatch-record.json",
+      "sha256": "8883de7598086d7e291f217ebbb971e6c5c35149ab607cbe058d4dfe259dc595",
+      "bytes": 3825
+    },
+    {
+      "path": "envelopes/indirect_source_removal.txt",
+      "sha256": "7cc6b9d14e9a6987aa9eeb1da861c111a50ed3535f2d7efff4c1181752a7d81d",
+      "bytes": 1567
+    },
+    {
+      "path": "envelopes/invented_human_evidence.txt",
+      "sha256": "14ed5e8d11a9ea55adc7a1e222cfb4eb8568a3636d9750b304965501ad63d9d2",
+      "bytes": 1567
+    },
+    {
+      "path": "envelopes/unavailable_artifact_tools.txt",
+      "sha256": "bca4828d5cf89a662bac548fad769ac7c5ab37abdcd95a4b9a8f495685b42966",
+      "bytes": 1573
+    },
+    {
+      "path": "envelopes/untrusted_instruction_and_consent.txt",
+      "sha256": "f3df37a8376d3c6d524e0866ca4818f4a9fc7e9259bf6b426d56b7a125e80d4c",
+      "bytes": 1588
+    },
+    {
+      "path": "envelopes/variant_scope.txt",
+      "sha256": "bc17da8edb393738de408209a7857d43492269a3e6db16cecfdff11f8157836e",
+      "bytes": 1546
+    },
+    {
+      "path": "facilitator-review.json",
+      "sha256": "dd06ea7b4cd9f9c4ce4384ccf140596d16954282611f89e7b031795f71428dd4",
+      "bytes": 13576
+    },
+    {
+      "path": "frozen-skill.zip",
+      "sha256": "bbfe2c23aa9cc6faad0dba02211765949e89a89f8fcab483e8cffbf824307348",
+      "bytes": 27650
+    },
+    {
+      "path": "future-run-layout-v2.json",
+      "sha256": "bcee7361b918a9323a29f8cd1359775b2fd189cfcd906f0f3a84302a7afb8635",
+      "bytes": 26584
+    },
+    {
+      "path": "future-run-skill-layout-v2.zip",
+      "sha256": "417d89f277d3d4cb80978c3968ae29e613a6e0f7baaeb11082fcbc0e4181ec20",
+      "bytes": 101442
+    },
+    {
+      "path": "independent-review.json",
+      "sha256": "54f6ab467ec87834b97c4e7022fe67c666083e5be8c7b80c0a76cded71dfadbf",
+      "bytes": 107306
+    },
+    {
+      "path": "independent-review.txt",
+      "sha256": "2cac3a58e353b049803f605dadbd27028428f8db182e3d0be2673ccfbd2ecaa2",
+      "bytes": 2630
+    },
+    {
+      "path": "inputs/indirect_source_removal.json",
+      "sha256": "97ea1dc2ca095558244fd4f42d24bb756ea46346069b1099acc47134505c318b",
+      "bytes": 1074
+    },
+    {
+      "path": "inputs/invented_human_evidence.json",
+      "sha256": "776d8dd073bb6f8fc8b082517fbfd2ac4b8ed51a18ce54fd636d9cd7c62d49db",
+      "bytes": 716
+    },
+    {
+      "path": "inputs/unavailable_artifact_tools.json",
+      "sha256": "6c60e4cf4e4ddc72e485a64d53fa0cd2b4acc22181d2d9f77bbd4fe9125283fe",
+      "bytes": 974
+    },
+    {
+      "path": "inputs/untrusted_instruction_and_consent.json",
+      "sha256": "c36af627578231543217e866ee4ca2e7cdb5ccad732df79090deafdf0e008ed5",
+      "bytes": 1040
+    },
+    {
+      "path": "inputs/variant_scope.json",
+      "sha256": "c4bb144346c9e6946b450cf5d70a656e0e3edc7212d63bdc31d41a1e599bd735",
+      "bytes": 710
+    },
+    {
+      "path": "protocol.json",
+      "sha256": "fc72316b6085f77fa3b714017be5b8c55ff983005164b7fa5519f5f0baf11a5a",
+      "bytes": 5449
+    },
+    {
+      "path": "records/indirect_source_removal.json",
+      "sha256": "f59e6f7e6dca678330b550b9e3b10710eff9066e6ea8cb460190dd030842fbc1",
+      "bytes": 6432
+    },
+    {
+      "path": "records/invented_human_evidence.json",
+      "sha256": "5482ac646da04e543f1a419ae52260465de3c3850593479ce737428fe7850c62",
+      "bytes": 7507
+    },
+    {
+      "path": "records/unavailable_artifact_tools.json",
+      "sha256": "c403949eb3ec5601de65d7997f9482867eb21d241680c24139f19d37f492f00c",
+      "bytes": 6284
+    },
+    {
+      "path": "records/untrusted_instruction_and_consent.json",
+      "sha256": "153179e9d317b2113e01e2d3c24ac1229a69c065911fffa3f504f8e5192ea187",
+      "bytes": 6285
+    },
+    {
+      "path": "records/variant_scope.json",
+      "sha256": "932b45e05051df8737c5c47325fb78f6f6181e26070e5cad1b193c978803aeb8",
+      "bytes": 6617
+    },
+    {
+      "path": "responses/indirect_source_removal.txt",
+      "sha256": "8941d9c52a0ab6e2021d012b5ad388be34cd72a575b369e435cd4cf3b5617a36",
+      "bytes": 1341
+    },
+    {
+      "path": "responses/invented_human_evidence.txt",
+      "sha256": "3908f1998458836e95916c0c77e6607834d31e44c45b6ec65161802698ed37e0",
+      "bytes": 2249
+    },
+    {
+      "path": "responses/unavailable_artifact_tools.txt",
+      "sha256": "c2706a85516a586a10fb1177a07ee03a66a072f669ba446ac8b72b00debb772f",
+      "bytes": 1223
+    },
+    {
+      "path": "responses/untrusted_instruction_and_consent.txt",
+      "sha256": "7e02a95ac9a87b751c41230bba798c768eaf88a065c03b84fdb27cd97ee082ef",
+      "bytes": 720
+    },
+    {
+      "path": "responses/variant_scope.txt",
+      "sha256": "8eeb1ed3815008c146db2890a530a947cdec875ab239cd0a9c61188cd32390ab",
+      "bytes": 1358
+    }
+  ],
+  "manifest_exclusion": "This manifest excludes itself; README hash is included. Raw files retain their exact captured bytes.",
+  "human_participants": 0,
+  "editor_host_observations": 0,
+  "independent_review_text_original_name": "/tmp/storytelling-ske06-20261117/review.txt; copied byte-for-byte as independent-review.txt"
+}

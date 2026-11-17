@@ -58,3 +58,9 @@ tests/fixtures/openfilm/finite-v1/video-trim.json -text
 /docs/validation/subagent-scenarios-2026-11-17/** text eol=lf
 /docs/validation/subagent-scenarios-2026-11-17/artifacts.zip -text
 /docs/validation/subagent-scenarios-2026-11-17/responses/** -text -whitespace
+
+# Captured synthetic model records retain byte identity; only report prose is LF text.
+/docs/research/evaluations/sk-e06-runs-2026-11-17/** -text
+/docs/research/evaluations/sk-e06-runs-2026-11-17/*.md text eol=lf
+/docs/research/evaluations/sk-e06-runs-2026-11-17/*.txt -whitespace
+/docs/research/evaluations/sk-e06-runs-2026-11-17/responses/*.txt -whitespace

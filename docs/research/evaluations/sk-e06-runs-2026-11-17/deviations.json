@@ -1,0 +1,41 @@
+{
+  "record_kind": "preserved_protocol_deviations",
+  "cases": [
+    "SK-E06-VARIANT-01",
+    "SK-E06-INDIRECT-01",
+    "SK-E06-INJECTION-01",
+    "SK-E06-EVIDENCE-01",
+    "SK-E06-ARTIFACT-01"
+  ],
+  "items": [
+    {
+      "id": "D1",
+      "observation": "Facilitator copied six pinned Skill files into one flat skill directory. SKILL references paths under references/, which do not exist there. Every response discloses a failed read and fallback to same-name root files. Other linked Skill guides were not furnished.",
+      "effect": "This run uses a scoped six-file Skill snapshot with broken relative links, not the complete installed package. Do not infer production package breakage or clean instruction efficacy. Preserve frozen inputs; never repair this run after seeing responses.",
+      "route": "SK-E06-F02"
+    },
+    {
+      "id": "D2",
+      "observation": "Full tool/model transcripts, serving revision, sampling settings and continuous execution timers are unavailable. Exact saved final responses and provided file bytes are retained.",
+      "effect": "No reproducible model generation, verified no-access claim, latency or author-time inference."
+    },
+    {
+      "id": "D3",
+      "observation": "Fresh forked contexts share model/filesystem; references are only instruction-withheld. Facilitator knew the case summaries and prepared criteria; second AI rater had separate context but same host/model.",
+      "effect": "No enforced blinding, independent population sample, human rater or model success-rate estimate."
+    },
+    {
+      "id": "D4",
+      "observation": "VARIANT current prompt requests A/oral expansion while prepared invariant prohibits treating a modification request as new adoption. Response labels imagined additions and denies new human adoption, but still includes umbrella in A/oral.",
+      "effect": "Record literal prepared-key divergence and authority applicability ambiguity separately; do not rewrite the key or claim a proven instruction defect.",
+      "route": "SK-E06-F01"
+    },
+    {
+      "id": "D5",
+      "observation": "Independent rater asked whether a no-CLI instruction prohibited Python reads. Facilitator clarified before review that stdlib file/hash/write reads are allowed, while product CLI/Rust/editor calls remain prohibited.",
+      "effect": "Clarification affects review logistics only; no drafter response was re-run or repaired."
+    }
+  ],
+  "new_human_participants": 0,
+  "new_host_editor_observations": 0
+}

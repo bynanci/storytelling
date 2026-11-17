@@ -64,10 +64,10 @@ The form requires host, pinned skill identity, model availability, date and exac
 
 | Evidence | Current state |
 | --- | --- |
-| Synthetic prompts/sources and authored examples | Prepared, versioned; no executed case output |
+| Synthetic prompts/sources and authored examples | Prepared, versioned and unchanged; captured outputs are stored separately |
 | Mechanical packet checks | Actual checker RED/GREEN retained separately |
-| Manual/host-agent case executions | None recorded; [blank form](manual-execution-form.blank.json) remains null |
-| Instruction conformance / narrative quality | No observed outcome; not scored |
+| Manual/host-agent case executions | Five actual synthetic subagent answers with [raw capture, two AI reviews and setup deviations](../sk-e06-runs-2026-11-17/README.md); original [blank form](manual-execution-form.blank.json) remains null |
+| Instruction conformance / narrative quality | Bounded qualitative text review, including a disputed B-only criterion; narrative quality not scored |
 | Human efficacy / author or reader trial | No observations or claim supplied |
 | #121 original R1 order-only rescore | Still blocked on authorized original drafts/packets/prompts/rubric/model records |
 | #122 unseen holdout | Still blocked on its dependencies and a justified instruction revision |

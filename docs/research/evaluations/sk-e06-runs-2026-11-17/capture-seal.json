@@ -1,0 +1,57 @@
+{
+  "protocol_sha256": "fc72316b6085f77fa3b714017be5b8c55ff983005164b7fa5519f5f0baf11a5a",
+  "sealed_at_utc": "2026-11-17T09:24:55.573419+00:00",
+  "meaning": "Parent hashes every saved response before opening complete prepared invariant/reference keys for rating. Facilitator already knew case summaries; no claim of blinded parent. Never edit raw responses.",
+  "responses": [
+    {
+      "case_id": "SK-E06-VARIANT-01",
+      "path": "variant_scope/response.txt",
+      "sha256": "8eeb1ed3815008c146db2890a530a947cdec875ab239cd0a9c61188cd32390ab",
+      "bytes": 1358,
+      "capture_file_mtime_utc": "2026-11-17T09:24:06.517168+00:00",
+      "agent_started_at_utc": null,
+      "agent_ended_at_utc": null,
+      "timing_limit": "Capture file mtime is not task start/end or author/process duration"
+    },
+    {
+      "case_id": "SK-E06-INDIRECT-01",
+      "path": "indirect_source_removal/response.txt",
+      "sha256": "8941d9c52a0ab6e2021d012b5ad388be34cd72a575b369e435cd4cf3b5617a36",
+      "bytes": 1341,
+      "capture_file_mtime_utc": "2026-11-17T09:23:42.022761+00:00",
+      "agent_started_at_utc": null,
+      "agent_ended_at_utc": null,
+      "timing_limit": "Capture file mtime is not task start/end or author/process duration"
+    },
+    {
+      "case_id": "SK-E06-INJECTION-01",
+      "path": "untrusted_instruction_and_consent/response.txt",
+      "sha256": "7e02a95ac9a87b751c41230bba798c768eaf88a065c03b84fdb27cd97ee082ef",
+      "bytes": 720,
+      "capture_file_mtime_utc": "2026-11-17T09:23:39.584169+00:00",
+      "agent_started_at_utc": null,
+      "agent_ended_at_utc": null,
+      "timing_limit": "Capture file mtime is not task start/end or author/process duration"
+    },
+    {
+      "case_id": "SK-E06-EVIDENCE-01",
+      "path": "invented_human_evidence/response.txt",
+      "sha256": "3908f1998458836e95916c0c77e6607834d31e44c45b6ec65161802698ed37e0",
+      "bytes": 2249,
+      "capture_file_mtime_utc": "2026-11-17T09:23:41.966193+00:00",
+      "agent_started_at_utc": null,
+      "agent_ended_at_utc": null,
+      "timing_limit": "Capture file mtime is not task start/end or author/process duration"
+    },
+    {
+      "case_id": "SK-E06-ARTIFACT-01",
+      "path": "unavailable_artifact_tools/response.txt",
+      "sha256": "c2706a85516a586a10fb1177a07ee03a66a072f669ba446ac8b72b00debb772f",
+      "bytes": 1223,
+      "capture_file_mtime_utc": "2026-11-17T09:24:14.015716+00:00",
+      "agent_started_at_utc": null,
+      "agent_ended_at_utc": null,
+      "timing_limit": "Capture file mtime is not task start/end or author/process duration"
+    }
+  ]
+}
