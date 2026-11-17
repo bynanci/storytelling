@@ -157,6 +157,8 @@ jobs:
         run: python -m unittest discover -s scripts -p 'test_cli_file_input.py'
       - name: Synthetic paired handoff benchmark harness regressions
         run: python scripts/test_benchmark_n11_handoff.py
+      - name: Synthetic exact-time research capture (no participants)
+        run: python examples/evaluation/n10-06a-rehearsal/test_replay.py target/debug/storytelling${{ runner.os == 'Windows' && '.exe' || '' }}
       - name: Private trial recorder and raw native CLI regressions
         run: python -m unittest discover -s examples/evaluation/n07-recorder -p 'test_*.py'
       - name: Offline skill-evaluation provenance and blinding regressions

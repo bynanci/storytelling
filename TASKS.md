@@ -156,4 +156,6 @@ Use [#115](https://github.com/bynanci/storytelling/issues/115) as the umbrella. 
 
 ## Narrative handoff maintenance
 
+- [x] **N-R10-06A synthetic research preparation.** [2026-11-17 simulated roundtable](docs/validation/n10-06a-roundtable-2026-11-17.md) retains eight actual native cases / 37 CLI calls and four capture regressions, plus unsolved author materials and a blank private five-field record. Four perspectives are authored by one AI; human participants remain zero. The independent author item in #129 remains pending; the future qualitative observation is proposed and supplies no G2, media/Host or efficacy acceptance.
+
 - [x] **N-R11 handoff lookup maintenance.** A private source-reference index preserves the accepted contract while reducing the two frozen large synthetic release workloads to about 0.55 of baseline median wall time. [Protocol, raw pairs, local checks and independent AI review](docs/validation/n11-handoff-index-performance.md) distinguish process measurements from author/Host evidence; final-head hosted checks are recorded on the PR.
