@@ -4,6 +4,8 @@
 
 English · [繁體中文](CONTRACTS.zh-TW.md)
 
+Rust integrations use the accepted [`consumer_v1` read-only surface](SDK_CONSUMER_V1.md); see its [acceptance scope](validation/sdk-acceptance-2026-11-17.md). This Rust API is not a new CLI/transport wire schema: the CLI stdout/exits, JSON profiles and digests below are unchanged.
+
 Choose the command for your task. Supply the document that its profile accepts. All size limits in this table use bytes. See the [CLI guide](CLI_GUIDE.md) for working examples.
 
 | Command | Required input and limit | Successful standard output | Profile |

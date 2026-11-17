@@ -1,0 +1,29 @@
+{
+  "record_kind": "append_only_parent_transcription_of_executed_invocation_environment",
+  "source": "Actual fresh-verification Python controller in the parent functions.exec input; this is not an independently captured environment dump. Original fresh-verification.json and streams are unchanged.",
+  "source_commit": "5bf480c017f1d27cce307ae5931470d772bef5d6",
+  "explicit_task_environment": {
+    "PATH_prefix": "/workspace/toolchains/rustup/toolchains/1.89.0-x86_64-unknown-linux-gnu/bin:",
+    "CARGO_HOME": "/workspace/toolchains/cargo",
+    "RUSTUP_HOME": "/workspace/toolchains/rustup",
+    "CARGO_TARGET_DIR": "/tmp/storytelling-sdk-20261117-target",
+    "CARGO_INCREMENTAL": "0"
+  },
+  "rustdoc_override": {
+    "step_index": 5,
+    "argv": [
+      "cargo",
+      "doc",
+      "--workspace",
+      "--all-features",
+      "--no-deps",
+      "--locked",
+      "--offline"
+    ],
+    "explicit_environment": {
+      "RUSTDOCFLAGS": "-D warnings"
+    },
+    "executed_controller_fragment": "if argv[:2]==['cargo','doc']:opts['RUSTDOCFLAGS']='-D warnings'"
+  },
+  "limits": "Only explicit overrides are documented. The full inherited environment, authentication data and secrets are not dumped or inferred. This note adds invocation traceability, not a new execution or independent attestation."
+}

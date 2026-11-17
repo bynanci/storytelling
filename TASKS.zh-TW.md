@@ -21,7 +21,7 @@
 
 [2026-11-14 交付／阻擋盤點](docs/validation/continuation-2026-11-14.md)記錄已合併產物、精確 head／合併後 CI 及十六個仍為 Open 的議題；不代替技術接受或真人驗收。
 
-後續的[有證據支持之 AI 圓桌選擇](docs/validation/g2-roundtable-2026-11-14.zh-TW.md)選定受限 #103 W01、八入口 #107 唯讀 SDK，以及小幅修訂後的 #129 B 預檢提案。既有真人／Host 紀錄及 N07 Stop 均附來源與限制。建議方案已選定；請求者後續已採納 #107 的[唯讀 Draft 實作](docs/validation/m4-01-sdk-g2-decision.md)。#103 W01／#129 B 採納與新的真人／Host 觀察仍各自待完成。
+後續的[有證據支持之 AI 圓桌選擇](docs/validation/g2-roundtable-2026-11-14.zh-TW.md)選定受限 #103 W01、八入口 #107 唯讀 SDK，以及小幅修訂後的 #129 B 預檢提案。既有真人／Host 紀錄及 N07 Stop 均附來源與限制。建議方案已選定；請求者後續已採納並完成 #107 的[唯讀 SDK 工程驗收](docs/validation/sdk-acceptance-2026-11-17.zh-TW.md)。#103 W01／#129 B 採納與新的真人／Host 觀察仍各自待完成。
 
 <a id="skill-distribution"></a>
 
@@ -88,7 +88,7 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 
 ## 影片工程任務
 
-最新 Issue 盤點與交接：[2026-11-17 狀態紀錄](docs/validation/continuation-2026-11-17.zh-TW.md) · [English](docs/validation/continuation-2026-11-17.md)。其中記錄 PR #142／#143 合併後結果、核對時零個 Open PR／十六個 Open Issue，以及 #103–#115、#121、#122、#129 各自恢復條件。
+最新驗收與收斂：[#107 完成及其餘十五項恢復條件](docs/validation/sdk-acceptance-2026-11-17.zh-TW.md) · [English](docs/validation/sdk-acceptance-2026-11-17.md)。#149 的唯讀 SDK 已合併與驗收；#108 transport G2 可開工。較早的 [#142／#143 快照](docs/validation/continuation-2026-11-17.zh-TW.md)保留歷史，不能覆蓋後來的 SDK／SK-E06 紀錄。
 
 | 工作 | 狀態與下一步 |
 | --- | --- |
@@ -96,10 +96,12 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 | M3 | P1 與 P2 的限定審閱流程及 M3-02 日誌已採納。M3-03 具備隔離測試。正式執行器、執行中逾時的處理與跨平台實機驗收仍待完成。 |
 | [M3-04／#103](https://github.com/bynanci/storytelling/issues/103) | [PR #117](https://github.com/bynanci/storytelling/pull/117) 已以 `a23a290` 合併提案文件：[ADR 0011](docs/adr/0011-production-execution-contract-v1.md)、[Execution V1](docs/migration/EXECUTION_CONTRACT_V1.zh-TW.md)及[案例／工作包](docs/validation/m3-04-execution-contract.md)。W01 授權／實作與實測契約的最終 G2 接受仍待完成；沒有執行器或當前 authority。 |
 | [M3-05／#104](https://github.com/bynanci/storytelling/issues/104) | 受阻於 #103 明確接受；提案限單次派送，後續為 #105 復原及 #106 宿主驗收。 |
-| M4 | 規劃 TypeScript 用戶端與單一寫入者。須先驗收 M2-03 和 M3-03。 |
-| [M4-01／#107](https://github.com/bynanci/storytelling/issues/107) · M4-R01 | 請求者已[採納 ADR 0013 並授權 Draft 實作](docs/validation/m4-01-sdk-g2-decision.md)。本 Draft 提供八個純 `consumer_v1` 入口、opaque 錯誤／handle、獨立範例與實際 compile RED／runtime GREEN；見[指南](docs/SDK_CONSUMER_V1.zh-TW.md)及[來源綁定驗證](docs/validation/m4-01-readonly-sdk.md)。#107 保持 Open，最終實作／consumer 接受、exact-head CI 與 Draft 狀態分開；#103–#106 的執行／復原仍不提供。 |
+| M4 | 唯讀 Rust SDK 已接受；#108 可進行自己的 transport G2，#109 可規範唯讀 UI。正式單一寫入者／execution／recovery 仍需 #103–#106。 |
+| [M4-01／#107](https://github.com/bynanci/storytelling/issues/107) · M4-R01 | **唯讀範圍已驗收／結案。**[PR #149](https://github.com/bynanci/storytelling/pull/149) 以 `9d15382` 合併，最終 head 與合併後各九項 CI 通過。八個純入口、完整原錯誤、opaque handle 與獨立 consumer 均已驗證；[工程驗收／剩餘門檻](docs/validation/sdk-acceptance-2026-11-17.zh-TW.md)。#108 可進行自己的唯讀 transport G2；#103–#106 的 mutation／Host／authority 與 G5 各自保留。 |
 | M5、v1.0 | 規劃第二個編輯器、跨平台發行與獨立使用者評估。穩定版須通過相容性、遷移與復原驗收。 |
 | [M5-02／#112](https://github.com/bynanci/storytelling/issues/112) | 受阻於 #109、#111 及已接受的 M3 執行／復原流程。[前瞻式 v1 規程](docs/validation/m5-02-rough-cut-beta-v1.zh-TW.md)與匿名空白表單僅完成設計；尚未招募或開始 Beta。 |
+
+- [x] **M4-R01／#107 唯讀工程驗收。**八項原條件與獨立 consumer 出口通過，SDK／CLI 14 項與合併前後各九項 CI 皆通過；#107 全勾選並結案。沒有增加真人／Host／G5 證據。
 
 每張工程票的優先序、依賴與驗收條件見[逐項工程清單](docs/delivery/VIDEO_TASK_HISTORY.md#next-actionable-work)。現有範圍不包含完整剪輯器、編解碼器、特效引擎或任意外掛。新增功能時，先說明哪一項使用情境受阻。
 

@@ -1,0 +1,147 @@
+{
+  "source_commit": "5bf480c017f1d27cce307ae5931470d772bef5d6",
+  "checked_on_utc": "2026-11-17T11:20:52.611275+00:00",
+  "checks": [
+    {
+      "index": 0,
+      "argv": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--all-features",
+        "--release",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 2.718,
+      "stdout_sha256": "705d28fda3c735ec03ae4b4f76be38adbb89d9d7a969a8b97d6844f560158046",
+      "stderr_sha256": "959af78378fbb59d92edc9fd7d028c01e96636a9def657d8965a31a20ee39b55",
+      "test_summary": {
+        "passed": 369,
+        "failed": 0,
+        "ignored": 3
+      }
+    },
+    {
+      "index": 1,
+      "argv": [
+        "cargo",
+        "test",
+        "-p",
+        "storytelling-cli",
+        "--test",
+        "consumer_sdk",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 1.001,
+      "stdout_sha256": "8022374ae5a90641434ee9f72cf0bcc25ee4070b975c4906083b7fd0cf20f109",
+      "stderr_sha256": "5b14a1d7cdf16125d02bc29df5c214986c53732bfec3991368503e7cd86438ec",
+      "test_summary": {
+        "passed": 14,
+        "failed": 0,
+        "ignored": 0
+      }
+    },
+    {
+      "index": 2,
+      "argv": [
+        "cargo",
+        "run",
+        "--manifest-path",
+        "examples/consumer-sdk-v1/Cargo.toml",
+        "--locked",
+        "--offline",
+        "--",
+        "tests/fixtures/narrative-video-coverage-v1/valid-unresolved.json"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 5.349,
+      "stdout_sha256": "442779602ce3426c57d3a5ecc47b19dd9e5f2a093abe556ca5ee95e16e8685ed",
+      "stderr_sha256": "49569756f97c7b337d37a4601ed189f5059b24d0ab2265c1386f3802db378c0c",
+      "test_summary": null
+    },
+    {
+      "index": 3,
+      "argv": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 0.32,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_summary": null
+    },
+    {
+      "index": 4,
+      "argv": [
+        "cargo",
+        "clippy",
+        "--workspace",
+        "--all-targets",
+        "--all-features",
+        "--locked",
+        "--offline",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 0.151,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a5f4c585ee974ca44916ac30a98bbc189e067a7e0a6bc6d2e8d6bc525be724af",
+      "test_summary": null
+    },
+    {
+      "index": 5,
+      "argv": [
+        "cargo",
+        "doc",
+        "--workspace",
+        "--all-features",
+        "--no-deps",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 0.083,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4b5e8fb0f731214946aaddca92a3f76a80e0ec09b8e2545c0c736aaec155c61b",
+      "test_summary": null
+    },
+    {
+      "index": 6,
+      "argv": [
+        "python3",
+        "scripts/check_repo.py"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 0.238,
+      "stdout_sha256": "728bbfaf33cce26d9fbaf87b18bd5a323ffebd1fb3d212369faab1c56d548238",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_summary": null
+    },
+    {
+      "index": 7,
+      "argv": [
+        "git",
+        "diff",
+        "--exit-code"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 0.004,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_summary": null
+    }
+  ],
+  "human_observations": 0,
+  "host_observations": 0,
+  "limits": "Fresh automated engineering checks at immutable PR149 head; no human SDK study, authority or Host acceptance."
+}

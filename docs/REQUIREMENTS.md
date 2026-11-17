@@ -318,11 +318,11 @@ Use [#115](https://github.com/bynanci/storytelling/issues/115) as the umbrella. 
 
 **SK-E06 / #115** maps W1/W3/W4/W5/W6 and ST-R01/ST-R02/ST-R03/ST-R07–ST-R14 to five [adversarial reference cases and blank manual forms](research/evaluations/sk-e06/README.md). It checks fixture identity, bilingual material, source revisions, reference labels and literal assertions through `scripts/test_sk_e06_packet.py`; these are packet checks, not semantic conformance or efficacy evidence. No new Rust/CLI requirement or accepted wire format is added. [Five captured synthetic text exercises](research/evaluations/sk-e06-runs-2026-11-17/README.md) now preserve exact responses, frozen Skill/input hashes, two AI reviews of each invariant/failure condition and setup deviations. The variant-scope key applicability remains disputed; quality, efficacy, #121/#122 and human/Host gates remain unfulfilled.
 
-## Read-only consumer facade candidate (M4-R01)
+## Accepted read-only consumer facade (M4-R01)
 
 | Requirement / task | Proposed requirement and evidence state |
 | --- | --- |
-| M4-R01 / [M4-01 #107](https://github.com/bynanci/storytelling/issues/107) | One documented read-only Rust namespace exposes eight accepted-candidate operations without private-module imports or CLI prose parsing. [G2 adoption](validation/m4-01-sdk-g2-decision.md) authorizes the Draft; [SDK-G01–G10 trace](validation/m4-01-readonly-sdk.md) maps real CLI/SDK parity, original error serialization, exact bytes/digests, bounds/versions/order, ownership/concurrency and opaque/absent-execution compile tests. Existing backends/contracts remain unchanged. #107 final implementation/consumer acceptance and exact-head G4 remain separate; #103–#106 gate mutation and #108 owns transport. |
+| M4-R01 / [M4-01 #107](https://github.com/bynanci/storytelling/issues/107) | **Accepted/completed for the eight-operation read-only Rust V1 scope.** [G2](validation/m4-01-sdk-g2-decision.md) was followed by requester-delegated [criterion acceptance](validation/sdk-acceptance-2026-11-17.md); PR #149 / `9d15382` passed nine jobs before/after merge. SDK-G01–G10 exercise CLI/SDK parity, original serializer, bytes/digests, bounds/versions/order, ownership/concurrency and opaque/absent-execution compile checks. Original backends/contracts remain unchanged; #108 transport, #103–#106 and human/Host/G5 retain separate gates. |
 
 ## Evaluation diagnostic maintenance
 

@@ -1,0 +1,120 @@
+{
+  "record_kind": "post_acceptance_github_snapshot",
+  "source": "GitHub API read after issue updates",
+  "checked_date_utc": "2026-11-17",
+  "accepted_issue": {
+    "number": 107,
+    "state": "closed",
+    "state_reason": "completed",
+    "closed_at": "2026-11-17T11:32:40Z",
+    "unchecked_items": 0
+  },
+  "accepted_pr": {
+    "number": 149,
+    "reviewed_head": "5bf480c017f1d27cce307ae5931470d772bef5d6",
+    "merge_commit": "9d15382045fb7453827accda772c56ddc0abee44",
+    "pre_merge_run_ids": [
+      44069823511,
+      44069823440
+    ],
+    "post_merge_run_ids": [
+      44074036241,
+      44074036178
+    ]
+  },
+  "remaining_open_issues": [
+    {
+      "number": 129,
+      "title": "N10-06 · Exact-time mapping input UX and read-only pre-editor verification",
+      "url": "https://github.com/bynanci/storytelling/issues/129",
+      "status": null
+    },
+    {
+      "number": 122,
+      "title": "SK-E05/P2 · Evaluate revised instructions on unseen model-only holdout cases",
+      "url": "https://github.com/bynanci/storytelling/issues/122",
+      "status": null
+    },
+    {
+      "number": 121,
+      "title": "SK-E04/P1 · Calibrate model judges and counterbalance paired rescoring",
+      "url": "https://github.com/bynanci/storytelling/issues/121",
+      "status": null
+    },
+    {
+      "number": 115,
+      "title": "Add adversarial behavior regressions for the portable Storytelling skill",
+      "url": "https://github.com/bynanci/storytelling/issues/115",
+      "status": null
+    },
+    {
+      "number": 114,
+      "title": "M3–M5 · Productization execution map",
+      "url": "https://github.com/bynanci/storytelling/issues/114",
+      "status": null
+    },
+    {
+      "number": 113,
+      "title": "M5-03 · Assemble distribution, compatibility and release-candidate evidence",
+      "url": "https://github.com/bynanci/storytelling/issues/113",
+      "status": "**Status:** blocked on #112 · G5–G6"
+    },
+    {
+      "number": 112,
+      "title": "M5-02 · Run an independent five-user rough-cut beta with prospective metrics",
+      "url": "https://github.com/bynanci/storytelling/issues/112",
+      "status": "**Status:** blocked on #109 and #111 · G5–G6"
+    },
+    {
+      "number": 111,
+      "title": "M5-01 · Select and validate a second editor / host profile",
+      "url": "https://github.com/bynanci/storytelling/issues/111",
+      "status": "**Status:** blocked until the M4 reference workflow is usable in #109 · G0–G5"
+    },
+    {
+      "number": 110,
+      "title": "M4-04 · Add an optional MCP / Agent Tool API without bypassing human review",
+      "url": "https://github.com/bynanci/storytelling/issues/110",
+      "status": "**Status:** optional read-only tool-contract design is eligible after accepted #107. Versioned tool schemas still need their own G2; reference human-review flow depends on #109 and mutation tools remain blocked on #106 · G2–G4"
+    },
+    {
+      "number": 109,
+      "title": "M4-03 · Build a reference app with visible review, approval and one-writer execution",
+      "url": "https://github.com/bynanci/storytelling/issues/109",
+      "status": "**Status:** accepted #107 unblocks separately scoped read-only app design/prototyping. The full one-writer/execution/readback/recovery workflow remains blocked on #106; TypeScript use additionally needs #108's chosen binding · read-only G0–G2, full G3–G5"
+    },
+    {
+      "number": 108,
+      "title": "M4-02 · Build an independent TypeScript consumer for the Storytelling SDK",
+      "url": "https://github.com/bynanci/storytelling/issues/108",
+      "status": "**Status:** ready for a focused read-only transport/binding G2 decision against accepted #107 (`consumer_v1`, PR #149 / `9d15382`). No TypeScript transport/client is implemented or accepted yet. Execution/recovery remains blocked on #106 · G2 → G3–G4"
+    },
+    {
+      "number": 106,
+      "title": "M3-07 · Qualify the production FilmCraft host profile and close M3",
+      "url": "https://github.com/bynanci/storytelling/issues/106",
+      "status": "**Status:** blocked until #104 and #105 are verified · G4–G6"
+    },
+    {
+      "number": 105,
+      "title": "M3-06 · Recover timeouts, lost replies and unknown host outcomes without duplicate edits",
+      "url": "https://github.com/bynanci/storytelling/issues/105",
+      "status": "**Status:** blocked on #104 for implementation; recovery fixtures/spec work may start earlier · G3–G4"
+    },
+    {
+      "number": 104,
+      "title": "M3-05 · Implement the single-writer production executor for FilmCraft",
+      "url": "https://github.com/bynanci/storytelling/issues/104",
+      "status": "**Status:** blocked until #103 is accepted · G3–G4"
+    },
+    {
+      "number": 103,
+      "title": "M3-04 · Freeze the production execution and authority contract",
+      "url": "https://github.com/bynanci/storytelling/issues/103",
+      "status": "**Status:** ready · G2 contract decision"
+    }
+  ],
+  "new_human_observations": 0,
+  "new_host_observations": 0
+}
+

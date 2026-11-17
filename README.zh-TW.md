@@ -139,6 +139,8 @@ npx skills add ./node_modules/@bynanci/storytelling/skills/storytelling --skill 
 
 ## 快速開始
 
+Rust 整合可使用已接受的[八入口唯讀 V1 facade](docs/SDK_CONSUMER_V1.zh-TW.md)與獨立 consumer 範例。此範圍的[工程驗收](docs/validation/sdk-acceptance-2026-11-17.zh-TW.md)已完成；TypeScript transport、正式執行與發布各自保留門檻。
+
 命令列工具（CLI）可獨立在本機執行。以下範例使用 Rust 1.89.0 與開發版 `0.1.0-dev.0`。執行範例不需要 AI 訂閱、模型金鑰或剪輯器。[Rust 工具鏈安裝程式](https://rustup.rs/)
 
 ```sh

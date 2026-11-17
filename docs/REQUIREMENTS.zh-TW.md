@@ -382,11 +382,11 @@ M0、M1-01 與限定範圍的 M2-01 稽核只支援前兩項。
 
 **SK-E06／#115** 將 W1／W3／W4／W5／W6 與 ST-R01／ST-R02／ST-R03／ST-R07–ST-R14 對應到五種[對抗參考案例與空白手動表單](research/evaluations/sk-e06/README.zh-TW.md)。`scripts/test_sk_e06_packet.py` 核對 fixture 身分、中英材料、來源 revision、參考標籤與字面條件；它不提供語意遵循或效益證據，不新增 Rust／CLI 需求或已接受 wire format。[五份實際合成文字回答](research/evaluations/sk-e06-runs-2026-11-17/README.zh-TW.md)保存原文、凍結 Skill／input 雜湊、兩位 AI 逐條判準評閱及操作偏差；變體範圍判準仍有爭議。品質、效益、#121／#122 與真人／Host 門檻維持未滿足。
 
-## 唯讀 Consumer Facade 候選（M4-R01）
+## 已接受的唯讀 Consumer Facade（M4-R01）
 
 | 需求／任務 | 提議要求與證據狀態 |
 | --- | --- |
-| M4-R01／[M4-01 #107](https://github.com/bynanci/storytelling/issues/107) | 單一唯讀 Rust namespace 提供八個已採納候選入口，不需匯入 private module 或解析 CLI 文字。[G2 決定](validation/m4-01-sdk-g2-decision.md)授權 Draft；[SDK-G01–G10 追溯](validation/m4-01-readonly-sdk.md)對應真實 CLI／SDK 等價、原錯誤 serializer、精確 bytes／digest、bounds／versions／順序、ownership／concurrency 及 opaque／無執行能力 compile 測試。既有 backend／契約不變；#107 最終實作／consumer 接受及 exact-head G4 分開，#103–#106 管控 mutation，#108 決定 transport。 |
+| M4-R01／[M4-01 #107](https://github.com/bynanci/storytelling/issues/107) | **八入口唯讀 Rust V1 範圍已接受並結案。**[G2](validation/m4-01-sdk-g2-decision.md)後依使用者後續請求完成[逐條驗收](validation/sdk-acceptance-2026-11-17.zh-TW.md)，PR #149／`9d15382` 合併前後各九項檢查成功。SDK-G01–G10 實際覆蓋 CLI／SDK 等價、原 serializer、bytes／digest、bounds／versions／順序、ownership／並行及 opaque／無執行 compile 檢查。原 backend／契約不變；#108 transport 與 #103–#106、真人／Host／G5 各有獨立門檻。 |
 
 ## 評估診斷維護
 

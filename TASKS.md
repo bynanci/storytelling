@@ -23,7 +23,7 @@ The [2026-11-11 open-issue audit](docs/validation/open-issues-2026-11-11.md) lin
 
 The [2026-11-14 delivery/blocker reconciliation](docs/validation/continuation-2026-11-14.md) records merged artifacts, exact-head/post-merge CI and the remaining sixteen open issues without granting technical or human acceptance.
 
-The later [evidence-grounded AI roundtable selection](docs/validation/g2-roundtable-2026-11-14.md) chooses bounded #103 W01, the eight-operation #107 read-only SDK, and a narrowly revised #129 B preflight proposal. Existing human/Host records and the N07 Stop are indexed with limits. Recommendations were selected. The requester subsequently adopted #107 for a [read-only Draft implementation](docs/validation/m4-01-sdk-g2-decision.md); #103 W01/#129 B adoption and new human/Host observations remain separate and pending.
+The later [evidence-grounded AI roundtable selection](docs/validation/g2-roundtable-2026-11-14.md) chooses bounded #103 W01, the eight-operation #107 read-only SDK, and a narrowly revised #129 B preflight proposal. Existing human/Host records and the N07 Stop are indexed with limits. Recommendations were selected. The requester subsequently adopted and completed #107’s [read-only SDK engineering acceptance](docs/validation/sdk-acceptance-2026-11-17.md); #103 W01/#129 B adoption and new human/Host observations remain separate and pending.
 
 <a name="安裝與散布"></a>
 
@@ -90,7 +90,7 @@ The [manual narration host guide](skills/storytelling/references/manual-narratio
 
 ## Next actionable work
 
-Latest issue map and verified handoff: [2026-11-17 continuation](docs/validation/continuation-2026-11-17.md) · [繁體中文](docs/validation/continuation-2026-11-17.zh-TW.md). It records PR #142/#143 post-merge results, the current zero-open-PR / sixteen-open-issue snapshot, and the separate resume gates for #103–#115, #121, #122 and #129.
+Latest acceptance and issue map: [completed #107 and fifteen remaining resume gates](docs/validation/sdk-acceptance-2026-11-17.md) · [繁體中文](docs/validation/sdk-acceptance-2026-11-17.zh-TW.md). #149’s read-only SDK is merged/accepted and #108 transport G2 is ready. The earlier [#142/#143 continuation snapshot](docs/validation/continuation-2026-11-17.md) remains historical and does not supersede later SDK/SK-E06 evidence.
 
 | Video work | Scope and next decision |
 | --- | --- |
@@ -98,10 +98,12 @@ Latest issue map and verified handoff: [2026-11-17 continuation](docs/validation
 | M3 | P1, P2 and the M3-02 journal passed bounded acceptance. M3-03 has an isolated test. Production execution, in-flight timeouts and broader host tests remain open. |
 | [M3-04 / #103](https://github.com/bynanci/storytelling/issues/103) | [PR #117](https://github.com/bynanci/storytelling/pull/117) merged proposal documents as `a23a290`: [ADR 0011](docs/adr/0011-production-execution-contract-v1.md), [Execution V1](docs/migration/EXECUTION_CONTRACT_V1.md) and [cases/work packages](docs/validation/m3-04-execution-contract.md). W01 authorization/implementation and final tested-contract G2 acceptance remain pending; no executor or current authority is supplied. |
 | [M3-05 / #104](https://github.com/bynanci/storytelling/issues/104) | Blocked on explicit #103 acceptance; proposed single-attempt executor, followed by #105 recovery and #106 host acceptance. |
-| M4 | The TypeScript client and single-writer integration require M2-03 and M3-03. |
-| [M4-01 / #107](https://github.com/bynanci/storytelling/issues/107) · M4-R01 | Requester [adopted ADR 0013 for Draft implementation](docs/validation/m4-01-sdk-g2-decision.md). Eight pure `consumer_v1` operations, opaque errors/handle, standalone example and observed compile RED/runtime GREEN are implemented in this Draft; [guide](docs/SDK_CONSUMER_V1.md) and [source-bound verification](docs/validation/m4-01-readonly-sdk.md). #107 remains Open for final implementation/consumer acceptance; exact-head CI and Draft status are separate. Execution/recovery remains unavailable under #103–#106. |
+| M4 | Read-only Rust SDK accepted; #108 can define its transport G2 and #109 can scope read-only UI. Production one-writer/execution/recovery still requires #103–#106. |
+| [M4-01 / #107](https://github.com/bynanci/storytelling/issues/107) · M4-R01 | **Read-only scope accepted/completed.** [PR #149](https://github.com/bynanci/storytelling/pull/149) merged as `9d15382`; all nine final-head and all nine post-merge jobs passed. Eight pure operations, original errors, opaque handle and independent consumers verified; [acceptance/remaining gates](docs/validation/sdk-acceptance-2026-11-17.md). #108 is ready for its own read-only transport G2; #103–#106 mutation/authority/Host and G5 remain separate. |
 | M5 and v1.0 | Test a second editor, independent users and distribution. Stable release needs migration, compatibility and recovery evidence. |
 | [M5-02 / #112](https://github.com/bynanci/storytelling/issues/112) | Blocked on #109, #111 and an accepted M3 execution/recovery path. The [prospective v1 protocol](docs/validation/m5-02-rough-cut-beta-v1.md) and blank anonymous forms are design-only; no recruitment, measured session or beta result is claimed. |
+
+- [x] **M4-R01 / #107 read-only engineering acceptance.** All eight original criteria and the independent-consumer exit verified; SDK/CLI 14 cases and nine exact-head/post-merge jobs each passed. #107 is fully checked/completed, with no new human/Host/G5 evidence.
 
 The [video task history](docs/delivery/VIDEO_TASK_HISTORY.md#next-actionable-work) lists individual dependencies, priorities and acceptance criteria. A full editor, codec suite, effects engine and arbitrary plug-ins remain outside the current backlog.
 

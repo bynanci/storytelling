@@ -1,0 +1,156 @@
+#107 / PR #149 final engineering acceptance audit — 2026-11-17 UTC
+
+Disposition: PASS for all eight original acceptance criteria and the exit
+criterion within the requester-adopted ADR 0013 eight-operation read-only scope.
+No unresolved implementation, correctness, public-type-closure, trust-constructor,
+I/O, identity/error-byte, version, or ownership blocker found. Technical
+acceptance/issue completion is supportable after the parent verifies the exact
+submitted-head hosted checks and records the current authorized disposition.
+This review itself does not merge, close, sign, or impersonate a maintainer.
+
+Frozen identities and review boundary
+- Repository: /workspace/storytelling-readonly-sdk-20261117.
+- HEAD checked: 5bf480c017f1d27cce307ae5931470d772bef5d6.
+- Base: 0b39c00354f343d7a61821a029777d88a8373254.
+- consumer_v1.rs: c63ead96a661f4656471f81c25474f26707119e22e7915c579618f4cd676a625.
+- consumer_sdk.rs: 94a7424bd8d13b36b9991e56af09bec9dae329234b65ca5747d948f7b8da3729.
+- Frozen proposal: 1,573 bytes; SHA-256
+  9db66b3384a6cf76b7a6ffdd8578f55db3af840fe001a7c33499f80869d4456b.
+- Read AGENTS.md; README/TASKS/ROADMAP/SDLC; Issue #107 in the supplied
+  open-issues.json; SDK guide/ADR/adoption/verification/review/receipts; facade,
+  compiled-handle/backend/type definitions and external-consumer test source.
+- Source-bound AI engineering review only. Used scoped read-only Git, source,
+  Python and hash inspection. Ran no Cargo, product CLI, network, media, Host or
+  subagents; changed no repository file. Wrote only this requested /tmp report.
+- Dynamic outcomes below are inspected implementer/parent/CI evidence, not test
+  executions or human/Host observations independently performed by this reviewer.
+
+Per-criterion result (paths relative to repository)
+
+1. Freeze a public SDK surface/versioning policy for supported V1 profiles — PASS.
+   docs/SDK_CONSUMER_V1.md:6,19-40,62-70 and ADR 0013:29-63,118-142,
+   187-195 define consumer_v1, exact eight signatures/results, delegated profiles,
+   independent facade/document/compiler/package versions, bounds and breaking-
+   change rules. The actual G2 decision records adoption, not an invented signature.
+   The namespace freeze is compatible with an unpublished 0.1.0-dev.0 package;
+   issue completion need not imply G5 publication or a stable release support term.
+
+2. Stable domain results/errors without private/internal DTO construction — PASS.
+   consumer_v1.rs:88-118 exposes the complete named result/reference graph from
+   existing types; :120-207 keeps concrete source errors behind private fields,
+   with operation/code/optional path and fallible direct source-error serialization.
+   Nested planner/brief/wire, narrative/revision/coverage and review fields can be
+   named through this namespace; callers need no private engine or core imports.
+   PreparedStoryReviewV1 aliases compiler-owned BoundStoryReviewV1, whose private
+   storage and only immutable accessors are in story_review.rs:46-69. No public
+   unchecked handle constructor, Deserialize/Default, mutator or reconstruction
+   from portable record plus arbitrary artifact exists. Ordinary re-exported wire
+   DTOs intentionally remain untrusted declarations; editing one grants no trust.
+   Fifteen new compile-fail cases and positive consumer checks support opacity.
+
+3. Read-only validation/impact/coverage/planning/review prepare/check — PASS.
+   consumer_v1.rs:210-287 implements exactly validate_plan, render_narrative,
+   track_revisions, query_impact, video_coverage, plan_story,
+   prepare_story_review and check_story_review. Each calls its existing backend
+   once with original immutable buffers/ID and argument order; only Err is adapted.
+   No parser, defaults, normalization, planner/compiler/hash implementation or
+   hidden I/O is added. consumer_sdk.rs SDK-G01-G09 exercise every operation.
+   Unresolved coverage is Ok(planning=false); well-formed stale review is
+   Ok(current=false); malformed/binding/source errors remain Err.
+
+4. Mutation/recovery unavailable/fail closed until #106 — PASS.
+   No execute/approve/dispatch/retry/recover/journal-write/path/shell/Host callback
+   operation is exported. The production facade has no feature-dependent gateway;
+   compile-fail cases cover absent privileged symbols under all features. Existing
+   backend/root APIs are unchanged. ADR 0013:155-168 and guide:68 reserve future
+   capability/versioning for #103-#106. No current authority or Host claim follows
+   from compilation, record ownership, signatures, or freshness.
+
+5. Public thread/concurrency and single-writer expectations — PASS in read-only scope.
+   guide:64-68, module rustdoc:4-21 and ADR 0013:73,144-162 specify synchronous
+   pure calls, immutable inputs, owned Send/Sync results, caller-bounded parallel
+   work/memory, and no cache/background/cancellation. consumer_sdk.rs:1488-1560
+   checks all returned/error types, input lifetime independence and caller-thread
+   replay. ADR explicitly reserves one-writer integration to #109, requires future
+   project ownership/fencing/unknown-outcome recovery, and states that read-only
+   handles grant no writer lease. Zero current writer capability satisfies this
+   bounded facade; implementing a writer here would breach the adopted scope.
+
+6. Shared CLI/SDK golden fixtures yield equivalent domain results — PASS.
+   consumer_sdk.rs:14-35 freezes one shared fixture set; SDK-G01-G07 compare
+   independent literal fields/existing text goldens against real CLI file/stdin
+   results, status/envelopes and SDK results. Narrative formatting has an extra
+   cfg(test) private-formatter comparison; production CLI bytes are unchanged.
+   SDK-G06 compares artifact/bundle bytes plus exactly one CLI LF against both
+   actual CLI and frozen original-baseline stdout. The frozen proposal equals the
+   retained baseline planner stdout byte-for-byte (one LF, no CR). P2 artifact/
+   binding literals remain 5404c0b552ddc4ccc394755c0a9a95e262f47f4a579fdca9b41797b920a838d0
+   and ff87f54300ac968089fa6170f1248920a990284c3961f574225088ce85aad932.
+   Original-error field/omission/null/array/order fidelity is separately asserted
+   with raw literals at :187-221. A controlled Value-roundtrip mutant failed two
+   meaningful order checks; correct source was restored. This is identified as a
+   test-gap experiment, not a natural production defect or the initial RED.
+
+7. Unsupported newer schema/profile versions fail explicitly — PASS.
+   SDK-G08 (:1137-1271) covers future plan/narrative/ledger/coverage/planner schema,
+   context schema, proposal profile and invalid bundle/profile paths; :1274-1480
+   retains exact byte/depth limits and multi-argument error order. The unchanged
+   review backend validates record/context schema == 1, proposal planner profile
+   == v1 and bundle review profile == the accepted V1 profile. Diagnostics retain
+   existing operation-specific first-error precedence; a future+unknown-field M0
+   case can correctly fail shape first. There is no silent upgrade/fallback.
+   Declared Host profile strings remain declarations, not verified Host support.
+
+8. Migration/deprecation rules precede breaking public changes — PASS.
+   guide:70, module rustdoc:10-14 and ADR 0013:170-195 require a new facade major,
+   migration review, replacement path and documented compatibility interval before
+   deprecation/removal. Current root imports/contracts remain unchanged; rollback
+   removes the additive facade/example/imports without user-data migration.
+
+Exit: independent consumer implements supported workflow without internal engine
+modules — PASS as an engineering compatibility claim.
+   consumer_sdk.rs is compiled as an external integration-test consumer, imports
+   only consumer_v1 for domain operations, exercises all eight APIs and handles
+   literal domain outcomes, rich errors, owned types and exact review bytes.
+   examples/consumer-sdk-v1 is a separate [workspace] package with only public
+   engine-facade domain imports and no core dependency; its explicit caller-owned
+   file/stdout I/O demonstrates packaging independently of runtime workspace
+   membership. It is a small coverage example; the eight-operation integration
+   consumer supplies the wider workflow evidence. Both are AI-authored automated
+   consumers, not independent human consumer sessions. The issue does not require
+   a human usability study, TypeScript transport or production execution for this
+   independently shippable read-only path. Existing review preparation correctly
+   takes one frozen planner-response buffer, documented at guide:38; it creates no
+   new wire wrapper and requires no private DTO construction.
+
+Evidence integrity checked independently without executing the product
+- receipt-index.json: all 76 retained receipt lengths/hashes and all 11 indexed
+  source/fixture hashes match current files.
+- preservation-and-summary.json: all 194 original source/contract/fixture records
+  match base blobs and stored hashes. CLI production prefix is unchanged; only a
+  cfg(test) formatter test was appended. Production facade matches first GREEN.
+- Raw final-workspace stdout independently aggregates to 350/369/350/369 passed,
+  zero failed, three existing ignored each (two informational benchmarks and one
+  isolated Host case). These are retained earlier-source execution receipts.
+- Parent fresh-verification.json binds to exact 5bf480c; all 16 stdout/stderr
+  hashes match. It records 369-pass all-feature release, 14-pass SDK suite,
+  standalone consumer, fmt/Clippy/rustdoc/repository checks and clean tracked diff.
+- Existing fresh-context implementation-review.txt has no unresolved blocker;
+  its one meaningful raw-error-order test gap was corrected without changing
+  production or deleting the original eleven assertions.
+- Supplied issue snapshot identifies exact-head six ordinary and three OS packet
+  jobs as passed. No network access was made by this reviewer: the parent must
+  read hosted evidence for the submitted head and retain any later-head distinction.
+
+Blockers and disposition limits
+- True missing read-only #107 implementation criterion: none found.
+- No additional human SDK usability record, Host session, authority/recovery
+  implementation or G5 evidence is supplied or required to establish this scoped
+  read-only engineering outcome. Do not check unrelated #103-#106/#108/#109 gates.
+- Prior Draft/Open wording records the earlier G2-only authorization and pending
+  final decision. It should be reconciled to the actual subsequent acceptance/
+  authorized workflow; the historical decision must not be rewritten as a human
+  signature or as a previous merge approval.
+- This source-bound AI recommendation supports the current authorized engineering
+  acceptance and issue convergence. Exact-head CI, any new documentation head,
+  Ready/merge execution and post-merge checks remain the parent's responsibilities.

@@ -1,6 +1,9 @@
 <!-- SPDX-License-Identifier: MIT -->
 # Verified continuation and remaining gates · 2026-11-17
 
+**Historical snapshot:** this record predates #149 acceptance and captured SK-E06 exercises. [Subsequent acceptance/issue convergence](sdk-acceptance-2026-11-17.md) is the current status source. Original evidence/pending text is retained rather than rewritten with hindsight.
+
+
 This is the current status receipt for the productization map in [Issue #114](https://github.com/bynanci/storytelling/issues/114). It is based on main `f77ccad6dc40affdd6f7b2541ae93ba88095665d`. The repository showed zero open PRs and sixteen open issues when checked. This update records delivered engineering scope and the evidence still needed to resume blocked tasks; it does not accept a contract, attest a maintainer decision, close a product milestone or authorize publication.
 
 ## New verified deliveries
