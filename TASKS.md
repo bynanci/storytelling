@@ -90,6 +90,8 @@ The [manual narration host guide](skills/storytelling/references/manual-narratio
 
 ## Next actionable work
 
+Latest issue map and verified handoff: [2026-11-17 continuation](docs/validation/continuation-2026-11-17.md) · [繁體中文](docs/validation/continuation-2026-11-17.zh-TW.md). It records PR #142/#143 post-merge results, the current zero-open-PR / sixteen-open-issue snapshot, and the separate resume gates for #103–#115, #121, #122 and #129.
+
 | Video work | Scope and next decision |
 | --- | --- |
 | M0–M2 | The foundation, limited interchange and selected planner scopes passed acceptance. Additional hosts, the full solver and editorial acceptance remain open. |
