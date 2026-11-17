@@ -11,6 +11,7 @@ from pathlib import Path
 import posixpath
 import re
 import stat
+import struct
 import zipfile
 import zlib
 
@@ -169,6 +170,31 @@ def _inline_targets(text):
                 state = "search"
 
 
+def _decoded_member(archive_bytes, member):
+    """Independently decode the bounded, ordinary local-member profile."""
+    offset = member.header_offset
+    _require(0 <= offset <= len(archive_bytes) - 30)
+    header = struct.unpack_from("<4s5H3I2H", archive_bytes, offset)
+    signature, version, flags, method, _time, _date, crc, compressed_size, size, name_size, extra_size = header
+    _require(signature == b"PK\x03\x04" and version in {10, 20}
+             and version == member.extract_version and flags == member.flag_bits and not flags & ~0x800
+             and method == member.compress_type and crc == member.CRC
+             and compressed_size == member.compress_size and size == member.file_size
+             and extra_size == 0 and not member.extra)
+    start = offset + 30 + name_size
+    end = start + compressed_size
+    _require(end <= len(archive_bytes) and archive_bytes[offset + 30:start] == member.filename.encode("ascii"))
+    compressed = archive_bytes[start:end]
+    if method == zipfile.ZIP_STORED:
+        raw = compressed
+    else:
+        decoder = zlib.decompressobj(-zlib.MAX_WBITS)
+        raw = decoder.decompress(compressed, MAX_MEMBER_BYTES + 1)
+        _require(decoder.eof and not decoder.unconsumed_tail and not decoder.unused_data)
+    _require(len(raw) <= MAX_MEMBER_BYTES and len(raw) == size and zlib.crc32(raw) == crc)
+    return raw
+
+
 def _validate_layout(record_bytes, archive_bytes):
     _require(type(archive_bytes) is bytes and len(archive_bytes) <= MAX_ARCHIVE_BYTES)
     record = _record(record_bytes)
@@ -191,9 +217,10 @@ def _validate_layout(record_bytes, archive_bytes):
         _require({member.filename for member in members} == {item["path"] for item in record["archive"]["files"]})
         declared = {item["path"]: item for item in record["archive"]["files"]}
         for member in members:
-            with archive.open(member) as stream:
-                raw = stream.read(MAX_MEMBER_BYTES + 1)
-            _require(len(raw) <= MAX_MEMBER_BYTES and len(raw) == member.file_size)
+            # Retain ZipFile's public header/name/overlap checks, but derive
+            # content length and CRC without ZipExtFile's declared-length cap.
+            with archive.open(member):
+                raw = _decoded_member(archive_bytes, member)
             item = declared[member.filename]
             _require(len(raw) == item["bytes"])
             _require(hashlib.sha256(raw).hexdigest() == item["sha256"])

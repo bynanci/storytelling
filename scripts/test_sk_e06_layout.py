@@ -454,6 +454,46 @@ class LayoutTests(unittest.TestCase):
         self.assertEqual(validate_layout(self.encoded(record), raw)["local_link_count"], 4)
 
 
+    def test_cli_rejects_small_text_whose_zip_metadata_declares_empty_content(self):
+        # ZipExtFile can return the declared zero bytes even when the actual
+        # DEFLATE stream contains five ordinary ASCII bytes.
+        record, raw = self.rewritten_archive([("skills/storytelling/file.txt", b"hello")], links=[])
+        changed = bytearray(raw)
+        central = changed.index(b"PK\x01\x02")
+        for offset in (14, 22, central + 16, central + 24):
+            struct.pack_into("<I", changed, offset, 0)
+        raw = bytes(changed)
+        record["archive"].update(sha256=hashlib.sha256(raw).hexdigest(), bytes=len(raw))
+        record["archive"]["files"][0].update(
+            bytes=0, sha256="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            git_blob="e69de29bb2d1d6434b8b29ae775ad8c2e48c5391")
+        with tempfile.TemporaryDirectory() as temp:
+            directory = Path(temp)
+            (directory / "future-run-layout-v2.json").write_bytes(self.encoded(record))
+            (directory / "future-run-skill-layout-v2.zip").write_bytes(raw)
+            process = subprocess.run([sys.executable, str(CLI), "--layout-preflight", temp],
+                                     capture_output=True, text=True)
+            self.assertEqual(process.returncode, 1, f"stdout={process.stdout!r}; stderr={process.stderr!r}")
+            self.assertEqual(process.stderr, "")
+            self.assertEqual(json.loads(process.stdout), {"error": {
+                "code": "sk_e06.layout_invalid", "message": "Layout snapshot integrity check failed.",
+            }})
+
+
+    def test_rejects_incorrect_crc_for_small_ordinary_text(self):
+        # The independent decode must preserve the existing CRC rejection,
+        # even when both ZIP headers agree on the same incorrect value.
+        record, raw = self.rewritten_archive([("skills/storytelling/file.txt", b"hello")], links=[])
+        changed = bytearray(raw)
+        central = changed.index(b"PK\x01\x02")
+        for offset in (14, central + 16):
+            struct.pack_into("<I", changed, offset, 0)
+        raw = bytes(changed)
+        record["archive"].update(sha256=hashlib.sha256(raw).hexdigest(), bytes=len(raw))
+        with self.assertRaises(LayoutError):
+            validate_layout(self.encoded(record), raw)
+
+
     def test_snapshot_validation_uses_memory_and_cli_leaves_input_tree_unchanged(self):
         # This is a regression for the already passing no-extraction behavior:
         # opening/extracting/executing a member would fail or alter this tree.
