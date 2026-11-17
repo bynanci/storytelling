@@ -1,0 +1,174 @@
+{
+  "kind": "unchanged_rust_regressions_for_F02_layout_tooling",
+  "source_base": "62541d91c0c52ec6e49b5dc9c8350e92e83b409a",
+  "cwd": "/workspace/storytelling-sk-e06-layout-20261117",
+  "explicit_environment": {
+    "CARGO_HOME": "/workspace/toolchains/cargo",
+    "RUSTUP_HOME": "/workspace/toolchains/rustup",
+    "CARGO_TARGET_DIR": "/tmp/storytelling-ske06-layout-target",
+    "CARGO_INCREMENTAL": "0",
+    "CARGO_BUILD_JOBS": "2",
+    "CARGO_PROFILE_DEV_DEBUG": "0",
+    "CARGO_PROFILE_TEST_DEBUG": "0",
+    "PATH_prepend": "/workspace/toolchains/rustup/toolchains/1.89.0-x86_64-unknown-linux-gnu/bin"
+  },
+  "checks": [
+    {
+      "argv": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "exit": 0,
+      "elapsed_seconds": 0.497,
+      "stdout": {
+        "path": "check-00.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "check-00.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--locked",
+        "--offline"
+      ],
+      "exit": 0,
+      "elapsed_seconds": 32.358,
+      "stdout": {
+        "path": "check-01.stdout",
+        "bytes": 32413,
+        "sha256": "3ac091a91f3b92e3f591424e762e2dfe7078232bef50922e8e56bd65c729513c"
+      },
+      "stderr": {
+        "path": "check-01.stderr",
+        "bytes": 5847,
+        "sha256": "2aa4817be10f2f742f07b22aff99c6ade940e511a5fd1a5232cbf03abfa9aa9b"
+      },
+      "test_totals": {
+        "passed": 350,
+        "failed": 0,
+        "ignored": 3
+      }
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--all-features",
+        "--locked",
+        "--offline"
+      ],
+      "exit": 0,
+      "elapsed_seconds": 14.817,
+      "stdout": {
+        "path": "check-02.stdout",
+        "bytes": 34209,
+        "sha256": "83e026a8d4e5c3cbfd911dba7fb83d5a3e34591917512b09472087c7e732d6d2"
+      },
+      "stderr": {
+        "path": "check-02.stderr",
+        "bytes": 4163,
+        "sha256": "bf719402d135539570da0c5976758088fe08aab9cf2709f7ff51d983eb558705"
+      },
+      "test_totals": {
+        "passed": 369,
+        "failed": 0,
+        "ignored": 3
+      }
+    },
+    {
+      "argv": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--all-features",
+        "--release",
+        "--locked",
+        "--offline"
+      ],
+      "exit": 0,
+      "elapsed_seconds": 94.498,
+      "stdout": {
+        "path": "check-03.stdout",
+        "bytes": 34209,
+        "sha256": "87bf64ea7af787da76d06383fde36920cb3aea6873db08b3ca3a2802673dd20a"
+      },
+      "stderr": {
+        "path": "check-03.stderr",
+        "bytes": 5914,
+        "sha256": "cda36fe2115271c7d89bb9f8a65027f4da79f158695e2cb07162bf9217c661b5"
+      },
+      "test_totals": {
+        "passed": 369,
+        "failed": 0,
+        "ignored": 3
+      }
+    },
+    {
+      "argv": [
+        "cargo",
+        "clippy",
+        "--workspace",
+        "--all-targets",
+        "--all-features",
+        "--locked",
+        "--offline",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit": 0,
+      "elapsed_seconds": 10.532,
+      "stdout": {
+        "path": "check-04.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "check-04.stderr",
+        "bytes": 1516,
+        "sha256": "05fe4c379e9eec73706e7d2620620252fbbca568024efc3dcb13adb3a3067353"
+      }
+    },
+    {
+      "argv": [
+        "cargo",
+        "doc",
+        "--workspace",
+        "--all-features",
+        "--no-deps",
+        "--locked",
+        "--offline"
+      ],
+      "exit": 0,
+      "elapsed_seconds": 3.757,
+      "stdout": {
+        "path": "check-05.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "check-05.stderr",
+        "bytes": 877,
+        "sha256": "96b26ab6c11dfff065af584ed202c088cc29a7a9d643d442c9dce2b4a2ea9e3b"
+      },
+      "additional_environment": {
+        "RUSTDOCFLAGS": "-D warnings"
+      }
+    }
+  ],
+  "transport_runtime_cases_executed": 0,
+  "human_observations": 0,
+  "host_observations": 0
+}

@@ -318,6 +318,8 @@ Use [#115](https://github.com/bynanci/storytelling/issues/115) as the umbrella. 
 
 **SK-E06 / #115** maps W1/W3/W4/W5/W6 and ST-R01/ST-R02/ST-R03/ST-R07–ST-R14 to five [adversarial reference cases and blank manual forms](research/evaluations/sk-e06/README.md). It checks fixture identity, bilingual material, source revisions, reference labels and literal assertions through `scripts/test_sk_e06_packet.py`; these are packet checks, not semantic conformance or efficacy evidence. No new Rust/CLI requirement or accepted wire format is added. [Five captured synthetic text exercises](research/evaluations/sk-e06-runs-2026-11-17/README.md) now preserve exact responses, frozen Skill/input hashes, two AI reviews of each invariant/failure condition and setup deviations. The variant-scope key applicability remains disputed; quality, efficacy, #121/#122 and human/Host gates remain unfulfilled.
 
+**SK-E06-F02 / #115 layout maintenance** traces source/snapshot reuse and tool-evidence separation (ST-R01/ST-R10/ST-R11/ST-R14) to the [offline preflight record](validation/sk-e06-layout-preflight.md), scripts/sk_e06_layout.py and its 27 normal-entry/negative tests. The existing prospective v2 record/archive and original five answers remain byte-identical. Bounded decoded lengths/CRC, exact declared members/hashes, safe reads and streaming inline-link multisets establish snapshot consistency only; dispatch/source-commit membership/human/Host acceptance stay false or independently pending.
+
 ## Accepted read-only consumer facade (M4-R01)
 
 | Requirement / task | Proposed requirement and evidence state |

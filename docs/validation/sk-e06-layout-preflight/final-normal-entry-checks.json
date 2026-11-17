@@ -1,0 +1,100 @@
+{
+  "kind": "source_bound_F02_normal_entry_and_legacy_byte_parity",
+  "implementation_commit": "91f34b3c610595db05897afd417aadbb58e6ebf0",
+  "base": "62541d91c0c52ec6e49b5dc9c8350e92e83b409a",
+  "baseline_script_sha256": "276131cfe883517c086b0ea53aeb1fba56fe5b2aa1fab65bc2ae0df49b17c128",
+  "legacy_stdout_stderr_exit_byte_identical": true,
+  "checks": [
+    {
+      "label": "baseline-packet",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/tmp/storytelling-ske06-original-packet.py",
+        "/workspace/storytelling-sk-e06-layout-20261117/docs/research/evaluations/sk-e06"
+      ],
+      "exit": 0,
+      "stdout": {
+        "path": "baseline-packet.stdout",
+        "bytes": 117,
+        "sha256": "882700a086c869ab7cc28c4786f8909e850cdbce8a5a73084e9ff099baa47790"
+      },
+      "stderr": {
+        "path": "baseline-packet.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "current-packet",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "scripts/sk_e06_packet.py",
+        "/workspace/storytelling-sk-e06-layout-20261117/docs/research/evaluations/sk-e06"
+      ],
+      "exit": 0,
+      "stdout": {
+        "path": "current-packet.stdout",
+        "bytes": 117,
+        "sha256": "882700a086c869ab7cc28c4786f8909e850cdbce8a5a73084e9ff099baa47790"
+      },
+      "stderr": {
+        "path": "current-packet.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "layout-cli",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "scripts/sk_e06_packet.py",
+        "--layout-preflight"
+      ],
+      "exit": 0,
+      "stdout": {
+        "path": "layout-cli.stdout",
+        "bytes": 241,
+        "sha256": "0c3f404d52f02bb61788e7f702c2a453382702df92bc77a39e793edb532bcb7b"
+      },
+      "stderr": {
+        "path": "layout-cli.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "label": "unchanged-source",
+      "argv": [
+        "git",
+        "diff",
+        "--exit-code",
+        "62541d91c0c52ec6e49b5dc9c8350e92e83b409a",
+        "--",
+        "crates",
+        "contracts",
+        "tests",
+        "examples",
+        "skills",
+        "docs/research/evaluations",
+        "Cargo.toml",
+        "Cargo.lock",
+        "package.json",
+        "package-lock.json"
+      ],
+      "exit": 0,
+      "stdout": {
+        "path": "unchanged-source.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "unchanged-source.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "skill_evaluation_case_dispatches": 0,
+  "human_observations": 0,
+  "host_observations": 0
+}

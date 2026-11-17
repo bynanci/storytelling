@@ -1,0 +1,38 @@
+SK-E06-F02 source-review follow-up
+Date: 2026-11-17 UTC
+Worktree: /workspace/storytelling-sk-e06-layout-20261117
+Previous runtime commit: db24076ce14cdc9deebadbbba5010115cc4c983d
+Test-only follow-up commit: 91f34b3c610595db05897afd417aadbb58e6ebf0
+
+The optional ZIP_STORED coverage observation is closed for this review. The
+exact diff adds a positive two-member stored snapshot with an independently
+specified guide link and literal expectations of two files, one local link and
+can_dispatch=false (scripts/test_sk_e06_layout.py:499-511). The CRC rejection
+test now covers both ZIP_STORED and ZIP_DEFLATED, changing both ZIP header CRCs
+while retaining the content fingerprints and asserting LayoutError (lines
+483-497). These are characterization/coverage changes; this review claims no
+new behavior or newly observed RED.
+
+Git shows that 91f34b3c changes only scripts/test_sk_e06_layout.py. The runtime
+helper and existing packet helper retain the hashes reviewed previously, and
+these three source files have no uncommitted diff. No actual blocker was found
+in the follow-up source. The earlier source-review conclusion remains bounded
+to its stated offline snapshot consistency scope.
+
+Actual follow-up actions: read the exact Git diff/stat, current HEAD, affected
+test source lines, source working-tree diff and SHA-256 hashes. No product/test
+code or Python interpreter was run; no archive or fixture was generated; no
+network, model, media, Host/editor or subagent call was made. No repository file
+was edited. Parent-reported passing tests were not independently executed or
+observed by this reviewer. This is AI source review, not human/G2 approval,
+dispatch authorization, runtime verification or hosted-CI evidence.
+
+Current inspected SHA-256 identities
+
+aacaf95d7593d82c9fc9cbb8eb7dfc73f954f11ca0238230f26b19d39a5079f7  scripts/sk_e06_layout.py
+9aa8ae20df92c9a5bd5d946e1c3152c60b657113005857a025ef5029ee124604  scripts/sk_e06_packet.py
+9a1edfc9856a0366fb472a217cca2f89f4482e2e57553f3b73c07447e2302b1c  scripts/test_sk_e06_layout.py
+bb926f838abc7630e231881833d471fc46416026719f44862cf085da9c98a110  /tmp/storytelling-ske06-layout-source-review.txt
+
+The original report was preserved unchanged. This separate follow-up records
+only the inspected test-only delta and its coverage conclusion.

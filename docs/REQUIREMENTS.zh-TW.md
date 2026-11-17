@@ -382,6 +382,8 @@ M0、M1-01 與限定範圍的 M2-01 稽核只支援前兩項。
 
 **SK-E06／#115** 將 W1／W3／W4／W5／W6 與 ST-R01／ST-R02／ST-R03／ST-R07–ST-R14 對應到五種[對抗參考案例與空白手動表單](research/evaluations/sk-e06/README.zh-TW.md)。`scripts/test_sk_e06_packet.py` 核對 fixture 身分、中英材料、來源 revision、參考標籤與字面條件；它不提供語意遵循或效益證據，不新增 Rust／CLI 需求或已接受 wire format。[五份實際合成文字回答](research/evaluations/sk-e06-runs-2026-11-17/README.zh-TW.md)保存原文、凍結 Skill／input 雜湊、兩位 AI 逐條判準評閱及操作偏差；變體範圍判準仍有爭議。品質、效益、#121／#122 與真人／Host 門檻維持未滿足。
 
+**SK-E06-F02／#115 layout 維護**將來源／快照重用與工具證據分離（ST-R01／ST-R10／ST-R11／ST-R14）對照至[離線預檢紀錄](validation/sk-e06-layout-preflight.md)、scripts/sk_e06_layout.py 與 27 項正常入口／反例測試。既有前瞻 v2 記錄、ZIP 與原始五份回答位元組不變。有上限的解壓長度／CRC、完整宣告成員／雜湊、安全讀取及串流行內連結 multiset 僅建立快照一致性；dispatch／來源 commit 成員資格／真人／Host 驗收維持 false 或各自待決。
+
 ## 已接受的唯讀 Consumer Facade（M4-R01）
 
 | 需求／任務 | 提議要求與證據狀態 |
