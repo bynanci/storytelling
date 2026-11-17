@@ -399,3 +399,5 @@ M0、M1-01 與限定範圍的 M2-01 稽核只支援前兩項。
 **N-R10-06A 研究準備**追溯至[合成圓桌及原生重播](validation/n10-06a-roundtable-2026-11-17.zh-TW.md)、`examples/evaluation/n10-06a-rehearsal/` 的八項驗收與四項真正入口擷取測試。原始輸出、輸入不變、錯誤身分及禁止覆寫屬機器證據；四個視角是同一 agent 的編寫模擬。獨立的作者卡提案及空白五欄表在真實資料可得時保留同意／接觸／原話／時間。真人仍為零，#129 獨立作者要求及 B/C/D 門檻保持待辦。
 
 **M3-JL02／JL04／JL06 歷史收據重送**追溯至[修正紀錄](validation/m3-02-historical-readback.zh-TW.md)與 `crates/storytelling-journal/tests/journal.rs` 四項新測試：跨重啟仍阻擋舊 NotApplied、八種後續狀態、預算及 operation／attempt／lease 隔離。重送證據不能覆蓋新讀回、消耗預算或略過 context 檢查；日誌仍信任 caller 證據，不提供 Host／authority 驗收。
+
+**合成情境驗證／N-R10-06A oracle 完整性**追溯至[六角色紀錄](validation/subagent-scenarios-2026-11-17.zh-TW.md)及[精確／型別敏感 oracle](validation/n10-06a-replay-oracle-2026-11-17.zh-TW.md)。八個必要原生方法涵蓋 22 種輸出故障；preview／emit／V1 一致性須區分布林、整數與浮點型別。原始診斷／輸出及 PR145 資料不改寫；代理回覆、48 格矩陣與 source／log 對照僅供有限測試假設及追溯，不當真人成效或所有情境覆蓋，未檢視及受阻工作明列。

@@ -1,0 +1,272 @@
+{
+  "record_version": "n10-a-rehearsal-1",
+  "evidence_kind": "synthetic_machine_replay",
+  "recorded_at_utc": "2026-11-17T08:45:01.878344+00:00",
+  "status": "failed",
+  "human_participants": 0,
+  "human_completion_rate": null,
+  "author_elapsed_seconds": null,
+  "host_observations": 0,
+  "maintainer_acceptance": null,
+  "source_commit_supplied": "06164f19a8b3614f438dd2f97ef810c94e64c3d3",
+  "source_build_binding_verified_by_tool": false,
+  "script_sha256": "1047aee084c4ed599406344250dcacb8d9863b6cc0b953ea9cb34d07ae53bdb1",
+  "cases": [
+    {
+      "case_id": "decimal-25",
+      "input_utf8": "{\n  \"draft_version\": \"n10-06a.1-draft\",\n  \"coverage\": {\n    \"schema_version\": 1,\n    \"coverage_id\": \"two-unit-cut\",\n    \"narrative_document\": {\n      \"schema_version\": 1,\n      \"document_id\": \"n10-synthetic-story\",\n      \"document_revision\": 1,\n      \"purpose\": \"A synthetic two-unit story-to-video handoff.\",\n      \"audience\": \"Engineering fixture readers.\",\n      \"units\": [\n        {\n          \"id\": \"S02\",\n          \"revision\": 1,\n          \"origin\": \"supplied_observation\",\n          \"text\": \"A neighbor turns the hinge screw.\",\n          \"based_on\": []\n        },\n        {\n          \"id\": \"S03\",\n          \"revision\": 1,\n          \"origin\": \"supplied_observation\",\n          \"text\": \"The door closes without scraping.\",\n          \"based_on\": []\n        }\n      ],\n      \"relations\": [],\n      \"variants\": [\n        {\n          \"id\": \"rough-cut\",\n          \"name\": \"Two selected beats\",\n          \"kind\": \"spoken_outline\",\n          \"beats\": [\n            {\n              \"id\": \"beat-1\",\n              \"unit_ref\": {\n                \"unit_id\": \"S02\",\n                \"revision\": 1\n              },\n              \"text\": \"First, the neighbor turns the screw.\"\n            },\n            {\n              \"id\": \"beat-2\",\n              \"unit_ref\": {\n                \"unit_id\": \"S03\",\n                \"revision\": 1\n              },\n              \"text\": \"Then the door closes cleanly.\"\n            }\n          ]\n        }\n      ]\n    },\n    \"variant_id\": \"rough-cut\",\n    \"selected_unit_refs\": [\n      {\n        \"unit_id\": \"S02\",\n        \"revision\": 1\n      },\n      {\n        \"unit_id\": \"S03\",\n        \"revision\": 1\n      }\n    ],\n    \"asset_catalog\": {\n      \"catalog_id\": \"synthetic-catalog\",\n      \"revision\": 1,\n      \"assets\": [\n        {\n          \"asset_id\": \"CLIP-01\",\n          \"revision\": 1,\n          \"duration\": {\n            \"numerator\": \"12\",\n            \"denominator\": \"1\"\n          }\n        }\n      ]\n    },\n    \"mappings\": [\n      {\n        \"unit_ref\": {\n          \"unit_id\": \"S02\",\n          \"revision\": 1\n        },\n        \"status\": \"mapped\",\n        \"asset_ref\": {\n          \"asset_id\": \"CLIP-01\",\n          \"revision\": 1\n        },\n        \"source_range\": {\n          \"unit\": \"seconds\",\n          \"start\": \"2.5\",\n          \"end\": \"4.5\"\n        }\n      },\n      {\n        \"unit_ref\": {\n          \"unit_id\": \"S03\",\n          \"revision\": 1\n        },\n        \"status\": \"unresolved\",\n        \"reason\": \"No video asset was selected for this unit.\"\n      }\n    ]\n  }\n}\n",
+      "input_sha256": "53160dac337de4c65caabe7e77100092a1aa9803a60c950e0d1085c683a4c97a",
+      "expected_error_code": null,
+      "expected_error_path": null,
+      "calls": [
+        {
+          "arguments": [
+            "draft-video-coverage-input",
+            "input.json"
+          ],
+          "exit_code": 0,
+          "timed_out": false,
+          "process_elapsed_ns": 1854289,
+          "stdout_base64": "eyJjb252ZXJzaW9ucyI6W3siaW5wdXRfcGF0aCI6IiQuY292ZXJhZ2UubWFwcGluZ3NbMF0uc291cmNlX3JhbmdlIiwib3JpZ2luYWwiOnsiZW5kIjoiNC41Iiwic3RhcnQiOiIyLjUiLCJ1bml0Ijoic2Vjb25kcyJ9LCJvdXRwdXRfcGF0aCI6IiQubWFwcGluZ3NbMF0uc291cmNlX3JhbmdlIiwic291cmNlX3JhbmdlIjp7ImVuZCI6eyJkZW5vbWluYXRvciI6IjIiLCJudW1lcmF0b3IiOiI5In0sInN0YXJ0Ijp7ImRlbm9taW5hdG9yIjoiMiIsIm51bWVyYXRvciI6IjUifX19XSwiY292ZXJhZ2UiOnsiYXNzZXRfY2F0YWxvZyI6eyJhc3NldHMiOlt7ImFzc2V0X2lkIjoiQ0xJUC0wMSIsImR1cmF0aW9uIjp7ImRlbm9taW5hdG9yIjoiMSIsIm51bWVyYXRvciI6IjEyIn0sInJldmlzaW9uIjoxfV0sImNhdGFsb2dfaWQiOiJzeW50aGV0aWMtY2F0YWxvZyIsInJldmlzaW9uIjoxfSwiY292ZXJhZ2VfaWQiOiJ0d28tdW5pdC1jdXQiLCJtYXBwaW5ncyI6W3siYXNzZXRfcmVmIjp7ImFzc2V0X2lkIjoiQ0xJUC0wMSIsInJldmlzaW9uIjoxfSwic291cmNlX3JhbmdlIjp7ImVuZCI6eyJkZW5vbWluYXRvciI6IjIiLCJudW1lcmF0b3IiOiI5In0sInN0YXJ0Ijp7ImRlbm9taW5hdG9yIjoiMTAwMCIsIm51bWVyYXRvciI6IjI1MDEifX0sInN0YXR1cyI6Im1hcHBlZCIsInVuaXRfcmVmIjp7InJldmlzaW9uIjoxLCJ1bml0X2lkIjoiUzAyIn19LHsicmVhc29uIjoiTm8gdmlkZW8gYXNzZXQgd2FzIHNlbGVjdGVkIGZvciB0aGlzIHVuaXQuIiwic3RhdHVzIjoidW5yZXNvbHZlZCIsInVuaXRfcmVmIjp7InJldmlzaW9uIjoxLCJ1bml0X2lkIjoiUzAzIn19XSwibmFycmF0aXZlX2RvY3VtZW50Ijp7ImF1ZGllbmNlIjoiRW5naW5lZXJpbmcgZml4dHVyZSByZWFkZXJzLiIsImRvY3VtZW50X2lkIjoibjEwLXN5bnRoZXRpYy1zdG9yeSIsImRvY3VtZW50X3JldmlzaW9uIjoxLCJwdXJwb3NlIjoiQSBzeW50aGV0aWMgdHdvLXVuaXQgc3RvcnktdG8tdmlkZW8gaGFuZG9mZi4iLCJyZWxhdGlvbnMiOltdLCJzY2hlbWFfdmVyc2lvbiI6MSwidW5pdHMiOlt7ImJhc2VkX29uIjpbXSwiaWQiOiJTMDIiLCJvcmlnaW4iOiJzdXBwbGllZF9vYnNlcnZhdGlvbiIsInJldmlzaW9uIjoxLCJ0ZXh0IjoiQSBuZWlnaGJvciB0dXJucyB0aGUgaGluZ2Ugc2NyZXcuIn0seyJiYXNlZF9vbiI6W10sImlkIjoiUzAzIiwib3JpZ2luIjoic3VwcGxpZWRfb2JzZXJ2YXRpb24iLCJyZXZpc2lvbiI6MSwidGV4dCI6IlRoZSBkb29yIGNsb3NlcyB3aXRob3V0IHNjcmFwaW5nLiJ9XSwidmFyaWFudHMiOlt7ImJlYXRzIjpbeyJpZCI6ImJlYXQtMSIsInRleHQiOiJGaXJzdCwgdGhlIG5laWdoYm9yIHR1cm5zIHRoZSBzY3Jldy4iLCJ1bml0X3JlZiI6eyJyZXZpc2lvbiI6MSwidW5pdF9pZCI6IlMwMiJ9fSx7ImlkIjoiYmVhdC0yIiwidGV4dCI6IlRoZW4gdGhlIGRvb3IgY2xvc2VzIGNsZWFubHkuIiwidW5pdF9yZWYiOnsicmV2aXNpb24iOjEsInVuaXRfaWQiOiJTMDMifX1dLCJpZCI6InJvdWdoLWN1dCIsImtpbmQiOiJzcG9rZW5fb3V0bGluZSIsIm5hbWUiOiJUd28gc2VsZWN0ZWQgYmVhdHMifV19LCJzY2hlbWFfdmVyc2lvbiI6MSwic2VsZWN0ZWRfdW5pdF9yZWZzIjpbeyJyZXZpc2lvbiI6MSwidW5pdF9pZCI6IlMwMiJ9LHsicmV2aXNpb24iOjEsInVuaXRfaWQiOiJTMDMifV0sInZhcmlhbnRfaWQiOiJyb3VnaC1jdXQifSwiZHJhZnRfdmVyc2lvbiI6Im4xMC0wNmEuMS1kcmFmdCIsInNjb3BlIjoiZGVjbGFyYXRpb25zX29ubHkiLCJzdGF0dXMiOiJkZWNsYXJhdGlvbl91bnJlc29sdmVkIiwidmFsaWRhdGlvbiI6eyJhc3NldF9jYXRhbG9nX3JlZiI6eyJjYXRhbG9nX2lkIjoic3ludGhldGljLWNhdGFsb2ciLCJyZXZpc2lvbiI6MX0sImNvdmVyYWdlX2lkIjoidHdvLXVuaXQtY3V0IiwiZGlhZ25vc3RpY3MiOlt7ImNvZGUiOiJ2aWRlb19jb3ZlcmFnZS51bnJlc29sdmVkX3JlcXVpcmVkIiwicGF0aCI6IiQubWFwcGluZ3NbMV0ifV0sIm1hcHBpbmdzIjpbeyJhc3NldF9yZWYiOnsiYXNzZXRfaWQiOiJDTElQLTAxIiwicmV2aXNpb24iOjF9LCJzb3VyY2VfcmFuZ2UiOnsiZW5kIjp7ImRlbm9taW5hdG9yIjoiMiIsIm51bWVyYXRvciI6IjkifSwic3RhcnQiOnsiZGVub21pbmF0b3IiOiIxMDAwIiwibnVtZXJhdG9yIjoiMjUwMSJ9fSwic3RhdHVzIjoibWFwcGVkIiwidW5pdF9yZWYiOnsicmV2aXNpb24iOjEsInVuaXRfaWQiOiJTMDIifX0seyJyZWFzb24iOiJObyB2aWRlbyBhc3NldCB3YXMgc2VsZWN0ZWQgZm9yIHRoaXMgdW5pdC4iLCJzdGF0dXMiOiJ1bnJlc29sdmVkIiwidW5pdF9yZWYiOnsicmV2aXNpb24iOjEsInVuaXRfaWQiOiJTMDMifX1dLCJuYXJyYXRpdmVfcmVmIjp7ImRvY3VtZW50X2lkIjoibjEwLXN5bnRoZXRpYy1zdG9yeSIsImRvY3VtZW50X3JldmlzaW9uIjoxLCJ2YXJpYW50X2lkIjoicm91Z2gtY3V0In0sInByb2ZpbGUiOiJzdG9yeXRlbGxpbmcubmFycmF0aXZlLXZpZGVvLWNvdmVyYWdlLnYxIiwicmVhZHlfZm9yX3BsYW5uaW5nIjpmYWxzZSwic2NoZW1hX3ZlcnNpb24iOjEsInNlbGVjdGVkX3VuaXRfcmVmcyI6W3sicmV2aXNpb24iOjEsInVuaXRfaWQiOiJTMDIifSx7InJldmlzaW9uIjoxLCJ1bml0X2lkIjoiUzAzIn1dfX0K",
+          "stderr_base64": "",
+          "stdout_sha256": "1974d5c5082aa8371cc727e718eb98334be3d4384a1d7735f63b7e9c6f95cca3",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "arguments": [
+            "draft-video-coverage-input",
+            "-"
+          ],
+          "exit_code": 0,
+          "timed_out": false,
+          "process_elapsed_ns": 1233936,
+          "stdout_base64": "eyJjb252ZXJzaW9ucyI6W3siaW5wdXRfcGF0aCI6IiQuY292ZXJhZ2UubWFwcGluZ3NbMF0uc291cmNlX3JhbmdlIiwib3JpZ2luYWwiOnsiZW5kIjoiNC41Iiwic3RhcnQiOiIyLjUiLCJ1bml0Ijoic2Vjb25kcyJ9LCJvdXRwdXRfcGF0aCI6IiQubWFwcGluZ3NbMF0uc291cmNlX3JhbmdlIiwic291cmNlX3JhbmdlIjp7ImVuZCI6eyJkZW5vbWluYXRvciI6IjIiLCJudW1lcmF0b3IiOiI5In0sInN0YXJ0Ijp7ImRlbm9taW5hdG9yIjoiMiIsIm51bWVyYXRvciI6IjUifX19XSwiY292ZXJhZ2UiOnsiYXNzZXRfY2F0YWxvZyI6eyJhc3NldHMiOlt7ImFzc2V0X2lkIjoiQ0xJUC0wMSIsImR1cmF0aW9uIjp7ImRlbm9taW5hdG9yIjoiMSIsIm51bWVyYXRvciI6IjEyIn0sInJldmlzaW9uIjoxfV0sImNhdGFsb2dfaWQiOiJzeW50aGV0aWMtY2F0YWxvZyIsInJldmlzaW9uIjoxfSwiY292ZXJhZ2VfaWQiOiJ0d28tdW5pdC1jdXQiLCJtYXBwaW5ncyI6W3siYXNzZXRfcmVmIjp7ImFzc2V0X2lkIjoiQ0xJUC0wMSIsInJldmlzaW9uIjoxfSwic291cmNlX3JhbmdlIjp7ImVuZCI6eyJkZW5vbWluYXRvciI6IjIiLCJudW1lcmF0b3IiOiI5In0sInN0YXJ0Ijp7ImRlbm9taW5hdG9yIjoiMTAwMCIsIm51bWVyYXRvciI6IjI1MDEifX0sInN0YXR1cyI6Im1hcHBlZCIsInVuaXRfcmVmIjp7InJldmlzaW9uIjoxLCJ1bml0X2lkIjoiUzAyIn19LHsicmVhc29uIjoiTm8gdmlkZW8gYXNzZXQgd2FzIHNlbGVjdGVkIGZvciB0aGlzIHVuaXQuIiwic3RhdHVzIjoidW5yZXNvbHZlZCIsInVuaXRfcmVmIjp7InJldmlzaW9uIjoxLCJ1bml0X2lkIjoiUzAzIn19XSwibmFycmF0aXZlX2RvY3VtZW50Ijp7ImF1ZGllbmNlIjoiRW5naW5lZXJpbmcgZml4dHVyZSByZWFkZXJzLiIsImRvY3VtZW50X2lkIjoibjEwLXN5bnRoZXRpYy1zdG9yeSIsImRvY3VtZW50X3JldmlzaW9uIjoxLCJwdXJwb3NlIjoiQSBzeW50aGV0aWMgdHdvLXVuaXQgc3RvcnktdG8tdmlkZW8gaGFuZG9mZi4iLCJyZWxhdGlvbnMiOltdLCJzY2hlbWFfdmVyc2lvbiI6MSwidW5pdHMiOlt7ImJhc2VkX29uIjpbXSwiaWQiOiJTMDIiLCJvcmlnaW4iOiJzdXBwbGllZF9vYnNlcnZhdGlvbiIsInJldmlzaW9uIjoxLCJ0ZXh0IjoiQSBuZWlnaGJvciB0dXJucyB0aGUgaGluZ2Ugc2NyZXcuIn0seyJiYXNlZF9vbiI6W10sImlkIjoiUzAzIiwib3JpZ2luIjoic3VwcGxpZWRfb2JzZXJ2YXRpb24iLCJyZXZpc2lvbiI6MSwidGV4dCI6IlRoZSBkb29yIGNsb3NlcyB3aXRob3V0IHNjcmFwaW5nLiJ9XSwidmFyaWFudHMiOlt7ImJlYXRzIjpbeyJpZCI6ImJlYXQtMSIsInRleHQiOiJGaXJzdCwgdGhlIG5laWdoYm9yIHR1cm5zIHRoZSBzY3Jldy4iLCJ1bml0X3JlZiI6eyJyZXZpc2lvbiI6MSwidW5pdF9pZCI6IlMwMiJ9fSx7ImlkIjoiYmVhdC0yIiwidGV4dCI6IlRoZW4gdGhlIGRvb3IgY2xvc2VzIGNsZWFubHkuIiwidW5pdF9yZWYiOnsicmV2aXNpb24iOjEsInVuaXRfaWQiOiJTMDMifX1dLCJpZCI6InJvdWdoLWN1dCIsImtpbmQiOiJzcG9rZW5fb3V0bGluZSIsIm5hbWUiOiJUd28gc2VsZWN0ZWQgYmVhdHMifV19LCJzY2hlbWFfdmVyc2lvbiI6MSwic2VsZWN0ZWRfdW5pdF9yZWZzIjpbeyJyZXZpc2lvbiI6MSwidW5pdF9pZCI6IlMwMiJ9LHsicmV2aXNpb24iOjEsInVuaXRfaWQiOiJTMDMifV0sInZhcmlhbnRfaWQiOiJyb3VnaC1jdXQifSwiZHJhZnRfdmVyc2lvbiI6Im4xMC0wNmEuMS1kcmFmdCIsInNjb3BlIjoiZGVjbGFyYXRpb25zX29ubHkiLCJzdGF0dXMiOiJkZWNsYXJhdGlvbl91bnJlc29sdmVkIiwidmFsaWRhdGlvbiI6eyJhc3NldF9jYXRhbG9nX3JlZiI6eyJjYXRhbG9nX2lkIjoic3ludGhldGljLWNhdGFsb2ciLCJyZXZpc2lvbiI6MX0sImNvdmVyYWdlX2lkIjoidHdvLXVuaXQtY3V0IiwiZGlhZ25vc3RpY3MiOlt7ImNvZGUiOiJ2aWRlb19jb3ZlcmFnZS51bnJlc29sdmVkX3JlcXVpcmVkIiwicGF0aCI6IiQubWFwcGluZ3NbMV0ifV0sIm1hcHBpbmdzIjpbeyJhc3NldF9yZWYiOnsiYXNzZXRfaWQiOiJDTElQLTAxIiwicmV2aXNpb24iOjF9LCJzb3VyY2VfcmFuZ2UiOnsiZW5kIjp7ImRlbm9taW5hdG9yIjoiMiIsIm51bWVyYXRvciI6IjkifSwic3RhcnQiOnsiZGVub21pbmF0b3IiOiIxMDAwIiwibnVtZXJhdG9yIjoiMjUwMSJ9fSwic3RhdHVzIjoibWFwcGVkIiwidW5pdF9yZWYiOnsicmV2aXNpb24iOjEsInVuaXRfaWQiOiJTMDIifX0seyJyZWFzb24iOiJObyB2aWRlbyBhc3NldCB3YXMgc2VsZWN0ZWQgZm9yIHRoaXMgdW5pdC4iLCJzdGF0dXMiOiJ1bnJlc29sdmVkIiwidW5pdF9yZWYiOnsicmV2aXNpb24iOjEsInVuaXRfaWQiOiJTMDMifX1dLCJuYXJyYXRpdmVfcmVmIjp7ImRvY3VtZW50X2lkIjoibjEwLXN5bnRoZXRpYy1zdG9yeSIsImRvY3VtZW50X3JldmlzaW9uIjoxLCJ2YXJpYW50X2lkIjoicm91Z2gtY3V0In0sInByb2ZpbGUiOiJzdG9yeXRlbGxpbmcubmFycmF0aXZlLXZpZGVvLWNvdmVyYWdlLnYxIiwicmVhZHlfZm9yX3BsYW5uaW5nIjpmYWxzZSwic2NoZW1hX3ZlcnNpb24iOjEsInNlbGVjdGVkX3VuaXRfcmVmcyI6W3sicmV2aXNpb24iOjEsInVuaXRfaWQiOiJTMDIifSx7InJldmlzaW9uIjoxLCJ1bml0X2lkIjoiUzAzIn1dfX0K",
+          "stderr_base64": "",
+          "stdout_sha256": "1974d5c5082aa8371cc727e718eb98334be3d4384a1d7735f63b7e9c6f95cca3",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "arguments": [
+            "draft-video-coverage-input",
+            "input.json"
+          ],
+          "exit_code": 0,
+          "timed_out": false,
+          "process_elapsed_ns": 1351953,
+          "stdout_base64": "eyJjb252ZXJzaW9ucyI6W3siaW5wdXRfcGF0aCI6IiQuY292ZXJhZ2UubWFwcGluZ3NbMF0uc291cmNlX3JhbmdlIiwib3JpZ2luYWwiOnsiZW5kIjoiNC41Iiwic3RhcnQiOiIyLjUiLCJ1bml0Ijoic2Vjb25kcyJ9LCJvdXRwdXRfcGF0aCI6IiQubWFwcGluZ3NbMF0uc291cmNlX3JhbmdlIiwic291cmNlX3JhbmdlIjp7ImVuZCI6eyJkZW5vbWluYXRvciI6IjIiLCJudW1lcmF0b3IiOiI5In0sInN0YXJ0Ijp7ImRlbm9taW5hdG9yIjoiMiIsIm51bWVyYXRvciI6IjUifX19XSwiY292ZXJhZ2UiOnsiYXNzZXRfY2F0YWxvZyI6eyJhc3NldHMiOlt7ImFzc2V0X2lkIjoiQ0xJUC0wMSIsImR1cmF0aW9uIjp7ImRlbm9taW5hdG9yIjoiMSIsIm51bWVyYXRvciI6IjEyIn0sInJldmlzaW9uIjoxfV0sImNhdGFsb2dfaWQiOiJzeW50aGV0aWMtY2F0YWxvZyIsInJldmlzaW9uIjoxfSwiY292ZXJhZ2VfaWQiOiJ0d28tdW5pdC1jdXQiLCJtYXBwaW5ncyI6W3siYXNzZXRfcmVmIjp7ImFzc2V0X2lkIjoiQ0xJUC0wMSIsInJldmlzaW9uIjoxfSwic291cmNlX3JhbmdlIjp7ImVuZCI6eyJkZW5vbWluYXRvciI6IjIiLCJudW1lcmF0b3IiOiI5In0sInN0YXJ0Ijp7ImRlbm9taW5hdG9yIjoiMTAwMCIsIm51bWVyYXRvciI6IjI1MDEifX0sInN0YXR1cyI6Im1hcHBlZCIsInVuaXRfcmVmIjp7InJldmlzaW9uIjoxLCJ1bml0X2lkIjoiUzAyIn19LHsicmVhc29uIjoiTm8gdmlkZW8gYXNzZXQgd2FzIHNlbGVjdGVkIGZvciB0aGlzIHVuaXQuIiwic3RhdHVzIjoidW5yZXNvbHZlZCIsInVuaXRfcmVmIjp7InJldmlzaW9uIjoxLCJ1bml0X2lkIjoiUzAzIn19XSwibmFycmF0aXZlX2RvY3VtZW50Ijp7ImF1ZGllbmNlIjoiRW5naW5lZXJpbmcgZml4dHVyZSByZWFkZXJzLiIsImRvY3VtZW50X2lkIjoibjEwLXN5bnRoZXRpYy1zdG9yeSIsImRvY3VtZW50X3JldmlzaW9uIjoxLCJwdXJwb3NlIjoiQSBzeW50aGV0aWMgdHdvLXVuaXQgc3RvcnktdG8tdmlkZW8gaGFuZG9mZi4iLCJyZWxhdGlvbnMiOltdLCJzY2hlbWFfdmVyc2lvbiI6MSwidW5pdHMiOlt7ImJhc2VkX29uIjpbXSwiaWQiOiJTMDIiLCJvcmlnaW4iOiJzdXBwbGllZF9vYnNlcnZhdGlvbiIsInJldmlzaW9uIjoxLCJ0ZXh0IjoiQSBuZWlnaGJvciB0dXJucyB0aGUgaGluZ2Ugc2NyZXcuIn0seyJiYXNlZF9vbiI6W10sImlkIjoiUzAzIiwib3JpZ2luIjoic3VwcGxpZWRfb2JzZXJ2YXRpb24iLCJyZXZpc2lvbiI6MSwidGV4dCI6IlRoZSBkb29yIGNsb3NlcyB3aXRob3V0IHNjcmFwaW5nLiJ9XSwidmFyaWFudHMiOlt7ImJlYXRzIjpbeyJpZCI6ImJlYXQtMSIsInRleHQiOiJGaXJzdCwgdGhlIG5laWdoYm9yIHR1cm5zIHRoZSBzY3Jldy4iLCJ1bml0X3JlZiI6eyJyZXZpc2lvbiI6MSwidW5pdF9pZCI6IlMwMiJ9fSx7ImlkIjoiYmVhdC0yIiwidGV4dCI6IlRoZW4gdGhlIGRvb3IgY2xvc2VzIGNsZWFubHkuIiwidW5pdF9yZWYiOnsicmV2aXNpb24iOjEsInVuaXRfaWQiOiJTMDMifX1dLCJpZCI6InJvdWdoLWN1dCIsImtpbmQiOiJzcG9rZW5fb3V0bGluZSIsIm5hbWUiOiJUd28gc2VsZWN0ZWQgYmVhdHMifV19LCJzY2hlbWFfdmVyc2lvbiI6MSwic2VsZWN0ZWRfdW5pdF9yZWZzIjpbeyJyZXZpc2lvbiI6MSwidW5pdF9pZCI6IlMwMiJ9LHsicmV2aXNpb24iOjEsInVuaXRfaWQiOiJTMDMifV0sInZhcmlhbnRfaWQiOiJyb3VnaC1jdXQifSwiZHJhZnRfdmVyc2lvbiI6Im4xMC0wNmEuMS1kcmFmdCIsInNjb3BlIjoiZGVjbGFyYXRpb25zX29ubHkiLCJzdGF0dXMiOiJkZWNsYXJhdGlvbl91bnJlc29sdmVkIiwidmFsaWRhdGlvbiI6eyJhc3NldF9jYXRhbG9nX3JlZiI6eyJjYXRhbG9nX2lkIjoic3ludGhldGljLWNhdGFsb2ciLCJyZXZpc2lvbiI6MX0sImNvdmVyYWdlX2lkIjoidHdvLXVuaXQtY3V0IiwiZGlhZ25vc3RpY3MiOlt7ImNvZGUiOiJ2aWRlb19jb3ZlcmFnZS51bnJlc29sdmVkX3JlcXVpcmVkIiwicGF0aCI6IiQubWFwcGluZ3NbMV0ifV0sIm1hcHBpbmdzIjpbeyJhc3NldF9yZWYiOnsiYXNzZXRfaWQiOiJDTElQLTAxIiwicmV2aXNpb24iOjF9LCJzb3VyY2VfcmFuZ2UiOnsiZW5kIjp7ImRlbm9taW5hdG9yIjoiMiIsIm51bWVyYXRvciI6IjkifSwic3RhcnQiOnsiZGVub21pbmF0b3IiOiIxMDAwIiwibnVtZXJhdG9yIjoiMjUwMSJ9fSwic3RhdHVzIjoibWFwcGVkIiwidW5pdF9yZWYiOnsicmV2aXNpb24iOjEsInVuaXRfaWQiOiJTMDIifX0seyJyZWFzb24iOiJObyB2aWRlbyBhc3NldCB3YXMgc2VsZWN0ZWQgZm9yIHRoaXMgdW5pdC4iLCJzdGF0dXMiOiJ1bnJlc29sdmVkIiwidW5pdF9yZWYiOnsicmV2aXNpb24iOjEsInVuaXRfaWQiOiJTMDMifX1dLCJuYXJyYXRpdmVfcmVmIjp7ImRvY3VtZW50X2lkIjoibjEwLXN5bnRoZXRpYy1zdG9yeSIsImRvY3VtZW50X3JldmlzaW9uIjoxLCJ2YXJpYW50X2lkIjoicm91Z2gtY3V0In0sInByb2ZpbGUiOiJzdG9yeXRlbGxpbmcubmFycmF0aXZlLXZpZGVvLWNvdmVyYWdlLnYxIiwicmVhZHlfZm9yX3BsYW5uaW5nIjpmYWxzZSwic2NoZW1hX3ZlcnNpb24iOjEsInNlbGVjdGVkX3VuaXRfcmVmcyI6W3sicmV2aXNpb24iOjEsInVuaXRfaWQiOiJTMDIifSx7InJldmlzaW9uIjoxLCJ1bml0X2lkIjoiUzAzIn1dfX0K",
+          "stderr_base64": "",
+          "stdout_sha256": "1974d5c5082aa8371cc727e718eb98334be3d4384a1d7735f63b7e9c6f95cca3",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "deterministic_file_stdin": true,
+      "preview": {
+        "conversions": [
+          {
+            "input_path": "$.coverage.mappings[0].source_range",
+            "original": {
+              "end": "4.5",
+              "start": "2.5",
+              "unit": "seconds"
+            },
+            "output_path": "$.mappings[0].source_range",
+            "source_range": {
+              "end": {
+                "denominator": "2",
+                "numerator": "9"
+              },
+              "start": {
+                "denominator": "2",
+                "numerator": "5"
+              }
+            }
+          }
+        ],
+        "coverage": {
+          "asset_catalog": {
+            "assets": [
+              {
+                "asset_id": "CLIP-01",
+                "duration": {
+                  "denominator": "1",
+                  "numerator": "12"
+                },
+                "revision": 1
+              }
+            ],
+            "catalog_id": "synthetic-catalog",
+            "revision": 1
+          },
+          "coverage_id": "two-unit-cut",
+          "mappings": [
+            {
+              "asset_ref": {
+                "asset_id": "CLIP-01",
+                "revision": 1
+              },
+              "source_range": {
+                "end": {
+                  "denominator": "2",
+                  "numerator": "9"
+                },
+                "start": {
+                  "denominator": "1000",
+                  "numerator": "2501"
+                }
+              },
+              "status": "mapped",
+              "unit_ref": {
+                "revision": 1,
+                "unit_id": "S02"
+              }
+            },
+            {
+              "reason": "No video asset was selected for this unit.",
+              "status": "unresolved",
+              "unit_ref": {
+                "revision": 1,
+                "unit_id": "S03"
+              }
+            }
+          ],
+          "narrative_document": {
+            "audience": "Engineering fixture readers.",
+            "document_id": "n10-synthetic-story",
+            "document_revision": 1,
+            "purpose": "A synthetic two-unit story-to-video handoff.",
+            "relations": [],
+            "schema_version": 1,
+            "units": [
+              {
+                "based_on": [],
+                "id": "S02",
+                "origin": "supplied_observation",
+                "revision": 1,
+                "text": "A neighbor turns the hinge screw."
+              },
+              {
+                "based_on": [],
+                "id": "S03",
+                "origin": "supplied_observation",
+                "revision": 1,
+                "text": "The door closes without scraping."
+              }
+            ],
+            "variants": [
+              {
+                "beats": [
+                  {
+                    "id": "beat-1",
+                    "text": "First, the neighbor turns the screw.",
+                    "unit_ref": {
+                      "revision": 1,
+                      "unit_id": "S02"
+                    }
+                  },
+                  {
+                    "id": "beat-2",
+                    "text": "Then the door closes cleanly.",
+                    "unit_ref": {
+                      "revision": 1,
+                      "unit_id": "S03"
+                    }
+                  }
+                ],
+                "id": "rough-cut",
+                "kind": "spoken_outline",
+                "name": "Two selected beats"
+              }
+            ]
+          },
+          "schema_version": 1,
+          "selected_unit_refs": [
+            {
+              "revision": 1,
+              "unit_id": "S02"
+            },
+            {
+              "revision": 1,
+              "unit_id": "S03"
+            }
+          ],
+          "variant_id": "rough-cut"
+        },
+        "draft_version": "n10-06a.1-draft",
+        "scope": "declarations_only",
+        "status": "declaration_unresolved",
+        "validation": {
+          "asset_catalog_ref": {
+            "catalog_id": "synthetic-catalog",
+            "revision": 1
+          },
+          "coverage_id": "two-unit-cut",
+          "diagnostics": [
+            {
+              "code": "video_coverage.unresolved_required",
+              "path": "$.mappings[1]"
+            }
+          ],
+          "mappings": [
+            {
+              "asset_ref": {
+                "asset_id": "CLIP-01",
+                "revision": 1
+              },
+              "source_range": {
+                "end": {
+                  "denominator": "2",
+                  "numerator": "9"
+                },
+                "start": {
+                  "denominator": "1000",
+                  "numerator": "2501"
+                }
+              },
+              "status": "mapped",
+              "unit_ref": {
+                "revision": 1,
+                "unit_id": "S02"
+              }
+            },
+            {
+              "reason": "No video asset was selected for this unit.",
+              "status": "unresolved",
+              "unit_ref": {
+                "revision": 1,
+                "unit_id": "S03"
+              }
+            }
+          ],
+          "narrative_ref": {
+            "document_id": "n10-synthetic-story",
+            "document_revision": 1,
+            "variant_id": "rough-cut"
+          },
+          "profile": "storytelling.narrative-video-coverage.v1",
+          "ready_for_planning": false,
+          "schema_version": 1,
+          "selected_unit_refs": [
+            {
+              "revision": 1,
+              "unit_id": "S02"
+            },
+            {
+              "revision": 1,
+              "unit_id": "S03"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "cli_calls": 3,
+  "planned_case_count": 8,
+  "binary_sha256": "161bfeb24c7072392cf6c6fe9b61c851486fa6341416e51b1f74521e46d9735d",
+  "fixture_sha256": {
+    "seconds-unresolved.draft.json": "53160dac337de4c65caabe7e77100092a1aa9803a60c950e0d1085c683a4c97a",
+    "frames-30-unresolved.draft.json": "4a05d7672b3ca012cc7530c5f9975571669f9bf7b712b5473a5143834a03cc78",
+    "frames-ntsc-unresolved.draft.json": "fb38982b9257e5cb33cfdeea8fa229cac82ab10887dd2ad499bd2939e3f88327"
+  },
+  "failure": "wrong_canonical_declarations",
+  "case_count": 1
+}

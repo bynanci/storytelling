@@ -12,10 +12,20 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[3]
 SCRIPT = Path(__file__).with_name('replay.py')
+MUTANT = Path(__file__).with_name('mutant_cli.py')
 BINARY = None
-if len(sys.argv) > 1 and not sys.argv[1].startswith('-'):
+if __name__ == '__main__' and len(sys.argv) > 1 and not sys.argv[1].startswith('-'):
     BINARY = str(Path(sys.argv.pop(1)).resolve())
 BASE = '06164f19a8b3614f438dd2f97ef810c94e64c3d3'
+VALID_INPUTS = {
+    'decimal-25': {'unit': 'seconds', 'start': '2.5', 'end': '4.5'},
+    'decimal-01': {'unit': 'seconds', 'start': '0', 'end': '0.1'},
+    'frames-30': {'unit': 'frames', 'start_frame': '75', 'end_frame': '135',
+                  'fps': {'numerator': '30', 'denominator': '1'}, 'timing': 'constant'},
+    'frames-ntsc': {'unit': 'frames', 'start_frame': '0', 'end_frame': '150',
+                    'fps': {'numerator': '30000', 'denominator': '1001'}, 'timing': 'constant'},
+    'declaration-complete': {'unit': 'seconds', 'start': '2.5', 'end': '4.5'},
+}
 
 
 class RehearsalCaptureTests(unittest.TestCase):
@@ -23,6 +33,65 @@ class RehearsalCaptureTests(unittest.TestCase):
         return subprocess.run([sys.executable, str(SCRIPT), '--cli', binary,
                                '--source-commit', source, '--output', str(output)],
                               capture_output=True, timeout=30)
+
+    def assert_mutant_rejected(self, case_id, fault, failure='wrong_canonical_declarations'):
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            config = {'source_range': VALID_INPUTS[case_id],
+                      'second_status': 'mapped' if case_id == 'declaration-complete' else 'unresolved',
+                      'fault': fault}
+            config_path = directory / 'fault.json'
+            config_path.write_text(json.dumps(config), encoding='utf-8')
+            output = directory / 'receipt.json'
+            result = subprocess.run([sys.executable, str(MUTANT), str(config_path), str(SCRIPT),
+                                     '--cli', BINARY, '--source-commit', BASE, '--output', str(output)],
+                                    capture_output=True, timeout=30)
+            self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+            report = json.loads(output.read_bytes())
+            self.assertEqual(report['status'], 'failed')
+            self.assertEqual(report['failure'], failure)
+            self.assertEqual(report['cases'][-1]['case_id'], case_id)
+            self.assertTrue(report['cases'][-1]['calls'][0]['stdout_base64'])
+
+    @unittest.skipUnless(BINARY, 'explicit feature-enabled native binary required')
+    def test_consistently_wrong_endpoints_fail_capture(self):
+        for case_id in VALID_INPUTS:
+            for mapping_index in range(2 if case_id == 'declaration-complete' else 1):
+                for endpoint in ('start', 'end'):
+                    with self.subTest(case=case_id, mapping=mapping_index, endpoint=endpoint):
+                        self.assert_mutant_rejected(case_id, {'kind': 'range',
+                                                            'mapping_index': mapping_index,
+                                                            'endpoint': endpoint})
+
+    @unittest.skipUnless(BINARY, 'explicit feature-enabled native binary required')
+    def test_consistently_changed_unit_refs_fail_capture(self):
+        for kind in ('mapping_refs', 'selected_refs'):
+            with self.subTest(kind=kind):
+                self.assert_mutant_rejected('decimal-25', {'kind': kind})
+
+    @unittest.skipUnless(BINARY, 'explicit feature-enabled native binary required')
+    def test_consistently_changed_unresolved_reason_fails_capture(self):
+        for case_id in VALID_INPUTS:
+            if case_id != 'declaration-complete':
+                with self.subTest(case=case_id):
+                    self.assert_mutant_rejected(case_id, {'kind': 'unresolved_reason'})
+
+    @unittest.skipUnless(BINARY, 'explicit feature-enabled native binary required')
+    def test_preview_numeric_aliases_fail_typed_comparison(self):
+        faults = [
+            ('bool_selected_ref', ['coverage', 'selected_unit_refs', 0, 'revision'], True,
+             'wrong_canonical_declarations'),
+            ('float_mapping_ref', ['coverage', 'mappings', 0, 'unit_ref', 'revision'], 1.0,
+             'wrong_canonical_declarations'),
+            ('bool_catalog_revision', ['coverage', 'asset_catalog', 'revision'], True,
+             'emit_coverage_changed'),
+            ('numeric_validation_ready', ['validation', 'ready_for_planning'], 0,
+             'v1_result_changed'),
+        ]
+        for name, path, value, failure in faults:
+            with self.subTest(alias=name):
+                self.assert_mutant_rejected('decimal-25', {'kind': 'numeric_alias', 'path': path,
+                                                         'value': value, 'preview_only': True}, failure)
 
     @unittest.skipUnless(BINARY, 'explicit feature-enabled native binary required')
     def test_real_entry_captures_exact_cases_without_human_results(self):
@@ -44,6 +113,17 @@ class RehearsalCaptureTests(unittest.TestCase):
             by_id = {row['case_id']: row for row in report['cases']}
             self.assertEqual(by_id['decimal-25']['preview']['coverage'],
                              by_id['frames-30']['preview']['coverage'])
+            expected_ranges = {
+                'decimal-25': ({'numerator': '5', 'denominator': '2'}, {'numerator': '9', 'denominator': '2'}),
+                'decimal-01': ({'numerator': '0', 'denominator': '1'}, {'numerator': '1', 'denominator': '10'}),
+                'frames-30': ({'numerator': '5', 'denominator': '2'}, {'numerator': '9', 'denominator': '2'}),
+                'frames-ntsc': ({'numerator': '0', 'denominator': '1'}, {'numerator': '1001', 'denominator': '200'}),
+                'declaration-complete': ({'numerator': '5', 'denominator': '2'}, {'numerator': '9', 'denominator': '2'}),
+            }
+            for case_id, (start, end) in expected_ranges.items():
+                for mapping in by_id[case_id]['preview']['coverage']['mappings']:
+                    if mapping['status'] == 'mapped':
+                        self.assertEqual(mapping['source_range'], {'start': start, 'end': end})
             self.assertEqual(by_id['decimal-01']['preview']['coverage']['mappings'][0]['source_range']['end'],
                              {'numerator': '1', 'denominator': '10'})
             self.assertEqual(by_id['frames-ntsc']['preview']['coverage']['mappings'][0]['source_range']['end'],

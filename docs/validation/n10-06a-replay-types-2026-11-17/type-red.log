@@ -1,0 +1,61 @@
+test_consistently_changed_unit_refs_fail_capture (__main__.RehearsalCaptureTests.test_consistently_changed_unit_refs_fail_capture) ... ok
+test_consistently_changed_unresolved_reason_fails_capture (__main__.RehearsalCaptureTests.test_consistently_changed_unresolved_reason_fails_capture) ... ok
+test_consistently_wrong_endpoints_fail_capture (__main__.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) ... ok
+test_existing_receipt_is_never_overwritten (__main__.RehearsalCaptureTests.test_existing_receipt_is_never_overwritten) ... ok
+test_invalid_source_identity_fails_before_creating_receipt (__main__.RehearsalCaptureTests.test_invalid_source_identity_fails_before_creating_receipt) ... ok
+test_preview_numeric_aliases_fail_typed_comparison (__main__.RehearsalCaptureTests.test_preview_numeric_aliases_fail_typed_comparison) ...
+  test_preview_numeric_aliases_fail_typed_comparison (__main__.RehearsalCaptureTests.test_preview_numeric_aliases_fail_typed_comparison) (alias='bool_selected_ref') ... FAIL
+  test_preview_numeric_aliases_fail_typed_comparison (__main__.RehearsalCaptureTests.test_preview_numeric_aliases_fail_typed_comparison) (alias='float_mapping_ref') ... FAIL
+  test_preview_numeric_aliases_fail_typed_comparison (__main__.RehearsalCaptureTests.test_preview_numeric_aliases_fail_typed_comparison) (alias='bool_catalog_revision') ... FAIL
+  test_preview_numeric_aliases_fail_typed_comparison (__main__.RehearsalCaptureTests.test_preview_numeric_aliases_fail_typed_comparison) (alias='numeric_validation_ready') ... FAIL
+test_real_entry_captures_exact_cases_without_human_results (__main__.RehearsalCaptureTests.test_real_entry_captures_exact_cases_without_human_results) ... ok
+test_wrong_executable_preserves_failed_machine_evidence (__main__.RehearsalCaptureTests.test_wrong_executable_preserves_failed_machine_evidence) ... ok
+
+======================================================================
+FAIL: test_preview_numeric_aliases_fail_typed_comparison (__main__.RehearsalCaptureTests.test_preview_numeric_aliases_fail_typed_comparison) (alias='bool_selected_ref')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 93, in test_preview_numeric_aliases_fail_typed_comparison
+    self.assert_mutant_rejected('decimal-25', {'kind': 'numeric_alias', 'path': path,
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+======================================================================
+FAIL: test_preview_numeric_aliases_fail_typed_comparison (__main__.RehearsalCaptureTests.test_preview_numeric_aliases_fail_typed_comparison) (alias='float_mapping_ref')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 93, in test_preview_numeric_aliases_fail_typed_comparison
+    self.assert_mutant_rejected('decimal-25', {'kind': 'numeric_alias', 'path': path,
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+======================================================================
+FAIL: test_preview_numeric_aliases_fail_typed_comparison (__main__.RehearsalCaptureTests.test_preview_numeric_aliases_fail_typed_comparison) (alias='bool_catalog_revision')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 93, in test_preview_numeric_aliases_fail_typed_comparison
+    self.assert_mutant_rejected('decimal-25', {'kind': 'numeric_alias', 'path': path,
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+======================================================================
+FAIL: test_preview_numeric_aliases_fail_typed_comparison (__main__.RehearsalCaptureTests.test_preview_numeric_aliases_fail_typed_comparison) (alias='numeric_validation_ready')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 93, in test_preview_numeric_aliases_fail_typed_comparison
+    self.assert_mutant_rejected('decimal-25', {'kind': 'numeric_alias', 'path': path,
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+----------------------------------------------------------------------
+Ran 8 tests in 2.626s
+
+FAILED (failures=4)

@@ -45,3 +45,16 @@ tests/fixtures/openfilm/finite-v1/video-trim.json -text
 # Preserve exact historical-readback regression receipts across checkouts.
 /docs/validation/m3-02-historical-readback/** text eol=lf
 /docs/validation/m3-02-historical-readback/*.log -whitespace
+
+# Oracle receipts keep exact bytes, including compressed raw RED logs.
+/docs/validation/n10-06a-replay-oracle-2026-11-17/** text eol=lf
+/docs/validation/n10-06a-replay-oracle-2026-11-17/*.gz -text
+/docs/validation/n10-06a-replay-oracle-2026-11-17/*.log -whitespace
+/docs/validation/n10-06a-replay-types-2026-11-17/** text eol=lf
+/docs/validation/n10-06a-replay-types-2026-11-17/*.gz -text
+/docs/validation/n10-06a-replay-types-2026-11-17/*.log -whitespace
+
+# Raw agent responses are data; never normalize captured or archived bytes.
+/docs/validation/subagent-scenarios-2026-11-17/** text eol=lf
+/docs/validation/subagent-scenarios-2026-11-17/artifacts.zip -text
+/docs/validation/subagent-scenarios-2026-11-17/responses/** -text -whitespace

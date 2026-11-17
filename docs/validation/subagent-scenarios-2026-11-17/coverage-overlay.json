@@ -1,0 +1,490 @@
+{
+  "base_commit": "91bf8f80139f59c0406340eb3565d296bd562931",
+  "evidence_kind": "root_aggregation_of_actual_synthetic_subagent_artifacts_and_source_bound_tests",
+  "human_participants": 0,
+  "new_host_observations": 0,
+  "overall_success_rate": null,
+  "human_completion_rate": null,
+  "agent_outputs_are_not_population_samples": true,
+  "static_matrix_archive_entry": "artifacts/gates-audit/coverage.json",
+  "matrix_dimensions": [
+    8,
+    6
+  ],
+  "named_anchor_matches_in_workspace_logs": {
+    "A01": {
+      "anchor": "converts_seconds_and_frames_to_expected_v1_and_preserves_unresolved",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/draft_video_input.rs"
+    },
+    "A02": {
+      "anchor": "rejects_invalid_seconds_and_overflow_without_returning_coverage",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/draft_video_input.rs"
+    },
+    "A03": {
+      "anchor": "rejects_fps_vfr_unknown_timing_and_timecode",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/draft_video_input.rs"
+    },
+    "A04": {
+      "anchor": "preserves_authoritative_v1_range_diagnostics_and_first_error_order",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/draft_video_input.rs"
+    },
+    "A05": {
+      "anchor": "rejects_duplicate_keys_before_lossy_value_decode_and_raw_budgets",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/draft_video_input.rs"
+    },
+    "A06": {
+      "anchor": "file_stdin_replay_is_identical_and_input_directory_unchanged",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/draft_video_input.rs"
+    },
+    "A07": {
+      "anchor": "complete_mapping_labels_only_declaration_readiness",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/draft_video_input.rs"
+    },
+    "A08": {
+      "anchor": "rejects_cross_reference_duplicate_and_bound_errors_by_contract_code",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/video_coverage.rs"
+    },
+    "A09": {
+      "anchor": "accepts_maximum_decimal_byte_bound_and_rejects_the_next_byte",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/src/draft_video_input/exact_time.rs"
+    },
+    "N01": {
+      "anchor": "revision_ledger_reports_exact_impacts_and_preserves_snapshots_and_choices",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/narrative.rs"
+    },
+    "N02": {
+      "anchor": "provenance_reference_relation_scope_and_explicit_order_rules_reject",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/narrative.rs"
+    },
+    "N03": {
+      "anchor": "revision_ledger_requires_current_revisions_and_review_before_next_source_change",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/narrative.rs"
+    },
+    "N04": {
+      "anchor": "renders_three_declared_outputs_reproducibly_without_media_or_writes",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/narrative.rs"
+    },
+    "N05": {
+      "anchor": "revision_tracking_queries_shared_and_variant_local_impacts",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/narrative.rs"
+    },
+    "N06": {
+      "anchor": "assistant_suggestion_cannot_self_record_author_confirmation",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/narrative.rs"
+    },
+    "N07": {
+      "anchor": "raw_byte_and_container_depth_boundaries_are_inclusive",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/narrative.rs"
+    },
+    "C01": {
+      "anchor": "outlines_audience_claims_wording_and_call_to_action_with_reference_only_status",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/commercial_copy.rs"
+    },
+    "C02": {
+      "anchor": "rejects_unknown_versions_fields_duplicate_fields_and_mismatched_ledgers",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/commercial_copy.rs"
+    },
+    "C03": {
+      "anchor": "all_four_cases_replay_identically_and_leave_every_input_unchanged",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/commercial_copy_pilot.rs"
+    },
+    "C04": {
+      "anchor": "current_citation_does_not_certify_scoped_or_overbroad_product_wording",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/commercial_copy_pilot.rs"
+    },
+    "C05": {
+      "anchor": "source_revision_flags_both_pilot_claims_and_preserves_other_copy",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/commercial_copy_pilot.rs"
+    },
+    "C06": {
+      "anchor": "report_v2_output_limit_does_not_shrink_accepted_report_v1_capacity",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/commercial_copy_pilot.rs"
+    },
+    "H01": {
+      "anchor": "computes_the_predeclared_exact_date_impact_without_false_results",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/handoff.rs"
+    },
+    "H02": {
+      "anchor": "rejects_inventory_sources_outside_the_bound_variant_before_later_errors",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/handoff.rs"
+    },
+    "H03": {
+      "anchor": "rejects_unknown_fields_and_duplicate_raw_keys",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/handoff.rs"
+    },
+    "H04": {
+      "anchor": "replays_file_and_stdin_byte_identically_and_preserves_inputs_and_sources",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/handoff.rs"
+    },
+    "H05": {
+      "anchor": "preserves_bound_revisions_and_repeated_component_references",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/handoff.rs"
+    },
+    "H06": {
+      "anchor": "rejects_a_current_descriptor_with_an_old_revision",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/handoff.rs"
+    },
+    "P01": {
+      "anchor": "emits_an_actual_m0_plan_with_deterministic_ids_and_immutable_source_facts",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/planner.rs"
+    },
+    "P02": {
+      "anchor": "rejects_hard_brief_conflicts_without_filtering_unknown_or_excluded_choices",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/planner.rs"
+    },
+    "P03": {
+      "anchor": "video_requires_explicit_picture_only_even_without_a_declared_audio_stream",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/otio.rs"
+    },
+    "P04": {
+      "anchor": "malformed_duplicate_or_over_budget_input_preserves_strict_import_errors",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/otio.rs"
+    },
+    "P05": {
+      "anchor": "plans_file_and_stdin_identically_without_mutating_input_or_directory",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/planner.rs"
+    },
+    "P06": {
+      "anchor": "exports_a_real_timeline_identically_from_file_and_stdin_without_writing",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/otio.rs"
+    },
+    "P07": {
+      "anchor": "repeated_source_keeps_distinct_occurrences_order_and_maximum_hold_window",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/otio.rs"
+    },
+    "P08": {
+      "anchor": "exact_input_budget_accepts_valid_json_and_rejects_the_next_byte",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/planner.rs"
+    },
+    "P09": {
+      "anchor": "full_candidate_budget_builds_a_bounded_valid_plan_and_next_candidate_rejects",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/planner.rs"
+    },
+    "P10": {
+      "anchor": "exact_safe_integer_boundary_is_accepted_and_larger_native_windows_reject",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/otio.rs"
+    },
+    "P11": {
+      "anchor": "bounded_source_with_amplified_repeated_names_rejects_the_final_otio_budget",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/otio.rs"
+    },
+    "R01": {
+      "anchor": "story_review_compiles_selected_subset_and_order_and_binds_the_exact_owned_artifact",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/story_review.rs"
+    },
+    "R02": {
+      "anchor": "story_review_rejects_unknown_duplicate_forged_or_inconsistent_proposals",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/story_review.rs"
+    },
+    "R03": {
+      "anchor": "same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/review_binding.rs"
+    },
+    "R04": {
+      "anchor": "story_review_fixture_has_a_fixed_cross_platform_artifact_and_binding_vector",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/story_review.rs"
+    },
+    "R05": {
+      "anchor": "story_review_invalidates_asset_cut_loss_and_detects_displayed_artifact_tampering",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-cli/tests/story_review.rs"
+    },
+    "R06": {
+      "anchor": "story_review_preflights_every_size_and_accepts_exact_snapshot_and_bundle_limits",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/story_review.rs"
+    },
+    "R07": {
+      "anchor": "exact_context_and_record_byte_limits_are_accepted",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/review_binding.rs"
+    },
+    "R08": {
+      "anchor": "capability_collection_accepts_exact_limit_and_rejects_limit_plus_one",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-engine/tests/review_binding.rs"
+    },
+    "J01": {
+      "anchor": "exact_review_and_artifact_identity_survive_restart_and_idempotent_prepare",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-journal/tests/journal.rs"
+    },
+    "J02": {
+      "anchor": "reused_idempotency_key_with_changed_review_or_artifact_is_rejected",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-journal/tests/journal.rs"
+    },
+    "J03": {
+      "anchor": "busy_write_leaves_no_partial_record_and_succeeds_after_lock_release",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-journal/tests/journal.rs"
+    },
+    "J04": {
+      "anchor": "ambiguous_readback_sharing_response_digest_is_recorded_once_and_survives_restart",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-journal/tests/journal.rs"
+    },
+    "J05": {
+      "anchor": "stale_owner_and_late_attempt_response_cannot_overwrite_newer_state",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-journal/tests/journal.rs"
+    },
+    "J06": {
+      "anchor": "attempt_count_limit_is_per_operation_and_does_not_block_other_operations",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-journal/tests/journal.rs"
+    },
+    "J07": {
+      "anchor": "repeated_ambiguous_readbacks_have_a_per_attempt_bound",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-journal/tests/journal.rs"
+    },
+    "J08": {
+      "anchor": "crash_after_dispatch_marker_recovers_unknown_and_never_retries_without_readback",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-journal/tests/journal.rs"
+    },
+    "J09": {
+      "anchor": "a_fresh_conflicting_readback_before_retry_keeps_the_attempt_blocked",
+      "observed_statuses": [
+        "ok"
+      ],
+      "source_path": "crates/storytelling-journal/tests/journal.rs"
+    }
+  },
+  "workspace_source_commit": "4dee6e88d2adb1cf4c3147340f5aa79f674e2e69",
+  "workspace_results": {
+    "debug_default": 319,
+    "debug_all_features": 338,
+    "release_default": 319,
+    "release_all_features": 338,
+    "ignored_each": 3
+  },
+  "roles": {
+    "SIM-AUTHOR-01": {
+      "actual_output": "responses/author.txt",
+      "kind": "synthetic_subagent_execution",
+      "normal_cli_calls": 4,
+      "human_author_seconds": null,
+      "noted_deviations": [
+        "Python edited JSON instead of text editor",
+        "no continuous task timer",
+        "instruction-restricted shared filesystem, no enforced blindness"
+      ],
+      "result": "actual range conversion/rejection and Q1-Q4 model answers retained; two usability hypotheses"
+    },
+    "SIM-EDITOR-01": {
+      "actual_output": "responses/editor.txt",
+      "kind": "synthetic_document_reenactment",
+      "returned_drafts": 6,
+      "human_author_seconds": null,
+      "unexpected_answers": [
+        "R2 this-version scope inferred to mean B, not certain",
+        "original C missing-footage scope ambiguous"
+      ],
+      "result": "six actual model drafts retained, no author adoption inferred"
+    },
+    "SIM-CLAIMS-01": {
+      "actual_output": "responses/claims.txt",
+      "kind": "synthetic_subagent_execution",
+      "normal_cli_calls": 10,
+      "exit0": 9,
+      "expected_exit1": 1,
+      "result": "current/missing/dangling/revised/unknown revision/exact duplicate checks; no product contract discrepancy found; wording requires human review"
+    },
+    "AUDIT-JOURNAL-01": {
+      "actual_output": "responses/journal-audit.txt",
+      "kind": "synthetic_AI_technical_review",
+      "runtime_tests_by_auditor": 0,
+      "finding": "historical readback digest could replace newer unknown and reopen retry",
+      "root_runtime_evidence": "PR146:17 tests,14pass3fail RED,17pass GREEN"
+    },
+    "AUDIT-CAPTURE-01": {
+      "actual_output": "responses/capture-audit.txt",
+      "kind": "synthetic_AI_technical_review_and_fault_injection",
+      "finding": "replay accepted consistent wrong canonical range",
+      "root_fix": "independent exact/type-sensitive oracle;22mutants:16original falsepasses,2alreadyV1rejected cases and4laterpreview-onlytypefalsepasses"
+    },
+    "AUDIT-GATES-01": {
+      "actual_output": "responses/gates-audit.txt",
+      "kind": "synthetic_AI_static_coverage_review",
+      "cells": 48,
+      "source_anchors": 71,
+      "result": "preserved static report pending-role flags; this overlay adds later actual artifacts without rewriting the audit"
+    }
+  },
+  "unexamined_or_blocked": [
+    "actual independent author behavior",
+    "physical media identity/content",
+    "production Host interruption/quiescence",
+    "#103/W01,#107SDK,#129B formal adoption",
+    "#121 original private study inputs",
+    "#122 eligible holdout prerequisites",
+    "read-only CLI process-interruption cases identified in static audit",
+    "handoff collection/path/text/depth exact-boundary cases and selected revision/claim limits not established by this round"
+  ],
+  "exhaustive_verification_claim": false,
+  "oracle_functional_commit": "1d537df2f4129fabe588b038214dacfc801cf270",
+  "oracle_validation": {
+    "test_methods": 8,
+    "fault_scenarios": 22,
+    "required_explicit_native_passed": 8,
+    "required_skipped": 0,
+    "separate_discovery_passed": 3,
+    "separate_discovery_skipped": 5,
+    "human_participants": 0
+  }
+}

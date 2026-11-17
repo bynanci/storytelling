@@ -5,6 +5,7 @@ import argparse
 import base64
 import copy
 from datetime import datetime, timezone
+from fractions import Fraction
 import hashlib
 import json
 from pathlib import Path
@@ -35,6 +36,12 @@ def sha(data):
 
 def encode(value):
     return (json.dumps(value, ensure_ascii=False, indent=2) + '\n').encode('utf-8')
+
+
+def same_json(left, right):
+    """Compare JSON values without Python's bool/int/float equality aliases."""
+    return (json.dumps(left, sort_keys=True, allow_nan=False)
+            == json.dumps(right, sort_keys=True, allow_nan=False))
 
 
 def cases(sources):
@@ -69,6 +76,32 @@ def cases(sources):
     value['coverage']['mappings'][1] = second
     add('declaration-complete', value)
     return rows
+
+
+def check_canonical_declarations(case_id, coverage):
+    """Independent exact arithmetic for this fixed synthetic protocol."""
+    spans = {
+        'decimal-25': (Fraction('2.5'), Fraction('4.5')),
+        'decimal-01': (Fraction('0'), Fraction('0.1')),
+        'frames-30': (Fraction(75, 30), Fraction(135, 30)),
+        'frames-ntsc': (Fraction(0), 150 * Fraction(1001, 30000)),
+        'declaration-complete': (Fraction('2.5'), Fraction('4.5')),
+    }
+    start, end = spans[case_id]
+    refs = [{'unit_id': 'S02', 'revision': 1}, {'unit_id': 'S03', 'revision': 1}]
+    mapped = {'unit_ref': refs[0], 'status': 'mapped',
+              'asset_ref': {'asset_id': 'CLIP-01', 'revision': 1},
+              'source_range': {
+                  'start': {'numerator': str(start.numerator), 'denominator': str(start.denominator)},
+                  'end': {'numerator': str(end.numerator), 'denominator': str(end.denominator)}}}
+    second = {'unit_ref': refs[1], 'status': 'unresolved',
+              'reason': 'No video asset was selected for this unit.'}
+    if case_id == 'declaration-complete':
+        second = copy.deepcopy(mapped)
+        second['unit_ref'] = refs[1]
+    require(same_json(coverage['selected_unit_refs'], refs)
+            and same_json(coverage['mappings'], [mapped, second]),
+            'wrong_canonical_declarations')
 
 
 def invoke(cli, args, directory, payload=None):
@@ -130,13 +163,14 @@ def replay(cli, source_commit):
                     require(error['code'] == code and error['path'] == path, 'wrong_error_identity')
                     require('coverage' not in row['preview'], 'invalid_input_emitted_coverage')
                     emitted = call(['draft-video-coverage-input', 'input.json', '--emit-v1'])
-                    require(json.loads(emitted) == row['preview'], 'emit_error_changed')
+                    require(same_json(json.loads(emitted), row['preview']), 'emit_error_changed')
                 else:
                     require(row['preview']['scope'] == 'declarations_only', 'verification_scope_widened')
+                    check_canonical_declarations(case_id, row['preview']['coverage'])
                     emitted = call(['draft-video-coverage-input', 'input.json', '--emit-v1'])
-                    require(json.loads(emitted) == row['preview']['coverage'], 'emit_coverage_changed')
+                    require(same_json(json.loads(emitted), row['preview']['coverage']), 'emit_coverage_changed')
                     authority = call(['render-video-coverage', '-'], emitted)
-                    require(json.loads(authority) == row['preview']['validation'], 'v1_result_changed')
+                    require(same_json(json.loads(authority), row['preview']['validation']), 'v1_result_changed')
                     row['accepted_v1_result'] = json.loads(authority)
                 row['input_unchanged'] = source.read_bytes() == data
         report['binary_unchanged'] = sha(cli.read_bytes()) == report['binary_sha256']

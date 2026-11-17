@@ -1,0 +1,12 @@
+test_consistently_changed_unit_refs_fail_capture (test_replay.RehearsalCaptureTests.test_consistently_changed_unit_refs_fail_capture) ... skipped 'explicit feature-enabled native binary required'
+test_consistently_changed_unresolved_reason_fails_capture (test_replay.RehearsalCaptureTests.test_consistently_changed_unresolved_reason_fails_capture) ... skipped 'explicit feature-enabled native binary required'
+test_consistently_wrong_endpoints_fail_capture (test_replay.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) ... skipped 'explicit feature-enabled native binary required'
+test_existing_receipt_is_never_overwritten (test_replay.RehearsalCaptureTests.test_existing_receipt_is_never_overwritten) ... ok
+test_invalid_source_identity_fails_before_creating_receipt (test_replay.RehearsalCaptureTests.test_invalid_source_identity_fails_before_creating_receipt) ... ok
+test_real_entry_captures_exact_cases_without_human_results (test_replay.RehearsalCaptureTests.test_real_entry_captures_exact_cases_without_human_results) ... skipped 'explicit feature-enabled native binary required'
+test_wrong_executable_preserves_failed_machine_evidence (test_replay.RehearsalCaptureTests.test_wrong_executable_preserves_failed_machine_evidence) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.199s
+
+OK (skipped=4)

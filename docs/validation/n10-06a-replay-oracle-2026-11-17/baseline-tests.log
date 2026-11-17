@@ -1,0 +1,9 @@
+test_existing_receipt_is_never_overwritten (__main__.RehearsalCaptureTests.test_existing_receipt_is_never_overwritten) ... ok
+test_invalid_source_identity_fails_before_creating_receipt (__main__.RehearsalCaptureTests.test_invalid_source_identity_fails_before_creating_receipt) ... ok
+test_real_entry_captures_exact_cases_without_human_results (__main__.RehearsalCaptureTests.test_real_entry_captures_exact_cases_without_human_results) ... ok
+test_wrong_executable_preserves_failed_machine_evidence (__main__.RehearsalCaptureTests.test_wrong_executable_preserves_failed_machine_evidence) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.521s
+
+OK

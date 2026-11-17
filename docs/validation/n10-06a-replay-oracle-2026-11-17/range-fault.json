@@ -1,0 +1,13 @@
+{
+  "source_range": {
+    "unit": "seconds",
+    "start": "2.5",
+    "end": "4.5"
+  },
+  "second_status": "unresolved",
+  "fault": {
+    "kind": "range",
+    "mapping_index": 0,
+    "endpoint": "start"
+  }
+}

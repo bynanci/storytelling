@@ -1,0 +1,232 @@
+test_consistently_changed_unit_refs_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_changed_unit_refs_fail_capture) ...
+  test_consistently_changed_unit_refs_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_changed_unit_refs_fail_capture) (kind='mapping_refs') ... FAIL
+  test_consistently_changed_unit_refs_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_changed_unit_refs_fail_capture) (kind='selected_refs') ... FAIL
+test_consistently_changed_unresolved_reason_fails_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_changed_unresolved_reason_fails_capture) ...
+  test_consistently_changed_unresolved_reason_fails_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_changed_unresolved_reason_fails_capture) (case='decimal-25') ... FAIL
+  test_consistently_changed_unresolved_reason_fails_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_changed_unresolved_reason_fails_capture) (case='decimal-01') ... FAIL
+  test_consistently_changed_unresolved_reason_fails_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_changed_unresolved_reason_fails_capture) (case='frames-30') ... FAIL
+  test_consistently_changed_unresolved_reason_fails_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_changed_unresolved_reason_fails_capture) (case='frames-ntsc') ... FAIL
+test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) ...
+  test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='decimal-25', mapping=0, endpoint='start') ... FAIL
+  test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='decimal-25', mapping=0, endpoint='end') ... FAIL
+  test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='decimal-01', mapping=0, endpoint='start') ... FAIL
+  test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='decimal-01', mapping=0, endpoint='end') ... FAIL
+  test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='frames-30', mapping=0, endpoint='start') ... FAIL
+  test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='frames-30', mapping=0, endpoint='end') ... FAIL
+  test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='frames-ntsc', mapping=0, endpoint='start') ... FAIL
+  test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='frames-ntsc', mapping=0, endpoint='end') ... FAIL
+  test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='declaration-complete', mapping=0, endpoint='start') ... FAIL
+  test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='declaration-complete', mapping=0, endpoint='end') ... FAIL
+  test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='declaration-complete', mapping=1, endpoint='start') ... FAIL
+  test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='declaration-complete', mapping=1, endpoint='end') ... FAIL
+test_existing_receipt_is_never_overwritten (baseline_capture_tests.RehearsalCaptureTests.test_existing_receipt_is_never_overwritten) ... ok
+test_invalid_source_identity_fails_before_creating_receipt (baseline_capture_tests.RehearsalCaptureTests.test_invalid_source_identity_fails_before_creating_receipt) ... ok
+test_real_entry_captures_exact_cases_without_human_results (baseline_capture_tests.RehearsalCaptureTests.test_real_entry_captures_exact_cases_without_human_results) ... ok
+test_wrong_executable_preserves_failed_machine_evidence (baseline_capture_tests.RehearsalCaptureTests.test_wrong_executable_preserves_failed_machine_evidence) ... ok
+
+======================================================================
+FAIL: test_consistently_changed_unit_refs_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_changed_unit_refs_fail_capture) (kind='mapping_refs')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 70, in test_consistently_changed_unit_refs_fail_capture
+    self.assert_mutant_rejected('decimal-25', {'kind': kind})
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 52, in assert_mutant_rejected
+    self.assertEqual(report['failure'], 'wrong_canonical_declarations')
+AssertionError: 'unexpected_exit' != 'wrong_canonical_declarations'
+- unexpected_exit
++ wrong_canonical_declarations
+
+
+======================================================================
+FAIL: test_consistently_changed_unit_refs_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_changed_unit_refs_fail_capture) (kind='selected_refs')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 70, in test_consistently_changed_unit_refs_fail_capture
+    self.assert_mutant_rejected('decimal-25', {'kind': kind})
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 52, in assert_mutant_rejected
+    self.assertEqual(report['failure'], 'wrong_canonical_declarations')
+AssertionError: 'unexpected_exit' != 'wrong_canonical_declarations'
+- unexpected_exit
++ wrong_canonical_declarations
+
+
+======================================================================
+FAIL: test_consistently_changed_unresolved_reason_fails_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_changed_unresolved_reason_fails_capture) (case='decimal-25')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 77, in test_consistently_changed_unresolved_reason_fails_capture
+    self.assert_mutant_rejected(case_id, {'kind': 'unresolved_reason'})
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+======================================================================
+FAIL: test_consistently_changed_unresolved_reason_fails_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_changed_unresolved_reason_fails_capture) (case='decimal-01')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 77, in test_consistently_changed_unresolved_reason_fails_capture
+    self.assert_mutant_rejected(case_id, {'kind': 'unresolved_reason'})
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+======================================================================
+FAIL: test_consistently_changed_unresolved_reason_fails_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_changed_unresolved_reason_fails_capture) (case='frames-30')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 77, in test_consistently_changed_unresolved_reason_fails_capture
+    self.assert_mutant_rejected(case_id, {'kind': 'unresolved_reason'})
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+======================================================================
+FAIL: test_consistently_changed_unresolved_reason_fails_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_changed_unresolved_reason_fails_capture) (case='frames-ntsc')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 77, in test_consistently_changed_unresolved_reason_fails_capture
+    self.assert_mutant_rejected(case_id, {'kind': 'unresolved_reason'})
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+======================================================================
+FAIL: test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='decimal-25', mapping=0, endpoint='start')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 62, in test_consistently_wrong_endpoints_fail_capture
+    self.assert_mutant_rejected(case_id, {'kind': 'range',
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+======================================================================
+FAIL: test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='decimal-25', mapping=0, endpoint='end')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 62, in test_consistently_wrong_endpoints_fail_capture
+    self.assert_mutant_rejected(case_id, {'kind': 'range',
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+======================================================================
+FAIL: test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='decimal-01', mapping=0, endpoint='start')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 62, in test_consistently_wrong_endpoints_fail_capture
+    self.assert_mutant_rejected(case_id, {'kind': 'range',
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+======================================================================
+FAIL: test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='decimal-01', mapping=0, endpoint='end')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 62, in test_consistently_wrong_endpoints_fail_capture
+    self.assert_mutant_rejected(case_id, {'kind': 'range',
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+======================================================================
+FAIL: test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='frames-30', mapping=0, endpoint='start')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 62, in test_consistently_wrong_endpoints_fail_capture
+    self.assert_mutant_rejected(case_id, {'kind': 'range',
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+======================================================================
+FAIL: test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='frames-30', mapping=0, endpoint='end')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 62, in test_consistently_wrong_endpoints_fail_capture
+    self.assert_mutant_rejected(case_id, {'kind': 'range',
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+======================================================================
+FAIL: test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='frames-ntsc', mapping=0, endpoint='start')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 62, in test_consistently_wrong_endpoints_fail_capture
+    self.assert_mutant_rejected(case_id, {'kind': 'range',
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+======================================================================
+FAIL: test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='frames-ntsc', mapping=0, endpoint='end')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 62, in test_consistently_wrong_endpoints_fail_capture
+    self.assert_mutant_rejected(case_id, {'kind': 'range',
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+======================================================================
+FAIL: test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='declaration-complete', mapping=0, endpoint='start')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 62, in test_consistently_wrong_endpoints_fail_capture
+    self.assert_mutant_rejected(case_id, {'kind': 'range',
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+======================================================================
+FAIL: test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='declaration-complete', mapping=0, endpoint='end')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 62, in test_consistently_wrong_endpoints_fail_capture
+    self.assert_mutant_rejected(case_id, {'kind': 'range',
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+======================================================================
+FAIL: test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='declaration-complete', mapping=1, endpoint='start')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 62, in test_consistently_wrong_endpoints_fail_capture
+    self.assert_mutant_rejected(case_id, {'kind': 'range',
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+======================================================================
+FAIL: test_consistently_wrong_endpoints_fail_capture (baseline_capture_tests.RehearsalCaptureTests.test_consistently_wrong_endpoints_fail_capture) (case='declaration-complete', mapping=1, endpoint='end')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 62, in test_consistently_wrong_endpoints_fail_capture
+    self.assert_mutant_rejected(case_id, {'kind': 'range',
+  File "/workspace/storytelling-replay-oracle-fix-20261117/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 49, in assert_mutant_rejected
+    self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
+AssertionError: 0 != 1 : {"status": "passed", "cases_observed": 8, "cli_calls": 37, "human_participants": 0}
+
+
+----------------------------------------------------------------------
+Ran 7 tests in 2.421s
+
+FAILED (failures=18)
