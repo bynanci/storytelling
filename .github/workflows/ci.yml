@@ -29,6 +29,10 @@ jobs:
         run: cargo doc --workspace --all-features --no-deps --locked
         env:
           RUSTDOCFLAGS: -D warnings
+      - name: Independent read-only SDK consumer format and Clippy
+        run: |
+          cargo fmt --manifest-path examples/consumer-sdk-v1/Cargo.toml --check
+          cargo clippy --manifest-path examples/consumer-sdk-v1/Cargo.toml --locked -- -D warnings
       - name: SDLC traceability and architecture
         run: |
           python3 scripts/check_repo.py
@@ -147,6 +151,8 @@ jobs:
         run: cargo test --workspace --locked
       - name: Opt-in exact time input and unchanged V1 regressions
         run: cargo test --workspace --all-features --locked
+      - name: Independent read-only SDK consumer
+        run: cargo run --manifest-path examples/consumer-sdk-v1/Cargo.toml --locked -- tests/fixtures/narrative-video-coverage-v1/valid-unresolved.json
       - name: Pinned Python for trial recorder
         uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
         with:

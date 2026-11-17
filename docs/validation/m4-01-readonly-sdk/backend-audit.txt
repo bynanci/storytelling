@@ -1,0 +1,280 @@
+Issue #107 / ADR0013 backend audit — 2026-11-17
+
+Evidence status
+- Read-only AI technical audit, not human G2 acceptance, implementation verification, or consumer usability evidence.
+- Repository: /workspace/storytelling-readonly-sdk-20261117
+- Observed HEAD: 0b39c00354f343d7a61821a029777d88a8373254 (the task's stated base).
+- git --no-optional-locks status --short returned no changes during the audit.
+- Read AGENTS.md, README.md, TASKS.md, ROADMAP.md, docs/SDLC.md, ADR0013, the candidate consumer guide/test plan, relevant engine/core code, ADR0010, and existing regression source.
+- No repository changes, Cargo/build/test execution, product CLI, network, Host, or delegated agents. Only this requested /tmp report is written.
+- Existing tests cited below are static compatibility anchors; this audit did not run them.
+- The parent task supplies current authorization to adopt the eight-operation G2 candidate and implement RED/GREEN in an independent Draft PR. Baseline proposal documents still say pending; this audit does not replace a dated record of that user decision.
+
+1. Exact eight-operation delegation map
+
+All wrapper bodies should call the existing crate-root backend once, on the original byte slices, and adapt only Err. Modules such as narrative/planner/story_review are private; crate-root function exports are the correct reuse path.
+
+consumer_v1::validate_plan(bytes: &[u8])
+  -> Result<PlanValidationV1, SdkErrorV1>
+  backend: crate::validate_plan_json(bytes)
+  existing backend result: crate::ValidationReport
+  existing backend error: storytelling_core::ValidationError
+  source: crates/storytelling-engine/src/lib.rs:77,106
+  proposed alias: pub use crate::ValidationReport as PlanValidationV1;
+
+consumer_v1::render_narrative(bytes: &[u8])
+  -> Result<NarrativeProjectionV1, SdkErrorV1>
+  backend: crate::render_narrative(bytes)
+  result: storytelling_core::narrative::NarrativeProjectionV1 (also engine root)
+  error: storytelling_core::narrative::NarrativeValidationErrorV1
+  source: crates/storytelling-engine/src/narrative.rs:345
+
+consumer_v1::track_revisions(bytes: &[u8])
+  -> Result<NarrativeRevisionReportV1, SdkErrorV1>
+  backend: crate::track_narrative_revisions(bytes)
+  result: storytelling_core::narrative_revision::NarrativeRevisionReportV1 (also engine root)
+  error: storytelling_core::narrative::NarrativeValidationErrorV1
+  source: crates/storytelling-engine/src/narrative_revision.rs:289
+
+consumer_v1::query_impact(bytes: &[u8], change_id: &str)
+  -> Result<NarrativeRevisionEventResultV1, SdkErrorV1>
+  backend: crate::query_narrative_impact(bytes, change_id)
+  result: storytelling_core::narrative_revision::NarrativeRevisionEventResultV1 (also engine root)
+  error: storytelling_core::narrative::NarrativeValidationErrorV1
+  source: crates/storytelling-engine/src/narrative_revision.rs:557
+
+consumer_v1::video_coverage(bytes: &[u8])
+  -> Result<NarrativeVideoCoverageResultV1, SdkErrorV1>
+  backend: crate::render_narrative_video_coverage(bytes)
+  result: storytelling_core::narrative_video_coverage::NarrativeVideoCoverageResultV1
+  error: storytelling_core::narrative_video_coverage::NarrativeVideoCoverageErrorV1
+  source: crates/storytelling-engine/src/narrative_video_coverage.rs:174
+
+consumer_v1::plan_story(bytes: &[u8])
+  -> Result<PlannedStoryV1, SdkErrorV1>
+  backend: crate::plan_story(bytes)
+  result: storytelling_core::planner::PlannedStoryV1
+  error: storytelling_core::planner::PlanningErrorV1
+  source: crates/storytelling-engine/src/planner.rs:145
+
+consumer_v1::prepare_story_review(proposal: &[u8], snapshot: &[u8], context: &[u8])
+  -> Result<PreparedStoryReviewV1, SdkErrorV1>
+  backend: crate::prepare_story_review(proposal, snapshot, context)
+  result: crate::BoundStoryReviewV1
+  error: storytelling_core::compiled_plan::OtioCompileError
+  source: crates/storytelling-engine/src/story_review.rs:207
+  proposed alias: pub use crate::BoundStoryReviewV1 as PreparedStoryReviewV1;
+
+consumer_v1::check_story_review(bundle: &[u8], proposal: &[u8], snapshot: &[u8], context: &[u8])
+  -> Result<ReviewFreshnessReportV1, SdkErrorV1>
+  backend: crate::check_story_review(bundle, proposal, snapshot, context)
+  result: storytelling_core::review::ReviewFreshnessReportV1
+  error: storytelling_core::compiled_plan::OtioCompileError
+  source: crates/storytelling-engine/src/story_review.rs:310
+
+Recommended operation IDs are exactly the eight facade function names above. Do not use a source prefix such as narrative/revision to infer operation(): multiple operations share one error family.
+
+2. Source-error serialization, code and path contract
+
+Keep one private source enum with the five concrete payload types. Do not replace a source with a common {code,path} object or rebuild fields. source_details_json() should dispatch directly to serde_json::to_vec(&original_source). It returns the source object only, without operation metadata or CLI envelopes, and no trailing newline. A serde_json::Value round trip may reorder struct fields and is unnecessary.
+
+A. storytelling_core::ValidationError
+   Definition: crates/storytelling-core/src/lib.rs:21.
+   Derives Debug, Clone, PartialEq, Eq, Serialize; implements Display and std::error::Error.
+   Source serialized field order: code, path.
+   Shape: {"code":"input.invalid_json","path":"$"}
+   Both fields are required Strings. SDK path() = Some(source.path.as_str()). No omitted/null path.
+
+B. storytelling_core::narrative::NarrativeValidationErrorV1
+   Definition: crates/storytelling-core/src/narrative.rs:153.
+   Derives Debug, Clone, PartialEq, Eq, Serialize; no Display/Error implementation at this base.
+   Source field order: code, path, relation_ids (when nonempty).
+   relation_ids has #[serde(skip_serializing_if = "Vec::is_empty")]. Empty means ABSENT, not [] and not null.
+   Ordinary shape: {"code":"narrative.invalid_shape","path":"$.schema_version"}
+   Order conflict shape: {"code":"narrative.order_conflict","path":"$.relations[n]","relation_ids":["R03","R04","R05"]}
+   The actual n comes from the first relation of the selected cycle; preserve source order and exact IDs.
+   Cycle extraction in engine narrative.rs:606-628 sorts/deduplicates relation indices in document order before returning the identifiers. Do not alphabetically sort the IDs in the adapter.
+   Revision's nested base-document errors prefix path with $.base_document but retain relation_ids (engine narrative_revision.rs:303-309).
+   SDK path() = Some(source.path.as_str()).
+
+C. storytelling_core::narrative_video_coverage::NarrativeVideoCoverageErrorV1
+   Definition: crates/storytelling-core/src/narrative_video_coverage.rs:112.
+   Derives Debug, Clone, PartialEq, Eq, Serialize; no Display/Error implementation.
+   Source field order: code, path.
+   path: Option<String> has NO skip_serializing_if; None serializes as explicit JSON null.
+   Syntax/UTF-8/budget shape: {"code":"input.invalid_json","path":null} or {"code":"input.too_large","path":null}.
+   Semantic shape: {"code":"video_coverage.unsupported_version","path":"$.schema_version"}.
+   Duplicate/depth shape: path "$".
+   SDK path() = source.path.as_deref(); never turn None into Some("$") and never omit path from details.
+   All five error families serialize a path field; there is no omitted source-error path at this baseline. The source-details serializer preserves any future absence; the Option accessor itself cannot distinguish absence from null.
+   Nested narrative errors retain their existing narrative code with a $.narrative_document prefix. Existing coverage narrative_error() deliberately discards relation_ids (engine narrative_video_coverage.rs:75-79); preserve this existing backend shape rather than reconstructing discarded evidence.
+
+D. storytelling_core::planner::PlanningErrorV1
+   Definition: crates/storytelling-core/src/planner.rs:77.
+   Derives Debug, Serialize only (not Clone/Deserialize/PartialEq); no Display/Error implementation.
+   Source field order: code, path, conflicts. conflicts is ALWAYS present, including [].
+   Conflict shape: {"code":"planner.brief_conflict","path":"$.brief","conflicts":[{"kind":"required-excluded","path":"$.brief.manual_selected_asset_ids[1]","asset_ids":["opening"]}]}
+   Source conflict types: storytelling_core::brief::{BriefConflictV1,BriefConflictKindV1}.
+   Conflict fields in order: kind, path, asset_ids. Kind serialization is kebab-case: unknown-asset, required-excluded, order-cycle.
+   Engine planner.rs:159-177 rebases nested brief paths to $.brief before returning; preserve those already-global paths. Preserve empty conflicts on generic/validation errors. A conflict is Err, without a partial plan.
+   SDK path() = Some(source.path.as_str()).
+
+E. storytelling_core::compiled_plan::OtioCompileError
+   Definition: crates/storytelling-core/src/compiled_plan.rs:35.
+   Derives Debug, Serialize only (not Clone/Deserialize/PartialEq); no Display/Error implementation.
+   Source field order: code, path, losses. losses is ALWAYS present, including [].
+   Each loss is storytelling_core::compiled_plan::OtioFeatureV1:
+     {"feature":"...","path":"...","disposition":"unsupported","accepted":false}
+   FeatureDisposition is kebab-case: native, baked, metadata-only, unsupported.
+   From<ImportError> maps ImportLoss.code -> feature, retains path, forces disposition=Unsupported and accepted=false (compiled_plan.rs:41-56). The adapter must serialize the resulting OtioCompileError, not the original import DTO or a new flattened copy.
+   otio.loss_choice_required at $.choices retains the full list of unaccepted feature rows (engine otio.rs:52-65).
+   Snapshot import rejection may arrive as import.unsupported_feature with mapped unsupported losses.
+   review/context/shape/size failures are wrapped by the existing backend as OtioCompileError with losses:[]; preserve that array.
+   SDK path() = Some(source.path.as_str()).
+
+Coverage's 21 accepted video_coverage.* codes are listed in docs/adr/0010-narrative-video-coverage-v1.md:116-136. The list includes unresolved_required, which is a successful result diagnostic rather than Err. Generic input.* and nested narrative.* codes are additional source codes. Do not restrict code() to a facade-owned enum or reinterpret those codes.
+
+SdkEncodingErrorV1:
+- Keep source_details_json() -> Result<Vec<u8>, SdkEncodingErrorV1> fallible even though the current derived source serializers contain only strings, integers and vectors and normally cannot produce a Serde error.
+- Fixed adapter-only diagnostic: sdk.error_details_encoding_failed. Do not reuse this code for the original domain rejection, discard the source, expose parser prose, or silently return empty bytes.
+- On encoding failure, the original SdkErrorV1 continues to expose its source code/path and operation.
+- Use a private field in an opaque public encoding-error struct. A public unit struct has a public constructor.
+- Public From<DomainError> or other conversion factories would expose an additional constructor path; keep construction private if preserving ADR0013's no-public-constructor rule.
+- Avoid deriving Serialize/Deserialize for either new Rust-only wrapper. Avoid changing existing backend error derives solely to simplify the wrapper.
+- Only ValidationError supports std::error::Error today; a blanket source() implementation cannot expose all other source variants as dyn Error without unrelated changes. Implement new wrapper Display/Error independently (identifiers, not prose matching) if desired.
+
+3. Public returned-type imports and minimal curated closure
+
+Required top-level facade names:
+  PlanValidationV1 (alias of crate::ValidationReport)
+  NarrativeProjectionV1
+  NarrativeRevisionReportV1
+  NarrativeRevisionEventResultV1
+  NarrativeVideoCoverageResultV1
+  PlannedStoryV1
+  PreparedStoryReviewV1 (alias of crate::BoundStoryReviewV1)
+  ReviewFreshnessReportV1
+  SdkErrorV1 and SdkEncodingErrorV1 (new opaque facade-only types)
+
+PreparedStoryReviewV1::record() -> &ReviewRecordV1 also requires exposing ReviewRecordV1; its nested public field types are ReviewIdentityV1 and ReviewContextFieldDigestsV1. All three are at storytelling_core::review.
+
+For an independent consumer importing only consumer_v1 to name/match all fields in those results, the following is a self-contained result-type closure. All of these types are reachable from the eight return types; it adds no operation or input-only contract. Exact source paths are below. Whether every leaf struct needs a convenient facade name is a curation decision, but returning public enum fields without their facade import makes consumer-only typed matching awkward. Do not silently use core/root imports in the independent consumer to cover missing facade types.
+
+  pub use crate::ValidationReport as PlanValidationV1;
+  pub use crate::BoundStoryReviewV1 as PreparedStoryReviewV1;
+
+  pub use storytelling_core::narrative::{
+      NarrativeProjectionV1, NarrativeProjectedVariantV1, NarrativeProjectedBeatV1,
+      NarrativeSourceTagV1, NarrativeOriginV1, NarrativeUnitReferenceV1,
+  };
+  pub use storytelling_core::narrative_revision::{
+      NarrativeRevisionReportV1, NarrativeRevisionEventResultV1,
+      NarrativeSourceRevisionV1, NarrativeVariantSnapshotV1,
+      NarrativeSuggestionRecordV1, NarrativeAuthorDecisionRecordV1,
+      NarrativeAuthorDecisionV1, NarrativeCurrentVariantV1,
+  };
+  pub use storytelling_core::narrative_video_coverage::{
+      NarrativeVideoCoverageResultV1, NarrativeVideoCoverageReferenceV1,
+      VideoAssetCatalogReferenceV1, VideoCoverageMappingResultV1,
+      VideoAssetReferenceV1, VideoCoverageDiagnosticV1,
+  };
+  pub use storytelling_core::planner::{
+      PlannedStoryV1, SelectionDecisionV1, SkippedCandidateV1,
+      SkippedReasonV1, TargetStatusV1,
+  };
+  pub use storytelling_core::brief::{
+      BriefAuditV1, AssetBindingV1, PrecedenceEdgeV1, BriefPreferencesV1,
+      BriefConflictV1, BriefConflictKindV1, BriefWarningV1, BriefWarningKindV1,
+  };
+  pub use storytelling_core::wire::{
+      PlanDocumentV1, DeclaredAsset, DeclaredShot, SourceRange, TimeValue,
+  };
+  pub use storytelling_core::review::{
+      ReviewFreshnessReportV1, ReviewRecordV1, ReviewIdentityV1,
+      ReviewContextFieldDigestsV1,
+  };
+
+The closure above has 44 existing names including the two aliases; the two new opaque errors are additional. Some wire DTOs support Deserialize because they already appear inside PlannedStoryV1; re-exporting their existing type does not grant trust. Do not expose their parsers as authority constructors.
+
+Root exports currently omit NarrativeOriginV1 and NarrativeAuthorDecisionRecordV1 despite result fields referencing them. Coverage/planner/review result types mostly are not engine-root exports. Import these directly from their public core modules inside the facade, without requiring an independent consumer dependency on core.
+
+Do NOT glob-re-export core modules, approval/signing types, source verification, import/OTIO profiles, review-context parsers, legacy BoundReviewV1, cue/style/copy/handoff APIs, draft-video-input helper, or execution/journal capabilities. Those are outside the eight-operation facade. No fifth crate or new runtime/dependency is required.
+
+4. Returned-type/serialization differences
+
+- ValidationReport is Debug+Serialize only, with public fields schema_version, plan_id, assets, shots, scope. Do not add Clone/PartialEq as a shortcut for parity tests; compare fields/serialization.
+- NarrativeProjectionV1 and its projection children are Debug+Clone+PartialEq+Eq, but intentionally have no Serialize or Deserialize. Do not add a JSON wire format to test them. Compare typed fields and leave existing CLI text formatting unchanged.
+- Revision report/output records are Debug+Clone+PartialEq+Eq+Serialize. Event-result optional unit_id/from_revision/to_revision/variant_id omit absent fields; preserve that omission. NarrativeOriginV1 and NarrativeAuthorDecisionV1 serialize snake_case; matching them through the facade needs their names exported.
+- Coverage result/output children are Debug+Clone+PartialEq+Eq+Serialize. Mapping optional asset_ref/source_range/reason omit absent fields, unlike coverage error.path, which emits null. Result struct field order is schema_version, profile, coverage_id, narrative_ref, asset_catalog_ref, selected_unit_refs, mappings, ready_for_planning, diagnostics; engine initializer order does not alter derive serialization order.
+- PlannedStoryV1 and nested planner/brief/wire result types generally support Debug+Deserialize+Serialize but not Clone/PartialEq. These public DTOs are declarations, never trust handles. TargetStatusV1/SkippedReasonV1 serialize kebab-case.
+- BoundStoryReviewV1 supports custom Debug and immutable accessors only; no Clone, Serialize, Deserialize, Default or public fields. Aliasing preserves all of that.
+- ReviewRecordV1 and nested identity DTOs support Clone/Deserialize/Serialize and public field mutation on a caller-owned clone. This is intentional untrusted portable data, not a mutation path into the bound object or authority. ReviewFreshnessReportV1 is Clone/Eq/Serialize and contains only owned data plus a static scope.
+
+5. Diagnostic precedence and bounds that wrappers must preserve
+
+Common byte bounds are existing backend bounds, not a combined facade allowance:
+  MAX_INPUT_BYTES = 1,048,576 (plan, narrative, ledger, coverage, planner request, snapshot)
+  MAX_STORY_PROPOSAL_BYTES = 4,194,336
+  MAX_REVIEW_CONTEXT_BYTES = 65,536
+  MAX_STORY_REVIEW_BYTES = 4,292,672 = 4,194,304 OTIO + 98,304 record + 64
+  source-change IDs: narrative grammar, 128 bytes, first ASCII alphanumeric,
+    remainder ASCII alphanumeric or '.', '_' or '-'.
+
+- validate_plan_json: size -> typed PlanDocumentV1 parse -> version -> IDs/collections/assets/shots in existing order. Unknown/shape rejection is input.invalid_json. Do not insert narrative's preflight.
+- render_narrative: size -> duplicate/depth preflight (32 containers) -> schema/version -> closed shape -> semantic checks. Preserve cycle selection/order semantics and relation evidence.
+- track_narrative_revisions: size -> same preflight/version -> revision untrusted-decision check -> closed ledger parse -> event count -> base narrative validation/replay. Base errors are path-prefixed by the existing backend.
+- query_narrative_impact: validates change_id FIRST, before ledger size/syntax/replay, then queries source_revision events. A bad ID plus oversized ledger yields the ID error. Do not centralize generic size checking in the facade.
+- video_coverage: size -> duplicate/depth preflight (33) -> top-level version -> closed shape -> embedded narrative -> variant/selection -> catalog -> mapping membership/order -> asset/range -> successful blocker projection. Null syntax/size paths differ from semantic "$" paths. Existing backend uses parser prose internally to classify a shape error, but facade should expose only its stable chosen code/path.
+- plan_story: size -> loose VersionProbe parse -> unsupported version -> closed Input parse -> brief audit -> hard conflicts -> catalog/candidate validation -> required candidates -> clocks/selection/order. Generic preflight would change existing semantics/error order. Brief errors/conflicts already have rebased paths.
+- prepare_story_review: all input sizes in proposal -> snapshot -> context order BEFORE any parse; then parse/validate context -> proposal depth -> proposal parse/claims/selected-plan checks -> snapshot import/match -> compile/bind. Invalid context can take precedence over malformed proposal after sizes pass.
+- check_story_review: sizes in bundle -> proposal -> snapshot -> context order; then bundle depth/closed parse -> validate record -> bundle ok/profile -> embedded artifact hash -> recompile current inputs as above -> sorted/deduplicated stale fields.
+- Exact-limit inputs are allowed by the initial size guard (only '>' rejects), but a max-size proposal can still fail otio.output_too_large because embedded proposal text adds output overhead. Do not promise success from byte bound alone.
+- Version/profile errors remain operation-specific: narrative.unsupported_version; video_coverage.unsupported_version; planner.unsupported_version; plan.unsupported_version; review.unsupported_version; story_review.invalid_proposal_claims or story_review.wrong_profile as the existing backend selects. Never auto-upgrade or use a looser fallback.
+
+6. Review byte identity and opacity traps
+
+- prepare_story_review accepts the existing proposal RESPONSE object {"ok":true,"planning": ...}, not bare serialized PlannedStoryV1. Returning the typed plan from plan_story does not introduce an automatic typed review preparation path. Use one frozen proposal-response byte sequence for both parity paths.
+- check_story_review consumes the existing bundle {"ok":true,"review":...,"otio":...}, not just ReviewRecordV1.
+- compile_story_review embeds the original proposal text and hash into OTIO metadata. Even adding a trailing newline can leave selected cuts unchanged while producing stale_fields=["artifact"]. Static anchor: engine/tests/story_review.rs:376-383.
+- Source snapshot text is retained in OTIO metadata, and composition_sha256 hashes exact supplied snapshot bytes. Rational numerator/denominator strings are compared directly in selected-plan/snapshot matching. Do not normalize time strings, numbers, whitespace or JSON key order in facade wrappers.
+- Bundle OTIO is RawValue and artifact identity hashes its exact JSON text. Parsing/re-emitting bundle OTIO may break identity, even if a generic JSON comparison passes.
+- Prepared alias must remain the compiler-owned BoundStoryReviewV1. Do not recreate a handle from an untrusted ReviewRecordV1 plus supplied artifact or offer unchecked/new/default/from_json factories. Do not add DerefMut, AsMut, mutable record or byte accessors.
+- BoundStoryReviewV1 owns private review: BoundReviewV1 and bundle: Box<[u8]>. Accessors are record()->&ReviewRecordV1, compiled_otio()->&[u8], bundle_json()->&[u8]. Mutable caller clones of record/byte copies cannot affect it.
+- Its custom Debug shows the review record and OTIO byte length, not artifact text/URIs. Existing regression checks Debug excludes synthetic://; avoid replacing it with a derived debug of bundle bytes.
+- Review record flags and freshness flags remain false for executable, approval_granted, source_verified, host_verified. A fresh record establishes supplied-declaration/artifact consistency only, not source-byte identity, human approval, signer authority, Host compatibility or writer ownership.
+- Valid unresolved coverage is Ok with ready_for_planning=false plus ordered diagnostics. Valid stale review is Ok with current=false plus stale fields; CLI exit 1 is its presentation convention. Do not turn either into SdkErrorV1.
+
+Static digest anchors (retain existing tests; audit did not execute):
+  engine/tests/story_review.rs:385-402 P2 fixture:
+    artifact_sha256 = 5404c0b552ddc4ccc394755c0a9a95e262f47f4a579fdca9b41797b920a838d0
+    binding_sha256  = ff87f54300ac968089fa6170f1248920a990284c3961f574225088ce85aad932
+  engine/tests/review_binding.rs:50-124 P1 repeated-composition fixture:
+    artifact_sha256 = 6456c0a184a3cb3105f1b4d5026954df52d12a34006228da69589fcbeb09412b
+    binding_sha256  = 85ee60f9a2ea0327ea977b48f73e6160f769e65921ee64ce7dbef81c3eb14a4f
+
+7. Ownership, concurrency and security observations
+
+- Backend signatures borrow only input buffers and return owned Strings/Vecs/Boxes/static strings; returned results retain no input lifetime. This is source-inspection evidence, not a compiled Send/Sync proof.
+- Visible field graphs have no Rc/RefCell, mutable global state, runtime handles, callbacks, Host leases or borrowed input data. Bound handles use owned DTOs and Box<[u8]>. Natural Send/Sync looks feasible without unsafe impls. Add compile-time trait assertions and caller-thread replay as implementation evidence.
+- Do not add caches, global mutable metadata, spawned threads, cancellation/timeout semantics or optional privileged callbacks to the facade. Caller-owned thread pools determine concurrency; per-call bounds do not cap aggregate memory or guarantee allocation success.
+- Drop has no rollback/cancellation meaning. No editor operation occurs, and a read-only result grants no writer lease.
+- Keep core/engine pure: no filesystem, Tokio, database, network, model, clock or Host calls. Existing core hashing is pure supplied-byte hashing. Engine dependencies already are serde, serde_json, core; no dependency change is needed.
+- Treat JSON content as untrusted declarations, including any URI/source text in snapshots and opaque JSON metadata. Such strings remain inert; the facade has no shell/path/URL opening operation.
+- Raw OTIO/bundle output can intentionally retain supplied snapshot/proposal text and URI declarations. Avoid logging or publishing raw user inputs/outputs; public fixtures and reports must stay synthetic or publicly authorized. Existing bound Debug deliberately avoids raw artifact output.
+- Do not re-export approval-verification or journal capabilities just because they exist elsewhere in the workspace. No execute, approve, dispatch, retry, recover, journal-write, arbitrary shell/path callback or Host handle belongs under consumer_v1, including feature-gated additions.
+- The current draft-video-input feature must not enable a different consumer_v1 authority surface.
+- Cargo workspace has four crates, package version 0.1.0-dev.0, publish=false; this task does not justify publication, a fifth SDK crate, transport/wire protocol, TypeScript binding, Host work or G5 claims.
+
+8. Useful static regression anchors for implementation
+
+- crates/storytelling-engine/tests/validation.rs: source plan behavior.
+- crates/storytelling-engine/tests/narrative.rs: cycle IDs, unknown/duplicate/version/depth/byte semantics; invalid-multiple-order-cycles.json expects [R03,R04,R05].
+- crates/storytelling-cli/tests/narrative.rs: narrative/revision/impact text contract (revision logic is not in an engine/tests/narrative_revision.rs file).
+- crates/storytelling-cli/tests/video_coverage.rs: null-path JSON at lines 272,307; exact-limit/depth/semantic cases; coverage has no standalone engine integration-test file at this base.
+- crates/storytelling-cli/tests/planner.rs:173-221: exact hard conflict evidence and generic conflicts:[], no partial plan.
+- crates/storytelling-engine/tests/story_review.rs:259-317: size/depth precedence and inclusive bounds;321 onward forged claims/profile and exact-byte changes; fixed P2 digests.
+- crates/storytelling-cli/tests/story_review.rs: unsupported import losses, missing loss choices, stale exit semantics.
+- crates/storytelling-engine/tests/review_binding.rs: P1 fixed digest vectors and legacy ordering unchanged.
+- Existing compile_fail doc examples on BoundStoryReviewV1 and BoundReviewV1 preserve private-field/Deserialize/mutation/Default absence. New facade-only compile_fail examples should target the alias path and absent operations as well.
+- The independent consumer should depend only on storytelling-engine, sit outside workspace runtime membership, and import only consumer_v1 and curated types. A separate [workspace] in an external test crate may be needed to opt it out of the parent workspace; that is an implementation detail, not a fifth runtime workspace member.
+- Preserve observed missing-facade RED before implementation; do not describe this read-only audit or already-existing backend tests as RED/GREEN. Preserve exact CLI stdout, all old identity assertions, and same-head OS CI requirements without updating accepted golden hashes.
