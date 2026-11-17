@@ -1,0 +1,142 @@
+SK-E06-F02 offline layout preflight: independent AI source review
+Review date: 2026-11-17 UTC
+Repository/worktree: /workspace/storytelling-sk-e06-layout-20261117
+Base: 62541d91c0c52ec6e49b5dc9c8350e92e83b409a
+Final runtime/helper commit inspected: db24076ce14cdc9deebadbbba5010115cc4c983d
+Earlier decoded-length correction inspected: 9597c4c38bc22c03ec19ac880e6e1803ef219bb0
+
+Result
+
+No material correctness blocker identified by source inspection for the stated
+offline layout snapshot consistency scope. This is an AI source review, not
+human approval, G2 acceptance, a runtime result, hosted-CI evidence, a security
+qualification, or authorization to dispatch. Final documentation evidence
+appendix, final-head CI and post-merge CI were not reviewed or certified here.
+
+Actual actions and limits
+
+- Read AGENTS.md and required project context (README.md, TASKS.md, ROADMAP.md,
+  docs/SDLC.md), the complete layout helper, packet helper and layout test file,
+  workflow and attributes; inspected the current validation document.
+- Inspected the prospective JSON record's initial declaration section and
+  selected existing packet test sections for CLI compatibility context.
+- Read local Git status, HEAD, source diffs and file hashes. The parent explicitly
+  clarified that read-only shell commands through exec_command were authorized;
+  commands used only cat/nl/sed/rg/git read operations and sha256sum.
+- No checker/product/test code was executed. No Python interpreter, archive
+  generation, malformed-fixture generation, model, network, media, editor/Host
+  or subagent was invoked. No repository file was edited. This /tmp report is
+  the sole file written by this reviewer.
+- The runtime/helper files matched db24076c with no working-tree source diff.
+  Workflow, .gitattributes and the validation document were uncommitted review
+  inputs; their exact current hashes appear below. The document had 85 lines
+  and no final evidence appendix when read.
+- I did not reproduce any behavior or independently observe a passing test.
+  Parent-reported test results are not converted into reviewer observations.
+
+Source findings
+
+1. Bounded independent ZIP decoding is implemented.
+   scripts/sk_e06_layout.py:19-23 bounds record, compressed archive, member,
+   expanded total and member count. Lines 173-195 inspect the local header and
+   require agreement with the central entry, permit only the specified ordinary
+   local-member profile, decode DEFLATE with an output cap independent of the
+   declared uncompressed length, require stream completion/no trailing data, and
+   independently compare actual length and CRC. Lines 210-231 check member sets,
+   ordinary-file attributes and content hashes against the same immutable ZIP
+   bytes. The public archive.open check is retained for header/name/overlap
+   validation without relying on ZipExtFile's declared-length cap.
+
+2. Record checks match the limited prospective-record consistency claim.
+   scripts/sk_e06_layout.py:44-60 rejects duplicate keys, non-finite constants,
+   invalid UTF-8 and parse recursion failures. Lines 79-133 require exact object
+   keys, the v2 kind/version/follow-up, bounded declarations, hash shapes, explicit
+   boolean/integer types and absent execution/human/decision evidence. These
+   checks do not establish factual truth, original-case byte identity, signer
+   authenticity or source-commit membership; the helper does not claim otherwise.
+
+3. The final streaming Counter change preserves multiset acceptance semantics.
+   scripts/sk_e06_layout.py:203-207 establishes declared occurrence counts and
+   checks the declared total. Lines 234-244 resolve each supported local inline
+   destination into the same declared snapshot, reject an undeclared/exhausted
+   tuple immediately and consume one count. Lines 245-246 require zero remaining
+   counts and the same total. Thus accepted input has exactly the declared
+   multiset, including duplicates, without retaining an amplified derived-link
+   list. The diff from 9597c4c to db24076c changes this accumulation only.
+   The scanner at lines 136-170 is a single pass; the full-CommonMark, HTML,
+   reference-style and heading exclusions are explicit at lines 264-265.
+
+4. Ordinary-file snapshots and safe error scope are reasonably stated.
+   scripts/sk_e06_layout.py:274-284 bounds reads, rejects static nonregular final
+   paths, uses available no-follow/nonblocking flags and verifies descriptor type,
+   size and identity. Lines 287-302 explicitly disclaim a qualified stable read
+   view and concurrent ancestor replacement guarantees. The byte validator's
+   exception translation is at lines 267-271; the CLI catches LayoutError at
+   scripts/sk_e06_packet.py:239-245 and emits fixed layout-error text. This review
+   does not strengthen the documented concurrency or OS assurance limits.
+
+5. Existing packet routing remains equivalent for old invocations.
+   The base-to-runtime diff in scripts/sk_e06_packet.py changes only main's
+   optional flag/routing at lines 229-253. Without the new flag, the old default
+   directory and explicit positional directory feed the same load_packet and
+   validate_packet calls with the same output/error path. The existing packet
+   validation functions are unchanged. Help text necessarily includes the flag.
+
+6. No execution authority or observed efficacy is introduced.
+   scripts/sk_e06_layout.py:247-255 fixes scope to layout_snapshot_integrity_only,
+   can_dispatch=false, source_commit_membership_verified=false, and zero new
+   model/human/Host observations. There is no subprocess/network/model/Host call
+   in the runtime helper. Its source-commit disclaimer at lines 262-263 is clear.
+   docs/validation/sk-e06-layout-preflight.md:21-30 and 67-85 preserve these limits,
+   the separate F01/#121/#122 gates and pending evidence. This review grants no
+   human/G2 approval and changes no historical model/human records or scores.
+
+7. Source-level CI and checkout changes fit the delivery.
+   .github/workflows/sk-e06.yml:5-32 triggers on the helper/tests, prospective
+   future-run inputs and new validation evidence; lines 34-51 retain read-only
+   permissions, pinned actions and Python 3.12 with Linux/Windows/macOS matrix,
+   and add the layout tests beside the existing packet tests. The new
+   .gitattributes:82-83 rule preserves receipt bytes. Existing captured-run byte
+   preservation at lines 62-66 is unchanged. These are source observations;
+   matrix success and platform-specific skips need actual CI evidence.
+
+Test source assessment
+
+scripts/test_sk_e06_layout.py contains meaningful normal-CLI and negative tests
+for digests/lengths/member-set differences, duplicate/colliding/dangerous names,
+nonregular/encrypted entries, strict JSON/type/identity/evidence rejection,
+declared-link mismatch and closure/multiplicity, bounds, fixed errors, static
+symlinks/FIFOs, unsupported compression, embedded NUL names, bounded-time scanner
+regressions and optional titles. Lines 457-480 specifically exercise the real CLI
+with a five-byte DEFLATE stream whose two ZIP headers and declaration claim empty
+content. Lines 483-494 exercise CRC disagreement despite matching headers. Lines
+497-516 protect the in-memory/no-extraction behavior and input-tree bytes.
+
+Non-blocking coverage observation (source hypothesis only, no reproduction):
+the explicit decoded-length/CRC regressions at lines 457-494 use the default
+DEFLATE construction from lines 38-46. The ZIP_STORED branch at helper lines
+188-194 has no corresponding small-member positive and falsified-length/CRC
+regression; its source does check actual compressed/raw length and CRC. The
+stored fixture at test lines 287-295 tests the archive-size bound. This is an
+optional test-coverage improvement, not an identified runtime defect or a
+correctness blocker for the reviewed code.
+
+Inspected file SHA-256 identities
+
+49b29ac07f932f0c63350bdc869cbc3f2d47efa29bdaa39439801f13fa4f2fe0  AGENTS.md
+8b15d33e1d61ffae219a720c689c17e4bf247561379468a9443596d6a9c0e8f0  README.md
+6414305a970369f305a6f783a99147dbbfc999bc39c3542f71de423af1433547  TASKS.md
+5c023cbac4c12a713a4a61928a0a443f62e75aa98c542bccc95de955d2a9313d  ROADMAP.md
+63d672a4971a0a781e3450f317114af583b41e04eb3d9c8384622f484d6d2900  docs/SDLC.md
+aacaf95d7593d82c9fc9cbb8eb7dfc73f954f11ca0238230f26b19d39a5079f7  scripts/sk_e06_layout.py
+9aa8ae20df92c9a5bd5d946e1c3152c60b657113005857a025ef5029ee124604  scripts/sk_e06_packet.py
+ee485e4a1283e48166bf844feef2e6f7eae3a49b0db606a622be3ad034970566  scripts/test_sk_e06_layout.py
+5930308e113534d86ee1abdbfeecdf09ea6c0d77da37e39a05ed59c51cd27752  .github/workflows/sk-e06.yml
+8a49cb874a7974c6e794ef1d98544828005a967550d34df76a651311af79bc35  .gitattributes
+43c240070503c55b09e257f5b7f77cb6c4ce4cb8199a7cb168548e8f7122d599  docs/validation/sk-e06-layout-preflight.md
+bcee7361b918a9323a29f8cd1359775b2fd189cfcd906f0f3a84302a7afb8635  docs/research/evaluations/sk-e06-runs-2026-11-17/future-run-layout-v2.json (selected declaration section read)
+2d1c4a41274938964482e31ddd277e22a06d4b3b32640e8361c5b026af4f6648  scripts/test_sk_e06_packet.py (selected sections read)
+
+The final source-review result is bound to these bytes. Subsequent source edits
+require another review; later evidence/prose edits are outside this report's
+inspected documentation hash.

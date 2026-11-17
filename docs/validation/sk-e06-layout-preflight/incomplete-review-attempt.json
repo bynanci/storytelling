@@ -1,0 +1,10 @@
+{
+  "record_kind": "root_transcription_of_incomplete_review_attempt",
+  "agent": "ske06_layout_security_review_20261117",
+  "result": "service content check terminated the agent turn; no complete report was produced",
+  "counted_as_completed_independent_review": false,
+  "follow_up": "A small ordinary five-byte text fixture reproduced the reported source-consistency issue; the implementer saved actual RED/GREEN. A separate source-only reviewer completed the final review without generating fixtures or executing code.",
+  "skill_evaluation_case_dispatches": 0,
+  "human_observations": 0,
+  "host_observations": 0
+}

@@ -52,6 +52,7 @@ for kind in ("request", "response"):
         assert not Draft202012Validator(rid).is_valid(bad), repr(bad)
     assert Draft202012Validator(rid).is_valid("a" * 64)
 plan = json.loads((root / "cases.json").read_bytes())
+scope_base = "26602d37d849d06ceac1d4a09f7ca19d2949c990"
 assert len(plan["cases"]) == 64
 assert len({c["id"] for c in plan["cases"]}) == 64
 assert {c["group"] for c in plan["cases"]} == {f"TS-G{i:02}" for i in range(1, 13)}
@@ -61,7 +62,7 @@ for item in plan["sources"]:
     raw = subprocess.check_output(["git", "cat-file", "blob", plan["base_sha"] + ":" + item["path"]])
     assert raw == Path(item["path"]).read_bytes()
     assert len(raw) == item["bytes"] and hashlib.sha256(raw).hexdigest() == item["sha256"]
-assert not subprocess.check_output(["git", "diff", plan["base_sha"], "--", "crates", "contracts", "tests", "examples", "scripts", "skills", ".github", "Cargo.toml", "Cargo.lock", "package.json", "package-lock.json"])
+assert not subprocess.check_output(["git", "diff", scope_base, "--", "crates", "contracts", "tests", "examples", "scripts", "skills", ".github", "Cargo.toml", "Cargo.lock", "package.json", "package-lock.json"])
 print(json.dumps({"schemas": 3, "indexed_authored_examples": 21, "schema_labels_checked": labels,
                   "source_git_identities": len(plan["sources"]), "planned_cases": 64,
                   "transport_runtime_cases_executed": 0, "human_observations": 0, "host_observations": 0}))
@@ -74,3 +75,23 @@ with wrong association is intentionally schema-valid but invalid for its call.
 The recorded request-ID counterexample is a G2 schema correction, not product
 RED/GREEN. Old source fixtures and receipt bytes are read from their actual Git
 blobs and remain unchanged.
+
+## Base synchronization · 2026-11-17
+
+The source-identity base in `cases.json` remains
+`62541d91c0c52ec6e49b5dc9c8350e92e83b409a`. Its 13 pinned source files,
+all three proposed schemas, 21 authored example files, the 64 planned cases,
+protocol and TypeScript view definitions are unchanged from the G2 candidate
+`c477bf98bcc73e1bf304807cc5392bf45cc9f399`.
+
+After main advanced through PR #152, the scope comparison above uses that new
+base, `26602d37d849d06ceac1d4a09f7ca19d2949c990`. This keeps unrelated,
+already-merged research helper and CI changes out of the transport PR diff.
+Both independent append-only evidence attribute rules are retained. Historical
+static receipts remain evidence for their original source revision; they are
+not rewritten as checks of the synchronized head. No transport contract or
+runtime implementation is changed, and full G2 adoption remains pending.
+
+來源身分仍以 `cases.json` 記錄的 `62541d9` 為準；本次只將 PR 範圍檢查
+對齊 main `26602d3`，保留兩組原始證據的 Git attributes。契約、範例、
+64 項待實作案例與歷史收據不變，Draft 與完整 G2 待採納狀態亦不變。

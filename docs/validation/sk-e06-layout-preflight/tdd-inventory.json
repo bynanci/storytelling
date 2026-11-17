@@ -1,0 +1,914 @@
+{
+  "record_kind": "observed_local_command_receipt_inventory",
+  "base_commit": "62541d91c0c52ec6e49b5dc9c8350e92e83b409a",
+  "red_commit": "db260525c49ae9feafe1d60d6f4b6ef1ec0b7640",
+  "implementation_commit": "867a53e222bace0f04fb29480a55652fde82d9de",
+  "receipts": [
+    {
+      "file": "archive-checksum-green.json",
+      "bytes": 570,
+      "sha256": "f3ee87edd9b102e090c9511ab65c509a42b699382aacc1588f5fb08defaa752c",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "archive-checksum-red.json",
+      "bytes": 1129,
+      "sha256": "51b97896adc3e6754ba10a9597c32e24f3995112eae4229acb0e4eaa5eca7e65",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_rejects_changed_archive_checksum_before_trusting_its_layout",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "archive-length-green.json",
+      "bytes": 683,
+      "sha256": "f96736fcb51bdaa917d011e0e37c17d0e21ad603b63403030ef872545472cea6",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "archive-length-red.json",
+      "bytes": 985,
+      "sha256": "a284f174b21ab3ef6f874c8adc7ab05c380989e2c3f610d38a343ff467ad94bd",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_rejects_archive_length_disagreement",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "committed-diff-check.json",
+      "bytes": 107,
+      "sha256": "02ac4fca97bb0baa645764ab61f3a0588d297105180b6a12f9c1f8457349d1c5",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "committed-head.json",
+      "bytes": 151,
+      "sha256": "46f357109095a5c6c4d6320f1acd159484a63ae24d19a8a1a7a2dfc6a5c12e8d",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "committed-layout-green.json",
+      "bytes": 3605,
+      "sha256": "fa0f5b959e01feaa5d3b8066da293d1c99f0778484df688f79a60b93de9643cc",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "committed-original-packet-green.json",
+      "bytes": 2231,
+      "sha256": "e6d517ad03d1022fcfec78e8e3158dcfb148c0462edc3b7927c8386ed40691c5",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_packet.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "committed-repository-check.json",
+      "bytes": 197,
+      "sha256": "93a2272110ea3770b2b8f8faa821f202fcb0346db7163ac153798590b9d208c5",
+      "argv": [
+        "python3",
+        "scripts/check_repo.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "compression-methods-green.json",
+      "bytes": 3122,
+      "sha256": "37e442967e327435fa245de9697579b4a131a3118058422dd88e002f77413900",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "compression-methods-red.json",
+      "bytes": 1962,
+      "sha256": "9a65660025b71e5436ed78dbde505e22c55c7bd7678af0908ddd4c05f2d47d27",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_rejects_unbounded_memory_compression_methods",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "duplicate-members-green.json",
+      "bytes": 1180,
+      "sha256": "71191ea1e269c2d2e4fa724c874df155328186c0ffa7f495a2fcbd49d19a6ec5",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "duplicate-members-red.json",
+      "bytes": 3051,
+      "sha256": "42d29147c383d570e5e8db6108e21a26862bb05d4866fcf6ecc9acfd3e9615b9",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_rejects_duplicate_or_case_colliding_members_and_declarations",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "empty-observations-green.json",
+      "bytes": 1884,
+      "sha256": "ea5425c2b2abbd6daea1066ae5cc7e0d2eadbdbddacae7d395e9505f05e0e21e",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "empty-observations-red.json",
+      "bytes": 9494,
+      "sha256": "20ae56bcda71c95cdce9bbe7009107e4de9f5bd19070452c116fe30b1ea2a299",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_rejects_prepopulated_execution_or_human_evidence",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "entry-types-green.json",
+      "bytes": 1464,
+      "sha256": "1861018d00015d036a9eed2beac5df2830e14c777ada4e7e6ebf799ecf37fc71",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "entry-types-red.json",
+      "bytes": 6413,
+      "sha256": "9b8037787575fb0c2eaf24d0b64ba4cc6e7487b209c76c1eedf1b26eec428709",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_rejects_nonregular_and_encrypted_zip_entries",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "field-types-green.json",
+      "bytes": 1745,
+      "sha256": "71437436c978e7d1bcada4f3a7c2376ce43a96406080b032d7325c3d1cc19644",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "field-types-red.json",
+      "bytes": 16411,
+      "sha256": "d8cd834ce1ccaf3e1519e7344a1c5c0ed68e5523f2159f595ffd41436577e657",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_rejects_wrong_record_identity_or_field_types",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "fifo-input-green.json",
+      "bytes": 2991,
+      "sha256": "a68db77910cc5c166674a6c91209eaac4fc29a9d3164510a357d08ef86f0d52f",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "fifo-input-red.json",
+      "bytes": 2655,
+      "sha256": "33392616df90835312875e1e2687826eaf6f41a00eec33d6a46c0927d7e808ee",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_cli_rejects_fifo_inputs_without_waiting_for_a_writer",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "file-integrity-green.json",
+      "bytes": 1017,
+      "sha256": "ca355b649577f0b7375f484bd403feed03ae75d46461e2d4a8b74a957a26ee8c",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "file-integrity-red.json",
+      "bytes": 2955,
+      "sha256": "b3ea5d4ff15e8a00b11ced9532fc32d1cba56836a6dc79abba72be40eb6d2616",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_rejects_member_content_hash_blob_and_length_disagreements",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "final-immutable-fixture-and-cli.json",
+      "bytes": 412,
+      "sha256": "8481961ca68c86ef1c353114555faffc3230da81ee8c7116e2a7ae9db3f7ea97",
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/sk_e06_packet.py",
+        "--layout-preflight"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "final-layout-green.json",
+      "bytes": 3605,
+      "sha256": "5fbcff4e0358c98a14f0ea961ea31cd480c91da2cdfc07b79bc70d3e8b0c6075",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "final-original-cli.json",
+      "bytes": 256,
+      "sha256": "5be7f8149a1b7cfb99cf1a9ed4f45cb972671f7efbb0a0c65e4a877465ecbe74",
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/sk_e06_packet.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "final-original-packet-tests.json",
+      "bytes": 2231,
+      "sha256": "d3e3bb8bce36f6f585f46999c7fdc2be293f5db4715cd184c058a51650c817e9",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_packet.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "final-post-refinement-discovery.json",
+      "bytes": 24323,
+      "sha256": "031ae36208d398f1773cc52aae1eaf05b61662f55fe518b026f1d500b289679d",
+      "argv": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "final-post-refinement-layout.json",
+      "bytes": 3615,
+      "sha256": "f4267769894a1f82daf505567bd7e214743955361b6715f7ea833a640da0d147",
+      "argv": [
+        "python3",
+        "-B",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "final-python-discovery.json",
+      "bytes": 439,
+      "sha256": "0e3a169f7a5c6856466e043c81aa600bb89a8ce292aea16725120221e0a8acdd",
+      "argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "final-repository-check.json",
+      "bytes": 197,
+      "sha256": "93a2272110ea3770b2b8f8faa821f202fcb0346db7163ac153798590b9d208c5",
+      "argv": [
+        "python3",
+        "scripts/check_repo.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "independent-decode-committed-diff-check.json",
+      "bytes": 107,
+      "sha256": "02ac4fca97bb0baa645764ab61f3a0588d297105180b6a12f9c1f8457349d1c5",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "independent-decode-committed-head.json",
+      "bytes": 151,
+      "sha256": "caf208a6368a1d9bc39c8e8f43ee2cda7953190be59de9b862948ef59d56f506",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "independent-decode-committed-layout-green.json",
+      "bytes": 4237,
+      "sha256": "fbf48e34cb3da38b83028e8f6d091ae83f1cd3222aa77de90b45d05e4686f74c",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "independent-decode-committed-original-packet-green.json",
+      "bytes": 2231,
+      "sha256": "957dc942db302276add81dc3202d0553e99a4072761cb5e7327738509e9c9a30",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_packet.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "independent-decode-committed-repository-check.json",
+      "bytes": 197,
+      "sha256": "93a2272110ea3770b2b8f8faa821f202fcb0346db7163ac153798590b9d208c5",
+      "argv": [
+        "python3",
+        "scripts/check_repo.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "independent-decode-layout-green.json",
+      "bytes": 4237,
+      "sha256": "5f24c12355ae8b3dbcf7369bb41f00d90642eaf1b4efff76717cd0c2d398712c",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "independent-decode-original-packet-green.json",
+      "bytes": 2231,
+      "sha256": "114adcefb9ac0dd3d1c56ccff817412ce526344caef19e67e60613207c98ece1",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_packet.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "independent-decode-repository-check.json",
+      "bytes": 197,
+      "sha256": "93a2272110ea3770b2b8f8faa821f202fcb0346db7163ac153798590b9d208c5",
+      "argv": [
+        "python3",
+        "scripts/check_repo.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "initial-cli-red.json",
+      "bytes": 254,
+      "sha256": "0131de0681164057d2f8b44505019508fbeca170f7c7317d2fc44509127a6c16",
+      "argv": [
+        "python3",
+        "scripts/sk_e06_packet.py",
+        "--layout-preflight"
+      ],
+      "exit_code": 2
+    },
+    {
+      "file": "initial-green.json",
+      "bytes": 408,
+      "sha256": "cfae6087a278828e6c7dd80f52ae1b35829a004a1a2358bd0b4608dbdf2d633d",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "initial-test-red.json",
+      "bytes": 1344,
+      "sha256": "eba0317aef0b055cb558f1fd7ec3528071f7e581f5030abcd66f36dfa29b9a5f",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "linear-scanner-committed-diff-check.json",
+      "bytes": 107,
+      "sha256": "02ac4fca97bb0baa645764ab61f3a0588d297105180b6a12f9c1f8457349d1c5",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "linear-scanner-committed-head.json",
+      "bytes": 151,
+      "sha256": "7879500cff932a329426dd046fcead75e239e8b2fe7a6ad842d19a6b88dbcfcd",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "linear-scanner-committed-layout-green.json",
+      "bytes": 3933,
+      "sha256": "4b4efc7a641133e3054c538db8a81cf586489812a5fcc05097a080155ffec5b9",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "linear-scanner-committed-original-packet-green.json",
+      "bytes": 2231,
+      "sha256": "e26dc2219748328b2ea504bf88d1ad15164bb81cdef1bebe9803b84160ddc767",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_packet.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "linear-scanner-committed-repository-check.json",
+      "bytes": 197,
+      "sha256": "93a2272110ea3770b2b8f8faa821f202fcb0346db7163ac153798590b9d208c5",
+      "argv": [
+        "python3",
+        "scripts/check_repo.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "linear-scanner-layout-green.json",
+      "bytes": 3933,
+      "sha256": "0365ec87cfefa5333fc7a95f29dd0df1b14cd48452c92c5c9e34e14637558480",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "linear-scanner-original-packet-green.json",
+      "bytes": 2231,
+      "sha256": "b3a2319f50d065ee3543e6f338a4767e96bf4b74c835ed854a742c9069ffe95a",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_packet.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "linear-scanner-repository-check.json",
+      "bytes": 197,
+      "sha256": "93a2272110ea3770b2b8f8faa821f202fcb0346db7163ac153798590b9d208c5",
+      "argv": [
+        "python3",
+        "scripts/check_repo.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "link-multiset-green.json",
+      "bytes": 2043,
+      "sha256": "a5a9d6f8a9cd752df7ada72848cc3411185e153b6054a3f3fc66a1ab798a0878",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "link-multiset-red.json",
+      "bytes": 5496,
+      "sha256": "aa87c0d60ac80812ff979a4718efada52b3547cbcb33f93772586b9cd9308f28",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_rejects_declared_links_that_disagree_with_archive_markdown",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "local-link-scope-assertion-red.json",
+      "bytes": 2106,
+      "sha256": "e2f406b7d5de0b0e11ce702c18167a98f74a5ee13b17c96aaf81b6083ec985cb",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_counts_duplicate_local_links_and_ignores_external_mail_and_anchor_only_links",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "local-link-scope-green.json",
+      "bytes": 2383,
+      "sha256": "aa6458ff52504252467f02e7e911413532b0516afca5ce21e55602b09bdc54fc",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "local-link-scope-red.json",
+      "bytes": 1615,
+      "sha256": "28411b19acc4274a30897027980edc82474778efad8fbc8d16c363596c3a6080",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_counts_duplicate_local_links_and_ignores_external_mail_and_anchor_only_links",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "markdown-scanning-green.json",
+      "bytes": 3428,
+      "sha256": "22dab8c72a4118a41f6ab0c17b81cae486dec8163cc4c712677e2db92f5e6d0b",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "markdown-scanning-red.json",
+      "bytes": 2774,
+      "sha256": "b43605e9a78ad979a747e197b17ffde20b0d1a6301790a003fbe97eb8562a3d0",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_cli_link_scanning_handles_unclosed_brackets_within_bounded_time",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "member-paths-green.json",
+      "bytes": 1333,
+      "sha256": "de92c878abd40a8fd08c8067dd00313238ba4467a499297879ad4c2d4dead372",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "member-paths-red.json",
+      "bytes": 11518,
+      "sha256": "ab03c18fd72112d856eda6da127d11ec989721b9ee243a3c14f3937ae0ad7bbd",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_rejects_dangerous_member_paths_even_when_fully_declared",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "member-set-green.json",
+      "bytes": 860,
+      "sha256": "d7981698e5e17fb14f443c4a9c80c3aadce206a7c3866479a57154497f309ec1",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "member-set-red.json",
+      "bytes": 10206,
+      "sha256": "ded5ee4ad45276646b15849536d28e7bceb3376b090df3cff681b0168b4909b5",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_rejects_missing_or_extra_zip_members_even_with_updated_archive_hash",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "missing-guide-green.json",
+      "bytes": 2188,
+      "sha256": "e9521b00a8fe144ab6d5db0a7b610d9c04f749aecd7f381e9ffec0373911743c",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "missing-guide-red.json",
+      "bytes": 1082,
+      "sha256": "4757fff73233cad0e74a4726fc352b4a9439916c7b434d90973e850c17db0f63",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_rejects_consistently_declared_link_to_missing_guide",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "nul-member-green.json",
+      "bytes": 3259,
+      "sha256": "81649d753789351dba605ac390aa3ce793f81181e08d7081ad132cc4f7afb408",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "nul-member-red.json",
+      "bytes": 1058,
+      "sha256": "9027844aeb89a1cac34d7b3b92ef33fabf11e028819a0304a7f4f007f234d315",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_rejects_zip_names_that_zipfile_truncates_at_nul",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "resource-limits-green.json",
+      "bytes": 2556,
+      "sha256": "a5ef91449aa09a1e10e90eb42b57dabc53a9bc62aa481b05def5149984405c27",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "resource-limits-red.json",
+      "bytes": 5111,
+      "sha256": "6f445810edb2670d7a49ff62f59cbbe3c4b25403d256df5c2ce9af5e244ac31c",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_enforces_manifest_compressed_member_total_and_member_count_limits",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "safe-errors-green.json",
+      "bytes": 2707,
+      "sha256": "e9e956c9801dbbecb280792e80d7b65e7033e308c3da954c6bd7e0f6683b0e19",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "safe-errors-red.json",
+      "bytes": 3271,
+      "sha256": "77a566d3cf652d42b498aa603107a9d12e2876a38651a1fbc95eb3f69eec6849",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_cli_reports_malformed_inputs_with_one_safe_fixed_error",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "small-text-crc-before-correction.json",
+      "bytes": 436,
+      "sha256": "a97e1af8825bf937ec82a7ce54079f1739126717cda005eab0eaf99c87f2b103",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_rejects_incorrect_crc_for_small_ordinary_text",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "small-text-declared-empty-green.json",
+      "bytes": 493,
+      "sha256": "4dcb6135acb66add1127e9e4a469777d26b715cf33460d33ce296a0b7b25fe5f",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_cli_rejects_small_text_whose_zip_metadata_declares_empty_content",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "small-text-declared-empty-red.json",
+      "bytes": 1447,
+      "sha256": "5c9cb22841cad3088244b81d3d53f7fb7ffe69c341c9c1a73b301d9bb46f8de5",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_cli_rejects_small_text_whose_zip_metadata_declares_empty_content",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "strict-json-green.json",
+      "bytes": 1613,
+      "sha256": "fe5892c99f87e14444b5c6cc001393192a6ffde90d5f98d20edf97b8471e272d",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "strict-json-red.json",
+      "bytes": 5493,
+      "sha256": "fd345b5baf0c9683202e0a8829633ac7ef710b740cfc350b1498880686d21f74",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_rejects_duplicate_json_fields_and_nonfinite_constants",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "symlink-inputs-green.json",
+      "bytes": 2844,
+      "sha256": "62021a176a961027aacd88fcd2b88af632044db0c7262cdf9df5203cd36724c4",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "symlink-inputs-red.json",
+      "bytes": 2657,
+      "sha256": "3f119c9729cc9af72c903fc0a030ae77b05e4b7f441970acb1b16cb200449511",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_cli_rejects_symlink_record_archive_or_directory",
+        "-v"
+      ],
+      "exit_code": 1
+    },
+    {
+      "file": "title-compatibility-before-correction.json",
+      "bytes": 451,
+      "sha256": "1f9ad86e2a1ba5eb05370ff17518219f91359d2c236a71e0facf1b85b7fa0ee0",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_preserves_inline_destinations_with_optional_titles",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "title-whitespace-green.json",
+      "bytes": 514,
+      "sha256": "402c8a4083b478aaef84967178c5c1f7338f34c6ef7efc98fc5528e282d24754",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_cli_link_scanning_handles_unclosed_title_whitespace_within_bounded_time",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "file": "title-whitespace-red.json",
+      "bytes": 2828,
+      "sha256": "8ffbe8e3e68878516b50c02be106dce050586ccdfb087468a5384fe464765a2b",
+      "argv": [
+        "python3",
+        "scripts/test_sk_e06_layout.py",
+        "LayoutTests.test_cli_link_scanning_handles_unclosed_title_whitespace_within_bounded_time",
+        "-v"
+      ],
+      "exit_code": 1
+    }
+  ],
+  "correction_commit": "bff3371679bb5ea2edf28e7930a0a6c853f0825c",
+  "content_integrity_correction_commit": "9597c4c38bc22c03ec19ac880e6e1803ef219bb0"
+}

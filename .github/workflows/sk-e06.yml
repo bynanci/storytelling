@@ -10,6 +10,11 @@ on:
       - 'docs/validation/sk-e06-packet/**'
       - 'scripts/sk_e06_packet.py'
       - 'scripts/test_sk_e06_packet.py'
+      - 'scripts/sk_e06_layout.py'
+      - 'scripts/test_sk_e06_layout.py'
+      - 'docs/research/evaluations/sk-e06-runs-2026-11-17/future-run-*'
+      - 'docs/validation/sk-e06-layout-preflight.md'
+      - 'docs/validation/sk-e06-layout-preflight/**'
   push:
     branches: [main]
     paths:
@@ -20,6 +25,11 @@ on:
       - 'docs/validation/sk-e06-packet/**'
       - 'scripts/sk_e06_packet.py'
       - 'scripts/test_sk_e06_packet.py'
+      - 'scripts/sk_e06_layout.py'
+      - 'scripts/test_sk_e06_layout.py'
+      - 'docs/research/evaluations/sk-e06-runs-2026-11-17/future-run-*'
+      - 'docs/validation/sk-e06-layout-preflight.md'
+      - 'docs/validation/sk-e06-layout-preflight/**'
 
 permissions:
   contents: read
@@ -37,3 +47,5 @@ jobs:
           python-version: '3.12'
       - name: Check reference packet and negative integrity regressions (no model call)
         run: python scripts/test_sk_e06_packet.py
+      - name: Check prospective Skill layout and rejection regressions (no dispatch)
+        run: python scripts/test_sk_e06_layout.py

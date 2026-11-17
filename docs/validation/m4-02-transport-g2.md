@@ -136,3 +136,31 @@ for item in json.loads((root / 'artifact-index.json').read_bytes())['files']:
 print('23 archived artifact byte identities match; transport runtime/human/Host: 0')
 PY
 ```
+
+## Base synchronization after PR #152 · 2026-11-17
+
+Main advanced to `26602d37d849d06ceac1d4a09f7ca19d2949c990` after the initial
+G2 candidate. GitHub reported the Draft as conflicting; both branches had
+appended independent evidence paths to `.gitattributes`. Preserve both rules.
+The [static replay](../proposals/m4-02-readonly-transport/verification.md) now
+distinguishes that scope base from the original pinned source base `62541d9`.
+
+The [append-only synchronization receipt](m4-02-transport-g2/base-sync-checks.json)
+records five passing precommit commands, exact raw UTF-8 stdout/stderr and their
+byte hashes, plus the two replay sources. It rechecked three schemas, all 21
+authored example hashes, 17 structural labels, 13 source identities and 64
+unexecuted cases; the unchanged proposal files and original 23 transport / 33
+merged layout receipts; repository checks; 41 offline packet/layout tests;
+and whitespace. These checks ran on the merged working tree. Exact-head hosted
+CI belongs on the updated Draft PR after submission.
+
+The protocol, types, schemas, examples, cases and historical 23-artifact index
+remain byte-identical to candidate `c477bf9`. This is conflict maintenance,
+not revised contract semantics, runtime RED/GREEN or G2 adoption. Transport
+runtime cases, human and Host observations remain zero. Draft remains pending;
+no G3 implementation, product authority or release decision is inferred.
+
+main 更新後，兩邊各自在 `.gitattributes` 新增原始證據路徑，造成衝突。
+本次保留兩組規則，並將 PR 範圍基準與原始來源基準分開。新增收據記錄
+五個成功命令及 41 項唯讀測試；原契約、範例、待實作案例與歷史收據不變。
+這次是同步修復，完整 G2 仍待採納，沒有新增 transport、真人或 Host 成果。
