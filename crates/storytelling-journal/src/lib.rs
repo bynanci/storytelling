@@ -804,12 +804,19 @@ impl Journal {
             ReadbackResult::Ambiguous => (OperationState::OutcomeUnknown, "outcome_unknown"),
             ReadbackResult::Partial => (OperationState::PartialObserved, "partial_observed"),
         };
-        // A response can share the unknown state and evidence digest, but the
-        // first readback must still persist its own receipt and consume its budget.
-        if stored.readback_count > 0
-            && stored.state == state_text
-            && stored.evidence_sha256.as_deref() == Some(evidence_sha256)
-        {
+        // A previously consumed readback must not replace newer evidence, even
+        // after reopen or an intervening observation. Responses are a distinct
+        // receipt kind; their digest alone cannot suppress the first readback.
+        let already_recorded: bool = transaction
+            .query_row(
+                "SELECT EXISTS(SELECT 1 FROM journal_events
+                 WHERE operation_id = ?1 AND attempt_id = ?2
+                   AND kind = 'readback_recorded' AND evidence_sha256 = ?3)",
+                params![lease.operation_id, i64::from(attempt_id), evidence_sha256],
+                |row| row.get(0),
+            )
+            .map_err(map_sqlite)?;
+        if already_recorded {
             let snapshot = snapshot_from_stored(&operation)?;
             transaction.commit().map_err(map_sqlite)?;
             return Ok(snapshot);

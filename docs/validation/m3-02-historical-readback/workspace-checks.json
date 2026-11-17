@@ -1,0 +1,125 @@
+{
+  "source_commit": "4dee6e88d2adb1cf4c3147340f5aa79f674e2e69",
+  "date_utc": "2026-11-17T08:45:33.116642+00:00",
+  "cargo_target_owner": "storytelling-journal-replay-fix-20261117 only; initially absent before first RED build",
+  "checks": [
+    {
+      "command": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "exit": 0,
+      "log": "check-00.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--locked"
+      ],
+      "exit": 0,
+      "log": "check-01.log",
+      "sha256": "a22df0cec5dd55ef7130bfa336a5f8e0861ebb79dba4bb563b0c0977cbda15d3",
+      "rust_counts": {
+        "passed": 319,
+        "failed": 0,
+        "ignored": 3
+      }
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--all-features",
+        "--locked"
+      ],
+      "exit": 0,
+      "log": "check-02.log",
+      "sha256": "7b91402da870f06cdda9c216366f0b4f4f74b31cfaa22f8241c0ad8097f97947",
+      "rust_counts": {
+        "passed": 338,
+        "failed": 0,
+        "ignored": 3
+      }
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--release",
+        "--locked"
+      ],
+      "exit": 0,
+      "log": "check-03.log",
+      "sha256": "a04c43b063969f9c9a525107dfc38b2d1a7d70591c29b5e9e46eb25dca628807",
+      "rust_counts": {
+        "passed": 319,
+        "failed": 0,
+        "ignored": 3
+      }
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--all-features",
+        "--release",
+        "--locked"
+      ],
+      "exit": 0,
+      "log": "check-04.log",
+      "sha256": "0649c3e6247ac98a4c0e754c8fccb115d11c6885393256a9c7c83311acc466bf",
+      "rust_counts": {
+        "passed": 338,
+        "failed": 0,
+        "ignored": 3
+      }
+    },
+    {
+      "command": [
+        "cargo",
+        "clippy",
+        "--workspace",
+        "--all-targets",
+        "--all-features",
+        "--locked",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit": 0,
+      "log": "check-05.log",
+      "sha256": "d512b6dddb3d85987fee83bfceb5115512de4f9e7354fba87d349e8eb2c86e5c"
+    },
+    {
+      "command": [
+        "cargo",
+        "doc",
+        "--workspace",
+        "--all-features",
+        "--no-deps",
+        "--locked"
+      ],
+      "exit": 0,
+      "log": "check-06.log",
+      "sha256": "f0c15570e95c9986454e243a9c842d23ff7c8b1d67710016b2025b7d420bd9dc"
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/check_repo.py"
+      ],
+      "exit": 0,
+      "log": "check-07.log",
+      "sha256": "728bbfaf33cce26d9fbaf87b18bd5a323ffebd1fb3d212369faab1c56d548238"
+    }
+  ]
+}

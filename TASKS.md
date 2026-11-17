@@ -115,6 +115,8 @@ One PR owns a public schema or time contract change at a time. Adapters and inte
 
 ## Accepted lifecycle
 
+- [x] **M3-JL02/JL04/JL06 historical readback maintenance.** [Observed RED/GREEN](docs/validation/m3-02-historical-readback.md) reproduces old NotApplied evidence reopening retry after a newer ambiguous observation. Kind/operation/attempt-scoped historical receipt idempotency preserves the current snapshot and readback budget; 17 journal tests pass. This is a bounded no-Host correction, with final-head hosted checks recorded on the PR; production authority and #105 recovery remain pending.
+
 - [x] **M3-JL02/M3-JL06 maintenance.** The [first-readback receipt correction](docs/validation/m3-02-readback-receipt-collision.md) merged in [PR #137](https://github.com/bynanci/storytelling/pull/137) as `5bbe80d`, with observed RED/GREEN and all six final-head and post-merge CI jobs passed. This completes the receipt-collision maintenance scope and changes no execution authority.
 
 - [x] **M3-RB07 / N-R10-06A file-input maintenance.** [PR #139](https://github.com/bynanci/storytelling/pull/139) merged as `e2934c2` after all six final-head CI jobs passed. [Static nonregular-file rejection and test-discovery compatibility](docs/validation/cli-file-input.md) are verified; the pathname-replacement race remains documented, and C/media, author and host acceptance remain separate.

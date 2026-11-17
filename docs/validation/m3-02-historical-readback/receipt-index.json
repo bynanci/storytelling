@@ -1,0 +1,31 @@
+{
+  "base": "91bf8f80139f59c0406340eb3565d296bd562931",
+  "test_first_commit": "c55d5b21d41ea3e47ccc606a066c9a302a4143c0",
+  "implementation_commit": "4dee6e88d2adb1cf4c3147340f5aa79f674e2e69",
+  "red": {
+    "exit": 101,
+    "passed": 14,
+    "failed": 3,
+    "unsafe_observation": "older evidence reopened retry: Ok(2)"
+  },
+  "green": {
+    "exit": 0,
+    "passed": 17,
+    "failed": 0
+  },
+  "new_tests": 4,
+  "newer_readback_combinations": 8,
+  "evidence_kind": "synthetic_sqlite_state_replay_and_AI_review",
+  "human_participants": 0,
+  "host_observations": 0,
+  "maintainer_g2_acceptance": null,
+  "release_decision": null,
+  "schema_change": false,
+  "historical_result_subtype_verified": false,
+  "receipts_sha256": {
+    "red.log": "11bb0c4a0b5e060b528c8bf4adf1eef6cf55687486df5181ca6d3a0e50512aa4",
+    "green.log": "da2787d4f6f4fee849527e50f1347bf5641341b0f26b24f405fc6da268bd05ca",
+    "independent-ai-review.md": "251b2273c651c5a671582b625f723ee9b0af9a7147bdcd8b21ab6c3e20650c2f",
+    "workspace-checks.json": "34efcb58dab5d3392fe34d772e4e38cc6f42cfcb158bf38324a5affbc4cdb464"
+  }
+}

@@ -41,3 +41,7 @@ tests/fixtures/openfilm/finite-v1/video-trim.json -text
 /docs/validation/n10-06a-roundtable-2026-11-17/** text eol=lf
 /docs/validation/n10-06a-roundtable-2026-11-17/*.log -whitespace
 /examples/evaluation/n10-06a-rehearsal/** text eol=lf
+
+# Preserve exact historical-readback regression receipts across checkouts.
+/docs/validation/m3-02-historical-readback/** text eol=lf
+/docs/validation/m3-02-historical-readback/*.log -whitespace
