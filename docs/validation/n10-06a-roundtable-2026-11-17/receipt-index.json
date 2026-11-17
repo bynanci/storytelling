@@ -41,8 +41,30 @@
   "g2_acceptance": null,
   "g5_release": null,
   "artifact_sha256": {
-    "machine-replay.json": "785cbc6745f9a8c04bd3edd796213b82a9cff1cf9adda3b5604b86e3459a7c94",
+    "machine-replay.json": "2c85d8a3f4228e3871753879178157ea5918508d25b888860b26891c502daedd",
+    "machine-replay.initial.json": "785cbc6745f9a8c04bd3edd796213b82a9cff1cf9adda3b5604b86e3459a7c94",
     "capture-red.log": "900051ccdf1369738fa12807bbe302f5a4c0df62764dd45456eba20f9882aa89",
-    "capture-green.log": "9ab68aabe67790574bfaa65d7fc32db012bd9ee46a52efa8980182807315dbfe"
+    "capture-green.log": "9ab68aabe67790574bfaa65d7fc32db012bd9ee46a52efa8980182807315dbfe",
+    "count-red.log": "41d1098c7573016d9cecdbfc257256c950c575b624bedf89160ae49e953378ff",
+    "count-green.log": "95ab3ab7f7c8e3875ab168641f413d218ca3f5522e7aee1c6ec0cf763a19c56d"
+  },
+  "review_fix": {
+    "kind": "one-agent self-review",
+    "problem": "a failure during the first case reported the planned eight as the case count",
+    "red": {
+      "exit": 1,
+      "passed": 3,
+      "failed": 1,
+      "assertion": "8 != 1"
+    },
+    "green": {
+      "exit": 0,
+      "passed": 4,
+      "failed": 0
+    },
+    "new_meaning": "planned_case_count stays 8; case_count counts actually attempted rows, including failed rows",
+    "initial_successful_capture": "machine-replay.initial.json",
+    "primary_capture": "machine-replay.json",
+    "scope": "instrumentation only; primary eight native cases unchanged"
   }
 }

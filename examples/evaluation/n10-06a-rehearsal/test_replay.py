@@ -87,6 +87,8 @@ class RehearsalCaptureTests(unittest.TestCase):
             self.assertEqual(report['status'], 'failed')
             self.assertEqual(report['human_participants'], 0)
             self.assertEqual(len(report['cases']), 1)
+            self.assertEqual(report['case_count'], 1)
+            self.assertEqual(report['planned_case_count'], 8)
             self.assertNotEqual(report['cases'][0]['calls'][0]['exit_code'], 0)
             self.assertTrue(report['cases'][0]['calls'][0]['stderr_base64'])
 

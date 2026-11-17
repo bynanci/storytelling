@@ -93,13 +93,13 @@ def replay(cli, source_commit):
               'human_participants': 0, 'human_completion_rate': None, 'author_elapsed_seconds': None,
               'host_observations': 0, 'maintainer_acceptance': None,
               'source_commit_supplied': source_commit, 'source_build_binding_verified_by_tool': False,
-              'script_sha256': sha(Path(__file__).read_bytes()), 'cases': [], 'cli_calls': 0}
+              'script_sha256': sha(Path(__file__).read_bytes()), 'cases': [], 'cli_calls': 0,
+              'planned_case_count': 8}
     try:
         binary = cli.read_bytes()
         report['binary_sha256'] = sha(binary)
         sources = {name: (FIXTURES / name).read_bytes() for name in NAMES}
         report['fixture_sha256'] = {name: sha(data) for name, data in sources.items()}
-        report['case_count'] = 8
         for case_id, value, code, path in cases(sources):
             data = encode(value)
             row = {'case_id': case_id, 'input_utf8': data.decode('utf-8'), 'input_sha256': sha(data),
@@ -146,6 +146,7 @@ def replay(cli, source_commit):
         report['status'] = 'passed'
     except (OSError, ValueError, KeyError, TypeError) as error:
         report['failure'] = str(error) if isinstance(error, EvidenceMismatch) else 'capture_or_input_error'
+    report['case_count'] = len(report['cases'])
     return report
 
 
