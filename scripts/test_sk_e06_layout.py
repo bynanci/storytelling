@@ -423,6 +423,37 @@ class LayoutTests(unittest.TestCase):
             self.assertEqual(json.loads(process.stdout)["local_link_count"], 0)
 
 
+    def test_cli_link_scanning_handles_unclosed_title_whitespace_within_bounded_time(self):
+        # Overlapping whitespace/title repetition must not rescan the trailing
+        # spaces quadratically when this incomplete link has no closing ')'.
+        text = b"[x](target" + b" " * 200000
+        record, raw = self.rewritten_archive([("skills/storytelling/SKILL.md", text)], links=[])
+        with tempfile.TemporaryDirectory() as temp:
+            directory = Path(temp)
+            (directory / "future-run-layout-v2.json").write_bytes(self.encoded(record))
+            (directory / "future-run-skill-layout-v2.zip").write_bytes(raw)
+            try:
+                process = subprocess.run([sys.executable, str(CLI), "--layout-preflight", temp],
+                                         capture_output=True, text=True, timeout=2)
+            except subprocess.TimeoutExpired:
+                self.fail("link scanning repeatedly rescanned unclosed title whitespace")
+            self.assertEqual(process.returncode, 0, process.stderr)
+            self.assertEqual(json.loads(process.stdout)["local_link_count"], 0)
+
+
+    def test_preserves_inline_destinations_with_optional_titles(self):
+        # The scanning correction must keep both ordinary destinations and the
+        # title forms already supported by the v2 inline-link scope.
+        text = (b'[plain](guide.md) [double](guide.md "Readable title")\n'
+                b"[single](guide.md\t'Single quoted title') [space](guide.md   )\n")
+        link = {"source": "skills/storytelling/SKILL.md", "target": "guide.md",
+                "resolved": "skills/storytelling/guide.md"}
+        record, raw = self.rewritten_archive([
+            ("skills/storytelling/SKILL.md", text), ("skills/storytelling/guide.md", b"guide\n"),
+        ], links=[copy.deepcopy(link) for _ in range(4)])
+        self.assertEqual(validate_layout(self.encoded(record), raw)["local_link_count"], 4)
+
+
     def test_snapshot_validation_uses_memory_and_cli_leaves_input_tree_unchanged(self):
         # This is a regression for the already passing no-extraction behavior:
         # opening/extracting/executing a member would fail or alter this tree.

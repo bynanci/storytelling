@@ -132,6 +132,43 @@ def _record(raw):
     return record
 
 
+def _inline_targets(text):
+    """Scan the supported inline-link subset once, without backtracking."""
+    state = "search"
+    start = end = 0
+    for index, character in enumerate(text):
+        if character == "[":
+            state = "label"
+        elif state == "label":
+            if character == "]":
+                state = "after_label"
+            elif character in "\r\n":
+                state = "search"
+        elif state == "after_label":
+            state = "start" if character == "(" else "search"
+        elif state == "start":
+            if character not in "()]" and not character.isspace():
+                start = index
+                state = "target"
+            else:
+                state = "search"
+        elif state == "target":
+            if character == ")":
+                yield text[start:index]
+                state = "search"
+            elif character in " \t":
+                end = index
+                state = "title"
+            elif character in "(]" or character.isspace():
+                state = "search"
+        elif state == "title":
+            if character == ")":
+                yield text[start:end]
+                state = "search"
+            elif character in "(]\r\n":
+                state = "search"
+
+
 def _validate_layout(record_bytes, archive_bytes):
     _require(type(archive_bytes) is bytes and len(archive_bytes) <= MAX_ARCHIVE_BYTES)
     record = _record(record_bytes)
@@ -163,8 +200,7 @@ def _validate_layout(record_bytes, archive_bytes):
             _require(hashlib.sha1(b"blob " + str(len(raw)).encode("ascii") + b"\0" + raw).hexdigest() == item["git_blob"])
             if member.filename.endswith(".md"):
                 text = raw.decode("utf-8")
-                for match in re.finditer(r"\[[^\[\]\r\n]*\]\(([^()\[\]\s]+)(?:[ \t]+[^()\[\]\r\n]*)?\)", text):
-                    target = match.group(1)
+                for target in _inline_targets(text):
                     if not target.startswith(("#", "//")) and not re.match(r"[A-Za-z][A-Za-z0-9+.-]*:", target):
                         resolved = posixpath.normpath(posixpath.join(posixpath.dirname(member.filename), target.split("#")[0]))
                         _require(resolved in declared)
