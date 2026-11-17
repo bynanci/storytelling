@@ -1,0 +1,113 @@
+{
+  "evidence_kind": "synthetic_evaluation_oracle_regression",
+  "base_commit": "91bf8f80139f59c0406340eb3565d296bd562931",
+  "native_binary_sha256": "161bfeb24c7072392cf6c6fe9b61c851486fa6341416e51b1f74521e46d9735d",
+  "native_build_source_supplied": "06164f19a8b3614f438dd2f97ef810c94e64c3d3",
+  "source_build_binding_verified_by_tool": false,
+  "new_cargo_build": false,
+  "original_pr145_artifacts_unchanged_from_base": true,
+  "fixtures_and_author_materials_unchanged_from_base": true,
+  "baseline_original_tests": {
+    "methods": 4,
+    "passed": 4,
+    "failed": 0
+  },
+  "red": {
+    "methods": 7,
+    "original_methods_passed": 4,
+    "regression_methods_with_failed_subtests": 3,
+    "failed_subtests": 18,
+    "errors": 0
+  },
+  "green": {
+    "methods": 7,
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0,
+    "fault_scenarios": 18
+  },
+  "fault_scenarios": {
+    "mapped_endpoints": 12,
+    "fixed_references": 2,
+    "unresolved_reasons": 4
+  },
+  "captures": {
+    "baseline-false-pass.json": {
+      "fault_injected": true,
+      "status": "passed",
+      "cases": 8,
+      "calls": 37
+    },
+    "mutant-rejected.json": {
+      "fault_injected": true,
+      "status": "failed",
+      "cases": 1,
+      "calls": 3
+    },
+    "native-green.json": {
+      "fault_injected": false,
+      "status": "passed",
+      "cases": 8,
+      "calls": 37
+    }
+  },
+  "native_source_defect_observed": false,
+  "locally_observed_platform": "Linux",
+  "human_participants": 0,
+  "host_observations": 0,
+  "ethics_acceptance": null,
+  "g2_acceptance": null,
+  "artifact_sha256": {
+    "baseline-false-pass.json": "8002eb2974712ed7bccc18411ce6f2da48d70a9c3efb285b651fef9b1e4d9e89",
+    "baseline-false-pass.log": "f8c8aca6aa780567b0cb89e34159b17fa3101cdd99a6a7d127c5420afa8bbd4e",
+    "baseline-tests.log": "3c6a06d877bf3108f87b3105c3c831dccb89aa6a11397a4c5f316cb07a52b4ef",
+    "diff-check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "discovery-green.log": "5c460e22a66bce61e3b5f1b30ec1921f933721a8e9ad8c4cdcbb6e003d73c0aa",
+    "discovery-red.log": "8fbe61eb16c30d24da6e8b6f6da37f9fc0bf8a4acbae5cb81ae5ea63b7e75b88",
+    "discovery-red.log.gz": "1400e75debb7b2f0cf1faa00257ea48343cd743ce4b5839c57c8f7ec2a119c04",
+    "mutant-rejected.json": "27c7a09ffa3ef3910710cf0e3218db5e7f5a988f7b1fe6f39a60fce0232d4cd1",
+    "mutant-rejected.log": "d5f544a22366a75a7e6d538d7e100f4ac4e1b18e85ecfc7aa55660429440acb3",
+    "native-green.json": "d8d7d8ded1d988705607434e6be869349d8224ddee4505e720f2688e6bb9c889",
+    "native-green.log": "f8c8aca6aa780567b0cb89e34159b17fa3101cdd99a6a7d127c5420afa8bbd4e",
+    "oracle-final-green.log": "dead5f6cc8d0cef0034ee419ce40d78883108f13324573f225fd6dc25f07e0bb",
+    "oracle-green.log": "2d1b33b2d7323eb1289d2bf03afdb7ff36223098af3370ae8074895f707f9a51",
+    "oracle-red-portable.log": "3fcd1f34cccc77ff4bc0c3e01dde769a0f925837bda618763ae275ed374c951a",
+    "oracle-red-portable.log.gz": "b13a8e5079ce1df11b895fd62bf1f455db5a87d84fb59c44c231bf7f0636ed84",
+    "range-fault.json": "d7d0e57002ff3cb3b2266e01af99b05dab71f60490eb0a91c59abc6486deba79",
+    "repo-check.log": "728bbfaf33cce26d9fbaf87b18bd5a323ffebd1fb3d212369faab1c56d548238",
+    "repo-final-check.log": "728bbfaf33cce26d9fbaf87b18bd5a323ffebd1fb3d212369faab1c56d548238"
+  },
+  "script_sha256": {
+    "replay.py": "1047aee084c4ed599406344250dcacb8d9863b6cc0b953ea9cb34d07ae53bdb1",
+    "test_replay.py": "7f75f7bed2fdb7889ce77e077cbd89f1a5a1ea02378de241c2b9515d1efb3a2e",
+    "mutant_cli.py": "adcba0512e23e784ba81051d8fbf17dd46e4bfcf8cad141ee302417d9e168d2d"
+  },
+  "discovery": {
+    "methods": 7,
+    "passed": 3,
+    "skipped_native_methods": 4,
+    "failed": 0,
+    "separate_from_required_native_run": true,
+    "pre_fix_failures": 19,
+    "red_capture": "full reproduction of the pre-guard driver argument parsing"
+  },
+  "checks": {
+    "repository_check_exit": 0,
+    "git_diff_check_exit": 0,
+    "python_ast_parse": "passed",
+    "rust_checks": "not_run_no_Rust_changes_Cargo_disallowed",
+    "hosted_ci": "not_observed_for_this_local_commit"
+  },
+  "raw_red_logs": {
+    "discovery-red.log": {
+      "raw_gzip": "discovery-red.log.gz",
+      "uncompressed_sha256": "db1315c2338fd82a963e2264988de79b210dfe4d89c7c6dc23d214c5cf1bd1d2",
+      "readable_view": "trailing spaces removed only"
+    },
+    "oracle-red-portable.log": {
+      "raw_gzip": "oracle-red-portable.log.gz",
+      "uncompressed_sha256": "7c2d47a96db0eff056abc25d7438d1f4dc791461fd3fd9369bcdcf7ab44d27a2",
+      "readable_view": "trailing spaces removed only"
+    }
+  }
+}

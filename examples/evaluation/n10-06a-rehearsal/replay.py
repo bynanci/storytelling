@@ -5,6 +5,7 @@ import argparse
 import base64
 import copy
 from datetime import datetime, timezone
+from fractions import Fraction
 import hashlib
 import json
 from pathlib import Path
@@ -71,6 +72,31 @@ def cases(sources):
     return rows
 
 
+def check_canonical_declarations(case_id, coverage):
+    """Independent exact arithmetic for this fixed synthetic protocol."""
+    spans = {
+        'decimal-25': (Fraction('2.5'), Fraction('4.5')),
+        'decimal-01': (Fraction('0'), Fraction('0.1')),
+        'frames-30': (Fraction(75, 30), Fraction(135, 30)),
+        'frames-ntsc': (Fraction(0), 150 * Fraction(1001, 30000)),
+        'declaration-complete': (Fraction('2.5'), Fraction('4.5')),
+    }
+    start, end = spans[case_id]
+    refs = [{'unit_id': 'S02', 'revision': 1}, {'unit_id': 'S03', 'revision': 1}]
+    mapped = {'unit_ref': refs[0], 'status': 'mapped',
+              'asset_ref': {'asset_id': 'CLIP-01', 'revision': 1},
+              'source_range': {
+                  'start': {'numerator': str(start.numerator), 'denominator': str(start.denominator)},
+                  'end': {'numerator': str(end.numerator), 'denominator': str(end.denominator)}}}
+    second = {'unit_ref': refs[1], 'status': 'unresolved',
+              'reason': 'No video asset was selected for this unit.'}
+    if case_id == 'declaration-complete':
+        second = copy.deepcopy(mapped)
+        second['unit_ref'] = refs[1]
+    require(coverage['selected_unit_refs'] == refs and coverage['mappings'] == [mapped, second],
+            'wrong_canonical_declarations')
+
+
 def invoke(cli, args, directory, payload=None):
     start = time.perf_counter_ns()
     try:
@@ -133,6 +159,7 @@ def replay(cli, source_commit):
                     require(json.loads(emitted) == row['preview'], 'emit_error_changed')
                 else:
                     require(row['preview']['scope'] == 'declarations_only', 'verification_scope_widened')
+                    check_canonical_declarations(case_id, row['preview']['coverage'])
                     emitted = call(['draft-video-coverage-input', 'input.json', '--emit-v1'])
                     require(json.loads(emitted) == row['preview']['coverage'], 'emit_coverage_changed')
                     authority = call(['render-video-coverage', '-'], emitted)

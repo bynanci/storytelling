@@ -14,6 +14,8 @@ python3 examples/evaluation/n10-06a-rehearsal/replay.py --cli /tmp/n10-a-unique-
 
 Windows 請使用實際 `.exe` 與 Python 路徑。這些是重播命令，不是 Windows 真人操作紀錄。source SHA 是呼叫者宣告，工具不驗證其與 binary 的關係；另存建置收據。工具保存原始輸入、stdout／stderr base64、雜湊、退出碼與程序時間；舊收據不覆蓋、失敗不換成成功。只使用既有公開合成 fixture，不讀媒體、不呼叫宿主。37 次 CLI 呼叫不是 37 名參與者，程序耗時不能當作者耗時。
 
+PR #145 原有四項測試及歷史收據保留不變；目前共七個測試方法，另三項回歸涵蓋 18 種原生輸出故障注入。獨立精確算術 oracle 檢查每個有效 mapped 列的兩端點、固定單元參照及 unresolved 原因，並保留原有 V1 一致性檢查。[修正與 RED／GREEN 紀錄](../../../docs/validation/n10-06a-replay-oracle-2026-11-17.zh-TW.md)針對評估工具的誤判通過，沒有觀察到原生轉換錯誤。未指定 binary 的 discovery 會跳過原生測試；既有 CI 明確傳入 binary，七個方法必須全部通過且無跳過。
+
 若之後要真人操作，先由主持人／維護者同意觀察規程與隱私範圍。這是一名作者的非比較性可行性觀察；不是 N07 或 #112 Beta，不能估計比較省時。作者已被告知工具唯讀，第四題是在這個提示後檢查理解，不是無提示的首次理解測量。
 
 最短交接：
