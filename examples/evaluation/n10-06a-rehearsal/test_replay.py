@@ -34,7 +34,7 @@ class RehearsalCaptureTests(unittest.TestCase):
                                '--source-commit', source, '--output', str(output)],
                               capture_output=True, timeout=30)
 
-    def assert_mutant_rejected(self, case_id, fault):
+    def assert_mutant_rejected(self, case_id, fault, failure='wrong_canonical_declarations'):
         with tempfile.TemporaryDirectory() as tmp:
             directory = Path(tmp)
             config = {'source_range': VALID_INPUTS[case_id],
@@ -49,7 +49,7 @@ class RehearsalCaptureTests(unittest.TestCase):
             self.assertEqual(result.returncode, 1, result.stdout.decode(errors='replace'))
             report = json.loads(output.read_bytes())
             self.assertEqual(report['status'], 'failed')
-            self.assertEqual(report['failure'], 'wrong_canonical_declarations')
+            self.assertEqual(report['failure'], failure)
             self.assertEqual(report['cases'][-1]['case_id'], case_id)
             self.assertTrue(report['cases'][-1]['calls'][0]['stdout_base64'])
 
@@ -75,6 +75,23 @@ class RehearsalCaptureTests(unittest.TestCase):
             if case_id != 'declaration-complete':
                 with self.subTest(case=case_id):
                     self.assert_mutant_rejected(case_id, {'kind': 'unresolved_reason'})
+
+    @unittest.skipUnless(BINARY, 'explicit feature-enabled native binary required')
+    def test_preview_numeric_aliases_fail_typed_comparison(self):
+        faults = [
+            ('bool_selected_ref', ['coverage', 'selected_unit_refs', 0, 'revision'], True,
+             'wrong_canonical_declarations'),
+            ('float_mapping_ref', ['coverage', 'mappings', 0, 'unit_ref', 'revision'], 1.0,
+             'wrong_canonical_declarations'),
+            ('bool_catalog_revision', ['coverage', 'asset_catalog', 'revision'], True,
+             'emit_coverage_changed'),
+            ('numeric_validation_ready', ['validation', 'ready_for_planning'], 0,
+             'v1_result_changed'),
+        ]
+        for name, path, value, failure in faults:
+            with self.subTest(alias=name):
+                self.assert_mutant_rejected('decimal-25', {'kind': 'numeric_alias', 'path': path,
+                                                         'value': value, 'preview_only': True}, failure)
 
     @unittest.skipUnless(BINARY, 'explicit feature-enabled native binary required')
     def test_real_entry_captures_exact_cases_without_human_results(self):

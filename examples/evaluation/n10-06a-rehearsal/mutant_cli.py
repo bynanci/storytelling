@@ -10,6 +10,12 @@ import sys
 
 
 def change(document, fault):
+    if fault['kind'] == 'numeric_alias':
+        value = document
+        for key in fault['path'][:-1]:
+            value = value[key]
+        value[fault['path'][-1]] = fault['value']
+        return
     coverage = document.get('coverage', document)
     copies = [coverage]
     if 'validation' in document:
@@ -45,7 +51,8 @@ def main():
             source = json.loads(payload if payload is not None else (Path(directory) / args[1]).read_bytes())
             mappings = source['coverage']['mappings']
             if (mappings[0]['source_range'] == config['source_range']
-                    and mappings[1]['status'] == config['second_status']):
+                    and mappings[1]['status'] == config['second_status']
+                    and not (config['fault'].get('preview_only') and '--emit-v1' in args)):
                 document = json.loads(stdout)
                 change(document, config['fault'])
                 stdout = (json.dumps(document, separators=(',', ':'), sort_keys=True) + '\n').encode('utf-8')

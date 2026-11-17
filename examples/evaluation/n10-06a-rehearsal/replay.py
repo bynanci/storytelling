@@ -38,6 +38,12 @@ def encode(value):
     return (json.dumps(value, ensure_ascii=False, indent=2) + '\n').encode('utf-8')
 
 
+def same_json(left, right):
+    """Compare JSON values without Python's bool/int/float equality aliases."""
+    return (json.dumps(left, sort_keys=True, allow_nan=False)
+            == json.dumps(right, sort_keys=True, allow_nan=False))
+
+
 def cases(sources):
     seconds, frames, ntsc = [json.loads(sources[name]) for name in NAMES]
     rows = []
@@ -93,7 +99,8 @@ def check_canonical_declarations(case_id, coverage):
     if case_id == 'declaration-complete':
         second = copy.deepcopy(mapped)
         second['unit_ref'] = refs[1]
-    require(coverage['selected_unit_refs'] == refs and coverage['mappings'] == [mapped, second],
+    require(same_json(coverage['selected_unit_refs'], refs)
+            and same_json(coverage['mappings'], [mapped, second]),
             'wrong_canonical_declarations')
 
 
@@ -156,14 +163,14 @@ def replay(cli, source_commit):
                     require(error['code'] == code and error['path'] == path, 'wrong_error_identity')
                     require('coverage' not in row['preview'], 'invalid_input_emitted_coverage')
                     emitted = call(['draft-video-coverage-input', 'input.json', '--emit-v1'])
-                    require(json.loads(emitted) == row['preview'], 'emit_error_changed')
+                    require(same_json(json.loads(emitted), row['preview']), 'emit_error_changed')
                 else:
                     require(row['preview']['scope'] == 'declarations_only', 'verification_scope_widened')
                     check_canonical_declarations(case_id, row['preview']['coverage'])
                     emitted = call(['draft-video-coverage-input', 'input.json', '--emit-v1'])
-                    require(json.loads(emitted) == row['preview']['coverage'], 'emit_coverage_changed')
+                    require(same_json(json.loads(emitted), row['preview']['coverage']), 'emit_coverage_changed')
                     authority = call(['render-video-coverage', '-'], emitted)
-                    require(json.loads(authority) == row['preview']['validation'], 'v1_result_changed')
+                    require(same_json(json.loads(authority), row['preview']['validation']), 'v1_result_changed')
                     row['accepted_v1_result'] = json.loads(authority)
                 row['input_unchanged'] = source.read_bytes() == data
         report['binary_unchanged'] = sha(cli.read_bytes()) == report['binary_sha256']

@@ -1,0 +1,20 @@
+{
+  "source_range": {
+    "unit": "seconds",
+    "start": "2.5",
+    "end": "4.5"
+  },
+  "second_status": "unresolved",
+  "fault": {
+    "kind": "numeric_alias",
+    "path": [
+      "coverage",
+      "mappings",
+      0,
+      "unit_ref",
+      "revision"
+    ],
+    "value": 1.0,
+    "preview_only": true
+  }
+}
