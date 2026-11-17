@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: MIT -->
-# ADR 0013 · Read-only consumer facade V1 candidate
+# ADR 0013 · Read-only consumer facade V1
 
-- **Status:** G2 candidate adopted by the requesting maintainer on 2026-11-17 for a focused Draft implementation; final implementation/consumer acceptance and G5 remain separate. See the [actual decision](../validation/m4-01-sdk-g2-decision.md) and [implementation evidence](../validation/m4-01-readonly-sdk.md).
+- **Status:** accepted for the eight-operation read-only Rust V1 engineering boundary on 2026-11-17; PR #149 merged as `9d15382` and #107 completed. [Original G2 adoption](../validation/m4-01-sdk-g2-decision.md), [implementation evidence](../validation/m4-01-readonly-sdk.md), [final acceptance](../validation/sdk-acceptance-2026-11-17.md). Production authority/Host and G5 remain separate.
 - **Task / requirement:** M4-01 / M4-R01, [Issue #107](https://github.com/bynanci/storytelling/issues/107).
 - **Design baseline:** `52dc6c315f7b3d20693f3c51e052509997ab791b`, checked 2026-11-14 UTC.
 - **Dependency:** #107 explicitly permits read-only design before #106. Execution/recovery remains unavailable until the separate #103–#106 gates are accepted.
@@ -26,9 +26,9 @@ The [candidate API and usage guide](../proposals/m4-01-readonly-sdk/README.md),
 G2 questions. The [machine-readable case inventory](../proposals/m4-01-readonly-sdk/golden-plan.json)
 is a test plan, not an SDK result or a new runtime contract.
 
-## Adopted candidate surface and exact implementation reuse
+## Accepted surface and exact implementation reuse
 
-The names below are adopted for the read-only Draft candidate. Functions accept the
+The names below are accepted for the eight-operation read-only V1 surface. Functions accept the
 same raw bytes as the named existing backend. They delegate once, without
 pre-parsing, input serialization, default insertion, time normalization or
 altering the accepted diagnostic order. Result names are curated aliases or
@@ -94,8 +94,7 @@ envelopes and never enter an identity hash. Propose an opaque Rust-only
 serialization failure; do not expose parser prose or return empty details. The
 original `SdkErrorV1` still retains its source `code()` and `path()` so the
 encoding failure cannot replace or erase the domain rejection. The requesting maintainer adopted
-this fallible accessor and adapter-only code for Draft implementation; final
-implementation acceptance remains separate.
+this fallible accessor and adapter-only code for initial Draft implementation; the subsequent [engineering acceptance](../validation/sdk-acceptance-2026-11-17.md) completed that stage.
 
 The facade does not collapse results into a Boolean:
 
@@ -202,13 +201,11 @@ version/deprecation policy and golden parity plan on 2026-11-17. The [decision
 record](../validation/m4-01-sdk-g2-decision.md) preserves the actual reply, frozen
 candidate identity and authorization to implement an independent Draft PR.
 
-The Draft adds direct wrappers, observed missing-facade compile RED and runtime
+The implementation adds direct wrappers, observed missing-facade compile RED and runtime
 GREEN, independent-consumer checks, opacity/absent-execution doctests, caller-thread
 replay and unchanged CLI/digest regressions. [Actual evidence](../validation/m4-01-readonly-sdk.md)
 records source commits and local/hosted results, including the review-driven raw
 serializer-order regressions. The original design baseline had no runnable wrapper;
 it remains a historical source identity, not the current execution record.
 
-This adoption does not authorize merging this Draft, a stable SDK release,
-mutation/authority APIs, external Host acceptance or G5. #107 remains Open for
-final implementation/consumer acceptance. #103–#106 and #108 retain their scopes.
+The initial G2 adoption authorized a Draft, not merge or publication. The requester subsequently asked for follow-up acceptance and issue convergence; criterion-based engineering review and existing verified-merge authority led to PR #149 / `9d15382`, with all nine exact-head and post-merge jobs passing. #107 is completed for this read-only surface. This does not accept mutation/authority APIs, external Host behavior, human SDK usability or G5. #103–#106 and #108 retain their scopes.

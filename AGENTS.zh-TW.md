@@ -30,6 +30,7 @@
 | M2-01 ～ M2-03 | M2-01 限於既定的稽核。PR #22 驗收固定時間窗規劃器。PR #26 驗收指定範圍的上游執行比對。[規劃規格](docs/migration/FIXED_WINDOW_PLANNER_V1.md) · [比對規格](docs/migration/PLANNER_SHADOW_V1.md) · [比對紀錄](docs/migration/records/M2-03.md) |
 | M3-01/P1 | 使用者於 2026-11-08 指示審閱後合併。PR #32 已整合限定範圍的審閱綁定程式與 CLI。此範圍含執行比對、固定摘要向量及錯誤順序測試。[範圍與證據](docs/migration/M3-01-NEXT.md) |
 | M3-01/P2 | PR #44 已整合所選提案的唯讀 OTIO 審閱。維持已驗收的 P1 摘要。[規格](docs/migration/PLANNER_OTIO_REVIEW_V1.md) · [驗收紀錄](docs/migration/records/M3-01-P2.md) |
+| M4-R01／#107 | 八入口唯讀 Rust V1 工程範圍已驗收，由 PR #149／`9d15382` 合併。[最終驗收與剩餘門檻](docs/validation/sdk-acceptance-2026-11-17.zh-TW.md)保留逐條、fresh checks 與合併後 CI；#108 transport、M3 authority／Host、真人與 G5 各自獨立。 |
 
 P1 的[驗收紀錄](docs/migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md)包含 G2 簽署與歷史 RED 豁免。
 PR #42 合併後的檢查通過，#27 已按該範圍結案。

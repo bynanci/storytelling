@@ -1,6 +1,9 @@
 <!-- SPDX-License-Identifier: MIT -->
 # 驗證交付與待完成門檻 · 2026-11-17
 
+**歷史快照：**此紀錄早於 #149 驗收及 SK-E06 實際執行；目前狀態以[後續驗收／議題收斂](sdk-acceptance-2026-11-17.zh-TW.md)為準。原來源與當時 pending 文字保留，不回頭改寫成已知後果。
+
+
 本文件是 [Issue #114](https://github.com/bynanci/storytelling/issues/114) 產品化追蹤圖的最新狀態收據，依據 main `f77ccad6dc40affdd6f7b2541ae93ba88095665d`。核對時 GitHub 顯示零個 Open PR、十六個 Open Issue。本更新記錄已交付工程範圍及重啟阻擋任務所需證據，不代表接受契約、維護者決策、結束產品里程碑或授權發布。
 
 ## 新增已驗證交付

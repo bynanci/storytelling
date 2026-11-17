@@ -1,6 +1,9 @@
 <!-- SPDX-License-Identifier: MIT -->
 # M4-01 · 唯讀 Consumer SDK 設計
 
+**目前驗收：**#107 唯讀工程範圍已完成，PR #149 以 `9d15382` 合併，見[最終紀錄](../../validation/sdk-acceptance-2026-11-17.zh-TW.md)。以下初始 Draft 採納及準備狀態保留為歷史，沒有接受 mutation 或發布。
+
+
 [English](README.md) · 繁體中文 · [Issue #107](https://github.com/bynanci/storytelling/issues/107) · [ADR 0013](../../adr/0013-read-only-consumer-facade-v1.md)
 
 **2026-11-17 更新：**請求者已採納此候選並授權聚焦的 Draft 實作。見[原決定](../../validation/m4-01-sdk-g2-decision.md)、[目前 SDK 指南](../../SDK_CONSUMER_V1.zh-TW.md)與[實際 RED／GREEN](../../validation/m4-01-readonly-sdk.md)。以下保留原設計快照，pending／未執行表格是準備時狀態，不是目前執行紀錄。

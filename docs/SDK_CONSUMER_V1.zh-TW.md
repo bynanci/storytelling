@@ -3,7 +3,7 @@
 
 [English／完整 API 與界線](SDK_CONSUMER_V1.md) · [ADR 0013](adr/0013-read-only-consumer-facade-v1.md) · [G2 決定](validation/m4-01-sdk-g2-decision.md) · [驗證紀錄](validation/m4-01-readonly-sdk.md)
 
-已採納候選以既有 engine crate 的 `storytelling_engine::consumer_v1` 提供八個唯讀入口。本次是 Draft 實作，套件仍為 `0.1.0-dev.0`、不可發布；不代表穩定 SDK、正式執行權限或 Host 已驗收。
+既有 engine crate 的 `storytelling_engine::consumer_v1` 八個唯讀 Rust V1 入口已完成[工程驗收](validation/sdk-acceptance-2026-11-17.zh-TW.md)，由 [PR #149](https://github.com/bynanci/storytelling/pull/149) 以 `9d15382` 合併；#107 已在此範圍結案。套件仍為 `0.1.0-dev.0`、未發布；Rust facade、document／profile／compiler／package 版本分開，正式執行、Host 與 G5 保留自己的門檻。
 
 由 repo 根目錄，以 Rust 1.89.0 執行獨立範例：
 

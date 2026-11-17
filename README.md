@@ -121,6 +121,8 @@ Research-backed guidance is available as [14 editorial rules and six workflows](
 
 ## Quick start
 
+Rust integrators can use the accepted [eight-operation read-only V1 facade](docs/SDK_CONSUMER_V1.md) and standalone consumer example. [Engineering acceptance](docs/validation/sdk-acceptance-2026-11-17.md) is complete for this scope; TypeScript transport, production execution and publication retain their own gates.
+
 ### Optional Rust CLI
 
 The development version is `0.1.0-dev.0`. Build it from source with Rust 1.89.0. These examples run without an AI subscription, model API key, or video editor. Install [rustup](https://rustup.rs/). Then run these commands in a terminal.

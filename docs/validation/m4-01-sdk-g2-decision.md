@@ -27,3 +27,7 @@ SDK-G01–G10 retain the existing test plan. The first observation must be the a
 Use a separate Cargo target directory for this worktree. Run workspace default/all-feature debug/release, fmt, Clippy with warnings denied, rustdoc, repository checks, independent-consumer checks and final exact-head Linux/Windows/macOS CI. The external test/example consumer is outside workspace membership. New glue is independently written first-party MIT code; existing source-informed fixtures/components are referenced in place with their licenses/notices unchanged, without new OpenFilm code imports.
 
 The PR stays **Draft**, #107 stays **Open**, and final implementation review/consumer acceptance remains separate. #103–#106 authority/Host/recovery, #108 transport, #109 application, actual author trials and G5 retain their existing dependencies. This decision does not authorize any real project mutation, package release or merge of this Draft.
+
+## Subsequent acceptance (separate from this original decision)
+
+The later requester instruction 「幫我後續驗收 並收斂issues」 advanced the pending acceptance stage. Codex performed final engineering acceptance, marked #149 Ready, merged tested head `5bf480c` as `9d15382` under the existing verified-merge authority, checked all nine post-merge jobs and completed #107 for its read-only scope. See the [actual acceptance/action record](sdk-acceptance-2026-11-17.md). The original Draft-only G2 scope and reply above are preserved; they are not retroactively presented as a merge approval, human usability result, signature or G5 decision.

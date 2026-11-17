@@ -3,7 +3,9 @@
 
 [繁中使用指南](../SDK_CONSUMER_V1.zh-TW.md) · [English guide](../SDK_CONSUMER_V1.md) · [Actual G2 decision](m4-01-sdk-g2-decision.md) · [ADR 0013](../adr/0013-read-only-consumer-facade-v1.md) · [Issue #107](https://github.com/bynanci/storytelling/issues/107)
 
-Implementation base is `0b39c00354f343d7a61821a029777d88a8373254`. The requesting maintainer adopted the exact ADR 0013 candidate for a focused read-only **Draft** implementation; no execution, final SDK/consumer acceptance, merge or G5 decision is inferred. New code delegates existing pure functions and adds only the curated namespace and opaque error adapter. Existing CLI production paths, four runtime crates, dependency graph, schemas and backend behavior are unchanged. New MIT integration glue references existing component fixtures in place with their provenance/notices intact.
+**Current disposition:** [final read-only engineering acceptance](sdk-acceptance-2026-11-17.md) is complete; PR #149 merged as `9d15382` with nine pre/post-merge jobs passing and #107 is completed. The following RED/GREEN records retain their original Draft-stage source identities.
+
+Implementation base is `0b39c00354f343d7a61821a029777d88a8373254`. At the initial G2 stage, the requester adopted the exact ADR 0013 candidate for a focused read-only **Draft** implementation. The later engineering acceptance above is a separate action; execution and G5 are not inferred from either stage. New code delegates existing pure functions and adds only the curated namespace and opaque error adapter. Existing CLI production paths, four runtime crates, dependency graph, schemas and backend behavior are unchanged. New MIT integration glue references existing component fixtures in place with their provenance/notices intact.
 
 ## Observed RED and first GREEN
 
@@ -39,7 +41,7 @@ Audit corrections are preserved explicitly: the original G02 inventory named a r
 
 ## Workspace, review and hosted checks
 
-[Initial workspace receipts](m4-01-readonly-sdk/workspace-checks.json) bind outputs to code commit `ca98398092948962e3c8860a01919a9d60bd8d13`. After the review-driven test addition, [final workspace receipts](m4-01-readonly-sdk/final-workspace-checks.json) bind the repeated required checks to source/test commit `77e4b217eee9afa863943875594a62c33d167cda`; the production module is byte-identical between these commits. Default/all-feature debug/release, fmt, Clippy, rustdoc and repository checks are tracked separately. Final PR head/OS results are recorded on the Draft PR; cancelled or earlier-head results cannot substitute. The added CI step compiles/runs the standalone consumer on Windows/Linux/macOS; quality also checks its formatting and Clippy. No hosted workflow calls a model or an editor for this feature.
+[Initial workspace receipts](m4-01-readonly-sdk/workspace-checks.json) bind outputs to code commit `ca98398092948962e3c8860a01919a9d60bd8d13`. After the review-driven test addition, [final workspace receipts](m4-01-readonly-sdk/final-workspace-checks.json) bind the repeated required checks to source/test commit `77e4b217eee9afa863943875594a62c33d167cda`; the production module is byte-identical between these commits. Default/all-feature debug/release, fmt, Clippy, rustdoc and repository checks are tracked separately. Final PR head/OS results are recorded on the implementation PR; cancelled or earlier-head results cannot substitute. The added CI step compiles/runs the standalone consumer on Windows/Linux/macOS; quality also checks its formatting and Clippy. No hosted workflow calls a model or an editor for this feature.
 
 [Fresh-context AI review](m4-01-readonly-sdk/implementation-review.txt) found no unresolved correctness/security blocker at `77e4b21`, and independently verified the resolved test gap, exact original eleven assertions, controlled mutant/final source hashes, error bytes, fixture identity and type closure. It used source/hash inspection, not an independent build, human review or Host execution. G4 runtime/hosted outcomes are the separate implementer/CI records.
 
@@ -66,6 +68,6 @@ Source-informed original fixtures remain unchanged. `.gitattributes` preserves e
 
 ## Remaining acceptance and rollback
 
-This is automatic engineering evidence plus separately identified AI review, not observed human Rust/TypeScript SDK usability. Human participants and Host observations added: **0**. #107 remains Open and the PR remains Draft for final implementation acceptance. Execution/authority/recovery and real Host evidence under #103–#106 remain unavailable; #108 transport/#109 app/second Host/beta/G5 retain their own gates.
+This is automatic engineering evidence plus separately identified AI review and the subsequent delegated engineering acceptance, not observed human Rust/TypeScript SDK usability. Human participants and Host observations added: **0**. #107 is completed for the accepted read-only Rust surface and #149 is merged. Execution/authority/recovery and real Host evidence under #103–#106 remain unavailable; #108 transport/#109 app/second Host/beta/G5 retain their own gates.
 
 No public factory can synthesize the trusted compiled handle. A portable result/record is still a declaration, never an approval token. Any inability to preserve exact serializer/digest/error/ownership semantics is a stop condition; repair or narrow the facade rather than widening existing contracts. Rollback removes only the new facade/consumer imports/example and its tests; no project, Catalog, media or wire-data migration is needed.

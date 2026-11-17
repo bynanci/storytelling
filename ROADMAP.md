@@ -6,7 +6,7 @@ English · [繁體中文](ROADMAP.zh-TW.md)
 
 When a workshop changes its date, an author needs to find every draft that mentions it. The poster layout can stay the same. This example guides the first cross-media milestones. See [Why Storytelling?](docs/WHY_STORYTELLING.md) for the research and author scenarios.
 
-Latest productization status: [2026-11-17 verified continuation and remaining gates](docs/validation/continuation-2026-11-17.md) · [繁體中文](docs/validation/continuation-2026-11-17.zh-TW.md). Merged #142/#143 are bounded engineering deliveries; open child issues retain their own G2, human, host, research and G5 conditions.
+Latest productization status: [accepted #107 SDK and fifteen remaining gates](docs/validation/sdk-acceptance-2026-11-17.md) · [繁體中文](docs/validation/sdk-acceptance-2026-11-17.zh-TW.md). #149 is merged and #108 read-only transport G2 is ready; #103–#106, human/Host, research and G5 remain separate.
 
 <a name="現有功能"></a>
 
@@ -50,7 +50,7 @@ The video work targets an editable 60–90 second rough cut from 30–50 selecte
 | M1 interchange | The limited importer, OTIO writer and isolated Linux 25 fps proof passed acceptance. | FilmCraft imported, previewed and reopened the picture-only project. Audio, other profiles and human acceptance remain open. |
 | M2 planning | The bounded audit, fixed-window planner and selected-domain comparison passed acceptance. The full solver remains open. | Repeat the result from the same inputs. Report hard conflicts. |
 | M3 review and execution | P1, P2 and the M3-02 journal passed bounded acceptance. M3-03 has an isolated test. A production executor remains open. | Bind the proposal and artifact to the review. Check authority and operation ownership. Recover partial or unknown outcomes from receipts and host observations. |
-| M4 consumers | Read-only facade design merged in [PR #134](https://github.com/bynanci/storytelling/pull/134) as a [G2 proposal](docs/proposals/m4-01-readonly-sdk/README.md); facade, TypeScript and reference-app implementation remain pending. | One writer per service, visible review and approval, and an optional MCP interface. |
+| M4 consumers | #107 eight-operation read-only Rust V1 SDK merged/accepted via #149; #108 transport G2 and scoped read-only #109 design can proceed. | Production execution still requires #103–#106 and one writer; MCP is optional. |
 | M5 beta | Planned. M5-02 / #112 remains blocked on #109, #111 and accepted M3 execution/recovery. The [prospective v1 protocol](docs/validation/m5-02-rough-cut-beta-v1.md) is design-only; no beta has started. | Measured outcomes, tested host profiles and distribution evidence. |
 | v1.0 | No release date. | Accepted migration, recovery, compatibility and security evidence for the public contract. |
 
@@ -64,7 +64,7 @@ The video work targets an editable 60–90 second rough cut from 30–50 selecte
 | M2-01 → M2-02 → M2-03 | M2-01 follows M1-01. Requirements and fixtures can proceed in parallel. |
 | M3-01/P1 → P2 → M3-02 → M3-03 | P1 requires M1-03 and M2-02. P2 connects the selected proposal to read-only OTIO review. |
 | M3-04 / #103 → #104 → #105 → #106 | [Execution V1](docs/migration/EXECUTION_CONTRACT_V1.md) merged as proposal documents in [PR #117](https://github.com/bynanci/storytelling/pull/117), `a23a290`. W01 authorization/implementation and final tested-contract #103 G2 acceptance remain pending before #104. Executor, recovery and host acceptance retain separate gates. |
-| M4 → M5 → v1.0 | M4 requires M2-03 and acceptance of production M3-03 execution and readback. |
+| M4 → M5 → v1.0 | Read-only SDK work is independent of production M3; execution/one-writer app, second host, beta and RC retain #103–#106/#109/#111–#113 acceptance order. |
 
 Read the [P2 contract](docs/migration/PLANNER_OTIO_REVIEW_V1.md), [journal evidence](https://github.com/bynanci/storytelling/pull/56) and [M3-03 test](docs/validation/m3-03-filmcraft-execution.md). The test reproduces a successful import with a lost reply. After a timeout, read back the project. Stop if the operation might still run or the result remains ambiguous.
 

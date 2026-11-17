@@ -4,6 +4,8 @@
 
 [English](CONTRACTS.md) · 繁體中文
 
+Rust 整合使用已接受的 [`consumer_v1` 唯讀介面](SDK_CONSUMER_V1.zh-TW.md)，見[驗收範圍](validation/sdk-acceptance-2026-11-17.zh-TW.md)。此 Rust 介面不是新 CLI／transport wire schema；下列 CLI stdout、exit、原 JSON profile 與 digest 均不改變。
+
 先按工作選擇命令，再準備該命令接受的文件。下表的大小單位均為位元組。
 各規格定義傳輸欄位與資料上限。[命令列操作範例](CLI_GUIDE.zh-TW.md)
 

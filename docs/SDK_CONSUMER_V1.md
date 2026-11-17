@@ -3,7 +3,7 @@
 
 [繁體中文](SDK_CONSUMER_V1.zh-TW.md) · [ADR 0013](adr/0013-read-only-consumer-facade-v1.md) · [G2 decision](validation/m4-01-sdk-g2-decision.md) · [Verification](validation/m4-01-readonly-sdk.md)
 
-The adopted candidate is `storytelling_engine::consumer_v1` in the existing engine crate. This is a Draft implementation of the eight-operation read-only surface, not a published stable SDK or accepted execution capability. Package version stays `0.1.0-dev.0`. The facade versions its Rust API independently of JSON document, planner, compiler/digest and Host-profile versions.
+The accepted read-only Rust V1 surface is `storytelling_engine::consumer_v1` in the existing engine crate. [PR #149](https://github.com/bynanci/storytelling/pull/149) merged it as `9d15382` after [final engineering acceptance](validation/sdk-acceptance-2026-11-17.md); #107 is completed within this eight-operation scope. Package version stays `0.1.0-dev.0` and unpublished. The facade versions its Rust API independently of JSON document, planner, compiler/digest and Host-profile versions; production execution and G5 publication retain separate gates.
 
 ## Run the independent example
 

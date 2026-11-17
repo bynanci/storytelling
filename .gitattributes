@@ -75,3 +75,6 @@ tests/fixtures/openfilm/finite-v1/video-trim.json -text
 /docs/validation/m4-01-readonly-sdk/*.stderr -text -whitespace
 /docs/validation/m4-01-readonly-sdk/*.log -text -whitespace
 /docs/validation/m4-01-readonly-sdk/*.txt -text -whitespace
+
+# Acceptance snapshots/audits/raw streams are immutable evidence bytes.
+/docs/validation/sdk-acceptance-2026-11-17/** -text -whitespace

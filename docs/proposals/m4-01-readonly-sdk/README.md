@@ -1,6 +1,9 @@
 <!-- SPDX-License-Identifier: MIT -->
 # M4-01 · Read-only consumer SDK design
 
+**Current acceptance:** #107 read-only engineering scope is accepted and PR #149 is merged as `9d15382`; [final record](../../validation/sdk-acceptance-2026-11-17.md). The initial Draft adoption and preparation statuses below remain historical; no mutation or publication is accepted.
+
+
 English · [繁體中文](README.zh-TW.md) · [Issue #107](https://github.com/bynanci/storytelling/issues/107) · [ADR 0013](../../adr/0013-read-only-consumer-facade-v1.md)
 
 **Current update (2026-11-17):** the requester adopted this candidate for a focused Draft implementation. See the [decision](../../validation/m4-01-sdk-g2-decision.md), [current SDK guide](../../SDK_CONSUMER_V1.md) and [actual RED/GREEN record](../../validation/m4-01-readonly-sdk.md). The material below is the historical design snapshot; its pending/not-run table describes preparation, not current evidence.

@@ -1,6 +1,9 @@
 <!-- SPDX-License-Identifier: MIT -->
 # M4-01 · Read-only SDK golden-equivalence plan
 
+**Current acceptance:** #107 read-only engineering scope is accepted and PR #149 is merged as `9d15382`; [final record](../../validation/sdk-acceptance-2026-11-17.md). The initial Draft adoption and preparation statuses below remain historical; no mutation or publication is accepted.
+
+
 **Current execution:** candidate adopted on 2026-11-17; [actual decision/authorization](../../validation/m4-01-sdk-g2-decision.md) and [executed test trace](../../validation/m4-01-readonly-sdk.md) are separate. The following inventory/status is the historical pre-adoption plan, preserved without converting planned cases into results.
 
 **Status at preparation:** proposed G2 assertions; no facade implementation, new RED/GREEN,

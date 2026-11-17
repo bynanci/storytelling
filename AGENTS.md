@@ -39,6 +39,7 @@ English · [繁體中文](AGENTS.zh-TW.md)
 | M2-01 to M2-03 | The brief audit, [fixed-window planner](docs/migration/FIXED_WINDOW_PLANNER_V1.md) and [selected-domain comparison](docs/migration/PLANNER_SHADOW_V1.md) each have a defined scope. See PRs #22 and #26 and the [comparison record](docs/migration/records/M2-03.md). |
 | M3-01/P1 | The user authorized the reviewed merge on 2026-11-08. PR #32 integrated the CLI and review binding. Read the [scope](docs/migration/M3-01-NEXT.md) and [signed acceptance](docs/migration/records/M3-01-G2-ACCEPTANCE-2026-11-08.md). |
 | M3-01/P2 | PR #44 integrated read-only OTIO review for the selected proposal. Preserve the accepted P1 digest. See the [profile](docs/migration/PLANNER_OTIO_REVIEW_V1.md) and [record](docs/migration/records/M3-01-P2.md). |
+| M4-R01 / #107 | Eight-operation read-only Rust V1 engineering scope accepted and merged via PR #149 / `9d15382`. [Acceptance and remaining gates](docs/validation/sdk-acceptance-2026-11-17.md) retain criteria, fresh checks and post-merge CI; #108 transport, M3 authority/Host, human observations and G5 remain separate. |
 
 P1 includes the runtime comparison, fixed digest and error-order tests. Issue #27 closed after the post-merge checks for PR #42. The acceptance record documents the waiver for the missing historical test failure. Do not invent evidence for that test.
 
