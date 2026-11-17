@@ -314,6 +314,19 @@ see the [validation record](validation/m3-03-filmcraft-execution.md).
 | M3-EX07 | Strict bounded wire and deterministic diagnostics | EX24–EX26, EX30–EX36 |
 | M3-EX08 | Existing-format/API/database compatibility; no implicit host calls | All cases and existing regressions |
 
+## 唯讀 TypeScript transport 提案（M4-R02）
+
+M4-R02／[M4-02 #108](https://github.com/bynanci/storytelling/issues/108)對照
+[ADR 0014](adr/0014-readonly-process-transport-v1.md)、
+[候選設計包](proposals/m4-02-readonly-transport/README.zh-TW.md)、
+[自有 API／views](proposals/m4-02-readonly-transport/types.md)與
+[TS-G01–TS-G12 驗收計畫](proposals/m4-02-readonly-transport/test-plan.md)。
+M4-R02.1–M4-R02.8 涵蓋型別／版本、八入口等價、完整診斷、可攜隱私、
+上限與取消、獨立 consumer、既有回歸及工程成本量測。64 項 runtime 案例
+全部待執行；三份候選 schema、二十一份作者編製範例只是靜態設計資料，
+不能當成產品 GREEN。[G2 採納](validation/m4-02-transport-g2.md)及實際
+G3／G4 證據仍缺。沒有修改公開 V1 domain、CLI 或 digest，#108 維持 Open。
+
 ## 敘事功能與後續需求
 
 <a id="proposed-cross-media-narrative-requirements"></a>

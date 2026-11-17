@@ -1,0 +1,527 @@
+{
+  "stage": "G2_proposed_plan_not_runtime_results",
+  "task": "M4-02",
+  "requirement": "M4-R02",
+  "base_sha": "62541d91c0c52ec6e49b5dc9c8350e92e83b409a",
+  "sources": [
+    {
+      "path": "examples/minimal-plan.json",
+      "bytes": 573,
+      "sha256": "54e254ed9d62c604306305f95fc844d635f43bfc89cf835e05d4d74318cb6408"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n03-author-reviewed-v1.json",
+      "bytes": 5593,
+      "sha256": "674f4fbea82152abf8f85b70399341e0615bcd1c0e66b240a6dadf431d632f15"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n04-revision-history-v1.json",
+      "bytes": 8575,
+      "sha256": "29d51fa72c3ad872d442c45d03ec2458bf948fb7bb4b804b46247de6c4714f6c"
+    },
+    {
+      "path": "tests/fixtures/narrative-video-coverage-v1/valid-complete.json",
+      "bytes": 1992,
+      "sha256": "4781d2b8b651cbf32b089b0c37eb4bdbb0147b245f85c913c1b9112c0117178e"
+    },
+    {
+      "path": "tests/fixtures/narrative-video-coverage-v1/valid-unresolved.json",
+      "bytes": 1848,
+      "sha256": "9617c26eb53778378a6f53e2a86211c715d870a14a1248a1d73b989494a4c9ad"
+    },
+    {
+      "path": "tests/fixtures/planner-v1/valid.json",
+      "bytes": 1545,
+      "sha256": "a4fc79fa1f6436666b169fc9815f6a21b3a860491859fc05da83d850d858a257"
+    },
+    {
+      "path": "tests/fixtures/consumer-sdk-v1/proposal-response.json",
+      "bytes": 1573,
+      "sha256": "9db66b3384a6cf76b7a6ffdd8578f55db3af840fe001a7c33499f80869d4456b"
+    },
+    {
+      "path": "tests/fixtures/openfilm/finite-v1/video-trim.json",
+      "bytes": 853,
+      "sha256": "33c4e7d19c92f62d771abd4df112ae05a4ec6550767faa07ef3092346dca7941"
+    },
+    {
+      "path": "tests/fixtures/story-review-v1/context.json",
+      "bytes": 471,
+      "sha256": "0a24b9ed115f955acbe461c844d97821d145a13c85c7d1634f2d29d8f854985c"
+    },
+    {
+      "path": "docs/validation/m4-01-readonly-sdk/baseline-bundle.stdout",
+      "bytes": 6839,
+      "sha256": "7c191590ce854ccda5c51c98c03a8534ef121253f8a529a02a3460d4a186bac5"
+    },
+    {
+      "path": "docs/validation/m4-01-readonly-sdk/baseline-otio.stdout",
+      "bytes": 5339,
+      "sha256": "a1241dcbc156d15ab0d9207b86962d43c93962d039287871e05fa122a9511f09"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/consumer_sdk.rs",
+      "bytes": 56844,
+      "sha256": "94a7424bd8d13b36b9991e56af09bec9dae329234b65ca5747d948f7b8da3729"
+    },
+    {
+      "path": "crates/storytelling-engine/src/consumer_v1.rs",
+      "bytes": 11896,
+      "sha256": "c63ead96a661f4656471f81c25474f26707119e22e7915c579618f4cd676a625"
+    }
+  ],
+  "cases": [
+    {
+      "id": "TS-G01-validate_plan",
+      "group": "TS-G01",
+      "state": "planned_not_executed",
+      "setup": "minimal plan",
+      "expected": "Rust/TS domain equality plus independent literal expectations: all validation fields; original CLI bytes remain unchanged"
+    },
+    {
+      "id": "TS-G01-render_narrative",
+      "group": "TS-G01",
+      "state": "planned_not_executed",
+      "setup": "N03 author-reviewed narrative",
+      "expected": "Rust/TS domain equality plus independent literal expectations: ordered oral and two illustrations; umbrella proposal only in chosen variant; every source tag"
+    },
+    {
+      "id": "TS-G01-track_revisions",
+      "group": "TS-G01",
+      "state": "planned_not_executed",
+      "setup": "N04 append-only ledger",
+      "expected": "Rust/TS domain equality plus independent literal expectations: all source/variant histories, suggestions, decisions and current states"
+    },
+    {
+      "id": "TS-G01-query_impact",
+      "group": "TS-G01",
+      "state": "planned_not_executed",
+      "setup": "N04 shared-observation-change and b-only-detail-change",
+      "expected": "Rust/TS domain equality plus independent literal expectations: all three versus only B affected; unmodified source/order"
+    },
+    {
+      "id": "TS-G01-video_coverage",
+      "group": "TS-G01",
+      "state": "planned_not_executed",
+      "setup": "complete and unresolved fixtures",
+      "expected": "Rust/TS domain equality plus independent literal expectations: same complete result; unresolved is Ok with false planning gate"
+    },
+    {
+      "id": "TS-G01-plan_story",
+      "group": "TS-G01",
+      "state": "planned_not_executed",
+      "setup": "planner-v1 valid fixture",
+      "expected": "Rust/TS domain equality plus independent literal expectations: manual order, rational strings, full audit/selection/skips; once-frozen response wrapper"
+    },
+    {
+      "id": "TS-G01-prepare_story_review",
+      "group": "TS-G01",
+      "state": "planned_not_executed",
+      "setup": "exact frozen proposal, video-trim snapshot and context",
+      "expected": "Rust/TS domain equality plus independent literal expectations: record and both original accessor buffers from same opaque value; baseline digests"
+    },
+    {
+      "id": "TS-G01-check_story_review",
+      "group": "TS-G01",
+      "state": "planned_not_executed",
+      "setup": "retained raw bundle/current inputs and changed target revision",
+      "expected": "Rust/TS domain equality plus independent literal expectations: fresh/stale remain Ok, malformed remains source error; ordered stale fields"
+    },
+    {
+      "id": "TS-G02-identity-bytes",
+      "group": "TS-G02",
+      "state": "planned_not_executed",
+      "setup": "LF/CRLF, whitespace/key-order and UTF-8 variants in retained inputs",
+      "expected": "unchanged exact buffer bytes reach backend; reference-specific digest/outcome retained, never normalize"
+    },
+    {
+      "id": "TS-G02-planner-wrapper",
+      "group": "TS-G02",
+      "state": "planned_not_executed",
+      "setup": "one plan result serialized once",
+      "expected": "proposal equals prefix + exact result_json + closing brace; reuse same bytes in both review calls"
+    },
+    {
+      "id": "TS-G02-prepared-accessors",
+      "group": "TS-G02",
+      "state": "planned_not_executed",
+      "setup": "one successful preparation",
+      "expected": "OTIO/bundle copied byte-exact; old CLI one framing LF handled explicitly only in comparison"
+    },
+    {
+      "id": "TS-G02-numeric-strings",
+      "group": "TS-G02",
+      "state": "planned_not_executed",
+      "setup": "u64 rational strings beyond 2^53",
+      "expected": "strings remain exact, no Number/fraction normalization; result/error matches reference"
+    },
+    {
+      "id": "TS-G02-ownership",
+      "group": "TS-G02",
+      "state": "planned_not_executed",
+      "setup": "mutate caller input after method call and returned byte copy afterwards",
+      "expected": "snapshot stable; retained identity buffers unaffected; SharedArrayBuffer/detached input rejected"
+    },
+    {
+      "id": "TS-G03-source-details",
+      "group": "TS-G03",
+      "state": "planned_not_executed",
+      "setup": "SDK-G08 literal relation/conflict/loss errors",
+      "expected": "code/path and raw original serializer bytes, empty arrays and omissions retained"
+    },
+    {
+      "id": "TS-G03-null-path",
+      "group": "TS-G03",
+      "state": "planned_not_executed",
+      "setup": "coverage malformed input with null source path",
+      "expected": "header path null; raw detail null/absent retained, never dollar default"
+    },
+    {
+      "id": "TS-G03-detail-encoding",
+      "group": "TS-G03",
+      "state": "planned_not_executed",
+      "setup": "test-only private adapter seam reports SDK detail encoding failure",
+      "expected": "original code/path plus sdk.error_details_encoding_failed; zero detail buffers; no public fault/trust constructor"
+    },
+    {
+      "id": "TS-G03-query-priority",
+      "group": "TS-G03",
+      "state": "planned_not_executed",
+      "setup": "invalid change ID plus 1048577-byte ledger inside valid transport frame",
+      "expected": "original narrative.invalid_shape at $.change_id before input.too_large; a 129-byte valid-character ID keeps narrative.too_many_items"
+    },
+    {
+      "id": "TS-G03-review-priority",
+      "group": "TS-G03",
+      "state": "planned_not_executed",
+      "setup": "multiple oversized proposal/snapshot/context/bundle inputs within transport budget",
+      "expected": "same first source size error in original argument order"
+    },
+    {
+      "id": "TS-G04-future-wire",
+      "group": "TS-G04",
+      "state": "planned_not_executed",
+      "setup": "wire 2 and unknown execute operation",
+      "expected": "transport.unsupported_wire_version first"
+    },
+    {
+      "id": "TS-G04-future-facade",
+      "group": "TS-G04",
+      "state": "planned_not_executed",
+      "setup": "wire 1/facade 2",
+      "expected": "transport.unsupported_facade_version; no downgrade"
+    },
+    {
+      "id": "TS-G04-future-domain",
+      "group": "TS-G04",
+      "state": "planned_not_executed",
+      "setup": "existing input schema_version 2 per operation",
+      "expected": "original operation-specific domain rejection, not transport upgrade"
+    },
+    {
+      "id": "TS-G04-future-view",
+      "group": "TS-G04",
+      "state": "planned_not_executed",
+      "setup": "correctly framed response with unknown view",
+      "expected": "client.invalid_response; no field stripping/fallback"
+    },
+    {
+      "id": "TS-G04-changed-profile",
+      "group": "TS-G04",
+      "state": "planned_not_executed",
+      "setup": "unsupported planner or review profile/context",
+      "expected": "original rejection or freshness outcome matches facade, no Host inference"
+    },
+    {
+      "id": "TS-G05-forbidden-operations",
+      "group": "TS-G05",
+      "state": "planned_not_executed",
+      "setup": "execute/approve/dispatch/retry/recover/journal/shell requests",
+      "expected": "transport.unsupported_operation, zero facade call and no side effects"
+    },
+    {
+      "id": "TS-G05-path-fields",
+      "group": "TS-G05",
+      "state": "planned_not_executed",
+      "setup": "extra path/catalog_path/host/credential fields in envelope",
+      "expected": "transport.invalid_header; no local read or public echo"
+    },
+    {
+      "id": "TS-G05-no-promotion",
+      "group": "TS-G05",
+      "state": "planned_not_executed",
+      "setup": "unresolved/stale and forged true execution/approval/source/host response flags",
+      "expected": "valid false/unresolved outcomes preserved; invented authority response invalid"
+    },
+    {
+      "id": "TS-G05-untrusted-prepared",
+      "group": "TS-G05",
+      "state": "planned_not_executed",
+      "setup": "caller reconstructs/mutates portable prepared record",
+      "expected": "no trusted Rust handle or execution capability; re-check only as untrusted buffers"
+    },
+    {
+      "id": "TS-G06-prefix-header",
+      "group": "TS-G06",
+      "state": "planned_not_executed",
+      "setup": "bad magic, short prefix, H=0, header cap-1/cap/cap+1",
+      "expected": "deterministic P1 code; cap+1 rejected before read/allocation"
+    },
+    {
+      "id": "TS-G06-duplicate-unknown",
+      "group": "TS-G06",
+      "state": "planned_not_executed",
+      "setup": "duplicate escaped-equivalent keys, unknown fields or BOM/invalid UTF-8/unpaired surrogate; request_id trailing LF/CR/NUL/Unicode separators and exact 64-character boundary",
+      "expected": "transport.invalid_header before version; all nesting checked"
+    },
+    {
+      "id": "TS-G06-integer-lexemes",
+      "group": "TS-G06",
+      "state": "planned_not_executed",
+      "setup": "negative/fraction/exponent/unsafe length tokens",
+      "expected": "invalid_header without numeric rounding"
+    },
+    {
+      "id": "TS-G06-roles",
+      "group": "TS-G06",
+      "state": "planned_not_executed",
+      "setup": "missing/extra/duplicate/swapped roles or names",
+      "expected": "transport.invalid_buffers before domain call"
+    },
+    {
+      "id": "TS-G06-params",
+      "group": "TS-G06",
+      "state": "planned_not_executed",
+      "setup": "query missing/non-string change_id or unknown params",
+      "expected": "invalid_header at params; invalid string ID itself reaches backend"
+    },
+    {
+      "id": "TS-G06-request-cap",
+      "group": "TS-G06",
+      "state": "planned_not_executed",
+      "setup": "client pre-copy/header-allocation budget checks, plus direct raw CLI request cap-1/cap/cap+1 and checked u32 sums",
+      "expected": "client.request_limit_exceeded with not_started and no arbitrary copy; raw CLI excess uses transport.input_limit_exceeded; narrower domain overflow still delegates"
+    },
+    {
+      "id": "TS-G06-body-eof",
+      "group": "TS-G06",
+      "state": "planned_not_executed",
+      "setup": "truncated buffer, trailing LF/byte or second frame",
+      "expected": "transport.invalid_frame before any facade call; included source LF stays valid"
+    },
+    {
+      "id": "TS-G06-response-cap",
+      "group": "TS-G06",
+      "state": "planned_not_executed",
+      "setup": "bounded response encoder at production cap edges",
+      "expected": "full frame or one structured output_limit error, never partial success"
+    },
+    {
+      "id": "TS-G06-source-opacity",
+      "group": "TS-G06",
+      "state": "planned_not_executed",
+      "setup": "invalid source UTF-8, duplicate fields, profile depth errors",
+      "expected": "opaque buffer unchanged, original backend semantics/first error"
+    },
+    {
+      "id": "TS-G06-response-json",
+      "group": "TS-G06",
+      "state": "planned_not_executed",
+      "setup": "malformed/duplicate/unknown fields, wrong scalar/enum/number tokens",
+      "expected": "client.invalid_response; typed decoder does not coerce"
+    },
+    {
+      "id": "TS-G07-abort-before-spawn",
+      "group": "TS-G07",
+      "state": "planned_not_executed",
+      "setup": "already aborted signal",
+      "expected": "client.aborted with not_started; no process"
+    },
+    {
+      "id": "TS-G07-abort-writing",
+      "group": "TS-G07",
+      "state": "planned_not_executed",
+      "setup": "abort while stdin is backpressured",
+      "expected": "discard result, terminate child, settle once"
+    },
+    {
+      "id": "TS-G07-abort-reading",
+      "group": "TS-G07",
+      "state": "planned_not_executed",
+      "setup": "abort during partial stdout",
+      "expected": "no partial result and no replacement"
+    },
+    {
+      "id": "TS-G07-abort-before-exit",
+      "group": "TS-G07",
+      "state": "planned_not_executed",
+      "setup": "full valid frame arrives before abort, child not yet exited",
+      "expected": "aborted before commit; frame cannot win by parsing alone"
+    },
+    {
+      "id": "TS-G07-timeout",
+      "group": "TS-G07",
+      "state": "planned_not_executed",
+      "setup": "child hangs/never EOF; monotonic deadline expires",
+      "expected": "client.timeout including wait; bounded cleanup and no success"
+    },
+    {
+      "id": "TS-G07-nonzero-after-frame",
+      "group": "TS-G07",
+      "state": "planned_not_executed",
+      "setup": "valid frame followed by nonzero exit/signal",
+      "expected": "client.process_failed, no accepted result"
+    },
+    {
+      "id": "TS-G07-termination-unknown",
+      "group": "TS-G07",
+      "state": "planned_not_executed",
+      "setup": "fake child adapter cannot confirm termination in cleanup budget",
+      "expected": "trigger failure + unconfirmed; instance remains locked until observed exit"
+    },
+    {
+      "id": "TS-G07-busy-race",
+      "group": "TS-G07",
+      "state": "planned_not_executed",
+      "setup": "second call during active/cleanup-locked first call",
+      "expected": "client.busy; no queue, no duplicate spawn/settlement/listener leak"
+    },
+    {
+      "id": "TS-G08-spawn-failed",
+      "group": "TS-G08",
+      "state": "planned_not_executed",
+      "setup": "unavailable absolute executable",
+      "expected": "client.spawn_failed, no private path/OS prose"
+    },
+    {
+      "id": "TS-G08-association",
+      "group": "TS-G08",
+      "state": "planned_not_executed",
+      "setup": "wrong request ID/op; null association for post-validation error",
+      "expected": "client.invalid_response; pre-validation null transport error remains structured"
+    },
+    {
+      "id": "TS-G08-output-corruption",
+      "group": "TS-G08",
+      "state": "planned_not_executed",
+      "setup": "truncation/trailing bytes/second frame/wrong descriptors",
+      "expected": "client.invalid_response; never parse CLI stdout prose"
+    },
+    {
+      "id": "TS-G08-output-overflow",
+      "group": "TS-G08",
+      "state": "planned_not_executed",
+      "setup": "stdout or stderr exceeds its bound",
+      "expected": "client.response_limit_exceeded; drain/terminate bounded, no raw logging"
+    },
+    {
+      "id": "TS-G08-stderr-nonempty",
+      "group": "TS-G08",
+      "state": "planned_not_executed",
+      "setup": "otherwise valid zero-exit frame plus unexpected stderr",
+      "expected": "client.invalid_response without exposing stderr"
+    },
+    {
+      "id": "TS-G09-spawn-control",
+      "group": "TS-G09",
+      "state": "planned_not_executed",
+      "setup": "sentinel cwd/env, metacharacters in document and local executable path",
+      "expected": "fixed argv with shell:false, no PATH search/request-derived cwd; input stays data"
+    },
+    {
+      "id": "TS-G09-environment",
+      "group": "TS-G09",
+      "state": "planned_not_executed",
+      "setup": "set fake parent HOST_TOKEN/MODEL_KEY/private sentinel environment",
+      "expected": "child sees only allowed Windows SystemRoot or empty POSIX env; no credentials"
+    },
+    {
+      "id": "TS-G09-filesystem",
+      "group": "TS-G09",
+      "state": "planned_not_executed",
+      "setup": "sentinel source/Catalog/project/sibling files before and after",
+      "expected": "no new files, local source reads, network, probe, Host or child-of-child calls"
+    },
+    {
+      "id": "TS-G09-private-evidence",
+      "group": "TS-G09",
+      "state": "planned_not_executed",
+      "setup": "panic/error carrying synthetic private sentinel path",
+      "expected": "public error exposes identifiers only; raw stderr remains private and bounded"
+    },
+    {
+      "id": "TS-G09-windows-bytes",
+      "group": "TS-G09",
+      "state": "planned_not_executed",
+      "setup": "clean Git checkouts under core.autocrlf true/false",
+      "expected": "same indexed frame/source bytes on all OS; no CRLF conversion in payload"
+    },
+    {
+      "id": "TS-G10-fresh-checkout",
+      "group": "TS-G10",
+      "state": "planned_not_executed",
+      "setup": "clean source checkout plus documented Rust/locked Node toolchain",
+      "expected": "unpublished independent package demonstrates describe and all eight ops without editor/model/secret/service"
+    },
+    {
+      "id": "TS-G10-owned-public-types",
+      "group": "TS-G10",
+      "state": "planned_not_executed",
+      "setup": "TypeScript strict compile and decoder assertions from outside Rust workspace",
+      "expected": "no Rust-private imports/CLI prose, no trusted-review or execution methods"
+    },
+    {
+      "id": "TS-G11-coverage-sdk",
+      "group": "TS-G11",
+      "state": "planned_not_executed",
+      "setup": "existing seven coverage CLI and fourteen consumer SDK tests",
+      "expected": "all pass unchanged"
+    },
+    {
+      "id": "TS-G11-workspace",
+      "group": "TS-G11",
+      "state": "planned_not_executed",
+      "setup": "default/all-feature debug/release plus fmt/Clippy/rustdoc/repository checks",
+      "expected": "all existing checks pass; ignored Host cases remain separately unverified"
+    },
+    {
+      "id": "TS-G11-domain-oracles",
+      "group": "TS-G11",
+      "state": "planned_not_executed",
+      "setup": "Planner/Narrative/N11/OTIO/P1-P2/M3 golden regressions",
+      "expected": "original fields, digest vectors and stdout/exits unchanged"
+    },
+    {
+      "id": "TS-G11-exact-head-matrix",
+      "group": "TS-G11",
+      "state": "planned_not_executed",
+      "setup": "three OS x planned Node versions plus existing gates",
+      "expected": "all required jobs pass same final head; post-merge checked separately"
+    },
+    {
+      "id": "TS-G12-prospective-cost",
+      "group": "TS-G12",
+      "state": "planned_not_executed",
+      "setup": "frozen build/data/hardware; 5 warmups/30 measured pairs per input; recorded ordering seed",
+      "expected": "report process/copy/end-to-end versus reference time, failures and actual memory method; no invented human/speedup claim"
+    },
+    {
+      "id": "TS-G08-early-rejection",
+      "group": "TS-G08",
+      "state": "planned_not_executed",
+      "setup": "child emits a valid P1-P7 error/EOF/exit 0 while a large stdin write gets EPIPE; pair with missing frame, nonzero exit and abort",
+      "expected": "concurrent drain; valid structured rejection survives provisional EPIPE; other failures cannot become success; abort/deadline still precedes commit"
+    },
+    {
+      "id": "TS-G04-metadata-compatibility",
+      "group": "TS-G04",
+      "state": "planned_not_executed",
+      "setup": "compatible wire/facade/view with changed package/compiler metadata; input bundle with previous compiler ID",
+      "expected": "retain opaque strings without client compiler/package allowlist; original backend freshness compares compiler IDs; unsupported output profile still rejected"
+    }
+  ],
+  "runtime_cases_executed": 0,
+  "human_observations": 0,
+  "host_observations": 0,
+  "limits_note": "Static schema/hash/frame checks are separate; they do not prove these future runtime outcomes."
+}

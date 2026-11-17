@@ -1,0 +1,125 @@
+{
+  "kind": "G2_review_static_and_existing_regression_receipts",
+  "source_base": "62541d91c0c52ec6e49b5dc9c8350e92e83b409a",
+  "note": "Initial AI review is historical and preserved; follow-up resolves its four questions. Existing Rust tests are not transport GREEN. Authored examples are not runtime outputs. Index excludes itself.",
+  "transport_runtime_cases_executed": 0,
+  "human_observations": 0,
+  "host_observations": 0,
+  "files": [
+    {
+      "path": "builder-review-follow-up.txt",
+      "bytes": 7222,
+      "sha256": "71d5eb4a9b038ce46942f3e78f300484392ebc4cbd44867cc617f931d4fdc2d7"
+    },
+    {
+      "path": "builder-review-initial.txt",
+      "bytes": 4902,
+      "sha256": "5154c7ec3be600d51e7adcf9c9e94ae514a06f4e4c52bba4835cb5db1de00184"
+    },
+    {
+      "path": "check-00.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "check-00.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "check-01.stderr",
+      "bytes": 5855,
+      "sha256": "b82dd55ce3ad4fc5f9d9f4269b56767e3bb332ef799caa2da25985db7cf7ed59"
+    },
+    {
+      "path": "check-01.stdout",
+      "bytes": 32413,
+      "sha256": "8d1093f43f7f96e2df64773fe27d0bb66cdab6a54953f0762aa5ab4d560e3e0d"
+    },
+    {
+      "path": "check-02.stderr",
+      "bytes": 4167,
+      "sha256": "bb339ed1c4e7edfae7161d942ba85e34232defbf0b939edbbd3e23ebfac50364"
+    },
+    {
+      "path": "check-02.stdout",
+      "bytes": 34209,
+      "sha256": "4db08bc77ce767e5327b05d11149f0b95b8dfb213152d3a94359c3b1d4cb572e"
+    },
+    {
+      "path": "check-03.stderr",
+      "bytes": 5922,
+      "sha256": "c1ecdc7121e70736f849f01d95c950296a78f7e4ab168390fdd6d0eab9e00b57"
+    },
+    {
+      "path": "check-03.stdout",
+      "bytes": 34209,
+      "sha256": "e96d87a82331e55337169e583ffe373a9d537b17ee76da36259e3d006f9d49c6"
+    },
+    {
+      "path": "check-04.stderr",
+      "bytes": 1523,
+      "sha256": "ed9efa623650f73acc89035624c068b15edf1cb6716757c8fb25bbc68dd05a52"
+    },
+    {
+      "path": "check-04.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "check-05.stderr",
+      "bytes": 889,
+      "sha256": "279ffbb39a99c5307acf1bfaced4a92c53af513d5472217c3af8df146b4a44d0"
+    },
+    {
+      "path": "check-05.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "packet-00.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "packet-00.stdout",
+      "bytes": 215,
+      "sha256": "4c0ad0b8f5046ec9e1944a7673ea7ad197d3b3a2a76ae73daa7331e0580ea9c6"
+    },
+    {
+      "path": "packet-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "packet-01.stdout",
+      "bytes": 83,
+      "sha256": "728bbfaf33cce26d9fbaf87b18bd5a323ffebd1fb3d212369faab1c56d548238"
+    },
+    {
+      "path": "packet-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "packet-02.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "packet-checks.json",
+      "bytes": 2652,
+      "sha256": "8b48a201f5f3a242b6170981b8e871df34ba464831f12adae004bde2a03b0d01"
+    },
+    {
+      "path": "runtime-regression.json",
+      "bytes": 4426,
+      "sha256": "998b7bba305c66031f272793fd98d0e81ce7de9fa715dae5d6985628427a2b11"
+    },
+    {
+      "path": "schema-counterexample.json",
+      "bytes": 294,
+      "sha256": "e3a02e2382d9dcc3ae54844222cf9934665879d75dc224e62ebcfaee9f683bab"
+    }
+  ]
+}

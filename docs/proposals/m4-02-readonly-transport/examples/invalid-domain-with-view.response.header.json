@@ -1,0 +1,1 @@
+{"protocol":"storytelling.readonly","wire_version":1,"facade_version":1,"request_id":"example-01","operation":"validate_plan","status":"domain_error","buffers":[{"name":"source_details_json","byte_length":40}],"domain_error":{"code":"input.invalid_json","path":"$","details_encoding_error":null},"view":"plan_validation_v1"}

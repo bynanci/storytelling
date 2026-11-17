@@ -324,6 +324,20 @@ Use [#115](https://github.com/bynanci/storytelling/issues/115) as the umbrella. 
 | --- | --- |
 | M4-R01 / [M4-01 #107](https://github.com/bynanci/storytelling/issues/107) | **Accepted/completed for the eight-operation read-only Rust V1 scope.** [G2](validation/m4-01-sdk-g2-decision.md) was followed by requester-delegated [criterion acceptance](validation/sdk-acceptance-2026-11-17.md); PR #149 / `9d15382` passed nine jobs before/after merge. SDK-G01–G10 exercise CLI/SDK parity, original serializer, bytes/digests, bounds/versions/order, ownership/concurrency and opaque/absent-execution compile checks. Original backends/contracts remain unchanged; #108 transport, #103–#106 and human/Host/G5 retain separate gates. |
 
+## Proposed read-only TypeScript transport (M4-R02)
+
+M4-R02 / [M4-02 #108](https://github.com/bynanci/storytelling/issues/108) maps
+to [ADR 0014](adr/0014-readonly-process-transport-v1.md), the [candidate packet](proposals/m4-02-readonly-transport/README.md),
+[owned API/views](proposals/m4-02-readonly-transport/types.md) and
+[TS-G01–TS-G12 plan](proposals/m4-02-readonly-transport/test-plan.md).
+M4-R02.1–M4-R02.8 cover owned types/versions, eight-operation parity, original
+diagnostics, portable privacy, bounded failure/cancellation, independent consumer,
+unchanged regressions and measured engineering cost. All 64 runtime cases are
+planned, not executed. Three candidate schemas and twenty-one authored examples
+are static design artifacts; [G2 adoption](validation/m4-02-transport-g2.md) and
+actual G3/G4 evidence remain missing. No public V1 domain, CLI or digest is
+changed, and #108 remains Open.
+
 ## Evaluation diagnostic maintenance
 
 **SK-EVAL-R1 arithmetic diagnostics** trace W4/W5/W6 to [the separate exact report](research/evaluations/r1-robustness/README.md), `scripts/r1_robustness.py` and ten regressions in `scripts/test_r1_robustness.py`. Forty purposive cases remain the units; 560 correlated ratings and enumerated assignments add no participants. Conditional bounds are not confidence intervals or proof of treatment provenance; #121/#122 retain their evidence gates.

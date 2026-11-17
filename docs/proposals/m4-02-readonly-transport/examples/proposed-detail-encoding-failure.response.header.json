@@ -1,0 +1,1 @@
+{"protocol":"storytelling.readonly","wire_version":1,"facade_version":1,"request_id":"example-01","operation":"video_coverage","status":"domain_error","buffers":[],"domain_error":{"code":"input.invalid_json","path":null,"details_encoding_error":"sdk.error_details_encoding_failed"}}

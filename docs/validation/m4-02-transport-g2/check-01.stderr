@@ -1,0 +1,87 @@
+   Compiling typenum v1.20.1
+   Compiling version_check v0.9.5
+   Compiling generic-array v0.14.7
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling cfg-if v1.0.5
+   Compiling unicode-ident v1.0.27
+   Compiling serde_core v1.0.229
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling zmij v1.0.23
+   Compiling digest v0.10.7
+   Compiling hybrid-array v0.4.15
+   Compiling cpufeatures v0.2.17
+   Compiling serde_json v1.0.154
+   Compiling sha2 v0.10.9
+   Compiling memchr v2.8.3
+   Compiling semver v1.0.28
+   Compiling itoa v1.0.18
+   Compiling rustc_version v0.4.1
+   Compiling crypto-common v0.2.2
+   Compiling block-buffer v0.12.1
+   Compiling digest v0.11.3
+   Compiling curve25519-dalek v5.0.0
+   Compiling syn v2.0.119
+   Compiling cpufeatures v0.3.1
+   Compiling syn v3.0.9
+   Compiling signature v3.0.0
+   Compiling subtle v2.6.1
+   Compiling serde v1.0.229
+   Compiling ed25519 v3.0.0
+   Compiling serde_derive v1.0.229
+   Compiling curve25519-dalek-derive v0.1.1
+   Compiling sha2 v0.11.0
+   Compiling ed25519-dalek v3.0.0
+   Compiling find-msvc-tools v0.1.15
+   Compiling storytelling-core v0.1.0-dev.0 (/workspace/storytelling-ts-transport-g2-20261117/crates/storytelling-core)
+   Compiling shlex v2.0.1
+   Compiling cc v1.11.1
+   Compiling vcpkg v0.2.15
+   Compiling pkg-config v0.3.34
+   Compiling storytelling-engine v0.1.0-dev.0 (/workspace/storytelling-ts-transport-g2-20261117/crates/storytelling-engine)
+   Compiling libsqlite3-sys v0.39.1
+   Compiling smallvec v1.16.5
+   Compiling fallible-streaming-iterator v0.1.9
+   Compiling fallible-iterator v0.3.0
+   Compiling bitflags v2.13.2
+   Compiling storytelling-cli v0.1.0-dev.0 (/workspace/storytelling-ts-transport-g2-20261117/crates/storytelling-cli)
+   Compiling rusqlite v0.41.1
+   Compiling storytelling-journal v0.1.0-dev.0 (/workspace/storytelling-ts-transport-g2-20261117/crates/storytelling-journal)
+    Finished `test` profile [unoptimized] target(s) in 27.54s
+     Running unittests src/main.rs (/tmp/storytelling-transport-g2-target/debug/deps/storytelling-f7d8466a2727cee4)
+     Running tests/brief.rs (/tmp/storytelling-transport-g2-target/debug/deps/brief-73eff4184a0593b2)
+     Running tests/cli.rs (/tmp/storytelling-transport-g2-target/debug/deps/cli-75424e0f8598a46c)
+     Running tests/commercial_copy.rs (/tmp/storytelling-transport-g2-target/debug/deps/commercial_copy-6bed10bf613297d8)
+     Running tests/commercial_copy_pilot.rs (/tmp/storytelling-transport-g2-target/debug/deps/commercial_copy_pilot-a42a5fa2b3f1e71b)
+     Running tests/consumer_sdk.rs (/tmp/storytelling-transport-g2-target/debug/deps/consumer_sdk-81a5574957f85f07)
+     Running tests/cue_sheet.rs (/tmp/storytelling-transport-g2-target/debug/deps/cue_sheet-39d8e4c9ca686393)
+     Running tests/draft_video_input.rs (/tmp/storytelling-transport-g2-target/debug/deps/draft_video_input-8c93606cadb7ecf6)
+     Running tests/handoff.rs (/tmp/storytelling-transport-g2-target/debug/deps/handoff-7ea45626a4d802a7)
+     Running tests/narrative.rs (/tmp/storytelling-transport-g2-target/debug/deps/narrative-a0a8729ce2541287)
+     Running tests/openfilm.rs (/tmp/storytelling-transport-g2-target/debug/deps/openfilm-ad92385f0a38a37c)
+     Running tests/otio.rs (/tmp/storytelling-transport-g2-target/debug/deps/otio-f85ce2ee8499f4ca)
+     Running tests/planner.rs (/tmp/storytelling-transport-g2-target/debug/deps/planner-59eb622d0c8c5234)
+     Running tests/review_cli.rs (/tmp/storytelling-transport-g2-target/debug/deps/review_cli-b610fc8e4d110498)
+     Running tests/source_evidence.rs (/tmp/storytelling-transport-g2-target/debug/deps/source_evidence-e601baaac3c2ded2)
+     Running tests/story_review.rs (/tmp/storytelling-transport-g2-target/debug/deps/story_review-72eadfd37e6eac37)
+     Running tests/style_profile.rs (/tmp/storytelling-transport-g2-target/debug/deps/style_profile-b7b4467e405c4f88)
+     Running tests/video_coverage.rs (/tmp/storytelling-transport-g2-target/debug/deps/video_coverage-9c615c6caf8a3119)
+     Running unittests src/lib.rs (/tmp/storytelling-transport-g2-target/debug/deps/storytelling_core-e2539a7fe429c9ca)
+     Running tests/approval.rs (/tmp/storytelling-transport-g2-target/debug/deps/approval-dc73d362cf4cf11f)
+     Running tests/source_evidence.rs (/tmp/storytelling-transport-g2-target/debug/deps/source_evidence-db94e6116f2581d2)
+     Running unittests src/lib.rs (/tmp/storytelling-transport-g2-target/debug/deps/storytelling_engine-da5acf4e64eba8a2)
+     Running tests/brief.rs (/tmp/storytelling-transport-g2-target/debug/deps/brief-95bfa1d40277855d)
+     Running tests/narrative.rs (/tmp/storytelling-transport-g2-target/debug/deps/narrative-1e2620076cbf45ae)
+     Running tests/openfilm_snapshot.rs (/tmp/storytelling-transport-g2-target/debug/deps/openfilm_snapshot-cda6d39c5d303e0d)
+     Running tests/otio.rs (/tmp/storytelling-transport-g2-target/debug/deps/otio-694fc7a066224643)
+     Running tests/planner.rs (/tmp/storytelling-transport-g2-target/debug/deps/planner-c07c166b3b5e9a92)
+     Running tests/review_binding.rs (/tmp/storytelling-transport-g2-target/debug/deps/review_binding-606cb7eeb9294191)
+     Running tests/story_review.rs (/tmp/storytelling-transport-g2-target/debug/deps/story_review-45b49b94174ad15e)
+     Running tests/validation.rs (/tmp/storytelling-transport-g2-target/debug/deps/validation-7df68067d6e6f4bc)
+     Running unittests src/lib.rs (/tmp/storytelling-transport-g2-target/debug/deps/storytelling_journal-292fbce56f6c745b)
+     Running tests/filmcraft_execution.rs (/tmp/storytelling-transport-g2-target/debug/deps/filmcraft_execution-28c7036aac75b487)
+     Running tests/journal.rs (/tmp/storytelling-transport-g2-target/debug/deps/journal-45e3a7a230cf0654)
+   Doc-tests storytelling_core
+   Doc-tests storytelling_engine
+   Doc-tests storytelling_journal

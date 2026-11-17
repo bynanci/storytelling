@@ -1,0 +1,1 @@
+{"protocol":"storytelling.readonly","wire_version":1,"facade_version":1,"request_id":null,"operation":null,"status":"transport_error","buffers":[],"error":{"code":"transport.unsupported_wire_version","path":"$.wire_version"}}

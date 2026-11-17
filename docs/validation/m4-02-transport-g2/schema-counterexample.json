@@ -1,0 +1,12 @@
+{
+  "kind": "observed_G2_schema_counterexample_not_product_RED_GREEN",
+  "request_id": "x\n",
+  "before": {
+    "request-header.schema.json": true,
+    "response-header.schema.json": true
+  },
+  "after": {
+    "request-header.schema.json": false,
+    "response-header.schema.json": false
+  }
+}

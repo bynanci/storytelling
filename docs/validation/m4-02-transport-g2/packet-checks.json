@@ -1,0 +1,73 @@
+{
+  "kind": "G2_static_packet_checks_not_transport_runtime",
+  "source_base": "62541d91c0c52ec6e49b5dc9c8350e92e83b409a",
+  "python_version": "3.12.14",
+  "jsonschema_version": "4.26.0",
+  "reproduction": "exact verification.md heredoc",
+  "checker_sha256": "43f6226183daa3f34bc17f81b2b8c70699f0aa6f7cc9a2b4a3ab011f28c03a3d",
+  "checked_file_sha256": {
+    "docs/proposals/m4-02-readonly-transport/request-header.schema.json": "363d4415cd56740f71c294f9b7e4d9faa2f31e79df31f05e7eb53dad0b9db91d",
+    "docs/proposals/m4-02-readonly-transport/response-header.schema.json": "f065d24b56ce9ab049836b9f272473e1ad265c06a11e448d847fb9fecfbc9516",
+    "docs/proposals/m4-02-readonly-transport/narrative-projection-view.schema.json": "5c2db25fcd3ae438f87cd29cf1d2b3d8e7466408f65a7da8031263698dc09f27",
+    "docs/proposals/m4-02-readonly-transport/cases.json": "a26977de949873ab076914ecc4a89b4474f8824d88dd36e0841c51d1151d86f2",
+    "docs/proposals/m4-02-readonly-transport/examples/manifest.json": "997a4dc2fcbf82a626eb69556305dc4c2c19a9eea15c76869653e055a591bb26",
+    "docs/proposals/m4-02-readonly-transport/verification.md": "db1554648da1958261152cb564671171a5fd2deae1c798ea72200b3bd518d8f3"
+  },
+  "checks": [
+    {
+      "argv": [
+        "python3",
+        "/tmp/storytelling-transport-g2-static-check.py"
+      ],
+      "exit": 0,
+      "stdout": {
+        "path": "packet-00.stdout",
+        "bytes": 215,
+        "sha256": "4c0ad0b8f5046ec9e1944a7673ea7ad197d3b3a2a76ae73daa7331e0580ea9c6"
+      },
+      "stderr": {
+        "path": "packet-00.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/check_repo.py"
+      ],
+      "exit": 0,
+      "stdout": {
+        "path": "packet-01.stdout",
+        "bytes": 83,
+        "sha256": "728bbfaf33cce26d9fbaf87b18bd5a323ffebd1fb3d212369faab1c56d548238"
+      },
+      "stderr": {
+        "path": "packet-01.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit": 0,
+      "stdout": {
+        "path": "packet-02.stdout",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "packet-02.stderr",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "transport_runtime_cases_executed": 0,
+  "human_observations": 0,
+  "host_observations": 0
+}

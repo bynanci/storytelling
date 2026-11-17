@@ -1,0 +1,55 @@
+G2 builder follow-up review — 2026-11-17T12:54:57.316251+00:00
+
+Review type: read-only AI technical review. No human approval, runtime acceptance or G2 adoption is granted.
+Worktree: /workspace/storytelling-ts-transport-g2-20261117
+HEAD: 62541d91c0c52ec6e49b5dc9c8350e92e83b409a
+Baseline: 62541d91c0c52ec6e49b5dc9c8350e92e83b409a.
+Disposition: nothing important left. The revised proposed contract is specific enough to plan implementation if and when its exact G2 scope is adopted.
+Original report: /tmp/storytelling-transport-g2-builder-review.txt was preserved; this is an append-only separate follow-up.
+
+Four original questions resolved
+1. Pre-allocation bounds: protocol.md:211-218 explicitly checks types/metadata, bounded header and aggregate wire budget before snapshots or unbounded JSON materialization. Excess is client.request_limit_exceeded with not_started; narrower domain-limit failures still reach the facade. The error is present in owned public types and planned cases.
+2. Early rejection/EPIPE: protocol.md:232-239 requires concurrent stdout/stderr drain, keeps stdin EPIPE provisional, permits only a valid P1-P7 error plus EOF/empty stderr/zero exit to survive it, and requires complete request writing for success/domain error. Abort/deadline remains authoritative before commit; the paired early-rejection case covers positive and negative variants.
+3. Request-ID grammar: min/max and forbidden-character constraints now reject final LF as well as CR/NUL/Unicode separators. Independently checked the exact verification snippet and each repeated non-null request-ID schema branch against valid/invalid boundary strings. The two newly indexed LF negative examples are structurally rejected. The previous concrete schema counterexample is resolved.
+4. Compiler/package policy: protocol.md:268-281 and types.md preserve compiler/package metadata without a client allowlist, leave compiler freshness to the existing backend, pin supported output profiles, and keep wire/facade/view compatibility distinct. The additional planned metadata case captures that rule.
+
+Other material checks
+- The actual direction reply is recorded verbatim as local process/raw bytes with Node first, while field/framing/error/lifecycle adoption and G3 remain pending. I reviewed the supplied local record, not a separate live GitHub/session audit.
+- Direct CLI serde at the existing workspace =1.0.229 pin and a future explicit CLI-whitelist adjustment are now proposed rather than silently introduced. The current Cargo manifests/dependency policy remain unchanged.
+- Success buffers are explicitly nonempty. Compiler OTIO/bundle remain opaque raw bytes; the TS portable view grants no trust constructor or authority, and the same Rust opaque value supplies the bridge accessors. Narrative projection stays a binding view without changing core serialization.
+- G2 status is consistent across ADR, English/Traditional Chinese packet, TASKS, REQUIREMENTS and ROADMAP. The seven implementation checkboxes remain unfulfilled by this design; the direction-selection box alone may be checked. Host/research/production execution/G5 gates remain separate.
+- New .gitattributes rules keep authored JSON/spec text LF and raw binary frames -text; existing identity-bearing fixtures and all runtime/test/workflow/Skill files are unchanged.
+
+Checks actually performed in this follow-up
+- Read the revised normative documents, schemas, inventory/manifest, reproducible verification command, decision record, current user-facing status diffs and attribute changes; inspected the existing serde pin.
+- Executed exactly the Python snippet in verification.md: 3 schemas; 21 indexed authored example hashes; 17 structural labels; 13 pinned Git-blob source identities; 64 unique planned cases in 12 groups; transport runtime/human/Host counts all zero.
+- Additional read-only schema walk tested every repeated non-null request-ID branch against empty, final LF/CR/CRLF, Unicode separators, NUL, 65 characters and non-ASCII strings, plus valid 1-/64-character and punctuation boundaries. All passed. The base nullable response branch is also covered by the documented snippet.
+- python3 scripts/check_repo.py passed: links, provenance, dependencies and requirement test references.
+- git diff --check passed. The documented verifier confirms no diff from the baseline under crates/contracts/tests/examples/scripts/skills/workflows/Cargo/package files.
+- No Cargo/product CLI, Host, media, network, model, subagent or repository-edit operation was performed. Parent-reported existing Rust regression counts were not independently rerun by this reviewer and are not new transport GREEN.
+
+Current reviewed file SHA-256 values
+2db95cc88451b2b12b5ca0a95ae86978bab8ad4b33283d4bb97b50f0992760d5  docs/adr/0014-readonly-process-transport-v1.md
+48dcd18b8b5e5aa3bc87993635ee3e1b28a6c00eda5c693e12e43d6e520df4d0  docs/proposals/m4-02-readonly-transport/README.md
+19618632410371bd32c2971381e91c05bb1783a0d59d887cff37e4f07445712a  docs/proposals/m4-02-readonly-transport/README.zh-TW.md
+44bc0054c9487725edd6300866ea5cef621503fd9da1465ce3328a5f42b04974  docs/proposals/m4-02-readonly-transport/protocol.md
+b04562b1939e3913dd65303cb9bffadae2acfac20cea7ba09a82b7e5fa4cf38b  docs/proposals/m4-02-readonly-transport/types.md
+fd39a407201f412fdc53d16cb39c11d8ea5ae465ee7f62061c59ffcd2245f785  docs/proposals/m4-02-readonly-transport/test-plan.md
+db1554648da1958261152cb564671171a5fd2deae1c798ea72200b3bd518d8f3  docs/proposals/m4-02-readonly-transport/verification.md
+363d4415cd56740f71c294f9b7e4d9faa2f31e79df31f05e7eb53dad0b9db91d  docs/proposals/m4-02-readonly-transport/request-header.schema.json
+f065d24b56ce9ab049836b9f272473e1ad265c06a11e448d847fb9fecfbc9516  docs/proposals/m4-02-readonly-transport/response-header.schema.json
+5c2db25fcd3ae438f87cd29cf1d2b3d8e7466408f65a7da8031263698dc09f27  docs/proposals/m4-02-readonly-transport/narrative-projection-view.schema.json
+a26977de949873ab076914ecc4a89b4474f8824d88dd36e0841c51d1151d86f2  docs/proposals/m4-02-readonly-transport/cases.json
+997a4dc2fcbf82a626eb69556305dc4c2c19a9eea15c76869653e055a591bb26  docs/proposals/m4-02-readonly-transport/examples/manifest.json
+813d5a33459467a35e1e89e96149c85815000706e6506c6a00dc532c08bca212  docs/validation/m4-02-transport-g2.md
+a9af50b8d9d45137abaa730ba293696e3ab4ad056cd8a7904671d365b97e2f90  .gitattributes
+3984114bf7bf4818363f77fb8e280e1352a51d3624ef165a74aa55a29476dd52  TASKS.md
+227c4e88735a50532bc94c45a291ec3c52b66de85eb6d2244906453de6831389  TASKS.zh-TW.md
+f085b4994afff795b616d502655f4be4192aa33ad0b74800119ac81cff73220e  ROADMAP.md
+c8aec11579aa12d6c9fcef6d8e96508e512a5bed3d7efad86fbd0d38f99411e4  ROADMAP.zh-TW.md
+7560c15509dd148a4b82e449d698336b7bc9b9fb77f5f3a0de1358b8b1c54780  docs/REQUIREMENTS.md
+3a17d1de82d1f3468cf30dcb72002bc889de4c3c965b9ddbc3d93178ad8afd7e  docs/REQUIREMENTS.zh-TW.md
+
+Example manifest binds the 21 example files; cases.json binds the 13 original Git sources. These hashes identify the reviewed working tree, not an uncreated future PR head.
+
+Remaining decisions are the explicit maintainer G2 adoption and later actual implementation/CI evidence. No further material builder question remains in this reviewed candidate.

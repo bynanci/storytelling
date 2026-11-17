@@ -1,0 +1,33 @@
+G2 builder check — read-only process transport — 2026-11-17
+
+Review type: AI technical design review, not a human study, maintainer decision, G2 approval or runtime acceptance.
+Base: 62541d91c0c52ec6e49b5dc9c8350e92e83b409a.
+Worktree: /workspace/storytelling-ts-transport-g2-20261117.
+Disposition: important questions remain before an implementation plan can be unambiguous.
+
+1. HIGH — What exact preflight and error apply before the client snapshots/encodes an oversized request?
+   References: protocol.md:34-39,193-205; types.md:45-52,93-112; test-plan.md:65-79.
+   The protocol says checked sums precede allocation, but method entry currently proceeds to synchronously copy caller Uint8Arrays without explicitly checking the total transport cap/header encoding budget first. A multi-gigabyte supplied view or changeId could cause an unbounded copy/stringify before the child can reject P6. No client request-limit code or exact pre-spawn mapping is defined. Decide the pre-allocation input/header/aggregate checks, their code, and preservation of domain-over-limit values that still fit the transport budget. This changes the first executable work and resource/error tests rather than merely choosing an implementation detail.
+
+2. HIGH — How does an early valid child rejection interact with stdin EPIPE/backpressure?
+   References: protocol.md:156-178,199-220; cases.json TS-G04-future-wire / TS-G06-request-cap / TS-G08.
+   P1-P6 can reject before consuming the request body and exit 0 after a valid error frame. A Node caller still writing a large body can receive EPIPE while that frame is arriving. The present lifecycle does not define whether an immediate write failure erases the structured rejection or whether it is retained until response/EOF/exit classification. Requiring all stdin writes first can also deadlock or time out a legitimate rejection. Define concurrent stdout/stderr draining, the specific permitted early-error precedence, when a write failure is terminal, and abort/timeout priority. This changes correct IPC orchestration and public failure identity.
+
+3. MEDIUM — Should request_id exactly obey the stated ASCII grammar in both schemas?
+   References: protocol.md:54-60; request-header.schema.json:18-20; response-header.schema.json:18-24,171-174,604-607,739-742.
+   Concrete static finding: the pattern ^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$ accepts a request_id equal to "x\n" with jsonschema's Draft202012Validator because dollar may match before final LF. The normative protocol forbids that LF. Resolve the schema/full-match rule consistently in all request/response locations and add a paired LF-ID example. Otherwise a schema-valid candidate header and a conforming strict decoder disagree on the accepted public grammar.
+
+4. MEDIUM — Which compiler/package strings are binding compatibility gates versus opaque domain metadata?
+   References: types.md:277-310; protocol.md:233-246.
+   The type spec says compiler/profile strings are validated against the supported compatibility table. The table pins profile IDs but provides no compiler-version accepted set/policy, while explicitly separating package version from protocol compatibility. A builder could either reject a compatible package/compiler patch or accept a record the prose appears to prohibit. Define the actual compiler/package policy (including describe metadata), keep original compiler strings, and leave domain freshness to the existing Rust check. This affects client compatibility and version tests, not only implementation wording.
+
+Actually inspected/checked
+- Read AGENTS, ADR 0014, complete protocol/types/test plan, decision record, three candidate schemas, case inventory and example manifest; inspected the accepted facade and relevant source contracts/serializer/freshness code.
+- Three schemas pass Draft202012Validator.check_schema.
+- All 19 authored example files match their indexed byte lengths/SHA-256; all examples carrying a non-null schema-valid label match that label. This says nothing about future runtime diagnoses.
+- All 13 pinned source identities match Git blob bytes at the stated base and current working files.
+- All 62 cases belong to 12 groups and are explicitly planned_not_executed. Their runtime count is zero.
+- Git diff for crates/contracts/examples/tests/scripts/workflows/Cargo manifests is empty.
+- The additional adversarial request_id experiment confirms "x\n" is schema-valid; "x\r\n" and "x\u2028" were rejected by this installed validator. No code was edited to fix it.
+
+No repository edits, Cargo/product CLI, network, media, Host or model calls were performed. The only write is this /tmp report. No runtime RED/GREEN, performance measurement, human feedback or acceptance decision is inferred. Internal module layout, parser implementation and locked TS-tooling selection remain ordinary builder choices subject to the stated constraints.
