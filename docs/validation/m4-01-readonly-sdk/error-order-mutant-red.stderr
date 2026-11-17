@@ -1,0 +1,5 @@
+   Compiling storytelling-engine v0.1.0-dev.0 (/workspace/storytelling-readonly-sdk-20261117/crates/storytelling-engine)
+   Compiling storytelling-cli v0.1.0-dev.0 (/workspace/storytelling-readonly-sdk-20261117/crates/storytelling-cli)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.91s
+     Running tests/consumer_sdk.rs (/tmp/storytelling-sdk-20261117-target/debug/deps/consumer_sdk-6924da1e05c43a40)
+error: test failed, to rerun pass `-p storytelling-cli --test consumer_sdk`

@@ -1,0 +1,19 @@
+
+running 14 tests
+test sdk_g01_plan_validation_has_independent_fields_and_unchanged_cli_bytes ... ok
+test sdk_g04_complete_and_unresolved_coverage_preserve_the_result_contract ... ok
+test sdk_g02_projection_has_literal_provenance_and_the_existing_text_goldens ... ok
+test sdk_g05_planner_preserves_manual_order_exact_windows_and_conflict_details ... ok
+test sdk_g06_preparation_uses_one_frozen_response_and_matches_raw_baseline_bytes ... ok
+test sdk_g03_revision_history_keeps_authored_choices_and_exact_direct_impacts ... ok
+test sdk_g08_narrative_details_keep_original_relation_serializer_bytes ... ok
+test sdk_g08_planner_details_keep_original_conflict_serializer_bytes ... ok
+test sdk_g08_raw_version_duplicate_null_and_rich_errors_preserve_backend_priority ... ok
+test sdk_g08_review_details_keep_original_loss_serializer_bytes ... ok
+test sdk_g07_fresh_stale_and_malformed_are_distinct_and_stale_fields_stay_sorted ... ok
+test sdk_g04_all_coverage_diagnostics_keep_their_predeclared_code_and_path ... ok
+test sdk_g09_owned_results_are_send_sync_and_caller_threads_replay_without_mutation ... ok
+test sdk_g08_limits_and_multi_input_error_order_are_operation_specific ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.94s
+

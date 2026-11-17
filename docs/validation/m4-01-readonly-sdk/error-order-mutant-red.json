@@ -1,0 +1,25 @@
+{
+  "phase": "controlled_test_mutation_RED_not_a_natural_production_defect",
+  "date_utc": "2026-11-17T10:42:50.288475+00:00",
+  "argv": [
+    "cargo",
+    "test",
+    "-p",
+    "storytelling-cli",
+    "--test",
+    "consumer_sdk",
+    "--locked",
+    "--offline"
+  ],
+  "exit_code": 101,
+  "correct_source_commit": "ca98398092948962e3c8860a01919a9d60bd8d13",
+  "correct_source_sha256": "c63ead96a661f4656471f81c25474f26707119e22e7915c579618f4cd676a625",
+  "temporary_mutant_source_sha256": "0cd33db28d95f2ff5e351e8572cc21e8d39edbf6f601f4eaef03628c65ac1318",
+  "replacement_before": "serde_json::to_vec(error).map_err(|_| SdkEncodingErrorV1 { _private: () })",
+  "replacement_after": "serde_json::to_value(error).and_then(|value| serde_json::to_vec(&value)).map_err(|_| SdkEncodingErrorV1 { _private: () })",
+  "test_source_sha256": "94a7424bd8d13b36b9991e56af09bec9dae329234b65ca5747d948f7b8da3729",
+  "restored_identical_source": true,
+  "stdout_sha256": "115891a295a395cd87876bc20df2d66ce0c0906b3aec7767804ce9cec7d79552",
+  "stderr_sha256": "1b589b373ed75b11aceda878d6f82a5163ce211d4b7e324e6068392a580cfb26",
+  "reason": "Review found existing parsed-Value assertions would miss source serializer order changes. Three raw literals added; temporary Value roundtrip must fail planner/loss order while preserving original11 tests. No mutant is committed or exposed as a production hook."
+}

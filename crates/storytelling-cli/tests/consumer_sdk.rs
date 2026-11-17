@@ -182,6 +182,44 @@ fn source_error(error: sdk::SdkErrorV1, operation: &str, expected: &Value) -> Ve
     bytes
 }
 
+// These literals come from the accepted source structs' field order, not from
+// re-encoding a Value or using the adapter to compute its own expected result.
+#[test]
+fn sdk_g08_narrative_details_keep_original_relation_serializer_bytes() {
+    let error = sdk::render_narrative(include_bytes!(
+        "../../../tests/fixtures/narrative-v1/invalid-multiple-order-cycles.json"
+    ))
+    .unwrap_err();
+    assert_eq!(
+        error.source_details_json().unwrap(),
+        br#"{"code":"narrative.order_conflict","path":"$.relations[2]","relation_ids":["R03","R04","R05"]}"#
+    );
+}
+
+#[test]
+fn sdk_g08_planner_details_keep_original_conflict_serializer_bytes() {
+    let error = sdk::plan_story(include_bytes!(
+        "../../../tests/fixtures/planner-v1/conflicting.json"
+    ))
+    .unwrap_err();
+    assert_eq!(
+        error.source_details_json().unwrap(),
+        br#"{"code":"planner.brief_conflict","path":"$.brief","conflicts":[{"kind":"required-excluded","path":"$.brief.manual_selected_asset_ids[1]","asset_ids":["opening"]}]}"#
+    );
+}
+
+#[test]
+fn sdk_g08_review_details_keep_original_loss_serializer_bytes() {
+    let audio = changed(SNAPSHOT, |v| {
+        v["composition"]["tracks"][0]["type"] = json!("audio");
+    });
+    let error = sdk::prepare_story_review(PROPOSAL, &audio, CONTEXT).unwrap_err();
+    assert_eq!(
+        error.source_details_json().unwrap(),
+        br#"{"code":"import.unsupported_feature","path":"$.composition.tracks[0].type","losses":[{"feature":"import.unsupported_feature","path":"$.composition.tracks[0].type","disposition":"unsupported","accepted":false}]}"#
+    );
+}
+
 fn single_error(
     command: &str,
     operation: &str,

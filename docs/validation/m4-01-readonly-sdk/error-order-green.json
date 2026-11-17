@@ -1,0 +1,20 @@
+{
+  "phase": "GREEN_original_production_source_restored",
+  "argv": [
+    "cargo",
+    "test",
+    "-p",
+    "storytelling-cli",
+    "--test",
+    "consumer_sdk",
+    "--locked",
+    "--offline"
+  ],
+  "exit_code": 0,
+  "date_utc": "2026-11-17T10:44:15.984410+00:00",
+  "production_source_sha256": "c63ead96a661f4656471f81c25474f26707119e22e7915c579618f4cd676a625",
+  "test_source_sha256": "94a7424bd8d13b36b9991e56af09bec9dae329234b65ca5747d948f7b8da3729",
+  "stdout_sha256": "1c087aadc27a8924b12bf8e8757affc8835bd2a1a220069d6ba43b1a0830df53",
+  "stderr_sha256": "02df1a229cb4ec3e139a4f2dba417e30a649aadac3338c5ac0bfd09d20531dfc",
+  "original_eleven_assertions_retained": true
+}
