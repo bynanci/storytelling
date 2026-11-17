@@ -111,7 +111,11 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 
 <a id="accepted-lifecycle"></a>
 
+
+
 ## 已驗收工作與歷史紀錄
+
+- [x] **M3-JL02／JL04／JL06 歷史 readback 維護。**[實際 RED／GREEN](docs/validation/m3-02-historical-readback.zh-TW.md)重現舊 NotApplied 在新 ambiguous 後解鎖重試；依種類／operation／attempt 查歷史收據，維持當前 snapshot 與次數預算，17 項日誌測試通過。這是無 Host 的有限修正；最終 hosted 結果見 PR，正式 authority 及 #105 復原仍待完成。
 
 - [x] **M3-JL02／M3-JL06 維護。**[首次回讀紀錄修正](docs/validation/m3-02-readback-receipt-collision.zh-TW.md)已由 [PR #137](https://github.com/bynanci/storytelling/pull/137) 以 `5bbe80d` 合併，保存實際 RED／GREEN；最終 head 及合併後各六項 CI 均通過。僅完成 receipt 碰撞修正，不變更執行權限。
 
