@@ -483,15 +483,32 @@ class LayoutTests(unittest.TestCase):
     def test_rejects_incorrect_crc_for_small_ordinary_text(self):
         # The independent decode must preserve the existing CRC rejection,
         # even when both ZIP headers agree on the same incorrect value.
-        record, raw = self.rewritten_archive([("skills/storytelling/file.txt", b"hello")], links=[])
-        changed = bytearray(raw)
-        central = changed.index(b"PK\x01\x02")
-        for offset in (14, central + 16):
-            struct.pack_into("<I", changed, offset, 0)
-        raw = bytes(changed)
-        record["archive"].update(sha256=hashlib.sha256(raw).hexdigest(), bytes=len(raw))
-        with self.assertRaises(LayoutError):
-            validate_layout(self.encoded(record), raw)
+        for compression in (zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED):
+            with self.subTest(compression=compression):
+                record, raw = self.rewritten_archive(
+                    [("skills/storytelling/file.txt", b"hello")], links=[], compression=compression)
+                changed = bytearray(raw)
+                central = changed.index(b"PK\x01\x02")
+                for offset in (14, central + 16):
+                    struct.pack_into("<I", changed, offset, 0)
+                raw = bytes(changed)
+                record["archive"].update(sha256=hashlib.sha256(raw).hexdigest(), bytes=len(raw))
+                with self.assertRaises(LayoutError):
+                    validate_layout(self.encoded(record), raw)
+
+    def test_accepts_ordinary_stored_members_with_literal_link_counts(self):
+        # Characterize the other supported encoding with independent literal
+        # membership/link expectations; no behavior change or new RED claimed.
+        link = {"source": "skills/storytelling/SKILL.md", "target": "guide.md",
+                "resolved": "skills/storytelling/guide.md"}
+        record, raw = self.rewritten_archive([
+            ("skills/storytelling/SKILL.md", b"[guide](guide.md)\n"),
+            ("skills/storytelling/guide.md", b"plain guide\n"),
+        ], links=[link], compression=zipfile.ZIP_STORED)
+        result = validate_layout(self.encoded(record), raw)
+        self.assertEqual(result["file_count"], 2)
+        self.assertEqual(result["local_link_count"], 1)
+        self.assertFalse(result["can_dispatch"])
 
 
     def test_snapshot_validation_uses_memory_and_cli_leaves_input_tree_unchanged(self):
