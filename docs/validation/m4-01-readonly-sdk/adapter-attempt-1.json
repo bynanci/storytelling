@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "cargo",
+    "test",
+    "-p",
+    "storytelling-cli",
+    "--test",
+    "consumer_sdk",
+    "--locked",
+    "--offline"
+  ],
+  "date_utc": "2026-11-17T10:33:13.743064+00:00",
+  "exit_code": 0,
+  "phase": "runtime_GREEN",
+  "source_sha256": {
+    "crates/storytelling-engine/src/consumer_v1.rs": "c63ead96a661f4656471f81c25474f26707119e22e7915c579618f4cd676a625",
+    "crates/storytelling-engine/src/lib.rs": "96b82177ce0bd910561f84fbd3e5914bb79192236cf92e8cb86f0b63ad11c66c",
+    "crates/storytelling-cli/tests/consumer_sdk.rs": "27598cd7bacfa08ff364a1bfe775b42567f5ea6fced45ff8eb322a326d25b1c3"
+  },
+  "stdout_sha256": "e9469d9037a4dac7f38ad43ffeca7f85fe16f030f7b8d328f06db20d1edf610a",
+  "stderr_sha256": "13ae932c7fb7e42a2bdf86d8eaa67d6ccf3c407f9d103c28950143cc1d8c9bbf"
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "label": "green-encoding",
+    "argv": [
+      "cargo",
+      "test",
+      "-p",
+      "storytelling-engine",
+      "--lib",
+      "details_encoding_failure_returns_opaque_fixed_diagnostic",
+      "--locked",
+      "--offline"
+    ],
+    "exit_code": 0,
+    "stdout_sha256": "152ec9d0e9b596ab0cb04651a9ed4cdee2da77a1bb13701ce49f3d4b24470252",
+    "stderr_sha256": "2f0fb7984c1ff50fecb3135d9018e0d372d5a4c9890f5868c839363ca53d1da0"
+  },
+  {
+    "label": "green-doc",
+    "argv": [
+      "cargo",
+      "test",
+      "-p",
+      "storytelling-engine",
+      "--doc",
+      "--all-features",
+      "--locked",
+      "--offline"
+    ],
+    "exit_code": 0,
+    "stdout_sha256": "6b623038fe8ae5761b75383cfae489bc7f1c64f81f6771148b503d33cc1e154a",
+    "stderr_sha256": "35295b48669b9dd65aad521a993c39715fb7b7d2f2d136edeff665a9d69e799c"
+  },
+  {
+    "label": "green-consumer",
+    "argv": [
+      "cargo",
+      "run",
+      "--manifest-path",
+      "examples/consumer-sdk-v1/Cargo.toml",
+      "--locked",
+      "--offline",
+      "--",
+      "tests/fixtures/narrative-video-coverage-v1/valid-unresolved.json"
+    ],
+    "exit_code": 0,
+    "stdout_sha256": "442779602ce3426c57d3a5ecc47b19dd9e5f2a093abe556ca5ee95e16e8685ed",
+    "stderr_sha256": "d4889a6f6f30655c3e23122258870f87041e9e99f13483dd8bce81c986f5196a"
+  }
+]

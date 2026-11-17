@@ -71,6 +71,6 @@ tests/fixtures/openfilm/finite-v1/video-trim.json -text
 /tests/fixtures/story-review-v1/context.json text eol=lf
 /docs/validation/open-issues-2026-11-11/n03-reviewed.stdout text eol=lf
 /docs/validation/m4-01-readonly-sdk/** text eol=lf
-/docs/validation/m4-01-readonly-sdk/*.stdout -text
+/docs/validation/m4-01-readonly-sdk/*.stdout -text -whitespace
 /docs/validation/m4-01-readonly-sdk/*.stderr -text -whitespace
 /docs/validation/m4-01-readonly-sdk/*.log -text -whitespace

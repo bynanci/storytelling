@@ -7,6 +7,8 @@ use storytelling_core::ValidationError;
 use storytelling_core::time::RationalTime;
 use storytelling_core::wire::{PlanDocumentV1, TimeValue};
 
+pub mod consumer_v1;
+
 mod brief;
 pub use brief::audit_story_brief;
 
