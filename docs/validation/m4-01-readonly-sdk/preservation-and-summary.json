@@ -1,0 +1,841 @@
+{
+  "base_sha": "0b39c00354f343d7a61821a029777d88a8373254",
+  "verified_at_utc": "2026-11-17T10:52:10.012373+00:00",
+  "unchanged_files": [
+    {
+      "path": "Cargo.lock",
+      "sha256": "145165518ae1cee8775131e241545a4e6036b14f63493f5b5f9afc62988a9797"
+    },
+    {
+      "path": "Cargo.toml",
+      "sha256": "ba0bc5ab0473db80349e7f25169d20a0a0ebfb697ff2a6d805c451e8f7fa1d9d"
+    },
+    {
+      "path": "contracts/commercial-copy-report-v1.schema.json",
+      "sha256": "fe6da12155866f3c91d49e7be6e0286fde5f66ac5da13166acc852cac4c0b391"
+    },
+    {
+      "path": "contracts/commercial-copy-report-v2.schema.json",
+      "sha256": "ae439349eae60e5d133ca28c1e99f1cb796d8bc0bdd5fd86bc6741d12a402423"
+    },
+    {
+      "path": "contracts/commercial-copy-v1.schema.json",
+      "sha256": "bf521f7fd19e63b8c89c17975125a7a352b13739e7e40d864764c2235d1e22b5"
+    },
+    {
+      "path": "contracts/execution-intent-v1.schema.json",
+      "sha256": "af30539c5d0622df6b8ba5d50c31e1aa6144a764580bc435f9c7e790892f7ada"
+    },
+    {
+      "path": "contracts/execution-result-v1.schema.json",
+      "sha256": "54c68b2ddf81e59820b951dd539466a7fd8ac4c1d68c391b97e1f0b6dedda164"
+    },
+    {
+      "path": "contracts/narrative-cue-sheet-v1.schema.json",
+      "sha256": "89ab6c221ea5dbfde4e648fee50d689f1018e77cc46a5e1af51d927a1e9b03dc"
+    },
+    {
+      "path": "contracts/narrative-document-v1.schema.json",
+      "sha256": "296f5d73d6c02a52247902fb0f7eb4409bd926877c98d6bf566f836840bc2925"
+    },
+    {
+      "path": "contracts/narrative-handoff-manifest-v1.schema.json",
+      "sha256": "b729b1e006eb298fa39f9d5c8d335f518fda078e4b868da2eb09edb89455bd8e"
+    },
+    {
+      "path": "contracts/narrative-revision-ledger-v1.schema.json",
+      "sha256": "0f691c048900473f1f77324ed7d39b53ebb610736c0a7413e45f68003200a4c9"
+    },
+    {
+      "path": "contracts/narrative-style-profile-v1.schema.json",
+      "sha256": "1d7ef83744ac1f75a9e099bdc3fcfaa077ca5cdc2010e7fb8d3a87841684d546"
+    },
+    {
+      "path": "contracts/narrative-video-coverage-result-v1.schema.json",
+      "sha256": "3cd253faef265c8b4fadfae7d31ac499e08c976fdf2d94704b56ff9ee5356c67"
+    },
+    {
+      "path": "contracts/narrative-video-coverage-v1.schema.json",
+      "sha256": "4421a8b52b429dba203a096e5ddbeb20b4f51b9ea2e554197306469f9d9884d3"
+    },
+    {
+      "path": "crates/storytelling-cli/Cargo.toml",
+      "sha256": "2b22ced8358e7f2b776a44494ae6f7d161586a1ed322e13247aabc76a37cd350"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/brief.rs",
+      "sha256": "b09a309f36d2013bd4a3245e170a5d84d0c6e77ed1c187407f166f7bc01fedf4"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/cli.rs",
+      "sha256": "d64d617e883ed57e45a87555d10f2d0edb96587c97246e20992c6550ff38cf6d"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/commercial_copy.rs",
+      "sha256": "adfb2c224621337eb90d82b225c85bc879fda8a856d8a33b09c4db14f83b3a61"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/commercial_copy_pilot.rs",
+      "sha256": "26460cf028b5c3a90aa93186ba534931f99d24b543c4bad9b62f8ab3274878cb"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/cue_sheet.rs",
+      "sha256": "4d71f9d45a615b7688db6b35bafb67afca86f32e7b2525b10ad8825a45bab3a1"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/draft_video_input.rs",
+      "sha256": "f580fb5931d52c6b186c32670406e4670629e9d1dd77f988e90d34823662b4a6"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/handoff.rs",
+      "sha256": "3727281cb8ac285f663d90955b3734e1eea729b42960135753005a118ed8b74a"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/narrative.rs",
+      "sha256": "b44755d120fbc2e04251da26126345738f3bf7a5cf7e46a9d79a242ffa345b04"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/openfilm.rs",
+      "sha256": "d17d286add5792a5938f0d53d8b9d1098d7be6157a9dbfb8edf162fb25f9c57f"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/otio.rs",
+      "sha256": "3c06fbb95313a8a8e6cb60d1007952748e39a2cec7528ea65f675f96ceff5c10"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/planner.rs",
+      "sha256": "30c2c5dc0c51f5a5af776d35cb2ffc2689dbf7a32260cc60bd87f0ec2ad60602"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/review_cli.rs",
+      "sha256": "349dec1db28c2bc2d66460dd54aa55df27ddb19a62c56aea630147a87b77f71b"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/source_evidence.rs",
+      "sha256": "77c4f784aab0f38506c1c70cad5b1fff5733eb8c1bfaf2190e3c7ea3e80253b1"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/story_review.rs",
+      "sha256": "f50fc4f699473f9c0ea83b01d4e39d8b3c476094c700351603de595e6ae7208b"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/style_profile.rs",
+      "sha256": "e10acdd372ceb5f605d7e1d2b50e689e844b6ebabe0d91a1717250170ec34364"
+    },
+    {
+      "path": "crates/storytelling-cli/tests/video_coverage.rs",
+      "sha256": "701a6b14ca459d0b247e99ed34bf68bac036e0540d5b14ee9d475962a917a19e"
+    },
+    {
+      "path": "crates/storytelling-core/Cargo.toml",
+      "sha256": "b63eb02190cfde8059dc58921eeb5375b7ae9061cf9006a1cbf61f633b82f17d"
+    },
+    {
+      "path": "crates/storytelling-core/src/approval.rs",
+      "sha256": "77a792c8225a22b4e9511a3bbe9d826af9caaf6aa984d7131a63adcc93736321"
+    },
+    {
+      "path": "crates/storytelling-core/src/brief.rs",
+      "sha256": "317ed0ea391cdd879780815db838c40c6e0d5457e823ce3849076f9a98278d9c"
+    },
+    {
+      "path": "crates/storytelling-core/src/commercial_copy.rs",
+      "sha256": "4bf2c766670af1dba074d1e962df53314a1a78836d33d03b7abca0026bf7465f"
+    },
+    {
+      "path": "crates/storytelling-core/src/compatibility.rs",
+      "sha256": "277d2d3314c66cc962cac1001ce5ecd2f6b6a4faeaf2762a1a4f3eb5bce488c7"
+    },
+    {
+      "path": "crates/storytelling-core/src/compiled_plan.rs",
+      "sha256": "e75b31c99b8e35065937eaa02cf54ad2f79f83d95a6d6326b53ff5ec706243d1"
+    },
+    {
+      "path": "crates/storytelling-core/src/lib.rs",
+      "sha256": "8d32075fd46fd3755fe6c3265882dcce8bad9aef8f8ef85a8e5b23e5ecd597cb"
+    },
+    {
+      "path": "crates/storytelling-core/src/narrative.rs",
+      "sha256": "dd83f5d13b902ccf5c53a6d9485637bb7172c573be6200dd75603d44e3ecb857"
+    },
+    {
+      "path": "crates/storytelling-core/src/narrative_cue.rs",
+      "sha256": "dc40a58636644e12c16736f8482264a03677d71fed3bf2e267aaecf35819590c"
+    },
+    {
+      "path": "crates/storytelling-core/src/narrative_handoff.rs",
+      "sha256": "6fc9ce5c8c02b04c4d78893dea0a9d082eb65421618154446bd40a070d4f9bdd"
+    },
+    {
+      "path": "crates/storytelling-core/src/narrative_revision.rs",
+      "sha256": "3154395a81d6a853d1f325bdd844729e16acecf00989820f77ba103c9b322c3b"
+    },
+    {
+      "path": "crates/storytelling-core/src/narrative_video_coverage.rs",
+      "sha256": "b7fc2920189baebbc79cceeffa5afd8144241f388c52ddf0fb34ad0b823004c6"
+    },
+    {
+      "path": "crates/storytelling-core/src/planner.rs",
+      "sha256": "26fb25c2cb4ffd60261c2e02e8122ffdd2c2d2a5e0d0cffd0e8142c9d8ba1168"
+    },
+    {
+      "path": "crates/storytelling-core/src/review.rs",
+      "sha256": "0216cbb1e424821fca71b967fef9b3dfe16bc5f45e8c4e6c5ade627a2c4d92fa"
+    },
+    {
+      "path": "crates/storytelling-core/src/source_evidence.rs",
+      "sha256": "8857d828ab8e0aad0406d8ccb2e4f54a338a82a597ca694555d64d374bac0c3a"
+    },
+    {
+      "path": "crates/storytelling-core/src/time.rs",
+      "sha256": "d7f44370079598be3846f4edee1bace758d55b9b9b1fad7202ed19e7851f23d8"
+    },
+    {
+      "path": "crates/storytelling-core/src/wire.rs",
+      "sha256": "008feeb19458739ff7cebb7f0d428da6fad8cc44f695556c85c6d21c96a6d9cc"
+    },
+    {
+      "path": "crates/storytelling-core/tests/approval.rs",
+      "sha256": "30f7712c9943dd40b5554a60a6946d16da02d046d1169b7fe39376da0b4465ee"
+    },
+    {
+      "path": "crates/storytelling-core/tests/source_evidence.rs",
+      "sha256": "46748a6f917a45f4be2c48c947016efb712d142e153ac038a21cd4e16d232ea9"
+    },
+    {
+      "path": "crates/storytelling-engine/Cargo.toml",
+      "sha256": "55907ec63c9ce0672a621e4b6907002abfad20f6c104640e5f7fab5826029ea4"
+    },
+    {
+      "path": "crates/storytelling-engine/src/brief.rs",
+      "sha256": "d9605801d72ed17f55409a4e68f826d37e9ca52571acd8e39adb7568d359fb34"
+    },
+    {
+      "path": "crates/storytelling-engine/src/brief/cycle.rs",
+      "sha256": "48974ac8025d6ef2d5c4653153d9870cb5cc185881ee05e89e3813e2eefdc471"
+    },
+    {
+      "path": "crates/storytelling-engine/src/commercial_copy.rs",
+      "sha256": "ed024446f8767828974c271548a4828e8c5c21e9b9492a9fe61e64f3404904ff"
+    },
+    {
+      "path": "crates/storytelling-engine/src/draft_video_input.rs",
+      "sha256": "4777bcb0034f67d896776671771cb117006522a7a4ae39c7024930f4d74faf5f"
+    },
+    {
+      "path": "crates/storytelling-engine/src/draft_video_input/exact_time.rs",
+      "sha256": "2889a246b31673c8c9da0e4f1252c6bda8ebcd05c3a7d4345acbd6e628bc46a2"
+    },
+    {
+      "path": "crates/storytelling-engine/src/narrative.rs",
+      "sha256": "1b487a78b01bccb805d4c17e2ad4c8fc49d4cf82da2d3884efbbdf5c761dd1f5"
+    },
+    {
+      "path": "crates/storytelling-engine/src/narrative_cue_sheet.rs",
+      "sha256": "e42d3ddac25fc4453f406a48e5d1b8cc49404ecd2e87f7301edff05b37a5bec1"
+    },
+    {
+      "path": "crates/storytelling-engine/src/narrative_handoff.rs",
+      "sha256": "47662aab3c90bc37cd5ebae5784f68fe84c76a9fe2d1645ca65596e18ba18319"
+    },
+    {
+      "path": "crates/storytelling-engine/src/narrative_revision.rs",
+      "sha256": "6e93df8cd108a2a06fcb080b8266a88b0554222cea8f2260221e4dcdff07fe50"
+    },
+    {
+      "path": "crates/storytelling-engine/src/narrative_style.rs",
+      "sha256": "952b04cf0f43b9dcd08e65272fa8cb5c506b65622700e46d05512a2c7ebb6334"
+    },
+    {
+      "path": "crates/storytelling-engine/src/narrative_video_coverage.rs",
+      "sha256": "8898c3915f9ef6246709da035b6f3e70a78a014bb3a6d22053c916e24ae30d42"
+    },
+    {
+      "path": "crates/storytelling-engine/src/openfilm_snapshot.rs",
+      "sha256": "88ea1f7c3474f9764cf4a49093b1d0948e87633eba906be645016bb84eae4942"
+    },
+    {
+      "path": "crates/storytelling-engine/src/openfilm_snapshot/budget.rs",
+      "sha256": "b3c7df40b29b4384402f3ab147c93ab7c0b4217a491b4220e164da85f2c66182"
+    },
+    {
+      "path": "crates/storytelling-engine/src/openfilm_snapshot/decimal.rs",
+      "sha256": "31a26356cf3a12fe02f21ad47434b2b929cb96b87dd2215b8f0e103953e4fbef"
+    },
+    {
+      "path": "crates/storytelling-engine/src/openfilm_snapshot/dto.rs",
+      "sha256": "e5ef8f95a859c62e40a3bc8ef7f6cf87ccd2ed5870f78787068b42001fce5d5e"
+    },
+    {
+      "path": "crates/storytelling-engine/src/otio.rs",
+      "sha256": "84e301ceee627fde62de895da2debf3ad79bafbeb2422590c53f6127480629f6"
+    },
+    {
+      "path": "crates/storytelling-engine/src/otio/clock.rs",
+      "sha256": "5b890e70713bd9e3cbe870d690e950031828cd3e554e7e1bbfbe79cf33c9179c"
+    },
+    {
+      "path": "crates/storytelling-engine/src/planner.rs",
+      "sha256": "0ae6768b970923a7264ab40a4eaef622e9893d1bee49e65c19ffbf9f9c66bfc0"
+    },
+    {
+      "path": "crates/storytelling-engine/src/planner/clock.rs",
+      "sha256": "5b88d064f6615b30ac6039d0015477ac5a7966e6258497747b89a505f1847b76"
+    },
+    {
+      "path": "crates/storytelling-engine/src/planner/clock_tests.rs",
+      "sha256": "87e7a8d0b046ead1278524f39533c8dec799ee13b39d6c916e653ba2c412735c"
+    },
+    {
+      "path": "crates/storytelling-engine/src/planner/order_tests.rs",
+      "sha256": "5b8b1bcdc676488fa631f22b83d6d9425a851bab73013e158418a5ad39487224"
+    },
+    {
+      "path": "crates/storytelling-engine/src/planner/ordering.rs",
+      "sha256": "6762559802105c62e982a7a2a97c7a3c4a11c230e160d175f3fec1fab0d3348e"
+    },
+    {
+      "path": "crates/storytelling-engine/src/review_binding.rs",
+      "sha256": "792134f5e555176527d9b37cd16d5738cbc5330c209bde750852db290655d2d3"
+    },
+    {
+      "path": "crates/storytelling-engine/src/story_review.rs",
+      "sha256": "be8d639cda5c14ca312cf0423ee06b0f3787fc9333e257ebaaf241f3714f9133"
+    },
+    {
+      "path": "crates/storytelling-engine/tests/brief.rs",
+      "sha256": "9a867522dbd0bd08a9481cad49ccb6f3d7009d91eefc8dd0f037410656120e0f"
+    },
+    {
+      "path": "crates/storytelling-engine/tests/narrative.rs",
+      "sha256": "c5c8e79753b2151ff1af2ee360454123d6649f9d4888a8680f09c8772d744cd9"
+    },
+    {
+      "path": "crates/storytelling-engine/tests/openfilm_snapshot.rs",
+      "sha256": "33dbcd0c0ce14a5365dcb725964352f4a42a2953dbb8709d39e198e5ed3e552c"
+    },
+    {
+      "path": "crates/storytelling-engine/tests/otio.rs",
+      "sha256": "0d6161d85e74b70c947e831be04af154638c4d24f9bf2b8070010cc9faf9bfb2"
+    },
+    {
+      "path": "crates/storytelling-engine/tests/planner.rs",
+      "sha256": "06db684e6f5fa6b0e74029b16d4cea7cb230fa8994ae250a533525b4ac76989e"
+    },
+    {
+      "path": "crates/storytelling-engine/tests/review_binding.rs",
+      "sha256": "f5da262d33af1d34dfcad75cc96d302d972189d0649ea499a3b4296973bed845"
+    },
+    {
+      "path": "crates/storytelling-engine/tests/story_review.rs",
+      "sha256": "c4ebb25cce843225e890bfaa9dcb920b912f0ff124a0c0a93adbcd0cc0b9f4d9"
+    },
+    {
+      "path": "crates/storytelling-engine/tests/validation.rs",
+      "sha256": "e9891bd8f532c683de28d0d2029d81bc20c6faa2e918cd9992df4e2876ea964b"
+    },
+    {
+      "path": "crates/storytelling-journal/Cargo.toml",
+      "sha256": "118358f9feab54743d44db48dcc04e115b91229b9d8c89da71f18c95f682db1e"
+    },
+    {
+      "path": "crates/storytelling-journal/src/lib.rs",
+      "sha256": "7840f648eb466345cbc5cf5421ced8510af242a4d68c6b951def88ece5b86088"
+    },
+    {
+      "path": "crates/storytelling-journal/tests/filmcraft_execution.rs",
+      "sha256": "37170ec6a38a6be52d0f1e1ed1c58cc5f6fa5bbccddf4a983b4bdf42a69b829b"
+    },
+    {
+      "path": "crates/storytelling-journal/tests/journal.rs",
+      "sha256": "4c1d8b3198db701f7e0036be5283c5aaffcb1728aa06a9ce0cd17435a9ac0ce6"
+    },
+    {
+      "path": "tests/fixtures/brief-v1/README.md",
+      "sha256": "80e7202b4e4438b82351a2a91ffc948f7311ae021474dca4f03a8051ef996429"
+    },
+    {
+      "path": "tests/fixtures/brief-v1/conflicting.json",
+      "sha256": "fd5559b687b6e395757ea3b9fd89164aa880b96719b04f2687fbbffd6b995e64"
+    },
+    {
+      "path": "tests/fixtures/brief-v1/valid.json",
+      "sha256": "5f51491a52af4ace115a2824798105f8ae3d9f66c9030299ff61999b19ff25f8"
+    },
+    {
+      "path": "tests/fixtures/commercial-copy-v1/README.md",
+      "sha256": "08843733c7d99f53eddced588de8e451f75df198c604e1caf1833813b9099e06"
+    },
+    {
+      "path": "tests/fixtures/commercial-copy-v1/expected/n05-pilot-dangling.json",
+      "sha256": "3c37f4e7095461357b6aaf78514d2291e48b976ebdbdf640d44149d385a70271"
+    },
+    {
+      "path": "tests/fixtures/commercial-copy-v1/expected/n05-pilot-missing.json",
+      "sha256": "75970f297c9b1dd976ca8d1ebb9377a687aa5f7116ab4da3065414d8097fc6c2"
+    },
+    {
+      "path": "tests/fixtures/commercial-copy-v1/expected/n05-pilot-normal.json",
+      "sha256": "a9a0e1616aa7be366a04fd606a50e81e9d8ef2a1f8ca1a03ec51621ae343d0cf"
+    },
+    {
+      "path": "tests/fixtures/commercial-copy-v1/expected/n05-pilot-revised.json",
+      "sha256": "f24c1028a2c1fe3fb50914e8384b807cdf0e9d82deb697af513d995bac9da21f"
+    },
+    {
+      "path": "tests/fixtures/commercial-copy-v1/n05-copy-dangling-ref-v1.json",
+      "sha256": "56af714e9f93336c366747063c5b4cdb63fe83c3b9411ba6f3df438be59482c4"
+    },
+    {
+      "path": "tests/fixtures/commercial-copy-v1/n05-copy-reviewed-v1.json",
+      "sha256": "d82a942aa46148bec6a35b5705cdbc5eb0fb9631f73c6d4c29d5e0e20294c8cf"
+    },
+    {
+      "path": "tests/fixtures/commercial-copy-v1/n05-copy-revised-ref-v1.json",
+      "sha256": "34e327bedd11baa65575796b2db4a60a077bd2f0d672905cda74ca208e037b87"
+    },
+    {
+      "path": "tests/fixtures/commercial-copy-v1/n05-copy-v1.json",
+      "sha256": "c4759c7ee0cf31a051f5d17918649734dfd4a5ccbfef2efdd06f5a24f0baafba"
+    },
+    {
+      "path": "tests/fixtures/commercial-copy-v1/n05-pilot-copy-dangling-ref-v1.json",
+      "sha256": "b7c59f0d62e6a6de6be60e3386d40535641d40fff5be563f62b29ccbed272fc4"
+    },
+    {
+      "path": "tests/fixtures/commercial-copy-v1/n05-pilot-copy-no-reference-v1.json",
+      "sha256": "189a8e85829268ad8c26f219de90be60163cf061643800f0c6b45d0bb317ddfe"
+    },
+    {
+      "path": "tests/fixtures/commercial-copy-v1/n05-pilot-copy-v1.json",
+      "sha256": "5fa2b33f1cdbb8555e6dd6a0227818e31697b6ba78f8d861372eea6384f48e18"
+    },
+    {
+      "path": "tests/fixtures/commercial-copy-v1/n05-pilot-ledger-revised-v1.json",
+      "sha256": "ab400bef7e318b15dbcb5e41d64529d09dbed8be66c15a97aab380815b651ac2"
+    },
+    {
+      "path": "tests/fixtures/commercial-copy-v1/n05-pilot-ledger-v1.json",
+      "sha256": "da6dc1b91e81a3efcc070d2b51cc8a6a38ccfe55c100fd2de4a5e87df0b73f74"
+    },
+    {
+      "path": "tests/fixtures/execution-contract-v1/README.md",
+      "sha256": "d23447f5d1b75063973ba8cc74417704198da21702f335cf994a91e5094e6ffb"
+    },
+    {
+      "path": "tests/fixtures/execution-contract-v1/applied-result.json",
+      "sha256": "227d0299fda5d7cad66d0cc4de01ea98a30b82cc81f1c3dcde6f28b10e167911"
+    },
+    {
+      "path": "tests/fixtures/execution-contract-v1/bad-hash.json",
+      "sha256": "8103d9cd526695e722c76ff9cd2ea84e29b01cd7352c1920ecc7c9e0155fc164"
+    },
+    {
+      "path": "tests/fixtures/execution-contract-v1/cases.json",
+      "sha256": "bde744ce5e5ccc0c7e5475068b04903a729a516196f3bfa9695bd2db914e6425"
+    },
+    {
+      "path": "tests/fixtures/execution-contract-v1/check_design.py",
+      "sha256": "8abc37c443d9089dd2df3b3e0ba1590f6f79f5265c603047c80f03cd150bf88e"
+    },
+    {
+      "path": "tests/fixtures/execution-contract-v1/depth-eight.json",
+      "sha256": "23e60db735236e6e4b3cc326a5ec61cf5830d55d347ccc0e027449c888bc1f6f"
+    },
+    {
+      "path": "tests/fixtures/execution-contract-v1/depth-nine.json",
+      "sha256": "a3cadf507d5621a6257d3a0bd2f04886d90b8763095a51a841efd8d1f9e72355"
+    },
+    {
+      "path": "tests/fixtures/execution-contract-v1/duplicate-json.json",
+      "sha256": "4356371cc05ca0ee8da945a6441e4442a95f3698b1c16a4294dcf569ac86c907"
+    },
+    {
+      "path": "tests/fixtures/execution-contract-v1/identity-vector.json",
+      "sha256": "906294c0e5cafb33e96b63df13c12fc609088d80f9e2fdcf532f70666ee032c6"
+    },
+    {
+      "path": "tests/fixtures/execution-contract-v1/noninteger-version.json",
+      "sha256": "277cc0b52756ca30839d053d271a7f28a8b51b4588a93bd4326d7651c1a66a00"
+    },
+    {
+      "path": "tests/fixtures/execution-contract-v1/null-approval.json",
+      "sha256": "cf9ed158bbca3937e090424e1f0985a80cbeb9bfcae893ccba077db528cd7b94"
+    },
+    {
+      "path": "tests/fixtures/execution-contract-v1/receipt-vector.json",
+      "sha256": "46e97a08e9b5654a439d16e86a8f12584156caeeb67732dd499bbee632fce4a3"
+    },
+    {
+      "path": "tests/fixtures/execution-contract-v1/unknown-field.json",
+      "sha256": "80c36d16684b951777727ef38cb7765d165dc7766cd999acc79979beef842fc2"
+    },
+    {
+      "path": "tests/fixtures/execution-contract-v1/unknown-version.json",
+      "sha256": "f3d8a19f6b3bc52dbb1fb06e455e04c1a252308544786a30a6d21df70a476ddc"
+    },
+    {
+      "path": "tests/fixtures/execution-contract-v1/valid-request.json",
+      "sha256": "90067b92ea7d0a689a2187335c6e4ccb47fd4849221b462c940aa4d123f423ce"
+    },
+    {
+      "path": "tests/fixtures/invalid-source-range.json",
+      "sha256": "6bd93243ae791df961332689cf3b8172e8e9682657016df2fe7407c5a571bdc0"
+    },
+    {
+      "path": "tests/fixtures/n10-06a-draft/README.md",
+      "sha256": "83217bfaff686ccc031154cd6422d8ee232fbc6af876c0ec65be012597fae39c"
+    },
+    {
+      "path": "tests/fixtures/n10-06a-draft/beyond-duration.draft.json",
+      "sha256": "086e30a82929f19495500b356cef162669f74803cb94422918019dfa259cbf8a"
+    },
+    {
+      "path": "tests/fixtures/n10-06a-draft/cases.json",
+      "sha256": "93ea818cb051d75761ce6f2ce3ce41809717cc0aa634bbda7ae4b039f4848a89"
+    },
+    {
+      "path": "tests/fixtures/n10-06a-draft/frames-30-unresolved.draft.json",
+      "sha256": "4a05d7672b3ca012cc7530c5f9975571669f9bf7b712b5473a5143834a03cc78"
+    },
+    {
+      "path": "tests/fixtures/n10-06a-draft/frames-30-unresolved.expected-v1.json",
+      "sha256": "649dee6808e0ed1503ba9550f0a4dfe078573e9a4ed3946cd8134995b30c10da"
+    },
+    {
+      "path": "tests/fixtures/n10-06a-draft/frames-ntsc-unresolved.draft.json",
+      "sha256": "fb38982b9257e5cb33cfdeea8fa229cac82ab10887dd2ad499bd2939e3f88327"
+    },
+    {
+      "path": "tests/fixtures/n10-06a-draft/frames-ntsc-unresolved.expected-v1.json",
+      "sha256": "f4a5c391255d8891277579b891d8a5efab6d0c3d431c529a7af77a7515f2d8e3"
+    },
+    {
+      "path": "tests/fixtures/n10-06a-draft/negative-seconds.draft.json",
+      "sha256": "c49add405780516ba64f1bd04c73eec73723938873559fa07c41cb88eb26a23c"
+    },
+    {
+      "path": "tests/fixtures/n10-06a-draft/seconds-unresolved.draft.json",
+      "sha256": "53160dac337de4c65caabe7e77100092a1aa9803a60c950e0d1085c683a4c97a"
+    },
+    {
+      "path": "tests/fixtures/n10-06a-draft/seconds-unresolved.expected-v1.json",
+      "sha256": "649dee6808e0ed1503ba9550f0a4dfe078573e9a4ed3946cd8134995b30c10da"
+    },
+    {
+      "path": "tests/fixtures/n10-06a-draft/vfr-frames.draft.json",
+      "sha256": "aaabcbf4b4310b7e6d14c4e1e11b686b34da13aa2fe63dc6aa0d7d934ecfd6cc"
+    },
+    {
+      "path": "tests/fixtures/n10-06a-draft/zero-fps-denominator.draft.json",
+      "sha256": "304e4b9ae4d6fe7e6a8e8690fb0ac3dbfe9417b497702e271a25b90c6ef2486b"
+    },
+    {
+      "path": "tests/fixtures/narrative-handoff-v1/README.md",
+      "sha256": "48b8e80e6511a46de0ceb51e0c7e7f983c25c831dee2ade5416e659aa0a504a3"
+    },
+    {
+      "path": "tests/fixtures/narrative-handoff-v1/after-v1.json",
+      "sha256": "9a597804c2580839d42c72ee7e05d98285792335979d568c6b47c178181e81b8"
+    },
+    {
+      "path": "tests/fixtures/narrative-handoff-v1/before-v1.json",
+      "sha256": "f9371702dffa059fa0c912f724b39e6ca945e0fda21d47e1cc5f2b8193fdffe2"
+    },
+    {
+      "path": "tests/fixtures/narrative-handoff-v1/date-ledger-v1.json",
+      "sha256": "cfd65fee13f7bef56991c4fdf478d7ab345fae0906c078f6c1196ef50d6e5874"
+    },
+    {
+      "path": "tests/fixtures/narrative-handoff-v1/descriptions-only-v1.json",
+      "sha256": "548da8671ccdcf48747610c2b24865383282bed6318145a11a6d8b7e8d577ec7"
+    },
+    {
+      "path": "tests/fixtures/narrative-handoff-v1/expected-impact.json",
+      "sha256": "6fd6f41807dd5ac5f335d01b02e674773be2aaf4ab3306c51177c704284b6b30"
+    },
+    {
+      "path": "tests/fixtures/narrative-handoff-v1/missing-source-v1.json",
+      "sha256": "053ca27be7afdbcffa7376dff10e52333d3e1b3f63dbd0a5e9c180d1f293e7b8"
+    },
+    {
+      "path": "tests/fixtures/narrative-handoff-v1/notice-after.txt",
+      "sha256": "5caa7157d447c04095747a6d17168436ee892c644aae2cc874f5dcf8874a1034"
+    },
+    {
+      "path": "tests/fixtures/narrative-handoff-v1/notice-before.txt",
+      "sha256": "57a3890cceca69e7238076d3fe8ebb0649360ce5eaa7ee46ff1282a006c04b7a"
+    },
+    {
+      "path": "tests/fixtures/narrative-handoff-v1/proposal-leak-v1.json",
+      "sha256": "a172f8fca9ff6efd9e7b866401c441cf2c3964893be7fbffc7ec0792735a1a4d"
+    },
+    {
+      "path": "tests/fixtures/narrative-handoff-v1/stale-revision-v1.json",
+      "sha256": "4b7e874f57b2ebaf72a4beae4a355e4b7a01458e2c95849311ac78cf770e3781"
+    },
+    {
+      "path": "tests/fixtures/narrative-handoff-v1/transcript-missing-v1.json",
+      "sha256": "f528d0cbedae6d64e7c6dee19cae4c62d1c8d780916d12509fc1aab16efced99"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/README.md",
+      "sha256": "b60672b6a8e1643f3659807cb0c22bbe6bd64bbbfdcc1c30aace59f758ebb985"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/invalid-dangling-reference.json",
+      "sha256": "976a831f9cb5142b1c7875608679077b11c7be6fc4dafb3de6b93f6752f740c1"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/invalid-duplicate-field.json",
+      "sha256": "86327934b2ae34f50c2f56f425e3ace9c80ca0535948872360fb18d68f620e5f"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/invalid-multiple-order-cycles.json",
+      "sha256": "a9e061ecb3cc4a37266999d8d0167429aeaaddfa7967f28bdf4a28a5ad314360"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/invalid-order-cycle.json",
+      "sha256": "bc168ef4eee2a748e9229211923553c0676defb2e3f6bca28bad5b7371c7714f"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/invalid-stale-revision.json",
+      "sha256": "c87dc684c853ce43531adb0ead0fceeb4b376897d86b8b2f95d5870c5b885b17"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/invalid-unknown-field.json",
+      "sha256": "1c68752a82f3a5a6c167be57b4757030c710b5416d1ac359943efa27ae1fd4b6"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/invalid-unknown-version.json",
+      "sha256": "8078436b36a8dec407b3f551576ce3e16e7254772287659d7deb66e625cb61e0"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n03-author-reviewed-v1.json",
+      "sha256": "674f4fbea82152abf8f85b70399341e0615bcd1c0e66b240a6dadf431d632f15"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n03-authoring-v1.json",
+      "sha256": "cccff034e9d6a434ec7ee22a16c45629bf584b2ff9d4943b3e27c5fec8889a20"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n04-invalid-self-confirm-v1.json",
+      "sha256": "2835aeaac13ce2392d45016b7e00541ddd97f02c0e1c3b573e44eeea81f2c001"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n04-revision-history-v1.json",
+      "sha256": "29d51fa72c3ad872d442c45d03ec2458bf948fb7bb4b804b46247de6c4714f6c"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n08-style-profile-conflicting-v1.json",
+      "sha256": "fdfd77b8103778eae337d0d2573819999d2befe90bf39f0bfe243c76a288e09a"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n08-style-profile-order-violation-v1.json",
+      "sha256": "d8b85eb8b26fb4992ef78e3116680d0adf8a0c9bdcd5e6f8208cf010d5da0a44"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n08-style-profile-stale-document-v1.json",
+      "sha256": "907e14319f41a94096fd7b5e8ad68349a1f77a8ceac1a5c150e33ad145a299ce"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n08-style-profile-unknown-field.json",
+      "sha256": "1fe29ea9e34013c7ac75515cfe8e596a0c582a39c3b502fd315ad98fb3b36ee2"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n08-style-profile-unknown-version.json",
+      "sha256": "f8d707d529d667579e1d6892229c28152d79767bb8694107e4edcf4665bd5238"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n08-style-profile-v1.json",
+      "sha256": "daf4d320a1101f0b01c2e557436e9c58d8d5317ec9edfc0fbbd42ed4ae72b419"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n08-umbrella-openings-v1.json",
+      "sha256": "12132e9f4edd3a8d1f2c01684bb7e236a74371a321c602eadb4223f083355e5e"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n09-cue-sheet-adjacent-v1.json",
+      "sha256": "c39c6da9330713c46f25b7a2bda5f2bbde11fadcf28508217c6a4caf98cc5e16"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n09-cue-sheet-conflict-v1.json",
+      "sha256": "341faafd4a33df89756e54aee5f1bdef5b0f3c70cd5db91c0f8c260963a51639"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n09-cue-sheet-cross-track-overlap-v1.json",
+      "sha256": "f05f65ca0bd3a175d767382e343a96dbe753d249c04ccc28279a19bd94d4b7e1"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n09-cue-sheet-duplicate-id-v1.json",
+      "sha256": "883d4ff785c5c344deede33ce8138353df61611201e5c37d90c4bef3627925b5"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n09-cue-sheet-reversed-v1.json",
+      "sha256": "3219bcdb50a2ee5153b81d6e2f7790328a77b9b0c7e3deabd4dd840e973c5a34"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n09-cue-sheet-v1.json",
+      "sha256": "e96d6284ded5dfad89ef4efdbf99528760988efc3838a7ac86a209128f1dea55"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/n09-umbrella-source-v1.json",
+      "sha256": "4208ee3105340d27839742791a0003886bf35c3639d9d0f59103ec50e555eff6"
+    },
+    {
+      "path": "tests/fixtures/narrative-v1/valid-v1.json",
+      "sha256": "2111bc80c6637bdc00d10cdcc817067e6138f21011c5627aa7fd3f44b1c19a9c"
+    },
+    {
+      "path": "tests/fixtures/narrative-video-coverage-v1/README.md",
+      "sha256": "4872e941f40ffa813a8cf336a50ca1a0c0016462fbb3f8d41711f6c5a9c89621"
+    },
+    {
+      "path": "tests/fixtures/narrative-video-coverage-v1/expected-valid-unresolved.stdout.json",
+      "sha256": "442779602ce3426c57d3a5ecc47b19dd9e5f2a093abe556ca5ee95e16e8685ed"
+    },
+    {
+      "path": "tests/fixtures/narrative-video-coverage-v1/invalid-dangling-asset.json",
+      "sha256": "a9ed5f0b036661bd17a10a4d69131845024b0cfc7e00a004e962b96b54b775aa"
+    },
+    {
+      "path": "tests/fixtures/narrative-video-coverage-v1/invalid-duplicate-field.raw",
+      "sha256": "01619de8aeb9fab316fbe306fe8678347e20624dbeec49168a358facb5a570b9"
+    },
+    {
+      "path": "tests/fixtures/narrative-video-coverage-v1/invalid-missing-selected.json",
+      "sha256": "11e9c38e9dcd77673a24ac13cca475acacc4303cbd2a7876065872780298ccc4"
+    },
+    {
+      "path": "tests/fixtures/narrative-video-coverage-v1/invalid-range.json",
+      "sha256": "fb8271ff1a637b3a8c7c9ee86649da4d0e72dcbbe7d684525102f8b71df73889"
+    },
+    {
+      "path": "tests/fixtures/narrative-video-coverage-v1/invalid-stale-unit.json",
+      "sha256": "1b69dfde200db6dcd90092584cab594b85f4dd149d32f6fd635d9f9140b9bff2"
+    },
+    {
+      "path": "tests/fixtures/narrative-video-coverage-v1/invalid-version.json",
+      "sha256": "6ee3334cf32ae1acbce51979d1241e6177bf4d87cd7909bf34c504b6c7cb1610"
+    },
+    {
+      "path": "tests/fixtures/narrative-video-coverage-v1/valid-complete.json",
+      "sha256": "4781d2b8b651cbf32b089b0c37eb4bdbb0147b245f85c913c1b9112c0117178e"
+    },
+    {
+      "path": "tests/fixtures/narrative-video-coverage-v1/valid-unresolved.json",
+      "sha256": "9617c26eb53778378a6f53e2a86211c715d870a14a1248a1d73b989494a4c9ad"
+    },
+    {
+      "path": "tests/fixtures/openfilm/finite-v1/README.md",
+      "sha256": "9b677f90f4ceb0d169ae6b4166685f8856408d0dba89f1199e2180c2def5f72d"
+    },
+    {
+      "path": "tests/fixtures/openfilm/finite-v1/fractional-rate.json",
+      "sha256": "dc7e6bd3b60e271d4fafae4d679b33610e1cb92d03ffbcdf88bb14ef77e4add2"
+    },
+    {
+      "path": "tests/fixtures/openfilm/finite-v1/future-schema.json",
+      "sha256": "adbf22141e4cacc1021766b68ea92f11c6f8b39cb69e9b3107d79e38a009c854"
+    },
+    {
+      "path": "tests/fixtures/openfilm/finite-v1/repeat-source.json",
+      "sha256": "04e320f4fe6c1ebd65c11c0392ab48b3c61abc8ce44de09c1e7ffccd1ef087b9"
+    },
+    {
+      "path": "tests/fixtures/openfilm/finite-v1/still.json",
+      "sha256": "cb999e594c27c7a6daa3ae5bd78f781d6735b04445343de30e545e8c8e0f6dd9"
+    },
+    {
+      "path": "tests/fixtures/openfilm/finite-v1/unknown-effect.json",
+      "sha256": "257821f3da99a5fc8e63203e00ce9822a8cb75e6b8d3fe6cd9c4e8f2f930e079"
+    },
+    {
+      "path": "tests/fixtures/openfilm/finite-v1/video-trim.json",
+      "sha256": "33c4e7d19c92f62d771abd4df112ae05a4ec6550767faa07ef3092346dca7941"
+    },
+    {
+      "path": "tests/fixtures/planner-v1/README.md",
+      "sha256": "b922bb1f2a4aba40127e6e376071e273e9ddd255ab9419ce2b28b584ca305034"
+    },
+    {
+      "path": "tests/fixtures/planner-v1/conflicting.json",
+      "sha256": "6185715871976937154eeb4bdfe8042a287a6eb49354b48560c50dc4ef307d91"
+    },
+    {
+      "path": "tests/fixtures/planner-v1/valid.json",
+      "sha256": "a4fc79fa1f6436666b169fc9815f6a21b3a860491859fc05da83d850d858a257"
+    },
+    {
+      "path": "tests/fixtures/story-review-v1/README.md",
+      "sha256": "901743dbb3d2ba7ec4c8b4f9891212bf9d6ae0655b6150886b9cca02aaa8b5f3"
+    },
+    {
+      "path": "tests/fixtures/story-review-v1/context.json",
+      "sha256": "0a24b9ed115f955acbe461c844d97821d145a13c85c7d1634f2d29d8f854985c"
+    },
+    {
+      "path": "tests/fixtures/story-review-v1/planner-request.json",
+      "sha256": "436d33b01abf79c7f51c9ca1f855b186e20909dfae0a8d3f5f210595df96b623"
+    }
+  ],
+  "cli_production_bytes_unchanged": true,
+  "engine_root_only_adds_public_module_declaration": true,
+  "production_module_identical_to_initial_green_commit": true,
+  "extra_example_lock_package": [
+    [
+      "storytelling-consumer-v1-example",
+      "0.1.0",
+      null
+    ]
+  ],
+  "no_new_third_party_package_version_or_checksum": true,
+  "final_workspace_summary": [
+    {
+      "check_index": 0,
+      "passed": 350,
+      "failed": 0,
+      "ignored": 3,
+      "ignored_test_lines": [
+        "test planner::clock_tests::benchmark_clock_cache ... ignored, manual informational release benchmark; no timing assertion",
+        "test planner::order_tests::benchmark_ordering ... ignored, manual informational release benchmark; no timing threshold",
+        "test isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback ... ignored, requires the pinned FilmCraft host and a fresh isolated run root"
+      ]
+    },
+    {
+      "check_index": 1,
+      "passed": 369,
+      "failed": 0,
+      "ignored": 3,
+      "ignored_test_lines": [
+        "test planner::clock_tests::benchmark_clock_cache ... ignored, manual informational release benchmark; no timing assertion",
+        "test planner::order_tests::benchmark_ordering ... ignored, manual informational release benchmark; no timing threshold",
+        "test isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback ... ignored, requires the pinned FilmCraft host and a fresh isolated run root"
+      ]
+    },
+    {
+      "check_index": 2,
+      "passed": 350,
+      "failed": 0,
+      "ignored": 3,
+      "ignored_test_lines": [
+        "test planner::clock_tests::benchmark_clock_cache ... ignored, manual informational release benchmark; no timing assertion",
+        "test planner::order_tests::benchmark_ordering ... ignored, manual informational release benchmark; no timing threshold",
+        "test isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback ... ignored, requires the pinned FilmCraft host and a fresh isolated run root"
+      ]
+    },
+    {
+      "check_index": 3,
+      "passed": 369,
+      "failed": 0,
+      "ignored": 3,
+      "ignored_test_lines": [
+        "test planner::clock_tests::benchmark_clock_cache ... ignored, manual informational release benchmark; no timing assertion",
+        "test planner::order_tests::benchmark_ordering ... ignored, manual informational release benchmark; no timing threshold",
+        "test isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback ... ignored, requires the pinned FilmCraft host and a fresh isolated run root"
+      ]
+    }
+  ],
+  "human_participants": 0,
+  "host_observations": 0
+}

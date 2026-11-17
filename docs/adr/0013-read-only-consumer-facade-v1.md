@@ -1,8 +1,8 @@
 <!-- SPDX-License-Identifier: MIT -->
-# ADR 0013 · Read-only consumer facade V1 (proposal)
+# ADR 0013 · Read-only consumer facade V1 candidate
 
-- **Status:** proposed G2 design; no public API freeze, implementation or acceptance is supplied.
-- **Task / requirement:** M4-01 / proposed M4-R01, [Issue #107](https://github.com/bynanci/storytelling/issues/107).
+- **Status:** G2 candidate adopted by the requesting maintainer on 2026-11-17 for a focused Draft implementation; final implementation/consumer acceptance and G5 remain separate. See the [actual decision](../validation/m4-01-sdk-g2-decision.md) and [implementation evidence](../validation/m4-01-readonly-sdk.md).
+- **Task / requirement:** M4-01 / M4-R01, [Issue #107](https://github.com/bynanci/storytelling/issues/107).
 - **Design baseline:** `52dc6c315f7b3d20693f3c51e052509997ab791b`, checked 2026-11-14 UTC.
 - **Dependency:** #107 explicitly permits read-only design before #106. Execution/recovery remains unavailable until the separate #103–#106 gates are accepted.
 
@@ -26,9 +26,9 @@ The [candidate API and usage guide](../proposals/m4-01-readonly-sdk/README.md),
 G2 questions. The [machine-readable case inventory](../proposals/m4-01-readonly-sdk/golden-plan.json)
 is a test plan, not an SDK result or a new runtime contract.
 
-## Proposed surface and exact implementation reuse
+## Adopted candidate surface and exact implementation reuse
 
-All names below are **proposed**, not existing symbols. Functions accept the
+The names below are adopted for the read-only Draft candidate. Functions accept the
 same raw bytes as the named existing backend. They delegate once, without
 pre-parsing, input serialization, default insertion, time normalization or
 altering the accepted diagnostic order. Result names are curated aliases or
@@ -74,7 +74,7 @@ reviewed scope. Selected-proposal review is the minimum reviewed path here.
 
 ## Error adapter and meaningful domain results
 
-Propose an **opaque Rust-only** `SdkErrorV1` with these public read accessors:
+The adopted candidate provides an **opaque Rust-only** `SdkErrorV1` with these public read accessors:
 
 ```text
 operation() -> &str       // documented operation ID, such as "video_coverage"
@@ -93,8 +93,9 @@ envelopes and never enter an identity hash. Propose an opaque Rust-only
 `SdkEncodingErrorV1` with fixed code `sdk.error_details_encoding_failed` for a
 serialization failure; do not expose parser prose or return empty details. The
 original `SdkErrorV1` still retains its source `code()` and `path()` so the
-encoding failure cannot replace or erase the domain rejection. G2 must accept
-this fallible accessor and adapter-only code before freezing the API.
+encoding failure cannot replace or erase the domain rejection. The requesting maintainer adopted
+this fallible accessor and adapter-only code for Draft implementation; final
+implementation acceptance remains separate.
 
 The facade does not collapse results into a Boolean:
 
@@ -146,8 +147,8 @@ Calls are synchronous, bounded and pure. The caller supplies immutable buffers;
 results own their data and retain no borrow into the input. Independent calls
 may run on separate caller-controlled threads. The facade has no cache,
 global mutable state, background job, cancellation token or implicit parallel
-work. Send/Sync assertions are planned for supported result/opaque-handle
-types; no concurrency guarantee is claimed as verified before those tests run.
+work. Send/Sync assertions and caller-thread replay tests exercise supported
+result/opaque-handle types; see the source-bound implementation record.
 Memory budgets are per call; a consumer must bound concurrent calls. Dropping a
 result performs no editor rollback and reports no host cancellation.
 
@@ -195,16 +196,19 @@ project, catalog or media migration is needed.
 
 ## G2 decisions and next implementation package
 
-This proposal supplies no G2 acceptance and closes none of #107's boxes. A
-reviewer/maintainer must decide the eight-operation scope, namespace/result
-aliases, opaque error/fallible detail accessors and adapter-only encoding diagnostic,
-version/deprecation policy and golden parity rules. Record changes and actual
-reviewer identity with the tested candidate commit. A merge of this proposal is
-only a design delivery.
+The requesting maintainer adopted the exact eight-operation scope, namespace/result
+aliases, opaque error/fallible detail accessors, adapter-only encoding diagnostic,
+version/deprecation policy and golden parity plan on 2026-11-17. The [decision
+record](../validation/m4-01-sdk-g2-decision.md) preserves the actual reply, frozen
+candidate identity and authorization to implement an independent Draft PR.
 
-After that decision, one focused read-only implementation PR should add the
-module/wrappers and observed test-first RED/GREEN, compile-fail opacity and
-unavailable-execution examples, pure/concurrent replay, exact old CLI/digest
-regressions and same-head Windows/Linux/macOS CI. No wrapper symbol is runnable
-in this design-only branch. Actual consumer usability, stable SDK acceptance,
-mutation, external host behavior and G5 remain separately unverified.
+The Draft adds direct wrappers, observed missing-facade compile RED and runtime
+GREEN, independent-consumer checks, opacity/absent-execution doctests, caller-thread
+replay and unchanged CLI/digest regressions. [Actual evidence](../validation/m4-01-readonly-sdk.md)
+records source commits and local/hosted results, including the review-driven raw
+serializer-order regressions. The original design baseline had no runnable wrapper;
+it remains a historical source identity, not the current execution record.
+
+This adoption does not authorize merging this Draft, a stable SDK release,
+mutation/authority APIs, external Host acceptance or G5. #107 remains Open for
+final implementation/consumer acceptance. #103–#106 and #108 retain their scopes.

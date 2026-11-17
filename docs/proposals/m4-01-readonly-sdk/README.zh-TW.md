@@ -3,6 +3,8 @@
 
 [English](README.md) · 繁體中文 · [Issue #107](https://github.com/bynanci/storytelling/issues/107) · [ADR 0013](../../adr/0013-read-only-consumer-facade-v1.md)
 
+**2026-11-17 更新：**請求者已採納此候選並授權聚焦的 Draft 實作。見[原決定](../../validation/m4-01-sdk-g2-decision.md)、[目前 SDK 指南](../../SDK_CONSUMER_V1.zh-TW.md)與[實際 RED／GREEN](../../validation/m4-01-readonly-sdk.md)。以下保留原設計快照，pending／未執行表格是準備時狀態，不是目前執行紀錄。
+
 **狀態：G2 設計提案。** 本資料包沒有實作 facade module、凍結公開 API 或交付
 CLI／SDK 等價測試結果。起始 source snapshot 為
 `52dc6c315f7b3d20693f3c51e052509997ab791b`（2026-11-14 UTC）。本次核對時
@@ -87,7 +89,7 @@ consumer 可逐項改 import；破壞 signature、type、ownership 或 error acc
 變更須新 facade major 與遷移審查，移除前先記錄 deprecation。回退是移除新 module
 及可能的 CLI import refactor，不需要修改專案、Catalog、媒體或輸入檔。
 
-| 證據 | 目前狀態 |
+| 原設計準備時證據 | 歷史狀態 |
 | --- | --- |
 | G2 scope／API／版本政策接受 | pending |
 | Facade 實作、RED／GREEN | 未實作／未執行 |

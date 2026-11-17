@@ -1,0 +1,175 @@
+{
+  "source_commit": "ca98398092948962e3c8860a01919a9d60bd8d13",
+  "date_utc": "2026-11-17T10:38:33.597212+00:00",
+  "checks": [
+    {
+      "index": 0,
+      "argv": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 17.06,
+      "stdout_sha256": "1e29d7c4f56beb3d4e46908d5c2795ff4fc13bdca05bc2c3cdaf82baa7aa5b07",
+      "stderr_sha256": "8ef8cfc18154ca59563d38ba8d4e1bd83d613795cb242b8d33e0432389cc51f0"
+    },
+    {
+      "index": 1,
+      "argv": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--all-features",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 13.699,
+      "stdout_sha256": "57d3cd116a197eb9b6d04129a82aadff26d1fdff09d2f092eb38e0597d48fc8e",
+      "stderr_sha256": "8b39e5b30bdf2a2f1e80ee81b11657676fe14bc01e0ee7c3e901c4d3639c9294"
+    },
+    {
+      "index": 2,
+      "argv": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--release",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 62.127,
+      "stdout_sha256": "a394b040899619ccd2aa7e0c8df8d8db0faf272d222df268d23f2e6ee90fa31f",
+      "stderr_sha256": "87c66c8cb22279b69426741f17d3949cd0ad3e6e25ca49cd01cc02a4c056c63f"
+    },
+    {
+      "index": 3,
+      "argv": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--all-features",
+        "--release",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 29.766,
+      "stdout_sha256": "40defaf37fc5d1a9535cae16d2a6a86be9f996d7849edfa22c6e9d1b924e6052",
+      "stderr_sha256": "6a5c4a1b83571c3a22e60d9b2a4fbbc209a187b084326b35fa604465e4358576"
+    },
+    {
+      "index": 4,
+      "argv": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 0.359,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "index": 5,
+      "argv": [
+        "cargo",
+        "clippy",
+        "--workspace",
+        "--all-targets",
+        "--all-features",
+        "--locked",
+        "--offline",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 5.126,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "25d6e26f8adcea95c798b0b28f64e6df725216da31031324e381504d8a02c480"
+    },
+    {
+      "index": 6,
+      "argv": [
+        "cargo",
+        "doc",
+        "--workspace",
+        "--all-features",
+        "--no-deps",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 2.793,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f77a661500b0de34d7db43f3fe27fa3ae149f95696e51ab4194c8e0c93792fb9"
+    },
+    {
+      "index": 7,
+      "argv": [
+        "cargo",
+        "fmt",
+        "--manifest-path",
+        "examples/consumer-sdk-v1/Cargo.toml",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 0.176,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "index": 8,
+      "argv": [
+        "cargo",
+        "clippy",
+        "--manifest-path",
+        "examples/consumer-sdk-v1/Cargo.toml",
+        "--all-targets",
+        "--locked",
+        "--offline",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 1.002,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "0e152015bff524058c240c762b3fe4d4c8b823c98ef627b71dc0702a784c2fb3"
+    },
+    {
+      "index": 9,
+      "argv": [
+        "python3",
+        "scripts/check_repo.py"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 0.235,
+      "stdout_sha256": "728bbfaf33cce26d9fbaf87b18bd5a323ffebd1fb3d212369faab1c56d548238",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "index": 10,
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 0.004,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "rustc": "rustc 1.89.0 (29483883e 2025-08-04)",
+  "cargo": "cargo 1.89.0 (c24e10642 2025-06-23)",
+  "target_dir": "dedicated SDK worktree target; no concurrent builder",
+  "limits": "Local Linux automated checks only; no human/Host/G5 or hosted CI acceptance."
+}

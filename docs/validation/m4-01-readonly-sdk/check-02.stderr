@@ -1,0 +1,87 @@
+   Compiling typenum v1.20.1
+   Compiling version_check v0.9.5
+   Compiling proc-macro2 v1.0.107
+   Compiling cfg-if v1.0.5
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling generic-array v0.14.7
+   Compiling serde_core v1.0.229
+   Compiling zmij v1.0.23
+   Compiling serde_json v1.0.154
+   Compiling cpufeatures v0.2.17
+   Compiling itoa v1.0.18
+   Compiling hybrid-array v0.4.15
+   Compiling semver v1.0.28
+   Compiling memchr v2.8.3
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.12.1
+   Compiling digest v0.10.7
+   Compiling crypto-common v0.2.2
+   Compiling sha2 v0.10.9
+   Compiling rustc_version v0.4.1
+   Compiling curve25519-dalek v5.0.0
+   Compiling digest v0.11.3
+   Compiling syn v2.0.119
+   Compiling cpufeatures v0.3.1
+   Compiling syn v3.0.9
+   Compiling signature v3.0.0
+   Compiling subtle v2.6.1
+   Compiling serde v1.0.229
+   Compiling ed25519 v3.0.0
+   Compiling sha2 v0.11.0
+   Compiling shlex v2.0.1
+   Compiling find-msvc-tools v0.1.15
+   Compiling serde_derive v1.0.229
+   Compiling cc v1.11.1
+   Compiling vcpkg v0.2.15
+   Compiling pkg-config v0.3.34
+   Compiling curve25519-dalek-derive v0.1.1
+   Compiling bitflags v2.13.2
+   Compiling fallible-iterator v0.3.0
+   Compiling libsqlite3-sys v0.39.1
+   Compiling fallible-streaming-iterator v0.1.9
+   Compiling smallvec v1.16.5
+   Compiling ed25519-dalek v3.0.0
+   Compiling storytelling-core v0.1.0-dev.0 (/workspace/storytelling-readonly-sdk-20261117/crates/storytelling-core)
+   Compiling storytelling-engine v0.1.0-dev.0 (/workspace/storytelling-readonly-sdk-20261117/crates/storytelling-engine)
+   Compiling storytelling-cli v0.1.0-dev.0 (/workspace/storytelling-readonly-sdk-20261117/crates/storytelling-cli)
+   Compiling rusqlite v0.41.1
+   Compiling storytelling-journal v0.1.0-dev.0 (/workspace/storytelling-readonly-sdk-20261117/crates/storytelling-journal)
+    Finished `release` profile [optimized] target(s) in 1m 00s
+     Running unittests src/main.rs (/tmp/storytelling-sdk-20261117-target/release/deps/storytelling-3db9be6f42064ef9)
+     Running tests/brief.rs (/tmp/storytelling-sdk-20261117-target/release/deps/brief-579065f468769a1b)
+     Running tests/cli.rs (/tmp/storytelling-sdk-20261117-target/release/deps/cli-7980ced97729df42)
+     Running tests/commercial_copy.rs (/tmp/storytelling-sdk-20261117-target/release/deps/commercial_copy-d9dea0cdf76aa294)
+     Running tests/commercial_copy_pilot.rs (/tmp/storytelling-sdk-20261117-target/release/deps/commercial_copy_pilot-a715a5d653b3dd6b)
+     Running tests/consumer_sdk.rs (/tmp/storytelling-sdk-20261117-target/release/deps/consumer_sdk-ac00f799e6ce48ef)
+     Running tests/cue_sheet.rs (/tmp/storytelling-sdk-20261117-target/release/deps/cue_sheet-4b3ea4b81516d2eb)
+     Running tests/draft_video_input.rs (/tmp/storytelling-sdk-20261117-target/release/deps/draft_video_input-29ce1f28ca8f4269)
+     Running tests/handoff.rs (/tmp/storytelling-sdk-20261117-target/release/deps/handoff-556f4813050bbf51)
+     Running tests/narrative.rs (/tmp/storytelling-sdk-20261117-target/release/deps/narrative-358a9f167cc20e5a)
+     Running tests/openfilm.rs (/tmp/storytelling-sdk-20261117-target/release/deps/openfilm-2b9067d4b73a2800)
+     Running tests/otio.rs (/tmp/storytelling-sdk-20261117-target/release/deps/otio-08768a60618b5b5d)
+     Running tests/planner.rs (/tmp/storytelling-sdk-20261117-target/release/deps/planner-2c57c572adfbbd90)
+     Running tests/review_cli.rs (/tmp/storytelling-sdk-20261117-target/release/deps/review_cli-880a596010fac7d0)
+     Running tests/source_evidence.rs (/tmp/storytelling-sdk-20261117-target/release/deps/source_evidence-d376f5fa3f2447ad)
+     Running tests/story_review.rs (/tmp/storytelling-sdk-20261117-target/release/deps/story_review-2767f4bc42189a6a)
+     Running tests/style_profile.rs (/tmp/storytelling-sdk-20261117-target/release/deps/style_profile-9f21f85246712701)
+     Running tests/video_coverage.rs (/tmp/storytelling-sdk-20261117-target/release/deps/video_coverage-05c2c1dd280dc7a8)
+     Running unittests src/lib.rs (/tmp/storytelling-sdk-20261117-target/release/deps/storytelling_core-1dd6517ed1eb23c1)
+     Running tests/approval.rs (/tmp/storytelling-sdk-20261117-target/release/deps/approval-d9187c27514d2419)
+     Running tests/source_evidence.rs (/tmp/storytelling-sdk-20261117-target/release/deps/source_evidence-0f23d5dd102c442c)
+     Running unittests src/lib.rs (/tmp/storytelling-sdk-20261117-target/release/deps/storytelling_engine-dee2ff8bcadf4ade)
+     Running tests/brief.rs (/tmp/storytelling-sdk-20261117-target/release/deps/brief-19c8cece7a2a6bdd)
+     Running tests/narrative.rs (/tmp/storytelling-sdk-20261117-target/release/deps/narrative-154ffcf17b754ce3)
+     Running tests/openfilm_snapshot.rs (/tmp/storytelling-sdk-20261117-target/release/deps/openfilm_snapshot-8f1f4a27bae431e0)
+     Running tests/otio.rs (/tmp/storytelling-sdk-20261117-target/release/deps/otio-5b0289b3f7f273e9)
+     Running tests/planner.rs (/tmp/storytelling-sdk-20261117-target/release/deps/planner-2a92652ad22f4637)
+     Running tests/review_binding.rs (/tmp/storytelling-sdk-20261117-target/release/deps/review_binding-b21bd15ef630bea7)
+     Running tests/story_review.rs (/tmp/storytelling-sdk-20261117-target/release/deps/story_review-b1cecd04f6e207ac)
+     Running tests/validation.rs (/tmp/storytelling-sdk-20261117-target/release/deps/validation-20d8da3749923692)
+     Running unittests src/lib.rs (/tmp/storytelling-sdk-20261117-target/release/deps/storytelling_journal-e791a03fbb3fce8b)
+     Running tests/filmcraft_execution.rs (/tmp/storytelling-sdk-20261117-target/release/deps/filmcraft_execution-f1f6e2392507f85a)
+     Running tests/journal.rs (/tmp/storytelling-sdk-20261117-target/release/deps/journal-65f2d8b74360a538)
+   Doc-tests storytelling_core
+   Doc-tests storytelling_engine
+   Doc-tests storytelling_journal

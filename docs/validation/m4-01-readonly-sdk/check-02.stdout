@@ -1,0 +1,530 @@
+
+running 1 test
+test consumer_sdk_formatter_tests::facade_projection_keeps_the_existing_reviewed_text_golden ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 7 tests
+test redacts_missing_input_file_with_io_exit_three ... ok
+test help_lists_the_audit_brief_command ... ok
+test audits_file_and_stdin_identically_without_changing_the_input_or_directory ... ok
+test preserves_unicode_and_instruction_text_as_intent_without_writing_files ... ok
+test reports_typed_hard_conflicts_with_exit_one_and_keeps_manual_choices ... ok
+test rejects_missing_or_extra_audit_arguments_with_usage_exit_two ... ok
+test rejects_malformed_future_and_oversized_file_and_stdin_with_error_exit_one ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+
+running 5 tests
+test accepts_valid_file_with_machine_readable_output ... ok
+test accepts_stdin ... ok
+test rejects_bad_source_range_with_exit_one ... ok
+test reports_help_and_version_without_loading_a_project ... ok
+test distinguishes_usage_and_io_failures ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+
+running 5 tests
+test outlines_audience_claims_wording_and_call_to_action_with_reference_only_status ... ok
+test labels_a_missing_source_id_as_dangling_without_claiming_support ... ok
+test labels_a_claim_against_an_older_source_revision_as_revised ... ok
+test repeated_file_run_is_identical_and_does_not_modify_input_files ... ok
+test rejects_unknown_versions_fields_duplicate_fields_and_mismatched_ledgers ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 8 tests
+test dangling_citation_identifies_the_claim_and_keeps_the_declared_reference ... ok
+test current_citation_does_not_certify_scoped_or_overbroad_product_wording ... ok
+test default_report_v1_preserves_the_reviewed_cli_receipt_bytes ... ok
+test missing_citation_identifies_the_claim_without_rewriting_its_wording ... ok
+test source_revision_flags_both_pilot_claims_and_preserves_other_copy ... ok
+test report_selection_rejects_bad_flags_and_does_not_upgrade_input_schema ... ok
+test report_v2_output_limit_does_not_shrink_accepted_report_v1_capacity ... ok
+test all_four_cases_replay_identically_and_leave_every_input_unchanged ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+
+running 11 tests
+test sdk_g01_plan_validation_has_independent_fields_and_unchanged_cli_bytes ... ok
+test sdk_g02_projection_has_literal_provenance_and_the_existing_text_goldens ... ok
+test sdk_g05_planner_preserves_manual_order_exact_windows_and_conflict_details ... ok
+test sdk_g04_complete_and_unresolved_coverage_preserve_the_result_contract ... ok
+test sdk_g03_revision_history_keeps_authored_choices_and_exact_direct_impacts ... ok
+test sdk_g06_preparation_uses_one_frozen_response_and_matches_raw_baseline_bytes ... ok
+test sdk_g07_fresh_stale_and_malformed_are_distinct_and_stale_fields_stay_sorted ... ok
+test sdk_g08_raw_version_duplicate_null_and_rich_errors_preserve_backend_priority ... ok
+test sdk_g09_owned_results_are_send_sync_and_caller_threads_replay_without_mutation ... ok
+test sdk_g04_all_coverage_diagnostics_keep_their_predeclared_code_and_path ... ok
+test sdk_g08_limits_and_multi_input_error_order_are_operation_specific ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
+
+
+running 13 tests
+test permits_half_open_intervals_that_touch_on_one_exclusive_track ... ok
+test permits_overlap_on_distinct_exclusive_tracks ... ok
+test accepts_the_cue_sheet_from_stdin_and_preserves_source_input ... ok
+test escapes_untrusted_multiline_cue_fields_in_human_readable_output ... ok
+test refuses_a_stale_document_revision ... ok
+test refuses_an_unknown_cue_sheet_version ... ok
+test rejects_a_known_effect_duration_that_disagrees_with_its_asset_declaration ... ok
+test rejects_a_reversed_interval ... ok
+test rejects_duplicate_cue_ids ... ok
+test rejects_overlap_on_the_same_exclusive_track ... ok
+test rejects_control_characters_in_asset_paths ... ok
+test reports_unresolved_voice_timing_without_inventing_a_duration ... ok
+test renders_source_linked_cues_in_order_and_replays_byte_for_byte ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+
+running 1 test
+test draft_command_is_absent_from_default_build ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 15 tests
+test descriptions_only_keep_usable_briefs_without_claiming_original_files ... ok
+test computes_the_predeclared_exact_date_impact_without_false_results ... ok
+test rejects_a_component_source_that_does_not_exist ... ok
+test rejects_an_omitted_known_variant_source_instead_of_hiding_impact ... ok
+test rejects_a_current_descriptor_with_an_old_revision ... ok
+test rejects_poster_scoped_creative_material_in_another_variant ... ok
+test rejects_scoped_proposal_even_when_the_component_mapping_omits_it ... ok
+test rejects_unknown_versions_before_parsing_the_shape ... ok
+test rejects_unknown_fields_and_duplicate_raw_keys ... ok
+test rejects_inventory_sources_outside_the_bound_variant_before_later_errors ... ok
+test replays_file_and_stdin_byte_identically_and_preserves_inputs_and_sources ... ok
+test preserves_bound_revisions_and_repeated_component_references ... ok
+test reviewed_sunday_drafts_retain_the_same_change_impact_and_become_current ... ok
+test supplied_transcript_and_missing_material_remain_separate_from_files ... ok
+test renders_components_and_their_references_in_declared_order ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+
+running 4 tests
+test dangling_reference_returns_the_contract_diagnostic ... ok
+test untrusted_suggestion_cannot_claim_author_acceptance_from_the_cli ... ok
+test renders_three_declared_outputs_reproducibly_without_media_or_writes ... ok
+test revision_tracking_queries_shared_and_variant_local_impacts ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 8 tests
+test help_lists_the_import_command ... ok
+test redacts_missing_input_file_with_io_exit_three ... ok
+test imports_file_without_modifying_input_or_directory_and_returns_an_m0_plan ... ok
+test imports_stdin_with_the_same_result_as_file_input ... ok
+test rejects_unknown_effect_with_structured_unsupported_loss_and_no_plan ... ok
+test treats_missing_video_media_and_instruction_text_as_opaque_declarations ... ok
+test rejects_missing_or_extra_import_arguments_with_usage_exit_two ... ok
+test rejects_input_larger_than_one_mebibyte_from_file_and_stdin ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+
+running 10 tests
+test help_lists_export_otio_and_both_loss_choice_flags ... ok
+test locked_still_requires_the_explicit_metadata_only_locks_choice ... ok
+test exports_a_real_timeline_identically_from_file_and_stdin_without_writing ... ok
+test redacts_a_missing_input_file_and_uses_io_exit_three ... ok
+test accepts_both_flags_in_either_order_after_the_input ... ok
+test preserves_numeric_lexemes_inside_the_source_snapshot_json_string ... ok
+test unsupported_source_effects_cannot_be_bypassed_with_loss_choices ... ok
+test video_requires_picture_only_and_keeps_audio_and_media_limitations ... ok
+test rejects_more_than_one_mebibyte_from_file_and_stdin_with_validation_exit_one ... ok
+test rejects_missing_extra_unknown_duplicate_and_misplaced_arguments_with_usage_two ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+
+running 9 tests
+test explicit_relative_prefix_accepts_an_option_looking_filename ... ok
+test hard_conflicts_emit_typed_global_paths_without_a_partial_plan ... ok
+test help_lists_planning_alongside_all_existing_commands ... ok
+test emitted_nested_plan_is_accepted_by_the_actual_m0_cli ... ok
+test distinguishes_missing_input_io_failure_and_redacts_the_path ... ok
+test native_planner_succeeds_with_an_empty_external_tool_path ... ok
+test plans_file_and_stdin_identically_without_mutating_input_or_directory ... ok
+test rejects_missing_extra_unknown_and_option_looking_arguments_with_usage_two ... ok
+test malformed_future_unknown_and_oversized_inputs_return_domain_exit_one ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+
+running 4 tests
+test prepare_review_reads_composition_from_stdin_but_context_remains_an_explicit_file ... ok
+test prepare_and_check_are_read_only_and_stale_is_a_successful_report ... ok
+test review_cli_reads_arguments_before_domain_validation_and_keeps_error_order ... ok
+test review_commands_keep_usage_and_io_errors_distinct_and_path_free ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+
+running 3 tests
+test accepts_explicit_source_bytes_with_metadata_only_receipt ... ok
+test distinguishes_source_usage_and_io_errors ... ok
+test rejects_bad_source_evidence_without_leaking_input ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+
+running 3 tests
+test story_review_connects_actual_planner_output_to_exact_otio_without_source_or_host_writes ... ok
+test story_review_invalidates_asset_cut_loss_and_detects_displayed_artifact_tampering ... ok
+test story_review_rejects_unsupported_audio_effects_missing_loss_choices_and_bad_cli_usage ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+
+running 7 tests
+test refuses_an_unknown_style_profile_version_before_rules ... ok
+test refuses_a_style_profile_bound_to_a_stale_document_revision ... ok
+test checks_both_opening_orders_and_replays_identically ... ok
+test rejects_contradictory_rules_inside_one_variant_with_rule_ids ... ok
+test renders_same_facts_with_two_declared_opening_orders_and_provenance ... ok
+test rejects_unknown_fields_in_the_closed_style_profile_shape ... ok
+test reports_a_valid_rule_that_disagrees_with_declared_beat_order ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 7 tests
+test accepts_complete_video_coverage_without_media_access ... ok
+test accepts_illustration_variant_sources ... ok
+test compares_file_stdin_replay_and_preserves_input_bytes ... ok
+test reports_unresolved_video_unit_and_blocks_planning ... ok
+test rejects_contract_failures_with_stable_codes_and_safe_paths ... ok
+test rejects_cross_reference_duplicate_and_bound_errors_by_contract_code ... ok
+test rejects_shape_order_and_json_limit_violations ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+
+running 2 tests
+test approval::tests::builder_preflight_rejects_oversized_borrowed_metadata ... ok
+test approval::tests::rfc8032_ed25519_known_answer_verifies ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 12 tests
+test approval_identity_requires_sorted_unique_sources_capabilities_and_losses ... ok
+test accepts_email_style_principal_identifiers_without_normalizing_them ... ok
+test bound_identity_hashes_exact_bytes_and_accepts_empty_slices ... ok
+test canonical_signing_bytes_are_domain_separated_and_deterministic ... ok
+test rejects_modified_signature_payload_and_wrong_expected_key ... ok
+test rejects_duplicate_unknown_malformed_and_oversized_approval_json ... ok
+test rejects_out_of_range_timestamp_short_nonce_and_unaccepted_loss ... ok
+test rejects_stale_plan_artifact_source_host_capability_and_loss_bindings ... ok
+test signed_approval_verifies_to_an_opaque_read_only_token ... ok
+test source_identity_uses_verified_buffer_bytes_and_digest ... ok
+test approval_identity_rejects_invalid_ids_digests_and_collection_budgets ... ok
+test bound_identity_accepts_exact_proposal_and_artifact_size_limits ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+
+running 3 tests
+test rejects_mismatched_and_noncanonical_expected_hashes ... ok
+test accepts_independent_sha256_vectors_and_owns_verified_bytes ... ok
+test accepts_exact_buffer_budget_and_rejects_larger_before_hash_syntax ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+
+running 17 tests
+test planner::clock_tests::benchmark_clock_cache ... ignored, manual informational release benchmark; no timing assertion
+test narrative_revision::tests::origin_is_preserved_across_source_versions ... ok
+test consumer_v1::tests::details_encoding_failure_returns_opaque_fixed_diagnostic ... ok
+test planner::clock_tests::cached_scaling_formats_the_precise_failure_path_once ... ok
+test planner::clock_tests::fractional_clock_preserves_exact_windows_and_reduced_placements ... ok
+test planner::clock_tests::lcm_overflow_precedes_earlier_scaled_value_overflow ... ok
+test planner::clock_tests::scaling_failure_priority_remains_maximum_then_target_then_candidate ... ok
+test planner::clock_tests::successful_cached_scaling_never_formats_an_error_path ... ok
+test planner::order_tests::benchmark_ordering ... ignored, manual informational release benchmark; no timing threshold
+test planner::order_tests::duplicate_edges_empty_graphs_and_admission_permutations_preserve_results ... ok
+test planner::clock_tests::full_candidate_budget_cache_and_empty_private_clock_keep_exact_results ... ok
+test planner::order_tests::newly_ready_earlier_admission_precedes_already_queued_vertex ... ok
+test planner::order_tests::rejects_unselected_endpoints_self_edges_and_cycles_without_partial_order ... ok
+test review_binding::tests::json_depth_scanner_accepts_exact_limit_and_ignores_string_contents ... ok
+test planner::order_tests::maximum_candidate_graphs_keep_every_vertex_and_precedence ... ok
+test planner::order_tests::compares_every_four_vertex_graph_with_brute_force_priority_order ... ok
+test planner::clock_tests::generated_canonical_clock_inputs_match_the_accepted_implementation ... ok
+
+test result: ok. 15 passed; 0 failed; 2 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+
+running 22 tests
+test conflicting_fixture_has_stable_hard_diagnostic_order_and_required_origin_paths ... ok
+test ascii_identifier_syntax_and_byte_bounds_apply_to_every_identity_and_reference ... ok
+test duplicate_edges_retain_each_declaration_origin_without_reordering ... ok
+test cycle_witness_is_actual_and_excludes_acyclic_prefix_and_downstream_nodes ... ok
+test duplicate_ids_reject_within_each_collection_but_cross_declarations_remain_valid ... ok
+test duplicate_json_fields_reject_at_root_and_each_nested_object ... ok
+test fixture_reports_only_declared_consistency_without_a_planned_selection ... ok
+test combined_diagnostic_budget_accepts_256_and_errors_instead_of_truncating_at_257 ... ok
+test future_version_is_probed_before_domain_validation_and_required_fields_are_strict ... ok
+test include_and_order_members_promote_required_assets_with_all_ordered_origins ... ok
+test input_bytes_and_semantic_array_order_are_unchanged_and_reports_are_deterministic ... ok
+test input_size_malformed_json_and_recursion_boundaries_fail_with_safe_paths ... ok
+test missing_manual_choices_remain_required_and_ordered_instead_of_being_filtered ... ok
+test positive_canonical_target_duration_is_preserved_without_feasibility_analysis ... ok
+test preference_warnings_preserve_values_and_never_relax_hard_requirements ... ok
+test target_duration_rejects_zero_noncanonical_overflow_and_wrong_wire_types ... ok
+test unicode_and_instruction_shaped_intent_remain_verbatim_inert_text ... ok
+test unknown_exclusions_and_repeated_reference_declarations_get_typed_conflicts ... ok
+test unknown_fields_and_unsupported_constraint_families_reject_strictly ... ok
+test empty_and_per_collection_budgets_are_enforced_without_rejecting_allowed_empty_lists ... ok
+test aggregate_reference_budget_accepts_8192_and_refuses_8193 ... ok
+test full_depth_acyclic_order_and_large_origin_report_stay_within_output_budget ... ok
+
+test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+
+running 8 tests
+test assistant_suggestion_cannot_self_record_author_confirmation ... ok
+test accepted_fixtures_project_variants_and_keep_source_provenance ... ok
+test diagnostic_precedence_checks_all_ids_and_references_before_basis_and_scope ... ok
+test revision_ledger_reports_exact_impacts_and_preserves_snapshots_and_choices ... ok
+test paired_contract_fixtures_return_their_declared_diagnostics ... ok
+test provenance_reference_relation_scope_and_explicit_order_rules_reject ... ok
+test revision_ledger_requires_current_revisions_and_review_before_next_source_change ... ok
+test raw_byte_and_container_depth_boundaries_are_inclusive ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 33 tests
+test audio_tracks_reject_whether_empty_or_populated ... ok
+test asset_array_order_and_one_loss_per_source_survive_mixed_media_reuse ... ok
+test creative_composition_and_track_extensions_reject_even_when_empty ... ok
+test exact_decimal_and_exponent_continuity_does_not_infer_ntsc ... ok
+test errors_use_fixed_paths_without_untrusted_metadata_keys_uris_or_parser_prose ... ok
+test embedded_audio_rejects_and_missing_or_empty_probe_still_blocks_audio_handoff ... ok
+test exponent_limits_and_reduction_admit_representable_rationals ... ok
+test explicit_timebase_is_separate_from_its_agreeing_decimal_declaration ... ok
+test hidden_muted_or_solo_picture_rejects_instead_of_becoming_visible_default ... ok
+test locks_selection_story_and_beats_remain_original_declarations ... ok
+test malformed_json_duplicate_keys_and_wrong_envelope_shapes_reject ... ok
+test malformed_probe_shape_is_not_treated_as_evidence_of_silence ... ok
+test omitted_video_source_out_uses_source_in_plus_timeline_duration ... ok
+test rejects_gaps_overlap_reordering_and_unrepresented_composition_tail ... ok
+test optional_fields_reject_explicit_null_instead_of_erasing_declarations ... ok
+test rejects_missing_duplicate_unused_source_and_duplicate_occurrence_ids ... ok
+test rejects_mismatched_nonreduced_or_invalid_drop_frame_timebase ... ok
+test rejects_negative_zero_excess_exponents_and_unrepresentable_seconds ... ok
+test rejects_future_envelope_before_invalid_nested_domain_data ... ok
+test rejects_speed_changes_source_overruns_empty_ranges_and_nonzero_image_in ... ok
+test repeat_source_preserves_occurrence_order_and_uses_maximum_still_hold ... ok
+test required_fields_types_and_positive_dimension_rate_limits_are_enforced ... ok
+test reuses_m0_identity_and_declared_hash_syntax_without_inventing_missing_hashes ... ok
+test seconds_above_f64_integer_precision_remain_exact_and_u64_max_is_allowed ... ok
+test source_snapshot_minification_preserves_escaped_strings_whitespace_and_unicode ... ok
+test source_snapshot_preserves_large_numbers_lexemes_and_input_bytes ... ok
+test still_hold_maps_declared_ids_hash_and_passes_m0_validation ... ok
+test unknown_effect_and_current_animation_reject_with_one_explicit_loss ... ok
+test unknown_typed_fields_and_unadmitted_asset_facts_reject_instead_of_disappearing ... ok
+test video_trim_uses_exact_source_seconds_and_reports_unmapped_audio ... ok
+test rejects_oversized_input_and_bounded_metadata_depth_strings_keys_and_values ... ok
+test rejects_over_budget_assets_and_clips_before_mapping_identities ... ok
+test compact_source_whose_mapped_plan_exceeds_m0_input_limit_rejects ... ok
+
+test result: ok. 33 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+
+running 25 tests
+test common_denominator_lcm_rejects_even_when_each_input_denominator_is_safe ... ok
+test audio_and_lock_losses_are_ordered_and_each_choice_only_accepts_its_own_loss ... ok
+test accumulated_timeline_duration_checks_the_safe_integer_boundary_without_rounding ... ok
+test declared_available_duration_must_fit_after_scaling_to_an_otherwise_safe_clock ... ok
+test each_admitted_lock_path_requires_its_explicit_metadata_only_choice ... ok
+test compilation_is_deterministic_and_preserves_input_bytes ... ok
+test every_native_time_is_an_integer_number_on_one_safe_common_clock ... ok
+test feature_matrix_has_exact_order_dispositions_and_metadata_only_lock_disclosure ... ok
+test fractional_cuts_share_integer_content_clock_without_project_fps_quantization ... ok
+test future_schema_keeps_import_error_without_loss_choices_or_document ... ok
+test exact_safe_integer_boundary_is_accepted_and_larger_native_windows_reject ... ok
+test import_validation_precedes_loss_choices_and_loss_choices_precede_clock_projection ... ok
+test original_rate_lexeme_exact_rational_and_explicit_timebase_remain_separate ... ok
+test malformed_duplicate_or_over_budget_input_preserves_strict_import_errors ... ok
+test opaque_external_uris_are_preserved_without_resolution_or_media_access ... ok
+test repeated_source_keeps_distinct_occurrences_order_and_maximum_hold_window ... ok
+test owner_snapshot_is_a_string_preserving_large_integer_decimal_and_opaque_exponent_lexemes ... ok
+test retained_source_strings_keep_whitespace_escapes_and_unicode ... ok
+test still_emits_native_timeline_track_clip_and_synthetic_hold_reference ... ok
+test unlocked_images_need_no_loss_choice_and_default_choices_are_false ... ok
+test unsupported_source_features_keep_import_codes_paths_and_unaccepted_rows ... ok
+test video_requires_explicit_picture_only_even_without_a_declared_audio_stream ... ok
+test report_retains_import_limitations_and_never_claims_source_host_or_execution_verification ... ok
+test video_trim_preserves_exact_source_clock_and_declared_available_duration ... ok
+test bounded_source_with_amplified_repeated_names_rejects_the_final_otio_budget ... ok
+
+test result: ok. 25 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+
+running 28 tests
+test coprime_denominator_lcm_over_u64_rejects_before_rounded_planning ... ok
+test clock_error_priority_keeps_the_full_lcm_pass_before_scaling ... ok
+test candidate_duplicates_unknown_ids_and_optional_catalog_omissions_are_distinct ... ok
+test duplicate_json_fields_are_rejected_at_root_candidate_and_time_boundaries ... ok
+test empty_and_all_excluded_candidate_sets_refuse_to_emit_an_empty_plan ... ok
+test emits_an_actual_m0_plan_with_deterministic_ids_and_immutable_source_facts ... ok
+test exact_u64_maximum_total_is_admitted_without_float_conversion ... ok
+test excluded_and_target_unused_candidates_still_require_valid_declarations ... ok
+test fractional_windows_preserve_source_offsets_and_exact_accumulated_placements ... ok
+test future_schema_is_probed_and_nested_unknown_missing_null_fields_reject ... ok
+test missing_required_candidate_points_to_first_required_origin ... ok
+test invalid_hash_times_ranges_and_hard_bounds_keep_precise_domain_errors ... ok
+test optional_ranking_uses_preference_then_signed_score_then_ascii_id ... ok
+test newly_unblocked_required_asset_keeps_admission_priority_in_the_full_report ... ok
+test rejects_hard_brief_conflicts_without_filtering_unknown_or_excluded_choices ... ok
+test reports_actual_order_cycles_with_outer_input_conflict_paths ... ok
+test preserves_manual_and_explicit_order_with_global_reason_paths_and_catalog_order ... ok
+test required_fixed_windows_over_hard_duration_fail_without_shortening ... ok
+test required_choices_can_exceed_soft_target_and_keep_all_windows ... ok
+test required_shot_count_cannot_be_repaired_by_dropping_manual_choices ... ok
+test scaled_declared_duration_overflow_has_its_exact_input_path ... ok
+test required_overflowing_total_rejects_and_oversized_optional_skips_without_addition ... ok
+test shot_limit_reason_precedes_duration_limit_when_no_target_is_requested ... ok
+test skipped_reasons_prioritize_exclusion_then_met_target_over_other_limits ... ok
+test soft_target_shortfall_is_success_even_when_target_exceeds_hard_maximum ... ok
+test too_long_optional_is_skipped_while_a_later_fitting_asset_is_selected ... ok
+test exact_input_budget_accepts_valid_json_and_rejects_the_next_byte ... ok
+test full_candidate_budget_builds_a_bounded_valid_plan_and_next_candidate_rejects ... ok
+
+test result: ok. 28 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+
+running 11 tests
+test capability_collection_accepts_exact_limit_and_rejects_limit_plus_one ... ok
+test context_parser_rejects_unknown_duplicate_unsorted_and_over_budget_values ... ok
+test context_must_declare_compiler_required_capabilities_and_record_digest_is_checked ... ok
+test changed_composition_and_each_declared_context_field_are_reported_stale ... ok
+test json_depth_and_record_byte_budgets_are_enforced_before_deserialization ... ok
+test direct_review_api_error_precedence_is_size_record_context_then_compile ... ok
+test review_record_rejects_unknown_duplicate_forged_claims_and_invalid_digests ... ok
+test every_declared_context_field_has_a_stable_stale_identifier ... ok
+test exact_context_and_record_byte_limits_are_accepted ... ok
+test same_input_produces_stable_opaque_binding_and_check_recompiles_current_artifact ... ok
+test semantic_shot_order_change_invalidates_plan_and_compiled_artifact_binding ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 8 tests
+test story_review_fixture_has_a_fixed_cross_platform_artifact_and_binding_vector ... ok
+test story_review_is_stale_when_proposal_bytes_change_even_if_the_selected_plan_does_not ... ok
+test story_review_preserves_still_hold_and_rejects_still_source_offsets ... ok
+test story_review_rejects_forged_bundle_claims_and_never_accepts_a_composition_only_record ... ok
+test story_review_requires_snapshot_asset_identity_duration_and_declared_capabilities ... ok
+test story_review_compiles_selected_subset_and_order_and_binds_the_exact_owned_artifact ... ok
+test story_review_rejects_unknown_duplicate_forged_or_inconsistent_proposals ... ok
+test story_review_preflights_every_size_and_accepts_exact_snapshot_and_bundle_limits ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+
+running 14 tests
+test accepts_exact_rational_intervals_and_is_deterministic ... ok
+test accepts_declared_plan_and_reused_source ... ok
+test rejects_duplicate_identities ... ok
+test compares_large_rationals_without_float_rounding ... ok
+test rejects_empty_or_reversed_ranges ... ok
+test rejects_invalid_identity_and_hash ... ok
+test rejects_missing_source_reference ... ok
+test rejects_source_range_outside_declared_duration ... ok
+test rejects_noncanonical_and_zero_denominator_time ... ok
+test rejects_unknown_and_duplicate_json_fields ... ok
+test rejects_unsupported_version ... ok
+test rejects_malformed_or_oversized_input ... ok
+test rejects_zero_duration_and_preserves_input_bytes ... ok
+test rejects_empty_and_over_budget_collections ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 1 test
+test isolated_import_with_lost_reply_is_journaled_unknown_then_resolved_by_native_readback ... ignored, requires the pinned FilmCraft host and a fresh isolated run root
+
+test result: ok. 0 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 17 tests
+test a_fresh_conflicting_readback_before_retry_keeps_the_attempt_blocked ... ok
+test ambiguous_readback_sharing_response_digest_is_recorded_once_and_survives_restart ... ok
+test exact_review_and_artifact_identity_survive_restart_and_idempotent_prepare ... ok
+test crash_after_dispatch_marker_recovers_unknown_and_never_retries_without_readback ... ok
+test foreign_database_is_rejected_without_changing_its_schema_or_journal_mode ... ok
+test first_ambiguous_readback_sharing_response_digest_consumes_readback_budget ... ok
+test busy_write_leaves_no_partial_record_and_succeeds_after_lock_release ... ok
+test historical_not_applied_replay_after_restart_cannot_reopen_retry ... ok
+test invalid_identity_hash_and_time_limits_are_rejected_at_the_boundary ... ok
+test historical_replays_do_not_consume_per_attempt_readback_budget ... ok
+test repeated_ambiguous_readbacks_have_a_per_attempt_bound ... ok
+test reused_idempotency_key_with_changed_review_or_artifact_is_rejected ... ok
+test known_readback_digest_is_scoped_to_operation_attempt_and_current_lease ... ok
+test unknown_response_and_applied_response_never_enable_a_retry ... ok
+test stale_owner_and_late_attempt_response_cannot_overwrite_newer_state ... ok
+test historical_replay_preserves_each_newer_readback_outcome ... ok
+test attempt_count_limit_is_per_operation_and_does_not_block_other_operations ... ok
+
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.18s
+
+
+running 6 tests
+test crates/storytelling-core/src/approval.rs - approval::BoundApprovalIdentityV1 (line 167) - compile fail ... ok
+test crates/storytelling-core/src/approval.rs - approval::BoundApprovalIdentityV1 (line 172) - compile fail ... ok
+test crates/storytelling-core/src/approval.rs - approval::VerifiedApprovalV1 (line 125) - compile fail ... ok
+test crates/storytelling-core/src/approval.rs - approval::VerifiedApprovalV1 (line 130) - compile fail ... ok
+test crates/storytelling-core/src/source_evidence.rs - source_evidence::VerifiedBufferV1 (line 18) - compile fail ... ok
+test crates/storytelling-core/src/source_evidence.rs - source_evidence::VerifiedBufferV1 (line 23) - compile fail ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+
+running 22 tests
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 26) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 32) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 23) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 29) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 38) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 35) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 41) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 44) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 55) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 59) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 65) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 50) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 83) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 74) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 78) - compile fail ... ok
+test crates/storytelling-engine/src/review_binding.rs - review_binding::BoundReviewV1 (line 24) - compile fail ... ok
+test crates/storytelling-engine/src/review_binding.rs - review_binding::BoundReviewV1 (line 41) - compile fail ... ok
+test crates/storytelling-engine/src/review_binding.rs - review_binding::BoundReviewV1 (line 29) - compile fail ... ok
+test crates/storytelling-engine/src/review_binding.rs - review_binding::BoundReviewV1 (line 36) - compile fail ... ok
+test crates/storytelling-engine/src/story_review.rs - story_review::BoundStoryReviewV1 (line 30) - compile fail ... ok
+test crates/storytelling-engine/src/story_review.rs - story_review::BoundStoryReviewV1 (line 42) - compile fail ... ok
+test crates/storytelling-engine/src/story_review.rs - story_review::BoundStoryReviewV1 (line 35) - compile fail ... ok
+
+test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.19s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

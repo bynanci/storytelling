@@ -1,0 +1,211 @@
+Independent AI technical/security review — #107 read-only consumer SDK
+2026-11-17 UTC
+
+Disposition: no unresolved correctness or security blocker found in the reviewed
+production implementation. One meaningful P2 test-coverage finding was raised
+and resolved during review. This is a fresh-context AI review, not human G2,
+consumer usability/efficacy acceptance, Host evidence, merge authority or G5.
+
+Review identity and limits
+
+- Repository: /workspace/storytelling-readonly-sdk-20261117.
+- Implementation base: 0b39c00354f343d7a61821a029777d88a8373254.
+- Initial production commit: ca98398092948962e3c8860a01919a9d60bd8d13.
+- Final reviewed source/test commit: 77e4b217eee9afa863943875594a62c33d167cda.
+- consumer_v1.rs SHA-256 at both code commits:
+  c63ead96a661f4656471f81c25474f26707119e22e7915c579618f4cd676a625.
+- Final consumer_sdk.rs SHA-256:
+  94a7424bd8d13b36b9991e56af09bec9dae329234b65ca5747d948f7b8da3729.
+- Final production module, engine export, CLI source and independent example
+  bytes match ca98398; working source matched the frozen commits when checked.
+  The 77e4b21 commit adds only three tests and their controlled-mutation receipts.
+- Read AGENTS.md, project overview/task/roadmap/process, ADR 0013 and its dated
+  adoption record, frozen golden plan/design audits, source, old regression
+  anchors, fixture/provenance/license notices and retained RED/GREEN evidence.
+- Per the task boundary, performed only read-only Git/source/Python/hash checks.
+  Did not run Cargo, the product CLI, network, media, a Host or further agents.
+  Wrote only this requested /tmp report. Dynamic results below are inspected
+  implementer receipts, not independent executions by this reviewer. Final
+  supported-OS CI and whole-workspace verification remain the parent's work.
+- The parent was updating documentation and general G4 receipts concurrently;
+  this review binds source/tests to 77e4b21 and does not approve later documents.
+
+R1 — P2, resolved: rich source-error bytes needed independent order assertions
+
+At ca98398, consumer_sdk.rs:174–182 decoded source_details_json() to Value.
+That preserved fields but could not reject a serializer Value round trip that
+sorts keys. The only exact raw error assertion then covered coverage's code/path
+object, already alphabetically ordered. This missed an explicit adopted
+serializer-order invariant. The current production implementation was correct:
+consumer_v1.rs:166–173 retains concrete source errors and serializes them directly.
+
+77e4b21 adds independent raw literals at consumer_sdk.rs:185–221 for narrative
+relation_ids, planner conflicts and nested OTIO losses. Its diff preserves the
+entire original test source before/after the inserted block, including all
+eleven existing tests and assertions. No production fault hook is committed.
+
+Reviewed error-order-mutant-red.{json,stdout,stderr} and
+error-order-green.{json,stdout,stderr}. All stream hashes match their metadata
+and committed blobs. Independently reconstructed the documented one-occurrence
+temporary replacement in memory; its SHA-256 matches the recorded mutant
+0cd33db28d95f2ff5e351e8572cc21e8d39edbf6f601f4eaef03628c65ac1318.
+The controlled mutant receipt reports 12 pass/2 fail, specifically planner and
+OTIO byte assertions. Decoded the failure byte arrays: each actual/expected pair
+is unequal bytes but equal parsed JSON, demonstrating the precise test gap.
+Narrative's already-alphabetical field order correctly remains green. The
+restored-source receipt reports 14 pass, 0 fail/ignored/filtered. Both receipts'
+test-source hashes match final 77e4b21, and the restored production hash matches
+the reviewed correct implementation. This controlled test mutation is not a
+naturally observed production defect or the original missing-facade RED.
+
+Production and contract findings
+
+1. Direct reuse and error fidelity
+
+The eight public functions at consumer_v1.rs:210–287 each make one direct
+crate-root backend call on the original immutable byte slices/ID in original
+argument order. Only Err is adapted; there is no pre-parser, normalization,
+default insertion, second planner/compiler or hashing path. No accepted backend
+body changes in this branch. CLI production code also stays unchanged; its only
+source addition is a cfg(test) narrative-formatter regression.
+
+Private SourceError retains all five concrete error families. operation() uses
+the exact facade function ID; code()/path() read the original fields. Coverage
+None remains None and serializes as null. Existing omission of empty narrative
+relation_ids, mandatory planner conflicts/OTIO losses arrays, nested evidence
+fields and original struct serializer ordering are preserved. The details
+exclude a CLI envelope and operation metadata. SdkErrorV1 and
+SdkEncodingErrorV1 have private fields, no Deserialize/public factory and no new
+wire schema. Display uses identifiers, not parser prose.
+
+encode_details() returns the fixed adapter-only encoding code on a Serde
+failure, without erasing the original error: the detail accessor borrows &self
+and retains its source. The synthetic CannotEncode unit test covers the actual
+helper's failure mapping and prose suppression. Current concrete domain error
+serializers normally cannot fail; the receipts do not demonstrate an induced
+public-domain-error encoding failure, and no such observation is claimed.
+
+2. Result closure, opacity and authority
+
+Counted 44 distinct existing public result/reference names, including the two
+aliases, plus only the two new opaque error types. Inspected the nested public
+field graphs of narrative/revision/coverage/planner/brief/wire/review results:
+the required named types are available through consumer_v1. No unrelated cue,
+style, approval, journal, direct OTIO or draft-input operation is re-exported.
+
+PreparedStoryReviewV1 aliases the existing compiler-owned BoundStoryReviewV1;
+it is not rebuilt from a record and supplied artifact. The underlying private
+review and Box<[u8]> fields have only immutable record()/compiled_otio()/
+bundle_json() accessors, no Deserialize/Default/unchecked constructor or mutable
+conversion. A caller-owned ReviewRecordV1 clone remains intentionally editable
+untrusted data; it cannot mutate the bound object. Existing validate_record()
+rejects true executable/approval/source/Host claims, and freshness outputs keep
+these flags false. A bound or fresh review confers no execution/current human
+authority, source-byte verification or Host qualification.
+
+The facade has exactly eight operation exports and no feature conditional
+beyond cfg(test). Its compile-fail examples exercise absent execute/approve/
+dispatch/retry/recover/write_journal/run_shell and consumer_v2, forged/deserialized
+handles/errors and mutable record/artifact attempts. The retained all-feature
+doctest receipt reports 22 successful compile-fail tests, including the 15 new
+facade examples. Source inspection supports the same absence under all current
+features; this review did not rerun the compiler.
+
+3. Ownership, concurrency, versions and limits
+
+Results use owned Strings/Vecs/Boxes and static values, with no input lifetime,
+mutable shared state, cache, background task or privileged callback. Existing
+crate/dependency membership is unchanged. A supplementary scan across core and
+engine src found no filesystem/process/network/clock/database/runtime/thread-
+spawn/unsafe/Drop implementation patterns. This scan supplements direct source
+inspection; it is not a runtime I/O sandbox proof.
+
+The integration suite statically requires Send + Sync + 'static for all eight
+results and both errors, drops caller-owned input buffers before inspecting
+owned results, compares sequential and three caller-thread replays, and checks
+unchanged input bytes. Caller concurrency/memory remain caller responsibilities.
+
+Wrappers preserve the distinct backend limits and priorities: 1,048,576-byte
+inputs, 128-byte change IDs, 4,194,336-byte proposal, 65,536-byte context and
+4,292,672-byte bundle. Tests include exact-bound and +1 cases, different
+narrative/coverage nesting limits, ID-before-ledger errors, multi-buffer size
+priority, context-before-proposal parse order, bundle/profile-before-current-
+input errors and exact-limit proposals that still exceed OTIO output budget.
+Future schema/profile cases preserve operation-specific rejection; the M0
+unknown-field/version compound case is deliberately different from the planner
+or narrative case. No upgrade or fallback policy is added.
+
+4. Golden independence and meaningful negative cases
+
+The standalone consumer is outside workspace membership, imports only the
+facade for domain symbols, and owns explicit file/output I/O. Its lock adds only
+the local example package; every shared package checksum matches the unchanged
+root lock, with no new dependency version.
+
+SDK assertions use predeclared literal fields or retained goldens before CLI
+comparison. Narrative source tags/choices are checked as typed data and the
+unchanged private CLI formatter receives the SDK projection. Both revision-1
+authoring and revision-2 reviewed narrative fixtures are exercised, addressing
+the historical plan/anchor difference; the actual negative fixture correctly
+expects beat index 1. Prose is not reverse-parsed into a fabricated JSON schema.
+
+Frozen proposal-response.json is exactly the retained baseline planner stdout:
+1,573 bytes, SHA-256
+9db66b3384a6cf76b7a6ffdd8578f55db3af840fe001a7c33499f80869d4456b,
+with one final LF and no CR. Both preparation paths use these same bytes.
+Baseline OTIO embeds that exact proposal text; its payload hash matches the
+recorded artifact identity. Bundle/OTIO checks compare raw payload plus exactly
+one CLI LF, without parsing/re-encoding or trimming identity-bearing bytes.
+Existing text-only receipt normalization is not applied to these inputs or
+artifacts. Retained baseline stdout hashes all match metadata.
+
+Tests explicitly separate successful unresolved coverage from rejection, stale
+Ok(current=false) from malformed Err, and source-hash asset mismatch from valid
+URI/context/cut/loss staleness. They check all 21 coverage profile codes across
+20 error categories plus the unresolved success diagnostic, rich conflicts/
+cycle IDs/losses, explicit null paths, duplicate/unknown/future data, stale-field
+ordering, one added proposal LF, a raw artifact-byte splice and input identity.
+CLI file/stdin parity, status/stderr framing and sentinel-directory snapshots
+are present. Those snapshots observe the CLI test sandbox; they are not a
+universal proof that no filesystem outside it was touched.
+
+Accepted P1/P2 fixtures, engine/CLI regression files and fixed digest literals
+are byte-unchanged from the implementation base. In particular P2 artifact/
+binding vectors remain 5404c0b552ddc4ccc394755c0a9a95e262f47f4a579fdca9b41797b920a838d0
+and ff87f54300ac968089fa6170f1248920a990284c3961f574225088ce85aad932.
+
+5. Test-first evidence and provenance
+
+The retained original consumer and parity RED outputs are unresolved-import
+compile failures, not runtime assertions or missing-toolchain failures. Their
+file hashes match metadata. The parity test source at preimplementation commit
+e4945a8 matches the recorded RED source hash; its substantive literals/assertions
+remain present after formatting and the final insertion. Initial GREEN reports
+11 passing integration tests; final strengthened GREEN reports 14. Inspected
+all focused, baseline, RED and initial-GREEN stdout/stderr hash pairs.
+
+Adopted ADR 0013 bytes are unchanged from base, SHA-256
+f16a7dd625ecb106c5f6a312bae8ba1e1bec14113c629c035df15d45bf849109.
+The dated adoption record correctly scopes eight read-only operations and an
+independent Draft PR; it leaves merge, execution, Host, final SDK acceptance
+and publication separate. Historical proposal statuses are not new failures or
+new acceptance claims.
+
+New integration/facade/example glue has MIT markers. Existing source-informed
+planner/review/OpenFilm fixtures stay at their original paths under retained
+Apache-2.0 notices and pinned provenance (OpenFilm
+7add4762fe8174d76f43b863375ea39b73121e76). Original MIT LICENSE, LICENSES tree,
+provenance records and existing fixture blobs are unchanged. Public inputs are
+synthetic declarations; no upstream code/media/private project or actual Host
+observation is newly imported. This is a source/provenance consistency check,
+not an external legal audit.
+
+Remaining evidence boundary
+
+No unresolved source-review finding remains after R1's test-only correction.
+This report supports review of the bounded read-only implementation at the
+identified source/test commit. It does not independently establish the reported
+build/test executions, final exact-head Linux/Windows/macOS CI, human consumer
+usability, editorial results, real source verification, authority/recovery/
+Host acceptance under #103–#106, release readiness or merge permission. The
+parent must retain those separate evidence/authorization states in the Draft.

@@ -1,0 +1,11 @@
+    Checking storytelling-core v0.1.0-dev.0 (/workspace/storytelling-readonly-sdk-20261117/crates/storytelling-core)
+    Checking bitflags v2.13.2
+    Checking fallible-streaming-iterator v0.1.9
+    Checking libsqlite3-sys v0.39.1
+    Checking smallvec v1.16.5
+    Checking fallible-iterator v0.3.0
+    Checking rusqlite v0.41.1
+    Checking storytelling-journal v0.1.0-dev.0 (/workspace/storytelling-readonly-sdk-20261117/crates/storytelling-journal)
+    Checking storytelling-engine v0.1.0-dev.0 (/workspace/storytelling-readonly-sdk-20261117/crates/storytelling-engine)
+    Checking storytelling-cli v0.1.0-dev.0 (/workspace/storytelling-readonly-sdk-20261117/crates/storytelling-cli)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 5.06s
