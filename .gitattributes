@@ -78,3 +78,6 @@ tests/fixtures/openfilm/finite-v1/video-trim.json -text
 
 # Acceptance snapshots/audits/raw streams are immutable evidence bytes.
 /docs/validation/sdk-acceptance-2026-11-17/** -text -whitespace
+
+# Preserve the observed offline layout-checker RED/GREEN receipt bytes.
+/docs/validation/sk-e06-layout-preflight/** -text -whitespace

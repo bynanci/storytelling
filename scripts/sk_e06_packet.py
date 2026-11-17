@@ -228,11 +228,24 @@ def validate_packet(packet, root):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("packet_dir", nargs="?", type=Path,
-                        default=Path(__file__).resolve().parents[1] / "docs/research/evaluations/sk-e06")
+    parser.add_argument("packet_dir", nargs="?", type=Path)
+    parser.add_argument("--layout-preflight", action="store_true",
+                        help="check prospective layout snapshot integrity without dispatch")
     args = parser.parse_args()
+    base = Path(__file__).resolve().parents[1] / "docs/research/evaluations"
+    if args.layout_preflight:
+        from sk_e06_layout import LayoutError, preflight_directory
+
+        try:
+            result = preflight_directory(args.packet_dir or base / "sk-e06-runs-2026-11-17")
+        except LayoutError as error:
+            print(json.dumps({"error": {"code": "sk_e06.layout_invalid", "message": str(error)}}))
+            return 1
+        print(json.dumps(result, sort_keys=True))
+        return 0
+    packet_dir = args.packet_dir or base / "sk-e06"
     try:
-        result = validate_packet(load_packet(args.packet_dir), args.packet_dir)
+        result = validate_packet(load_packet(packet_dir), packet_dir)
     except PacketError as error:
         print(json.dumps({"error": {"code": "sk_e06.packet_invalid", "message": str(error)}}))
         return 1

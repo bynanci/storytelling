@@ -1,0 +1,25 @@
+{
+  "kind": "final_full_scripts_discovery_with_explicit_native_binary",
+  "implementation_commit": "91f34b3c610595db05897afd417aadbb58e6ebf0",
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/tmp/storytelling-ske06-layout-full-discovery.py"
+  ],
+  "runner_source": "from pathlib import Path\nimport sys, unittest\nsys.path.insert(0, str(Path(\"scripts\").resolve()))\nimport test_cli_file_input\ntest_cli_file_input.CLI = Path(\"/tmp/storytelling-ske06-layout-target/debug/storytelling\")\nassert test_cli_file_input.CLI.is_file()\nsuite = unittest.defaultTestLoader.discover(\"scripts\", pattern=\"test_*.py\")\nresult = unittest.TextTestRunner(verbosity=2).run(suite)\nraise SystemExit(0 if result.wasSuccessful() else 1)\n",
+  "native_binary_sha256": "928cd8c0ce9cdb81ff108aa0a62e559e05bbf007a20d132358881d102c528550",
+  "exit": 0,
+  "elapsed_seconds": 9.72,
+  "stdout": {
+    "path": "full-python.stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "full-python.stderr",
+    "bytes": 24315,
+    "sha256": "a3f3814f1355d236748c3d65ffb97ac4ff870692eeed7073e43c92b16554a58e"
+  },
+  "skill_evaluation_case_dispatches": 0,
+  "human_observations": 0,
+  "host_observations": 0
+}
