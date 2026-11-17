@@ -860,3 +860,20 @@ fn main() -> ExitCode {
         Err(error) => emit(json!({"ok": false, "error": error}), 1),
     }
 }
+
+#[cfg(test)]
+mod consumer_sdk_formatter_tests {
+    // Catches a facade projection that loses source/variant fields before the
+    // unchanged private CLI formatter consumes it. No new JSON wire format.
+    #[test]
+    fn facade_projection_keeps_the_existing_reviewed_text_golden() {
+        let result = storytelling_engine::consumer_v1::render_narrative(include_bytes!(
+            "../../../tests/fixtures/narrative-v1/n03-author-reviewed-v1.json"
+        ))
+        .unwrap();
+        assert_eq!(
+            super::render_narrative_text(&result),
+            include_str!("../../../docs/validation/open-issues-2026-11-11/n03-reviewed.stdout")
+        );
+    }
+}
