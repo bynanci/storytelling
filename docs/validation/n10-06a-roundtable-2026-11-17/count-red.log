@@ -1,0 +1,13 @@
+...F
+======================================================================
+FAIL: test_wrong_executable_preserves_failed_machine_evidence (__main__.RehearsalCaptureTests.test_wrong_executable_preserves_failed_machine_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/storytelling-n10-author-rehearsal/examples/evaluation/n10-06a-rehearsal/test_replay.py", line 90, in test_wrong_executable_preserves_failed_machine_evidence
+    self.assertEqual(report['case_count'], 1)
+AssertionError: 8 != 1
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.340s
+
+FAILED (failures=1)

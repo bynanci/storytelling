@@ -1,0 +1,70 @@
+{
+  "evidence_kind": "local_build_and_synthetic_machine_capture",
+  "base_source_commit": "06164f19a8b3614f438dd2f97ef810c94e64c3d3",
+  "rust_cargo_source_unchanged_from_base": true,
+  "build_command": [
+    "cargo",
+    "build",
+    "--release",
+    "--locked",
+    "-p",
+    "storytelling-cli",
+    "--features",
+    "draft-video-input"
+  ],
+  "rust_version": "1.89.0",
+  "cargo_target": "dedicated initially absent storytelling-n10-rehearsal-20261117-target",
+  "build_exit": 0,
+  "binary_sha256": "161bfeb24c7072392cf6c6fe9b61c851486fa6341416e51b1f74521e46d9735d",
+  "test_first_commit": "8a3d967ce71e801b32f5f232c22273a7fb19d074",
+  "red_result": {
+    "exit": 1,
+    "tests": 4,
+    "passed": 1,
+    "failed": 3,
+    "reason": "replay entry not yet implemented"
+  },
+  "green_result": {
+    "exit": 0,
+    "tests": 4,
+    "passed": 4,
+    "failed": 0
+  },
+  "machine_cases": 8,
+  "actual_cli_calls": 37,
+  "human_participants": 0,
+  "participant_answers": null,
+  "author_elapsed_seconds": null,
+  "human_completion_rate": null,
+  "independent_review": null,
+  "host_observations": 0,
+  "g2_acceptance": null,
+  "g5_release": null,
+  "artifact_sha256": {
+    "machine-replay.json": "2c85d8a3f4228e3871753879178157ea5918508d25b888860b26891c502daedd",
+    "machine-replay.initial.json": "785cbc6745f9a8c04bd3edd796213b82a9cff1cf9adda3b5604b86e3459a7c94",
+    "capture-red.log": "900051ccdf1369738fa12807bbe302f5a4c0df62764dd45456eba20f9882aa89",
+    "capture-green.log": "9ab68aabe67790574bfaa65d7fc32db012bd9ee46a52efa8980182807315dbfe",
+    "count-red.log": "41d1098c7573016d9cecdbfc257256c950c575b624bedf89160ae49e953378ff",
+    "count-green.log": "95ab3ab7f7c8e3875ab168641f413d218ca3f5522e7aee1c6ec0cf763a19c56d"
+  },
+  "review_fix": {
+    "kind": "one-agent self-review",
+    "problem": "a failure during the first case reported the planned eight as the case count",
+    "red": {
+      "exit": 1,
+      "passed": 3,
+      "failed": 1,
+      "assertion": "8 != 1"
+    },
+    "green": {
+      "exit": 0,
+      "passed": 4,
+      "failed": 0
+    },
+    "new_meaning": "planned_case_count stays 8; case_count counts actually attempted rows, including failed rows",
+    "initial_successful_capture": "machine-replay.initial.json",
+    "primary_capture": "machine-replay.json",
+    "scope": "instrumentation only; primary eight native cases unchanged"
+  }
+}

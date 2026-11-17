@@ -331,3 +331,5 @@ Use [#115](https://github.com/bynanci/storytelling/issues/115) as the umbrella. 
 ## Narrative handoff maintenance
 
 **N-R11 lookup maintenance** traces to three real-CLI characterization/metamorphic tests in `crates/storytelling-cli/tests/handoff.rs`, nine paired-harness regressions and [the frozen synthetic process protocol/results](validation/n11-handoff-index-performance.md). Bound draft/current identities, declared order, inventory-only rejection and first-error semantics remain unchanged. Process improvements supply no human/Host acceptance.
+
+**N-R10-06A research preparation** traces to [the synthetic roundtable and native replay](validation/n10-06a-roundtable-2026-11-17.md), the eight-case acceptance and four real-entry capture tests under `examples/evaluation/n10-06a-rehearsal/`. Raw outputs, unchanged inputs, error identity and refusal to overwrite are machine evidence; four authored perspectives are a single-agent simulation. The separate proposed author sheet and blank five-field record preserve actual consent/exposure/quotes/time when available. Human count remains zero; #129's independent-author requirement and B/C/D gates remain pending.

@@ -156,4 +156,6 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 
 ## 敘事交接維護
 
+- [x] **N-R10-06A 合成研究準備。**[2026-11-17 模擬圓桌](docs/validation/n10-06a-roundtable-2026-11-17.zh-TW.md)保留八項實際原生案例／37 次 CLI 呼叫、四項擷取工具回歸、留空作者材料及私人五欄紀錄。四個視角由同一 AI 編寫，真人仍為零；#129 獨立作者項保持待辦。未來質性觀察是提案，不提供 G2、媒體／Host 或效益接受。
+
 - [x] **N-R11 交接查找維護。** 私有來源索引維持既有契約；兩種凍結的大型合成 release 負載中位耗時約為基準的 0.55。[流程、原始配對、檢查與獨立 AI review](docs/validation/n11-handoff-index-performance.zh-TW.md)區分程序量測與真人／Host 證據；最終 head 的 hosted 檢查另記於 PR。

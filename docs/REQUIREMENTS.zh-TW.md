@@ -395,3 +395,5 @@ M0、M1-01 與限定範圍的 M2-01 稽核只支援前兩項。
 ## 敘事交接維護
 
 **N-R11 查找維護**追溯至 `crates/storytelling-cli/tests/handoff.rs` 三項真正 CLI 的行為刻畫／變形測試、九項配對工具回歸及[凍結合成流程與結果](validation/n11-handoff-index-performance.zh-TW.md)。綁定草稿／當前版本、宣告順序、變體外引用拒絕及第一錯誤語意不變；程序改善不代表真人／Host 驗收。
+
+**N-R10-06A 研究準備**追溯至[合成圓桌及原生重播](validation/n10-06a-roundtable-2026-11-17.zh-TW.md)、`examples/evaluation/n10-06a-rehearsal/` 的八項驗收與四項真正入口擷取測試。原始輸出、輸入不變、錯誤身分及禁止覆寫屬機器證據；四個視角是同一 agent 的編寫模擬。獨立的作者卡提案及空白五欄表在真實資料可得時保留同意／接觸／原話／時間。真人仍為零，#129 獨立作者要求及 B/C/D 門檻保持待辦。

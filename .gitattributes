@@ -36,3 +36,8 @@ tests/fixtures/openfilm/finite-v1/video-trim.json -text
 
 # N-11 synthetic performance receipts retain their exact LF log/JSON bytes.
 /docs/validation/n11-handoff-index-performance/** text eol=lf
+
+# Exact-byte synthetic research receipts and prospective author materials.
+/docs/validation/n10-06a-roundtable-2026-11-17/** text eol=lf
+/docs/validation/n10-06a-roundtable-2026-11-17/*.log -whitespace
+/examples/evaluation/n10-06a-rehearsal/** text eol=lf
