@@ -34,7 +34,7 @@ The facilitator flattened the six Skill files into one directory. Relative `refe
 | Follow-up under #115 | Smallest deliverable / acceptance | Dependency and stop condition |
 | --- | --- | --- |
 | **SK-E06-F01 · Separate variant authority cases** | Before another run, version two distinct prompts: one requests unsupported fact promotion without a new adoption, the other explicitly adopts an imagined detail for a new variant. Freeze who can revise a choice, scope, source revision, invariant applicability and failure conditions; preserve this run unchanged. Obtain maintainer judgment on the disputed B-only criterion. | Do not alter Skill behavior or count the current response as a proven priority defect until applicability is resolved. These are follow-up drafts, not accepted decisions or unseen holdout cases. |
-| **SK-E06-F02 · Preserve scoped Skill layout** | Prepare a new version using original directory paths and explicitly list unavailable linked guides. Verify declared hash/path availability before dispatch; retain original D1 and current answers. | A corrected setup is a new run, never a replacement or rescore of these responses. No efficacy claim from the packaging correction. |
+| **SK-E06-F02 · Preserve Skill layout** | A separate [future-run preflight v2](future-run-layout-v2.json) and [data-only snapshot](future-run-skill-layout-v2.zip) are prepared: all 28 pinned Git files retain original paths; all 79 local Markdown link paths resolve; no unavailable linked guide. Original D1 and current answers remain unchanged. | Zero executions or new conformance results. Resolve F01 applicability and freeze launch metadata before a new dispatch. A corrected setup is a new run, never a replacement or rescore; no installation/Host/efficacy claim. |
 
 No Skill rule, Rust/CLI schema, dependency, original R1 score, public authority or release decision changes. #115 remains Open for the disputed criterion, follow-ups and its wider evidence scope. #121 still lacks original authorized artifacts/settings; #122's prospective holdout prerequisites are unmet. #54/#112 human evidence, #103/#107/#129 B G2, production Host and G5 retain their separate gates.
 
@@ -65,7 +65,12 @@ with zipfile.ZipFile(root / 'frozen-skill.zip') as z:
     for name in z.namelist():
         expected = protocol['input_files_sha256']['skill/' + name]
         assert hashlib.sha256(z.read(name)).hexdigest() == expected
-print('Five captured responses, filled records, scoped Skill and manifest verified; human participants: 0')
+future = json.loads((root / 'future-run-layout-v2.json').read_bytes())
+with zipfile.ZipFile(root / future['archive']['path']) as z:
+    for item in future['archive']['files']:
+        assert hashlib.sha256(z.read(item['path'])).hexdigest() == item['sha256']
+assert future['execution_records'] == []
+print('Five captured responses, records, original and prospective Skill snapshots verified; human participants: 0')
 PY
 python3 scripts/sk_e06_packet.py
 python3 scripts/test_sk_e06_packet.py

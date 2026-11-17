@@ -63,5 +63,51 @@
   "rust_workspace_local_rerun": false,
   "reason": "Documentation and research observations only; no Rust/CLI/contract/Skill behavior changed. Hosted final-head full gates recorded on PR. Existing separate journal/replay RED/GREEN retains its own evidence.",
   "human_participants": 0,
-  "host_observations": 0
+  "host_observations": 0,
+  "future_packet_phase": {
+    "checked_at_utc": "2026-11-17T09:38:55.341930+00:00",
+    "manifest_sha256": "0855b0482c50403c8d71776c93924c56edf0af50faedcf9f4098642acc04eadf",
+    "manifest_files": 32,
+    "future_skill_files": 28,
+    "resolved_local_markdown_links": 79,
+    "future_packet_execution_records": 0,
+    "checks": [
+      {
+        "label": "README exact verification block",
+        "argv": [
+          "python3",
+          "-c",
+          "<README verification block>"
+        ],
+        "code_sha256": "fe8d29d03208f17ad2c46cb8bbf2f79191d0d33d1ea3cc84a9eff8c0f8993a8e",
+        "exit_code": 0,
+        "stdout_utf8": "Five captured responses, records, original and prospective Skill snapshots verified; human participants: 0\n",
+        "stderr_utf8": ""
+      },
+      {
+        "label": "Repository links after future packet addition",
+        "argv": [
+          "python3",
+          "scripts/check_repo.py"
+        ],
+        "code_sha256": null,
+        "exit_code": 0,
+        "stdout_utf8": "Repository links, provenance, dependencies and requirement test references passed.\n",
+        "stderr_utf8": ""
+      },
+      {
+        "label": "Working-tree whitespace",
+        "argv": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "code_sha256": null,
+        "exit_code": 0,
+        "stdout_utf8": "",
+        "stderr_utf8": ""
+      }
+    ],
+    "scope": "Exact README user command and repository links; original observed case outputs unchanged; former 30-file phase retained above."
+  }
 }

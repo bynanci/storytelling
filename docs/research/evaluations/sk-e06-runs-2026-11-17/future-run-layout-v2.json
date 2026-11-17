@@ -1,0 +1,636 @@
+{
+  "record_kind": "prospective_prepared_packet_not_executed",
+  "version": "SK-E06-LAYOUT-PREFLIGHT-2",
+  "prepared_at_utc": "2026-11-17T09:37:35.612640+00:00",
+  "follow_up": "SK-E06-F02",
+  "predecessor_run": "SK-E06-CAPTURE-20261117-1; unchanged, not rescored",
+  "purpose": "Correct facilitator flattening for a future run by retaining original directory paths and every linked guide in a complete frozen Skill snapshot.",
+  "skill_commit": "52dc6c315f7b3d20693f3c51e052509997ab791b",
+  "archive": {
+    "path": "future-run-skill-layout-v2.zip",
+    "sha256": "417d89f277d3d4cb80978c3968ae29e613a6e0f7baaeb11082fcbc0e4181ec20",
+    "bytes": 101442,
+    "files": [
+      {
+        "path": "skills/storytelling/LICENSE",
+        "git_blob": "f317799529d13f4d9301daa2dba63dfea559ff69",
+        "sha256": "8663c02e442408b899ec4c022a181e857cc093e5b3928e5bd27d19b4218617a8",
+        "bytes": 1064
+      },
+      {
+        "path": "skills/storytelling/SKILL.md",
+        "git_blob": "c54fdadc0b8c54d7bbb439e23b971cd548906670",
+        "sha256": "5d7fa97dba01db595e05e1369ffaeee6965f32352f15629a03b1224312d8dbdd",
+        "bytes": 9394
+      },
+      {
+        "path": "skills/storytelling/SKILL.zh-TW.md",
+        "git_blob": "ca6d28fa4f5e5fb5c7cf9bf1886dc5400b66b763",
+        "sha256": "5f83a8f482f17d78aa3fdf1f19389375f6edcf0b0c401b4fe36ad7b872e55075",
+        "bytes": 10341
+      },
+      {
+        "path": "skills/storytelling/agents/openai.yaml",
+        "git_blob": "463001fbfbcf544e581bd64a7faa662b16375b64",
+        "sha256": "4a1653dcee2438284252a304770e26ce43cbdccb5f3e2ce9af5f70ce621e982c",
+        "bytes": 223
+      },
+      {
+        "path": "skills/storytelling/assets/umbrella-workshop/bench.svg",
+        "git_blob": "2e52fa39ed7e5b757f6b48e55e280bd121ccca02",
+        "sha256": "87687584b8f4d01360feea9fbf84e510560f44c745a5973e001e55c01a35d1c9",
+        "bytes": 2414
+      },
+      {
+        "path": "skills/storytelling/assets/umbrella-workshop/taps.wav",
+        "git_blob": "393d18ee3c65914f503a798e9d5eaa8f7f7401ab",
+        "sha256": "4008e27e4c94376747a887df8d873820e4ab88e668816f79ddca5c9d69bb202b",
+        "bytes": 34604
+      },
+      {
+        "path": "skills/storytelling/references/editorial-rules.md",
+        "git_blob": "fe31c8f6c6eb69bb7cf744c0058011ddf2f1f6e6",
+        "sha256": "3d6b82edc2d505ec1ede0fb2fbf0ffa2b5fdf9f88b58c831eb8d1e9b56c53971",
+        "bytes": 8426
+      },
+      {
+        "path": "skills/storytelling/references/editorial-rules.zh-TW.md",
+        "git_blob": "dd4509a4d9b7760791c1646d9436ef67121a66f7",
+        "sha256": "ed87a05c3a98de4b916b0855a04a27791035ccc16ad53cbe2313df062065ea71",
+        "bytes": 6818
+      },
+      {
+        "path": "skills/storytelling/references/examples.md",
+        "git_blob": "0a75be33c29c9b9fc84f95e2dfe5e27ff3e7b438",
+        "sha256": "72d18007fe819c4366d2be0ed527d6cc5cb5b903a11ad342c13319f923baa5c7",
+        "bytes": 3402
+      },
+      {
+        "path": "skills/storytelling/references/examples.zh-TW.md",
+        "git_blob": "b14008498e6c013cdb08fc01d0d9915b4956a8c7",
+        "sha256": "39038ceb26bcf4eee31f5f30b9f59473e802409fe7b569401848d2dc1e9345f0",
+        "bytes": 3054
+      },
+      {
+        "path": "skills/storytelling/references/graph-loops.md",
+        "git_blob": "4b011cc617b2dbe245d78687589f1f22cc419d57",
+        "sha256": "1b75979537fca3f98deebfee73f332ddf64d989543723c380094eea62ec96cde",
+        "bytes": 14754
+      },
+      {
+        "path": "skills/storytelling/references/graph-loops.zh-TW.md",
+        "git_blob": "786356c08f98e7d0e9b52138ac3a2a499284e9c7",
+        "sha256": "26ff1898653dab1342c5bc25d70b3a8bbff6453f8691d18fb12066e589820203",
+        "bytes": 18102
+      },
+      {
+        "path": "skills/storytelling/references/graphify-tools.md",
+        "git_blob": "934c1acd47cc477706727033d762800bc006df85",
+        "sha256": "251b61fe284e9036d505f1afb5d0b2fac04750d30c2e550e93c90c901388b013",
+        "bytes": 4394
+      },
+      {
+        "path": "skills/storytelling/references/graphify-tools.zh-TW.md",
+        "git_blob": "90800b51230f9e0e365d8c066865b7310e7f429f",
+        "sha256": "fd82388c0803ae96e16053058952ff793f1db6b930dab517586af65493558f2f",
+        "bytes": 5025
+      },
+      {
+        "path": "skills/storytelling/references/manual-narration-review.md",
+        "git_blob": "e92abda7ab7ebc9a9282614773088053c2d23293",
+        "sha256": "67351d19d71c2c392d465e810f72e074bb4c8eecd7b08eda046fbf15f28bfddf",
+        "bytes": 7960
+      },
+      {
+        "path": "skills/storytelling/references/manual-narration-review.zh-TW.md",
+        "git_blob": "c7b25262637bdf925f3d3d6c2b25a4fa28339b38",
+        "sha256": "e6bbf9133e2403f1b423396b59e80101e0c0c0d86fc5c8d8260599653bb4abb4",
+        "bytes": 7011
+      },
+      {
+        "path": "skills/storytelling/references/multimodal-templates.md",
+        "git_blob": "6af4bf0986525e82579a75acc895dc66d408c2a1",
+        "sha256": "87f6691cad27375d1fe495f3a882ff4227bc368e4dbeebf7062725beab5fc35e",
+        "bytes": 9964
+      },
+      {
+        "path": "skills/storytelling/references/multimodal-templates.zh-TW.md",
+        "git_blob": "f09698292ce2284cbeab29f0aa70ea4ef51541c5",
+        "sha256": "f1131ecb4fd2c2a358131e8a49b1fbec41599de202209d2460ac5829d026313a",
+        "bytes": 15606
+      },
+      {
+        "path": "skills/storytelling/references/research-foundations.md",
+        "git_blob": "09febe828adafd01246a0cd1f84bc99ef75e42d1",
+        "sha256": "a81120b2799c8239280d4eeb250bc5d28e9530e430f8f88c5bdabe2ddc36f79c",
+        "bytes": 8765
+      },
+      {
+        "path": "skills/storytelling/references/research-foundations.zh-TW.md",
+        "git_blob": "e00f375b502dc431cad404f50e134f5286e0d940",
+        "sha256": "33c3191232e424dabcaba5da273586ced3c5b8a78ae4015ad661f17ff1f51159",
+        "bytes": 7545
+      },
+      {
+        "path": "skills/storytelling/references/research-workflows.md",
+        "git_blob": "26abd10663da989829d58af7b12153d4b842da6e",
+        "sha256": "0c5ccafb9a1ecdfae3ca8971f517b9f87374d5b985f497cccafca9d2fc3b9062",
+        "bytes": 12314
+      },
+      {
+        "path": "skills/storytelling/references/research-workflows.zh-TW.md",
+        "git_blob": "849b8d97269ecbd6a0522a1b0984b5cdb310490d",
+        "sha256": "67449084a126c4a4c0f08b3b737d94851a6a59b89968e99532b7955b18055a4a",
+        "bytes": 9998
+      },
+      {
+        "path": "skills/storytelling/references/video-cli.md",
+        "git_blob": "5a0ca88ae719f1dae034925afb7b6eca20d85333",
+        "sha256": "5fe295c87e85ad3d179b8215440257b8f30152f4567ba2e28f16304c13b22d62",
+        "bytes": 3411
+      },
+      {
+        "path": "skills/storytelling/references/video-cli.zh-TW.md",
+        "git_blob": "0bc0e65057b4802cc03a97d8aa578f4db8813030",
+        "sha256": "71b6c9577a237c15bff58ef96f567b1c0319bc94a230698fccb223b86a23900a",
+        "bytes": 3316
+      },
+      {
+        "path": "skills/storytelling/references/workshop-demo.md",
+        "git_blob": "456e673d077592a915557e7922a9d4affa7c8e0a",
+        "sha256": "8103dee1e46c4bb87e80918c6a5a9d0f0a4411caa97364c8b40aaa8b75ebeb10",
+        "bytes": 3283
+      },
+      {
+        "path": "skills/storytelling/references/workshop-demo.zh-TW.md",
+        "git_blob": "10a7a8d01c1753068651dd83b500ab400eb7742f",
+        "sha256": "e5c162bfc1f56d08a4cdf19068e278d27668c35a6753a3ff0f410a0e4a657f5f",
+        "bytes": 5369
+      },
+      {
+        "path": "skills/storytelling/scripts/check_trace.py",
+        "git_blob": "77eebccdd0595ee28ed02381ef6c43e25e2eb89f",
+        "sha256": "9e5696b6d372d7bd1b1c4d681c497dac8917fce8596e2c96c0b26c946f739a92",
+        "bytes": 3531
+      },
+      {
+        "path": "skills/storytelling/scripts/graph_plan.py",
+        "git_blob": "bf8a3356d6f5de92ac3dd9dbaeade0f7b64fde73",
+        "sha256": "dede5b5b8d8d4312f4ca7c5380175d4adb749590eb24cea77089555df72093db",
+        "bytes": 4872
+      }
+    ]
+  },
+  "mechanical_preflight": {
+    "ordinary_git_blobs_only": true,
+    "exact_git_bytes": true,
+    "symlinks": false,
+    "relative_markdown_links_resolved": 79,
+    "links": [
+      {
+        "source": "skills/storytelling/SKILL.md",
+        "target": "SKILL.zh-TW.md",
+        "resolved": "skills/storytelling/SKILL.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.md",
+        "target": "references/graph-loops.md",
+        "resolved": "skills/storytelling/references/graph-loops.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.md",
+        "target": "references/graphify-tools.md",
+        "resolved": "skills/storytelling/references/graphify-tools.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.md",
+        "target": "scripts/graph_plan.py",
+        "resolved": "skills/storytelling/scripts/graph_plan.py"
+      },
+      {
+        "source": "skills/storytelling/SKILL.md",
+        "target": "scripts/check_trace.py",
+        "resolved": "skills/storytelling/scripts/check_trace.py"
+      },
+      {
+        "source": "skills/storytelling/SKILL.md",
+        "target": "references/research-workflows.md",
+        "resolved": "skills/storytelling/references/research-workflows.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.md",
+        "target": "references/editorial-rules.md",
+        "resolved": "skills/storytelling/references/editorial-rules.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.md",
+        "target": "references/research-foundations.md",
+        "resolved": "skills/storytelling/references/research-foundations.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.md",
+        "target": "references/multimodal-templates.md",
+        "resolved": "skills/storytelling/references/multimodal-templates.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.md",
+        "target": "references/workshop-demo.md",
+        "resolved": "skills/storytelling/references/workshop-demo.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.md",
+        "target": "references/manual-narration-review.md",
+        "resolved": "skills/storytelling/references/manual-narration-review.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.md",
+        "target": "references/examples.md",
+        "resolved": "skills/storytelling/references/examples.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.md",
+        "target": "references/video-cli.md",
+        "resolved": "skills/storytelling/references/video-cli.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.zh-TW.md",
+        "target": "SKILL.md",
+        "resolved": "skills/storytelling/SKILL.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.zh-TW.md",
+        "target": "references/graph-loops.zh-TW.md",
+        "resolved": "skills/storytelling/references/graph-loops.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.zh-TW.md",
+        "target": "references/graphify-tools.zh-TW.md",
+        "resolved": "skills/storytelling/references/graphify-tools.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.zh-TW.md",
+        "target": "scripts/graph_plan.py",
+        "resolved": "skills/storytelling/scripts/graph_plan.py"
+      },
+      {
+        "source": "skills/storytelling/SKILL.zh-TW.md",
+        "target": "scripts/check_trace.py",
+        "resolved": "skills/storytelling/scripts/check_trace.py"
+      },
+      {
+        "source": "skills/storytelling/SKILL.zh-TW.md",
+        "target": "references/research-workflows.zh-TW.md",
+        "resolved": "skills/storytelling/references/research-workflows.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.zh-TW.md",
+        "target": "references/editorial-rules.zh-TW.md",
+        "resolved": "skills/storytelling/references/editorial-rules.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.zh-TW.md",
+        "target": "references/research-foundations.zh-TW.md",
+        "resolved": "skills/storytelling/references/research-foundations.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.zh-TW.md",
+        "target": "references/multimodal-templates.zh-TW.md",
+        "resolved": "skills/storytelling/references/multimodal-templates.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.zh-TW.md",
+        "target": "references/workshop-demo.zh-TW.md",
+        "resolved": "skills/storytelling/references/workshop-demo.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.zh-TW.md",
+        "target": "references/manual-narration-review.zh-TW.md",
+        "resolved": "skills/storytelling/references/manual-narration-review.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.zh-TW.md",
+        "target": "references/examples.zh-TW.md",
+        "resolved": "skills/storytelling/references/examples.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/SKILL.zh-TW.md",
+        "target": "references/video-cli.zh-TW.md",
+        "resolved": "skills/storytelling/references/video-cli.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/editorial-rules.md",
+        "target": "editorial-rules.zh-TW.md",
+        "resolved": "skills/storytelling/references/editorial-rules.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/editorial-rules.md",
+        "target": "research-foundations.md",
+        "resolved": "skills/storytelling/references/research-foundations.md"
+      },
+      {
+        "source": "skills/storytelling/references/editorial-rules.md",
+        "target": "research-workflows.md",
+        "resolved": "skills/storytelling/references/research-workflows.md"
+      },
+      {
+        "source": "skills/storytelling/references/editorial-rules.zh-TW.md",
+        "target": "editorial-rules.md",
+        "resolved": "skills/storytelling/references/editorial-rules.md"
+      },
+      {
+        "source": "skills/storytelling/references/editorial-rules.zh-TW.md",
+        "target": "research-foundations.zh-TW.md",
+        "resolved": "skills/storytelling/references/research-foundations.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/editorial-rules.zh-TW.md",
+        "target": "research-workflows.zh-TW.md",
+        "resolved": "skills/storytelling/references/research-workflows.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/examples.md",
+        "target": "examples.zh-TW.md",
+        "resolved": "skills/storytelling/references/examples.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/examples.zh-TW.md",
+        "target": "examples.md",
+        "resolved": "skills/storytelling/references/examples.md"
+      },
+      {
+        "source": "skills/storytelling/references/graph-loops.md",
+        "target": "graph-loops.zh-TW.md",
+        "resolved": "skills/storytelling/references/graph-loops.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/graph-loops.md",
+        "target": "graphify-tools.md",
+        "resolved": "skills/storytelling/references/graphify-tools.md"
+      },
+      {
+        "source": "skills/storytelling/references/graph-loops.md",
+        "target": "../scripts/graph_plan.py",
+        "resolved": "skills/storytelling/scripts/graph_plan.py"
+      },
+      {
+        "source": "skills/storytelling/references/graph-loops.md",
+        "target": "video-cli.md",
+        "resolved": "skills/storytelling/references/video-cli.md"
+      },
+      {
+        "source": "skills/storytelling/references/graph-loops.zh-TW.md",
+        "target": "graph-loops.md",
+        "resolved": "skills/storytelling/references/graph-loops.md"
+      },
+      {
+        "source": "skills/storytelling/references/graph-loops.zh-TW.md",
+        "target": "graphify-tools.zh-TW.md",
+        "resolved": "skills/storytelling/references/graphify-tools.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/graph-loops.zh-TW.md",
+        "target": "../scripts/graph_plan.py",
+        "resolved": "skills/storytelling/scripts/graph_plan.py"
+      },
+      {
+        "source": "skills/storytelling/references/graph-loops.zh-TW.md",
+        "target": "video-cli.zh-TW.md",
+        "resolved": "skills/storytelling/references/video-cli.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/graphify-tools.md",
+        "target": "graphify-tools.zh-TW.md",
+        "resolved": "skills/storytelling/references/graphify-tools.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/graphify-tools.zh-TW.md",
+        "target": "graphify-tools.md",
+        "resolved": "skills/storytelling/references/graphify-tools.md"
+      },
+      {
+        "source": "skills/storytelling/references/manual-narration-review.md",
+        "target": "manual-narration-review.zh-TW.md",
+        "resolved": "skills/storytelling/references/manual-narration-review.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/manual-narration-review.md",
+        "target": "../SKILL.md",
+        "resolved": "skills/storytelling/SKILL.md"
+      },
+      {
+        "source": "skills/storytelling/references/manual-narration-review.md",
+        "target": "multimodal-templates.md#audio",
+        "resolved": "skills/storytelling/references/multimodal-templates.md"
+      },
+      {
+        "source": "skills/storytelling/references/manual-narration-review.zh-TW.md",
+        "target": "manual-narration-review.md",
+        "resolved": "skills/storytelling/references/manual-narration-review.md"
+      },
+      {
+        "source": "skills/storytelling/references/manual-narration-review.zh-TW.md",
+        "target": "../SKILL.zh-TW.md",
+        "resolved": "skills/storytelling/SKILL.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/manual-narration-review.zh-TW.md",
+        "target": "multimodal-templates.zh-TW.md#audio",
+        "resolved": "skills/storytelling/references/multimodal-templates.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/multimodal-templates.md",
+        "target": "multimodal-templates.zh-TW.md",
+        "resolved": "skills/storytelling/references/multimodal-templates.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/multimodal-templates.md",
+        "target": "workshop-demo.md",
+        "resolved": "skills/storytelling/references/workshop-demo.md"
+      },
+      {
+        "source": "skills/storytelling/references/multimodal-templates.md",
+        "target": "video-cli.md",
+        "resolved": "skills/storytelling/references/video-cli.md"
+      },
+      {
+        "source": "skills/storytelling/references/multimodal-templates.zh-TW.md",
+        "target": "multimodal-templates.md",
+        "resolved": "skills/storytelling/references/multimodal-templates.md"
+      },
+      {
+        "source": "skills/storytelling/references/multimodal-templates.zh-TW.md",
+        "target": "workshop-demo.zh-TW.md",
+        "resolved": "skills/storytelling/references/workshop-demo.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/multimodal-templates.zh-TW.md",
+        "target": "workshop-demo.zh-TW.md",
+        "resolved": "skills/storytelling/references/workshop-demo.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/multimodal-templates.zh-TW.md",
+        "target": "video-cli.zh-TW.md",
+        "resolved": "skills/storytelling/references/video-cli.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/research-foundations.md",
+        "target": "research-foundations.zh-TW.md",
+        "resolved": "skills/storytelling/references/research-foundations.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/research-foundations.md",
+        "target": "editorial-rules.md",
+        "resolved": "skills/storytelling/references/editorial-rules.md"
+      },
+      {
+        "source": "skills/storytelling/references/research-foundations.md",
+        "target": "research-workflows.md",
+        "resolved": "skills/storytelling/references/research-workflows.md"
+      },
+      {
+        "source": "skills/storytelling/references/research-foundations.zh-TW.md",
+        "target": "research-foundations.md",
+        "resolved": "skills/storytelling/references/research-foundations.md"
+      },
+      {
+        "source": "skills/storytelling/references/research-foundations.zh-TW.md",
+        "target": "editorial-rules.zh-TW.md",
+        "resolved": "skills/storytelling/references/editorial-rules.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/research-foundations.zh-TW.md",
+        "target": "research-workflows.zh-TW.md",
+        "resolved": "skills/storytelling/references/research-workflows.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/research-workflows.md",
+        "target": "research-workflows.zh-TW.md",
+        "resolved": "skills/storytelling/references/research-workflows.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/research-workflows.md",
+        "target": "editorial-rules.md",
+        "resolved": "skills/storytelling/references/editorial-rules.md"
+      },
+      {
+        "source": "skills/storytelling/references/research-workflows.md",
+        "target": "research-foundations.md",
+        "resolved": "skills/storytelling/references/research-foundations.md"
+      },
+      {
+        "source": "skills/storytelling/references/research-workflows.zh-TW.md",
+        "target": "research-workflows.md",
+        "resolved": "skills/storytelling/references/research-workflows.md"
+      },
+      {
+        "source": "skills/storytelling/references/research-workflows.zh-TW.md",
+        "target": "editorial-rules.zh-TW.md",
+        "resolved": "skills/storytelling/references/editorial-rules.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/research-workflows.zh-TW.md",
+        "target": "research-foundations.zh-TW.md",
+        "resolved": "skills/storytelling/references/research-foundations.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/video-cli.md",
+        "target": "video-cli.zh-TW.md",
+        "resolved": "skills/storytelling/references/video-cli.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/video-cli.zh-TW.md",
+        "target": "video-cli.md",
+        "resolved": "skills/storytelling/references/video-cli.md"
+      },
+      {
+        "source": "skills/storytelling/references/workshop-demo.md",
+        "target": "workshop-demo.zh-TW.md",
+        "resolved": "skills/storytelling/references/workshop-demo.zh-TW.md"
+      },
+      {
+        "source": "skills/storytelling/references/workshop-demo.md",
+        "target": "../LICENSE",
+        "resolved": "skills/storytelling/LICENSE"
+      },
+      {
+        "source": "skills/storytelling/references/workshop-demo.md",
+        "target": "../assets/umbrella-workshop/bench.svg",
+        "resolved": "skills/storytelling/assets/umbrella-workshop/bench.svg"
+      },
+      {
+        "source": "skills/storytelling/references/workshop-demo.md",
+        "target": "../assets/umbrella-workshop/taps.wav",
+        "resolved": "skills/storytelling/assets/umbrella-workshop/taps.wav"
+      },
+      {
+        "source": "skills/storytelling/references/workshop-demo.zh-TW.md",
+        "target": "workshop-demo.md",
+        "resolved": "skills/storytelling/references/workshop-demo.md"
+      },
+      {
+        "source": "skills/storytelling/references/workshop-demo.zh-TW.md",
+        "target": "../LICENSE",
+        "resolved": "skills/storytelling/LICENSE"
+      },
+      {
+        "source": "skills/storytelling/references/workshop-demo.zh-TW.md",
+        "target": "../assets/umbrella-workshop/bench.svg",
+        "resolved": "skills/storytelling/assets/umbrella-workshop/bench.svg"
+      },
+      {
+        "source": "skills/storytelling/references/workshop-demo.zh-TW.md",
+        "target": "../assets/umbrella-workshop/taps.wav",
+        "resolved": "skills/storytelling/assets/umbrella-workshop/taps.wav"
+      }
+    ],
+    "unavailable_linked_guides": [],
+    "scope_limit": "Markdown local link paths only; no HTML/heading target, runtime dependency, model behavior, package install or Host validation."
+  },
+  "original_case_hashes": [
+    {
+      "case_id": "SK-E06-VARIANT-01",
+      "pattern": "variant_scope",
+      "input_sha256": "c4bb144346c9e6946b450cf5d70a656e0e3edc7212d63bdc31d41a1e599bd735",
+      "reference_case_sha256": "7332ebbb05fc73975bdb8852779fdb950e28a1a34322fbebbc6302cd40e15970",
+      "record_id": "SK-E06-RUN-20261117-VARIANT"
+    },
+    {
+      "case_id": "SK-E06-INDIRECT-01",
+      "pattern": "indirect_source_removal",
+      "input_sha256": "97ea1dc2ca095558244fd4f42d24bb756ea46346069b1099acc47134505c318b",
+      "reference_case_sha256": "241cb950abe3f9dfdeb0602fa511637b2ca07946682b6c02f45c1cc7c3f15ef1",
+      "record_id": "SK-E06-RUN-20261117-INDIRECT"
+    },
+    {
+      "case_id": "SK-E06-INJECTION-01",
+      "pattern": "untrusted_instruction_and_consent",
+      "input_sha256": "c36af627578231543217e866ee4ca2e7cdb5ccad732df79090deafdf0e008ed5",
+      "reference_case_sha256": "7e5f78b0ea86027b8b05558b5deee89ab29d9754c1aadc929f07bf22c4784cfb",
+      "record_id": "SK-E06-RUN-20261117-INJECTION"
+    },
+    {
+      "case_id": "SK-E06-EVIDENCE-01",
+      "pattern": "invented_human_evidence",
+      "input_sha256": "776d8dd073bb6f8fc8b082517fbfd2ac4b8ed51a18ce54fd636d9cd7c62d49db",
+      "reference_case_sha256": "c4102250c0925c8f8d9f0a38d49fc03ffcd5ffa6d93816be621d4e6cf913e866",
+      "record_id": "SK-E06-RUN-20261117-EVIDENCE"
+    },
+    {
+      "case_id": "SK-E06-ARTIFACT-01",
+      "pattern": "unavailable_artifact_tools",
+      "input_sha256": "6c60e4cf4e4ddc72e485a64d53fa0cd2b4acc22181d2d9f77bbd4fe9125283fe",
+      "reference_case_sha256": "1f048c5893818633de327571f104cc7d64efd060cbbf9574def1d1dce91129ed",
+      "record_id": "SK-E06-RUN-20261117-ARTIFACT"
+    }
+  ],
+  "execution_records": [],
+  "raw_responses": [],
+  "model_settings": null,
+  "instruction_conformance": null,
+  "human_trial_outcomes": null,
+  "narrative_quality": null,
+  "human_participants": 0,
+  "host_editor_observations": 0,
+  "dispatch_status": "Not dispatched. Adjudicate/version the F01 prompt/invariant scope before a future variant run. Pin the chosen task inputs, complete host capabilities and record access/output/timing availability before any new launch.",
+  "decision": null
+}

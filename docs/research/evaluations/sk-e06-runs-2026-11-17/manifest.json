@@ -4,13 +4,13 @@
   "files": [
     {
       "path": "README.md",
-      "sha256": "dce261d90c9daa975e5326dd0d471e37c45643ed41a129816709d7267b050377",
-      "bytes": 9260
+      "sha256": "f89f189f6eeb0696f7de1fc443ce44eafa4cc02088e852dc1e96ea827b77f4a5",
+      "bytes": 9756
     },
     {
       "path": "README.zh-TW.md",
-      "sha256": "2fc527751366277d568f85a8734536d5190d8d704e80f4ec9e5d648c6631885c",
-      "bytes": 5536
+      "sha256": "751529157f58d7a978ab302088ce55efb72acde5ca7a24fdd7cb1031fc8296a2",
+      "bytes": 5827
     },
     {
       "path": "capture-seal.json",
@@ -61,6 +61,16 @@
       "path": "frozen-skill.zip",
       "sha256": "bbfe2c23aa9cc6faad0dba02211765949e89a89f8fcab483e8cffbf824307348",
       "bytes": 27650
+    },
+    {
+      "path": "future-run-layout-v2.json",
+      "sha256": "bcee7361b918a9323a29f8cd1359775b2fd189cfcd906f0f3a84302a7afb8635",
+      "bytes": 26584
+    },
+    {
+      "path": "future-run-skill-layout-v2.zip",
+      "sha256": "417d89f277d3d4cb80978c3968ae29e613a6e0f7baaeb11082fcbc0e4181ec20",
+      "bytes": 101442
     },
     {
       "path": "independent-review.json",

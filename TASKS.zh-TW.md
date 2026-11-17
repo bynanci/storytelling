@@ -156,7 +156,7 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 
 **SK-E06／#115** 補上其餘五種對抗[參考案例／手動規程](docs/research/evaluations/sk-e06/README.zh-TW.md)：變體範圍、來源移除的間接影響、不可信指令／同意、捏造真人證據及缺少產物。中英範例是編寫參考，不是擷取的模型／真人結果；`scripts/test_sk_e06_packet.py` 只檢查資料包完整性，原空白表單維持空白。[五份實際合成子 agent 回答](docs/research/evaluations/sk-e06-runs-2026-11-17/README.zh-TW.md)另存原文、15 個必要／15 個失敗條件評閱及操作偏差，包含變體範圍爭議。#121／#122 與真人／宿主／發布門檻仍開啟。
 
-- [x] **SK-E06 文字執行紀錄。**保存凍結 Skill hash、五份完整原文與填妥紀錄、兩位 AI 分開評閱，以及 F01／F02 後續草案。不計總通過率，不授予真人／Host／G2 驗收；#115 保持 Open。
+- [x] **SK-E06 文字執行紀錄。**保存凍結 Skill hash、五份完整原文與填妥紀錄、兩位 AI 分開評閱、F01 待審草案，以及尚未執行的 F02 完整路徑預檢（28 檔／79 連結）。不計總通過率，不授予真人／Host／G2 驗收；#115 保持 Open。
 
 - [x] **SK-EVAL-R1 算術審查與敏感度診斷。** [追加報告](docs/research/evaluations/r1-robustness/README.zh-TW.md)重現原五份數值產物，新增精確的案例／維度／批次移除及分組敏感度界限。十項回歸及獨立 AI 數學審查涵蓋此診斷範圍；原 R1 位元組、結論與 #121／#122 證據門檻不變。同 head hosted 檢查另記於 PR。
 
