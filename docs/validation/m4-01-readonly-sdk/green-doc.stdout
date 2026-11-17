@@ -1,0 +1,27 @@
+
+running 22 tests
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 32) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 23) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 29) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 26) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 41) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 44) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 38) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 35) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 65) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 59) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 55) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 50) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 74) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 78) - compile fail ... ok
+test crates/storytelling-engine/src/consumer_v1.rs - consumer_v1 (line 83) - compile fail ... ok
+test crates/storytelling-engine/src/review_binding.rs - review_binding::BoundReviewV1 (line 24) - compile fail ... ok
+test crates/storytelling-engine/src/review_binding.rs - review_binding::BoundReviewV1 (line 29) - compile fail ... ok
+test crates/storytelling-engine/src/review_binding.rs - review_binding::BoundReviewV1 (line 41) - compile fail ... ok
+test crates/storytelling-engine/src/story_review.rs - story_review::BoundStoryReviewV1 (line 30) - compile fail ... ok
+test crates/storytelling-engine/src/review_binding.rs - review_binding::BoundReviewV1 (line 36) - compile fail ... ok
+test crates/storytelling-engine/src/story_review.rs - story_review::BoundStoryReviewV1 (line 35) - compile fail ... ok
+test crates/storytelling-engine/src/story_review.rs - story_review::BoundStoryReviewV1 (line 42) - compile fail ... ok
+
+test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.18s
+

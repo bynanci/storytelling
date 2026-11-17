@@ -1,0 +1,71 @@
+{
+  "record_kind": "actual_pre_facade_baseline",
+  "base_sha": "0b39c00354f343d7a61821a029777d88a8373254",
+  "captured_at_utc": "2026-11-17T10:21:09.813210+00:00",
+  "cli_sha256": "09d927149c3c9bea2f2a73b828ef250e91d7abcb7d7a42ac0ebb40e13e914241",
+  "commands": [
+    {
+      "label": "baseline-planner",
+      "argv": [
+        "plan-story",
+        "tests/fixtures/story-review-v1/planner-request.json"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "9db66b3384a6cf76b7a6ffdd8578f55db3af840fe001a7c33499f80869d4456b",
+      "stderr_hex": ""
+    },
+    {
+      "label": "baseline-bundle",
+      "argv": [
+        "prepare-story-review",
+        "tests/fixtures/consumer-sdk-v1/proposal-response.json",
+        "tests/fixtures/openfilm/finite-v1/video-trim.json",
+        "tests/fixtures/story-review-v1/context.json"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "7c191590ce854ccda5c51c98c03a8534ef121253f8a529a02a3460d4a186bac5",
+      "stderr_hex": ""
+    },
+    {
+      "label": "baseline-otio",
+      "argv": [
+        "export-story-otio",
+        "tests/fixtures/consumer-sdk-v1/proposal-response.json",
+        "tests/fixtures/openfilm/finite-v1/video-trim.json",
+        "tests/fixtures/story-review-v1/context.json"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "a1241dcbc156d15ab0d9207b86962d43c93962d039287871e05fa122a9511f09",
+      "stderr_hex": ""
+    }
+  ],
+  "review": {
+    "schema_version": 1,
+    "scope": "declared-review-binding-only",
+    "binding_sha256": "ff87f54300ac968089fa6170f1248920a990284c3961f574225088ce85aad932",
+    "identity": {
+      "composition_sha256": "33c4e7d19c92f62d771abd4df112ae05a4ec6550767faa07ef3092346dca7941",
+      "plan_sha256": "83840ce9e418f6a343e473bbeaea100e77e1d18543943d4f968598b6d909d235",
+      "artifact_sha256": "5404c0b552ddc4ccc394755c0a9a95e262f47f4a579fdca9b41797b920a838d0",
+      "report_sha256": "7aa13223393dcec9ffb49cc83c7925a4db1746392ec71e6d05187fc5bbad6a3f",
+      "compiler_version": "storytelling-engine-0.1.0-dev.0",
+      "profile_id": "storytelling.planner-otio-visual-ticks.v1",
+      "context_sha256": "c4a9b0f840abdeedf38115937ca960972872aae8cd514d8b1f0a55585ad61890",
+      "context_fields": {
+        "project_id": "df8956f61cc2662327357bb6cd4b79b62192c5ba9032543c8b1bc375d59a8e3d",
+        "target_revision": "bcee28570871e505eac1fde9bb7d93440625cee1aefc6de20e9562f1349c6bc7",
+        "host_id": "252a352be568f8e4ca27fb440870205d32e522fa482851438854ad29e7d9881a",
+        "host_version": "a2471ab142822d16704c5c5e945150633c8e86458eb9d2a0710e61aa7be1e8c2",
+        "host_profile_id": "0c17928002d1d0454f3294e64d5c06390436f8e1680e360e25bfb2dd5e1476fd",
+        "host_binary_sha256": "65a903f85f81089ba6dd2839191df690702c70e8908165e11084ec9a2353fcaf",
+        "host_declared_capabilities": "076daf7c5728b13234625dd72e3fd79d7dedfc4580f5eee4decafe4911817fb1",
+        "loss_choices": "9c369971bcd5125bcb2d5f156080fca1bc75b60d3c5518a1d8028417c7ac88e0"
+      }
+    },
+    "executable": false,
+    "approval_granted": false,
+    "source_verified": false,
+    "host_verified": false
+  },
+  "notes": "Binary built locally before facade implementation from unchanged Rust sources at base. Exact CLI bytes include one final LF. Shared proposal fixture is exact planner stdout; do not regenerate/renormalize for parity. No media or Host was opened."
+}

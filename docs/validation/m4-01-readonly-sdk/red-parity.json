@@ -1,0 +1,19 @@
+{
+  "phase": "observed_compile_time_RED",
+  "argv": [
+    "cargo",
+    "test",
+    "-p",
+    "storytelling-cli",
+    "--test",
+    "consumer_sdk",
+    "--locked",
+    "--offline"
+  ],
+  "date_utc": "2026-11-17T10:31:06.979677+00:00",
+  "exit_code": 101,
+  "test_source_sha256": "902030098aaf7ce33a4e6342de7f065cb64756abeab123404903656a9dee8a54",
+  "reason": "consumer_v1 namespace missing; 11 prewritten integration tests cannot compile. No runtime test execution claimed.",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "9ee3d3497f4a33ae48ab4b90f3f00729aac7ecb45f894524f5039319681f4552"
+}

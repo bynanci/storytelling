@@ -1,0 +1,5 @@
+   Compiling storytelling-core v0.1.0-dev.0 (/workspace/storytelling-readonly-sdk-20261117/crates/storytelling-core)
+   Compiling storytelling-engine v0.1.0-dev.0 (/workspace/storytelling-readonly-sdk-20261117/crates/storytelling-engine)
+   Compiling storytelling-consumer-v1-example v0.1.0 (/workspace/storytelling-readonly-sdk-20261117/examples/consumer-sdk-v1)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 6.51s
+     Running `/tmp/storytelling-sdk-20261117-target/debug/storytelling-consumer-v1-example tests/fixtures/narrative-video-coverage-v1/valid-unresolved.json`

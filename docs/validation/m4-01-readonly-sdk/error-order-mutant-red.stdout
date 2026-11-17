@@ -1,0 +1,41 @@
+
+running 14 tests
+test sdk_g01_plan_validation_has_independent_fields_and_unchanged_cli_bytes ... ok
+test sdk_g02_projection_has_literal_provenance_and_the_existing_text_goldens ... ok
+test sdk_g04_complete_and_unresolved_coverage_preserve_the_result_contract ... ok
+test sdk_g05_planner_preserves_manual_order_exact_windows_and_conflict_details ... ok
+test sdk_g06_preparation_uses_one_frozen_response_and_matches_raw_baseline_bytes ... ok
+test sdk_g03_revision_history_keeps_authored_choices_and_exact_direct_impacts ... ok
+test sdk_g08_narrative_details_keep_original_relation_serializer_bytes ... ok
+test sdk_g08_planner_details_keep_original_conflict_serializer_bytes ... FAILED
+test sdk_g08_raw_version_duplicate_null_and_rich_errors_preserve_backend_priority ... ok
+test sdk_g08_review_details_keep_original_loss_serializer_bytes ... FAILED
+test sdk_g07_fresh_stale_and_malformed_are_distinct_and_stale_fields_stay_sorted ... ok
+test sdk_g04_all_coverage_diagnostics_keep_their_predeclared_code_and_path ... ok
+test sdk_g09_owned_results_are_send_sync_and_caller_threads_replay_without_mutation ... ok
+test sdk_g08_limits_and_multi_input_error_order_are_operation_specific ... ok
+
+failures:
+
+---- sdk_g08_planner_details_keep_original_conflict_serializer_bytes stdout ----
+
+thread 'sdk_g08_planner_details_keep_original_conflict_serializer_bytes' panicked at crates/storytelling-cli/tests/consumer_sdk.rs:205:5:
+assertion `left == right` failed
+  left: [123, 34, 99, 111, 100, 101, 34, 58, 34, 112, 108, 97, 110, 110, 101, 114, 46, 98, 114, 105, 101, 102, 95, 99, 111, 110, 102, 108, 105, 99, 116, 34, 44, 34, 99, 111, 110, 102, 108, 105, 99, 116, 115, 34, 58, 91, 123, 34, 97, 115, 115, 101, 116, 95, 105, 100, 115, 34, 58, 91, 34, 111, 112, 101, 110, 105, 110, 103, 34, 93, 44, 34, 107, 105, 110, 100, 34, 58, 34, 114, 101, 113, 117, 105, 114, 101, 100, 45, 101, 120, 99, 108, 117, 100, 101, 100, 34, 44, 34, 112, 97, 116, 104, 34, 58, 34, 36, 46, 98, 114, 105, 101, 102, 46, 109, 97, 110, 117, 97, 108, 95, 115, 101, 108, 101, 99, 116, 101, 100, 95, 97, 115, 115, 101, 116, 95, 105, 100, 115, 91, 49, 93, 34, 125, 93, 44, 34, 112, 97, 116, 104, 34, 58, 34, 36, 46, 98, 114, 105, 101, 102, 34, 125]
+ right: [123, 34, 99, 111, 100, 101, 34, 58, 34, 112, 108, 97, 110, 110, 101, 114, 46, 98, 114, 105, 101, 102, 95, 99, 111, 110, 102, 108, 105, 99, 116, 34, 44, 34, 112, 97, 116, 104, 34, 58, 34, 36, 46, 98, 114, 105, 101, 102, 34, 44, 34, 99, 111, 110, 102, 108, 105, 99, 116, 115, 34, 58, 91, 123, 34, 107, 105, 110, 100, 34, 58, 34, 114, 101, 113, 117, 105, 114, 101, 100, 45, 101, 120, 99, 108, 117, 100, 101, 100, 34, 44, 34, 112, 97, 116, 104, 34, 58, 34, 36, 46, 98, 114, 105, 101, 102, 46, 109, 97, 110, 117, 97, 108, 95, 115, 101, 108, 101, 99, 116, 101, 100, 95, 97, 115, 115, 101, 116, 95, 105, 100, 115, 91, 49, 93, 34, 44, 34, 97, 115, 115, 101, 116, 95, 105, 100, 115, 34, 58, 91, 34, 111, 112, 101, 110, 105, 110, 103, 34, 93, 125, 93, 125]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- sdk_g08_review_details_keep_original_loss_serializer_bytes stdout ----
+
+thread 'sdk_g08_review_details_keep_original_loss_serializer_bytes' panicked at crates/storytelling-cli/tests/consumer_sdk.rs:217:5:
+assertion `left == right` failed
+  left: [123, 34, 99, 111, 100, 101, 34, 58, 34, 105, 109, 112, 111, 114, 116, 46, 117, 110, 115, 117, 112, 112, 111, 114, 116, 101, 100, 95, 102, 101, 97, 116, 117, 114, 101, 34, 44, 34, 108, 111, 115, 115, 101, 115, 34, 58, 91, 123, 34, 97, 99, 99, 101, 112, 116, 101, 100, 34, 58, 102, 97, 108, 115, 101, 44, 34, 100, 105, 115, 112, 111, 115, 105, 116, 105, 111, 110, 34, 58, 34, 117, 110, 115, 117, 112, 112, 111, 114, 116, 101, 100, 34, 44, 34, 102, 101, 97, 116, 117, 114, 101, 34, 58, 34, 105, 109, 112, 111, 114, 116, 46, 117, 110, 115, 117, 112, 112, 111, 114, 116, 101, 100, 95, 102, 101, 97, 116, 117, 114, 101, 34, 44, 34, 112, 97, 116, 104, 34, 58, 34, 36, 46, 99, 111, 109, 112, 111, 115, 105, 116, 105, 111, 110, 46, 116, 114, 97, 99, 107, 115, 91, 48, 93, 46, 116, 121, 112, 101, 34, 125, 93, 44, 34, 112, 97, 116, 104, 34, 58, 34, 36, 46, 99, 111, 109, 112, 111, 115, 105, 116, 105, 111, 110, 46, 116, 114, 97, 99, 107, 115, 91, 48, 93, 46, 116, 121, 112, 101, 34, 125]
+ right: [123, 34, 99, 111, 100, 101, 34, 58, 34, 105, 109, 112, 111, 114, 116, 46, 117, 110, 115, 117, 112, 112, 111, 114, 116, 101, 100, 95, 102, 101, 97, 116, 117, 114, 101, 34, 44, 34, 112, 97, 116, 104, 34, 58, 34, 36, 46, 99, 111, 109, 112, 111, 115, 105, 116, 105, 111, 110, 46, 116, 114, 97, 99, 107, 115, 91, 48, 93, 46, 116, 121, 112, 101, 34, 44, 34, 108, 111, 115, 115, 101, 115, 34, 58, 91, 123, 34, 102, 101, 97, 116, 117, 114, 101, 34, 58, 34, 105, 109, 112, 111, 114, 116, 46, 117, 110, 115, 117, 112, 112, 111, 114, 116, 101, 100, 95, 102, 101, 97, 116, 117, 114, 101, 34, 44, 34, 112, 97, 116, 104, 34, 58, 34, 36, 46, 99, 111, 109, 112, 111, 115, 105, 116, 105, 111, 110, 46, 116, 114, 97, 99, 107, 115, 91, 48, 93, 46, 116, 121, 112, 101, 34, 44, 34, 100, 105, 115, 112, 111, 115, 105, 116, 105, 111, 110, 34, 58, 34, 117, 110, 115, 117, 112, 112, 111, 114, 116, 101, 100, 34, 44, 34, 97, 99, 99, 101, 112, 116, 101, 100, 34, 58, 102, 97, 108, 115, 101, 125, 93, 125]
+
+
+failures:
+    sdk_g08_planner_details_keep_original_conflict_serializer_bytes
+    sdk_g08_review_details_keep_original_loss_serializer_bytes
+
+test result: FAILED. 12 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.90s
+

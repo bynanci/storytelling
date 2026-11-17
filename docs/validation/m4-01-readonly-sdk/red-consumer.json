@@ -1,0 +1,17 @@
+{
+  "phase": "observed_compile_time_RED",
+  "date_utc": "2026-11-17T10:22:36.421751+00:00",
+  "base_sha": "0b39c00354f343d7a61821a029777d88a8373254",
+  "argv": [
+    "cargo",
+    "check",
+    "--manifest-path",
+    "examples/consumer-sdk-v1/Cargo.toml",
+    "--locked",
+    "--offline"
+  ],
+  "exit_code": 101,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "8970ff718350a63847a9419141e44fef0299f2ba5794049a34f53bd325776203",
+  "reason": "New consumer_v1 namespace is absent, not a runtime assertion or environment failure."
+}

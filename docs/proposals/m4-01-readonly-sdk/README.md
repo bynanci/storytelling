@@ -3,6 +3,8 @@
 
 English · [繁體中文](README.zh-TW.md) · [Issue #107](https://github.com/bynanci/storytelling/issues/107) · [ADR 0013](../../adr/0013-read-only-consumer-facade-v1.md)
 
+**Current update (2026-11-17):** the requester adopted this candidate for a focused Draft implementation. See the [decision](../../validation/m4-01-sdk-g2-decision.md), [current SDK guide](../../SDK_CONSUMER_V1.md) and [actual RED/GREEN record](../../validation/m4-01-readonly-sdk.md). The material below is the historical design snapshot; its pending/not-run table describes preparation, not current evidence.
+
 **State: proposed G2 design only.** No facade module, new SDK DTO, accepted
 public API or golden-equivalence result is delivered here. The starting source
 snapshot is `52dc6c315f7b3d20693f3c51e052509997ab791b` (2026-11-14 UTC).
@@ -93,7 +95,7 @@ signatures/types/error accessors require a new facade major and migration
 review; document deprecation before removal. Removing the new module is the
 rollback. No user project, catalog, media or input-file migration is involved.
 
-| Evidence | Current state |
+| Evidence at design preparation | Historical state |
 | --- | --- |
 | G2 facade scope/API/version policy accepted | pending |
 | Facade implementation and RED/GREEN | not implemented / not run |

@@ -382,11 +382,11 @@ M0、M1-01 與限定範圍的 M2-01 稽核只支援前兩項。
 
 **SK-E06／#115** 將 W1／W3／W4／W5／W6 與 ST-R01／ST-R02／ST-R03／ST-R07–ST-R14 對應到五種[對抗參考案例與空白手動表單](research/evaluations/sk-e06/README.zh-TW.md)。`scripts/test_sk_e06_packet.py` 核對 fixture 身分、中英材料、來源 revision、參考標籤與字面條件；它不提供語意遵循或效益證據，不新增 Rust／CLI 需求或已接受 wire format。[五份實際合成文字回答](research/evaluations/sk-e06-runs-2026-11-17/README.zh-TW.md)保存原文、凍結 Skill／input 雜湊、兩位 AI 逐條判準評閱及操作偏差；變體範圍判準仍有爭議。品質、效益、#121／#122 與真人／Host 門檻維持未滿足。
 
-## 唯讀 Consumer Facade 提案（M4-R01）
+## 唯讀 Consumer Facade 候選（M4-R01）
 
 | 需求／任務 | 提議要求與證據狀態 |
 | --- | --- |
-| M4-R01／[M4-01 #107](https://github.com/bynanci/storytelling/issues/107) | 獨立 consumer 可由單一有文件的唯讀 Rust facade 使用驗證、敘事／版本影響、影片 coverage、規劃及選定提案審核，不需匯入 private module 或解析 CLI 文字。[ADR 0013](adr/0013-read-only-consumer-facade-v1.md)提議八個委派入口、既有 result 型別、保留來源錯誤細節、逐操作 byte／version／digest 行為，以及不提供 mutation／recovery。[Golden 計畫](proposals/m4-01-readonly-sdk/test-plan.md)列出既有 CLI／engine fixtures 與未來 test-first parity／opacity／concurrency 檢查。目前只完成 G2 提案，尚未凍結 API、實作 facade、取得 RED／GREEN、同 head SDK parity、consumer 或宿主驗收。#107 保持 Open；#103–#106 管控執行，#108 決定 transport。 |
+| M4-R01／[M4-01 #107](https://github.com/bynanci/storytelling/issues/107) | 單一唯讀 Rust namespace 提供八個已採納候選入口，不需匯入 private module 或解析 CLI 文字。[G2 決定](validation/m4-01-sdk-g2-decision.md)授權 Draft；[SDK-G01–G10 追溯](validation/m4-01-readonly-sdk.md)對應真實 CLI／SDK 等價、原錯誤 serializer、精確 bytes／digest、bounds／versions／順序、ownership／concurrency 及 opaque／無執行能力 compile 測試。既有 backend／契約不變；#107 最終實作／consumer 接受及 exact-head G4 分開，#103–#106 管控 mutation，#108 決定 transport。 |
 
 ## 評估診斷維護
 

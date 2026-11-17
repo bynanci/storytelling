@@ -1,0 +1,175 @@
+{
+  "source_commit": "77e4b217eee9afa863943875594a62c33d167cda",
+  "date_utc": "2026-11-17T10:49:30.746483+00:00",
+  "checks": [
+    {
+      "index": 0,
+      "argv": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 12.345,
+      "stdout_sha256": "d6292cf8134e2770e9148f561df95f9db46e217a06911a085477cbb7386c286c",
+      "stderr_sha256": "e8e33bfad12bd020c048a34baba2a8d215e61dee496843a566e720934b455159"
+    },
+    {
+      "index": 1,
+      "argv": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--all-features",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 15.714,
+      "stdout_sha256": "73d1989ec0a4fa94968063643feab7c5fe5d68e58b79dcb48ec0922a7e4c8bc1",
+      "stderr_sha256": "ddfa6130f44aee214c3184aea5f2fc204393f95e687ab8d51eba8cad85747528"
+    },
+    {
+      "index": 2,
+      "argv": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--release",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 28.469,
+      "stdout_sha256": "9bd56d69f7ca7d9383c4b199f76631c96bfb5962af36d2ea48780f9d07631f06",
+      "stderr_sha256": "ae43ef499d6b65a86aed38bed6bdef5dd9736e18baca0fee44c724dd4f8ad505"
+    },
+    {
+      "index": 3,
+      "argv": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--all-features",
+        "--release",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 29.625,
+      "stdout_sha256": "a016c9e47ba7f7efc0a5a6f94ec4896cdae6580dcb7517a5c3d3dad2feadd1e0",
+      "stderr_sha256": "aaedc661ba3cabf14cc36a197bca035ad8462339ce6d82f60e70384af0272939"
+    },
+    {
+      "index": 4,
+      "argv": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 0.267,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "index": 5,
+      "argv": [
+        "cargo",
+        "clippy",
+        "--workspace",
+        "--all-targets",
+        "--all-features",
+        "--locked",
+        "--offline",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 2.835,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "114a937df5cf75a670ed9154d142e7337b695bd64d805516febefc40c81bfd6f"
+    },
+    {
+      "index": 6,
+      "argv": [
+        "cargo",
+        "doc",
+        "--workspace",
+        "--all-features",
+        "--no-deps",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 1.652,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "200afd087b773f2021fd938e718d3200a6d3269e16e1d2d152cf34480cb83ad4"
+    },
+    {
+      "index": 7,
+      "argv": [
+        "cargo",
+        "fmt",
+        "--manifest-path",
+        "examples/consumer-sdk-v1/Cargo.toml",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 0.055,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "index": 8,
+      "argv": [
+        "cargo",
+        "clippy",
+        "--manifest-path",
+        "examples/consumer-sdk-v1/Cargo.toml",
+        "--all-targets",
+        "--locked",
+        "--offline",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 0.861,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f4c25e73f486f13563f1b420b32cdeb8652c30ed8bbcd263e4fd71172bc93543"
+    },
+    {
+      "index": 9,
+      "argv": [
+        "python3",
+        "scripts/check_repo.py"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 0.373,
+      "stdout_sha256": "728bbfaf33cce26d9fbaf87b18bd5a323ffebd1fb3d212369faab1c56d548238",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "index": 10,
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "elapsed_process_seconds": 0.007,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "rustc": "rustc 1.89.0 (29483883e 2025-08-04)",
+  "cargo": "cargo 1.89.0 (c24e10642 2025-06-23)",
+  "reason_for_repeat": "Independent review added three exact error-serializer regressions after first G4; production source restored byte-for-byte, original11 tests retained.",
+  "limits": "Linux local automation only; exact final-head hosted CI recorded on Draft PR."
+}

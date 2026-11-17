@@ -1,7 +1,9 @@
 <!-- SPDX-License-Identifier: MIT -->
 # M4-01 · Read-only SDK golden-equivalence plan
 
-**Status:** proposed G2 assertions; no facade implementation, new RED/GREEN,
+**Current execution:** candidate adopted on 2026-11-17; [actual decision/authorization](../../validation/m4-01-sdk-g2-decision.md) and [executed test trace](../../validation/m4-01-readonly-sdk.md) are separate. The following inventory/status is the historical pre-adoption plan, preserved without converting planned cases into results.
+
+**Status at preparation:** proposed G2 assertions; no facade implementation, new RED/GREEN,
 consumer session or SDK/CLI parity run has occurred.
 **Base:** `52dc6c315f7b3d20693f3c51e052509997ab791b`.
 [ADR 0013](../../adr/0013-read-only-consumer-facade-v1.md) defines the candidate;
@@ -74,7 +76,7 @@ Existing tests remain anchors, not new facade evidence:
 - Existing OTIO parser/source oracles and fixed digest regressions must remain
   green; a facade never updates those expected values as routine normalization.
 
-| Evidence | Current state / owner |
+| Evidence at preparation | Historical state / owner |
 | --- | --- |
 | G2 facade design acceptance | pending; reviewer/maintainer |
 | New facade compile/runtime RED and GREEN | not run; future implementer |

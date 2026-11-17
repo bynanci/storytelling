@@ -1,0 +1,337 @@
+Read-only golden design audit for #107
+Source/worktree: /workspace/storytelling-readonly-sdk-20261117
+Audited HEAD: 0b39c00354f343d7a61821a029777d88a8373254
+Date: 2026-11-17 UTC
+Scope: source/fixture/design reads only. No Cargo build, product CLI execution,
+network, media, Host, human study, acceptance signature, or G2 completion claim.
+The requester adopted the ADR 0013 candidate; old proposal statuses below are
+historical baseline text, not evidence that this audit observed acceptance.
+
+Principal findings
+1. The plan's G02 success fixture is NOT the fixture used by its named CLI/engine
+   anchors. The named tests read n03-authoring-v1.json (revision 1). The plan names
+   n03-author-reviewed-v1.json (revision 2, with C02). Use both or identify the
+   intended case explicitly. Reviewed close-illustration brief contains the
+   literal words '不放 C01 紅傘。'; assert that its SOURCE TAGS omit C01 and include
+   C02, rather than asserting the prose contains no C01/紅傘.
+2. G02 negative fixture/anchor paths also differ: invalid-dangling-reference.json
+   changes beat index 1 (S99); the named CLI test dynamically mutates beat index 0
+   (MISSING). Expect $.variants[0].beats[1].unit_ref.unit_id for the actual file,
+   and index 0 for the test mutation. Do not copy one expected path to the other.
+3. G06/G07 need a frozen PLANNER RESPONSE, not just the request listed in the
+   plan. Review accepts {ok:true,planning:...}, not the request. The exact response
+   bytes are embedded as selected_proposal_json and hashed. Re-serializing a
+   parsed response, or independently computing two responses, cannot prove raw
+   input parity. Freeze one original CLI response including its terminal LF.
+4. CLI emit_bytes always appends one LF. SDK bundle_json()/compiled_otio() do not
+   contain that presentation LF. Correct byte tests are CLI stdout == SDK payload
+   plus ONE LF. Never trim arbitrary whitespace or parse/re-encode the artifact.
+5. JSON envelopes differ intentionally: validate has {ok,validation}; plan-story
+   has {ok,planning}; freshness has {ok,freshness}; coverage success IS the domain
+   object and coverage failure is {error} without ok. Prepare emits a bundle
+   payload. Preserve exact CLI stdout separately from domain comparisons.
+6. Rich source-error byte serialization order can differ from the CLI's Value
+   envelope (which recursively sorts keys). Compare complete parsed domain error
+   objects for CLI parity and exact declared source serializer bytes for the SDK.
+   Never compare SdkErrorV1 itself to a CLI ok/error envelope.
+7. Changing only snapshot contentHash rejects with story_review.asset_mismatch;
+   it does not produce Ok(stale). The existing CLI test's `current != true` also
+   succeeds when freshness is missing. New tests must explicitly distinguish
+   Err from Ok(current=false). A valid URI/context/cut change gives stale.
+8. Selected review performs argument-order size preflight before any parsing;
+   prepare then parses context before proposal, while check parses/validates
+   bundle/profile/artifact before context/proposal compilation. Query validates
+   change_id BEFORE reading the ledger. A generic shared preflight is incorrect.
+9. SDK-G08's fixture inventory contains only three narrative/coverage failures;
+   it does not by itself cover planner/review versions/profiles, full rich detail,
+   null paths, limits, or compound order. Add the explicit mutations below.
+10. G09/G10 have no concrete entries in cases[] or independent external consumer
+   artifact. Add real tests and a standalone test-only consumer excluded from
+   four-crate runtime workspace membership. Root doctests alone do not prove
+   the documented consumer_v1 import path and curated nested types.
+11. Plan metadata still cites 52dc6c3 and proposed/no implementation/no G2. Keep
+   original fixture/blob identities and separately record actual base/head and
+   the exact user design-adoption scope. Do not silently turn historical status
+   into execution/Host/consumer-usability evidence.
+
+Independent oracle rule
+Every golden case should have a predeclared literal expected object/fields or a
+tracked baseline output. SDK == backend, or SDK == freshly computed CLI output,
+alone is self-consistency, not an independent oracle. Keep existing regressions
+and predeclared fixed P1/P2 digests unchanged. For text, assert typed fields
+directly and compare actual CLI bytes to an existing/full literal text golden;
+do not parse prose back into a fictitious wire schema. New fixtures should be
+new synthetic glue under MIT, without copying Apache test implementation text.
+
+SDK-G01 validate_plan
+Inputs: examples/minimal-plan.json; tests/fixtures/invalid-source-range.json.
+Expected SDK success fields: schema_version=1, plan_id='travel-recap', assets=1,
+shots=2, scope='declared-metadata-only'. Existing ValidationReport has Serialize
+but no Clone/PartialEq; compare fields or serde_json::to_value, do not broaden DTO.
+Exact CLI success line (ordered as existing Value serializer):
+{"ok":true,"validation":{"assets":1,"plan_id":"travel-recap","schema_version":1,"scope":"declared-metadata-only","shots":2}}\n
+Bad-range source error: {code:'plan.source_out_of_bounds',
+path:'$.shots[0].source_range.end'}; CLI exit 1, stderr empty. SDK path Some(...).
+Malformed '{', unknown or duplicate plan property: input.invalid_json at '$'.
+Valid-shaped schema_version=2: plan.unsupported_version at $.schema_version.
+Because full typed decoding precedes version validation, version=2 AND unknown
+field still returns input.invalid_json, unlike narrative/planner/coverage.
+Exact valid input padded to 1,048,576 bytes is accepted; +1 is input.too_large '$'.
+Use same Vec bytes for file/stdin/SDK and compare before/after byte-for-byte.
+
+SDK-G02 render_narrative
+Existing fixtures: tests/fixtures/narrative-v1/n03-authoring-v1.json and
+n03-author-reviewed-v1.json. Existing complete text goldens:
+docs/validation/open-issues-2026-11-11/n03-render.stdout (authoring),
+docs/validation/open-issues-2026-11-11/n03-reviewed.stdout (reviewed).
+Expected reviewed header: schema 1, document_id door-repair, document_revision 2,
+purpose '呈現兩位鄰居一起處理共用木門的小事。', audience '社區電子報讀者'.
+Variant order: oral, illustration-wide, illustration-close. Names respectively:
+'口述大綱', '插畫 A｜兩人與共用門（寬景）', '插畫 B｜鉸鏈與雙手（近景）'.
+Oral beat/source order: beat-01/S01@1 supplied_observation,
+beat-02/S02@1 supplied_observation, beat-03/S03@1 supplied_observation,
+beat-04/I01@1 author_interpretation. Expected exact oral texts:
+  星期六上午，兩位鄰居在共用木門旁準備工具。
+  阿梅扶住門，阿安收緊上方鉸鏈的一顆螺絲。
+  兩人試關一次；這一次門沒有磨到地面。
+  一起處理一件日常小事，可以成為鄰里互助的畫面。
+Wide source order: S01,S02,S04 supplied_observation, I01 author_interpretation,
+C01 creative_proposal, all revision 1. Reviewed close: S02,S03 supplied_observation,
+I01 author_interpretation,C02 creative_proposal, all revision 1. Authoring close
+has no C02 and its document_revision is 1. Compare exact briefs to corresponding
+tracked full-text golden and literal/known fixture brief fields.
+Negative actual file: invalid-dangling-reference.json -> narrative.dangling_reference
+at $.variants[0].beats[1].unit_ref.unit_id. See finding 2 for dynamic anchor.
+Projection intentionally lacks Serialize; use enum matching/PartialEq in tests.
+Private unchanged CLI formatter can receive an SDK projection in CLI unit tests.
+
+SDK-G03 track_revisions and query_impact
+Input tests/fixtures/narrative-v1/n04-revision-history-v1.json, document door-repair.
+Two exact query results (absent optional variant_id):
+ {id:'shared-observation-change',kind:'source_revision',unit_id:'S02',
+  from_revision:1,to_revision:2,
+  affected_variants:['oral','illustration-wide','illustration-close']}
+ {id:'b-only-detail-change',kind:'source_revision',unit_id:'C01',
+  from_revision:1,to_revision:2,affected_variants:['illustration-close']}
+Existing exact text oracles:
+docs/validation/open-issues-2026-11-11/n04-shared-impact.stdout and
+docs/validation/open-issues-2026-11-11/n04-local-impact.stdout
+(also equivalent docs/validation/n11-handoff/n04-{shared,local}.stdout).
+Report event order is all 8 declared IDs in fixture order. Source history retains
+both S02 revisions and both C01 revisions with original origin/text/bases.
+S02@1 text='阿梅扶住門；阿安收緊上方鉸鏈的一顆螺絲。'; S02@2=
+'阿安扶住門；阿梅收緊上方鉸鏈的一顆螺絲。'. C01@1 and C01@2 remain creative_proposal;
+C01@2='一把想像的紅傘移到構圖 B 的門框左後方。'.
+Choices in order: decline-red-umbrella-in-a / illustration-wide / C01@1 declined
+at variant revision 2; accept-red-umbrella-in-b / illustration-close / C01@1
+accepted at variant revision 2. One assistant suggestion suggest-red-umbrella-for-b
+for close/C01@1 remains a recorded suggestion, not authenticated approval.
+Current order/status/revision: oral@2 current; illustration-wide@3 current;
+illustration-close@3 needs_review, stale_source_refs=[C01@1]. Old wide@1 snapshot
+still contains C01. Current oral/wide omit C01; close retains C01@1.
+invalid-self-confirm fixture n04-invalid-self-confirm-v1.json ->
+revision.untrusted_decision $.events[0].decision (both tracking and querying).
+query(valid,'missing') -> revision.change_not_found $.change_id;
+query(valid,'suggest-red-umbrella-for-b') -> revision.not_source_change $.change_id.
+query(malformed-or-oversized,'bad id') -> narrative.invalid_shape $.change_id;
+query(...,'a'*129) -> narrative.too_many_items $.change_id. An ID of 128 valid
+characters passes ID checking then reaches ledger/lookup. Preserve direct impact;
+do not add indirect based_on traversal.
+
+SDK-G04 video_coverage
+Directory tests/fixtures/narrative-video-coverage-v1. Both valid files return Ok,
+CLI exit 0. Full unresolved literal oracle expected-valid-unresolved.stdout.json.
+Result header: schema 1, profile storytelling.narrative-video-coverage.v1,
+coverage_id two-unit-cut; narrative_ref n10-synthetic-story@1/rough-cut;
+asset_catalog_ref synthetic-catalog@1; selected S02@1 then S03@1.
+Row 0 mapped CLIP-01@1 from 5/2 to 9/2. Complete row 1 mapped same asset from
+9/2 to 11/2, ready=true, diagnostics=[]. Unresolved row 1 retains exact reason
+'No video asset was selected for this unit.', omits asset_ref/source_range,
+ready=false, diagnostics=[{code:'video_coverage.unresolved_required',
+path:'$.mappings[1]'}]. Rational strings must not become floats or re-normalize.
+All 21 profile diagnostic cases, each with code prefix video_coverage.:
+ unsupported_version -> invalid-version.json / $.schema_version
+ duplicate_field -> invalid-duplicate-field.raw / $
+ unknown_field -> add unexpected:true / $
+ invalid_shape -> coverage_id=7 / $
+ depth_exceeded -> root plus 33 arrays / $
+ too_many_items -> 513 selected refs / $.selected_unit_refs
+ dangling_variant -> variant_id='absent-variant' / $.variant_id
+ dangling_unit -> selected[0].unit_id='NO-SUCH-UNIT' / $.selected_unit_refs[0].unit_id
+ stale_unit_revision -> invalid-stale-unit.json / $.selected_unit_refs[0].revision
+ duplicate_selection -> selected[1]=selected[0] / $.selected_unit_refs[1].unit_id
+ unit_outside_variant -> add valid S04, select/map S04 second / $.selected_unit_refs[1].unit_id
+ selection_order_mismatch -> selected reverse / $.selected_unit_refs[1].unit_id
+ missing_selected_unit -> invalid-missing-selected.json / $.selected_unit_refs[1]
+ duplicate_mapping -> mappings[1]=mappings[0] / $.mappings[1].unit_ref.unit_id
+ mapping_outside_selection -> add valid unselected S04/map it / $.mappings[1].unit_ref.unit_id
+ mapping_order_mismatch -> mapping rows reverse / $.mappings[1].unit_ref
+ duplicate_asset -> append catalog asset clone / $.asset_catalog.assets[1].asset_id
+ dangling_asset -> invalid-dangling-asset.json / $.mappings[1].asset_ref.asset_id
+ stale_asset_revision -> mapped asset revision=2 / $.mappings[0].asset_ref.revision
+ invalid_range -> invalid-range.json / $.mappings[0].source_range.end
+ unresolved_required -> valid-unresolved success diagnostic (NOT Err)
+Additional raw errors: '{' -> {code:'input.invalid_json',path:null}; 1,048,577
+spaces -> {code:'input.too_large',path:null}. SdkError.path() must be None and
+source_details_json must still contain explicit JSON null. At depth 33 (root plus
+32 arrays), unknown extra is unknown_field; at 34, depth_exceeded precedes shape.
+Malformed canonical rational 2/4 -> invalid_range at mappings[0].source_range.start.
+Compound stale+range mutation in existing CLI test -> stale_unit_revision first.
+
+SDK-G05 plan_story
+Input tests/fixtures/planner-v1/valid.json; expect profile fixed-window-planner.v1,
+scope declared-fixed-window-plan-only, executable/source_verified/host_verified
+all false, selection_planned true, duration_analysis exact-fixed-windows,
+content_clock_rate '10', total_duration 3/10, target_status met.
+Plan id synthetic-fixed-plan. Assets retain declared order opening(a*64),detail(b*64),
+durations 1/1. Shots: shot-000001 detail [1/10,3/10), shot-000002 opening [0/1,1/10).
+Selected duration/timeline: detail 1/5 at 0/1; opening 1/10 at 1/5. Selection
+declared scores -5 then 10, both required. This tests manual order over ranking.
+Compare full SDK serialized object to actual CLI planning field AND independent
+literal fields. Preserve existing typed brief audit and skipped candidate arrays.
+conflicting.json -> error {code:'planner.brief_conflict',path:'$.brief',
+conflicts:[{kind:'required-excluded',path:'$.brief.manual_selected_asset_ids[1]',
+asset_ids:['opening']}]} with no partial plan. Preserve conflicts even empty.
+Malformed/unknown/duplicate -> input.invalid_json '$', conflicts:[];
+valid-shape schema 2 -> planner.unsupported_version $.schema_version, conflicts:[].
+Planner probes schema before strict input decode, so schema=2 + unknown property
+returns unsupported_version; brief conflict occurs before invalid candidates.
+
+SDK-G06 prepare_story_review
+Source fixtures tests/fixtures/story-review-v1/{planner-request,context}.json and
+tests/fixtures/openfilm/finite-v1/video-trim.json. Add/freeze response byte fixture.
+Fixed P2 vector uses raw original snapshot/context files and CLI-like compact
+proposal including LF. artifact_sha256:
+5404c0b552ddc4ccc394755c0a9a95e262f47f4a579fdca9b41797b920a838d0
+binding_sha256:
+ff87f54300ac968089fa6170f1248920a990284c3961f574225088ce85aad932
+Accepted P1 regression remains in tests/review_binding.rs with repeat-source.json:
+composition 04e320f4fe6c1ebd65c11c0392ab48b3c61abc8ce44de09c1e7ffccd1ef087b9
+plan        2083a48c4862e1be7289602e5f218dac615f5c98e149141bf42e832bc0da482b
+artifact    6456c0a184a3cb3105f1b4d5026954df52d12a34006228da69589fcbeb09412b
+report      5ddb5d4978099360cae5ae70044cdc908cec99b75b0ea27ee2fb1cb2c0408e1d
+context     59c96b9162978a60a22c21fcaa1542ced70fbc345b526e2b9cc1d976fc5f533c
+binding     85ee60f9a2ea0327ea977b48f73e6160f769e65921ee64ce7dbef81c3eb14a4f
+P1 itself is not added to the eight-operation facade; retain its existing test.
+OTIO expected name proposal-A, one clip occurrence shot-000001/synthetic-video,
+source start tick 1, duration 3, rate 3 (1/3..4/3 seconds), metadata raw selected
+proposal EXACTLY equal frozen input string, picture-only loss accepted. Review
+scope declared-review-binding-only and every authority/source/host flag false.
+CLI bundle payload == prepared.bundle_json(), plus terminal CLI LF; CLI
+export-story-otio output == compiled_otio() plus LF. Compare bytes before parsing.
+No path or media URI access; original fixture file bytes must remain unchanged.
+
+SDK-G07 check_story_review
+Fresh result exact object: schema_version 1, scope declared-planner-otio-review-only,
+current true, stale_fields [], executable/approval_granted/source_verified/
+host_verified false. Fresh CLI exit 0 with ok:true and freshness field.
+Append one LF to proposal while leaving selected semantic plan unchanged ->
+Ok {current:false,stale_fields:['artifact']}; stale CLI exit 1 with ok:true.
+Mutate context target_revision valid id -> Ok stale_fields ['context.target_revision'].
+Mutate multiple valid context fields -> exact lexicographically sorted unique
+stale context identifiers, NOT encounter order. Change accepted losses from
+picture_only to [metadata_only_locks,picture_only] -> current false, with
+context.loss_choices and any report/artifact changes retained.
+Change only snapshot contentHash -> Err story_review.asset_mismatch at
+$.planning.plan.assets[0], losses []. URI change -> Ok stale incl composition/artifact.
+Change cut via a new valid planner response -> Ok stale incl plan/artifact/report;
+compare the exact ordered vector after freezing baseline evidence, not just contains.
+Replace artifact byte INSIDE the saved OTIO RawValue -> Err
+{code:'story_review.artifact_digest_mismatch',path:'$.otio',losses:[]}.
+Do not parse+reserialize whole bundle to create an otherwise unchanged control:
+that can alter OTIO key order and itself trigger digest mismatch. Work with raw
+artifact byte splice or preserve RawValue. Adding legal leading bundle whitespace
+or padding trailing spaces should leave the original artifact bytes untouched.
+
+SDK-G08 versions, rich errors, malformed/duplicate/unknown/limits/order
+Use all supported operations (query distinct operation ID), all their serializers.
+Narrative future/unknown/duplicate files already exist. Multiple-order-cycles file
+has exact error {code:'narrative.order_conflict',path:'$.relations[2]',
+relation_ids:['R03','R04','R05']}; preserve array order and omission when empty.
+Review empty loss_choices with valid video snapshot -> exact error
+{code:'otio.loss_choice_required',path:'$.choices',losses:[{
+feature:'audio.picture_only',path:'$.assets',disposition:'metadata-only',accepted:false}]}.
+Adding clip effects yields import.unsupported_feature and full losses with
+feature import.unsupported_feature, disposition unsupported, accepted false;
+retain safe rooted path, never parser prose. Do not reduce losses to code/path.
+Future review context schema=2 -> review.unsupported_version $.schema_version,
+losses:[]. Unknown/duplicate context -> review.invalid_context_json '$', losses:[].
+Future proposal planning schema/profile -> story_review.invalid_proposal_claims
+$.planning, losses:[]. Duplicate/unknown proposal field ->
+story_review.invalid_proposal_json '$', losses:[].
+Bundle review schema=2 -> review.unsupported_version $.schema_version, losses:[]
+BEFORE checking artifact/current input. A legitimate legacy P1 record in a
+bundle -> story_review.wrong_profile $.review after record validation. Editing
+profile_id alone without fixing binding yields review.record_digest_mismatch,
+not wrong_profile. False bundle.ok on valid record also yields wrong_profile.
+Unknown/duplicate bundle -> story_review.invalid_bundle_json '$', losses:[].
+All preflight source errors retain their full structured empty conflicts/losses.
+CLI's earlier file reading/size failures may have only code/path; do not claim
+those CLI layer errors equal a delegated OtioCompileError detail object.
+
+Exact multi-buffer priority tests (all buffers immutable):
+ prepare(P+1,S+1,C+1) -> story_review.proposal_too_large '$', losses:[]
+ prepare(malformed,S+1,C+1) -> input.too_large '$', losses:[]
+ prepare(malformed,malformed,C+1) -> review.context_too_large '$', losses:[]
+ prepare(malformed,malformed,malformed) -> review.invalid_context_json '$', losses:[]
+ prepare(malformed,malformed,valid-C) -> story_review.invalid_proposal_json '$', losses:[]
+ check(B+1,P+1,S+1,C+1) -> story_review.bundle_too_large '$', losses:[]
+ check(malformed,P+1,S+1,C+1) -> story_review.proposal_too_large '$', losses:[]
+ check(malformed,malformed,S+1,C+1) -> input.too_large '$', losses:[]
+ check(malformed,malformed,malformed,C+1) -> review.context_too_large '$', losses:[]
+ check(malformed,malformed,malformed,malformed) -> story_review.invalid_bundle_json '$', losses:[]
+ check(artifact-tampered,malformed,malformed,malformed) -> artifact_digest_mismatch,
+ before context or proposal errors; valid B + malformed C -> invalid_context_json.
+P=4,194,336 S=1,048,576 C=65,536 B=4,292,672. P EXACT padded to limit may
+reach otio.output_too_large due to embedded raw input; do not expect success.
+S/C/B exact trailing-space padding is accepted (B at check only); +1 rejects.
+Review depth 64 accepted by scanner; 65 gives review.json_too_deep '$'. Narrative
+depth 32 and coverage 33 are different. M0/planner use their existing serde limits.
+Fallible encoding path: preserve original source code/path if error detail encoding
+fails; fixed adapter code sdk.error_details_encoding_failed. Present accepted
+errors are entirely serializable strings/enums/arrays, so do not introduce a
+public injectable constructor merely to force this unreachable-in-normal-use
+branch. A private unit test can exercise a serialization helper if one exists.
+
+SDK-G09 ownership, immutable inputs, replay, concurrency, purity
+Compile-only trait assertions T: Send+Sync+'static for every result and opaque
+handle, SdkErrorV1, SdkEncodingErrorV1, and public supporting types. Do not demand
+Clone/PartialEq from PlannedStoryV1/ValidationReport/opaque handle (not baseline).
+Create result in a scope containing temporary input Vec, drop Vec, then inspect
+owned result. Repeat prepare/check with same original buffers and compare exact
+bundle/artifact/error-detail bytes; compare narrative typed value with PartialEq.
+Use several bounded caller std::thread::spawn/scoped workers, no global shared
+mutable state; each exercises all eight operations, repeated successes plus
+representative rejection. Compare to independently declared literals and frozen
+goldens, not merely one worker to another. Limit concurrency/iterations because
+budgets are per call. Retain before clones and assert every input buffer is equal
+after success/error/threads, including bundle, proposal, snapshot, context, ID.
+Run actual CLI with fixture files and stdin in sentinel temp directory, empty
+external-tool PATH, compare recursive before/after snapshots. This complements
+source dependency review; it does not alone prove absence of all side effects.
+Cargo engine runtime dependencies remain serde,serde_json,core; four members.
+New facade should contain eight direct delegates/error adapters and no filesystem,
+network/model/clock/database/Host callback, executor/runtime/cache/background job.
+
+SDK-G10 external compile-fail examples (root implementer owns these)
+Positive import/control snippet first: consume a real PreparedStoryReviewV1 via
+consumer_v1::prepare_story_review and read record()/compiled_otio()/bundle_json().
+Then separate minimal compile-fail snippets for consumer_v1::execute, approve,
+dispatch,retry,recover,journal_write, run_shell/open_path/arbitrary path API and
+consumer_v2. Do not make one snippet fail on multiple unrelated imports.
+Opaque construction: PreparedStoryReviewV1 { review:todo!(),bundle:todo!() };
+PreparedStoryReviewV1::default(); PreparedStoryReviewV1::new/from_json/from_record;
+generic requires DeserializeOwned on PreparedStoryReviewV1. Fails via curated
+facade alias, not only old root type.
+Mutation cases independently: prepared.compiled_otio()[0]=0;
+prepared.bundle_json()[0]=0; prepared.record().approval_granted=true;
+attempt direct private storage access. Returning &mut or DerefMut must not appear.
+Mutating a CLONED portable ReviewRecordV1 is allowed and must not change the
+compiler-owned handle or confer authority; do not accidentally forbid valid DTO
+mutability. No feature enables execution; include --all-features documentation
+checks as well as existing default-feature runs. An expected compile failure
+must target the intended absent API/private field/trait, not missing dependencies.
+
+Commands performed: scoped cat/sed/rg, Python json/hashlib fixture inspection,
+git status/rev-parse/ls-tree; writes limited to this requested audit under /tmp.
+No test result is claimed. Follow-up test implementation is delegated separately.

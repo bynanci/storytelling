@@ -64,3 +64,14 @@ tests/fixtures/openfilm/finite-v1/video-trim.json -text
 /docs/research/evaluations/sk-e06-runs-2026-11-17/*.md text eol=lf
 /docs/research/evaluations/sk-e06-runs-2026-11-17/*.txt -whitespace
 /docs/research/evaluations/sk-e06-runs-2026-11-17/responses/*.txt -whitespace
+
+# SDK parity freezes identity-bearing bytes and the existing text golden.
+/tests/fixtures/consumer-sdk-v1/** text eol=lf
+/tests/fixtures/consumer-sdk-v1/proposal-response.json -text
+/tests/fixtures/story-review-v1/context.json text eol=lf
+/docs/validation/open-issues-2026-11-11/n03-reviewed.stdout text eol=lf
+/docs/validation/m4-01-readonly-sdk/** text eol=lf
+/docs/validation/m4-01-readonly-sdk/*.stdout -text -whitespace
+/docs/validation/m4-01-readonly-sdk/*.stderr -text -whitespace
+/docs/validation/m4-01-readonly-sdk/*.log -text -whitespace
+/docs/validation/m4-01-readonly-sdk/*.txt -text -whitespace

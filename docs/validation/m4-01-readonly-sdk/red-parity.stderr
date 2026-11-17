@@ -1,0 +1,10 @@
+   Compiling storytelling-cli v0.1.0-dev.0 (/workspace/storytelling-readonly-sdk-20261117/crates/storytelling-cli)
+error[E0432]: unresolved import `storytelling_engine::consumer_v1`
+  --> crates/storytelling-cli/tests/consumer_sdk.rs:12:5
+   |
+12 | use storytelling_engine::consumer_v1 as sdk;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ no `consumer_v1` in the root
+
+For more information about this error, try `rustc --explain E0432`.
+error: could not compile `storytelling-cli` (test "consumer_sdk") due to 1 previous error
+warning: build failed, waiting for other jobs to finish...

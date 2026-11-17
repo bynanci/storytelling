@@ -21,7 +21,7 @@
 
 [2026-11-14 交付／阻擋盤點](docs/validation/continuation-2026-11-14.md)記錄已合併產物、精確 head／合併後 CI 及十六個仍為 Open 的議題；不代替技術接受或真人驗收。
 
-後續的[有證據支持之 AI 圓桌選擇](docs/validation/g2-roundtable-2026-11-14.zh-TW.md)選定受限 #103 W01、八入口 #107 唯讀 SDK，以及小幅修訂後的 #129 B 預檢提案。既有真人／Host 紀錄及 N07 Stop 均附來源與限制。建議方案已選定；正式 G2 採納、實作及新的真人／Host 觀察仍分別記錄，目前尚未提供。
+後續的[有證據支持之 AI 圓桌選擇](docs/validation/g2-roundtable-2026-11-14.zh-TW.md)選定受限 #103 W01、八入口 #107 唯讀 SDK，以及小幅修訂後的 #129 B 預檢提案。既有真人／Host 紀錄及 N07 Stop 均附來源與限制。建議方案已選定；請求者後續已採納 #107 的[唯讀 Draft 實作](docs/validation/m4-01-sdk-g2-decision.md)。#103 W01／#129 B 採納與新的真人／Host 觀察仍各自待完成。
 
 <a id="skill-distribution"></a>
 
@@ -97,7 +97,7 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 | [M3-04／#103](https://github.com/bynanci/storytelling/issues/103) | [PR #117](https://github.com/bynanci/storytelling/pull/117) 已以 `a23a290` 合併提案文件：[ADR 0011](docs/adr/0011-production-execution-contract-v1.md)、[Execution V1](docs/migration/EXECUTION_CONTRACT_V1.zh-TW.md)及[案例／工作包](docs/validation/m3-04-execution-contract.md)。W01 授權／實作與實測契約的最終 G2 接受仍待完成；沒有執行器或當前 authority。 |
 | [M3-05／#104](https://github.com/bynanci/storytelling/issues/104) | 受阻於 #103 明確接受；提案限單次派送，後續為 #105 復原及 #106 宿主驗收。 |
 | M4 | 規劃 TypeScript 用戶端與單一寫入者。須先驗收 M2-03 和 M3-03。 |
-| [M4-01／#107](https://github.com/bynanci/storytelling/issues/107) · 提案 M4-R01 | [PR #134](https://github.com/bynanci/storytelling/pull/134) 已以 `075d6b0` 合併唯讀 facade 的 [ADR 0013](docs/adr/0013-read-only-consumer-facade-v1.md)、[繁中指南](docs/proposals/m4-01-readonly-sdk/README.zh-TW.md)及[golden 計畫](docs/proposals/m4-01-readonly-sdk/test-plan.md)，均仍為 G2 提案。八個操作重用既有純函式；facade 實作、公開 API 凍結及 CLI／SDK 等價證據仍待完成。#107 保持 Open；execution／recovery 須等 #103–#106 接受。 |
+| [M4-01／#107](https://github.com/bynanci/storytelling/issues/107) · M4-R01 | 請求者已[採納 ADR 0013 並授權 Draft 實作](docs/validation/m4-01-sdk-g2-decision.md)。本 Draft 提供八個純 `consumer_v1` 入口、opaque 錯誤／handle、獨立範例與實際 compile RED／runtime GREEN；見[指南](docs/SDK_CONSUMER_V1.zh-TW.md)及[來源綁定驗證](docs/validation/m4-01-readonly-sdk.md)。#107 保持 Open，最終實作／consumer 接受、exact-head CI 與 Draft 狀態分開；#103–#106 的執行／復原仍不提供。 |
 | M5、v1.0 | 規劃第二個編輯器、跨平台發行與獨立使用者評估。穩定版須通過相容性、遷移與復原驗收。 |
 | [M5-02／#112](https://github.com/bynanci/storytelling/issues/112) | 受阻於 #109、#111 及已接受的 M3 執行／復原流程。[前瞻式 v1 規程](docs/validation/m5-02-rough-cut-beta-v1.zh-TW.md)與匿名空白表單僅完成設計；尚未招募或開始 Beta。 |
 
