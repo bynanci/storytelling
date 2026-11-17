@@ -1,0 +1,29 @@
+Independent AI technical review — 2026-11-17
+
+Repository: /workspace/storytelling-replay-oracle-fix-20261117
+Base: 91bf8f80139f59c0406340eb3565d296bd562931
+Initial reviewed commit: f8294a0434716b3402b23ec8ea1aecf19bccffae
+Functional follow-up reviewed: 1d537df2f4129fabe588b038214dacfc801cf270
+Also reviewed the subsequent working-tree corrections to the oracle notes/index, current-suite README counts and the separate CI discovery step. The separately authored subagent-scenarios documents are outside this technical review.
+
+No unresolved correctness blocker found within the stated fixed synthetic replay-oracle scope after the follow-up fix. Two P2 findings were corrected during review.
+
+1. Evidence interpretation: the original English/Traditional Chinese notes claimed all 18 RED subtest failures observed false successful exits. The preserved log instead contains 16 false successes (12 endpoint and four unresolved-reason faults), plus two reference cases already rejected by real V1 order checks. Independent probing of the untouched base replay and supplied native binary confirmed mapping_refs fails after five calls with video_coverage.mapping_order_mismatch at $.mappings[1].unit_ref, and selected_refs fails with video_coverage.selection_order_mismatch at $.selected_unit_refs[1].unit_id. Both report unexpected_exit; the new tests require earlier wrong_canonical_declarations. The corrected notes and red_interpretation fields accurately distinguish these outcomes. The 18 failed-subtest/fault-scenario count and 12/2/4 split remain accurate.
+
+2. JSON type aliases: Python structural equality accepted true/1.0 as equal to integer 1. A preview-only reference-revision mutation passed the full initial replay, eight cases/37 calls, while integer emit and native V1 output remained untouched. The V1 parser therefore did not cover this preview-only gap. Commit 1d537df replaces equality in the fixed oracle and all three JSON parity checks with same_json, comparing sorted-key JSON while preserving list order and bool/int/float distinctions and rejecting non-finite values. It leaves captured stdout bytes unchanged. Four new preview-only faults cover boolean selected references, floating-point mapping references, boolean catalog revision and numeric readiness. The new RED records four actual false successes; the final suite rejects each with its expected oracle/parity diagnostic.
+
+The Fraction oracle is mathematically correct and independent of native results: 2.5–4.5 becomes [5/2,9/2), 0–0.1 becomes [0/1,1/10), [75,135) at 30/1 becomes [5/2,9/2), and [0,150) at 30000/1001 becomes [0/1,1001/200). Exact endpoint strings and complete ordered mapping dictionaries check both mapped rows in declaration-complete, fixed selected/mapping references, asset reference, statuses and unresolved text. Erroneous native rationals are not normalized before comparison.
+
+The shim invokes the real native process first, then changes successful helper JSON and the corresponding recorded stdout bytes/hash. Tests run real main() in a Python subprocess and require the intended failure diagnostic and attempted case, so setup crashes cannot satisfy them. sys.executable, argument arrays and absolute binary paths avoid POSIX executable-shim assumptions. Existing exclusive output creation and successful-replay input, fixture and binary preservation checks remain intact. The new CI discovery step is separate from the required explicit-native run.
+
+Observed verification on Linux:
+
+- Final explicit supplied-native run: eight methods passed, no skips (1.876 seconds), including 22 injected fault configurations.
+- Final unconfigured unittest discovery: eight methods found, three passed and five native methods explicitly skipped; exit 0.
+- Repository checker and committed/current diff whitespace checks passed. An unrelated working-tree scenario-report link failure observed during review was corrected by the root agent.
+- All indexed artifact hashes, script hashes against their recorded revisions, decoded stdout/stderr hashes, input hashes and receipt call/case counts matched in both evidence phases. RED gzip uncompressed hashes matched, and readable RED views remove trailing whitespace only. The supplied native-binary hash matched its receipt.
+- The committed diff preserves original PR #145 receipts/materials, source fixtures and author handoff materials. Current README counts now state eight methods/22 faults; historical seven-method/18-fault receipts remain identified as the earlier phase.
+
+Limits: this is a fixed eight-case protocol, not complete CLI-contract or scenario coverage. Conversion metadata and remaining narrative/catalog/output fields do not gain an independent expected-value oracle; typed parity remains a consistency check. Injected stdout is synthesized after the native call and must be interpreted with its enclosing fault configuration/index, not as original native arithmetic output. Windows/macOS execution and hosted checks for a later final head were not observed here. Source/build binding remains declared metadata, not authenticated by the replay.
+
+This is independent AI technical review, not human G2, ethics, author, media, Host or release acceptance. No Cargo build, network request, Host action, repository source edit, commit, other model or child agent was used by this reviewer. The earlier additional-type-finding.txt is retained as the finding record; it is resolved by 1d537df.

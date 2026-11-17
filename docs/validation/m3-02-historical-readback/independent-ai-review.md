@@ -1,0 +1,10 @@
+No correctness or security blockers found in `91bf8f8..4dee6e8`, under the stated rule that a digest identifies immutable, consumed readback evidence. This is independent static AI review, not human G2 acceptance.
+
+- `crates/storytelling-journal/src/lib.rs:793`: lease/fence/expiry and current-attempt checks precede duplicate recognition; the helper at line 1062 rejects stale owners and expired leases.
+- `crates/storytelling-journal/src/lib.rs:810`: lookup includes operation, attempt, readback event kind and digest. Response receipts and other operations/attempts cannot suppress a first readback. Line 819 returns the current snapshot without rewriting evidence, history or budget, including after terminal observations.
+- `crates/storytelling-journal/src/lib.rs:789`: the lookup and unchanged state/count/event writes remain within one SQLite IMMEDIATE transaction. Fresh evidence still reaches the terminal-state and four-readback guards at lines 824 and 836. No schema, public type or dependency change appears in the aggregate diff.
+- `crates/storytelling-journal/tests/journal.rs:577`, `:633`, `:685`, `:779`: regressions cover restart, newer-outcome combinations, replay before/after budget exhaustion, cross-operation/attempt digest reuse and stale fencing. Supplied RED log reports 14 passed/3 failed, including the unsafe `Ok(2)` retry; GREEN reports 17 passed. I did not rerun builds or tests.
+
+Nonblocking limits: V1 events omit the historical result subtype (`src/lib.rs:63`), so any previously recorded digest is a successful no-op even if the caller supplies a different result. This is evidence-consumption protection, not proof of identical historical classification; callers must use the returned current snapshot and own evidence truth. The patch does not repair previously advanced attempts or reconstruct omitted historical receipts. Host quiescence, execution authority, #103/W01, production M3 and human acceptance remain separate.
+
+Saved verbatim at `/tmp/storytelling-sim-20261117/journal-fix-review/review.md`.

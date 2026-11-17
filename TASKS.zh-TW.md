@@ -111,7 +111,11 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 
 <a id="accepted-lifecycle"></a>
 
+
+
 ## 已驗收工作與歷史紀錄
+
+- [x] **M3-JL02／JL04／JL06 歷史 readback 維護。**[實際 RED／GREEN](docs/validation/m3-02-historical-readback.zh-TW.md)重現舊 NotApplied 在新 ambiguous 後解鎖重試；依種類／operation／attempt 查歷史收據，維持當前 snapshot 與次數預算，17 項日誌測試通過。這是無 Host 的有限修正；最終 hosted 結果見 PR，正式 authority 及 #105 復原仍待完成。
 
 - [x] **M3-JL02／M3-JL06 維護。**[首次回讀紀錄修正](docs/validation/m3-02-readback-receipt-collision.zh-TW.md)已由 [PR #137](https://github.com/bynanci/storytelling/pull/137) 以 `5bbe80d` 合併，保存實際 RED／GREEN；最終 head 及合併後各六項 CI 均通過。僅完成 receipt 碰撞修正，不變更執行權限。
 
@@ -155,6 +159,8 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 - [x] **SK-EVAL-R1 算術審查與敏感度診斷。** [追加報告](docs/research/evaluations/r1-robustness/README.zh-TW.md)重現原五份數值產物，新增精確的案例／維度／批次移除及分組敏感度界限。十項回歸及獨立 AI 數學審查涵蓋此診斷範圍；原 R1 位元組、結論與 #121／#122 證據門檻不變。同 head hosted 檢查另記於 PR。
 
 ## 敘事交接維護
+
+- [x] **子 agent 合成情境驗證與 N-R10-06A oracle 維護。**[六個代理實際執行](docs/validation/subagent-scenarios-2026-11-17.zh-TW.md)保存原始材料／回覆及明列缺口的有限覆蓋矩陣。[精確數學／型別敏感回歸](docs/validation/n10-06a-replay-oracle-2026-11-17.zh-TW.md)以八個必要原生測試方法涵蓋 22 種注入故障；未設定 discovery 另為三通過／五跳過。代理提出可重現日誌／oracle 問題，不提供真人接受或效果估計；#129 獨立作者與既有 G2／Host／研究／G5 門檻保留。
 
 - [x] **N-R10-06A 合成研究準備。**[2026-11-17 模擬圓桌](docs/validation/n10-06a-roundtable-2026-11-17.zh-TW.md)保留八項實際原生案例／37 次 CLI 呼叫、四項擷取工具回歸、留空作者材料及私人五欄紀錄。四個視角由同一 AI 編寫，真人仍為零；#129 獨立作者項保持待辦。未來質性觀察是提案，不提供 G2、媒體／Host 或效益接受。
 

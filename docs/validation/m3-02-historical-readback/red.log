@@ -1,0 +1,53 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.04s
+     Running tests/journal.rs (/tmp/storytelling-journal-replay-20261117-target/debug/deps/journal-9cc3b3fcde1a0199)
+
+running 17 tests
+test a_fresh_conflicting_readback_before_retry_keeps_the_attempt_blocked ... ok
+test ambiguous_readback_sharing_response_digest_is_recorded_once_and_survives_restart ... ok
+test crash_after_dispatch_marker_recovers_unknown_and_never_retries_without_readback ... ok
+test exact_review_and_artifact_identity_survive_restart_and_idempotent_prepare ... ok
+test foreign_database_is_rejected_without_changing_its_schema_or_journal_mode ... ok
+test busy_write_leaves_no_partial_record_and_succeeds_after_lock_release ... ok
+test first_ambiguous_readback_sharing_response_digest_consumes_readback_budget ... ok
+test historical_replay_preserves_each_newer_readback_outcome ... FAILED
+test historical_not_applied_replay_after_restart_cannot_reopen_retry ... FAILED
+test historical_replays_do_not_consume_per_attempt_readback_budget ... FAILED
+test invalid_identity_hash_and_time_limits_are_rejected_at_the_boundary ... ok
+test known_readback_digest_is_scoped_to_operation_attempt_and_current_lease ... ok
+test reused_idempotency_key_with_changed_review_or_artifact_is_rejected ... ok
+test repeated_ambiguous_readbacks_have_a_per_attempt_bound ... ok
+test stale_owner_and_late_attempt_response_cannot_overwrite_newer_state ... ok
+test unknown_response_and_applied_response_never_enable_a_retry ... ok
+test attempt_count_limit_is_per_operation_and_does_not_block_other_operations ... ok
+
+failures:
+
+---- historical_replay_preserves_each_newer_readback_outcome stdout ----
+
+thread 'historical_replay_preserves_each_newer_readback_outcome' panicked at crates/storytelling-journal/tests/journal.rs:666:13:
+assertion `left == right` failed
+  left: [JournalEvent { sequence: 1, kind: Prepared, executor_id: None, fence_epoch: 0, attempt_id: None, occurred_at_ms: 100, evidence_sha256: None }, JournalEvent { sequence: 2, kind: AttemptStarted, executor_id: Some("executor-a"), fence_epoch: 1, attempt_id: Some(1), occurred_at_ms: 102, evidence_sha256: None }, JournalEvent { sequence: 3, kind: ResponseRecorded, executor_id: Some("executor-a"), fence_epoch: 1, attempt_id: Some(1), occurred_at_ms: 103, evidence_sha256: Some("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd") }, JournalEvent { sequence: 4, kind: ReadbackRecorded, executor_id: Some("executor-a"), fence_epoch: 1, attempt_id: Some(1), occurred_at_ms: 104, evidence_sha256: Some("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee") }, JournalEvent { sequence: 5, kind: ReadbackRecorded, executor_id: Some("executor-a"), fence_epoch: 1, attempt_id: Some(1), occurred_at_ms: 105, evidence_sha256: Some("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff") }, JournalEvent { sequence: 6, kind: ReadbackRecorded, executor_id: Some("executor-a"), fence_epoch: 1, attempt_id: Some(1), occurred_at_ms: 106, evidence_sha256: Some("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee") }]
+ right: [JournalEvent { sequence: 1, kind: Prepared, executor_id: None, fence_epoch: 0, attempt_id: None, occurred_at_ms: 100, evidence_sha256: None }, JournalEvent { sequence: 2, kind: AttemptStarted, executor_id: Some("executor-a"), fence_epoch: 1, attempt_id: Some(1), occurred_at_ms: 102, evidence_sha256: None }, JournalEvent { sequence: 3, kind: ResponseRecorded, executor_id: Some("executor-a"), fence_epoch: 1, attempt_id: Some(1), occurred_at_ms: 103, evidence_sha256: Some("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd") }, JournalEvent { sequence: 4, kind: ReadbackRecorded, executor_id: Some("executor-a"), fence_epoch: 1, attempt_id: Some(1), occurred_at_ms: 104, evidence_sha256: Some("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee") }, JournalEvent { sequence: 5, kind: ReadbackRecorded, executor_id: Some("executor-a"), fence_epoch: 1, attempt_id: Some(1), occurred_at_ms: 105, evidence_sha256: Some("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff") }]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- historical_not_applied_replay_after_restart_cannot_reopen_retry stdout ----
+
+thread 'historical_not_applied_replay_after_restart_cannot_reopen_retry' panicked at crates/storytelling-journal/tests/journal.rs:623:5:
+older evidence reopened retry: Ok(2)
+
+---- historical_replays_do_not_consume_per_attempt_readback_budget stdout ----
+
+thread 'historical_replays_do_not_consume_per_attempt_readback_budget' panicked at crates/storytelling-journal/tests/journal.rs:731:5:
+assertion `left == right` failed
+  left: [JournalEvent { sequence: 1, kind: Prepared, executor_id: None, fence_epoch: 0, attempt_id: None, occurred_at_ms: 100, evidence_sha256: None }, JournalEvent { sequence: 2, kind: AttemptStarted, executor_id: Some("executor-a"), fence_epoch: 1, attempt_id: Some(1), occurred_at_ms: 102, evidence_sha256: None }, JournalEvent { sequence: 3, kind: ResponseRecorded, executor_id: Some("executor-a"), fence_epoch: 1, attempt_id: Some(1), occurred_at_ms: 103, evidence_sha256: Some("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd") }, JournalEvent { sequence: 4, kind: ReadbackRecorded, executor_id: Some("executor-a"), fence_epoch: 1, attempt_id: Some(1), occurred_at_ms: 104, evidence_sha256: Some("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd") }, JournalEvent { sequence: 5, kind: ReadbackRecorded, executor_id: Some("executor-a"), fence_epoch: 1, attempt_id: Some(1), occurred_at_ms: 105, evidence_sha256: Some("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee") }, JournalEvent { sequence: 6, kind: ReadbackRecorded, executor_id: Some("executor-a"), fence_epoch: 1, attempt_id: Some(1), occurred_at_ms: 106, evidence_sha256: Some("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd") }]
+ right: [JournalEvent { sequence: 1, kind: Prepared, executor_id: None, fence_epoch: 0, attempt_id: None, occurred_at_ms: 100, evidence_sha256: None }, JournalEvent { sequence: 2, kind: AttemptStarted, executor_id: Some("executor-a"), fence_epoch: 1, attempt_id: Some(1), occurred_at_ms: 102, evidence_sha256: None }, JournalEvent { sequence: 3, kind: ResponseRecorded, executor_id: Some("executor-a"), fence_epoch: 1, attempt_id: Some(1), occurred_at_ms: 103, evidence_sha256: Some("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd") }, JournalEvent { sequence: 4, kind: ReadbackRecorded, executor_id: Some("executor-a"), fence_epoch: 1, attempt_id: Some(1), occurred_at_ms: 104, evidence_sha256: Some("dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd") }, JournalEvent { sequence: 5, kind: ReadbackRecorded, executor_id: Some("executor-a"), fence_epoch: 1, attempt_id: Some(1), occurred_at_ms: 105, evidence_sha256: Some("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee") }]
+
+
+failures:
+    historical_not_applied_replay_after_restart_cannot_reopen_retry
+    historical_replay_preserves_each_newer_readback_outcome
+    historical_replays_do_not_consume_per_attempt_readback_budget
+
+test result: FAILED. 14 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.22s
+
+error: test failed, to rerun pass `-p storytelling-journal --test journal`

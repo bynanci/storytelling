@@ -115,6 +115,8 @@ One PR owns a public schema or time contract change at a time. Adapters and inte
 
 ## Accepted lifecycle
 
+- [x] **M3-JL02/JL04/JL06 historical readback maintenance.** [Observed RED/GREEN](docs/validation/m3-02-historical-readback.md) reproduces old NotApplied evidence reopening retry after a newer ambiguous observation. Kind/operation/attempt-scoped historical receipt idempotency preserves the current snapshot and readback budget; 17 journal tests pass. This is a bounded no-Host correction, with final-head hosted checks recorded on the PR; production authority and #105 recovery remain pending.
+
 - [x] **M3-JL02/M3-JL06 maintenance.** The [first-readback receipt correction](docs/validation/m3-02-readback-receipt-collision.md) merged in [PR #137](https://github.com/bynanci/storytelling/pull/137) as `5bbe80d`, with observed RED/GREEN and all six final-head and post-merge CI jobs passed. This completes the receipt-collision maintenance scope and changes no execution authority.
 
 - [x] **M3-RB07 / N-R10-06A file-input maintenance.** [PR #139](https://github.com/bynanci/storytelling/pull/139) merged as `e2934c2` after all six final-head CI jobs passed. [Static nonregular-file rejection and test-discovery compatibility](docs/validation/cli-file-input.md) are verified; the pathname-replacement race remains documented, and C/media, author and host acceptance remain separate.
@@ -155,6 +157,8 @@ Use [#115](https://github.com/bynanci/storytelling/issues/115) as the umbrella. 
 - [x] **SK-EVAL-R1 arithmetic review and sensitivity diagnostics.** The [append-only report](docs/research/evaluations/r1-robustness/README.md) reproduces all five original numeric artifacts and adds exact case/dimension/batch omissions and explicit assignment-sensitivity bounds. Ten regressions and independent AI math review cover this diagnostic scope; original R1 bytes, conclusions and #121/#122 evidence gates remain unchanged. Hosted checks are recorded on the submitted PR.
 
 ## Narrative handoff maintenance
+
+- [x] **Synthetic subagent scenario validation and N-R10-06A oracle maintenance.** [Six actual subagent roles](docs/validation/subagent-scenarios-2026-11-17.md) preserve raw packets/responses and a finite coverage matrix with gaps. [Exact/type-sensitive oracle regressions](docs/validation/n10-06a-replay-oracle-2026-11-17.md) cover 22 injected faults in eight required-native test methods; unconfigured discovery is a separate three-pass/five-skip check. The roles generated reproducible journal/oracle findings, not human acceptance or effect estimates; #129's independent author and the existing G2/Host/study/G5 gates remain pending.
 
 - [x] **N-R10-06A synthetic research preparation.** [2026-11-17 simulated roundtable](docs/validation/n10-06a-roundtable-2026-11-17.md) retains eight actual native cases / 37 CLI calls and four capture regressions, plus unsolved author materials and a blank private five-field record. Four perspectives are authored by one AI; human participants remain zero. The independent author item in #129 remains pending; the future qualitative observation is proposed and supplies no G2, media/Host or efficacy acceptance.
 

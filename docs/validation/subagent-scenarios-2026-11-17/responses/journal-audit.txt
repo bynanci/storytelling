@@ -1,0 +1,113 @@
+# Read-only adversarial audit of the accepted journal
+
+Date: 2026-11-17. Source base: `91bf8f80139f59c0406340eb3565d296bd562931`.
+Workspace: `/workspace/storytelling-scenario-validation-20261117`.
+Evidence kind: `synthetic_AI_technical_review`.
+Human participants: 0. Host observations: 0.
+
+This is the actual written response of the delegated AI technical reviewer. It
+records source inspection and a proposed executable regression. The reviewer did
+not build, run Rust tests, edit repository files, contact a model/network service,
+call an editor/Host, or delegate further. Static predictions below are not runtime
+observations. The parent reviewer owns any subsequent RED/GREEN evidence.
+
+## Finding JRN-01: a replayed older readback reopens the retry gate
+
+Severity: P2, accepted local state-machine correctness. The effect is a false
+retry-ready journal state; no external duplicate effect, current authority or
+production permission is established.
+
+Location: `crates/storytelling-journal/src/lib.rs:809` (latest-only duplicate
+check), then `:832` (overwrites attempt state and consumes budget), and `:846`
+(overwrites operation state). The retry admission at `:647` accepts the resulting
+`not_applied_observed` state.
+
+`record_readback` recognizes a duplicate only when its result and evidence digest
+equal the *latest* attempt state/evidence. Once another observation has replaced
+that state, an exact replay of an older receipt becomes a fresh observation. The
+older observation overwrites the newer one, consumes another readback slot, and
+adds another event.
+
+The smallest retry-safety trace uses one operation, one executor, one unexpired
+lease, one attempt, increasing times and three distinct synthetic evidence hashes.
+No clock reversal, process race, untrusted schema or Host behavior is needed:
+
+| Time | API / receipt | State afterward | Readbacks | Events |
+| --- | --- | --- | --- | --- |
+| 100 | prepare exact intent | ready | 0 | 1 |
+| 101 | claim executor-a, 1,000 ms | ready; epoch 1, expiry 1101 | 0 | 1 |
+| 102 | begin_attempt | dispatching; attempt 1 | 0 | 2 |
+| 103 | response Unknown, digest D | outcome_unknown | 0 | 3 |
+| 104 | readback NotApplied, digest E | not_applied_observed | 1 | 4 |
+| 105 | readback Ambiguous, digest F | outcome_unknown | 2 | 5 |
+| 106 | replay readback NotApplied, digest E | **actual predicted: not_applied_observed** | **3** | **6** |
+| 107 | begin_attempt | **actual predicted: succeeds as attempt 2** | n/a | 7 |
+
+The expected replay result at time 106 is the unchanged current snapshot
+(`outcome_unknown`), unchanged history and unchanged two-readback budget. The
+next begin_attempt must return `journal.readback_required` without mutation.
+Reopening after time 105 does not remove the defect: the latest state/digest is
+durable, but the old result subtype is not preserved in the event.
+
+This violates the accepted contract rather than a proposed production design:
+
+- `docs/migration/M3-02-OPERATION-JOURNAL.md:50`–`:51`: an identical receipt for
+  the current attempt is idempotent.
+- The same profile at `:82`–`:83`: exact duplicate receipts do not consume budget.
+- `docs/REQUIREMENTS.md:198`, M3-JL04: block retry if a newer readback conflicts.
+
+The first-readback fix from PR #137 is present and correct for its covered case.
+This trace uses two already-recorded readbacks with distinct evidence. It is not
+the earlier response/readback same-digest collision.
+
+## Meaningful regression
+
+`nonconsecutive-readback-replay.rs` is a test sketch to append to the existing
+integration-test module. It replays a NotApplied receipt after a later Ambiguous
+receipt, captures both the replay snapshot and attempted retry, and checks full
+history plus the persisted readback count. The parent reviewer can execute it
+before any fix in its own explicitly assigned Cargo target. A companion scenario
+should show four unique ambiguous readbacks remain admissible when older exact
+receipts are replayed between them, including after reopen.
+
+The same latest-only design also means replaying an original response after a
+readback with another digest returns StaleAttempt, and replaying an older
+ambiguous readback can consume budget or return LimitExceeded after exhaustion.
+These are consequences of the receipt-history issue, not independent Host claims.
+
+## Other inspected boundaries
+
+Identity construction freezes every accepted field and length-frames the intent
+fingerprint. An exact prepare replay is a no-op, while changed identity under
+either unique key rejects. Mutating lifecycle methods begin IMMEDIATE
+transactions; lease/fence checks and current-attempt checks precede duplicate
+shortcuts. Exact expiry is rejected by `until <= now_ms`; a reclaimed dispatch
+marker becomes unknown in the same transaction as the new owner/fence. Returned
+errors after writes roll the transaction back through the transaction guard.
+Attempt/readback limits and independent-operation availability have existing
+tests. No additional blocker was identified in those inspected paths.
+
+Clock trust and monotonic wall time are explicitly outside accepted V1: callers
+supply nonnegative epoch times and the journal does not prevent wall-clock skew
+(`M3-02-OPERATION-JOURNAL.md:99`–`:102`). `renew` assigns now+duration and can
+shorten an existing expiry; that is a documentation/semantics question, not the
+reported failure and not evidence of a missing trusted-clock implementation.
+
+## Exact remaining uncertainty
+
+The source trace has not been executed by this delegated reviewer. Root must
+record an actual failing result before claiming RED. No full suite, disk-full
+injection, real crash/power-loss or OS/filesystem behavior was tested here.
+
+The existing event schema stores receipt kind and digest but not the readback
+result subtype. Consequently a no-schema historical-digest fix cannot also prove
+that a caller reusing an older digest supplied the original result subtype. The
+safe bounded option is to treat an already-recorded readback evidence identity as
+consumed and return the current snapshot without changing state/budget. Any
+claim of exact historical conflicting-result detection needs additional stored
+information or a separately defined receipt-identity policy; see repair-options.
+
+#103/W01, #104–#106, trusted current authority, project-wide exclusion, Host
+quiescence, verified readback truth and production execution remain pending and
+outside this finding. No permission, G2 acceptance, human evidence or Host
+observation is supplied by this review.

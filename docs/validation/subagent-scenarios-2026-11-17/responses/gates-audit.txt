@@ -1,0 +1,28 @@
+基準 `91bf8f80139f59c0406340eb3565d296bd562931` 已核對，唯讀開始與完成讀取時工作目錄皆乾淨。這份稽核沒有 build、測試執行、遠端模型／Host 呼叫、真人參與或驗收決定。continuation 的「零 Open PR／十六 Open Issue」是已存文件的歷史快照，這輪未重新連線確認。
+
+現有工程可以自主做有限情境重播、對照原碼、確認實際失敗後修正既有契約內的缺陷，並保存 exact build/input/argv/raw output。AI 角色模擬提供工程假說與合成觀察；真人數仍為 0。本輪已分派的 SIM-AUTHOR-01、SIM-EDITOR-01、SIM-CLAIMS-01、AUDIT-JOURNAL-01、AUDIT-CAPTURE-01 都尚未有我檢視的實際結果，不能標成通過。主代理提出的舊 NotApplied(E) 在較新 Ambiguous(F) 後重播候選，也仍待實際 RED，不在這份稽核宣稱為缺陷。
+
+有限矩陣共八個領域、六類。E＝已找到並檢視現有 named test，**本輪未執行**；P＝只覆蓋部分子範圍；U＝未檢視。它不是全情境或產品完成率。
+
+| 領域 | 成功 | 錯誤 | 重播 | 身分 | 上限 | 中斷 |
+| --- | --- | --- | --- | --- | --- | --- |
+| A 精確輸入 | E | E | E | E | E | U |
+| 敘事／修訂 | E | E | P | E | P | U |
+| 商業主張 | E | E | E | E | P | U |
+| 混合媒體交接 | E | E | E | E | U | U |
+| Planner／OTIO | E | E | E | E | E | U |
+| P1／P2 審閱 | E | E | E | E | E | U |
+| SQLite journal | E | E | P | E | E | E |
+| 私人 recorder | E | E | E | E | E | E |
+
+每格的路徑、行號與函式都在 [coverage.json](/tmp/storytelling-sim-20261117/gates-run/coverage.json)。具體空白包括 revision-history／impact 的 exact repeated file/stdin parity、ledger 128/129 event 邊界、claim/reference count 邊界、handoff collection/path/text/depth exact 邊界，以及六個純／唯讀領域的 process interruption／partial stdout／broken pipe。這些是尚未檢視的證據，不能直接推論產品有 bug 或必須新增取消功能。Journal／recorder 的 crash、unknown、late response 測試不能證明實際 Host quiescence、OS power-loss 或真人身分。
+
+仍不能自主填補的工作是：#121 的原始 R1 草稿、完整來源包、exact prompts/rubric、模型設定及逐字 judge 紀錄；#122 的合格前置資料與前瞻分析計畫；#54 native／#112／#129 的真人場次；#106／#111／#129 C/D 的精確授權、媒體及實際 Host 證據；以及 #113/G5 的明確發布決定。#54 的外部 wrapper Stop 必須保留。歷史 FilmCraft 測試只證明隔離 Linux 25 fps／已退出 Host 的 lost-reply 範圍；不能拿來驗收仍執行中的程序、安全重試或目前權限。
+
+最近的工程路線只需以下三項**實際、精確版本的決定**才能恢復，不需要再寫一套計畫：
+
+1. **#103 W01：**維護者採納指定 commit 的 ADR 0011／Execution V1／W01 與圓桌縮限差異，授權純契約 G3：65,536 bytes／depth 8、strict parsing、既有 vectors、P2-owned compilation binding、opaque non-Deserialize candidate 及 compile-fail；不產生 permit／ready／provider／writer／dispatch／Host。完成實際 RED/GREEN 與 exact-head checks 後，#103 最終 tested-contract G2 仍需另有決定，W01 本身不解鎖 #104。
+2. **#107 SDK：**維護者採納指定 commit 的 ADR 0013，凍結八個 read-only operation IDs/results、版本、opacity 與完整 error 行為，包括可失敗的 `source_details_json()`；授權既有 SDK-G01–G10 external-crate compile/opacity 與 CLI parity 計畫。真人 consumer、mutation、Host 與 G5 保留原門檻。
+3. **#129 B：**維護者採納指定 commit 的 B packet 加圓桌 signature／hint-order／escaping 修訂，凍結 command／opt-in feature／zh-TW default／0–3 exits／private bridge。完整原始 bytes 先過 A，V1 保持最終權威，拒絕時無 V1 payload；保留 indices／unmatched rows，C0／DEL／C1／bidi 顯示為可見資料。這不接受 C、Reference App、Host 或獨立作者成果。
+
+這些條件來自 [2026-11-17 continuation](/workspace/storytelling-scenario-validation-20261117/docs/validation/continuation-2026-11-17.md)、[圓桌選擇與限制](/workspace/storytelling-scenario-validation-20261117/docs/validation/g2-roundtable-2026-11-14.zh-TW.md) 與各既有候選資料包；evidence-index 中三項 formal acceptance／accepted commit 仍為 null。既有 W01 work packages、SDK golden plan、B scenarios、N07 v3／recorder 及 Beta protocol 應直接重用。這份稽核沒有新增批准、重建研究材料或把準備產物視為產品化完成。

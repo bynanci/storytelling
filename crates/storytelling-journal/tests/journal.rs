@@ -572,3 +572,314 @@ fn first_ambiguous_readback_sharing_response_digest_consumes_readback_budget() {
         4
     );
 }
+
+#[test]
+fn historical_not_applied_replay_after_restart_cannot_reopen_retry() {
+    let db = TestDb::new();
+    let mut journal = Journal::open(db.path()).unwrap();
+    journal.prepare(&intent(), 100).unwrap();
+    let lease = journal.claim("op-01", "executor-a", 101, 1_000).unwrap();
+    let attempt = journal.begin_attempt(&lease, 102).unwrap();
+    journal
+        .record_response(
+            &lease,
+            attempt,
+            DispatchResponse::Unknown,
+            103,
+            &"d".repeat(64),
+        )
+        .unwrap();
+    journal
+        .record_readback(
+            &lease,
+            attempt,
+            ReadbackResult::NotApplied,
+            104,
+            &"e".repeat(64),
+        )
+        .unwrap();
+    let current = journal
+        .record_readback(
+            &lease,
+            attempt,
+            ReadbackResult::Ambiguous,
+            105,
+            &"f".repeat(64),
+        )
+        .unwrap();
+    let history = journal.history("op-01").unwrap();
+    drop(journal);
+    let mut reopened = Journal::open(db.path()).unwrap();
+    let replay = reopened
+        .record_readback(
+            &lease,
+            attempt,
+            ReadbackResult::NotApplied,
+            106,
+            &"e".repeat(64),
+        )
+        .unwrap();
+    let retry = reopened.begin_attempt(&lease, 107);
+    assert!(
+        matches!(retry, Err(JournalError::OutcomeRequiresReadback)),
+        "older evidence reopened retry: {retry:?}"
+    );
+    assert_eq!(replay, current);
+    assert_eq!(reopened.get("op-01").unwrap().unwrap(), current);
+    assert_eq!(reopened.history("op-01").unwrap(), history);
+}
+
+#[test]
+fn historical_replay_preserves_each_newer_readback_outcome() {
+    for first in [ReadbackResult::NotApplied, ReadbackResult::Ambiguous] {
+        for latest in [
+            ReadbackResult::NotApplied,
+            ReadbackResult::Ambiguous,
+            ReadbackResult::Applied,
+            ReadbackResult::Partial,
+        ] {
+            let db = TestDb::new();
+            let mut journal = Journal::open(db.path()).unwrap();
+            journal.prepare(&intent(), 100).unwrap();
+            let lease = journal.claim("op-01", "executor-a", 101, 1_000).unwrap();
+            let attempt = journal.begin_attempt(&lease, 102).unwrap();
+            journal
+                .record_response(
+                    &lease,
+                    attempt,
+                    DispatchResponse::Unknown,
+                    103,
+                    &"d".repeat(64),
+                )
+                .unwrap();
+            journal
+                .record_readback(&lease, attempt, first, 104, &"e".repeat(64))
+                .unwrap();
+            let current = journal
+                .record_readback(&lease, attempt, latest, 105, &"f".repeat(64))
+                .unwrap();
+            let history = journal.history("op-01").unwrap();
+            let replay = journal
+                .record_readback(&lease, attempt, first, 106, &"e".repeat(64))
+                .unwrap();
+            assert_eq!(replay, current, "first={first:?}, latest={latest:?}");
+            assert_eq!(journal.history("op-01").unwrap(), history);
+            match latest {
+                ReadbackResult::NotApplied => {
+                    assert_eq!(journal.begin_attempt(&lease, 107).unwrap(), 2)
+                }
+                ReadbackResult::Ambiguous => assert!(matches!(
+                    journal.begin_attempt(&lease, 107),
+                    Err(JournalError::OutcomeRequiresReadback)
+                )),
+                _ => assert!(matches!(
+                    journal.begin_attempt(&lease, 107),
+                    Err(JournalError::TerminalState)
+                )),
+            }
+        }
+    }
+}
+
+#[test]
+fn historical_replays_do_not_consume_per_attempt_readback_budget() {
+    let db = TestDb::new();
+    let mut journal = Journal::open(db.path()).unwrap();
+    journal.prepare(&intent(), 100).unwrap();
+    let lease = journal.claim("op-01", "executor-a", 101, 1_000).unwrap();
+    let attempt = journal.begin_attempt(&lease, 102).unwrap();
+    // A response digest alone must not make the first readback a duplicate.
+    let first_evidence = "d".repeat(64);
+    journal
+        .record_response(
+            &lease,
+            attempt,
+            DispatchResponse::Unknown,
+            103,
+            &first_evidence,
+        )
+        .unwrap();
+    let first = journal
+        .record_readback(
+            &lease,
+            attempt,
+            ReadbackResult::NotApplied,
+            104,
+            &first_evidence,
+        )
+        .unwrap();
+    assert_eq!(first.state, OperationState::NotAppliedObserved);
+    journal
+        .record_readback(
+            &lease,
+            attempt,
+            ReadbackResult::Ambiguous,
+            105,
+            &"e".repeat(64),
+        )
+        .unwrap();
+    let history = journal.history("op-01").unwrap();
+    journal
+        .record_readback(
+            &lease,
+            attempt,
+            ReadbackResult::NotApplied,
+            106,
+            &first_evidence,
+        )
+        .unwrap();
+    assert_eq!(journal.history("op-01").unwrap(), history);
+    journal
+        .record_readback(
+            &lease,
+            attempt,
+            ReadbackResult::Ambiguous,
+            107,
+            &"f".repeat(64),
+        )
+        .unwrap();
+    journal
+        .record_readback(
+            &lease,
+            attempt,
+            ReadbackResult::Ambiguous,
+            108,
+            &"0".repeat(64),
+        )
+        .unwrap();
+    let current = journal.get("op-01").unwrap().unwrap();
+    let history = journal.history("op-01").unwrap();
+    assert_eq!(
+        journal
+            .record_readback(
+                &lease,
+                attempt,
+                ReadbackResult::NotApplied,
+                109,
+                &first_evidence
+            )
+            .unwrap(),
+        current
+    );
+    assert_eq!(journal.history("op-01").unwrap(), history);
+    assert!(matches!(
+        journal.record_readback(
+            &lease,
+            attempt,
+            ReadbackResult::Ambiguous,
+            110,
+            &"1".repeat(64)
+        ),
+        Err(JournalError::LimitExceeded)
+    ));
+    assert_eq!(journal.history("op-01").unwrap(), history);
+}
+
+#[test]
+fn known_readback_digest_is_scoped_to_operation_attempt_and_current_lease() {
+    let db = TestDb::new();
+    let mut journal = Journal::open(db.path()).unwrap();
+    journal.prepare(&intent(), 100).unwrap();
+    let lease = journal.claim("op-01", "executor-a", 101, 1_000).unwrap();
+    let first = journal.begin_attempt(&lease, 102).unwrap();
+    journal
+        .record_response(
+            &lease,
+            first,
+            DispatchResponse::Unknown,
+            103,
+            &"d".repeat(64),
+        )
+        .unwrap();
+    journal
+        .record_readback(
+            &lease,
+            first,
+            ReadbackResult::NotApplied,
+            104,
+            &"e".repeat(64),
+        )
+        .unwrap();
+    let second = journal.begin_attempt(&lease, 105).unwrap();
+    journal
+        .record_response(
+            &lease,
+            second,
+            DispatchResponse::Unknown,
+            106,
+            &"d".repeat(64),
+        )
+        .unwrap();
+    let current = journal
+        .record_readback(
+            &lease,
+            second,
+            ReadbackResult::NotApplied,
+            107,
+            &"e".repeat(64),
+        )
+        .unwrap();
+    assert_eq!(current.state, OperationState::NotAppliedObserved);
+    assert_eq!(
+        journal
+            .history("op-01")
+            .unwrap()
+            .iter()
+            .filter(|e| e.kind == JournalEventKind::ReadbackRecorded)
+            .count(),
+        2
+    );
+    let other = OperationIntentV1::new(
+        "op-02",
+        "req-02",
+        "project-02",
+        "a".repeat(64),
+        "b".repeat(64),
+    )
+    .unwrap();
+    journal.prepare(&other, 108).unwrap();
+    let other_lease = journal.claim("op-02", "executor-a", 109, 1_000).unwrap();
+    let other_attempt = journal.begin_attempt(&other_lease, 110).unwrap();
+    journal
+        .record_response(
+            &other_lease,
+            other_attempt,
+            DispatchResponse::Unknown,
+            111,
+            &"d".repeat(64),
+        )
+        .unwrap();
+    let observed = journal
+        .record_readback(
+            &other_lease,
+            other_attempt,
+            ReadbackResult::NotApplied,
+            112,
+            &"e".repeat(64),
+        )
+        .unwrap();
+    assert_eq!(observed.state, OperationState::NotAppliedObserved);
+    let renewed = journal.claim("op-01", "executor-b", 2_000, 1_000).unwrap();
+    let history = journal.history("op-01").unwrap();
+    assert!(matches!(
+        journal.record_readback(
+            &lease,
+            second,
+            ReadbackResult::NotApplied,
+            2_001,
+            &"e".repeat(64)
+        ),
+        Err(JournalError::StaleFence)
+    ));
+    assert!(matches!(
+        journal.record_readback(
+            &renewed,
+            first,
+            ReadbackResult::NotApplied,
+            2_002,
+            &"e".repeat(64)
+        ),
+        Err(JournalError::StaleAttempt)
+    ));
+    assert_eq!(journal.history("op-01").unwrap(), history);
+}

@@ -48,7 +48,14 @@ Every mutation checks the current executor ID, fence epoch and unexpired lease.
 The current attempt number is also checked before accepting a response or
 readback, including an otherwise identical duplicate receipt. An old owner or a
 late receipt for an earlier attempt cannot overwrite a newer state. Repeating an
-identical receipt for the current attempt is idempotent.
+identical receipt for the current attempt is idempotent. A recorded readback digest
+is consumed evidence within that operation/attempt, even when a newer receipt
+intervenes: replay returns the current snapshot without changing state/history
+or spending the readback budget. Success is not acceptance of a newly supplied
+result argument. V1 history stores hashes but not old result subtypes; the
+journal cannot verify historical subtype equality. Fresh observation context
+requires distinct evidence, not a changed caller timestamp alone. See the
+[historical-receipt correction](../validation/m3-02-historical-readback.md).
 The first readback remains a distinct receipt from a host response, even when
 both map to `outcome_unknown` and carry the same evidence digest. It records a
 readback event and consumes one readback; only an already-recorded readback is

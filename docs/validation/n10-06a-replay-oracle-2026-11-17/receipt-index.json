@@ -109,5 +109,22 @@
       "uncompressed_sha256": "7c2d47a96db0eff056abc25d7438d1f4dc791461fd3fd9369bcdcf7ab44d27a2",
       "readable_view": "trailing spaces removed only"
     }
+  },
+  "red_interpretation": {
+    "failed_subtests": 18,
+    "false_successful_exit_cases": 16,
+    "reference_cases_already_rejected_by_v1_with_different_error": 2,
+    "independent_review_correction": "do not equate every failing regression assertion with a prior false pass"
+  },
+  "independent_review": {
+    "kind": "fresh_separately_prompted_AI_technical_review",
+    "file": "independent-ai-review.txt",
+    "sha256": "0bad2df13747260c75977768bcadb4f1ed73cd76bd5f839f2dce3a245dc5628f",
+    "remaining_blockers": 0,
+    "human_g2_acceptance": null,
+    "corrected_findings": [
+      "16originalfalsepassesversus2alreadyV1rejected cases",
+      "preview-only JSON bool/float alias falsepass"
+    ]
   }
 }

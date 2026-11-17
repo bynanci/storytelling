@@ -1,0 +1,36 @@
+本回應是合成 AI 商業文案查核角色的實際輸出，並非真人訪談、簽核或同意紀錄；`human_participants=0`。素材中的「3 個自願參與團隊」是虛構範例文字，不代表本次有真人參與。模型識別、溫度、隨機種子、真人同意、作者採用及發布授權等未提供的設定或證據均為 unavailable。
+
+本次對指定二進位執行 10 次 `audit-copy-claims COPY LEDGER --report-v2`，未發現違反所讀 CLI 契約的功能錯誤。9 次正常評估退出碼為 0；完全重複引用的輸入以退出碼 1 拒絕，錯誤為 `copy.duplicate_evidence_reference`，路徑為 `$.claims[0].evidence_refs[1]`。10 次 CLI 的 stderr 均為空。這是有界的功能稽核，不代表所有行為均已驗證。
+
+`docs/CONTRACTS.md:43` 明訂 `reference_status` 只描述來源 ID 與版本，不判斷語意支持。因此 `ok:true`、退出碼 0、`current` 或空的 `reference_attention_claim_ids` 都不能作為事實成立、作者採用或目前可發布的證據。所有讀到的 factual claim 報告都保留 `support_status:human_review_required`；本合成判讀不能冒充該人工審閱。
+
+| 內容 | 引用有效性 | 本角色對措辭支持的合成判讀 | 目前授權證據 |
+| --- | --- | --- | --- |
+| 試行組平均整理時間 10→8 分鐘 | 原 ledger 的 PILOT_LOG@1 為 current | 原範例文字支持有限試行觀察；應保留 3 個團隊、一週、同一整理任務的範圍，且不外推到整體工作效率 | unavailable |
+| 所有團隊效率都提升 20% | 原 ledger 的 PILOT_LOG@1 同樣為 current | 不受支持；來源明示樣本不涵蓋所有團隊，也未測量整體工作效率。時間變化不能直接變成這項普遍效率宣稱 | unavailable |
+| 理序盒提供工作紀錄分類清單 | PRODUCT@1 為 current | 與所提供的虛構產品資料相符；未外部驗證產品 | unavailable |
+| 把紀錄理順，讓討論開始。 | TAGLINE@1 為 current，kind 為 creative_proposal，support_status 為 not_applicable | 是創作提議，未被驗成事實或成效保證 | ledger 只有 assistant_suggestion；未見作者採用或發布授權證據，故 unavailable |
+| 試行申請 CTA | 無引用，reference_status 與 support_status 均為 not_applicable | 可作創作草稿判讀，報告未核驗實際試行是否可申請 | unavailable |
+
+缺少引用的首項 claim 顯示 `missing`；引用不存在的 MISSING_LOG@1 顯示 `dangling`，來源文字及版本資訊為 null。這兩種結果都保留在成功產生的稽核報告中，不能只依退出碼篩掉問題。
+
+修訂 ledger 將 PILOT_LOG 推進到第 2 版，當前範例數字為 10→9 分鐘。舊文案仍引第 1 版時，兩項 PILOT_LOG claim 都顯示 `revised`，報告並列舊版的 8 分鐘與新版的 9 分鐘。原「10→8」已不足以陳述目前紀錄；若要寫目前資料，草稿應改為「虛構試行紀錄：3 個團隊試用一週；同一整理任務的試行組平均整理時間由 10 分鐘降到 9 分鐘。此觀察不涵蓋所有團隊，也未測量整體工作效率。」並引 PILOT_LOG@2。這只是合成修稿提案，不是採用或發布決定。
+
+有界對抗測試只修改首項 claim，其餘輸入欄位保留不變：
+
+| 案例 | 實際結果 | 解讀 |
+| --- | --- | --- |
+| 020：只將舊「8 分鐘」引用改為 @2 | current；human_review_required | 引用更新不能替代措辭查核；current_source_text 仍寫 9 分鐘 |
+| 021：明說「修訂前第 1 版曾記載 10→8」並引 @1 | revised；仍保留舊版文字 | 歷史敘述是否恰當屬語意判讀；舊版本狀態不因措辭改寫而消失 |
+| 022：重複完全相同的 PILOT_LOG@1 引用 | 退出碼 1；copy.duplicate_evidence_reference | 未把重複引用當作更多證據；保留了實際拒絕輸出 |
+| 023：PILOT_LOG 改為 pilot_log | dangling；所引來源資訊為 null | ID 大小寫沒有被錯誤合併 |
+| 024：現有 ID 引不存在的 @3 | unknown_revision；cited_source_text 為 null；current_revision 為 2 | 未捏造第 3 版；仍提供目前第 2 版文字供檢視 |
+| 025：「9 分鐘」及引用一起改為 @2 | current；human_review_required | 即使本角色認為措辭與範例相符，CLI 仍沒有代做人類語意審閱 |
+
+最小的範圍限制展示是案例 020：從原 copy 僅改 `$.claims[0].evidence_refs[0].revision` 為 2，配修訂 ledger 執行。所得 claim 仍寫 8 分鐘，引用卻為 current。這符合「只檢查 ID／版本」契約，不能誤報為功能缺陷；它清楚顯示消費端必須同看 support_status、措辭和所引文字。所讀契約的可重現缺陷數為 0；沒有提出無證據的缺陷，也沒有成效評分。
+
+稽核基準為 91bf8f80139f59c0406340eb3565d296bd562931；實際使用 `/tmp/storytelling-n10-rehearsal-20261117-target/release/storytelling`，SHA-256 為 161bfeb24c7072392cf6c6fe9b61c851486fa6341416e51b1f74521e46d9735d。所有測試輸入均使用本目錄 inputs 內的副本或由副本產生的合成變體，未修改 repository、建置 Cargo、讀取 expected 輸出或測試程式、呼叫網路／模型／Host，亦未建立子代理。
+
+原始輸入與雜湊見 `input-manifest.json` 及 `artifacts/file-hashes.json`；每次實際 CLI argv、工作目錄、退出碼、UTC 捕捉時間及原始 stdout／stderr 位元組均在 `trace/010-*` 到 `trace/025-*`；`artifacts/audit-results.json` 是由這些原始結果整理出的摘要。初次檔案探索的工具只提供合併輸出且原命令將 rg stderr 導向 /dev/null，無法事後還原獨立串流；此限制保留於 `trace/000-discovery.json`，不涉及上述 10 次 CLI 的完整分流紀錄。
+
+逐字回應檔案：[response.zh-TW.md](/tmp/storytelling-sim-20261117/claims-run/response.zh-TW.md)。

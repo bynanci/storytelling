@@ -1,0 +1,28 @@
+# Independent synthetic technical capture audit
+
+Repository: `/workspace/storytelling-scenario-validation-20261117`
+Base inspected: `91bf8f80139f59c0406340eb3565d296bd562931` (merged PR #145).
+Scope: read-only technical review by one additional AI agent; zero humans, no ethics, G2 or maintainer acceptance. No source edits, commits, Rust builds, network, Host or model calls.
+
+## Finding: consistent incorrect canonical starts receive a passed receipt and pass all capture tests
+
+Severity: P2, instrumentation correctness/regression-detection gap. This does not claim that the supplied unmodified native executable currently computes the wrong range.
+
+`ACCEPTANCE.md` requires preservation of canonical exact ranges, and the published case table promises decimal 2.5–4.5 and CFR [75,135) @30/1 both yield [5/2,9/2). `replay.py` 135–140 checks scope and relational preview/emit/V1 parity, but has no expected canonical-range assertion. `test_replay.py` 43–48 compares decimal/frame coverage and asserts selected end times, never asserting the expected 5/2 start.
+
+The saved `regressed-cli.py` is a synthetic regression probe. It delegates every command to `/tmp/storytelling-n10-rehearsal-20261117-target/release/storytelling`, preserving actual validation/exit/stderr behavior, and changes only successful JSON rational start 5/2 to 0/1. No repository fixture or binary is modified. This is a regression-oracle test, not a demand to confine an untrusted executable.
+
+Observed:
+
+- `replay.py --cli /tmp/storytelling-sim-20261117/capture-audit/regressed-cli.py --source-commit 91bf8f80139f59c0406340eb3565d296bd562931 --output /tmp/storytelling-sim-20261117/capture-audit/regressed-machine-receipt.json` exits zero with status passed, 8 observed cases and 37 calls.
+- Captured `decimal-25`, `frames-30`, and `declaration-complete` start at 0/1 rather than expected 5/2.
+- `python3 examples/evaluation/n10-06a-rehearsal/test_replay.py /tmp/storytelling-sim-20261117/capture-audit/regressed-cli.py -v` passes all four tests.
+- The actual V1 validator accepts the altered start because [0,9/2) is a legal declared range; parity cannot establish the conversion's correctness.
+
+Small fix direction: make fixed case expectations explicit and assert each expected canonical range in the replay's pass predicate; at minimum pin decimal-25 and frames-30 start to 5/2 rather than only asserting their mutual equality. Preserve existing relational/raw-byte assertions.
+
+## Checked limits
+
+The supplied unmodified native executable passed all four tests. The primary committed receipt's exact UTF-8 input hashes and every stdout/stderr base64 hash verify. Counts are already fixed: `case_count` records attempted rows and `planned_case_count` stays eight; this audit does not reopen that corrected defect. CLI stderr/nonzero/timeout failures are recorded before assertion failure by code inspection; timeout was not dynamically exercised in this bounded review. Exclusive `xb` receipt creation refuses existing paths; the wrong-executable failure and invalid-source cases pass existing tests. Source/build provenance is explicitly unverified by the replay and separately disclosed in README/report. The README specifies Windows `.exe` and an actual Python command; this Linux audit supplies no Windows execution evidence. No hostile-executable confinement, media adapter, human, Host, ethics or G2 claim follows.
+
+Artifacts: `regressed-cli.py`, `regressed-machine-receipt.json`, `regressed-replay.stdout`, `regressed-replay.stderr`, `regressed-tests.stdout`, `regressed-tests.stderr`, `baseline-observations.txt`.

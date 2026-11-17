@@ -13,10 +13,10 @@ Base：`91bf8f80139f59c0406340eb3565d296bd562931`。本次修正合成評估工�
 
 ## 實際 RED 與 GREEN
 
-最終測試 shim 在 Python 子程序中呼叫真正的原生 CLI invocation，再對成功 helper 輸出與其記錄的原始位元組注入單一、一致的 JSON 故障，並原樣執行 `main()`。preview／emit／validation 同步變更，故障不能只靠互相比對攔下。正式程式沒有注入 hook；這不是不可信執行檔的隔離測試。
+最終測試 shim 在 Python 子程序中呼叫真正的原生 CLI invocation，再對成功 helper 輸出與其記錄的原始位元組注入單一、一致的 JSON 故障，並原樣執行 `main()`。preview／emit／validation 同步變更；原互相比對漏掉端點／原因故障。兩個參照變動則原已由後續 V1 驗證器拒絕。正式程式沒有注入 hook；這不是不可信執行檔的隔離測試。
 
 - [原始基線](n10-06a-replay-oracle-2026-11-17/baseline-tests.log)：明確傳入原生 binary，原有四項全部通過。
-- [RED](n10-06a-replay-oracle-2026-11-17/oracle-red-portable.log)：最終測試對未修改的 base 重播執行七個方法；三個回歸方法內共有 18 個預期的 subtest 失敗，原有四項仍通過。失敗均實際觀察到錯誤的成功退出，不是崩潰或測試設置錯誤。
+- [RED](n10-06a-replay-oracle-2026-11-17/oracle-red-portable.log)：最終測試對未修改的 base 重播執行七個方法；三個回歸方法內共有 18 個預期的 subtest 失敗，原有四項仍通過。其中 16 個端點／原因故障觀察到錯誤成功退出；兩個參照案例原已在後續 V1 順序檢查以 `unexpected_exit` 失敗，新測試因其診斷不同而失敗，修正後要求更早的 `wrong_canonical_declarations`。後兩者是提早檢查，不是額外兩個原本誤通過案例。
 - [GREEN](n10-06a-replay-oracle-2026-11-17/oracle-final-green.log)：七個方法全過且無跳過，涵蓋 12 個端點、兩個參照與四個 unresolved 原因故障。
 - [正確原生重播](n10-06a-replay-oracle-2026-11-17/native-green.json)：八案／37 次呼叫通過。[修正後的起點故障](n10-06a-replay-oracle-2026-11-17/mutant-rejected.json)：以 `wrong_canonical_declarations` 失敗，保留一個實際嘗試案例及三次呼叫。
 
@@ -38,3 +38,7 @@ python3 scripts/check_repo.py
 PR #145 的圓桌、初次／主要機器收據及 RED／GREEN logs 位元組不變；本次證據另存新目錄。原有 planned／attempted 計數修正維持不變。重用先前 binary 及原宣告建置 source；重播工具仍明示不驗證 source／build 綁定。未執行 Cargo 建置、網路或 Host 呼叫。新本機證據只涵蓋 Linux；可攜 Python shim 隨既有三平台 CI 的明確原生入口執行，但此紀錄沒有新觀察到的 Windows／macOS 結果。
 
 這是 AI 的合成技術審查與故障注入，不是真人參與、作者時間、倫理審查、G2 接受或新研究結果。真人與 Host 觀察數仍為零。作者交接及 #129、媒體、authority、G5 的獨立門檻不變。
+
+## 後續 JSON 型別回歸
+
+獨立 review 重現 preview-only 的 true／1.0 參照版本在未變動的整數 emit 下仍通過，原因是 Python 相等比較會強制同值。[獨立型別收據](n10-06a-replay-types-2026-11-17/receipt-index.json)保留四個實際誤通過：bool／float 參照、bool catalog revision 與數字 readiness。`same_json` 比較排序後的 JSON，保留陣列順序及 bool／int／float 差異、拒絕非有限值；固定 oracle 與所有 JSON parity 都使用它，原始擷取 bytes 不變。最終八方法／22 故障無跳過通過；未設定 discovery 為三通過／五原生跳過。前文七方法／18 故障保留為當時收據，不主張原生轉換器有錯。
