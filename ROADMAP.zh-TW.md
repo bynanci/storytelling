@@ -4,6 +4,8 @@
 
 Storytelling 的第一個跨媒體目標是讓作者能改稿。試想一張活動通知改了日期。作者應能找出受影響的口述稿和海報，也能保留單一版本的構圖選擇。[設計依據與使用情境](docs/WHY_STORYTELLING.zh-TW.md)
 
+最新產品化狀態見[2026-11-17 驗證交付與待完成門檻](docs/validation/continuation-2026-11-17.zh-TW.md) · [English](docs/validation/continuation-2026-11-17.md)。#142／#143 是有限範圍工程交付；Open child issues 仍各自保留 G2、真人、宿主、研究及 G5 條件。
+
 <a id="product-objective"></a>
 
 ## 現有功能

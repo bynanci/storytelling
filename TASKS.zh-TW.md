@@ -88,6 +88,8 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 
 ## 影片工程任務
 
+最新 Issue 盤點與交接：[2026-11-17 狀態紀錄](docs/validation/continuation-2026-11-17.zh-TW.md) · [English](docs/validation/continuation-2026-11-17.md)。其中記錄 PR #142／#143 合併後結果、核對時零個 Open PR／十六個 Open Issue，以及 #103–#115、#121、#122、#129 各自恢復條件。
+
 | 工作 | 狀態與下一步 |
 | --- | --- |
 | M0、M1、M2 | 基礎、限定格式的影片交接及特定範圍的規劃已採納。更多編輯器、完整求解器與人工驗收另列。 |

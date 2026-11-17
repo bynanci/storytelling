@@ -6,6 +6,8 @@ English · [繁體中文](ROADMAP.zh-TW.md)
 
 When a workshop changes its date, an author needs to find every draft that mentions it. The poster layout can stay the same. This example guides the first cross-media milestones. See [Why Storytelling?](docs/WHY_STORYTELLING.md) for the research and author scenarios.
 
+Latest productization status: [2026-11-17 verified continuation and remaining gates](docs/validation/continuation-2026-11-17.md) · [繁體中文](docs/validation/continuation-2026-11-17.zh-TW.md). Merged #142/#143 are bounded engineering deliveries; open child issues retain their own G2, human, host, research and G5 conditions.
+
 <a name="現有功能"></a>
 
 ## Product objective
