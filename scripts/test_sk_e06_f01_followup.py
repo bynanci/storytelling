@@ -3,6 +3,7 @@
 """Offline integrity tests for the versioned SK-E06-F01 follow-up packet."""
 import json
 import shutil
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -151,6 +152,33 @@ class FollowupTests(unittest.TestCase):
         with self.assertRaises(F01FollowupError):
             validate_followup(self.followup_root, self.repo_root)
 
+
+    def test_cli_reports_integrity_only_and_rejects_unknown_arguments(self):
+        valid = subprocess.run(
+            [sys.executable, str(ROOT / "scripts/sk_e06_f01_followup.py")],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(valid.returncode, 0, valid.stderr)
+        self.assertEqual(valid.stderr, "")
+        summary = json.loads(valid.stdout)
+        self.assertEqual(summary["scope"], "followup_design_integrity_only")
+        self.assertFalse(summary["can_dispatch"])
+        self.assertEqual(summary["maintainer_decision"], "pending")
+
+        invalid = subprocess.run(
+            [sys.executable, str(ROOT / "scripts/sk_e06_f01_followup.py"), "--unknown"],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(invalid.returncode, 2)
+        self.assertEqual(invalid.stderr, "")
+        self.assertEqual(
+            json.loads(invalid.stdout)["error"]["code"],
+            "sk_e06.f01_followup_invalid",
+        )
 
 if __name__ == "__main__":
     unittest.main()

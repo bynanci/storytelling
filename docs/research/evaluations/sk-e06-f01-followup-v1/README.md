@@ -44,6 +44,6 @@ The checker validates strict JSON, bilingual coverage, case-specific source maps
 
 ## Test-first receipt and rollback
 
-Base `26602d37d849d06ceac1d4a09f7ca19d2949c990`. Tests and workflow entry were committed first in `d1f093f9d64ac1006adb40d34e95b745fb930ad4`. On 2026-11-19, macOS failed at the new test step with `ModuleNotFoundError: No module named 'sk_e06_f01_followup'` (exit 1); Windows and Linux were cancelled by fail-fast. This is the pre-implementation RED only. Final-head GREEN is pending.
+Base `26602d37d849d06ceac1d4a09f7ca19d2949c990`. Tests and workflow entry were committed first in `d1f093f9d64ac1006adb40d34e95b745fb930ad4`. On 2026-11-19, macOS failed at the new test step with `ModuleNotFoundError: No module named 'sk_e06_f01_followup'` (exit 1); Windows and Linux were cancelled by fail-fast. This is the pre-implementation RED only. The first implementation run then found two test-harness defects: its temporary checkout omitted the pinned review files, and one assertion treated a source-map object as a list. Both were corrected in commit `9620e09b093a8c951232668e0491d5b6c2457e1e`. Exact-head GREEN and required CI are tracked on PR #153; earlier cancelled or failed matrix runs are not counted as acceptance.
 
 Rollback removes this supplement's packet, checker/tests, workflow entry/path, and bilingual tracker text. Original cases, answer, reviews and R1 data remain independently pinned and unchanged.

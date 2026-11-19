@@ -44,6 +44,6 @@ python3 scripts/test_sk_e06_f01_followup.py
 
 ## 測試先行與回復
 
-基準 `26602d37d849d06ceac1d4a09f7ca19d2949c990`。先以 `d1f093f9d64ac1006adb40d34e95b745fb930ad4` 提交測試與 workflow 入口。2026-11-19 macOS 在新測試步驟觀察到 `ModuleNotFoundError: No module named 'sk_e06_f01_followup'`（exit 1）；Windows 與 Linux 因 fail-fast 取消。這是實作前 RED，不是語意結果。最終 head GREEN 待驗證。
+基準 `26602d37d849d06ceac1d4a09f7ca19d2949c990`。先以 `d1f093f9d64ac1006adb40d34e95b745fb930ad4` 提交測試與 workflow 入口。2026-11-19 macOS 在新測試步驟觀察到 `ModuleNotFoundError: No module named 'sk_e06_f01_followup'`（exit 1）；Windows 與 Linux 因 fail-fast 取消。這是實作前 RED，不是語意結果。第一次實作後執行另發現兩個測試夾具問題：暫存 checkout 未複製已固定的評閱檔，且一項斷言把來源對照物件當成陣列。兩者已在提交 `9620e09b093a8c951232668e0491d5b6c2457e1e` 修正。最終 head GREEN 與必要 CI 追蹤於 PR #153；先前取消或失敗的 matrix run 不計入驗收。
 
 回復僅移除本補充資料、檢查器／測試、workflow 入口與路徑，以及雙語追蹤文字。原案例、回答、評閱及 R1 資料維持不變。
