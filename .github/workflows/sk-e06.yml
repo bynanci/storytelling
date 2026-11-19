@@ -13,6 +13,9 @@ on:
       - 'scripts/sk_e06_layout.py'
       - 'scripts/test_sk_e06_layout.py'
       - 'docs/research/evaluations/sk-e06-runs-2026-11-17/future-run-*'
+      - 'docs/research/evaluations/sk-e06-f01-followup-v1/**'
+      - 'scripts/sk_e06_f01_followup.py'
+      - 'scripts/test_sk_e06_f01_followup.py'
       - 'docs/validation/sk-e06-layout-preflight.md'
       - 'docs/validation/sk-e06-layout-preflight/**'
   push:
@@ -28,6 +31,9 @@ on:
       - 'scripts/sk_e06_layout.py'
       - 'scripts/test_sk_e06_layout.py'
       - 'docs/research/evaluations/sk-e06-runs-2026-11-17/future-run-*'
+      - 'docs/research/evaluations/sk-e06-f01-followup-v1/**'
+      - 'scripts/sk_e06_f01_followup.py'
+      - 'scripts/test_sk_e06_f01_followup.py'
       - 'docs/validation/sk-e06-layout-preflight.md'
       - 'docs/validation/sk-e06-layout-preflight/**'
 
@@ -49,3 +55,5 @@ jobs:
         run: python scripts/test_sk_e06_packet.py
       - name: Check prospective Skill layout and rejection regressions (no dispatch)
         run: python scripts/test_sk_e06_layout.py
+      - name: Check F01 adjudication and successor-case integrity (no dispatch)
+        run: python scripts/test_sk_e06_f01_followup.py
