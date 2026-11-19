@@ -98,6 +98,7 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 | [M3-05／#104](https://github.com/bynanci/storytelling/issues/104) | 受阻於 #103 明確接受；提案限單次派送，後續為 #105 復原及 #106 宿主驗收。 |
 | M4 | 唯讀 Rust SDK 已接受；#108 可進行自己的 transport G2，#109 可規範唯讀 UI。正式單一寫入者／execution／recovery 仍需 #103–#106。 |
 | [M4-01／#107](https://github.com/bynanci/storytelling/issues/107) · M4-R01 | **唯讀範圍已驗收／結案。**[PR #149](https://github.com/bynanci/storytelling/pull/149) 以 `9d15382` 合併，最終 head 與合併後各九項 CI 通過。八個純入口、完整原錯誤、opaque handle 與獨立 consumer 均已驗證；[工程驗收／剩餘門檻](docs/validation/sdk-acceptance-2026-11-17.zh-TW.md)。#108 可進行自己的唯讀 transport G2；#103–#106 的 mutation／Host／authority 與 G5 各自保留。 |
+| [M4-02／#108](https://github.com/bynanci/storytelling/issues/108) · M4-R02 | [唯讀 transport G2 候選](docs/proposals/m4-02-readonly-transport/README.zh-TW.md)：工程建議 Node／單次程序原始 bytes 框架、自有 views、三份提案 schema 與 64 項待執行案例。[決定](docs/validation/m4-02-transport-g2.md)待核准；沒有已接受 transport、client、新 CLI 或 runtime GREEN。G3 與實作驗收框仍受阻於精確範圍採納。 |
 | M5、v1.0 | 規劃第二個編輯器、跨平台發行與獨立使用者評估。穩定版須通過相容性、遷移與復原驗收。 |
 | [M5-02／#112](https://github.com/bynanci/storytelling/issues/112) | 受阻於 #109、#111 及已接受的 M3 執行／復原流程。[前瞻式 v1 規程](docs/validation/m5-02-rough-cut-beta-v1.zh-TW.md)與匿名空白表單僅完成設計；尚未招募或開始 Beta。 |
 

@@ -82,5 +82,10 @@ tests/fixtures/openfilm/finite-v1/video-trim.json -text
 # Acceptance snapshots/audits/raw streams are immutable evidence bytes.
 /docs/validation/sdk-acceptance-2026-11-17/** -text -whitespace
 
+# Proposed transport examples hash exact bytes; raw frames never undergo EOL conversion.
+/docs/proposals/m4-02-readonly-transport/** text eol=lf
+/docs/proposals/m4-02-readonly-transport/examples/*.bin -text
+/docs/validation/m4-02-transport-g2/** -text -whitespace
+
 # Preserve the observed offline layout-checker RED/GREEN receipt bytes.
 /docs/validation/sk-e06-layout-preflight/** -text -whitespace
