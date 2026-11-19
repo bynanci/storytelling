@@ -380,7 +380,7 @@ M0、M1-01 與限定範圍的 M2-01 稽核只支援前兩項。
 
 **SK-E04／#121 輸入邊界**追溯至 `scripts/test_sk_e04_order_analysis.py` 的真實 API／CLI 回歸及[驗證紀錄](validation/sk-e04-input-boundary.zh-TW.md)：巢狀重複欄位、非有限常數、無效 UTF-8／辨識欄位型別，以及全紀錄 artifact ID／雜湊一致性。相同 ID／相同雜湊可重複；合法 v1／v2 成功報告位元組維持一致。僅驗證宣告，不認證證據儲存區位元組或研究資格；#121／#122 門檻維持。
 
-**SK-E06／#115** 將 W1／W3／W4／W5／W6 與 ST-R01／ST-R02／ST-R03／ST-R07–ST-R14 對應到五種[對抗參考案例與空白手動表單](research/evaluations/sk-e06/README.zh-TW.md)。`scripts/test_sk_e06_packet.py` 核對 fixture 身分、中英材料、來源 revision、參考標籤與字面條件；它不提供語意遵循或效益證據，不新增 Rust／CLI 需求或已接受 wire format。[五份實際合成文字回答](research/evaluations/sk-e06-runs-2026-11-17/README.zh-TW.md)保存原文、凍結 Skill／input 雜湊、兩位 AI 逐條判準評閱及操作偏差；變體範圍判準仍有爭議。品質、效益、#121／#122 與真人／Host 門檻維持未滿足。
+**SK-E06／#115** 將 W1／W3／W4／W5／W6 與 ST-R01／ST-R02／ST-R03／ST-R07–ST-R14 對應到五種[對抗參考案例與空白手動表單](research/evaluations/sk-e06/README.zh-TW.md)。`scripts/test_sk_e06_packet.py` 檢查原資料包；`scripts/sk_e06_f01_followup.py` 與 `scripts/test_sk_e06_f01_followup.py` 只驗證追加的 F01 案例資料、中英逐稿來源對照、strict JSON 與原始證據／評閱 blob 雜湊，均不評分模型回答。[版本化 F01 建議](research/evaluations/sk-e06-f01-followup-v1/README.zh-TW.md)保留 B-only 字面偏離，同時將判準適用性與維護者裁定留待處理；後續案例尚未執行。沒有修改 Skill 規則、Rust／CLI 或 R1。真人／Host、#121／#122、品質及效益門檻各自獨立。
 
 **SK-E06-F02／#115 layout 維護**將來源／快照重用與工具證據分離（ST-R01／ST-R10／ST-R11／ST-R14）對照至[離線預檢紀錄](validation/sk-e06-layout-preflight.md)、scripts/sk_e06_layout.py 與 27 項正常入口／反例測試。既有前瞻 v2 記錄、ZIP 與原始五份回答位元組不變。有上限的解壓長度／CRC、完整宣告成員／雜湊、安全讀取及串流行內連結 multiset 僅建立快照一致性；dispatch／來源 commit 成員資格／真人／Host 驗收維持 false 或各自待決。
 

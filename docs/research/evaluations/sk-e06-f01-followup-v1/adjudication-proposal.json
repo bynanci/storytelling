@@ -1,0 +1,133 @@
+{
+  "schema_version": "ske06-f01-adjudication-proposal/v1",
+  "proposal_id": "SK-E06-F01-ADJUDICATION-2026-11-19",
+  "record_kind": "append_only_adjudication_proposal_not_decision",
+  "base_commit": "26602d37d849d06ceac1d4a09f7ca19d2949c990",
+  "status": "proposal_pending_maintainer_decision",
+  "maintainer_disposition": null,
+  "original_evidence": [
+    {
+      "path": "docs/research/evaluations/sk-e06/cases/variant_scope.json",
+      "sha256": "7332ebbb05fc73975bdb8852779fdb950e28a1a34322fbebbc6302cd40e15970",
+      "git_blob_sha1": "862e94ff2349e29d87b24e2c67994711083ebe6e"
+    },
+    {
+      "path": "docs/research/evaluations/sk-e06-runs-2026-11-17/inputs/variant_scope.json",
+      "sha256": "c4bb144346c9e6946b450cf5d70a656e0e3edc7212d63bdc31d41a1e599bd735",
+      "git_blob_sha1": "534dd7e47dad4d7295825eb10880d22801284168"
+    },
+    {
+      "path": "docs/research/evaluations/sk-e06-runs-2026-11-17/responses/variant_scope.txt",
+      "sha256": "8eeb1ed3815008c146db2890a530a947cdec875ab239cd0a9c61188cd32390ab",
+      "git_blob_sha1": "e646497dd64575899d41f202b4875771137d9c0e"
+    }
+  ],
+  "preserved_review_records": [
+    {
+      "path": "docs/research/evaluations/sk-e06-runs-2026-11-17/records/variant_scope.json",
+      "git_blob_sha1": "934983ed545adc36fe0bc1b424f160937f8a3e00"
+    },
+    {
+      "path": "docs/research/evaluations/sk-e06-runs-2026-11-17/facilitator-review.json",
+      "git_blob_sha1": "169ca3ad535ed721d5f28810ad9b979f6b401081"
+    },
+    {
+      "path": "docs/research/evaluations/sk-e06-runs-2026-11-17/independent-review.json",
+      "git_blob_sha1": "bfbb090d0808710336d34412c8dcc64cb849c632"
+    },
+    {
+      "path": "docs/research/evaluations/sk-e06-runs-2026-11-17/capture-seal.json",
+      "git_blob_sha1": "11b2e0d158363687b3a5305622a8be8d7e52bae0"
+    }
+  ],
+  "issue_context": {
+    "issue": 115,
+    "previous_proposal_comment": "https://github.com/bynanci/storytelling/issues/115#issuecomment-6949453847",
+    "latest_reconciliation_comment": "https://github.com/bynanci/storytelling/issues/115#issuecomment-6951206155"
+  },
+  "original_case_conflict": {
+    "prompt_requests_expansion": true,
+    "source_adopts_imagined_umbrella_for": [
+      "illustration_b"
+    ],
+    "original_invariant": "The imagined red umbrella remains B-only.",
+    "original_failure_condition": "把紅傘寫成現場記憶，或加入 A／口述。",
+    "failure_condition_join": "OR",
+    "observed_literal_key_divergence": "The captured answer places the imagined umbrella in illustration A and the spoken outline, literally satisfying the second disjunct.",
+    "applicability": "disputed because the same frozen prompt explicitly requests the expansion."
+  },
+  "axis_findings": [
+    {
+      "axis": "factual_fidelity",
+      "status": "textual_requirements_met_no_fact_promotion_observed",
+      "finding": "Repair actions remain present; the umbrella is labeled imagined; historical-fact promotion is not observed.",
+      "evidence": [
+        {
+          "path": "docs/research/evaluations/sk-e06-runs-2026-11-17/responses/variant_scope.txt",
+          "excerpt": "三份稿件均保留其想像性質；現有來源不足以把紅傘寫成原已記錄的修門記憶。"
+        }
+      ]
+    },
+    {
+      "axis": "creative_authority",
+      "status": "prompt_requested_expansion_adoption_record_absent",
+      "finding": "The response says it extended the creative element per the prompt and does not claim a new author adoption or confirmation record. The request is not itself a CHOICE-UMBRELLA-02@1 record.",
+      "evidence": [
+        {
+          "path": "docs/research/evaluations/sk-e06-runs-2026-11-17/responses/variant_scope.txt",
+          "excerpt": "本次依要求將這個創作元素延伸至口述與 A；本稿是合成案例的修訂回應，不新增真人採用或確認紀錄。"
+        }
+      ]
+    },
+    {
+      "axis": "variant_scope",
+      "status": "literal_key_divergence_observed_applicability_disputed",
+      "finding": "The B-only invariant and A/oral failure-condition branch are literally violated. Because the frozen prompt explicitly requests expansion, overall applicability remains disputed.",
+      "evidence": [
+        {
+          "path": "docs/research/evaluations/sk-e06/cases/variant_scope.json",
+          "excerpt": "The original key is B-only and joins historical-memory promotion OR addition to A/oral."
+        },
+        {
+          "path": "docs/research/evaluations/sk-e06-runs-2026-11-17/responses/variant_scope.txt",
+          "excerpt": "The answer includes an imagined umbrella in A and the spoken outline."
+        }
+      ]
+    },
+    {
+      "axis": "source_traceability",
+      "status": "source_distinction_present_per_deliverable_rule_not_in_original_key",
+      "finding": "The answer distinguishes OBS-DOOR-01@1 and CHOICE-UMBRELLA-01@1. The original key did not require a source map beside every deliverable; that is not retroactively scored as failure.",
+      "evidence": [
+        {
+          "path": "docs/research/evaluations/sk-e06-runs-2026-11-17/responses/variant_scope.txt",
+          "excerpt": "修訂依據：OBS-DOOR-01 第 1 版…CHOICE-UMBRELLA-01 第 1 版僅記載構圖 B…"
+        }
+      ]
+    }
+  ],
+  "prior_reviewer_summary": {
+    "facilitator_and_independent_ai_reviews_preserved": true,
+    "shared_observations": [
+      "repair actions retained",
+      "B-only literal condition violated",
+      "historical fact promotion not observed",
+      "prompt/key applicability unresolved"
+    ],
+    "human_review": false
+  },
+  "overall_conformance_status": "disputed_no_single_label",
+  "aggregate_score": null,
+  "outcome": {
+    "r1_rescore": false,
+    "original_r1_modified": false,
+    "skill_rule_change": false,
+    "human_efficacy_claim": false
+  },
+  "recommended_maintainer_action": "Append a disposition after reviewing the frozen prompt, key, answer and both AI reviews. Preserve all originals. Decide whether the original key applies despite the explicit expansion request; do not rewrite the historical run.",
+  "limitations": [
+    "This proposal is not the maintainer's decision.",
+    "The successor cases are known purposive cases, not #121 R1 rescoring or the #122 unseen holdout.",
+    "No new model execution, human observation or Host execution was performed."
+  ]
+}

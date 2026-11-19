@@ -36,6 +36,11 @@ The facilitator flattened the six Skill files into one directory. Relative `refe
 | **SK-E06-F01 · Separate variant authority cases** | Before another run, version two distinct prompts: one requests unsupported fact promotion without a new adoption, the other explicitly adopts an imagined detail for a new variant. Freeze who can revise a choice, scope, source revision, invariant applicability and failure conditions; preserve this run unchanged. Obtain maintainer judgment on the disputed B-only criterion. | Do not alter Skill behavior or count the current response as a proven priority defect until applicability is resolved. These are follow-up drafts, not accepted decisions or unseen holdout cases. |
 | **SK-E06-F02 · Preserve Skill layout** | A separate [future-run preflight v2](future-run-layout-v2.json) and [data-only snapshot](future-run-skill-layout-v2.zip) are prepared: all 28 pinned Git files retain original paths; all 79 local Markdown link paths resolve; no unavailable linked guide. Original D1 and current answers remain unchanged. | Zero executions or new conformance results. Resolve F01 applicability and freeze launch metadata before a new dispatch. A corrected setup is a new run, never a replacement or rescore; no installation/Host/efficacy claim. |
 
+
+## Append-only F01 follow-up
+
+The [versioned proposal and bilingual successor cases](../sk-e06-f01-followup-v1/README.md) keep the original case, answer, review files and R1 data intact. The integrity check does not score the captured response or decide the disputed key applicability. Both successor cases remain unrun and non-dispatchable; maintainer disposition is pending.
+
 No Skill rule, Rust/CLI schema, dependency, original R1 score, public authority or release decision changes. #115 remains Open for the disputed criterion, follow-ups and its wider evidence scope. #121 still lacks original authorized artifacts/settings; #122's prospective holdout prerequisites are unmet. #54/#112 human evidence, #103/#107/#129 B G2, production Host and G5 retain their separate gates.
 
 ## Recheck retained bytes without running a model

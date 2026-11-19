@@ -160,6 +160,8 @@ Use [#115](https://github.com/bynanci/storytelling/issues/115) as the umbrella. 
 
 - [x] **SK-E06-F02 offline layout automation.** [Observed RED/GREEN and source review](docs/validation/sk-e06-layout-preflight.md) cover the explicit bounded preflight, 27 layout tests, original 14 packet tests, independent length/CRC checks and linear link scanning. Full Python discovery with an explicit native binary passed 149/149 locally; the three-OS packet workflow includes the new checks. The original packet/answers remain unchanged, can_dispatch stays false, and F01/#121/#122/human/Host gates remain open.
 
+- [ ] **SK-E06-F01 scope adjudication proposal.** [Versioned disposition and two bilingual successor cases](docs/research/evaluations/sk-e06-f01-followup-v1/README.md) preserve original evidence and leave overall applicability disputed; no new dispatch is authorized. Maintainer disposition remains pending; #121/#122 and human/Host gates remain separate.
+
 - [x] **SK-EVAL-R1 arithmetic review and sensitivity diagnostics.** The [append-only report](docs/research/evaluations/r1-robustness/README.md) reproduces all five original numeric artifacts and adds exact case/dimension/batch omissions and explicit assignment-sensitivity bounds. Ten regressions and independent AI math review cover this diagnostic scope; original R1 bytes, conclusions and #121/#122 evidence gates remain unchanged. Hosted checks are recorded on the submitted PR.
 
 ## Narrative handoff maintenance

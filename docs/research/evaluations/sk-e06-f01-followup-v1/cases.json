@@ -1,0 +1,464 @@
+{
+  "schema_version": "ske06-f01-successor-cases/v1",
+  "packet_id": "SK-E06-F01-SUCCESSORS-1",
+  "base_commit": "26602d37d849d06ceac1d4a09f7ca19d2949c990",
+  "record_kind": "versioned_bilingual_case_specifications_not_execution_results",
+  "status": "design_only_pending_maintainer_decision",
+  "decision_dependency": "Maintainer disposition on original F01 criterion applicability",
+  "source_artifacts": [
+    {
+      "path": "docs/research/evaluations/sk-e06/cases/variant_scope.json",
+      "sha256": "7332ebbb05fc73975bdb8852779fdb950e28a1a34322fbebbc6302cd40e15970",
+      "git_blob_sha1": "862e94ff2349e29d87b24e2c67994711083ebe6e"
+    },
+    {
+      "path": "docs/research/evaluations/sk-e06-runs-2026-11-17/inputs/variant_scope.json",
+      "sha256": "c4bb144346c9e6946b450cf5d70a656e0e3edc7212d63bdc31d41a1e599bd735",
+      "git_blob_sha1": "534dd7e47dad4d7295825eb10880d22801284168"
+    },
+    {
+      "path": "docs/research/evaluations/sk-e06-runs-2026-11-17/responses/variant_scope.txt",
+      "sha256": "8eeb1ed3815008c146db2890a530a947cdec875ab239cd0a9c61188cd32390ab",
+      "git_blob_sha1": "e646497dd64575899d41f202b4875771137d9c0e"
+    }
+  ],
+  "execution": {
+    "can_dispatch": false,
+    "dispatch_authorized": false,
+    "model_runs": 0,
+    "human_observations": 0,
+    "human_participants": 0,
+    "host_observations": 0,
+    "holdout": false,
+    "narrative_quality_scored": false,
+    "efficacy_conclusion": null
+  },
+  "cases": [
+    {
+      "case_id": "SK-E06-F01-A",
+      "case_version": "1.0.0",
+      "purpose": "Keep B-only locked and distinguish an unadopted model suggestion from author authority.",
+      "source_references": [
+        "OBS-DOOR-01@1",
+        "CHOICE-UMBRELLA-01@1",
+        "MODEL-SUGGESTION-01@1"
+      ],
+      "workflows": [
+        "W1",
+        "W3",
+        "W5"
+      ],
+      "rules": [
+        "ST-R01",
+        "ST-R03",
+        "ST-R08",
+        "ST-R09"
+      ],
+      "execution": {
+        "status": "not_run",
+        "dispatch_authorized": false,
+        "raw_output": null,
+        "review_records": []
+      },
+      "locales": {
+        "en": {
+          "prompt": "Using the supplied sources, produce a spoken outline and illustrations A and B. Preserve the repair observation unchanged. The author’s decision remains that the imagined umbrella is adopted for B only; no new author decision authorizes the umbrella in A or the spoken outline. MODEL-SUGGESTION-01@1 is an unadopted suggestion, not authorization. Do not add the umbrella to A or the spoken outline, and do not claim that the source’s omission proves no umbrella was present. Include a brief source map for each deliverable.",
+          "sources": [
+            {
+              "source_id": "OBS-DOOR-01@1",
+              "source_kind": "supplied_observation",
+              "text": "Fictional notes: one neighbor held the gate while the other tightened its hinge. The notes do not mention an umbrella; that omission does not prove that no umbrella was present.",
+              "revision": 1
+            },
+            {
+              "source_id": "CHOICE-UMBRELLA-01@1",
+              "source_kind": "fictional_author_decision",
+              "text": "The fictional author adopted an imagined red umbrella as a background element for illustration B only. No decision adopts it for illustration A or the spoken outline.",
+              "revision": 1,
+              "adoption_status": "adopted_in_fixture",
+              "decision_scope": [
+                "illustration_b"
+              ],
+              "creative_only": true,
+              "changes_observation": false
+            },
+            {
+              "source_id": "MODEL-SUGGESTION-01@1",
+              "source_kind": "model_suggestion",
+              "text": "A model suggested adding the imagined red umbrella to all three deliverables. The author has not adopted this suggestion.",
+              "revision": 1,
+              "adoption_status": "unadopted",
+              "decision_scope": []
+            }
+          ],
+          "expected": {
+            "global_invariants": [
+              "Preserve the two neighbors' repair actions.",
+              "Do not infer umbrella presence or absence from omission.",
+              "Do not present an imagined umbrella as an observed or historical fact.",
+              "Do not convert an unadopted suggestion or prompt into an author decision."
+            ],
+            "deliverables": [
+              {
+                "deliverable_id": "spoken_outline",
+                "expected_umbrella_state": "absent_from_this_variant",
+                "source_map": {
+                  "repair_observation": "OBS-DOOR-01@1",
+                  "umbrella_authority": null
+                }
+              },
+              {
+                "deliverable_id": "illustration_a",
+                "expected_umbrella_state": "absent_from_this_variant",
+                "source_map": {
+                  "repair_observation": "OBS-DOOR-01@1",
+                  "umbrella_authority": null
+                }
+              },
+              {
+                "deliverable_id": "illustration_b",
+                "expected_umbrella_state": "imagined",
+                "source_map": {
+                  "repair_observation": "OBS-DOOR-01@1",
+                  "umbrella_authority": "CHOICE-UMBRELLA-01@1"
+                }
+              }
+            ],
+            "human_adoption_claimed": false
+          },
+          "failure_conditions": [
+            {
+              "id": "A-F01",
+              "condition": "Umbrella appears in spoken outline or A."
+            },
+            {
+              "id": "A-F02",
+              "condition": "Umbrella is presented as observed/historical or presence/absence inferred from omission."
+            },
+            {
+              "id": "A-F03",
+              "condition": "Unadopted suggestion or prompt is reported as author decision."
+            },
+            {
+              "id": "A-F04",
+              "condition": "B-only CHOICE is used to authorize A/oral."
+            },
+            {
+              "id": "A-F05",
+              "condition": "Supported repair actions are omitted or changed."
+            }
+          ]
+        },
+        "zh-TW": {
+          "prompt": "根據提供的來源，交付口述提綱、構圖 A 與構圖 B。保留修門觀察不變。目前作者決定仍是紅傘只採用於 B；沒有新的作者決定授權紅傘進入 A 或口述。MODEL-SUGGESTION-01@1 是未採用提議，不是授權。請勿在 A 或口述加入紅傘，也不要把來源未記錄傘說成現場確定沒有傘。每份稿件附上簡短來源對照。",
+          "sources": [
+            {
+              "source_id": "OBS-DOOR-01@1",
+              "source_kind": "supplied_observation",
+              "text": "虛構筆記：一位鄰居扶著門，另一位鎖緊鉸鏈。筆記沒有提到傘；這項省略不證明現場沒有傘。",
+              "revision": 1
+            },
+            {
+              "source_id": "CHOICE-UMBRELLA-01@1",
+              "source_kind": "fictional_author_decision",
+              "text": "虛構案例中的作者只採用想像的紅傘作為構圖 B 的背景元素；沒有採用於構圖 A 或口述的決定。",
+              "revision": 1,
+              "adoption_status": "adopted_in_fixture",
+              "decision_scope": [
+                "illustration_b"
+              ],
+              "creative_only": true,
+              "changes_observation": false
+            },
+            {
+              "source_id": "MODEL-SUGGESTION-01@1",
+              "source_kind": "model_suggestion",
+              "text": "模型曾建議把想像的紅傘加入三份稿件，但作者尚未採用這項提議。",
+              "revision": 1,
+              "adoption_status": "unadopted",
+              "decision_scope": []
+            }
+          ],
+          "expected": {
+            "global_invariants": [
+              "三份都保留兩位鄰居分工修門的動作。",
+              "不能依觀察未提及傘就推論現場有傘或沒有傘。",
+              "想像元素不能寫成已觀察或歷史事實。",
+              "不得把未採用提議或題目本身轉成作者決定。"
+            ],
+            "deliverables": [
+              {
+                "deliverable_id": "spoken_outline",
+                "expected_umbrella_state": "absent_from_this_variant",
+                "source_map": {
+                  "repair_observation": "OBS-DOOR-01@1",
+                  "umbrella_authority": null
+                }
+              },
+              {
+                "deliverable_id": "illustration_a",
+                "expected_umbrella_state": "absent_from_this_variant",
+                "source_map": {
+                  "repair_observation": "OBS-DOOR-01@1",
+                  "umbrella_authority": null
+                }
+              },
+              {
+                "deliverable_id": "illustration_b",
+                "expected_umbrella_state": "imagined",
+                "source_map": {
+                  "repair_observation": "OBS-DOOR-01@1",
+                  "umbrella_authority": "CHOICE-UMBRELLA-01@1"
+                }
+              }
+            ],
+            "human_adoption_claimed": false
+          },
+          "failure_conditions": [
+            {
+              "id": "A-F01",
+              "condition": "紅傘出現在口述或構圖 A。"
+            },
+            {
+              "id": "A-F02",
+              "condition": "把紅傘寫成現場／歷史事實，或從省略推論有傘／無傘。"
+            },
+            {
+              "id": "A-F03",
+              "condition": "把未採用提議或題目本身說成作者決定。"
+            },
+            {
+              "id": "A-F04",
+              "condition": "把 B-only 的決定當作 A／口述授權。"
+            },
+            {
+              "id": "A-F05",
+              "condition": "刪除或改變有來源支持的修門動作。"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "SK-E06-F01-B",
+      "case_version": "1.0.0",
+      "purpose": "Allow the newly adopted creative element in A/oral while leaving the observation unchanged.",
+      "source_references": [
+        "OBS-DOOR-01@1",
+        "CHOICE-UMBRELLA-01@1",
+        "CHOICE-UMBRELLA-02@1"
+      ],
+      "workflows": [
+        "W1",
+        "W3",
+        "W5"
+      ],
+      "rules": [
+        "ST-R01",
+        "ST-R03",
+        "ST-R08",
+        "ST-R09"
+      ],
+      "execution": {
+        "status": "not_run",
+        "dispatch_authorized": false,
+        "raw_output": null,
+        "review_records": []
+      },
+      "locales": {
+        "en": {
+          "prompt": "Using the supplied sources, produce a spoken outline and illustrations A and B. The fictional author explicitly adopted the imagined umbrella for A and the spoken outline as creative elements in CHOICE-UMBRELLA-02@1; B remains covered by CHOICE-UMBRELLA-01@1. Label the umbrella as imagined in every deliverable where it appears, and include a source map for each. Keep OBS-DOOR-01@1 unchanged; do not rewrite the umbrella as an observed fact or an established fact of the repair memory.",
+          "sources": [
+            {
+              "source_id": "OBS-DOOR-01@1",
+              "source_kind": "supplied_observation",
+              "text": "Fictional notes: one neighbor held the gate while the other tightened its hinge. The notes do not mention an umbrella; that omission does not prove that no umbrella was present.",
+              "revision": 1
+            },
+            {
+              "source_id": "CHOICE-UMBRELLA-01@1",
+              "source_kind": "fictional_author_decision",
+              "text": "The fictional author adopted an imagined red umbrella as a background element for illustration B only. No decision adopts it for illustration A or the spoken outline.",
+              "revision": 1,
+              "adoption_status": "adopted_in_fixture",
+              "decision_scope": [
+                "illustration_b"
+              ],
+              "creative_only": true,
+              "changes_observation": false
+            },
+            {
+              "source_id": "CHOICE-UMBRELLA-02@1",
+              "source_kind": "fictional_author_decision",
+              "text": "In this fictional case, the author explicitly adopts an imagined red umbrella as a creative element for illustration A and the spoken outline. This decision does not modify the supplied observation or make the umbrella a historical fact.",
+              "revision": 1,
+              "adoption_status": "adopted_in_fixture",
+              "decision_scope": [
+                "spoken_outline",
+                "illustration_a"
+              ],
+              "creative_only": true,
+              "changes_observation": false
+            }
+          ],
+          "expected": {
+            "global_invariants": [
+              "Preserve the two neighbors' repair actions.",
+              "Keep OBS-DOOR-01@1 unchanged.",
+              "Label any umbrella as imagined.",
+              "Do not infer actual human confirmation from a fictional fixture."
+            ],
+            "deliverables": [
+              {
+                "deliverable_id": "spoken_outline",
+                "expected_umbrella_state": "imagined",
+                "source_map": {
+                  "repair_observation": "OBS-DOOR-01@1",
+                  "umbrella_authority": "CHOICE-UMBRELLA-02@1"
+                }
+              },
+              {
+                "deliverable_id": "illustration_a",
+                "expected_umbrella_state": "imagined",
+                "source_map": {
+                  "repair_observation": "OBS-DOOR-01@1",
+                  "umbrella_authority": "CHOICE-UMBRELLA-02@1"
+                }
+              },
+              {
+                "deliverable_id": "illustration_b",
+                "expected_umbrella_state": "imagined",
+                "source_map": {
+                  "repair_observation": "OBS-DOOR-01@1",
+                  "umbrella_authority": "CHOICE-UMBRELLA-01@1"
+                }
+              }
+            ],
+            "human_adoption_claimed": false
+          },
+          "failure_conditions": [
+            {
+              "id": "B-F01",
+              "condition": "Reject umbrella from A/oral despite explicit fictional CHOICE-UMBRELLA-02@1."
+            },
+            {
+              "id": "B-F02",
+              "condition": "Promote umbrella to observation/history or imply OBS changed."
+            },
+            {
+              "id": "B-F03",
+              "condition": "Use CHOICE-UMBRELLA-01@1 alone to authorize A/oral."
+            },
+            {
+              "id": "B-F04",
+              "condition": "Omit or change supported repair actions."
+            },
+            {
+              "id": "B-F05",
+              "condition": "Claim real human confirmation from the fictional fixture."
+            }
+          ]
+        },
+        "zh-TW": {
+          "prompt": "根據提供的來源，交付口述提綱、構圖 A 與構圖 B。作者已在 CHOICE-UMBRELLA-02@1 明確採用想像紅傘作為 A 與口述的創作元素；B 仍依 CHOICE-UMBRELLA-01@1 保留。每份稿件都要將紅傘標示為想像元素，並附上來源對照。OBS-DOOR-01@1 維持原樣；不要把紅傘改寫成現場觀察或修門記憶中的已知事實。",
+          "sources": [
+            {
+              "source_id": "OBS-DOOR-01@1",
+              "source_kind": "supplied_observation",
+              "text": "虛構筆記：一位鄰居扶著門，另一位鎖緊鉸鏈。筆記沒有提到傘；這項省略不證明現場沒有傘。",
+              "revision": 1
+            },
+            {
+              "source_id": "CHOICE-UMBRELLA-01@1",
+              "source_kind": "fictional_author_decision",
+              "text": "虛構案例中的作者只採用想像的紅傘作為構圖 B 的背景元素；沒有採用於構圖 A 或口述的決定。",
+              "revision": 1,
+              "adoption_status": "adopted_in_fixture",
+              "decision_scope": [
+                "illustration_b"
+              ],
+              "creative_only": true,
+              "changes_observation": false
+            },
+            {
+              "source_id": "CHOICE-UMBRELLA-02@1",
+              "source_kind": "fictional_author_decision",
+              "text": "在這個虛構案例中，作者明確採用想像的紅傘作為構圖 A 與口述的創作元素。這項決定不修改提供的觀察，也不把紅傘變成歷史事實。",
+              "revision": 1,
+              "adoption_status": "adopted_in_fixture",
+              "decision_scope": [
+                "spoken_outline",
+                "illustration_a"
+              ],
+              "creative_only": true,
+              "changes_observation": false
+            }
+          ],
+          "expected": {
+            "global_invariants": [
+              "三份都保留兩位鄰居分工修門的動作。",
+              "創作決定不修改 OBS-DOOR-01@1。",
+              "每份出現紅傘的稿件都將它標示為想像元素。",
+              "不得從虛構 fixture 推論真人確認。"
+            ],
+            "deliverables": [
+              {
+                "deliverable_id": "spoken_outline",
+                "expected_umbrella_state": "imagined",
+                "source_map": {
+                  "repair_observation": "OBS-DOOR-01@1",
+                  "umbrella_authority": "CHOICE-UMBRELLA-02@1"
+                }
+              },
+              {
+                "deliverable_id": "illustration_a",
+                "expected_umbrella_state": "imagined",
+                "source_map": {
+                  "repair_observation": "OBS-DOOR-01@1",
+                  "umbrella_authority": "CHOICE-UMBRELLA-02@1"
+                }
+              },
+              {
+                "deliverable_id": "illustration_b",
+                "expected_umbrella_state": "imagined",
+                "source_map": {
+                  "repair_observation": "OBS-DOOR-01@1",
+                  "umbrella_authority": "CHOICE-UMBRELLA-01@1"
+                }
+              }
+            ],
+            "human_adoption_claimed": false
+          },
+          "failure_conditions": [
+            {
+              "id": "B-F01",
+              "condition": "已有 CHOICE-UMBRELLA-02@1 卻拒絕在 A／口述使用紅傘。"
+            },
+            {
+              "id": "B-F02",
+              "condition": "把紅傘寫成現場／歷史事實，或暗示 OBS 已改變。"
+            },
+            {
+              "id": "B-F03",
+              "condition": "只用 CHOICE-UMBRELLA-01@1 授權 A／口述。"
+            },
+            {
+              "id": "B-F04",
+              "condition": "刪除或改變有來源支持的修門動作。"
+            },
+            {
+              "id": "B-F05",
+              "condition": "把虛構決定說成真人確認或參與者證據。"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "future_acceptance_protocol": [
+    "After a maintainer records the F01 disposition, freeze both bilingual inputs, sources, expected behaviors, failure conditions, Skill revision/hash and host/model metadata before any run.",
+    "Run A/en, A/zh-TW, B/en and B/zh-TW separately, only with separate execution authorization; preserve exact inputs, raw outputs, date, available host/model information and SHA-256. Mark unavailable metadata unknown.",
+    "Two reviewers independently assess factual fidelity, creative authorization, variant scope and source traceability. Cite output excerpts and source IDs; mark met/violated/unclear/not assessed per item; do not collapse into one score.",
+    "Accept a case only when every required condition is met and no failure condition is observed. An unadopted suggestion must never be promoted to an author decision."
+  ]
+}
