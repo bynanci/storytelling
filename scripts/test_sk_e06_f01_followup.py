@@ -12,6 +12,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from sk_e06_f01_followup import (
     EXPECTED_ORIGINAL_ARTIFACTS,
+    EXPECTED_PRESERVED_RECORDS,
     F01FollowupError,
     strict_json_loads,
     validate_followup,
@@ -28,7 +29,7 @@ class FollowupTests(unittest.TestCase):
         self.repo_root = Path(self.temp.name) / "repo"
         self.followup_root = self.repo_root / "docs/research/evaluations/sk-e06-f01-followup-v1"
         shutil.copytree(FOLLOWUP, self.followup_root)
-        for relative_path in EXPECTED_ORIGINAL_ARTIFACTS:
+        for relative_path in (*EXPECTED_ORIGINAL_ARTIFACTS, *EXPECTED_PRESERVED_RECORDS):
             source = ROOT / relative_path
             target = self.repo_root / relative_path
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -131,8 +132,8 @@ class FollowupTests(unittest.TestCase):
             item for item in case_b["locales"]["zh-TW"]["expected"]["deliverables"]
             if item["deliverable_id"] == "spoken_outline"
         )
-        self.assertIn("CHOICE-UMBRELLA-02@1", oral["source_map"])
-        oral["source_map"].remove("CHOICE-UMBRELLA-02@1")
+        self.assertEqual(oral["source_map"]["umbrella_authority"], "CHOICE-UMBRELLA-02@1")
+        del oral["source_map"]["umbrella_authority"]
         self.write_json("cases.json", packet)
         with self.assertRaises(F01FollowupError):
             validate_followup(self.followup_root, self.repo_root)
