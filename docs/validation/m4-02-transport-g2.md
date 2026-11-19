@@ -160,7 +160,35 @@ not revised contract semantics, runtime RED/GREEN or G2 adoption. Transport
 runtime cases, human and Host observations remain zero. Draft remains pending;
 no G3 implementation, product authority or release decision is inferred.
 
-main 更新後，兩邊各自在 `.gitattributes` 新增原始證據路徑，造成衝突。
-本次保留兩組規則，並將 PR 範圍基準與原始來源基準分開。新增收據記錄
-五個成功命令及 41 項唯讀測試；原契約、範例、待實作案例與歷史收據不變。
-這次是同步修復，完整 G2 仍待採納，沒有新增 transport、真人或 Host 成果。
+PR #152 與候選 branch 曾各自新增 `.gitattributes` 證據路徑；第一次同步
+保留了兩組規則並區分來源基準。PR #153 合併後又增加一組 F01 證據規則。
+本次同步 main `04d2ac6` 後重新核對所有 rules，並將 PR 範圍基準與原始
+來源基準分開。原契約、範例、待實作案例及歷史收據不變；完整 G2 仍待採納。
+沒有新增 transport、真人或 Host 成果。
+
+## Main synchronization after PR #153 · 2026-11-19
+
+PR #153 merged append-only F01 research material and its offline checker into
+main `04d2ac6f5cdb43d16cc7e4c94a2ad14fad49974d`. The transport branch was
+synchronized onto this base. The previously changed `.gitattributes`, task and
+requirements files merge automatically; all transport review material stays
+confined to its original proposal paths. Source identity remains pinned to
+`62541d9` in `cases.json`; the scope comparison in the current static replay
+uses `04d2ac6`.
+
+The [initial synchronization receipt](m4-02-transport-g2/base-sync-2026-11-19.json)
+records that static replay passed and repository link validation was attempted
+before its target receipt had been created; it failed only on that missing
+precommit path. The [final synchronization receipt](m4-02-transport-g2/base-sync-final-2026-11-19.json)
+captures exact command streams and hashes after the target existed, including
+the static proposal replay, repository validation, and offline packet, layout
+and F01 integrity suites. It confirms that the protocol, types, three schemas,
+21 authored examples, 64 planned/unexecuted cases and the original 23-item
+transport receipt index still match candidate `c477bf9`. These checks are
+design and integrity checks, not transport runtime results. Current-head hosted
+CI is recorded after this branch commit; #108 remains Open, its seven
+implementation criteria remain unchecked, and full G2 adoption remains pending.
+
+PR #153's maintainer decision is separate: its F01 proposal is merged with a
+null disposition and non-dispatchable successor cases. It does not authorize a
+new F01 evaluation or affect transport G2.

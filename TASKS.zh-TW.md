@@ -163,6 +163,8 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 
 - [x] **SK-E06-F02 離線 layout 自動預檢。**[實際 RED／GREEN 與原始碼審查](docs/validation/sk-e06-layout-preflight.md)涵蓋明確、有上限的預檢入口、27 項 layout／原有 14 項 packet 測試、獨立長度／CRC 及線性連結掃描。完整 Python discovery 明確綁定 native binary 後本機 149/149 通過，三平台 packet workflow 已納入新檢查。原資料包／回答不改，can_dispatch 維持 false；F01／#121／#122／真人／Host 門檻保留。
 
+- [ ] **SK-E06-F01 範圍裁定建議。**[版本化裁定建議與兩個雙語後續案例](docs/research/evaluations/sk-e06-f01-followup-v1/README.zh-TW.md)保留原始證據，整體適用性留待裁定；不授權新派送。維護者決定仍待處理，#121／#122 與真人／Host 門檻各自獨立。
+
 - [x] **SK-EVAL-R1 算術審查與敏感度診斷。** [追加報告](docs/research/evaluations/r1-robustness/README.zh-TW.md)重現原五份數值產物，新增精確的案例／維度／批次移除及分組敏感度界限。十項回歸及獨立 AI 數學審查涵蓋此診斷範圍；原 R1 位元組、結論與 #121／#122 證據門檻不變。同 head hosted 檢查另記於 PR。
 
 ## 敘事交接維護

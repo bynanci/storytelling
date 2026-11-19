@@ -52,7 +52,7 @@ for kind in ("request", "response"):
         assert not Draft202012Validator(rid).is_valid(bad), repr(bad)
     assert Draft202012Validator(rid).is_valid("a" * 64)
 plan = json.loads((root / "cases.json").read_bytes())
-scope_base = "26602d37d849d06ceac1d4a09f7ca19d2949c990"
+scope_base = "04d2ac6f5cdb43d16cc7e4c94a2ad14fad49974d"
 assert len(plan["cases"]) == 64
 assert len({c["id"] for c in plan["cases"]}) == 64
 assert {c["group"] for c in plan["cases"]} == {f"TS-G{i:02}" for i in range(1, 13)}
@@ -84,14 +84,15 @@ all three proposed schemas, 21 authored example files, the 64 planned cases,
 protocol and TypeScript view definitions are unchanged from the G2 candidate
 `c477bf98bcc73e1bf304807cc5392bf45cc9f399`.
 
-After main advanced through PR #152, the scope comparison above uses that new
-base, `26602d37d849d06ceac1d4a09f7ca19d2949c990`. This keeps unrelated,
-already-merged research helper and CI changes out of the transport PR diff.
-Both independent append-only evidence attribute rules are retained. Historical
-static receipts remain evidence for their original source revision; they are
-not rewritten as checks of the synchronized head. No transport contract or
-runtime implementation is changed, and full G2 adoption remains pending.
+After main advanced through PR #152, the scope comparison was updated to
+`26602d37d849d06ceac1d4a09f7ca19d2949c990`. Following PR #153, the current
+scope comparison above uses main `04d2ac6f5cdb43d16cc7e4c94a2ad14fad49974d`.
+This keeps unrelated, already-merged research work out of the transport PR
+diff. All append-only evidence attribute rules are retained. Historical static
+receipts remain evidence for their original source revisions; they are not
+rewritten as checks of the synchronized head. No transport contract or runtime
+implementation is changed, and full G2 adoption remains pending.
 
-來源身分仍以 `cases.json` 記錄的 `62541d9` 為準；本次只將 PR 範圍檢查
-對齊 main `26602d3`，保留兩組原始證據的 Git attributes。契約、範例、
-64 項待實作案例與歷史收據不變，Draft 與完整 G2 待採納狀態亦不變。
+來源身分仍以 `cases.json` 記錄的 `62541d9` 為準；PR 範圍檢查目前對齊
+main `04d2ac6`。所有原始證據 Git attributes 均保留。契約、範例、64 項
+待實作案例與歷史收據不變，Draft 與完整 G2 待採納狀態亦不變。

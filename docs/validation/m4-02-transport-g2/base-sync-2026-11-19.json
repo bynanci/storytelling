@@ -1,0 +1,43 @@
+{
+  "kind": "m4_02_readonly_transport_main_sync_receipt",
+  "source_identity_base": "62541d91c0c52ec6e49b5dc9c8350e92e83b409a",
+  "prior_transport_head": "b78d3fd8e636cf3f56e929a75e2e5c65274abcbd",
+  "scope_base": "04d2ac6f5cdb43d16cc7e4c94a2ad14fad49974d",
+  "original_transport_candidate": "c477bf98bcc73e1bf304807cc5392bf45cc9f399",
+  "transport_runtime_cases_executed": 0,
+  "human_observations": 0,
+  "host_observations": 0,
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "-c",
+        "from pathlib import Path\nfrom jsonschema import Draft202012Validator\nimport hashlib, json, struct, subprocess\nroot = Path(\"docs/proposals/m4-02-readonly-transport\")\nvalidators = {}\nfor kind, name in [\n    (\"request\", \"request-header.schema.json\"),\n    (\"response\", \"response-header.schema.json\"),\n    (\"narrative\", \"narrative-projection-view.schema.json\"),\n]:\n    schema = json.loads((root / name).read_bytes())\n    Draft202012Validator.check_schema(schema)\n    validators[kind] = Draft202012Validator(schema)\nmanifest = json.loads((root / \"examples/manifest.json\").read_bytes())\nassert manifest[\"stage\"] == \"authored_G2_proposed_examples_not_runtime_receipts\"\nassert len(manifest[\"files\"]) == 21\nlabels = 0\nfor item in manifest[\"files\"]:\n    raw = (root / \"examples\" / item[\"path\"]).read_bytes()\n    assert len(raw) == item[\"bytes\"], item[\"path\"]\n    assert hashlib.sha256(raw).hexdigest() == item[\"sha256\"], item[\"path\"]\n    if item[\"schema_valid\"] is None:\n        continue  # corrupt/duplicate/truncated frame: indexed authored vector only\n    if item[\"kind\"].endswith(\"_frame\"):\n        assert raw[:4] == b\"STRO\"\n        size = struct.unpack(\">I\", raw[4:8])[0]\n        assert 1 <= size <= 16384 and 8 + size <= len(raw)\n        header = json.loads(raw[8:8 + size])\n        assert 8 + size + sum(b[\"byte_length\"] for b in header[\"buffers\"]) == len(raw)\n        kind = \"request\" if item[\"kind\"].startswith(\"request\") else \"response\"\n    else:\n        header = json.loads(raw)\n        kind = \"narrative\" if item[\"kind\"] == \"narrative_projection\" else item[\"kind\"].split(\"_\")[0]\n    assert validators[kind].is_valid(header) is item[\"schema_valid\"], item[\"path\"]\n    labels += 1\nfor kind in (\"request\", \"response\"):\n    schema = validators[kind].schema\n    rid = schema[\"properties\"][\"request_id\"]\n    for bad in (\"\", \"x\\n\", \"x\\r\", \"x\\u2028\", \"x\\u2029\", \"x\\x00\", \"x\" * 65, \"é\"):\n        assert not Draft202012Validator(rid).is_valid(bad), repr(bad)\n    assert Draft202012Validator(rid).is_valid(\"a\" * 64)\nplan = json.loads((root / \"cases.json\").read_bytes())\nscope_base = \"04d2ac6f5cdb43d16cc7e4c94a2ad14fad49974d\"\nassert len(plan[\"cases\"]) == 64\nassert len({c[\"id\"] for c in plan[\"cases\"]}) == 64\nassert {c[\"group\"] for c in plan[\"cases\"]} == {f\"TS-G{i:02}\" for i in range(1, 13)}\nassert all(c[\"state\"] == \"planned_not_executed\" for c in plan[\"cases\"])\nassert plan[\"runtime_cases_executed\"] == 0\nfor item in plan[\"sources\"]:\n    raw = subprocess.check_output([\"git\", \"cat-file\", \"blob\", plan[\"base_sha\"] + \":\" + item[\"path\"]])\n    assert raw == Path(item[\"path\"]).read_bytes()\n    assert len(raw) == item[\"bytes\"] and hashlib.sha256(raw).hexdigest() == item[\"sha256\"]\nassert not subprocess.check_output([\"git\", \"diff\", scope_base, \"--\", \"crates\", \"contracts\", \"tests\", \"examples\", \"scripts\", \"skills\", \".github\", \"Cargo.toml\", \"Cargo.lock\", \"package.json\", \"package-lock.json\"])\nprint(json.dumps({\"schemas\": 3, \"indexed_authored_examples\": 21, \"schema_labels_checked\": labels,\n                  \"source_git_identities\": len(plan[\"sources\"]), \"planned_cases\": 64,\n                  \"transport_runtime_cases_executed\": 0, \"human_observations\": 0, \"host_observations\": 0}))"
+      ],
+      "started_utc": "2026-11-19T22:50:39.512451+00:00",
+      "elapsed_seconds": 0.246786,
+      "exit_code": 0,
+      "stdout_utf8": "{\"schemas\": 3, \"indexed_authored_examples\": 21, \"schema_labels_checked\": 17, \"source_git_identities\": 13, \"planned_cases\": 64, \"transport_runtime_cases_executed\": 0, \"human_observations\": 0, \"host_observations\": 0}\n",
+      "stdout_bytes": 215,
+      "stdout_sha256": "4c0ad0b8f5046ec9e1944a7673ea7ad197d3b3a2a76ae73daa7331e0580ea9c6",
+      "stderr_utf8": "",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/check_repo.py"
+      ],
+      "started_utc": "2026-11-19T22:50:39.759470+00:00",
+      "elapsed_seconds": 0.305383,
+      "exit_code": 1,
+      "stdout_utf8": "",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_utf8": "Broken link: docs/validation/m4-02-transport-g2.md -> m4-02-transport-g2/base-sync-2026-11-19.json\n",
+      "stderr_bytes": 99,
+      "stderr_sha256": "4afae6c02827b4999081b570fb22466f73fb61c5c6f992d3d240a612d93f21fa"
+    }
+  ]
+}
