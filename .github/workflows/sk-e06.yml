@@ -49,3 +49,5 @@ jobs:
         run: python scripts/test_sk_e06_packet.py
       - name: Check prospective Skill layout and rejection regressions (no dispatch)
         run: python scripts/test_sk_e06_layout.py
+      - name: Check F01 adjudication and successor-case integrity (no dispatch)
+        run: python scripts/test_sk_e06_f01_followup.py
