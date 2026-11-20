@@ -7,6 +7,8 @@
 
 A 的 [draft-only G2 決定](../../validation/n10-06a-g2-decision.md)與 [ADR 0012](../../adr/0012-draft-exact-video-range-input.md)已定義精確秒數／影格轉換及 helper 錯誤。B 只提議將同一份輸入做成可讀預覽。[既有 V1 驗證器](../../adr/0010-narrative-video-coverage-v1.md)繼續決定宣告是否有效，21 個診斷碼與 first-error 順序完整保留。未來 SDK、TypeScript 與 Reference App 由 #107–#109 決定；本提案不建置 App 或 transport。
 
+審查時請一併參考 [G2 補充提案](g2-review-addendum.zh-TW.md)及[新增的前瞻案例](g2-review-cases.json)。維護者可據此核對 Rust bridge、精確引用配對、重複列的有界呈現、提示順序與終端轉義。
+
 ## G0／G1：作者任務與不可破壞的條件
 
 作者依序選擇 `S02@1`、`S03@1`，將 S02 用 IN／OUT 對應至宣告素材，S03 保留 unresolved。預覽必須依原順序顯示兩列、原時間單位與數字、精確轉換後的秒數、宣告素材身分／片長、固定 JSONPath 及缺素材原因。多處輸入錯誤可以顯示多個**非權威輸入提示**，同時只顯示既有 A／V1 全文件流程實際回傳的權威結果。預覽不得修正輸入、刪掉選定單元、夾限區間，或將宣告升格為實體檔案／編輯器證據。
@@ -49,7 +51,7 @@ storytelling preflight-video-coverage-input <FILE|-> [--lang zh-TW|en]
 
 1. 權威區塊：階段、狀態，以及實際唯一錯誤或有效結果診斷。
 2. 範圍說明：只檢查宣告；檔案位元組／metadata、作者內容核對、宿主支援與執行權限需要各自證據。
-3. 依輸入順序顯示**每個**選定引用，包含無效或重複引用。保留原 `unit_id@revision`、selection index 與所有完全相符的 mapping indices，不去重、不排序、不自動修 revision。
+3. 依輸入順序顯示**每個**選定引用，包含無效或重複引用。保留 selection index。能安全解讀的引用顯示原 `unit_id@revision` 及完全相符的 mapping indices。格式不符的引用使用固定標籤，詳見[補充提案](g2-review-addendum.zh-TW.md)。
 4. 未對應選定引用的 mapping 另依原 index 列出，不能先重排輸入再驗證。
 5. 明標「非權威」的輸入提示，依原列／欄位順序排列。
 6. A 是否可輸出有效 V1 宣告 JSON；規劃就緒另列，沒有 Execute 動作。

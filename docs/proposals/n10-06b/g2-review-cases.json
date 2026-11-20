@@ -1,0 +1,266 @@
+{
+  "proposal_version": "n10-06b.g2-review-cases.1",
+  "record_kind": "synthetic_design_assertions",
+  "status": "proposed_pending_G2",
+  "source_commit": "04d2ac6f5cdb43d16cc7e4c94a2ad14fad49974d",
+  "base_fixture": "../../../tests/fixtures/n10-06a-draft/seconds-unresolved.draft.json",
+  "edit_operations": {
+    "set": "Replace or add the value at the pointer.",
+    "remove": "Delete the value at the pointer.",
+    "repeat_first": "Replace the array at the pointer with count independent deep copies of its first item."
+  },
+  "authority_entry": "storytelling draft-video-coverage-input -",
+  "cases": [
+    {
+      "id": "B12-malformed-selection-placeholder",
+      "edits": [
+        {
+          "operation": "set",
+          "pointer": "/coverage/selected_unit_refs/0/revision",
+          "value": "DO-NOT-ECHO-B12"
+        }
+      ],
+      "expected_authority": {
+        "stage": "v1",
+        "code": "video_coverage.invalid_shape",
+        "path": "$",
+        "exit": 1
+      },
+      "planned_preview": {
+        "selection_indices": [0, 1],
+        "invalid_selection_indices": [0],
+        "missing_mapping_hint_indices": [],
+        "unmatched_mapping_indices": [0],
+        "must_not_echo": ["DO-NOT-ECHO-B12"],
+        "v1_json_allowed": false
+      }
+    },
+    {
+      "id": "B13-duplicate-selection-keeps-both-rows",
+      "edits": [
+        {
+          "operation": "set",
+          "pointer": "/coverage/selected_unit_refs/1",
+          "value": {"unit_id": "S02", "revision": 1}
+        }
+      ],
+      "expected_authority": {
+        "stage": "v1",
+        "code": "video_coverage.duplicate_selection",
+        "path": "$.selected_unit_refs[1].unit_id",
+        "exit": 1
+      },
+      "planned_preview": {
+        "selection_indices": [0, 1],
+        "first_group": {"selection_index": 0, "unit_id": "S02", "revision": 1, "mapping_indices": [0]},
+        "repeated_group": {"selection_index": 1, "points_to_selection_index": 0},
+        "unmatched_mapping_indices": [1],
+        "v1_json_allowed": false
+      }
+    },
+    {
+      "id": "B14-unmatched-mapping-keeps-original-index",
+      "edits": [
+        {"operation": "remove", "pointer": "/coverage/selected_unit_refs/1"}
+      ],
+      "expected_authority": {
+        "stage": "v1",
+        "code": "video_coverage.mapping_outside_selection",
+        "path": "$.mappings[1].unit_ref.unit_id",
+        "exit": 1
+      },
+      "planned_preview": {
+        "selection_indices": [0],
+        "unmatched_mapping_indices": [1],
+        "unmatched_mapping_status": "unresolved",
+        "must_preserve_reason": "No video asset was selected for this unit.",
+        "v1_json_allowed": false
+      }
+    },
+    {
+      "id": "B15-duplicate-mapping-keeps-both-statuses",
+      "edits": [
+        {
+          "operation": "set",
+          "pointer": "/coverage/mappings/1/unit_ref",
+          "value": {"unit_id": "S02", "revision": 1}
+        }
+      ],
+      "expected_authority": {
+        "stage": "v1",
+        "code": "video_coverage.duplicate_mapping",
+        "path": "$.mappings[1].unit_ref.unit_id",
+        "exit": 1
+      },
+      "planned_preview": {
+        "selection_indices": [0, 1],
+        "first_group": {"selection_index": 0, "unit_id": "S02", "revision": 1, "mapping_indices": [0, 1]},
+        "mapping_statuses_in_order": ["mapped", "unresolved"],
+        "missing_mapping_hint_indices": [1],
+        "v1_json_allowed": false
+      }
+    },
+    {
+      "id": "B16-display-escapes-control-and-bidi-data",
+      "edits": [
+        {
+          "operation": "set",
+          "pointer": "/coverage/mappings/1/reason",
+          "value": "Pending\u000d\u0009\u007f\u009b0m\u061c\u200f\u202e\u2066 detail"
+        }
+      ],
+      "expected_authority": {
+        "stage": "v1",
+        "ready_for_planning": false,
+        "diagnostics": [{"code": "video_coverage.unresolved_required", "path": "$.mappings[1]"}],
+        "exit": 0
+      },
+      "planned_preview": {
+        "selection_indices": [0, 1],
+        "escaped_reason": "\"Pending\\u000D\\u0009\\u007F\\u009B0m\\u061C\\u200F\\u202E\\u2066 detail\"",
+        "forbidden_literal_input_codepoints": ["U+000D", "U+0009", "U+007F", "U+009B", "U+061C", "U+200F", "U+202E", "U+2066"],
+        "a_preserves_decoded_reason": true,
+        "v1_json_allowed": true
+      }
+    },
+    {
+      "id": "B17-stale-mapping-revision-is-not-a-match",
+      "edits": [
+        {"operation": "set", "pointer": "/coverage/mappings/0/unit_ref/revision", "value": 2}
+      ],
+      "expected_authority": {
+        "stage": "v1",
+        "code": "video_coverage.stale_unit_revision",
+        "path": "$.mappings[0].unit_ref.revision",
+        "exit": 1
+      },
+      "planned_preview": {
+        "selection_indices": [0, 1],
+        "missing_mapping_hint_indices": [0],
+        "unmatched_mapping_indices": [0],
+        "preserve_unmatched_mapping_ref": {"unit_id": "S02", "revision": 2},
+        "v1_json_allowed": false
+      }
+    },
+    {
+      "id": "B18-many-duplicate-pairs-share-details",
+      "edits": [
+        {"operation": "repeat_first", "pointer": "/coverage/selected_unit_refs", "count": 512},
+        {"operation": "repeat_first", "pointer": "/coverage/mappings", "count": 512}
+      ],
+      "expected_authority": {
+        "stage": "v1",
+        "code": "video_coverage.duplicate_selection",
+        "path": "$.selected_unit_refs[1].unit_id",
+        "exit": 1
+      },
+      "planned_preview": {
+        "selection_row_count": 512,
+        "first_group_lists_mapping_indices": {"from_inclusive": 0, "to_inclusive": 511},
+        "repeated_selection_row_count": 511,
+        "repeated_groups_point_to_selection_index": 0,
+        "mapping_detail_count": 512,
+        "each_mapping_detail_renders_once": true,
+        "v1_json_allowed": false
+      }
+    },
+    {
+      "id": "B19-projection-limit-preserves-earlier-helper-error",
+      "edits": [
+        {
+          "operation": "repeat_first",
+          "pointer": "/coverage/selected_unit_refs",
+          "count": 513
+        },
+        {
+          "operation": "set",
+          "pointer": "/coverage/mappings/0/source_range/start",
+          "value": "-1"
+        }
+      ],
+      "expected_authority": {
+        "stage": "helper",
+        "code": "draft_time.invalid_decimal",
+        "path": "$.coverage.mappings[0].source_range.start",
+        "exit": 1
+      },
+      "planned_preview": {
+        "advisory_suppressed": "too_many_rows",
+        "selection_row_count": 0,
+        "v1_json_allowed": false
+      }
+    },
+    {
+      "id": "B20-duplicate-duration-remains-unavailable",
+      "edits": [
+        {
+          "operation": "repeat_first",
+          "pointer": "/coverage/asset_catalog/assets",
+          "count": 2
+        },
+        {
+          "operation": "set",
+          "pointer": "/coverage/asset_catalog/assets/1/duration/numerator",
+          "value": "11"
+        }
+      ],
+      "expected_authority": {
+        "stage": "v1",
+        "code": "video_coverage.duplicate_asset",
+        "path": "$.asset_catalog.assets[1].asset_id",
+        "exit": 1
+      },
+      "planned_preview": {
+        "mapping_index": 0,
+        "declared_duration": "unavailable",
+        "v1_json_allowed": false
+      }
+    },
+    {
+      "id": "B21-cfr-preview-keeps-input-and-normalized-paths",
+      "edits": [
+        {
+          "operation": "set",
+          "pointer": "/coverage/mappings/0/source_range",
+          "value": {
+            "unit": "frames",
+            "timing": "constant",
+            "start_frame": "75",
+            "end_frame": "135",
+            "fps": {
+              "numerator": "30",
+              "denominator": "1"
+            }
+          }
+        }
+      ],
+      "expected_authority": {
+        "stage": "v1",
+        "ready_for_planning": false,
+        "diagnostics": [
+          {
+            "code": "video_coverage.unresolved_required",
+            "path": "$.mappings[1]"
+          }
+        ],
+        "exit": 0
+      },
+      "planned_preview": {
+        "start": {
+          "input_path": "$.coverage.mappings[0].source_range.start_frame",
+          "v1_path": "$.mappings[0].source_range.start",
+          "seconds": "5/2"
+        },
+        "end": {
+          "input_path": "$.coverage.mappings[0].source_range.end_frame",
+          "v1_path": "$.mappings[0].source_range.end",
+          "seconds": "9/2"
+        },
+        "v1_json_allowed": true
+      }
+    }
+  ],
+  "observed_preview_runs": null,
+  "observed_author_sessions": null,
+  "maintainer_G2_decision": null
+}
