@@ -104,6 +104,7 @@ Latest acceptance and issue map: [completed #107 and fifteen remaining resume ga
 | [M5-02 / #112](https://github.com/bynanci/storytelling/issues/112) | Blocked on #109, #111 and an accepted M3 execution/recovery path. The [prospective v1 protocol](docs/validation/m5-02-rough-cut-beta-v1.md) and blank anonymous forms are design-only; no recruitment, measured session or beta result is claimed. |
 
 - [x] **M4-R01 / #107 read-only engineering acceptance.** All eight original criteria and the independent-consumer exit verified; SDK/CLI 14 cases and nine exact-head/post-merge jobs each passed. #107 is fully checked/completed, with no new human/Host/G5 evidence.
+- [ ] **M4-R03 / #109 read-only reference application.** Review the [G0–G1 author task and acceptance cases](docs/proposals/m4-03-readonly-reference/README.md), then choose a client and its input boundary at G2.
 
 The [video task history](docs/delivery/VIDEO_TASK_HISTORY.md#next-actionable-work) lists individual dependencies, priorities and acceptance criteria. A full editor, codec suite, effects engine and arbitrary plug-ins remain outside the current backlog.
 
