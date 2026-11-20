@@ -102,6 +102,7 @@ N-R07 後續準備：[原生試用 v3](docs/validation/n07-native-v3.zh-TW.md)�
 | [M5-02／#112](https://github.com/bynanci/storytelling/issues/112) | 受阻於 #109、#111 及已接受的 M3 執行／復原流程。[前瞻式 v1 規程](docs/validation/m5-02-rough-cut-beta-v1.zh-TW.md)與匿名空白表單僅完成設計；尚未招募或開始 Beta。 |
 
 - [x] **M4-R01／#107 唯讀工程驗收。**八項原條件與獨立 consumer 出口通過，SDK／CLI 14 項與合併前後各九項 CI 皆通過；#107 全勾選並結案。沒有增加真人／Host／G5 證據。
+- [ ] **M4-R03／#109 唯讀參考應用。**審查 [G0–G1 作者任務與驗收案例](docs/proposals/m4-03-readonly-reference/README.zh-TW.md)，再於 G2 選擇用戶端及讀取邊界。
 
 每張工程票的優先序、依賴與驗收條件見[逐項工程清單](docs/delivery/VIDEO_TASK_HISTORY.md#next-actionable-work)。現有範圍不包含完整剪輯器、編解碼器、特效引擎或任意外掛。新增功能時，先說明哪一項使用情境受阻。
 
