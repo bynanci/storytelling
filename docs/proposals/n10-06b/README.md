@@ -7,6 +7,8 @@ English · [繁體中文](README.zh-TW.md) · [Issue #129](https://github.com/by
 
 A's [accepted draft-only G2](../../validation/n10-06a-g2-decision.md) and [ADR 0012](../../adr/0012-draft-exact-video-range-input.md) already define exact decimal/frame conversion and its helper errors. B proposes a readable preview of the same input. The accepted [V1 validator](../../adr/0010-narrative-video-coverage-v1.md) continues to decide declaration validity, preserving all 21 diagnostic codes and first-error order. #107–#109 decide future SDK, TypeScript and Reference App interfaces; no app or transport is designed here.
 
+Review the proposed [G2 clarifications](g2-review-addendum.md) and [additional prospective cases](g2-review-cases.json) alongside this packet. They specify the Rust bridge, exact reference matching, bounded duplicate display, hint order and terminal escaping for the maintainer's decision.
+
 ## G0 / G1: task and invariant
 
 An author selects `S02@1`, then `S03@1`, maps S02 to a declared asset with IN/OUT and leaves S03 unresolved. The preview must show those two rows in that order, the original unit and numbers, exact converted seconds, declared asset identity/duration, fixed JSONPaths and the unresolved reason. When the input has several mistakes, the author may see several **advisory input hints** and exactly the authority result the existing A/V1 pipeline returns. The preview must never repair the input, omit a selected unit, clamp a range or promote declarations to evidence about a file or editor.
@@ -49,7 +51,7 @@ The presentation order is fixed:
 
 1. Authority block with stage, state and the actual single error or valid result diagnostics.
 2. Scope line: declarations only. File bytes/metadata, author content review, host support and execution authority require their own evidence.
-3. One row for **every** selected reference in its input order, including invalid or duplicate references. Each row retains the supplied `unit_id@revision`, its selection index and all exact matching mapping indices. No deduplication, sort or automatic revision repair.
+3. One row for **every** selected reference in its input order, including invalid or duplicate references. Keep the selection index. Show the supplied `unit_id@revision` and exact mapping matches where the reference can be interpreted safely. Use fixed placeholders for malformed references, with full details in the [proposed clarification](g2-review-addendum.md).
 4. Any mapping rows not matched to a selection remain visible in a separate original-index list. Do not reorder the input before validation.
 5. Advisory input hints, clearly labeled non-authoritative and sorted by input row/field order.
 6. Whether A can print valid V1 declaration JSON; planning readiness remains a separate statement. No Execute action exists.
