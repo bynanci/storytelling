@@ -1,0 +1,182 @@
+{
+  "stage": "authored_G2_proposed_examples_not_runtime_receipts",
+  "base_sha": "62541d91c0c52ec6e49b5dc9c8350e92e83b409a",
+  "human_observations": 0,
+  "host_observations": 0,
+  "note": "Frame lengths/hashes and schema structure may be checked statically. Expected domain/client outcomes require future G3/G4 replay. Do not count these files as product output or RED/GREEN.",
+  "files": [
+    {
+      "path": "valid-describe.request.bin",
+      "bytes": 154,
+      "sha256": "031808917d0c0dac621fd640505df2aee542cf2b0e53cc3a73dbe4eef6f4acce",
+      "kind": "request_frame",
+      "expected": "framing valid; expected describe outcome is a proposal, not an observed run",
+      "schema_valid": true
+    },
+    {
+      "path": "valid-describe.request.header.json",
+      "bytes": 147,
+      "sha256": "d24aa13d69f2d5e08cc827890d514eec9693aabce576b42e186b2a70a5ac682e",
+      "kind": "request_header",
+      "expected": "valid proposed header",
+      "schema_valid": true
+    },
+    {
+      "path": "valid-unresolved.request.bin",
+      "bytes": 2046,
+      "sha256": "09367ecfe538096d57742e972beb446275d56c1d77ce172265eb8b7230baebd3",
+      "kind": "request_frame",
+      "expected": "valid frame; backend reference is Ok with ready_for_planning=false",
+      "schema_valid": true,
+      "source": {
+        "path": "tests/fixtures/narrative-video-coverage-v1/valid-unresolved.json",
+        "bytes": 1848,
+        "sha256": "9617c26eb53778378a6f53e2a86211c715d870a14a1248a1d73b989494a4c9ad"
+      }
+    },
+    {
+      "path": "invalid-future-and-operation.request.bin",
+      "bytes": 2039,
+      "sha256": "976829d673373632d3c5257ea2e3f715f00c7a798fb6462d783d7245996a574d",
+      "kind": "request_frame",
+      "expected": "transport.unsupported_wire_version before unsupported operation",
+      "schema_valid": false
+    },
+    {
+      "path": "invalid-path-role.request.bin",
+      "bytes": 185,
+      "sha256": "f27d7daa2b5a20b978198e44c788715773c8252e9587b565e12364f19a5fd414",
+      "kind": "request_frame",
+      "expected": "transport.invalid_buffers; no path open",
+      "schema_valid": false
+    },
+    {
+      "path": "invalid-extra-field.request.header.json",
+      "bytes": 197,
+      "sha256": "b921df4df0257ac8f156ce174e9cc18e27e5e82fca315cf64de5b2c685aa2f24",
+      "kind": "request_header",
+      "expected": "transport.invalid_header",
+      "schema_valid": false
+    },
+    {
+      "path": "invalid-duplicate-header.request.bin",
+      "bytes": 171,
+      "sha256": "ed44df8453948a3fe17b3213da5b8795bf30a975cdb6d5e598a80769a82cf694",
+      "kind": "request_frame",
+      "expected": "transport.invalid_header; schema alone cannot detect duplicate keys",
+      "schema_valid": null
+    },
+    {
+      "path": "invalid-truncated-body.request.bin",
+      "bytes": 2045,
+      "sha256": "773463ef62c32e7993a1e79509ffb26e0328cf15cc2b8d722cd7e7a31001636c",
+      "kind": "request_frame",
+      "expected": "transport.invalid_frame",
+      "schema_valid": null
+    },
+    {
+      "path": "invalid-surplus-lf.request.bin",
+      "bytes": 2047,
+      "sha256": "7c42c8896a00e0259ef67db946347209f7b3c861feffffe6c1becc9f7aff2f7e",
+      "kind": "request_frame",
+      "expected": "transport.invalid_frame; appended LF is outside the declared source buffer",
+      "schema_valid": null
+    },
+    {
+      "path": "invalid-large-header-prefix.request.bin",
+      "bytes": 8,
+      "sha256": "010166a9ef80a6a29464be5b7ffeecb06160ff3cdd0ebccba12cd64016c2a396",
+      "kind": "request_frame",
+      "expected": "transport.header_too_large before reading an oversized header",
+      "schema_valid": null
+    },
+    {
+      "path": "proposed-describe.response.bin",
+      "bytes": 767,
+      "sha256": "9cdcadd23a6d3537156642333fceddf35913be6a418188437149e991ca4784ea",
+      "kind": "response_frame",
+      "expected": "synthetic proposed describe view; not process output",
+      "schema_valid": true
+    },
+    {
+      "path": "invalid-association.response.bin",
+      "bytes": 770,
+      "sha256": "ce173f934c6e773b4f069756fe7ead5e507dea13ac19bd2d260c161c6863b6dd",
+      "kind": "response_frame",
+      "expected": "client.invalid_response against example-01 despite structurally valid header",
+      "schema_valid": true
+    },
+    {
+      "path": "proposed-stale.response.bin",
+      "bytes": 448,
+      "sha256": "e208486e2054f6e83e01b8e6a5913e123512855b466feb44e475021851fcd177",
+      "kind": "response_frame",
+      "expected": "Ok/current=false; not domain_error and not approval",
+      "schema_valid": true
+    },
+    {
+      "path": "proposed-domain-error.response.bin",
+      "bytes": 344,
+      "sha256": "c2d3255b93a899f9e2a77d64502ec17131c2ee3d2b53daccfc0bfb602d53c77f",
+      "kind": "response_frame",
+      "expected": "retained domain error and exact detail bytes; not an executed response",
+      "schema_valid": true
+    },
+    {
+      "path": "invalid-domain-with-view.response.header.json",
+      "bytes": 325,
+      "sha256": "8c5116df1b68e39784429729880c205604cebc1c2c88b6bbe0df4bc3493cb657",
+      "kind": "response_header",
+      "expected": "client.invalid_response: mutually exclusive status fields",
+      "schema_valid": false
+    },
+    {
+      "path": "proposed-detail-encoding-failure.response.header.json",
+      "bytes": 283,
+      "sha256": "eef8754012f679ba9b651a6e3d551dec34a7cb1996bb33e50eca3f02a2a09a6c",
+      "kind": "response_header",
+      "expected": "domain code/path retained; no details buffer",
+      "schema_valid": true
+    },
+    {
+      "path": "proposed-version-error.response.header.json",
+      "bytes": 226,
+      "sha256": "d24214721819757256749f275e9622c9ee90ddff99a2316d213e3c57439207c1",
+      "kind": "response_header",
+      "expected": "pre-validation error with null association",
+      "schema_valid": true
+    },
+    {
+      "path": "valid-narrative-projection.json",
+      "bytes": 850,
+      "sha256": "ff99ad08a5558a440747131359075ddd8b97c28b06a881b58412910f5f7507da",
+      "kind": "narrative_projection",
+      "expected": "valid binding view; proposal appears only in B",
+      "schema_valid": true
+    },
+    {
+      "path": "invalid-narrative-kind.json",
+      "bytes": 846,
+      "sha256": "a7086585cccd9297255d14b60235fae6dd536f651704b9a877eb3e9120a0fe13",
+      "kind": "narrative_projection",
+      "expected": "unknown kind rejected without fallback",
+      "schema_valid": false
+    },
+    {
+      "path": "invalid-lf-id.request.header.json",
+      "bytes": 140,
+      "sha256": "a8da61795bd5928cb432bc9a657e93f4063622e8c6e0c81c6f9bfd8b0d29a1be",
+      "kind": "request_header",
+      "expected": "header rejects LF in ASCII request ID; regression for the observed schema counterexample",
+      "schema_valid": false
+    },
+    {
+      "path": "invalid-lf-id.response.header.json",
+      "bytes": 276,
+      "sha256": "101d7cb86366afa84dbcc8de56464b89dd7e5e210c9b209273f0d575297e2cd0",
+      "kind": "response_header",
+      "expected": "header rejects LF in ASCII request ID; regression for the observed schema counterexample",
+      "schema_valid": false
+    }
+  ]
+}
