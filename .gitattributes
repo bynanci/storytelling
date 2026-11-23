@@ -1,3 +1,8 @@
+# Provenance compares exact license and notice bytes in every checkout.
+/LICENSE -text
+/LICENSES/Apache-2.0.txt -text
+/LICENSES/third-party/NOTICE.txt -text
+
 # These fixtures are embedded and hashed as exact source bytes by cross-platform tests.
 tests/fixtures/openfilm/finite-v1/repeat-source.json -text
 tests/fixtures/openfilm/finite-v1/video-trim.json -text
