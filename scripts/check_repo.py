@@ -122,7 +122,7 @@ def provenance_manifest_covers_every_imported_file():
     ignored_parts = {"__pycache__", "node_modules", ".venv"}
     for path in (ROOT / "crates").rglob("*.rs"):
         if "SPDX-License-Identifier: Apache-2.0" in path.read_text():
-            actual.add(str(path.relative_to(ROOT)))
+            actual.add(path.relative_to(ROOT).as_posix())
     # JSON has no comments. A directory README declares the component license
     # without changing exact fixture bytes; original M0 MIT fixtures stay separate.
     directories = []
@@ -136,7 +136,7 @@ def provenance_manifest_covers_every_imported_file():
         for path in directory.rglob("*"):
             if not path.is_file() or ignored_parts.intersection(path.parts):
                 continue
-            actual.add(str(path.relative_to(ROOT)))
+            actual.add(path.relative_to(ROOT).as_posix())
     if actual != admitted:
         found.append(f"Transfer provenance coverage differs: {sorted(actual ^ admitted)}")
     for member in ("storytelling-core", "storytelling-engine"):
